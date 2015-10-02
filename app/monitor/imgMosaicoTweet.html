@@ -1,0 +1,23 @@
+<div id="result_conteudo_img" ng-controller="HashImgMosaicoCtr" style="height:100%;">
+	<div class="loading" ng-show="dataLoadOFF">
+		<center><img src="img/icons/Unknown.gif" height="66px" width="66px"></center>
+		<p class="loadingWordGrey">CARREGANDO</p>
+	</div>
+
+	<div class="loading" ng-show="dataLoadERROR">
+		<center><img src="img/icons/searching45.png" height="40px" width="40px"></center>
+		<p class="loadingWordGrey">NENHUMA IMAGEM ECONTRADA</p>
+		<p class="loadingWordGrey">tente outra categoria ou intervalo de tempo</p>
+	</div>
+
+	<div ng-show="dataLoadON" class="geralTweets_result" style="padding:10px;">
+		<div ng-repeat="img in imgs" class="out str_TopImg_mosaico">
+			<a href='{{img.media_url_https}}' class="swipebox" title='Retweetado {{img.count}} - "{{img.text}}" @{{img.user.screen_name}}' >
+				<img src="{{img.media_url_https}}:thumb" class="img_TopImg_mosaico" alt="image" width="{{alturaImg}}px" height="{{alturaImg}}px">
+			</a>
+			<div class="hover_img_TopImg_mosaico">
+				<img src="{{img.media_url_https}}:thumb" class="img_TopImg_mosaico" alt="image" width="100%" height="100%">
+			</div>
+		</div>
+	</div>
+</div>

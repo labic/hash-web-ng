@@ -1,0 +1,18 @@
+<div id="result_conteudo_img" ng-controller="HashImgCtr" style="height:100%;">
+	<div class="loading" ng-show="dataLoadOFF">
+		<center><img src="img/icons/Unknown.gif" height="66px" width="66px"></center>
+		<p class="loadingWordGrey">CARREGANDO</p>
+	</div>
+	
+	<div class="loading" ng-show="dataLoadERROR">
+		<center><img src="img/icons/searching45.png" height="40px" width="40px"></center>
+		<p class="loadingWordGrey">NENHUM IMAGEM ENCONTRADA</p>
+		<p class="loadingWordGrey">tente outra categoria ou intervalo de tempo</p>
+	</div>
+
+	<div ng-show="dataLoadON" class="geralTweets_result" style="height:calc(100% - 10px);">
+		<a href='{{img.media_url_https}}' class="swipebox" title='Retweetado {{img.count}} - "{{img.text}}" @{{img.user.screen_name}}' ng-repeat="img in imgs">
+			<img src="{{img.media_url_https}}:small" class="img_TopImg" alt="image" width="{{alturaImg}}px" height="{{alturaImg}}px">
+		</a>
+	</div>
+</div>

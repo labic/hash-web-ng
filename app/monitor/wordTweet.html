@@ -1,0 +1,41 @@
+<!--<p class="subTitle_top">PALAVRAS MAIS FREQUENTES</p>-->
+
+<div ng-controller="HashWords" style="height:100%;">
+
+	<div class="loading" ng-show="dataLoadOFF">
+		<center><img src="img/icons/spin.gif" height="66px" width="66px"></center>
+		<p style="color:rgba(10, 18, 39, 0.65);">CARREGANDO</p>
+	</div>
+	
+	<div class="loading" ng-show="dataLoadERROR">
+		<center><img src="img/icons/searching45blue.png" height="40px" width="40px"></center>
+		<p class="loadingWordBlue">NENHUMA PALAVRA ENCONTRADA</p>
+		<p class="loadingWordBlue">tente outra categoria ou intervalo de tempo</p>
+	</div>
+
+	<div ng-show="dataLoadON" style="height:100%;">
+		<div id="str_highWord" ng-click="loadWordsPub(word1.word)" title='Clique para visualizar os ultimos retweets com a palavra "{{word1.word}}"'>
+			<p class="title_str_highWord">{{word1.word}}</p>
+			<p class="text_str_highWord" class="tipped"><span class="number_str_highWord">{{word1.count}}</span> vezes</p>
+		</div>
+
+		<div class="strVertical_highWord">
+			<div ng-click="loadWordsPub(wordv.word)" title='Clique para visualizar os ultimos retweets com a palavra "{{wordv.word}}"' class="each_word" ng-repeat="wordv in words">
+				<p>{{wordv.word}}</p>
+				<p ng-if="wordv.count == 1">{{wordv.count}} vez</p>
+				<p ng-if="wordv.count != 1">{{wordv.count}} vezes</p>
+			</div>
+		</div>
+		
+		<div class="str_fixed_words">
+			<div class="fixed_words_title">
+				<p>Assuntos mais ocorrentes</p>
+			</div>
+			<p>PALAVRA1</p>
+			<p>PALAVRA2</p>
+			<p>PALAVRA3</p>
+			<p>PALAVRA4</p>
+			<p>PALAVRA5</p>
+		</div>
+	</div>
+</div>

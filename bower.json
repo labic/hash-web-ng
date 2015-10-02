@@ -1,0 +1,16 @@
+{
+  "name": "tela2-v1.7",
+  "version": "1.7.0",
+  "authors": [
+    "zoaldyck <roberto_dmoraes@hotmail.com>"
+  ],
+  "description": "estamos alavancando o esquema",
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
