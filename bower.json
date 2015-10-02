@@ -18,6 +18,8 @@
     "angular-route": "~1.4.7",
     "jquery": "~2.1.4",
     "swipebox": "~1.4.1",
-    "Chart.js": "~1.0.2"
+    "Chart.js": "~1.0.2",
+    "qTip2": "~2.2.1",
+    "Processing.js": "processing#~1.4.16"
   }
 }
