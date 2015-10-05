@@ -1,0 +1,152 @@
+[
+	{
+
+		{
+			"name":"inclusão social",
+			"query":"conteudo-inclusão social"
+		},
+		{
+			"name":"empoderamento negro",
+			"query":"conteudo-empoderamento negro"
+		},
+		{
+			"name":"violência",
+			"query":"conteudo-violência"
+		},
+		{
+			"name":"racismo",
+			"query":"conteudo-racismo"
+		},
+		{
+			"name":"contra inclusão social",
+			"query":"conteudo-contra inclusão social"
+		},
+		{
+			"name":"contra empoderamento negro",
+			"query":"conteudo-contra empoderamento negro"
+		},
+		{
+			"name":"intolerância religiosa",
+			"query":"conteudo-intolerância religiosa"
+		}
+	},
+	{
+
+		{
+			"name":"contra lesbofobia",
+			"query":"conteudo-contra lesbofobia"
+		},
+		{
+			"name":"contra transfobia",
+			"query":"conteudo-contra transfobia"
+		},
+		{
+			"name":"contra homofobia",
+			"query":"conteudo-contra homofobia"
+		},
+		{
+			"name":"empoderamento",
+			"query":"conteudo-empoderamento"
+		},
+		{
+			"name":"punição",
+			"query":"conteudo-punição"
+		},
+		{
+			"name":"lesbofobia",
+			"query":"conteudo-lesbofobia"
+		},
+		{
+			"name":"transfobia",
+			"query":"conteudo-transfobia"
+		},
+		{
+			"name":"homofobia",
+			"query":"conteudo-homofobia"
+		}
+	},
+	{
+		{
+			"name":"morte e ameaça",
+			"query":"conteudo-morte e ameaça"
+		},
+		{
+			"name":"conflitos",
+			"query":"conteudo-conflitos"
+		},
+		{
+			"name":"inclusão social",
+			"query":"conteudo-inclusão social"
+		},
+		{
+			"name":"etnias",
+			"query":"conteudo-etnias"
+		},
+		{
+			"name":"empoderamento indídena",
+			"query":"conteudo-empoderamento indídena"
+		},
+		{
+			"name":"morte e ameaça",
+			"query":"conteudo-morte e ameaça"
+		},
+		{
+			"name":"preconceito",
+			"query":"conteudo-preconceito"
+		},
+		{
+			"name":"contra inclusão social",
+			"query":"conteudo-contra inclusão social"
+		},
+		{
+			"name":"conflitos",
+			"query":"conteudo-conflitos"
+		}
+	},
+	{
+		{
+			"name":"a favor do aborto",
+			"query":"conteudo-a favor do aborto"
+		},
+		{
+			"name":"contra o machismo",
+			"query":"conteudo-contra o machismo"
+		},
+		{
+			"name":"contra estupro",
+			"query":"conteudo-contra estupro"
+		},
+		{
+			"name":"contra violência à mulher e feminicidio",
+			"query":"conteudo-contra violência à mulher e feminicidio"
+		},
+		{
+			"name":"feminismo",
+			"query":"conteudo-feminismo"
+		},
+		{
+			"name":"empoderamento feminino",
+			"query":"conteudo-empoderamento feminino"
+		},
+		{
+			"name":"punição",
+			"query":"conteudo-punição"
+		},
+		{
+			"name":"contra aborto",
+			"query":"conteudo-contra aborto"
+		},
+		{
+			"name":"machismo",
+			"query":"conteudo-machismo"
+		},
+		{
+			"name":"pró-estupro",
+			"query":"conteudo-pró-estupro"
+		},
+		{
+			"name":"pró violência contra mulher",
+			"query":"conteudo-pró violência contra mulher"
+		}
+	}
+]

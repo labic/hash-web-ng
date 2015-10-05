@@ -12,13 +12,13 @@ function d3Sunburst(url, word){
 
 	var color = d3.scale.category20c();
 
-	var seqtext = d3.select("#div2_palavars_sunburstZoom_fixed")
+	var seqtext = d3.select("#palavras_div2_sunburstZoom_fixed")
 	.attr("width", width/5)
 	.attr("height", height/5)
 	.append("g")
 	.attr("transform", "translate(" + width / 2 + "," + (height / 2) +")");
 
-	var svg = d3.select("#div2_palavars_sunburstZoom").append("svg")
+	var svg = d3.select("#palavras_div2_sunburstZoom").append("svg")
 	.attr("width", width)
 	.attr("height", height)
 	.append("g")
@@ -75,21 +75,18 @@ function d3Sunburst(url, word){
 
 		function click(d) {
 			seqtext.select("p").remove()
-			var t = "Sequência: "
-			seqtext.append("p")
+			var t = ""
 			if(d.name != "top_words"){
 				t = ""
 				var parent = d.parent
 				while(parent.name != "top_words"){
-					t = parent.name + " <br> " + t
+					t = parent.name+"<br/>"+t
 					parent = parent.parent
-					seqtext.select("p").text(t)
 				}
-				t = "Sequência: " + t + d.name
+				t = t + d.name
 			}
-
-
-//			seqtext.append("p").text(t)
+			
+			seqtext.append("p").html(t)
 
 			path.transition()
 				.duration(750)

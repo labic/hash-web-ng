@@ -31,11 +31,7 @@
 			<div class="fixed_words_title">
 				<p>Assuntos mais ocorrentes</p>
 			</div>
-			<p>PALAVRA1</p>
-			<p>PALAVRA2</p>
-			<p>PALAVRA3</p>
-			<p>PALAVRA4</p>
-			<p>PALAVRA5</p>
+			<p ng-repeat="conteudo in conteudos" ng-click="changeCategoria(',%22'+conteudo.query+'%22')">{{conteudo.name}}</p>
 		</div>
 	</div>
 </div>

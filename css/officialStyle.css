@@ -363,7 +363,7 @@
 			}
 
 				#display_tweet{
-					width:172px;
+					width:200px;
 					float:left;
 					padding:10px;
 					height: auto;
@@ -605,7 +605,7 @@
 
 					.each_tweet_result{
 						width: 100%;
-						height: 130px;
+						height: auto;
 						padding: 5px;
 						float:left;
 					}
@@ -823,17 +823,21 @@
 				}
 
 					.fixed_words_title p{
-						font-weight: bold;
 						color: #5d5d5d;
 						font-size: 12px;
 						cursor:auto;
+					}
+
+					.fixed_words_title p:hover{
+						font-weight: bold;
+						font-size: 13px;
 					}
 
 /* PAGINA: Palavras*/
 
 	#div1_palavras{
 		width:540px;
-		padding: 50px;
+		padding: 30px;
 		background: #e7e8ea;
 	}
 
@@ -869,7 +873,7 @@
 
 		.search_div{
 			width:auto;
-			border: 2px solid black;
+			border: 3px solid black;
 			border-radius: 5px; 
 			height: auto;
 			float: right;
@@ -884,7 +888,7 @@
 			}
 
 			.search_input{
-				width: 215px;
+				width: 250px;
 			}
 
 			.search_button{
@@ -904,7 +908,8 @@
 
 		#div1_palavras_loop{
 			width: 100%;
-			height: 100%;
+			height: calc(100% - 260px);
+			float:left;
 		}
 
 		#div1_palavras_loop10{
@@ -927,7 +932,7 @@
 				}
 
 		#div1_palavras_loop1000{
-			height: calc(100% - 150px);
+			height: 100%;
 			overflow: auto;
 			float:left;
 			width: calc(100% - 150px);
@@ -952,12 +957,12 @@
 					font-weight: bold;
 				}
 
-	#div2_palavras{
+	#palavras_div2{
 		width:calc(100% - 540px);
 		background-image: url(../img/subtle_dots_@2X.png);
 	}
 
-		#div2_palavars_sunburstZoom{
+		#palavras_div2_sunburstZoom{
 			float:right;
 			width:auto;
 			height: auto;
@@ -965,7 +970,7 @@
 			margin-right: calc(50% - 150px);
 		}
 
-		#div2_palavars_sunburstZoomOFF{
+		#palavras_div2_sunburstZoomOFF{
 			float:right;
 			width: 520px;
 			height: 520px;
@@ -975,7 +980,7 @@
 			margin-right: calc(50% - 150px);
 		}
 
-			#div2_palavars_sunburstZoomOFF p{
+			#palavras_div2_sunburstZoomOFF p{
 				width: 200px;
 				height: auto;
 				font-size: 18px;
@@ -985,7 +990,7 @@
 				text-align: center;
 			}
 
-		#div2_palavars_sunburstZoom_fixed{
+		#palavras_div2_sunburstZoom_fixed{
 			position: absolute;
 			background: #E7E8EA;
 			padding:25px;
@@ -995,33 +1000,220 @@
 			right:0;
 		}
 
-			#div2_palavars_sunburstZoom_fixed p{
+			#palavras_div2_sunburstZoom_fixed p{
 				width:100%;
 				text-align: center;
 			}
 
-			#div2_palavars_sunburstZoom_fixed p:first-child{
+			#palavras_div2_sunburstZoom_fixed p:first-child{
 				font-size: 14px;
 				font-weight: bold;
 			}
 
-	#div2_palavars_sunburstZoom path {
+	#palavras_div2_sunburstZoom path {
 		stroke: #000;
 		stroke-width: 0.25;
 		fill-rule: "evenodd";
 	}
 
-	#div2_palavars_sunburstZoom text {
+	#palavras_div2_sunburstZoom text {
 		font: 11px sans-serif;
 		cursor: pointer;
 		stroke: #888;
 		stroke-width: 0.25;
 	}
 
+	#palavras_div1_str_menuTemporalidade{
+		width: auto;
+		height: auto;
+		float: right;
+		margin-top: 50px;
+		margin-right: calc(50% - 130px);
+	}
+
+		.palavras_div1_str_menuTemporalidade_temporalidade{
+			width: 60px;
+			height: 60px;
+			margin: 6px;
+			border-radius: 60px;
+			float: right;
+			border: 1px solid #1DBFD8;
+			cursor: pointer;
+			padding-top: 10px;
+		}
+
+		.palavras_div1_str_menuTemporalidade_temporalidade:hover{
+			width: 70px;
+			height: 70px;
+			border-radius: 70px;
+			padding-top: 17px;
+		}
+
+			.palavras_div1_str_menuTemporalidade_temporalidade p{
+				text-align: center;
+				color: #5D5D5D;
+				font-weight: bold;
+			}
+
+				.palavras_div1_str_menuTemporalidade_temporalidade p:first-child{
+					font-size: 12px;
+				}
+
+				.palavras_div1_str_menuTemporalidade_temporalidade p:last-child{
+					font-size: 10px;
+				}
+
+				.palavrasFisrtTemp{
+					background: #5D5D5D;
+					border: 1px solid #5D5D5D;
+				}
+
+					.palavrasFisrtTemp p{
+						color: #E7E8EA;
+					}
+
+/* PAGINA: TERRITORIO*/
+
+	#str_main_territorio{
+
+	}
+
+		#div1_territorio{
+			width: 350px;
+			height: 100%;
+			padding: 25px;
+			background: #E7E8EA;
+			float:left;
+		}
+
+			#div1_territorio_title{
+				float:left;
+				width:180px;
+				height:;
+			}
+
+				#div1_territorio_title img{
+					float:left;
+					margin-right: 10px;
+				}
+
+				#div1_territorio_title p{
+					width: 100%;
+					font-size: 14px;
+					font-weight: bold;
+				}
+
+				#div1_territorio_title p:nth-child(4){
+					width: 100%;
+					margin-top:15px;
+					font-size: 12px;
+				}
+
+			#div1_territorio_tematica{
+				width:100%;
+				float:left;
+				margin: 20px 0px 20px 0px;
+			}
+
+				#div1_territorio_tematica ul{
+					float:right;
+				}
+
+				#div1_territorio_tematica li span{
+					height: 30px;
+					width: 30px;
+					background: red;
+					float:left;
+					margin-right: 15px;
+				}
+
+				#div1_territorio_tematica li p{
+					color: black;
+					font-size: 17px;
+					text-align: left;
+					font-weight: 600;
+					width: auto;
+					float:left;
+				}
+
+				#div1_territorio_tematica li{
+					width:100%;
+					height: 30px;
+				}
+
+				#territorio_div1_str_menuTemporalidade{
+					width: auto;
+					height: 80px;
+					float: left;
+					margin-right: calc(50% - 130px);
+				}
+
+					.territorio_div1_str_menuTemporalidade_temporalidade{
+						width: 60px;
+						height: 60px;
+						margin: 6px;
+						border-radius: 60px;
+						float: right;
+						border: 1px solid #fff;
+						cursor: pointer;
+						padding-top: 10px;
+					}
+
+					.territorio_div1_str_menuTemporalidade_temporalidade:hover{
+						width: 70px;
+						height: 70px;
+						border-radius: 70px;
+						padding-top: 17px;
+					}
+
+						.territorio_div1_str_menuTemporalidade_temporalidade p{
+							text-align: center;
+							color: #1DBFD8;
+							font-weight: bold;
+						}
+
+							.territorio_div1_str_menuTemporalidade_temporalidade p:first-child{
+								font-size: 12px;
+							}
+
+							.territorio_div1_str_menuTemporalidade_temporalidade p:last-child{
+								font-size: 10px;
+							}
+
+							.territorioFisrtTemp{
+								background: #1DBFD8;
+								border: 1px solid #1DBFD8;
+							}
+
+								.territorioFisrtTemp p{
+									color: #E7E8EA;
+								}
+
+			#territorio_div1_str_legend_map{
+				margin-top: 30px;
+				width: 300px;
+				margin-left: calc(50% - 150px);
+			}
+
+				#str_legend_map p{
+					font-size:12px;
+					width: 33%;
+					color:#969696;
+					font-weight: bold;
+					float:left;
+				}
+
+		#div2_territorio{
+			width: calc(100% - 350px);
+			height: 100%;
+			float:left;
+			background-image: url("../img/subtle_dots_@2X.png");
+		}
+
 /* NOTA:GERAL */
 
 	.loading{
-		padding-top: 200px;
+		padding-top: 100px;
 		width: 100%;
 		height: 100%;
 	}
