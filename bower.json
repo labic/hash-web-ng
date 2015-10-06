@@ -20,6 +20,7 @@
     "swipebox": "~1.4.1",
     "Chart.js": "~1.0.2",
     "qTip2": "~2.2.1",
-    "Processing.js": "processing#~1.4.16"
+    "Processing.js": "processing#~1.4.16",
+    "angular-resource": "~1.4.7"
   }
 }
