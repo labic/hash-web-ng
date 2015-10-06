@@ -1,0 +1,52 @@
+<div id="str_main_territorio" class="str_main">
+	<div id="div1_territorio" class="str_division">
+		<div id="div1_territorio_title">
+			<img src="img/icons/aspas.png" height="35px" width="40px">
+			<p>ANÁLISE</p>
+			<p>TERRITORIAL</p>
+			<p>Veja a distruição dos usuários por temáticas do aplicativo. Veja a distruição dos usuários por temáticas do aplicativo </p>
+		</div>
+
+		<div id="div1_territorio_tematica">
+			<ul id="menu_tematica">
+				<li class="menu_tematica_op">
+					<a ng-click=" linkTema = '%22tema-negros%22'; changeTema(linkTema);"><span></span><p class=" select_tematica_palavras firstOp">NEGRO</p></a>
+				</li>
+				<li class="menu_tematica_op">
+					<a ng-click=" linkTema = '%22tema-lgbt%22'; changeTema(linkTema);"><span></span><p class=" select_tematica_palavras">LGBT</p></a>
+				</li>
+				<li class="menu_tematica_op">
+					<a ng-click=" linkTema = '%22tema-indigena%22'; changeTema(linkTema);"><span></span><p class=" select_tematica_palavras">ÍNDIGENA</p></a>
+				</li>
+				<li class="menu_tematica_op">
+					<a ng-click=" linkTema = '%22tema-genero%22'; changeTema(linkTema);"><span></span><p class=" select_tematica_palavras">MULHER</p></a>
+				</li>
+			</ul>
+		</div>
+
+		<div id="territorio_div1_str_menuTemporalidade">
+			<div class="territorio_div1_str_menuTemporalidade_temporalidade territorioFisrtTemp" ng-click="changeTemporalidade(60);">
+				<p>24</p>
+				<p>HORAS</p>
+			</div>
+			<div id="temporalidade24" class="territorio_div1_str_menuTemporalidade_temporalidade" ng-click="changeTemporalidade(24);">
+				<p>1</p>
+				<p>DIA</p>
+			</div>
+			<div class="territorio_div1_str_menuTemporalidade_temporalidade" ng-click="changeTemporalidade(7);">
+				<p>10</p>
+				<p>DIAS</p>
+			</div>
+		</div>	
+
+		<div id="str_legend_map">
+			<p style="width:100%;">Volume dos usuários por Estado</p>
+			<div class="legend_map"></div>
+			<p>0</p><p style="text-align: center;">50</p><p style="text-align: right;">100</p>
+		</div>
+	</div>
+
+	<div id="div2_territorio" class="str_division">
+
+	</div>
+</div>

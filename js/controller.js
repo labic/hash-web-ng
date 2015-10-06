@@ -58,8 +58,6 @@ var linkNoRtConteudo = "";
 
 /* Inicializando links de requisição */
 
-var hashTwitter = angular.module('hashTwitter', []);
-
 hashTwitter.run(function($rootScope) {
 
 	$rootScope.$on('handleEmitConteudo', function(event, args, args1) {
@@ -783,7 +781,7 @@ var palavraLinkWord = serviceBase+'top_words?filter={"where":{"status.created_at
 
 var palavraCountWord = 'https://hash-api.herokuapp.com/v1/tweets/count?where={"categories": {"inq": ['+linkTema+']},"status.timestamp_ms": {"gte": '+nowT60+',"lte": '+nowT+'}}';
 
-var urlsun = 'http://107.170.54.11:8080/word_concur?filter={"where": {"status.created_at": {"gte":"'+dataNow60+'","lte":"'+dataNow+'"}, "categories": {"all": ['+linkTema+']}},"top_words":["racista"], "MAX_WORDS":5,"MAX_HEIGHT":5, "MAX_DEPTH":3, "duplicity" : false, "rt":false}';
+var urlsun = 'http://107.170.54.11:8080/word_concur?filter={"where": {"status.created_at": {"gte":"'+dataNow60+'","lte":"'+dataNow+'"}, "categories": {"all": ['+linkTema+']}},"top_words":["racista"], "MAX_WORDS":5,"MAX_HEIGHT":5, "MAX_DEPTH":3, "duplicity" : "false", "rt":"false"}';
 
 var linkSearchWord = "";
 
@@ -814,6 +812,9 @@ hashTwitter.controller('mainPalavras', function ($scope) {
 		palavraLinkWord = serviceBase+'top_words?filter={"where":{"status.created_at":{"gte":"'+palavrasTime+'","lte":"'+dataNow+'"},"categories":{"all":['+palavrasTema+']}},"limit":170}';
 
 		$scope.$emit('handleEmitPalavrasWord', palavraLinkWord);
+		
+//		d3.select("#palavras_div2_sunburstZoom").select('svg').remove();
+//		d3.select("#palavras_div2_sunburstZoom").select('g').remove();
 	};
 
 	$scope.changeTemporalidade = function (time) {
@@ -837,11 +838,19 @@ hashTwitter.controller('mainPalavras', function ($scope) {
 
 		$scope.sunburstON = true;
 		$scope.sunburstOFF = false;
+		
+		if(palavrasLinkTime == 60){
+			palavrasTime = dataNow60;
+		}else if(palavrasLinkTime == 24){
+			palavrasTime = dataNow24;
+		}else if(palavrasLinkTime == 7){
+			palavrasTime = dataNow7;
+		}
 
-		urlsun = 'http://107.170.54.11:8080/word_concur?filter={"where": {"status.created_at": {"gte":"'+dataNow60+'","lte":"'+dataNow+'"}, "categories": {"all": ['+linkTema+']}},"top_words":["'+word+'"], "MAX_WORDS":5,"MAX_HEIGHT":5, "MAX_DEPTH":3, "duplicity" : false, "rt":false}';
+		urlsun = 'http://107.170.54.11:8080/word_concur?filter={"where": {"status.created_at": {"gte":"'+palavrasTime+'","lte":"'+dataNow+'"}, "categories": {"all": ['+linkTema+']}},"top_words":["'+word+'"], "MAX_WORDS":5,"MAX_HEIGHT":5, "MAX_DEPTH":3, "duplicity" : "false", "rt":"false"}';
 
-		d3.select("#div2_palavars_sunburstZoom").select('svg').remove();
-		d3.select("#div2_palavars_sunburstZoom").select('g').remove();
+		d3.select("#palavras_div2_sunburstZoom").select('svg').remove();
+		d3.select("#palavras_div2_sunburstZoom").select('g').remove();
 
 		d3Sunburst(urlsun,word);
 	};

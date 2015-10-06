@@ -1,19 +1,17 @@
-//var hashTwitter = angular.module('hashTwitter', [
-//	'ngRoute',
-//	'hashTwitterControllers'
-//]);
-//
-//hashTwitter.config(['$routeProvider', function($routeProvider) {
-//	$routeProvider.
-//	when('/app', {
-//		templateUrl: 'app/twTweet.html',
-//		controller: 'HashTwitterCtrl'
-//	}).
-//	when('/app/imgTweet', {
-//		templateUrl: 'app/imgTweet.html',
-//		controller: 'HashImgCtrl'
-//	}).
-//	otherwise({
-//		redirectTo: '/app'
-//	});
-//}]);
+var hashTwitter = angular.module('hashTwitter', ['ngRoute',]);
+
+hashTwitter.config(['$routeProvider', function($routeProvider) {
+	$routeProvider.
+	when('/monitor', {
+		templateUrl: 'app/monitor.html',
+	}).
+	when('/palavras', {
+		templateUrl: 'app/palavras.html',
+	}).
+	when('/territorio', {
+		templateUrl: 'app/territorio.html',
+	}).
+	otherwise({
+		redirectTo: '/'
+	});
+}]);
