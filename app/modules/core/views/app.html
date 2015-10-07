@@ -1,0 +1,14 @@
+<header>
+  <a class="logo" href="/">Hash Dash</a>
+  <navbar></navbar>
+</header>
+
+<nav>
+  <ul>
+    <li ng-repeat="module in modulesMenu" ui-sref-active="active">
+      <a class="" href="" ui-sref="{{module.sref}}"><i class="fa fa-fw {{module.icon}}"></i> {{module.name}}</a>
+    </li>
+  </ul>
+</nav>
+
+<main ui-view></main>
