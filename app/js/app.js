@@ -10,11 +10,13 @@
 
   angular
     .module('hash.dash', [
+      'checklist-model',
       'ui.router',
+      'ui.bootstrap',
       'hash.core',
       'hash.api',
       'hash.twitter-monitor',
-      'checklist-model',
       //'angular-underscore'
     ])
+    .constant('BASE_URI', 'https://hash-api.herokuapp.com:443/v1');
 })()

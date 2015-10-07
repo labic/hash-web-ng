@@ -3,11 +3,11 @@
 
   angular
     .module('hash.twitter-monitor')
-    .controller('TwitterMonitorCtrl', function ($scope, $filter, TwitterService) {
+    .controller('TwitterMonitorCtrl', function ($scope, $filter, Twitter) {
       $scope.mainTagsFilter = ['tema-negro', 'tema-lgbt', 'tema-indigena', 'tema-genero'];
       $scope.localtionsFilter = [];
       $scope.timeGranularityFilter = ['15m', '1h', '1d', '7d'];
-      $scope.wordsFilter = ['negro', 'preto', 'macaco', 'direito', 'trabalho', 'teste', 'brasileiro', 'sem-direitos'];
+      $scope.wordsFilter = ['teste', 'brasileiro', 'sem-direitos'];
       $scope.hashtagsFilter = [];
       $scope.tweets = {
         data: [],
@@ -50,42 +50,23 @@
           }
         }
 
-        $scope.hashtagsFilter = TwitterService.analytics.get({
+        Twitter.analytics.get({
           type: 'top-hashtags',
           filter: filter
+        }, function success(data) {
+          $scope.hashtagsFilter = data;
+        }, function error(err) {
+          console.log(err);
         });
 
-        $scope.tweets.data = TwitterService.analytics.get({
+        Twitter.analytics.get({
           type: 'top-retweets',
           filter: filter
+        }, function success(data) {
+          $scope.tweets.data = data;
+        }, function error(err) {
+          console.log(err);
         });
-        //console.log(oldValue);
       }, true);
-
-      // $scope.$watch('filter.mainTag', function(newValue, oldValue) {
-      //   console.log(newValue);
-      //   console.log(oldValue);
-      // });
-
-      // $scope.$watch('filter.location', function(newValue, oldValue) {
-      //   console.log(newValue);
-      //   console.log(oldValue);
-      // });
-
-      // $scope.$watch('filter.timeGranularity', function(newValue, oldValue) {
-      //   console.log(newValue);
-      //   console.log(oldValue);
-      // });
-
-      // $scope.$watch('filter.words', function(newValue, oldValue) {
-      //   console.log(newValue);
-      //   console.log(oldValue);
-      // });
-
-      // $scope.$watch('filter.hashtags', function(newValue, oldValue) {
-      //   console.log(newValue);
-      //   console.log(oldValue);
-      // });
-      //$scope.filters.handlerMainTag = function
     });
 })();

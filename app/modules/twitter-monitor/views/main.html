@@ -1,13 +1,35 @@
-<aside ui-view='main-tags-filter'></aside>
-<aside ui-view='map-filter'></aside>
-<aside ui-view='time-granularity-filter'></aside>
-<aside ui-view='tweets-count'></aside>
+<div class="row">
+  <div class="col-sm-4">
+    <aside ui-view="main-tags-filter" class="btn-group col-sm-12" data-toggle="buttons"></aside>
+    <aside ui-view="map-filter" class="col-sm-12"></aside>
+    <aside ui-view="time-granularity-filter" class="btn-group col-sm-12" data-toggle="buttons"></aside>
+    <aside ui-view="tweets-count" class="col-sm-12"></aside>
+  </div>
 
-<aside ui-view='words-filter'></aside>
-<aside ui-view='hashtags-filter'></aside>
+  <div class="col-sm-3">
+    <tabset type="pills" justified="true">
+      <tab heading="Words" active="true">
+        <aside ui-view="words-filter" data-toggle="buttons"></aside>
+      </tab>
+      <tab heading="Hashtag">
+        <aside ui-view="hashtags-filter" data-toggle="buttons"></aside>
+      </tab>
+    </tabset>
+  </div>
 
-<section ui-view='tweets-list'></section>
-<section ui-view='images-list' format='side-by-side'></section>
-<section ui-view='images-list' format='mosaic'></section>
+  <div class="col-sm-5">
+    <tabset type="pills" justified="true">
+      <tab heading="Tweets" active="true">
+        <section ui-view="tweets-list"></section>
+      </tab>
+      <tab heading="Imagens 1">
+        <section ui-view="images-list" format="side-by-side"></section>
+      </tab>
+      <tab heading="Imagens 2">
+        <section ui-view="images-list" format="mosaic"></section>
+      </tab>
+    </tabset>
+  </div>
+</div>
 
 {{filter}}

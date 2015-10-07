@@ -1,5 +1,3 @@
-<div class="list-group">
-  <label class="list-group-item ng-class:{ 'active': $first }" ng-repeat="tag in mainTagsFilter">
-    <input type="radio" name="mainTagsFilter" value="{{tag}}" ng-model="filter.mainTag" ng-checked="$first"> {{tag}}
-  </label>
-</div>
+<label class="btn btn-primary ng-class:{ 'active': $first }" ng-repeat="tag in mainTagsFilter">
+  <input type="radio" name="mainTagsFilter" value="{{tag}}" ng-model="filter.mainTag" ng-checked="$first"> {{tag}}
+</label>

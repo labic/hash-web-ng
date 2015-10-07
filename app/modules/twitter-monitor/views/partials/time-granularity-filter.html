@@ -1,5 +1,3 @@
-<div class="btn-group" role="group" data-toggle="buttons">
-  <label class="btn ng-class:{ 'active': $first }" ng-repeat="time in timeGranularityFilter">
-    <input type="radio" name="timeGranularityFilter" value="{{time}}" ng-model="filter.timeGranularity" ng-checked="$first"> {{time}}
-  </label>
-</div>
+<label class="btn btn-primary ng-class:{ 'active': $first }" ng-repeat="time in timeGranularityFilter">
+  <input type="radio" name="timeGranularityFilter" value="{{time}}" ng-model="filter.timeGranularity" ng-checked="$first"> {{time}}
+</label>

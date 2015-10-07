@@ -1,5 +1,3 @@
-<div class="btn-group-vertical" data-toggle="buttons">
-  <label class="btn" ng-repeat="word in wordsFilter">
-    <input type="checkbox" name="filterWords[]" checklist-model="filter.words" checklist-value="word"> {{word}}
-  </label>
-</div>
+<label class="btn btn-default btn-block" ng-repeat="word in wordsFilter">
+  <input type="checkbox" name="filterWords[]" checklist-model="filter.words" checklist-value="word"> {{word}}
+</label>
