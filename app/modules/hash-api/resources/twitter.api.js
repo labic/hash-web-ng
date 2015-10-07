@@ -3,7 +3,7 @@
 
   angular
     .module('hash.api')
-    .factory('Twitter', function($resource, BASE_URI) {
+    .factory('TwitterService', function($resource, BASE_URI) {
       var Twitter = {};
       
       Twitter.analytics = $resource(

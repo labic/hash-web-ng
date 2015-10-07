@@ -1,0 +1,8 @@
+<section class="list-group">
+  <a href="https://twitter.com/{{tweet.status.user.screen_name}}/status/{{tweet.status.id_str}}" class="list-group-item" target="_blank" ng-repeat="tweet in tweets.data">
+    <img src="{{tweet.status.user.profile_image_url_https}}">
+    <h4 class="list-group-item-heading">@{{tweet.status.user.screen_name}} | {{tweet.count}} RT</h4>
+    <detail class="list-group-item-text">{{tweet.status.text}}</detail>
+    <span>Último Retweet {{tweet.status.timestamp_ms | date:"dd-MM-yyyy 'às' HH:mm:ss"}}</span>
+  </a>
+</section>

@@ -9,8 +9,12 @@
   'use strict';
 
   angular
-    .module('hashApp', [
+    .module('hash.dash', [
+      'ui.router',
+      'hash.core',
       'hash.api',
-      'hash.monitor'
+      'hash.twitter-monitor',
+      'checklist-model',
+      //'angular-underscore'
     ])
 })()

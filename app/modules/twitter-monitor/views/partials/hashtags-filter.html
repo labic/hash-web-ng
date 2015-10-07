@@ -1,0 +1,5 @@
+<div class="btn-group-vertical" data-toggle="buttons">
+  <label class="btn" ng-repeat="hashtag in hashtagsFilter">
+    <input type="checkbox" name="filterHashtags[]" checklist-model="filter.hashtags" checklist-value="hashtag.hashtag"> #{{hashtag.hashtag}} | {{hashtag.count}}
+  </label>
+</div>
