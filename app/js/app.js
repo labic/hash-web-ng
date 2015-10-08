@@ -18,5 +18,5 @@
       'hash.twitter-monitor',
       //'angular-underscore'
     ])
-    .constant('BASE_URI', 'https://hash-api.herokuapp.com:443/v1');
+    .constant('HASH_API_BASE_URI', 'https://hash-api.herokuapp.com:443/v1');
 })()

@@ -3,11 +3,22 @@
 
   angular
     .module('hash.api')
-    .factory('TwitterService', function($resource, BASE_URI) {
-      var Twitter = {};
+    .factory('Twitter', function($resource, HASH_API_BASE_URI) {
+      
+      var Twitter = $resource(
+        HASH_API_BASE_URI + '/tweets/count',
+        {
+          where: null,
+        },{
+          count: {
+            method: 'GET',
+            cache: false
+          }
+        }
+      );
       
       Twitter.analytics = $resource(
-        BASE_URI + '/tweets/analytics',
+        HASH_API_BASE_URI + '/tweets/analytics',
         {
           type: null,
           filter: null,

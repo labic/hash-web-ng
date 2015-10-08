@@ -26,6 +26,7 @@
     "checklist-model": "~0.6.0",
     "angular-underscore": "~0.5.0",
     "bootstrap": "~3.3.5",
-    "angular-bootstrap": "~0.13.4"
+    "angular-bootstrap": "~0.13.4",
+    "components-font-awesome": "~4.4.0"
   }
 }

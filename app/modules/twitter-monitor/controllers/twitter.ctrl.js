@@ -67,6 +67,16 @@
         }, function error(err) {
           console.log(err);
         });
+
+        filter.where.categories.inq = filter.where.categories.all;
+
+        Twitter.count({
+          where: filter.where,
+        }, function success(data) {
+          $scope.tweets.count = data;
+        }, function error(err) {
+          console.log(err);
+        });
       }, true);
     });
 })();
