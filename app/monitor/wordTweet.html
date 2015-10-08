@@ -32,6 +32,7 @@
 				<p>Assuntos mais ocorrentes</p>
 			</div>
 			<p ng-repeat="conteudo in conteudos" ng-click="changeCategoria(',%22'+conteudo.query+'%22')">{{conteudo.name}}</p>
+			<p ng-click="changeCategoria(',%22conteudo-geral%22')">geral</p>
 		</div>
 	</div>
 </div>

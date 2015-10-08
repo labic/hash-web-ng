@@ -993,17 +993,40 @@
 			height: 300px;
 			top: calc(50% - 150px);
 			right:0;
+			border-radius: 6px 0px 0px 6px;
 		}
 
-			#palavras_div2_sunburstZoom_fixed p{
+			#palavras_div2_sunburstZoom_words p{
 				width:100%;
 				text-align: center;
+				font-size: 16px;
+				font-weight: bold;
+				padding:2px;
 			}
 
-			#palavras_div2_sunburstZoom_fixed p:first-child{
-				font-size: 14px;
-				font-weight: bold;
+		#palavras_div2_sunburstZoom_action{
+			width:100%;
+			background: red;
+			height: 150px;
+			border-top: 2px solid #969696;
+			padding: 10px;
+			margin-top:10px;
+		}
+
+			.palavras_div2_sunburstZoom_action_each{
+				width:100%;
+				height: 45px;
 			}
+
+				.palavras_div2_sunburstZoom_action_each img, .palavras_div2_sunburstZoom_action_each p{
+					float:left;
+				}
+
+				.palavras_div2_sunburstZoom_action_each p{
+					width: calc(100% - 40px);
+					font-size: 14px;
+					padding-left:7px;
+				}
 
 	#palavras_div2_sunburstZoom path {
 		stroke: #000;

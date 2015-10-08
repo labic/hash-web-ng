@@ -400,3 +400,108 @@
 		<div ng-include="templateConteudo.url" style="height:calc(100% - 50px); width:100%;"></div>
 	</div>
 </div>
+
+<script type="text/javascript">
+	$( document ).ready(function(){
+
+		/*NOTA: Inicializando Tipped */
+
+		$('[title]').qtip({
+			// Grab some elements to apply the tooltip to
+			def: false,
+			style: {
+				classes: 'qtip-blue',
+				//                        tip: {
+				//                            corner: 'top center',
+				//                            mimic: 'center',
+				//                        },
+			},
+			position: {
+				my: 'center center',
+				at: 'top center',
+				adjust: {
+					y: -20
+				}
+			}
+		});
+
+		/*NOTA: Inicializando SwipeBox */
+
+		$(".swipebox").swipebox();
+
+		/*NOTA: Troca de menus */
+
+		/* Standard */
+
+		$(".firstOp").css( "font-weight", "800" );
+		//				$(".firstOpBlack").css( "color", "black" );
+
+		/* Custom */
+
+		$(".select_tematica_monitor").click(function(){
+			$(".select_tematica_monitor").css( "font-weight", "300" );
+
+			$(this).css( "font-weight", "800" );
+		});
+
+		$(".select_tematica_palavras").click(function(){
+			$(".select_tematica_palavras").css( "font-weight", "300" );
+
+			$(this).css( "font-weight", "800" );
+		});
+
+		$(".select_categoria_division1").click(function(){
+			$(".select_categoria_division1").css( "font-weight", "300" );
+			$(".select_categoria_division1").css( "color", "#FFFFFF" );
+
+			$(this).css( "font-weight", "800" );
+			$(this).css( "color", "#FFFFFF" );
+
+		});
+
+		$(".select_title_division2").click(function(){
+			$(".select_title_division2").css( "opacity", "0.6" );
+
+			$(this).css( "opacity", "1" );
+		});
+
+		$(".select_title_division3,.select_title_division2").css( "opacity", "0.6" );
+		$(".firstOpImg").css( "opacity", "1" );
+
+		$(".select_title_division3").click(function(){
+			$(".select_title_division3").css( "opacity", "0.6" );
+
+			$(this).css( "opacity", "1" );
+		});
+
+		/* HighLighter CategoriaMenu */
+
+		/*NOTA: Troca Categoria */
+
+		/*NOTA: Troca Temporalidades */ 
+
+		$(".fisrtTemp p").css( "color", "#0a1227" );
+		$(".fisrtTemp").css( "background-color", "#1dbfd8" );
+		$(".fisrtTemp").css( "border-color", "#1dbfd8" );
+
+		$(".time_temporalidade").click(function(){
+			$(".time_temporalidade p").css( "color", "#1dbfd8" );
+			$(".time_temporalidade").css( "background-color", "transparent" );
+			$(".time_temporalidade").css( "border-color", "white" );
+
+			$("p", this).css( "color", "#0a1227" );
+			$(this).css( "background-color", "#1dbfd8" );
+			$(this).css( "border-color", "#1dbfd8" );
+		});
+
+		$("#select_imgMosaico").click(function(){
+			$(".time_temporalidade p").css( "color", "#1dbfd8" );
+			$(".time_temporalidade").css( "background-color", "transparent" );
+			$(".time_temporalidade").css( "border-color", "white" );
+
+			$("p", "#temporalidade24").css( "color", "#0a1227" );
+			$("#temporalidade24").css( "background-color", "#1dbfd8" );
+			$("#temporalidade24").css( "border-color", "#1dbfd8" );
+		});
+	});
+</script>

@@ -12,7 +12,7 @@ function d3Sunburst(url, word){
 
 	var color = d3.scale.category20c();
 
-	var seqtext = d3.select("#palavras_div2_sunburstZoom_fixed")
+	var seqtext = d3.select("#palavras_div2_sunburstZoom_words")
 	.attr("width", width/5)
 	.attr("height", height/5)
 	.append("g")
@@ -80,10 +80,10 @@ function d3Sunburst(url, word){
 				t = ""
 				var parent = d.parent
 				while(parent.name != "top_words"){
-					t = parent.name+"<br/>"+t
+					t = parent.name+" ("+parent.size+")<br/>"+t
 					parent = parent.parent
 				}
-				t = t + d.name
+				t = t + d.name +" ("+d.size+")"
 			}
 			
 			seqtext.append("p").html(t)

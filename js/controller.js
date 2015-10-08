@@ -36,6 +36,7 @@ var dataNow30 = now30.toISOString().replace(/z/gi,'');
 /* Variaveis globais dos parametros da requisição */
 var linkTime = 60;
 var linkTema = '%22tema-negros%22';
+// ,%22tema-lgbt%22,%22tema-genero%22,%22tema-indigena%22
 var linkCategoria = '';
 var linkLocalidade = '';
 var pag = 0;
@@ -52,9 +53,9 @@ var linkWord = serviceBase+'top_words?filter={"where":{"status.created_at":{"gte
 
 var linkMap = serviceBase+'map_volume?filter={"where":{"status.created_at":{"gte":"'+dataNow60+'","lte":"'+dataNow+'"},"categories":{"all":['+linkTema+''+linkCategoria+''+linkLocalidade+']}}}';
 
-var monitorCountWord = 'https://hash-api.herokuapp.com/v1/tweets/count?where={"categories": {"inq": ['+linkTema+']},"status.timestamp_ms": {"gte": '+nowT60+',"lte": '+nowT+'}}';
+var monitorCountWord = 'https://hash-api.herokuapp.com/v1/tweets/count?where={}';
 
-var linkNoRtConteudo = "";
+var linkNoRtConteudo = 'https://hash-api.herokuapp.com:443/v1/tweets?filter={"where":{"status.retweeted_status":{"exists":false},"categories":{"inq":['+linkTema+''+linkCategoria+''+linkLocalidade+']}},"limit":25,"skip":0, "order": "status.timestamp_ms DESC"}';
 
 /* Inicializando links de requisição */
 
@@ -74,12 +75,10 @@ hashTwitter.run(function($rootScope) {
 
 	$rootScope.$on('handleEmitWord', function(event, args) {
 		$rootScope.$broadcast('handleBroadcastWord', args);
-		console.log(args);
 	});
 
 	$rootScope.$on('handleEmitMap', function(event, args) {
 		$rootScope.$broadcast('handleBroadcastMap', args);
-		console.log(args);
 	});
 
 	$rootScope.$on('handleEmitPalavrasWord', function(event, args) {
@@ -130,7 +129,9 @@ hashTwitter.controller('mainMonitor', function ($scope) {
 
 		linkConteudo = baseURL+'top-retweets&filter={"where":{"status.created_at":{"gte":"'+localTime+'","lte":"'+dataNow+'"},"categories":{"all":['+linkTema+''+linkCategoria+''+linkLocalidade+']}},"limit":'+nlimit+',"skip":'+nskip+'}';
 
-		$scope.$emit('handleEmitConteudo', linkConteudo, "");
+		linkNoRtConteudo = 'https://hash-api.herokuapp.com:443/v1/tweets?filter={"where":{"status.retweeted_status":{"exists":false},"categories":{"inq":['+linkTema+''+linkCategoria+''+linkLocalidade+']}},"limit":25,"skip":0, "order": "status.timestamp_ms DESC"}';
+
+		$scope.$emit('handleEmitConteudo', linkConteudo, linkNoRtConteudo);
 
 	};
 
@@ -154,7 +155,7 @@ hashTwitter.controller('mainMonitor', function ($scope) {
 
 		linkImg = serviceBase+'word_images?filter={"where":{"status.created_at":{"gte":"'+localTime+'","lte":"'+dataNow+'"},"word":"'+word+'","categories":{"all":['+linkTema+''+linkCategoria+''+linkLocalidade+']}},"limit":400}';
 
-		linkNoRtConteudo = serviceBase+'word_no_rt?filter={"where":{"status.created_at":{"gte":"'+dataNow60+'","lte":"'+dataNow+'"},"word":"'+word+'","categories":{"all":['+linkTema+''+linkCategoria+''+linkLocalidade+']}},"limit":20,"skip":0};';
+		linkNoRtConteudo = 'https://hash-api.herokuapp.com:443/v1/tweets?filter={"where":{"status.retweeted_status":{"exists":false},"word":"'+word+'","categories":{"inq":['+linkTema+''+linkCategoria+''+linkLocalidade+']}},"limit":25,"skip":0, "order": "status.timestamp_ms DESC"}';
 
 		$scope.$emit('handleEmitConteudo', linkConteudo, linkNoRtConteudo);
 		$scope.$emit('handleEmitImage', linkImg);
@@ -221,7 +222,7 @@ hashTwitter.controller('mainMonitor', function ($scope) {
 	$scope.changeTemporalidade = function (time) {
 
 		count = 0;
-		
+
 		linkCategoria = "";
 		linkTime = time;
 
@@ -252,17 +253,13 @@ hashTwitter.controller('mainMonitor', function ($scope) {
 
 		linkMap = serviceBase+'map_volume?filter={"where":{"status.created_at":{"gte":"'+localTime+'","lte":"'+dataNow+'"},"categories":{"all":['+linkTema+''+linkCategoria+''+linkLocalidade+']}}}';
 
-		linkNoRtConteudo = 'https://hash-api.herokuapp.com:443/v1/tweets?filter={"where":{"status.created_at":{"gte":"'+localTime+'","lte":"'+dataNow+'"}, "status.retweeted_status":{"exists":false},"categories":{"all":['+linkTema+''+linkCategoria+''+linkLocalidade+']}},"limit":25,"skip":0}';
-
-		monitorCountWord = 'https://hash-api.herokuapp.com/v1/tweets/count?where={"categories": {"inq": ['+linkTema+']},"status.timestamp_ms": {"gte": '+localTimeMS+',"lte": '+nowT+'}}';
+		linkNoRtConteudo = 'https://hash-api.herokuapp.com:443/v1/tweets?filter={"where":{"status.retweeted_status":{"exists":false},"categories":{"inq":['+linkTema+''+linkCategoria+''+linkLocalidade+']}},"limit":25,"skip":0, "order": "status.timestamp_ms DESC"}';
 
 		$scope.$emit('handleEmitConteudo', linkConteudo, linkNoRtConteudo);
 		$scope.$emit('handleEmitImage', linkImg);
 		$scope.$emit('handleEmitTag', linkTag);
 		$scope.$emit('handleEmitWord', linkWord);
 		$scope.$emit('handleEmitMap', linkMap);
-		$scope.$emit('handleEmitCountTweets', monitorCountWord);
-
 	};
 
 	$scope.changeCategoria = function (cat) {
@@ -287,23 +284,23 @@ hashTwitter.controller('mainMonitor', function ($scope) {
 		linkConteudo = baseURL+'top-retweets&filter={"where":{"status.created_at":{"gte":"'+localTime+'","lte":"'+dataNow+'"},"categories":{"all":['+linkTema+''+linkCategoria+''+linkLocalidade+']}},"limit":25,"skip":0}';
 
 		linkImg = baseURL+'top-images&filter={"where":{"status.created_at":{"gte":"'+localTime+'","lte":"'+dataNow+'"},"categories":{"all":['+linkTema+''+linkCategoria+''+linkLocalidade+']}},"limit":400,"skip":0}';
-//
-//		linkTag = baseURL+'top-hashtags&filter={"where":{"status.created_at":{"gte":"'+localTime+'","lte":"'+dataNow+'"},"categories":{"all":['+linkTema+''+linkCategoria+''+linkLocalidade+']}},"limit":25,"skip":0}';
-//
-//		linkWord = serviceBase+'top_words?filter={"where":{"status.created_at":{"gte":"'+localTime+'","lte":"'+dataNow+'"},"categories":{"all":['+linkTema+''+linkCategoria+''+linkLocalidade+']}},"limit":20,"skip":0}';
-//
-//		linkMap = serviceBase+'map_volume?filter={"where":{"status.created_at":{"gte":"'+localTime+'","lte":"'+dataNow+'"},"categories":{"all":['+linkTema+''+linkCategoria+''+linkLocalidade+']}}}';
+		//
+		//		linkTag = baseURL+'top-hashtags&filter={"where":{"status.created_at":{"gte":"'+localTime+'","lte":"'+dataNow+'"},"categories":{"all":['+linkTema+''+linkCategoria+''+linkLocalidade+']}},"limit":25,"skip":0}';
+		//
+		//		linkWord = serviceBase+'top_words?filter={"where":{"status.created_at":{"gte":"'+localTime+'","lte":"'+dataNow+'"},"categories":{"all":['+linkTema+''+linkCategoria+''+linkLocalidade+']}},"limit":20,"skip":0}';
+		//
+		//		linkMap = serviceBase+'map_volume?filter={"where":{"status.created_at":{"gte":"'+localTime+'","lte":"'+dataNow+'"},"categories":{"all":['+linkTema+''+linkCategoria+''+linkLocalidade+']}}}';
 
 		linkNoRtConteudo = 'https://hash-api.herokuapp.com:443/v1/tweets?filter={"where":{"status.retweeted_status":{"exists":false},"categories":{"inq":['+linkTema+''+linkCategoria+''+linkLocalidade+']}},"limit":25,"skip":0, "order": "status.timestamp_ms DESC"}';
-//
-//		monitorCountWord = 'https://hash-api.herokuapp.com/v1/tweets/count?where={"categories": {"inq": ['+linkTema+']},"status.timestamp_ms": {"gte": '+localTimeMS+',"lte": '+nowT+'}}';
+		//
+		//		monitorCountWord = 'https://hash-api.herokuapp.com/v1/tweets/count?where={"categories": {"inq": ['+linkTema+']},"status.timestamp_ms": {"gte": '+localTimeMS+',"lte": '+nowT+'}}';
 
 		$scope.$emit('handleEmitConteudo', linkConteudo, linkNoRtConteudo);
 		$scope.$emit('handleEmitImage', linkImg);
-//		$scope.$emit('handleEmitTag', linkTag);
-//		$scope.$emit('handleEmitWord', linkWord);
-//		$scope.$emit('handleEmitMap', linkMap);
-//		$scope.$emit('handleEmitCountTweets', monitorCountWord);
+		//		$scope.$emit('handleEmitTag', linkTag);
+		//		$scope.$emit('handleEmitWord', linkWord);
+		//		$scope.$emit('handleEmitMap', linkMap);
+		//		$scope.$emit('handleEmitCountTweets', monitorCountWord);
 	};
 
 	$scope.changeTema = function (tema) {
@@ -345,14 +342,11 @@ hashTwitter.controller('mainMonitor', function ($scope) {
 
 		linkNoRtConteudo = 'https://hash-api.herokuapp.com:443/v1/tweets?filter={"where":{"status.retweeted_status":{"exists":false},"categories":{"inq":['+linkTema+''+linkCategoria+''+linkLocalidade+']}},"limit":25,"skip":0, "order": "status.timestamp_ms DESC"}';
 
-		monitorCountWord = 'https://hash-api.herokuapp.com/v1/tweets/count?where={"categories": {"inq": ['+linkTema+']},"status.timestamp_ms": {"gte": '+localTimeMS+',"lte": '+nowT+'}}';
-
 		$scope.$emit('handleEmitConteudo', linkConteudo, linkNoRtConteudo);
 		$scope.$emit('handleEmitImage', linkImg);
 		$scope.$emit('handleEmitTag', linkTag);
 		$scope.$emit('handleEmitWord', linkWord);
 		$scope.$emit('handleEmitMap', linkMap);
-		$scope.$emit('handleEmitCountTweets', monitorCountWord);
 	};
 });
 
@@ -507,25 +501,38 @@ hashTwitter.controller('HashTwitterCtr', ['$scope', '$http', function ($scope, $
 	$scope.dataLoadERROR = false;
 	$scope.dataLoadOFF = true;
 
-	//	$scope.consoleLog = function (x) {
-	//		console.log(x);
-	//	};
-
 	$http.get(linkConteudo).success(function (data) {
-		$scope.twittes = data;
+		
+		contData = Object.keys(data).length;
 
-		if(count > 0){
-			$scope.buttonBack = true;
+		if((data == "") || (contData < 25)){
+
+			$scope.buttonNext = false;
+
+			$http.get(linkNoRtConteudo).success(function (data1) {
+				$scope.twittes = data.concat(data1);
+
+				if(data1 == ""){
+					$scope.twittes = data;
+				}else{
+					$scope.twittes = data.concat(data1);
+				}
+
+				if((data1 == "") && (data == "")){
+					$scope.dataLoadON = false;
+					$scope.dataLoadOFF = false;
+					$scope.dataLoadERROR = true;
+				}else{
+					$scope.dataLoadERROR = false;
+					$scope.dataLoadOFF = false;
+					$scope.dataLoadON = true;
+				}
+			});
 		}else{
+			$scope.twittes = data;
+
 			$scope.buttonNext = true;
-			$scope.buttonBack = false;
-		}
 
-		if(data == ""){
-			$scope.dataLoadON = false;
-			$scope.dataLoadOFF = false;
-			$scope.dataLoadERROR = true;
-		}else{
 			$scope.dataLoadERROR = false;
 			$scope.dataLoadOFF = false;
 			$scope.dataLoadON = true;
@@ -544,29 +551,23 @@ hashTwitter.controller('HashTwitterCtr', ['$scope', '$http', function ($scope, $
 		}
 
 		$http.get(args).success(function (data) {
-			$scope.twittes = data;
-
-			if(data == ""){
-				$scope.dataLoadON = false;
-				$scope.dataLoadOFF = false;
-				$scope.dataLoadERROR = true;
-			}else{
-				$scope.dataLoadERROR = false;
-				$scope.dataLoadOFF = false;
-				$scope.dataLoadON = true;
-			}
 
 			contData = Object.keys(data).length;
 
-			if((contData < 25)  && (count == 0)){
+			if((data == "") || (contData < 25)){
+
 				$scope.buttonNext = false;
 
 				$http.get(args1).success(function (data1) {
 					$scope.twittes = data.concat(data1);
 
-					//					var twitte0 = Object.keys(data[1]).length;
+					if(data1 == ""){
+						$scope.twittes = data;
+					}else{
+						$scope.twittes = data.concat(data1);
+					}
 
-					if((data1 == "")&&(data == "")){
+					if((data1 == "") && (data == "")){
 						$scope.dataLoadON = false;
 						$scope.dataLoadOFF = false;
 						$scope.dataLoadERROR = true;
@@ -577,7 +578,13 @@ hashTwitter.controller('HashTwitterCtr', ['$scope', '$http', function ($scope, $
 					}
 				});
 			}else{
+				$scope.twittes = data;
+
 				$scope.buttonNext = true;
+
+				$scope.dataLoadERROR = false;
+				$scope.dataLoadOFF = false;
+				$scope.dataLoadON = true;
 			}
 		});
 	});    
@@ -687,7 +694,7 @@ hashTwitter.controller('HashWords', ['$scope', '$http', function ($scope, $http)
 	$http.get(linkWord).success(function (data) {
 		$scope.words = data;
 		$scope.word1 = data[0];
-		$scope.words = data.splice(1,13);
+		$scope.words = data.splice(1,11);
 		if(data == ""){
 			$scope.dataLoadON = false;
 			$scope.dataLoadOFF = false;
@@ -707,7 +714,7 @@ hashTwitter.controller('HashWords', ['$scope', '$http', function ($scope, $http)
 		$http.get(args).success(function (data) {
 			$scope.words = data;
 			$scope.word1 = data[0];
-			$scope.words = data.splice(1,13);
+			$scope.words = data.splice(1,11);
 			if(data == ""){
 				$scope.dataLoadON = false;
 				$scope.dataLoadOFF = false;
@@ -812,9 +819,9 @@ hashTwitter.controller('mainPalavras', function ($scope) {
 		palavraLinkWord = serviceBase+'top_words?filter={"where":{"status.created_at":{"gte":"'+palavrasTime+'","lte":"'+dataNow+'"},"categories":{"all":['+palavrasTema+']}},"limit":170}';
 
 		$scope.$emit('handleEmitPalavrasWord', palavraLinkWord);
-		
-//		d3.select("#palavras_div2_sunburstZoom").select('svg').remove();
-//		d3.select("#palavras_div2_sunburstZoom").select('g').remove();
+
+		//		d3.select("#palavras_div2_sunburstZoom").select('svg').remove();
+		//		d3.select("#palavras_div2_sunburstZoom").select('g').remove();
 	};
 
 	$scope.changeTemporalidade = function (time) {
@@ -838,7 +845,7 @@ hashTwitter.controller('mainPalavras', function ($scope) {
 
 		$scope.sunburstON = true;
 		$scope.sunburstOFF = false;
-		
+
 		if(palavrasLinkTime == 60){
 			palavrasTime = dataNow60;
 		}else if(palavrasLinkTime == 24){
@@ -851,6 +858,7 @@ hashTwitter.controller('mainPalavras', function ($scope) {
 
 		d3.select("#palavras_div2_sunburstZoom").select('svg').remove();
 		d3.select("#palavras_div2_sunburstZoom").select('g').remove();
+		d3.select("#palavras_div2_sunburstZoom_fixed").select('p').remove();
 
 		d3Sunburst(urlsun,word);
 	};
