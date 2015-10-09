@@ -71,7 +71,7 @@ function d3Sunburst(url, word){
 			.attr("dy", "1em")
 			.text(function(d) { return d.depth ? d.name.split(" ")[1] || "" : ""; });
 
-		seqtext.append("p").text(word)
+		seqtext.append("p").text("Clique em um campo no gráfico")
 
 		function click(d) {
 			seqtext.select("p").remove()

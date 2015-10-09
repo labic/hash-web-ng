@@ -955,14 +955,15 @@
 	#palavras_div2{
 		width:calc(100% - 540px);
 		background-image: url(../img/subtle_dots_@2X.png);
+		overflow: hidden;
 	}
 
 		#palavras_div2_sunburstZoom{
-			float:right;
-			width:auto;
-			height: auto;
-			margin-top: calc(50% - 360px);
-			margin-right: calc(50% - 150px);
+			float:left;
+			width:100%;
+			height: 100%;
+			padding-top: calc(50% - 360px);
+			margin-left: 50px;
 		}
 
 		#palavras_div2_sunburstZoomOFF{
@@ -990,11 +991,16 @@
 			background: #E7E8EA;
 			padding:25px;
 			width:200px;
-			height: 300px;
-			top: calc(50% - 150px);
+			height: 250px;
+			top: calc(50% - 125px);
 			right:0;
 			border-radius: 6px 0px 0px 6px;
 		}
+
+			#palavras_div2_sunburstZoom_words{
+				width:100%;
+				height: 80px;
+			}
 
 			#palavras_div2_sunburstZoom_words p{
 				width:100%;
@@ -1006,7 +1012,7 @@
 
 		#palavras_div2_sunburstZoom_action{
 			width:100%;
-			background: red;
+/*			background: red;*/
 			height: 150px;
 			border-top: 2px solid #969696;
 			padding: 10px;
@@ -1016,6 +1022,7 @@
 			.palavras_div2_sunburstZoom_action_each{
 				width:100%;
 				height: 45px;
+				margin:10px;
 			}
 
 				.palavras_div2_sunburstZoom_action_each img, .palavras_div2_sunburstZoom_action_each p{
@@ -1027,6 +1034,15 @@
 					font-size: 14px;
 					padding-left:7px;
 				}
+
+	#palavras_div2_sunburstZoom_result{
+		width:400px;
+		height: 80%;
+		background: red;
+		float: left;
+		margin-top:0;
+		margin-left: 50px;
+	}
 
 	#palavras_div2_sunburstZoom path {
 		stroke: #000;
@@ -1233,7 +1249,7 @@
 	.loading{
 		padding-top: 100px;
 		width: 100%;
-		height: 100%;
+		height: calc(100% - 200px);
 	}
 
 		.loading p{
@@ -1249,6 +1265,67 @@
 			.loadingWordGrey{
 				color: #808080;
 			}
+
+	.info_pag{
+		position: fixed;
+		top:50px;
+		left:0px;
+		width:40px;
+		height: 40px;
+		background: black;
+		z-index: 99;
+		border-radius: 0px 6px 6px 0px;
+		cursor:pointer;
+	}
+
+		.info_pag div{
+			height: 30px;
+			width: 30px;
+			margin: 5px;
+			border-radius: 50%;
+			background: white;
+		}
+
+		.info_pag div p{
+			color: black;
+			font-size: 22px;
+			font-weight: bold;
+			text-align: center;
+		}
+
+	.info_pag_on{
+		position: fixed;
+		height: 100%;
+		top:0;
+		left:-300px;
+		width: 300px;
+		z-index: 100;
+		background: red;
+	}
+
+	.fade{
+		position: fixed;
+		background: rgba(0, 0, 0, 0.7);
+		z-index: 70;
+		width:100%;
+		height: 100%;
+		display: none;
+	}
+
+		.fade p{
+			color:white;
+			font-size: 20px;
+			text-align: center;
+			width: 100%;
+			top:50%;
+/*
+			top:20px;
+			right: 20px;
+*/
+			font-weight: bold;
+			position: fixed;
+		}
+
 
 /*NOTA: MAPA */
 

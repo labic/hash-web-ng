@@ -35,15 +35,16 @@ var dataNow30 = now30.toISOString().replace(/z/gi,'');
 
 /* Variaveis globais dos parametros da requisição */
 var linkTime = 60;
-var linkTema = '%22tema-negros%22';
+var linkTema = '%22conteudo-inclusão social%22,%22conteudo-empoderamento negro%22,%22conteudo-violência%22,%22conteudo-racismo%22,%22conteudo-intolerância religiosa%22';
 // ,%22tema-lgbt%22,%22tema-genero%22,%22tema-indigena%22
+//var linkTema = '%22tema-negros%22';
 var linkCategoria = '';
 var linkLocalidade = '';
 var pag = 0;
 var count = 0;
 var catNumber = 0;
 
-var linkConteudo = baseURL+'top-retweets&filter={"where":{"status.created_at":{"gte":"'+dataNow60+'","lte":"'+dataNow+'"},"categories":{"all":['+linkTema+''+linkCategoria+''+linkLocalidade+']}},"limit":25,"skip":0}';
+var linkConteudo = baseURL+'top-retweets&filter={"where":{"status.created_at":{"gte":"'+dataNow60+'","lte":"'+dataNow+'"},"categories":{"inq":['+linkTema+''+linkCategoria+''+linkLocalidade+']}},"limit":25,"skip":0}';
 
 var linkImg = baseURL+'top-images&filter={"where":{"status.created_at":{"gte":"'+dataNow60+'","lte":"'+dataNow+'"},"categories":{"all":['+linkTema+''+linkCategoria+''+linkLocalidade+']}},"limit":400,"skip":0}';
 
@@ -54,6 +55,7 @@ var linkWord = serviceBase+'top_words?filter={"where":{"status.created_at":{"gte
 var linkMap = serviceBase+'map_volume?filter={"where":{"status.created_at":{"gte":"'+dataNow60+'","lte":"'+dataNow+'"},"categories":{"all":['+linkTema+''+linkCategoria+''+linkLocalidade+']}}}';
 
 var monitorCountWord = 'https://hash-api.herokuapp.com/v1/tweets/count?where={}';
+var monitorCountWord = 'https://hash-api.herokuapp.com/v1/images/count?where={}';
 
 var linkNoRtConteudo = 'https://hash-api.herokuapp.com:443/v1/tweets?filter={"where":{"status.retweeted_status":{"exists":false},"categories":{"inq":['+linkTema+''+linkCategoria+''+linkLocalidade+']}},"limit":25,"skip":0, "order": "status.timestamp_ms DESC"}';
 
@@ -111,6 +113,8 @@ hashTwitter.controller('mainMonitor', function ($scope) {
 
 	$scope.loadMoreTweetsChange = function (n) {
 		count = n + count;
+		
+		$( ".geralTweets_result" ).scrollTop( "slow" );
 
 		var localTime;
 
@@ -132,7 +136,6 @@ hashTwitter.controller('mainMonitor', function ($scope) {
 		linkNoRtConteudo = 'https://hash-api.herokuapp.com:443/v1/tweets?filter={"where":{"status.retweeted_status":{"exists":false},"categories":{"inq":['+linkTema+''+linkCategoria+''+linkLocalidade+']}},"limit":25,"skip":0, "order": "status.timestamp_ms DESC"}';
 
 		$scope.$emit('handleEmitConteudo', linkConteudo, linkNoRtConteudo);
-
 	};
 
 	$scope.loadWordsPub = function (word) {
@@ -788,7 +791,7 @@ var palavraLinkWord = serviceBase+'top_words?filter={"where":{"status.created_at
 
 var palavraCountWord = 'https://hash-api.herokuapp.com/v1/tweets/count?where={"categories": {"inq": ['+linkTema+']},"status.timestamp_ms": {"gte": '+nowT60+',"lte": '+nowT+'}}';
 
-var urlsun = 'http://107.170.54.11:8080/word_concur?filter={"where": {"status.created_at": {"gte":"'+dataNow60+'","lte":"'+dataNow+'"}, "categories": {"all": ['+linkTema+']}},"top_words":["racista"], "MAX_WORDS":5,"MAX_HEIGHT":5, "MAX_DEPTH":3, "duplicity" : "false", "rt":"false"}';
+var urlsun = 'http://107.170.54.11:8080/word_concur?filter={"where": {"status.created_at": {"gte":"'+dataNow60+'","lte":"'+dataNow+'"}, "categories": {"all": ['+linkTema+']}}, "MAX_WORDS":10,"MAX_HEIGHT":5, "MAX_DEPTH":3, "duplicity" : "false", "rt":"false", "repeated_text":"false"}';
 
 var linkSearchWord = "";
 
@@ -798,13 +801,13 @@ hashTwitter.controller('mainPalavras', function ($scope) {
 	var palavrasTema = linkTema;
 	var palavrasLinkTime = 60;
 
-	$scope.sunburstON = false;
-	$scope.sunburstOFF = true;
+	$scope.sunburstON = true;
+	$scope.sunburstOFF = false;
 
 	$scope.changeTema = function (tema) {
 
-		$scope.sunburstON = false;
-		$scope.sunburstOFF = true;
+		$scope.sunburstON = true;
+		$scope.sunburstOFF = false;
 
 		if(palavrasLinkTime == 60){
 			palavrasTime = dataNow60;
@@ -817,6 +820,14 @@ hashTwitter.controller('mainPalavras', function ($scope) {
 		palavrasTema = tema;
 
 		palavraLinkWord = serviceBase+'top_words?filter={"where":{"status.created_at":{"gte":"'+palavrasTime+'","lte":"'+dataNow+'"},"categories":{"all":['+palavrasTema+']}},"limit":170}';
+		
+		urlsun = 'http://107.170.54.11:8080/word_concur?filter={"where": {"status.created_at": {"gte":"'+dataNow60+'","lte":"'+dataNow+'"}, "categories": {"all": ['+linkTema+']}}, "MAX_WORDS":10,"MAX_HEIGHT":5, "MAX_DEPTH":3, "duplicity" : "false", "rt":"false", "repeated_text":"false"}';
+		
+		d3.select("#palavras_div2_sunburstZoom").select('svg').remove();
+		d3.select("#palavras_div2_sunburstZoom").select('g').remove();
+		d3.select("#palavras_div2_sunburstZoom_fixed").select('p').remove();
+		var word = "";
+		d3Sunburst(urlsun,word);
 
 		$scope.$emit('handleEmitPalavrasWord', palavraLinkWord);
 
