@@ -1,3 +1,3 @@
-<label class="btn btn-primary ng-class:{ 'active': $first }" ng-repeat="time in timeGranularityFilter">
-  <input type="radio" name="timeGranularityFilter" value="{{time}}" ng-model="filter.timeGranularity" ng-checked="$first"> {{time}}
+<label class="btn btn-primary" ng-class="{ 'active': time.key == timeGranularityFilter.default.key }" ng-repeat="time in timeGranularityFilter.values">
+  <input type="radio" name="timeGranularityFilter" value="{{time.value}}" ng-model="filter.timeGranularity" ng-checked="time.key == timeGranularityFilter.default.key"> {{time.key}}
 </label>

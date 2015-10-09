@@ -3,80 +3,79 @@
 
   angular
     .module('hash.twitter-monitor')
-    .controller('TwitterMonitorCtrl', function ($scope, $filter, Twitter) {
-      $scope.mainTagsFilter = ['tema-negro', 'tema-lgbt', 'tema-indigena', 'tema-genero'];
+    .controller('TwitterMonitorCtrl', function ($scope, $filter, MetricTwitter) {
+      $scope.mainTagsFilter = ['tema-negros', 'tema-lgbt', 'tema-indigena', 'tema-genero'];
       $scope.localtionsFilter = [];
-      $scope.timeGranularityFilter = ['15m', '1h', '1d', '7d'];
+      $scope.timeGranularityFilter = {
+        values: [{
+          key: '15 minutos', 
+          value: 15 * 60 * 1000
+        },{
+          key: '1 hora', 
+          value: 60 * 60 * 1000
+        },{
+          key: '1 dia', 
+          value: 24 * 60 * 60 * 1000
+        },{
+          key: '7 dias', 
+          value: 7 * 24 * 60 * 60 * 1000
+        }],
+        default: {
+          key: '1 dia', 
+          value: 24 * 60 * 60 * 1000
+        }
+      };
       $scope.wordsFilter = ['teste', 'brasileiro', 'sem-direitos'];
       $scope.hashtagsFilter = [];
       $scope.tweets = {
         data: [],
         limit: 25,
-        skip: 0
+        skip: 0,
+        count: null
       };
-      $scope.tweets.count = null;
 
       $scope.filter = {
         mainTag: $scope.mainTagsFilter[0],
         //location: $scope.localtionsFilter[],
-        timeGranularity: $scope.timeGranularityFilter[0],
+        timeGranularity: $scope.timeGranularityFilter.default,
         words: [],
         hashtags: []
       };
 
       $scope.$watch('filter', function(newFilter, oldFilter) {
         console.log(newFilter);
-        var lteFilter = new Date();
-        var gteFilter = new Date();
-        gteFilter.setHours(lteFilter.getHours() - 24);
 
-        var filter = {
-          where: {
-            'status.created_at': {
-              lte: lteFilter,
-              gte: gteFilter
-            },
-            categories: {
-              all: [newFilter.mainTag]
-            }
-          },
-          limit: 25,
-          skip: 0
-        };
-
-        if (newFilter.hashtags.length > 0) {
-          filter.where['status.entities.hashtags.text'] = {
-            inq: newFilter.hashtags
-          }
+        var metricsParamsWithoutPagination = {
+          since: new Date(Date.now() - newFilter.timeGranularity.value),
+          until: new Date(),
+          tags: newFilter.mainTag,
+          hashtags: newFilter.hashtags
         }
 
-        Twitter.analytics.get({
-          type: 'top-hashtags',
-          filter: filter
-        }, function success(data) {
-          $scope.hashtagsFilter = data;
-        }, function error(err) {
-          console.log(err);
-        });
+        var metricsParamsWithPagination = metricsParamsWithoutPagination;
 
-        Twitter.analytics.get({
-          type: 'top-retweets',
-          filter: filter
-        }, function success(data) {
-          $scope.tweets.data = data;
-        }, function error(err) {
-          console.log(err);
-        });
+        MetricTwitter.count(
+          metricsParamsWithoutPagination, 
+          function success(response) {
+            $scope.tweets.count = response.count;
+          }, errorHandler);
 
-        filter.where.categories.inq = filter.where.categories.all;
+        // TODO: Implement pagination
+        MetricTwitter.topRetweets(
+          metricsParamsWithPagination, 
+          function success(response) {
+            $scope.tweets.data = response;
+          }, errorHandler);
 
-        Twitter.count({
-          where: filter.where,
-        }, function success(data) {
-          $scope.tweets.count = data;
-        }, function error(err) {
-          console.log(err);
-        });
+        MetricTwitter.topHashtags(
+          metricsParamsWithPagination, 
+          function success(response) {
+            $scope.hashtagsFilter = response;
+          }, errorHandler);
       }, true);
+
+      function errorHandler(err) {
+        console.log(err);
+      }
     });
 })();
