@@ -1,3 +1,1 @@
-<label class="btn btn-primary ng-class:{ 'active': $first }" ng-repeat="tag in mainTagsFilter">
-  <input type="radio" name="mainTagsFilter" value="{{tag}}" ng-model="filter.mainTag" ng-checked="$first"> {{tag}}
-</label>
+<label class="btn btn-primary" ng-model="filter.mainTag" uib-btn-radio="tag" ng-repeat="tag in mainTagsFilter">{{tag.value}}</label>

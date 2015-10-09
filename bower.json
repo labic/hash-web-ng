@@ -19,7 +19,7 @@
     "angular-resource": "~1.4.7",
     "angular-route": "~1.4.7",
     "angular-ui-router": "~0.2.15",
-    "angular-bootstrap": "~0.13.4",
+    "angular-bootstrap": "~0.14.0",
     "bootstrap": "~3.3.5",
     "components-font-awesome": "~4.4.0",
     "jquery": "~2.1.4",
@@ -27,6 +27,7 @@
     "Chart.js": "~1.0.2",
     "qTip2": "~2.2.1",
     "Processing.js": "processing#~1.4.16",
-    "checklist-model": "~0.6.0"
+    "checklist-model": "~0.6.0",
+    "underscore": "~1.8.3"
   }
 }

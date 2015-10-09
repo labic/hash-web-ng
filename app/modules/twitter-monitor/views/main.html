@@ -1,50 +1,50 @@
 <div class="row">
   <div class="col-sm-4">
-    <aside ui-view="main-tags-filter" class="btn-group" data-toggle="buttons"></aside>
+    <aside ui-view="main-tags-filter" class="btn-group"></aside>
     <aside ui-view="map-filter"></aside>
-    <aside ui-view="time-granularity-filter" class="btn-group" data-toggle="buttons"></aside>
+    <aside ui-view="time-granularity-filter" class="btn-group"></aside>
     <aside ui-view="tweets-count"></aside>
   </div>
 
   <div class="col-sm-3">
-    <tabset type="pills" justified="true">
-      <tab active="true">
-        <tab-heading>
+    <uib-tabset type="pills" justified="true">
+      <uib-tab active="true">
+        <uib-tab-heading>
           <i class="fa fa-align-center"></i> Words
-        </tab-heading>
+        </uib-tab-heading>
         <aside ui-view="words-filter" data-toggle="buttons"></aside>
-      </tab>
-      <tab>
-        <tab-heading>
+      </uib-tab>
+      <uib-tab>
+        <uib-tab-heading>
           <i class="fa fa-slack"></i> Hashtag
-        </tab-heading>
+        </uib-tab-heading>
         <aside ui-view="hashtags-filter" data-toggle="buttons"></aside>
-      </tab>
-    </tabset>
+      </uib-tab>
+    </uib-tabset>
   </div>
 
-  <div class="col-sm-5">
-    <tabset type="pills" justified="true">
-      <tab active="true">
-        <tab-heading>
+  <main class="col-sm-5">
+    <uib-tabset type="pills" justified="true">
+      <uib-tab active="true">
+        <uib-tab-heading>
           <i class="fa fa-twitter"></i> Tweets
-        </tab-heading>
+        </uib-tab-heading>
         <section ui-view="tweets-list" class="list-group"></section>
-      </tab>
-      <tab>
-        <tab-heading>
+      </uib-tab>
+      <uib-tab>
+        <uib-tab-heading>
           <i class="fa fa-image"></i> Imagens 1
-        </tab-heading>
+        </uib-tab-heading>
         <section ui-view="images-list" format="side-by-side"></section>
-      </tab>
-      <tab>
-        <tab-heading>
+      </uib-tab>
+      <uib-tab>
+        <uib-tab-heading>
           <i class="fa fa-th"></i> Imagens 2
-        </tab-heading>
+        </uib-tab-heading>
         <section ui-view="images-list" format="mosaic"></section>
-      </tab>
-    </tabset>
-  </div>
+      </uib-tab>
+    </uib-tabset>
+  </main>
 </div>
 
 {{filter}}

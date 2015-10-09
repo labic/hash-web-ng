@@ -4,52 +4,51 @@
   angular
     .module('hash.twitter-monitor')
     .controller('TwitterMonitorCtrl', function ($scope, $filter, MetricsTwitter) {
-      $scope.mainTagsFilter = ['tema-negros', 'tema-lgbt', 'tema-indigena', 'tema-genero'];
+      $scope.mainTagsFilter = [{ key: 'tema-negros', value: 'Negros' }, { key: 'tema-lgbt', value: 'LGBT' }, { key: 'tema-indigena', value: 'Indígena' }, { key: 'tema-genero', value: 'Mulher' }];
       $scope.localtionsFilter = [];
-      $scope.timeGranularityFilter = {
+      $scope.timeRangerFilter = {
         values: [{
           key: '15 minutos', 
-          value: 15 * 60 * 1000
+          value: new Date(Date.now() - 15 * 60 * 1000)
         },{
           key: '1 hora', 
-          value: 60 * 60 * 1000
+          value: new Date(Date.now() - 60 * 60 * 1000)
         },{
           key: '1 dia', 
-          value: 24 * 60 * 60 * 1000
+          value: new Date(Date.now() - 24 * 60 * 60 * 1000)
         },{
           key: '7 dias', 
-          value: 7 * 24 * 60 * 60 * 1000
-        }],
-        default: {
-          key: '1 dia', 
-          value: 24 * 60 * 60 * 1000
-        }
+          value: new Date(Date.now() - 7 * 24 * 60 * 60 * 1000)
+        }]
       };
-      $scope.wordsFilter = ['teste', 'brasileiro', 'sem-direitos'];
-      $scope.hashtagsFilter = [];
+      $scope.timeRangerFilter.default = $scope.timeRangerFilter.values[2];
       $scope.tweets = {
         data: [],
-        limit: 25,
-        skip: 0,
+        page: 1,
         count: null
       };
 
       $scope.filter = {
         mainTag: $scope.mainTagsFilter[0],
         //location: $scope.localtionsFilter[],
-        timeGranularity: $scope.timeGranularityFilter.default,
-        words: [],
+        timeRange: { 
+          since: $scope.timeRangerFilter.default.value,
+          until: new Date()
+        },
+        words: [ { word: 'teste 1', count: 100 }, { word: 'teste 2', count: 200 }, { word: 'teste 1', count: 300 } ],
         hashtags: []
       };
 
+      var fistRun = true;
       $scope.$watch('filter', function(newFilter, oldFilter) {
         console.log(newFilter);
 
+        var selectedHashtags = _.pluck(_.where(newFilter.hashtags, { select: true }), 'hashtag').join(',');
         var metricsParamsWithoutPagination = {
-          since: new Date(Date.now() - newFilter.timeGranularity.value),
-          until: new Date(),
-          tags: newFilter.mainTag,
-          hashtags: newFilter.hashtags
+          since: newFilter.timeRange.since,
+          until: newFilter.timeRange.until,
+          tags: [newFilter.mainTag.key],
+          hashtags: selectedHashtags === '' ? null : selectedHashtags
         }
 
         var metricsParamsWithPagination = metricsParamsWithoutPagination;
@@ -65,13 +64,20 @@
           metricsParamsWithPagination, 
           function success(response) {
             $scope.tweets.data = response;
+            $scope.tweets.page++;
           }, errorHandler);
 
-        MetricsTwitter.topHashtags(
-          metricsParamsWithPagination, 
-          function success(response) {
-            $scope.hashtagsFilter = response;
-          }, errorHandler);
+        if (newFilter.mainTag.key != oldFilter.mainTag.key || 
+            newFilter.timeRange.since != oldFilter.timeRange.since ||
+            fistRun) {
+          MetricsTwitter.topHashtags(
+            metricsParamsWithPagination, 
+            function success(response) { 
+              $scope.filter.hashtags = response;
+            }, errorHandler);
+        }
+
+        fistRun = false;
       }, true);
 
       function errorHandler(err) {

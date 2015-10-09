@@ -10,7 +10,6 @@
 
   angular
     .module('hash.dash', [
-      'checklist-model',
       'ui.router',
       'ui.bootstrap',
       'angular-cache',

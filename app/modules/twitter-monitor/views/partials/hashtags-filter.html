@@ -1,3 +1,1 @@
-<label class="btn btn-default btn-block" ng-repeat="hashtag in hashtagsFilter">
-  <input type="checkbox" name="filterHashtags[]" checklist-model="filter.hashtags" checklist-value="hashtag.hashtag"> #{{hashtag.hashtag}} | {{hashtag.count}}
-</label>
+<label class="btn btn-block" ng-model="filter.hashtags[$index].select" uib-btn-checkbox ng-repeat="hashtag in filter.hashtags">#{{hashtag.hashtag}} | {{hashtag.count}}</label>
