@@ -15,8 +15,8 @@
       'ui.bootstrap',
       'hash.core',
       'hash.api',
-      'hash.twitter-monitor',
-      //'angular-underscore'
+      'hash.twitter-monitor'
     ])
+    // .constant('HASH_API_BASE_URI', 'http://localhost:3000/v1');
     .constant('HASH_API_BASE_URI', 'https://hash-api.herokuapp.com:443/v1');
 })()

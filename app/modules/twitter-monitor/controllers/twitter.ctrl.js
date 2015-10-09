@@ -3,7 +3,7 @@
 
   angular
     .module('hash.twitter-monitor')
-    .controller('TwitterMonitorCtrl', function ($scope, $filter, MetricTwitter) {
+    .controller('TwitterMonitorCtrl', function ($scope, $filter, MetricsTwitter) {
       $scope.mainTagsFilter = ['tema-negros', 'tema-lgbt', 'tema-indigena', 'tema-genero'];
       $scope.localtionsFilter = [];
       $scope.timeGranularityFilter = {
@@ -54,20 +54,20 @@
 
         var metricsParamsWithPagination = metricsParamsWithoutPagination;
 
-        MetricTwitter.count(
+        MetricsTwitter.count(
           metricsParamsWithoutPagination, 
           function success(response) {
             $scope.tweets.count = response.count;
           }, errorHandler);
 
         // TODO: Implement pagination
-        MetricTwitter.topRetweets(
+        MetricsTwitter.topRetweets(
           metricsParamsWithPagination, 
           function success(response) {
             $scope.tweets.data = response;
           }, errorHandler);
 
-        MetricTwitter.topHashtags(
+        MetricsTwitter.topHashtags(
           metricsParamsWithPagination, 
           function success(response) {
             $scope.hashtagsFilter = response;

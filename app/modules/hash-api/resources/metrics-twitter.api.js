@@ -3,7 +3,7 @@
 
   angular
     .module('hash.api')
-    .factory('MetricTwitter', function($resource, HASH_API_BASE_URI) {
+    .factory('MetricsTwitter', function($resource, HASH_API_BASE_URI) {
 
       var metricsParamsWithoutPagination = {
         since: null,
