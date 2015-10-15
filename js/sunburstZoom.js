@@ -12,6 +12,9 @@ function d3Sunburst(url, word){
 
 	var color = d3.scale.category20c();
 
+	var tweetstext = d3.select("#tweets_count_ofWord")
+	var imagestext = d3.select("#images_count_ofWord")
+	
 	var seqtext = d3.select("#palavras_div2_sunburstZoom_words")
 	.attr("width", width/5)
 	.attr("height", height/5)
@@ -75,6 +78,8 @@ function d3Sunburst(url, word){
 
 		function click(d) {
 			seqtext.select("p").remove()
+			tweetstext.select("p").remove()
+			imagestext.select("p").remove()
 			var t = ""
 			if(d.name != "top_words"){
 				t = ""
@@ -86,6 +91,7 @@ function d3Sunburst(url, word){
 				t = t + d.name +" ("+d.size+")"
 			}
 			
+			tweetstext.append("p").html(d.size)
 			seqtext.append("p").html(t)
 
 			path.transition()
