@@ -18,12 +18,12 @@
 
 				<img class="img_tweet_result" src="{{twitte.status.user.profile_image_url_https}}" title="{{twitte.status.user.description}}">
 				<p>@{{twitte.status.user.screen_name}}</p>
-				<p ng-if="twitte.count" ng-click="consoleLog(twitte.length);"> | {{twitte.count}} RT </p>
+				<p ng-if="twitte.count"> | {{twitte.count}} RT </p>
 				<p ng-if="!twitte.count"> </p>
 				<p>
-					<a ng-if="twitte.count" title="Clique para visualizar o retweeter, @{{twitte.status.user.screen_name}}, no Twitter." href="https://twitter.com/{{twitte.status.user.screen_name}}/status/{{twitte._id}}" target="_blank">RT @{{twitte.status.retweeted_status.user.screen_name}}:{{twitte.status.retweeted_status.text}}</a>
+					<a ng-if="twitte.count" title="Clique para visualizar o retweeter, @{{twitte.status.user.screen_name}}, no Twitter." href="https://twitter.com/{{twitte.status.user.screen_name}}/status/{{twitte.status.id}}" target="_blank">RT @{{twitte.status.retweeted_status.user.screen_name}}:{{twitte.status.retweeted_status.text}}</a>
 					
-					<a ng-if="!twitte.count" ng-if="" title="Clique para visualizar o retweeter, @{{twitte.status.user.screen_name}}, no Twitter." href="https://twitter.com/{{twitte.status.user.screen_name}}/status/{{twitte._id}}" target="_blank">RT @{{twitte.status.user.screen_name}}:{{twitte.status.text}} {{twitte.get('count')}}</a>
+					<a ng-if="!twitte.count" ng-if="" title="Clique para visualizar o retweeter, @{{twitte.status.user.screen_name}}, no Twitter." href="https://twitter.com/{{twitte.status.user.screen_name}}/status/{{twitte.status.id}}" target="_blank">RT @{{twitte.status.user.screen_name}}:{{twitte.status.text}} {{twitte.get('count')}}</a>
 				</p>
 
 				<p>ÚLTIMO COMPARTILHAMENTO: {{twitte.status.timestamp_ms | date:'HH:mm:ss'}} HS</p>

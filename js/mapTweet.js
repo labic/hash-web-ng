@@ -22,7 +22,7 @@ function start(){
 }
 
 function initialize(features,id) {
-	alert(2);
+
 	var mapProp = {
 		center:new google.maps.LatLng(-18.72156,-39.8852),
 		zoom:4,
@@ -36,16 +36,23 @@ function initialize(features,id) {
 	count = 0;
 	for(i in features){
 		tweets = features[i].geometry;
-		for(t in tweets){        
-			markers[count] = getMarkers(tweets, i, t, "markers");
-			markers[count].setMap(map);
-			markers[count].addListener('click', function(){    
-				console.log(this._tema);
-				console.log(jsonFinal.features[this._tema]);      
-				showInfo(jsonFinal.features[this._tema].tweets[this._id]);          
-			});        
-			count++;        
-		}      
+
+		markers[count] = getMarkers(tweets, i, t, "markers");
+		markers[count].setMap(map);
+		markers[count].addListener('click', function(){
+			console.log(this)
+			//				d3.json('https://hash-api.herokuapp.com/v1/tweets/findOne?filter={"status.id_str":"654639274197942273"}',function(err,json){
+			//					if(err){console.log(err)}
+			//					//console.log(json);
+			//					jsonFinal = json;
+			//					initialize(json.features,-1);
+			//				});
+			//				console.log(this._tema);
+			//				console.log(jsonFinal.features[this._tema]);      
+			showInfo(jsonFinal.features[this._tema].tweets[this._id]);          
+		});        
+		count++;        
+
 	}
 }
 

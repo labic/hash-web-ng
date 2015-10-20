@@ -387,9 +387,32 @@
 
 			#str_menu_map{
 				width: 100%;
-				height: auto;
+				height: 370px;
 				float: left;
 				margin-top: 30px;
+			}
+
+				#fade_menu_map{
+					width: 100%;
+					height: 300px;
+					background: #0A1227;
+					opacity: 0.5;
+					z-index: 5;
+					position: absolute;
+				}
+
+			/*NOTA: MAPA */
+
+			#svg-map text { fill:#fff; font:12px Arial-BoldMT, sans-serif; cursor:pointer }
+			#svg-map a{ text-decoration:none;}
+			#svg-map a:hover { cursor:pointer; text-decoration:none; opacity: 1; }
+			#svg-map a:hover path{ fill:#39b54a !important }
+			#svg-map .circle { fill:#66ccff }
+			#svg-map a:hover .circle { fill:#39b54a !important; cursor:pointer }		
+			#svg-map{
+				z-index: 0;
+				float:left;
+				margin-bottom:20px;
 			}
 
 			#str_legend_map{
@@ -416,83 +439,6 @@
 					background: -o-linear-gradient(right, #d1e8c5 , #426083); 	
 					background: -moz-linear-gradient(right, #d1e8c5 , #426083); 
 					background: linear-gradient(to right, #d1e8c5 , #426083);
-				}
-
-/*
-			.menu_str{
-				width: 100%;
-				padding: 5px;
-				height: 50px;
-				background-color: white;
-			}
-
-				.opmenu_menu_str_teste2{
-					font-weight: bold;
-					font-size: 10px;
-					margin-right: 15px;
-					cursor: pointer;
-					color: #969696;
-				}
-*/
-
-/*
-			#division1 .strVertical_str_teste2{
-				height: 650px;
-			}
-
-			.strVertical_str_teste2{
-				width: 100%;
-				height: calc(100% - 30px);
-				overflow: auto;
-			}
-
-				.opMenu_strVertical_str_teste2{
-					float:left;
-					font-size: 10px;
-					font-weight: bold;
-					text-align: center;
-					min-height: 30px;
-					color: #969696;
-					width: 100%;
-				}
-
-					.opMenu_strVertical_str_teste2 span{
-						padding-bottom: 2px;
-						cursor: pointer;
-					}
-
-					.opMenu_strVertical_str_teste2 span:hover{
-						border-bottom: 2px solid black;
-					}
-*/
-
-				.opVertical1, .opVertical6, .opVertical11{
-					background-color: #a9b2c4;
-/*
-					background:  repeating-linear-gradient(
-						45deg,
-						#a9b2c4,
-						#a9b2c4 10px,
-						rgba(169, 178, 196, 0.8) 10px,
-						rgba(169, 178, 196, 0.8) 20px
-						);
-*/
-				}
-
-				.opVertical2, .opVertical7, .opVertical12{
-					background-color: #858c9a;
-				}
-
-				.opVertical3, .opVertical8, .opVertical13{
-					background-color: #7288cd;
-				}
-
-				.opVertical4, .opVertical9{
-					background-color: #a35e7a;
-				}
-
-				.opVertical5, .opVertical10{
-					background-color: #fd5964;
 				}
 
 /*TODO: DIVISION 2 */
@@ -778,7 +724,6 @@
 				}
 
 					.each_word p{
-						text-transform: uppercase;
 						font-size: 14px;
 						font-weight: bold;
 						text-align: center;
@@ -1366,11 +1311,3 @@
 		}
 
 
-/*NOTA: MAPA */
-
-    #svg-map text { fill:#fff; font:12px Arial-BoldMT, sans-serif; cursor:pointer }
-    #svg-map a{ text-decoration:none;}
-    #svg-map a:hover { cursor:pointer; text-decoration:none; opacity: 1; }
-    #svg-map a:hover path{ fill:#39b54a !important }
-    #svg-map .circle { fill:#66ccff }
-    #svg-map a:hover .circle { fill:#39b54a !important; cursor:pointer }		

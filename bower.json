@@ -28,6 +28,7 @@
     "qTip2": "~2.2.1",
     "Processing.js": "processing#~1.4.16",
     "checklist-model": "~0.6.0",
-    "underscore": "~1.8.3"
+    "underscore": "~1.8.3",
+    "angular-fx": "~1.1.0"
   }
 }

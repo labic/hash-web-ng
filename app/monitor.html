@@ -20,6 +20,8 @@
 		</div>
 
 		<div id="str_menu_map" ng-controller="MenuMap">
+			
+			<div id="fade_menu_map" ng-show="dataMapaON"></div>
 
 			<svg version="1.1" id="svg-map" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="100%" height="300px" viewBox="0 0 450 460" enable-background="new 0 0 450 460" xml:space="preserve">
 				<g>
@@ -337,7 +339,8 @@
 			</svg>
 
 			<div id="str_legend_map">
-				<p style="width:100%;">Volume dos usuários por Estado</p>
+				<p ng-show = "textLoadDisplayMap" style="width:100%;">CARREGANDO...</p>
+				<p ng-hide = "textLoadDisplayMap" style="width:100%;">Volume dos usuários por Estado</p>
 				<div class="legend_map"></div>
 				<p>0</p><p style="text-align: center;">{{legendMetade}}</p><p style="text-align: right;">{{legendMax}}</p>
 			</div>
@@ -351,11 +354,11 @@
 					<p>15</p>
 					<p>MINUTOS</p>
 				</div>
-				<div class="time_temporalidade fisrtTemp" ng-click="temporalidadeIndex(1); loadMoreTweets(0); changeTemporalidade(60);">
+				<div class="time_temporalidade" ng-click="temporalidadeIndex(1); loadMoreTweets(0); changeTemporalidade(60);">
 					<p>60</p>
 					<p>MINUTOS</p>
 				</div>
-				<div id="temporalidade24" class="time_temporalidade" ng-click="temporalidadeIndex(2); loadMoreTweets(0); changeTemporalidade(24);">
+				<div id="temporalidade24" class="time_temporalidade fisrtTemp" ng-click="temporalidadeIndex(2); loadMoreTweets(0); changeTemporalidade(24);">
 					<p>24</p>
 					<p>HORAS</p>
 				</div>
@@ -370,13 +373,13 @@
 		<div id="str_display_tweet">
 			<div class="display_tweet">
 				<img src="img/icons/TWEETS.png" height="30px" width="35px">
-				<p>{{countRetweet.count}}</p>
+				<p class="display_tweet_p">{{countRetweet.count}}</p>
 				<p>Tweets acumulados</p>
 			</div>
-			
+
 			<div class="display_tweet">
 				<img src="img/icons/ICONE-IMAGEM.png" height="30px" width="35px">
-				<p>{{countImage.count}}</p>
+				<p class="display_tweet_p">{{countImage.count}}</p>
 				<p>Imagens acumulados</p>
 			</div>
 		</div>

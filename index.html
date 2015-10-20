@@ -13,7 +13,14 @@
 		<!-- other CSS -->
 		<link rel="stylesheet" href="bower_components/swipebox/src/css/swipebox.css">
 		<link rel="stylesheet" href="css/plugins/qtip.min.css">
+
+		<link href="bower_components/animate.css/animate.min.css" rel="stylesheet" type="text/css" />
+		<!-- angular-fx.css goes after animate.css-->
+		<link href="bower_components/angular-fx/src/css/angular-fx.css" rel="stylesheet" type="text/css" />
+
+		<link rel="stylesheet" href="css/animate.css">
 	</head>
+
 	<body>
 
 		<div id="menu_fixed_bar">
@@ -26,15 +33,15 @@
 				<li class="menu_fixed_op"><a href="#/territorio">TERRITORIOS</a></li>
 			</ul>
 		</div>
-		
+
 		<div ng-view ></div>
-		
+
 		<!-- Jquery e Jquery UI  -->
 		<script src="bower_components/jquery/dist/jquery.min.js"></script>
 		<script src="js/migrate-jquery.js"></script>
 
 		<!-- Others javascripts -->
-		<script src="bower_components/swipebox/src/js/jquery.swipebox.min.js"></script>
+		<script src="bower_components/swipebox/src/js/jquery.swipebox.js"></script>
 		<script src="bower_components/Chart.js/Chart.min.js"></script>
 		<script src="js/qtip.min.js"></script>
 
@@ -51,112 +58,9 @@
 
 		<script src="js/app.js"></script>
 		<script src="js/controller.js"></script>
-		
-		<script src="bower_components/Processing.js/processing.min.js"></script>	
 
-		<script type="text/javascript">
-//			$( document ).ready(function(){
-//
-//				/*NOTA: Inicializando Tipped */
-//
-//				$('[title]').qtip({
-//					// Grab some elements to apply the tooltip to
-//					def: false,
-//					style: {
-//						classes: 'qtip-blue',
-//						//                        tip: {
-//						//                            corner: 'top center',
-//						//                            mimic: 'center',
-//						//                        },
-//					},
-//					position: {
-//						my: 'center center',
-//						at: 'top center',
-//						adjust: {
-//							y: -20
-//						}
-//					}
-//				});
-//
-//				/*NOTA: Inicializando SwipeBox */
-//
-//				$(".swipebox").swipebox();
-//
-//				/*NOTA: Troca de menus */
-//
-//				/* Standard */
-//
-//				$(".firstOp").css( "font-weight", "800" );
-//				//				$(".firstOpBlack").css( "color", "black" );
-//
-//				/* Custom */
-//
-//				$(".select_tematica_monitor").click(function(){
-//					$(".select_tematica_monitor").css( "font-weight", "300" );
-//
-//					$(this).css( "font-weight", "800" );
-//				});
-//
-//				$(".select_tematica_palavras").click(function(){
-//					$(".select_tematica_palavras").css( "font-weight", "300" );
-//
-//					$(this).css( "font-weight", "800" );
-//				});
-//
-//				$(".select_categoria_division1").click(function(){
-//					$(".select_categoria_division1").css( "font-weight", "300" );
-//					$(".select_categoria_division1").css( "color", "#FFFFFF" );
-//
-//					$(this).css( "font-weight", "800" );
-//					$(this).css( "color", "#FFFFFF" );
-//
-//				});
-//
-//				$(".select_title_division2").click(function(){
-//					$(".select_title_division2").css( "opacity", "0.6" );
-//
-//					$(this).css( "opacity", "1" );
-//				});
-//
-//				$(".select_title_division3,.select_title_division2").css( "opacity", "0.6" );
-//				$(".firstOpImg").css( "opacity", "1" );
-//
-//				$(".select_title_division3").click(function(){
-//					$(".select_title_division3").css( "opacity", "0.6" );
-//
-//					$(this).css( "opacity", "1" );
-//				});
-//
-//				/* HighLighter CategoriaMenu */
-//
-//				/*NOTA: Troca Categoria */
-//
-//				/*NOTA: Troca Temporalidades */ 
-//
-//				$(".fisrtTemp p").css( "color", "#0a1227" );
-//				$(".fisrtTemp").css( "background-color", "#1dbfd8" );
-//				$(".fisrtTemp").css( "border-color", "#1dbfd8" );
-//
-//				$(".time_temporalidade").click(function(){
-//					$(".time_temporalidade p").css( "color", "#1dbfd8" );
-//					$(".time_temporalidade").css( "background-color", "transparent" );
-//					$(".time_temporalidade").css( "border-color", "white" );
-//
-//					$("p", this).css( "color", "#0a1227" );
-//					$(this).css( "background-color", "#1dbfd8" );
-//					$(this).css( "border-color", "#1dbfd8" );
-//				});
-//
-//				$("#select_imgMosaico").click(function(){
-//					$(".time_temporalidade p").css( "color", "#1dbfd8" );
-//					$(".time_temporalidade").css( "background-color", "transparent" );
-//					$(".time_temporalidade").css( "border-color", "white" );
-//
-//					$("p", "#temporalidade24").css( "color", "#0a1227" );
-//					$("#temporalidade24").css( "background-color", "#1dbfd8" );
-//					$("#temporalidade24").css( "border-color", "#1dbfd8" );
-//				});
-//			});
-		</script>
+		<script src="bower_components/Processing.js/processing.min.js"></script>	
+		
+		<script src="bower_components/angular-fx/src/js/angular-fx.js"></script>
 	</body>
 </html>
