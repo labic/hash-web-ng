@@ -124,10 +124,11 @@ function functionNoRtConteudo(localTime, dataNow, linkTema, linkCategoria, linkL
 };
 
 function functionImage(localTime, dataNow, linkTema, linkCategoria, linkLocalidade, word, tag){
+	
 	if(linkTema.length == 151){
 		if((word === undefined) && (tag === undefined)){
 
-			return baseURL+'/analytics?type=top-images&filter={"where":{"status.created_at":{"gte":"'+localTime+'","lte":"'+dataNow+'"},"categories":{"inq":['+linkTema+''+linkCategoria+''+linkLocalidade+']}},"limit":25,"skip":0}';
+			return baseURL+'/analytics?type=top-images&filter={"where":{"status.created_at":{"gte":"'+localTime+'","lte":"'+dataNow+'"},"categories":{"inq":['+linkTema+''+linkCategoria+''+linkLocalidade+']}},"limit":400,"skip":0}';
 
 		}else if(tag === undefined){
 
@@ -141,7 +142,7 @@ function functionImage(localTime, dataNow, linkTema, linkCategoria, linkLocalida
 	}else{
 		if((word === undefined) && (tag === undefined)){
 
-			return baseURL+'/analytics?type=top-images&filter={"where":{"status.created_at":{"gte":"'+localTime+'","lte":"'+dataNow+'"},"categories":{"all":['+linkTema+''+linkCategoria+''+linkLocalidade+']}},"limit":25,"skip":0}';
+			return baseURL+'/analytics?type=top-images&filter={"where":{"status.created_at":{"gte":"'+localTime+'","lte":"'+dataNow+'"},"categories":{"all":['+linkTema+''+linkCategoria+''+linkLocalidade+']}},"limit":400,"skip":0}';
 
 		}else if(tag === undefined){
 
@@ -189,7 +190,7 @@ var linkNoRtConteudo;
 
 linkConteudo = functionConteudo(dataNow24, dataNow, linkTema, linkCategoria, linkLocalidade, 25, 0, undefined, undefined);
 
-linkImg = functionNoRtConteudo(dataNow24, dataNow, linkTema, linkCategoria, linkLocalidade, undefined, undefined);
+linkImg = functionNoRtConteudo(dataNow24, dataNow, linkTema, linkCategoria, linkLocalidade, undefined, undefined, 25);
 
 linkTag = functionTag(dataNow24, dataNow, linkTema, linkCategoria, linkLocalidade);
 
@@ -246,6 +247,7 @@ hashTwitter.controller('mainMonitor', function ($scope) {
 	var localidadeSelect = "";
 	var wordSelect = "";
 	var tagSelect = "";
+	var limit = 1;
 
 
 	$scope.filterChange = function(){
@@ -692,7 +694,7 @@ hashTwitter.controller('HashImgCtr', ['$scope', '$http', function ($scope, $http
 		$scope.dataLoadERROR = false;
 
 		$http.get(args).success(function (data) {
-			$scope.imgs = data;
+			$scope.imgs = data.splice(0,24);
 			if(data == ""){
 				$scope.dataLoadON = false;
 				$scope.dataLoadOFF = false;
