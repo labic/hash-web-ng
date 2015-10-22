@@ -1,18 +1,19 @@
-<div id="result_conteudo_img" ng-controller="HashImgCtr" style="height:100%;">
+<div id="result_conteudo_img" ng-controller="HashImgCtr" style="height:100%;" ng-init="loadMin();">
 	<div class="loading" ng-show="dataLoadOFF">
 		<center><img src="img/icons/Unknown.gif" height="66px" width="66px"></center>
-		<p class="loadingWordGrey">CARREGANDO</p>
+		<p class="loadingWordGrey">CARREGANDO:</p>
+		<p class="loadingWordGrey">estamos realizando a sua requisição, essa operação pode demorar um pouco.</p>
 	</div>
-	
-	<div class="loading" ng-show="dataLoadERROR">
+
+	<div class="loading" ng-show="dataLoad404">
 		<center><img src="img/icons/searching45.png" height="40px" width="40px"></center>
 		<p class="loadingWordGrey">NENHUM IMAGEM ENCONTRADA</p>
 		<p class="loadingWordGrey">tente outra categoria ou intervalo de tempo</p>
 	</div>
 
 	<div ng-show="dataLoadON" class="geralTweets_result" style="height:calc(100% - 10px);">
-		<a href='{{img.media_url_https}}' class="swipebox" title='Retweetado {{img.count}} - "{{img.text}}" @{{img.user.screen_name}}' ng-repeat="img in imgs">
-			<img src="{{img.media_url_https}}:small" class="img_TopImg" alt="image" width="{{alturaImg}}px" height="{{alturaImg}}px">
+		<a ng-repeat="img in imgs" href='{{img.media_url_https}}' class="swipebox" title='<a href="https://twitter.com/{{img.user.screen_name}}/status/{{img.user.id_str}}" target="_blank"> Retweetado {{img.count}} - "{{img.text}}" @{{img.user.screen_name}}</a>'>
+				<img src="{{img.media_url_https}}:small" class="img_TopImg" alt="image" width="{{alturaImg}}px" height="{{alturaImg}}px"  >
 		</a>
 	</div>
 </div>

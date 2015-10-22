@@ -1,10 +1,12 @@
 <div id="result_conteudo_img" ng-controller="HashImgMosaicoCtr" style="height:100%;">
 	<div class="loading" ng-show="dataLoadOFF">
 		<center><img src="img/icons/Unknown.gif" height="66px" width="66px"></center>
-		<p class="loadingWordGrey">CARREGANDO</p>
+		<p class="loadingWordGrey">CARREGANDO:</p>
+		<p class="loadingWordGrey">estamos realizando a sua requisição, essa operação pode demorar um pouco.</p>
+
 	</div>
 
-	<div class="loading" ng-show="dataLoadERROR">
+	<div class="loading" ng-show="dataLoad404">
 		<center><img src="img/icons/searching45.png" height="40px" width="40px"></center>
 		<p class="loadingWordGrey">NENHUMA IMAGEM ECONTRADA</p>
 		<p class="loadingWordGrey">tente outra categoria ou intervalo de tempo</p>

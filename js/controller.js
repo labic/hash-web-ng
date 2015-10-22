@@ -38,7 +38,6 @@ var linkTime = 24;
 var linkTema = '%22tema-negros%22';
 var linkCategoria = '';
 var linkLocalidade = '';
-var pag = 0;
 var count = 0;
 var catNumber = 0;
 
@@ -198,30 +197,10 @@ linkWord = functionWord(dataNow24, dataNow, linkTema, linkCategoria, linkLocalid
 
 linkMap = functionMap(dataNow24, dataNow, linkTema, linkCategoria, linkLocalidade);
 
-//			monitorCountTweet = baseURL+'/count?where={}';
-//			monitorCountImage = baseURL+'/count?where={"status.entities.media":{"exists":true}}';
+var monitorCountTweet = baseURL+'/count?where={}';
+var monitorCountImage = baseURL+'/count?where={"status.entities.media":{"exists":true}}';
 
 linkNoRtConteudo = functionNoRtConteudo(dataNow24, dataNow, linkTema, linkCategoria, linkLocalidade, undefined, undefined);
-
-//var initMonitor = function(linkConteudo,linkImg,linkTag,linkMap,linkWord,linkNoRtConteudo){
-//
-//	linkConteudo = functionConteudo(dataNow24, dataNow, linkTema, linkCategoria, linkLocalidade, 25, 0, undefined, undefined);
-//
-//	linkImg = functionNoRtConteudo(dataNow24, dataNow, linkTema, linkCategoria, linkLocalidade, undefined, undefined);
-//
-//	linkTag = functionTag(dataNow24, dataNow, linkTema, linkCategoria, linkLocalidade);
-//
-//	linkWord = functionWord(dataNow24, dataNow, linkTema, linkCategoria, linkLocalidade);
-//
-//	linkMap = functionMap(dataNow24, dataNow, linkTema, linkCategoria, linkLocalidade);
-//
-//	//			monitorCountTweet = baseURL+'/count?where={}';
-//	//			monitorCountImage = baseURL+'/count?where={"status.entities.media":{"exists":true}}';
-//
-//	linkNoRtConteudo = functionNoRtConteudo(dataNow24, dataNow, linkTema, linkCategoria, linkLocalidade, undefined, undefined);
-//};
-//
-//initMonitor(linkConteudo,linkImg,linkTag,linkMap,linkWord,linkNoRtConteudo);
 
 hashTwitter.run(function($rootScope) {
 
@@ -233,12 +212,12 @@ hashTwitter.run(function($rootScope) {
 		$rootScope.$broadcast('handleBroadcastImage', args);
 	});
 
-	$rootScope.$on('handleEmitTag', function(event, args) {
-		$rootScope.$broadcast('handleBroadcastTag', args);
+	$rootScope.$on('handleEmitTag', function(event, args, bool) {
+		$rootScope.$broadcast('handleBroadcastTag', args, bool);
 	});
 
-	$rootScope.$on('handleEmitWord', function(event, args) {
-		$rootScope.$broadcast('handleBroadcastWord', args);
+	$rootScope.$on('handleEmitWord', function(event, args, bool) {
+		$rootScope.$broadcast('handleBroadcastWord', args, bool);
 	});
 
 	$rootScope.$on('handleEmitMap', function(event, args) {
@@ -248,17 +227,59 @@ hashTwitter.run(function($rootScope) {
 	$rootScope.$on('handleEmitPalavrasWord', function(event, args) {
 		$rootScope.$broadcast('handleBroadcastPalavrasWord', args);
 	});
-
-	$rootScope.$on('handleEmitCountTweets', function(event, args) {
-		$rootScope.$broadcast('handleBroadcastCountTweets', args);
-	});
 });
 
 /* NOTA: MONITOR - CONTROLLER */
 
 hashTwitter.controller('mainMonitor', function ($scope) {
 
-	/* Inicializando links de requisição */
+	$scope.wordChange = function(x){
+		$scope.wordOne = x;
+	};
+
+	$scope.tagChange = function(x){
+		$scope.tagOne = x;
+	};
+
+	var conteudoSelect = "Negro";
+	var categoriaSelect = "";
+	var localidadeSelect = "";
+	var wordSelect = "";
+	var tagSelect = "";
+
+
+	$scope.filterChange = function(){
+		$scope.filtro = conteudoSelect+" "+categoriaSelect+" "+localidadeSelect+" "+wordSelect+" "+tagSelect;
+	};
+
+	$scope.filterChange();
+
+	$scope.loadAll = function(){
+		$scope.$emit('handleEmitMap', linkMap);
+	};
+
+	$scope.loadHalf = function(bool){
+		$scope.$emit('handleEmitTag', linkTag, bool);
+		$scope.$emit('handleEmitWord', linkWord, bool);
+	};
+
+	$scope.loadMin = function(){
+		$scope.$emit('handleEmitImage', linkImg);
+		$scope.$emit('handleEmitConteudo', linkConteudo, linkNoRtConteudo);
+	};
+
+	$scope.categoriaIndex = function (x) {
+		catNumber = x;
+	};
+
+	$scope.templates = [ { name: 'WordTweet', url: 'app/monitor/wordTweet.html'},
+						{ name: 'TagTweet', url: 'app/monitor/tagTweet.html'} ];
+
+	$scope.template = $scope.templates[0];
+
+	$scope.templateIndex = function (x) {
+		$scope.template = $scope.templates[x];
+	};
 
 	$scope.templatesConteudo = [ { name: 'twTweet', url: 'app/monitor/twTweet.html'},
 								{ name: 'imgTweet', url: 'app/monitor/imgTweet.html'},
@@ -269,10 +290,6 @@ hashTwitter.controller('mainMonitor', function ($scope) {
 
 	$scope.templateConteudoIndex = function (x) {
 		$scope.templateConteudo = $scope.templatesConteudo[x];
-	};
-
-	$scope.categoriaIndex = function (x) {
-		catNumber = x;
 	};
 
 	$scope.loadMoreTweetsChange = function (n) {
@@ -291,12 +308,19 @@ hashTwitter.controller('mainMonitor', function ($scope) {
 
 		linkNoRtConteudo = functionNoRtConteudo(localTime, dataNow, linkTema, linkCategoria, linkLocalidade);
 
-		$scope.$emit('handleEmitConteudo', linkConteudo, linkNoRtConteudo);
+		$scope.loadMin();
 	};
 
 	$scope.loadWordsPub = function (word) {
 
 		count = 0;
+
+		wordSelect = "> "+word;
+
+		tagSelect = "";
+		categoriaSelect = "";
+
+		linkCategoria = "";
 
 		var localTime;
 
@@ -309,13 +333,19 @@ hashTwitter.controller('mainMonitor', function ($scope) {
 
 		linkImg = functionImage(localTime, dataNow, linkTema, linkCategoria, linkLocalidade, word, undefined);
 
-		$scope.$emit('handleEmitConteudo', linkConteudo, linkNoRtConteudo);
-		$scope.$emit('handleEmitImage', linkImg);
+		$scope.loadMin();
 	};
 
 	$scope.loadHastagsPub = function (tag) {
 
 		count = 0;
+
+		tagSelect = "> "+tag;
+
+		wordSelect = "";
+		categoriaSelect = "";
+
+		linkCategoria = "";
 
 		var localTime;
 
@@ -327,8 +357,7 @@ hashTwitter.controller('mainMonitor', function ($scope) {
 
 		linkImg = functionImage(localTime, dataNow, linkTema, linkCategoria, linkLocalidade, undefined, tag);
 
-		$scope.$emit('handleEmitConteudo', linkConteudo, linkNoRtConteudo);
-		$scope.$emit('handleEmitImage', linkImg);
+		$scope.loadMin();
 	};
 
 	$scope.changeLocalidade = function (local) {
@@ -351,10 +380,32 @@ hashTwitter.controller('mainMonitor', function ($scope) {
 
 		linkWord = functionWord(localTime, dataNow, linkTema, linkCategoria, linkLocalidade);
 
-		$scope.$emit('handleEmitConteudo', linkConteudo, linkNoRtConteudo);
-		$scope.$emit('handleEmitImage', linkImg);
-		$scope.$emit('handleEmitTag', linkTag);
-		$scope.$emit('handleEmitWord', linkWord);
+		$scope.loadHalf();
+	};
+
+	$scope.changeCategoria = function (cat, nome) {
+
+		count = 0;
+
+		categoriaSelect = "> "+nome;
+
+		wordSelect = "";
+		tagSelect = "";
+
+		linkCategoria = cat;
+		linkLocalidade = '';
+
+		var localTime;
+
+		localTime = transformTime(linkTime);
+
+		linkConteudo = functionConteudo(localTime, dataNow, linkTema, linkCategoria, linkLocalidade, 25, 0);
+
+		linkNoRtConteudo = functionNoRtConteudo(localTime, dataNow, linkTema, linkCategoria, linkLocalidade);
+
+		linkImg = functionImage(localTime, dataNow, linkTema, linkCategoria, linkLocalidade);
+
+		$scope.loadMin();
 	};
 
 	$scope.changeTemporalidade = function (time) {
@@ -380,37 +431,19 @@ hashTwitter.controller('mainMonitor', function ($scope) {
 
 		linkMap = functionMap(localTime, dataNow, linkTema, linkCategoria, linkLocalidade);
 
-		$scope.$emit('handleEmitConteudo', linkConteudo, linkNoRtConteudo);
-		$scope.$emit('handleEmitImage', linkImg);
-		$scope.$emit('handleEmitTag', linkTag);
-		$scope.$emit('handleEmitWord', linkWord);
-		$scope.$emit('handleEmitMap', linkMap);
+		$scope.loadAll();
 	};
 
-	$scope.changeCategoria = function (cat) {
+	$scope.changeTema = function (tema, nome) {
 
 		count = 0;
 
-		linkCategoria = cat;
-		linkLocalidade = '';
+		conteudoSelect = nome;
 
-		var localTime;
-
-		localTime = transformTime(linkTime);
-
-		linkConteudo = functionConteudo(localTime, dataNow, linkTema, linkCategoria, linkLocalidade, 25, 0);
-
-		linkNoRtConteudo = functionNoRtConteudo(localTime, dataNow, linkTema, linkCategoria, linkLocalidade);
-
-		linkImg = functionImage(localTime, dataNow, linkTema, linkCategoria, linkLocalidade);
-
-		$scope.$emit('handleEmitConteudo', linkConteudo, linkNoRtConteudo);
-		$scope.$emit('handleEmitImage', linkImg);
-	};
-
-	$scope.changeTema = function (tema) {
-
-		count = 0;
+		categoriaSelect = "";
+		localidadeSelect = "";
+		wordSelect = "";
+		tagSelect = "";
 
 		linkTema = tema;
 		linkCategoria = "";
@@ -432,163 +465,52 @@ hashTwitter.controller('mainMonitor', function ($scope) {
 
 		linkMap = functionMap(localTime, dataNow, linkTema, linkCategoria, linkLocalidade);
 
-		$scope.$emit('handleEmitConteudo', linkConteudo, linkNoRtConteudo);
-		$scope.$emit('handleEmitImage', linkImg);
-		$scope.$emit('handleEmitTag', linkTag);
-		$scope.$emit('handleEmitWord', linkWord);
-		$scope.$emit('handleEmitMap', linkMap);
+		$scope.loadAll();
 	};
 });
 
-hashTwitter.controller('ResultWords', function ($scope) {
-
-	$scope.templates = [ { name: 'WordTweet', url: 'app/monitor/wordTweet.html'},
-						{ name: 'TagTweet', url: 'app/monitor/tagTweet.html'} ];
-
-	$scope.template = $scope.templates[0];
-
-	$scope.templateIndex = function (x) {
-		$scope.template = $scope.templates[x];
-	};
-});
+hashTwitter.controller('ResultWords', function ($scope) {});
 
 /* Esse controle serve para ver qual Tematica aparecerá em conteudo e perfil */
 hashTwitter.controller('MenuDivisionTematica', ['$scope', '$http', '$interval', function ($scope, $http, $interval) {
 
-	//	$scope.dataMapaON = true;
-	//	$scope.textLoadDisplayMap = true;
-	//
-	//	$scope.dataConteudoON = false;
-	//	$scope.dataConteudoERROR = false;
-	//	$scope.dataConteudoOFF = true;
-	//	
-	//	$scope.dataLoadON = false;
-	//	$scope.dataLoadERROR = false;
-	//	$scope.dataLoadOFF = true;
-	//
-	//	var maxCont = 0;
-	//	var contData = 0;
-	//
-	//	$http.get(linkMap).success(function (data) {
-	//
-	//		for(var x=0; x<27 ;x++){
-	//			if(data[x].count > maxCont){
-	//				maxCont = data[x].count;
-	//			}
-	//		}
-	//
-	//		getColors(data,"#d1e8c5","#426083");
-	//
-	//		$scope.mapAC = data[0].cor;
-	//		$scope.mapAL = data[1].cor;
-	//		$scope.mapAM = data[2].cor;
-	//		$scope.mapAP = data[3].cor;
-	//		$scope.mapBA = data[4].cor;
-	//		$scope.mapCE = data[5].cor;
-	//		$scope.mapDF = data[6].cor;
-	//		$scope.mapES = data[7].cor;
-	//		$scope.mapGO = data[8].cor;
-	//		$scope.mapMA = data[9].cor;
-	//		$scope.mapMG = data[10].cor;
-	//		$scope.mapMS = data[11].cor;
-	//		$scope.mapMT = data[12].cor;
-	//		$scope.mapPA = data[13].cor;
-	//		$scope.mapPB = data[14].cor;
-	//		$scope.mapPE = data[15].cor;
-	//		$scope.mapPI = data[16].cor;
-	//		$scope.mapPR = data[17].cor;
-	//		$scope.mapRJ = data[18].cor;
-	//		$scope.mapRN = data[19].cor;
-	//		$scope.mapRO = data[20].cor;
-	//		$scope.mapRR = data[21].cor;
-	//		$scope.mapRS = data[22].cor;
-	//		$scope.mapSC = data[23].cor;
-	//		$scope.mapSE = data[24].cor;
-	//		$scope.mapSP = data[25].cor;
-	//		$scope.mapTO = data[26].cor;
-	//
-	//		$scope.legendMetade = maxCont/2;
-	//		$scope.legendMax = maxCont;
-	//
-	//		$scope.dataMapaON = false;
-	//		$scope.textLoadDisplayMap = false;
-	//
-	//		$http.get(linkWord).success(function (data1) {
-	//			$scope.words = data1;
-	//			$scope.word1 = data1[0];
-	//			$scope.words = data1.splice(1,11);
-	//			if(data == ""){
-	//				$scope.dataLoadON = false;
-	//				$scope.dataLoadOFF = false;
-	//				$scope.dataLoadERROR = true;
-	//			}else{
-	//				$scope.dataLoadERROR = false;
-	//				$scope.dataLoadOFF = false;
-	//				$scope.dataLoadON = true;
-	//			}
-	//		});
-	//
-	//		$http.get(linkConteudo).success(function (data2) {
-	//
-	//			contData = Object.keys(data2).length;
-	//
-	//			if((data2 == "") || (contData < 25)){
-	//
-	//				$scope.buttonNext = false;
-	//
-	//				$http.get(linkNoRtConteudo).success(function (data3) {
-	//					$scope.twittes = data2.concat(data3);
-	//
-	//					if(data1 == ""){
-	//						$scope.twittes = data2;
-	//					}else{
-	//						$scope.twittes = data2.concat(data3);
-	//					}
-	//
-	//					if((data1 == "") && (data == "")){
-	//						$scope.dataConteudoON = false;
-	//						$scope.dataConteudoOFF = false;
-	//						$scope.dataConteudoERROR = true;
-	//					}else{
-	//						$scope.dataConteudoERROR = false;
-	//						$scope.dataConteudoOFF = false;
-	//						$scope.dataConteudoON = true;
-	//					}
-	//				});
-	//			}else{
-	//				$scope.twittes = data2;
-	//
-	//				$scope.buttonNext = true;
-	//
-	//				$scope.dataConteudoERROR = false;
-	//				$scope.dataConteudoOFF = false;
-	//				$scope.dataConteudoON = true;
-	//			}
-	//		});
-	//	});
+	$http.get(monitorCountTweet).success(function (data) {
+		$scope.countRetweet = data;
 
-	//	$interval(function() {
-	////		$(".display_tweet_p").fadeToggle("slow");
-	////		$(".display_tweet_p").css( "color", "#1dbfd8" );
-	//		
-	//		$http.get(monitorCountTweet).success(function (data) {
-	//			$scope.countRetweet = data;
-	//		});
-	//
-	//		$http.get(monitorCountImage).success(function (data) {
-	//			$scope.countImage = data;
-	//		});
-	//		
-	////		$(".display_tweet_p").css( "color", "#fff" );
-	////		$(".display_tweet_p").slide("slow");
-	////		$(".display_tweet p:first-child").fadeIn("slow");
-	//	}, 5000);
+		$scope.contConteudoChange = function(x,max){
+			$interval(function() {
+				if( x < max) {
+					x = x + 7;
+					$scope.countRetweetFinal = x;
+				}
+			},100);
+		};
 
+		$scope.contConteudoChange(1200000, $scope.countRetweet.count);
+	});
+
+	$http.get(monitorCountImage).success(function (data) {
+		$scope.countImage = data;
+
+		$scope.contImageChange = function(x,max){
+			$interval(function() {
+				if( x < max) {
+					x = x + 7;
+					$scope.countImageFinal = x;
+				}
+			},100);
+		};
+		
+		$scope.contImageChange(90000,$scope.countImage.count);
+	});
 }]);
 
 hashTwitter.controller('MenuMap', ['$scope', '$http', function ($scope, $http) {
 
 	var maxCont = 0;
+
+	$scope.dataMapaON = true;
+	$scope.textLoadDisplayMap = true;
 
 	$http.get(linkMap).success(function (data) {
 
@@ -597,9 +519,6 @@ hashTwitter.controller('MenuMap', ['$scope', '$http', function ($scope, $http) {
 				maxCont = data[x].count;
 			}
 		}
-
-		$scope.legendMetade = maxCont/2;
-		$scope.legendMax = maxCont;
 
 		getColors(data,"#d1e8c5","#426083");
 
@@ -631,10 +550,22 @@ hashTwitter.controller('MenuMap', ['$scope', '$http', function ($scope, $http) {
 		$scope.mapSP = data[25].cor;
 		$scope.mapTO = data[26].cor;
 
-		$scope.$emit('handleEmitWord', linkWord);
+		$scope.legendMetade = maxCont/2;
+		$scope.legendMax = maxCont;
+
+		$scope.dataMapaON = false;
+		$scope.textLoadDisplayMap = false;
 	});
 
 	$scope.$on('handleBroadcastMap', function(event, args) {
+
+		$("#svg-map a path").css( "fill", "#d1e8c5" );
+
+		$scope.legendMetade = 0;
+		$scope.legendMax = 0;
+
+		$scope.dataMapaON = true;
+		$scope.textLoadDisplayMap = true;
 
 		$http.get(args).success(function (data) {
 
@@ -645,9 +576,6 @@ hashTwitter.controller('MenuMap', ['$scope', '$http', function ($scope, $http) {
 					maxCont = data[x].count;
 				}
 			}
-
-			$scope.legendMetade = maxCont/2;
-			$scope.legendMax = maxCont;
 
 			getColors(data,"#d1e8c5","#426083");
 
@@ -678,60 +606,29 @@ hashTwitter.controller('MenuMap', ['$scope', '$http', function ($scope, $http) {
 			$scope.mapSE = data[24].cor;
 			$scope.mapSP = data[25].cor;
 			$scope.mapTO = data[26].cor;
+
+			$("#svg-map a path").removeAttr( "style" );
+
+			$scope.legendMetade = maxCont/2;
+			$scope.legendMax = maxCont;
+
+			$scope.dataMapaON = false;
+			$scope.textLoadDisplayMap = false;
+
+			$scope.loadHalf(true);
 		});
 	});
 }]);
 
 hashTwitter.controller('HashTwitterCtr', ['$scope', '$http', function ($scope, $http) {
-		var contData = 0;
-	//
-	//	$scope.dataConteudoON = false;
-	//	$scope.dataConteudoERROR = false;
-	//	$scope.dataConteudoOFF = true;
-	//
-	//	$http.get(linkConteudo).success(function (data) {
-	//
-	//		contData = Object.keys(data).length;
-	//
-	//		if((data == "") || (contData < 25)){
-	//
-	//			$scope.buttonNext = false;
-	//
-	//			$http.get(linkNoRtConteudo).success(function (data1) {
-	//				$scope.twittes = data.concat(data1);
-	//
-	//				if(data1 == ""){
-	//					$scope.twittes = data;
-	//				}else{
-	//					$scope.twittes = data.concat(data1);
-	//				}
-	//
-	//				if((data1 == "") && (data == "")){
-	//					$scope.dataConteudoON = false;
-	//					$scope.dataConteudoOFF = false;
-	//					$scope.dataConteudoERROR = true;
-	//				}else{
-	//					$scope.dataConteudoERROR = false;
-	//					$scope.dataConteudoOFF = false;
-	//					$scope.dataConteudoON = true;
-	//				}
-	//			});
-	//		}else{
-	//			$scope.twittes = data;
-	//
-	//			$scope.buttonNext = true;
-	//
-	//			$scope.dataConteudoERROR = false;
-	//			$scope.dataConteudoOFF = false;
-	//			$scope.dataConteudoON = true;
-	//		}
-	//	});
+	var contData = 0;
 
 	$scope.$on('handleBroadcastConteudo', function(event, args, args1) {
 
 		$scope.dataLoadON = false;
-		$scope.dataLoadERROR = false;
+		$scope.dataLoad404 = false;
 		$scope.dataLoadOFF = true;
+		$scope.dataLoadERROR = false;
 
 		if(count > 0){
 			$scope.buttonBack = true;
@@ -759,9 +656,9 @@ hashTwitter.controller('HashTwitterCtr', ['$scope', '$http', function ($scope, $
 					if((data1 == "") && (data == "")){
 						$scope.dataLoadON = false;
 						$scope.dataLoadOFF = false;
-						$scope.dataLoadERROR = true;
+						$scope.dataLoad404 = true;
 					}else{
-						$scope.dataLoadERROR = false;
+						$scope.dataLoad404 = false;
 						$scope.dataLoadOFF = false;
 						$scope.dataLoadON = true;
 					}
@@ -771,31 +668,18 @@ hashTwitter.controller('HashTwitterCtr', ['$scope', '$http', function ($scope, $
 
 				$scope.buttonNext = true;
 
-				$scope.dataLoadERROR = false;
+				$scope.dataLoad404 = false;
 				$scope.dataLoadOFF = false;
 				$scope.dataLoadON = true;
 			}
-		});
-	});    
+		}).error(function(data, status) {
+			$scope.dataLoadERROR = true;
+			console.log(status);
+		});   
+	});   
 }]);
 
 hashTwitter.controller('HashImgCtr', ['$scope', '$http', function ($scope, $http) {
-	$scope.dataLoadON = false;
-	$scope.dataLoadERROR = false;
-	$scope.dataLoadOFF = true;
-
-	$http.get(linkImg).success(function (data) {
-		$scope.imgs = data;
-		if(data == ""){
-			$scope.dataLoadON = false;
-			$scope.dataLoadOFF = false;
-			$scope.dataLoadERROR = true;
-		}else{
-			$scope.dataLoadERROR = false;
-			$scope.dataLoadOFF = false;
-			$scope.dataLoadON = true;
-		}
-	});
 
 	var tamDiv = $(".geralTweets_result").css( "width" );
 	tamDiv = parseInt(tamDiv);
@@ -803,43 +687,29 @@ hashTwitter.controller('HashImgCtr', ['$scope', '$http', function ($scope, $http
 
 	$scope.$on('handleBroadcastImage', function(event, args) {
 		$scope.dataLoadON = false;
-		$scope.dataLoadERROR = false;
+		$scope.dataLoad404 = false;
 		$scope.dataLoadOFF = true;
+		$scope.dataLoadERROR = false;
 
 		$http.get(args).success(function (data) {
 			$scope.imgs = data;
 			if(data == ""){
 				$scope.dataLoadON = false;
 				$scope.dataLoadOFF = false;
-				$scope.dataLoadERROR = true;
+				$scope.dataLoad404 = true;
 			}else{
-				$scope.dataLoadERROR = false;
+				$scope.dataLoad404 = false;
 				$scope.dataLoadOFF = false;
 				$scope.dataLoadON = true;
 			}
+		}).error(function(data, status) {
+			$scope.dataLoadERROR = true;
+			console.log(status);
 		});
 	});   
 }]);
 
 hashTwitter.controller('HashImgMosaicoCtr', ['$scope', '$http', function ($scope, $http) {
-	$scope.dataLoadON = false;
-	$scope.dataLoadERROR = false;
-	$scope.dataLoadOFF = true;
-
-	$http.get(linkImg).success(function (data) {
-		$scope.imgs = data;
-		$scope.img1 = data[0];
-		if(data == ""){
-			$scope.dataLoadON = false;
-			$scope.dataLoadOFF = false;
-			$scope.dataLoadERROR = true;
-		}else{
-			$scope.dataLoadERROR = false;
-			$scope.dataLoadOFF = false;
-			$scope.dataLoadON = true;
-		}
-		//		$scope.imgs = data.splice(1,30);
-	});
 
 	var tamDiv = $(".geralTweets_result").css( "width" );
 	tamDiv = parseInt(tamDiv);
@@ -847,8 +717,9 @@ hashTwitter.controller('HashImgMosaicoCtr', ['$scope', '$http', function ($scope
 
 	$scope.$on('handleBroadcastImage', function(event, args) {
 		$scope.dataLoadON = false;
-		$scope.dataLoadERROR = false;
+		$scope.dataLoad404 = false;
 		$scope.dataLoadOFF = true;
+		$scope.dataLoadERROR = false;
 
 		$http.get(args).success(function (data) {
 			$scope.imgs = data;
@@ -856,12 +727,15 @@ hashTwitter.controller('HashImgMosaicoCtr', ['$scope', '$http', function ($scope
 			if(data == ""){
 				$scope.dataLoadON = false;
 				$scope.dataLoadOFF = false;
-				$scope.dataLoadERROR = true;
+				$scope.dataLoad404 = true;
 			}else{
-				$scope.dataLoadERROR = false;
+				$scope.dataLoad404 = false;
 				$scope.dataLoadOFF = false;
 				$scope.dataLoadON = true;
 			}
+		}).error(function(data, status) {
+			$scope.dataLoadERROR = true;
+			console.log(status);
 		});
 	});   
 }]);
@@ -876,242 +750,70 @@ hashTwitter.controller('HashTemporalidade', function ($scope) {
 });
 
 hashTwitter.controller('HashWords', ['$scope', '$http', function ($scope, $http) {
-//	$scope.dataLoadON = false;
-//	$scope.dataLoadERROR = false;
-//	$scope.dataLoadOFF = true;
-//
-//	$http.get(linkWord).success(function (data) {
-//		$scope.words = data;
-//		$scope.word1 = data[0];
-//		$scope.words = data.splice(1,11);
-//		if(data == ""){
-//			$scope.dataLoadON = false;
-//			$scope.dataLoadOFF = false;
-//			$scope.dataLoadERROR = true;
-//		}else{
-//			$scope.dataLoadERROR = false;
-//			$scope.dataLoadOFF = false;
-//			$scope.dataLoadON = true;
-//		}
-//	});
 
-	$scope.$on('handleBroadcastWord', function(event, args) {
+	$scope.$on('handleBroadcastWord', function(event, args, bool) {
 		$scope.dataLoadON = false;
-		$scope.dataLoadERROR = false;
+		$scope.dataLoad404 = false;
 		$scope.dataLoadOFF = true;
+		$scope.dataLoadERROR = false;
 
 		$http.get(args).success(function (data) {
 			$scope.words = data;
-			$scope.word1 = data[0];
-			$scope.words = data.splice(1,11);
+			$scope.words = data.splice(0,11);
 			if(data == ""){
 				$scope.dataLoadON = false;
 				$scope.dataLoadOFF = false;
-				$scope.dataLoadERROR = true;
+				$scope.dataLoad404 = true;
 			}else{
-				$scope.dataLoadERROR = false;
+				$scope.dataLoad404 = false;
 				$scope.dataLoadOFF = false;
 				$scope.dataLoadON = true;
 			}
+
+			if (bool === true){
+				$scope.$emit('handleEmitConteudo', linkConteudo, linkNoRtConteudo);
+				$scope.$emit('handleEmitImage', linkImg);
+			}
+
+		}).error(function(data, status) {
+			$scope.dataLoadERROR = true;
+			console.log(status);
 		});
 
 		$http.get("data/test/conteudos.json").success(function (data) {
 			$scope.conteudos = data[catNumber];
 		});
-		
-		$scope.$emit('handleEmitConteudo', linkConteudo, linkNoRtConteudo);
 	});
-
-	$http.get("data/test/conteudos.json").success(function (data) {
-		$scope.conteudos = data[0];
-	});
-
 }]);
 
 hashTwitter.controller('HashTags', ['$scope', '$http', function ($scope, $http) {
 
-	$scope.dataLoadON = false;
-	$scope.dataLoadERROR = false;
-	$scope.dataLoadOFF = true;
-
-	$http.get(linkTag).success(function (data) {
-		$scope.tags = data;
-		$scope.tag1 = data[0];
-		$scope.tags = data.splice(1,19);
-		if(data == ""){
-			$scope.dataLoadON = false;
-			$scope.dataLoadOFF = false;
-			$scope.dataLoadERROR = true;
-		}else{
-			$scope.dataLoadERROR = false;
-			$scope.dataLoadOFF = false;
-			$scope.dataLoadON = true;
-		}
-	});
-
-	$scope.$on('handleBroadcastTag', function(event, args) {
+	$scope.$on('handleBroadcastTag', function(event, args, bool) {
 		$scope.dataLoadON = false;
-		$scope.dataLoadERROR = false;
+		$scope.dataLoad404 = false;
 		$scope.dataLoadOFF = true;
+		$scope.dataLoadERROR = false;
 
 		$http.get(args).success(function (data) {
 			$scope.tags = data;
-			$scope.tag1 = data[0];
-			$scope.tags = data.splice(1,19);
+			$scope.tags = data.splice(0,19);
 			if(data == ""){
 				$scope.dataLoadON = false;
 				$scope.dataLoadOFF = false;
-				$scope.dataLoadERROR = true;
+				$scope.dataLoad404 = true;
 			}else{
-				$scope.dataLoadERROR = false;
+				$scope.dataLoad404 = false;
 				$scope.dataLoadOFF = false;
 				$scope.dataLoadON = true;
 			}
+
+			if (bool == true){
+				$scope.$emit('handleEmitConteudo', linkConteudo, linkNoRtConteudo);
+				$scope.$emit('handleEmitImage', linkImg);
+			}
+		}).error(function(data, status) {
+			$scope.dataLoadERROR = true;
+			console.log(status);
 		});
 	});
-}]);
-
-/*******************************/
-/* NOTA: PALAVRAS - CONTROLLER */
-/*******************************/
-
-var palavraLinkWord = serviceBase+'top_words?filter={"where":{"status.created_at":{"gte":"'+dataNow60+'","lte":"'+dataNow+'"}, "categories":{"all":['+linkTema+']}},"limit":170}';
-
-var palavraCountWord = 'https://hash-api.herokuapp.com/v1/tweets/count?where={"categories": {"inq": ['+linkTema+']},"status.timestamp_ms": {"gte": '+nowT60+',"lte": '+nowT+'}}';
-
-var urlsun = 'http://107.170.54.11:8080/word_concur?filter={"where": {"status.created_at": {"gte":"'+dataNow60+'","lte":"'+dataNow+'"}, "categories": {"all": ['+linkTema+']}}, "MAX_WORDS":10,"MAX_HEIGHT":5, "MAX_DEPTH":3, "duplicity" : "false", "rt":"false", "repeated_text":"false"}';
-
-var linkSearchWord = "";
-
-hashTwitter.controller('mainPalavras', function ($scope) {
-
-	var palavrasCountTweet;
-	var palavrasCountImage;
-
-	var palavrasTime;
-	var palavrasTema = '%22tema-negros%22';
-	var palavrasLinkTime = 60;
-
-	$scope.sunburstON = false;
-	$scope.sunburstOFF = true;
-
-	$scope.changeTema = function (tema) {
-
-		$scope.sunburstON = true;
-		$scope.sunburstOFF = false;
-
-		if(palavrasLinkTime == 60){
-			palavrasTime = dataNow60;
-		}else if(palavrasLinkTime == 24){
-			palavrasTime = dataNow24;
-		}else if(palavrasLinkTime == 7){
-			palavrasTime = dataNow7;
-		}
-		console.log(tema);
-		palavrasTema = tema;
-
-		palavraLinkWord = serviceBase+'top_words?filter={"where":{"status.created_at":{"gte":"'+palavrasTime+'","lte":"'+dataNow+'"},"categories":{"all":['+palavrasTema+']}},"limit":170}';
-
-		urlsun = 'http://107.170.54.11:8080/word_concur?filter={"where": {"status.created_at": {"gte":"'+dataNow60+'","lte":"'+dataNow+'"}, "categories": {"all": ['+palavrasTema+']}}, "MAX_WORDS":10,"MAX_HEIGHT":5, "MAX_DEPTH":3, "duplicity" : "false", "rt":"false", "repeated_text":"false"}';
-
-		console.log(urlsun);
-
-		d3.select("#palavras_div2_sunburstZoom").select('svg').remove();
-		d3.select("#palavras_div2_sunburstZoom").select('g').remove();
-		d3.select("#palavras_div2_sunburstZoom_fixed").select('p').remove();
-		var word = "";
-		d3Sunburst(urlsun,word);
-
-		$scope.$emit('handleEmitPalavrasWord', palavraLinkWord);
-
-		//		d3.select("#palavras_div2_sunburstZoom").select('svg').remove();
-		//		d3.select("#palavras_div2_sunburstZoom").select('g').remove();
-	};
-
-	$scope.changeTemporalidade = function (time) {
-
-		palavrasLinkTime = time;
-
-		if(palavrasLinkTime == 60){
-			palavrasTime = dataNow60;
-		}else if(palavrasLinkTime == 24){
-			palavrasTime = dataNow24;
-		}else if(palavrasLinkTime == 7){
-			palavrasTime = dataNow7;
-		}
-
-		palavraLinkWord = serviceBase+'top_words?filter={"where":{"status.created_at":{"gte":"'+palavrasTime+'","lte":"'+dataNow+'"},"categories":{"all":['+palavrasTema+']}},"limit":170}';
-
-		$scope.$emit('handleEmitPalavrasWord', palavraLinkWord);
-	};
-
-	$scope.changeSunburst = function (word) {
-
-		$scope.sunburstON = true;
-		$scope.sunburstOFF = false;
-
-		if(palavrasLinkTime == 60){
-			palavrasTime = dataNow60;
-		}else if(palavrasLinkTime == 24){
-			palavrasTime = dataNow24;
-		}else if(palavrasLinkTime == 7){
-			palavrasTime = dataNow7;
-		}
-
-		urlsun = 'http://107.170.54.11:8080/word_concur?filter={"where": {"status.created_at": {"gte":"'+palavrasTime+'","lte":"'+dataNow+'"}, "categories": {"all": ['+palavrasTema+']}},"top_words":["'+word+'"], "MAX_WORDS":5,"MAX_HEIGHT":5, "MAX_DEPTH":3, "duplicity" : "false", "rt":"false"}';
-
-		var palavrasCountTweet = baseURL+'/count?where={"word":}';
-		var palavrasCountImage = baseURL+'/count?where={"status.entities.media":{"exists":true},"word":}';
-
-		d3.select("#palavras_div2_sunburstZoom").select('svg').remove();
-		d3.select("#palavras_div2_sunburstZoom").select('g').remove();
-		d3.select("#palavras_div2_sunburstZoom_fixed").select('p').remove();
-
-		d3Sunburst(urlsun,word);
-	};
-});
-
-hashTwitter.controller('PalavrasHashPalavrasWords', ['$scope', '$http', function ($scope, $http) {
-
-	$scope.dataLoadON = false;
-	$scope.dataLoadERROR = false;
-	$scope.dataLoadOFF = true;
-
-	$http.get(palavraLinkWord).success(function (data) {
-		$scope.word10 = data.splice(0,10);
-		$scope.word1000 = data.splice(10,200);
-
-		$scope.dataLoadON = true;
-		$scope.dataLoadERROR = false;
-		$scope.dataLoadOFF = false;
-	});
-
-	$scope.$on('handleBroadcastPalavrasWord', function(event, args) {
-
-		$scope.dataLoadON = false;
-		$scope.dataLoadERROR = false;
-		$scope.dataLoadOFF = true;
-
-		$http.get(args).success(function (data) {
-			$scope.word10 = data.splice(0,10);
-			$scope.word1000 = data.splice(10,200);
-
-			$scope.dataLoadON = true;
-			$scope.dataLoadERROR = false;
-			$scope.dataLoadOFF = false;
-		});
-	}); 
-
-	$http.get(palavraCountWord).success(function (data1) {
-		$scope.countTweets = data1;
-	});
-
-	$scope.search = {
-		text: '',
-		word: /^\s*\w*\s*$/
-	};
-}]);
-
-hashTwitter.controller('PalavrasSearchForm', ['$scope', function($scope) {
-
 }]);
