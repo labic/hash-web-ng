@@ -233,10 +233,11 @@ hashTwitter.run(function($rootScope) {
 /* NOTA: MONITOR - CONTROLLER */
 
 hashTwitter.controller('mainMonitor', function ($scope) {
-
 	
+	$scope.showTopWord = false;
 
 	$scope.wordChange = function(x){
+		$scope.showTopWord = true;
 		$scope.wordOne = x;
 	};
 

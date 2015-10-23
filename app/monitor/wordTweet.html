@@ -16,8 +16,9 @@
 
 	<div ng-show="dataLoadON">
 		<div id="str_highWord" ng-click="loadWordsPub(word1.word)" title='Clique para visualizar os ultimos retweets com a palavra "{{word1.word}}"'>
+			<p class="subtitle_str_highWord">Palavras mais ocorrentes</p>
 			<p class="title_str_highWord">{{wordOne.word}}</p>
-			<p class="text_str_highWord" class="tipped"><span class="number_str_highWord">{{wordOne.count}}</span> vezes</p>
+			<p ng-if="showTopWord === true" class="text_str_highWord" class="tipped"><span class="number_str_highWord">{{wordOne.count}}</span> vezes</p>
 		</div>
 
 		<div class="strVertical_highWord">
