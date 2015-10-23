@@ -9,6 +9,7 @@
         period: null, 
         'tags[]': [], 
         'hashtags[]': [], 
+        'has[]': [],
         retrive_blocked: null, 
         page: null, 
         per_page: null 
