@@ -12,6 +12,12 @@ hashTwitter
 		when('/territorio', {
 			templateUrl: 'app/territorio.html',
 		}).
+		when('/twitter', {
+			templateUrl: 'app/twitter.html',
+		}).
+		when('/instagram', {
+			templateUrl: 'app/instagram.html',
+		}).
 		otherwise({
 			redirectTo: '/'
 		});

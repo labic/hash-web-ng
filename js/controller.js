@@ -124,7 +124,7 @@ function functionNoRtConteudo(localTime, dataNow, linkTema, linkCategoria, linkL
 };
 
 function functionImage(localTime, dataNow, linkTema, linkCategoria, linkLocalidade, word, tag){
-	
+
 	if(linkTema.length == 151){
 		if((word === undefined) && (tag === undefined)){
 
@@ -233,6 +233,8 @@ hashTwitter.run(function($rootScope) {
 /* NOTA: MONITOR - CONTROLLER */
 
 hashTwitter.controller('mainMonitor', function ($scope) {
+
+	
 
 	$scope.wordChange = function(x){
 		$scope.wordOne = x;
@@ -502,7 +504,7 @@ hashTwitter.controller('MenuDivisionTematica', ['$scope', '$http', '$interval', 
 				}
 			},100);
 		};
-		
+
 		$scope.contImageChange(90000,$scope.countImage.count);
 	});
 }]);
@@ -724,6 +726,11 @@ hashTwitter.controller('HashImgMosaicoCtr', ['$scope', '$http', function ($scope
 		$scope.dataLoadERROR = false;
 
 		$http.get(args).success(function (data) {
+			
+			$scope.$watch('data.media_url_https', function (startTime) {
+				console.log(2);
+			});
+			
 			$scope.imgs = data;
 			$scope.imgs1 = data[0];
 			if(data == ""){

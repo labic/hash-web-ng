@@ -24,14 +24,24 @@
 	<body>
 
 		<div id="menu_fixed_bar">
-			<img class="menu_logo" src="img/SDH.png">
+			<div class="menu_logo" src="img/SDH.png">
+				<p>HASH</p>
+				<p>ENEM</p>
+				<p>2015</p>
+			</div>
 			<ul class="menu_fixed">
-				<li class="menu_fixed_op"><a href="#/monitor">MONITOR</a></li>
-				<li class="menu_fixed_op"><a>TIMELINE</a></li>
-				<li class="menu_fixed_op"><a href="#/palavras">PALAVRAS</a></li>
-				<li class="menu_fixed_op"><a>IMAGENS</a></li>
-				<li class="menu_fixed_op"><a href="#/territorio">TERRITORIOS</a></li>
+				<li class="menu_fixed_op"><a href="#/facebook"><img src="img/Index/ICONES-02.svg" class="svg-icon icon-menu-monitor" height="20px" width="20px"></a></li>
+				<li class="menu_fixed_op"><a href="#/twitter"><img src="img/Index/ICONES-01.svg" class="svg-icon icon-menu-monitor" height="20px" width="20px"></a></li>
+				<li class="menu_fixed_op"><a href="#/instagram"><img src="img/Index/ICONES-03.svg" class="svg-icon icon-menu-monitor" height="20px" width="20px"></a></li>
 			</ul>
+			<ul class="menu_fixed" style="border-top: 1px dashed #1c5e6e;">
+				<li class="menu_fixed_op"><a href="#/twitter"><img src="img/Index/ICONES-04.svg" class="svg-icon icon-menu-monitor" height="20px" width="20px"></a></li>
+				<li class="menu_fixed_op"><a href="#/instagram"><img src="img/Index/ICONES-05.svg" class="svg-icon icon-menu-monitor" height="20px" width="20px"></a></li>
+			</ul>
+
+			<div id="menu_logo_down">
+				<img src="img/Index/logolabic.svg">
+			</div>
 		</div>
 
 		<div ng-view ></div>
@@ -53,14 +63,56 @@
 
 		<script src="js/sunburstZoom.js"></script>
 
-<!--		<script src="http://maps.googleapis.com/maps/api/js"></script>-->
-<!--		<script src="js/mapTweet.js"></script>-->
+		<!--		<script src="http://maps.googleapis.com/maps/api/js"></script>-->
+		<!--		<script src="js/mapTweet.js"></script>-->
 
 		<script src="js/app.js"></script>
 		<script src="js/controller.js"></script>
 
 		<script src="bower_components/Processing.js/processing.min.js"></script>	
-		
+
 		<script src="bower_components/angular-fx/src/js/angular-fx.js"></script>
+
+		<script type="text/javascript">
+			
+			function callSvgImg(){
+				jQuery('img.svg-icon').each(function(){
+					var $img = jQuery(this);
+					var imgID = $img.attr('id');
+					var imgClass = $img.attr('class');
+					var imgURL = $img.attr('src');
+
+					jQuery.get(imgURL, function(data) {
+						// Get the SVG tag, ignore the rest
+						var $svg = jQuery(data).find('svg');
+
+						// Add replaced image's ID to the new SVG
+						if(typeof imgID !== 'undefined') {
+							$svg = $svg.attr('id', imgID);
+						}
+						// Add replaced image's classes to the new SVG
+						if(typeof imgClass !== 'undefined') {
+							$svg = $svg.attr('class', imgClass+' replaced-svg');
+						}
+
+						// Remove any invalid XML tags as per http://validator.w3.org
+						$svg = $svg.removeAttr('xmlns:a');
+
+						// Replace image with new SVG
+						$img.replaceWith($svg);
+
+					}, 'xml');
+				});
+			};
+
+			callSvgImg();
+			$(".menu_fixed_op").click(function(){
+				$(".icon-menu-monitor").css('fill','#1c5e6e');
+				$(this).find(".icon-menu-monitor").css('fill','#06ccd7');
+
+				$(".menu_fixed_op").removeClass('changed');
+				$(this).addClass('changed');
+			});
+		</script>
 	</body>
 </html>

@@ -15,7 +15,7 @@
 	<div ng-show="dataLoadON" class="geralTweets_result" style="padding:10px;">
 		<div ng-repeat="img in imgs" class="out str_TopImg_mosaico">
 			<a href='{{img.media_url_https}}' class="swipebox" title='Retweetado {{img.count}} - "{{img.text}}" @{{img.user.screen_name}}' >
-				<img src="{{img.media_url_https}}:thumb" class="img_TopImg_mosaico" alt="image" width="{{alturaImg}}px" height="{{alturaImg}}px">
+				<img check-image ng-src="{{img.media_url_https}}:thumb" class="img_TopImg_mosaico" alt="image" width="{{alturaImg}}px" height="{{alturaImg}}px">
 			</a>
 			<div class="hover_img_TopImg_mosaico">
 				<img src="{{img.media_url_https}}:thumb" class="img_TopImg_mosaico" alt="image" width="100%" height="100%">
