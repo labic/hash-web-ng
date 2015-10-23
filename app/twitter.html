@@ -345,7 +345,7 @@
 
 			</div>
 
-			<div id="str_menu_midia" ng-controller="MenuMap">
+			<div id="str_menu_midia" >
 				<div class="each_menu_midia">
 					<div class="each_str_menu_midia">
 						<img src="img/twitter/ICONES-06.svg" class="svg-icon img_str_menu_midia">
@@ -406,11 +406,17 @@
 
 	<div id="div2_monitor" class="str_division">
 		<div class="title_str">
-			<ul class="title_str_menu_icon">
-				<li class="select_title_division2 firstOpImg" ng-click="templateConteudoIndex(0); ;loadMin();"><img src='img/twitter/ICONES-09.svg' class="icon_menu_top svg-icon" alt="image"></li>
+			<ul class="title_str_menu_icon_1 select_no_midia">
+				<li class="select_title_division2 firstOpImg" ng-click="templateConteudoIndex(0); loadMin();"><img src='img/twitter/ICONES-09.svg' class="icon_menu_top svg-icon" alt="image"></li>
 				<li class="select_title_division2" ng-click="templateConteudoIndex(1)"><img src='img/twitter/ICONES-10.svg' class="icon_menu_top svg-icon" alt="image"></li>
 				<li class="select_title_division2" ng-click="templateConteudoIndex(1)"><img src='img/twitter/ICONES-12.svg' class="icon_menu_top svg-icon" alt="image"></li>
 				<li class="select_title_division2" ng-click="templateConteudoIndex(1)"><img src='img/twitter/ICONES-13.svg' class="icon_menu_top svg-icon" alt="image"></li>
+				<li class="select_title_division2" ng-click="templateConteudoIndex(1)"><img src='img/twitter/ICONES-11.svg' class="icon_menu_top svg-icon" alt="image"></li>
+				<li id="select_imgMosaico" class="select_title_division2" ng-click="templateConteudoIndex(3); changeTemporalidade(24);"><img src='img/icons/Mosaico.png' class="icon_menu_top svg-icon" alt="image"></li>
+			</ul>
+			
+			<ul class="title_str_menu_icon_2 select_midia">
+				<li class="select_title_division2 firstOpImg" ng-click="templateConteudoIndex(0); loadMin();"><img src='img/twitter/ICONES-09.svg' class="icon_menu_top svg-icon" alt="image"></li>
 				<li class="select_title_division2" ng-click="templateConteudoIndex(1)"><img src='img/twitter/ICONES-11.svg' class="icon_menu_top svg-icon" alt="image"></li>
 				<li id="select_imgMosaico" class="select_title_division2" ng-click="templateConteudoIndex(3); changeTemporalidade(24);"><img src='img/icons/Mosaico.png' class="icon_menu_top svg-icon" alt="image"></li>
 			</ul>
@@ -426,9 +432,14 @@
 
 <script type="text/javascript">
 	$( document ).ready(function(){
+		
+		$(".select_midia").hide();
 
 		$("#twitter_midia").click(function(){
-
+			
+			$(".select_no_midia").hide();
+			$(".select_midia").show();
+			
 			$("#str_menu_map").animate({
 				left: "450"
 			}, 1000 );
@@ -437,9 +448,13 @@
 					left: "-450"
 				}, 1000 );
 			}, 1000);
+
 		});
 
 		$("#twitter_hits,#twitter_geral").click(function(){
+			
+			$(".select_no_midia").show();
+			$(".select_midia").hide();
 			
 			$("#str_menu_midia").animate({
 				left: "450"

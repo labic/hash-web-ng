@@ -204,10 +204,16 @@
 				
 			}
 
-			.title_str_menu_icon{
+			.title_str_menu_icon_1{
 				width: auto;
 				float: left;
 				margin-left: calc(50% - 115px);
+			}
+
+			.title_str_menu_icon_2{
+				width: auto;
+				float: left;
+				margin-left: calc(50% - 60px);
 			}
 
 				.select_title_division2{

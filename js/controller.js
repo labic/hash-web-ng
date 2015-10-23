@@ -727,10 +727,10 @@ hashTwitter.controller('HashImgMosaicoCtr', ['$scope', '$http', function ($scope
 
 		$http.get(args).success(function (data) {
 			
-			$scope.$watch('data.media_url_https', function (startTime) {
-				console.log(2);
-			});
-			
+//			$scope.$watch('data.media_url_https', function (startTime) {
+//				console.log(2);
+//			});
+//			
 			$scope.imgs = data;
 			$scope.imgs1 = data[0];
 			if(data == ""){
