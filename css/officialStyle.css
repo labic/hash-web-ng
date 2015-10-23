@@ -515,7 +515,7 @@
 			}
 
 				.each_menu_midia{
-					height: 123px;
+					height: 115px;
 					width: 80%;
 					margin-left:10%;
 					border-top: 5px dashed #41647a;
@@ -1605,4 +1605,108 @@
   transform: rotate(3deg);
   right: 10px;
   left: auto;
+}
+
+/* FACEBOOK */
+
+#str_menu_facebook{
+	width: 100%;
+	float: left;
+	position: relative;
+	left: 0;
+}
+
+/* RELATORIOS*/
+
+#title_relatorio{
+	width:300px;
+	margin-left: calc(50% - 150px);
+	height: 100px;
+	border-bottom: 5px solid #436281;
+	padding-top:20px;
+	margin-bottom: 50px;
+}
+
+#title_relatorio p{
+	float:left;
+	color: #a8aebc;
+	font-size:18px;
+	width: 100px;
+	font-weight: bold;
+}
+
+.title_relatorio_img{
+	margin-right: 10px;
+	float: left;
+	fill: #a8aebc;
+	height: 50px;
+	width: 50px;
+}
+
+.each_day_str{
+	width: 80%;
+	margin-left:10%;
+	padding: 10px;
+	height: 140px;
+	border-top: 5px dashed #41647A;
+}
+
+	.each_day_str:first-child{
+		border: none;
+	}
+
+.each_day_title{
+	color: #41647A;
+	width: 100%;
+	font-weight: bold;
+	margin-bottom: 10px;
+	font-size: 20px;
+}
+
+.each_day_str #str_time_temporalidade{
+	margin-right: 20px;
+	margin-left: 0px;
+}
+
+.down_relatorio_img{
+	margin-right: 10px;
+	float: left;
+	fill: #1dbfd8;
+	height: 30px;
+	width: 30px;
+}
+
+.each_relatorio_down{
+	margin:3px;
+	cursor: pointer;
+	width:auto;
+}
+
+.each_relatorio_down_text{
+	font-size: 12px;
+	color: #1DBFD8;
+}
+
+.each_relatorio_down_text_bold{
+	font-size: 12px;
+	font-weight: bold;
+	color: #1DBFD8;
+}
+
+.div3_relatorios .time_temporalidade{
+	background: #c6bfad;
+}
+
+	.div3_relatorios .time_temporalidade p{
+		color:black;
+		font-size: 16px;
+		margin-top: 6px;
+	}
+
+.grafos_title{
+	color: #c7bead;
+	width: 100%;
+	font-weight: bold;
+	margin-bottom: 10px;
+	font-size: 20px;
 }

@@ -18,6 +18,12 @@ hashTwitter
 		when('/instagram', {
 			templateUrl: 'app/instagram.html',
 		}).
+		when('/facebook', {
+			templateUrl: 'app/facebook.html',
+		}).
+		when('/relatorios', {
+			templateUrl: 'app/relatorios.html',
+		}).
 		otherwise({
 			redirectTo: '/'
 		});
