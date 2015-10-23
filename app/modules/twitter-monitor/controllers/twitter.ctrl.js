@@ -39,49 +39,49 @@
         hashtags: []
       };
 
-      var fistRun = true;
-      $scope.$watch('filter', function(newFilter, oldFilter) {
-        console.log(newFilter);
+      // var fistRun = true;
+      // $scope.$watch('filter', function(newFilter, oldFilter) {
+      //   console.log(newFilter);
 
-        var selectedHashtags = _.pluck(_.where(newFilter.hashtags, { select: true }), 'hashtag').join(',');
-        var metricsParamsWithoutPagination = {
-          since: newFilter.timeRange.since,
-          until: newFilter.timeRange.until,
-          tags: [newFilter.mainTag.key],
-          hashtags: selectedHashtags === '' ? null : selectedHashtags
-        }
+      //   var selectedHashtags = _.pluck(_.where(newFilter.hashtags, { select: true }), 'hashtag').join(',');
+      //   var metricsParamsWithoutPagination = {
+      //     since: newFilter.timeRange.since,
+      //     until: newFilter.timeRange.until,
+      //     tags: [newFilter.mainTag.key],
+      //     hashtags: selectedHashtags === '' ? null : selectedHashtags
+      //   }
 
-        var metricsParamsWithPagination = metricsParamsWithoutPagination;
+      //   var metricsParamsWithPagination = metricsParamsWithoutPagination;
 
-        MetricsTwitter.count(
-          metricsParamsWithoutPagination, 
-          function success(response) {
-            $scope.tweets.count = response.count;
-          }, errorHandler);
+      //   MetricsTwitter.count(
+      //     metricsParamsWithoutPagination, 
+      //     function success(response) {
+      //       $scope.tweets.count = response.count;
+      //     }, errorHandler);
 
-        // TODO: Implement pagination
-        MetricsTwitter.topRetweets(
-          metricsParamsWithPagination, 
-          function success(response) {
-            $scope.tweets.data = response;
-            $scope.tweets.page++;
-          }, errorHandler);
+      //   // TODO: Implement pagination
+      //   MetricsTwitter.topRetweets(
+      //     metricsParamsWithPagination, 
+      //     function success(response) {
+      //       $scope.tweets.data = response;
+      //       $scope.tweets.page++;
+      //     }, errorHandler);
 
-        if (newFilter.mainTag.key != oldFilter.mainTag.key || 
-            newFilter.timeRange.since != oldFilter.timeRange.since ||
-            fistRun) {
-          MetricsTwitter.topHashtags(
-            metricsParamsWithPagination, 
-            function success(response) { 
-              $scope.filter.hashtags = response;
-            }, errorHandler);
-        }
+      //   if (newFilter.mainTag.key != oldFilter.mainTag.key || 
+      //       newFilter.timeRange.since != oldFilter.timeRange.since ||
+      //       fistRun) {
+      //     MetricsTwitter.topHashtags(
+      //       metricsParamsWithPagination, 
+      //       function success(response) { 
+      //         $scope.filter.hashtags = response;
+      //       }, errorHandler);
+      //   }
 
-        fistRun = false;
-      }, true);
+      //   fistRun = false;
+      // }, true);
 
-      function errorHandler(err) {
-        console.log(err);
-      }
+      // function errorHandler(err) {
+      //   console.log(err);
+      // }
     });
 })();

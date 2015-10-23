@@ -1,50 +1,254 @@
-<div class="row">
-  <div class="col-sm-4">
-    <aside ui-view="main-tags-filter" class="btn-group"></aside>
-    <aside ui-view="map-filter"></aside>
-    <aside ui-view="time-granularity-filter" class="btn-group"></aside>
-    <aside ui-view="tweets-count"></aside>
+<nav id="menu_fixed_bar" ui-view="vertical-menu"></nav>
+
+<!-- <div id="str_main_monitor" class="str_main" ng-controller="mainMonitor"> -->
+<div id="str_main_monitor" class="str_main">
+
+  <!-- <div id="div1_monitor" class="str_division" ng-controller="MenuDivisionTematica"> -->
+  <div id="div1_monitor" class="str_division">
+
+    <div id="str_menu_tematica">
+      <ul id="menu_tematica">
+        <li class="menu_tematica_op">
+          <a id="twitter_hits" ng-click=" categoriaIndex(0); linkTema = '%22tema-negros%22'; changeTema(linkTema,'Negro'); filterChange();"><p class="select_tematica_twitter firstOp">HITS</p></a>
+        </li>
+        <li class="menu_tematica_op">
+          <a id="twitter_geral" ng-click=" categoriaIndex(1); linkTema = '%22tema-lgbt%22'; changeTema(linkTema,'LGBT'); filterChange();"><p class="select_tematica_twitter">GERAL</p></a>
+        </li>
+        <li class="menu_tematica_op">
+          <a id="twitter_midia" ng-click=" categoriaIndex(2); linkTema = '%22tema-indigena%22'; changeTema(linkTema,'Índigena'); filterChange();"><p class="select_tematica_twitter">MÍDIA</p></a>
+        </li>
+      </ul>
+    </div>
+
+    <div id="str_changed_map">
+      <div id="str_menu_map" ui-view="map-filter"></div>
+      <!-- <div id="str_menu_map" ui-view="map-filter" ng-controller="MenuMap"></div> -->
+
+      <div id="str_menu_midia" >
+        <div class="each_menu_midia">
+          <div class="each_str_menu_midia">
+            <img src="./assets/images/twitter/ICONES-06.svg" class="svg-icon img_str_menu_midia">
+            <p>noticias mais populares</p>
+          </div>
+        </div>
+        <div class="each_menu_midia">
+          <div class="each_str_menu_midia">
+            <img src="./assets/images/twitter/ICONES-07.svg" class="svg-icon img_str_menu_midia">
+            <p>canais especializados</p>
+          </div>
+        </div>
+        <div class="each_menu_midia">
+          <div class="each_str_menu_midia">
+            <img src="./assets/images/twitter/ICONES-08.svg" class="svg-icon img_str_menu_midia">
+            <p class="centralize_p_midia">personalidades</p>
+          </div></div>
+      </div>
+    </div>
+
+    <div id="str_menu_temporalidade">
+    <!-- <div id="str_menu_temporalidade" ng-controller="HashTemporalidade"> -->
+
+      <div id="str_time_temporalidade" >
+        <div class="time_temporalidade" ng-click="temporalidadeIndex(0); loadMoreTweets(0); changeTemporalidade(15);">
+          <p>MAIS</p>
+          <p>RECENTES</p>
+        </div>
+        <div class="time_temporalidade" ng-click="temporalidadeIndex(1); loadMoreTweets(0); changeTemporalidade(60);">
+          <p>60</p>
+          <p>MINUTOS</p>
+        </div>
+        <div id="temporalidade24" class="time_temporalidade fisrtTemp" ng-click="temporalidadeIndex(2); loadMoreTweets(0); changeTemporalidade(24);">
+          <p>12</p>
+          <p>HORAS</p>
+        </div>
+        <div class="time_temporalidade" ng-click="temporalidadeIndex(3); loadMoreTweets(0); changeTemporalidade(7);">
+          <p>24</p>
+          <p>HORAS</p>
+        </div>
+
+      </div>
+    </div>
+
+    <div id="str_display_tweet">
+      <div class="display_tweet">
+        <img src="./assets/images/icons/ICONE-TWEET.png" height="30px" width="35px">
+        <p class="display_tweet_p">{{countRetweetFinal}}</p>
+        <p>Tweets acumulados</p>
+      </div>
+
+      <div class="display_tweet">
+        <img src="./assets/images/icons/ICONE-IMAGEM.png" height="30px" width="35px">
+        <p class="display_tweet_p">{{countImageFinal}}</p>
+        <p>Imagens acumulados</p>
+      </div>
+    </div>
   </div>
 
-  <div class="col-sm-3">
-    <uib-tabset type="pills" justified="true">
-      <uib-tab active="true">
-        <uib-tab-heading>
-          <i class="fa fa-align-center"></i> Words
-        </uib-tab-heading>
-        <aside ui-view="words-filter" data-toggle="buttons"></aside>
-      </uib-tab>
-      <uib-tab>
-        <uib-tab-heading>
-          <i class="fa fa-slack"></i> Hashtag
-        </uib-tab-heading>
-        <aside ui-view="hashtags-filter" data-toggle="buttons"></aside>
-      </uib-tab>
-    </uib-tabset>
-  </div>
+  <div id="div2_monitor" class="str_division">
+    <div class="title_str">
+      <ul class="title_str_menu_icon_1 select_no_midia">
+        <li class="select_title_division2 firstOpImg" ng-click="templateConteudoIndex(0); loadMin();"><img src='./assets/images/twitter/ICONES-09.svg' class="icon_menu_top svg-icon" alt="image"></li>
+        <li class="select_title_division2" ng-click="templateConteudoIndex(4)"><img src='./assets/images/twitter/ICONES-10.svg' class="icon_menu_top svg-icon" alt="image"></li>
+        <li class="select_title_division2" ng-click="templateConteudoIndex(5)"><img src='./assets/images/twitter/ICONES-12.svg' class="icon_menu_top svg-icon" alt="image"></li>
+        <li class="select_title_division2" ng-click="templateConteudoIndex(6)"><img src='./assets/images/twitter/ICONES-13.svg' class="icon_menu_top svg-icon" alt="image"></li>
+        <li class="select_title_division2" ng-click="templateConteudoIndex(1)"><img src='./assets/images/twitter/ICONES-11.svg' class="icon_menu_top svg-icon" alt="image"></li>
+        <li id="select_imgMosaico" class="select_title_division2" ng-click="templateConteudoIndex(3); changeTemporalidade(24);"><img src='./assets/images/icons/Mosaico.png' class="icon_menu_top svg-icon" alt="image"></li>
+      </ul>
+      
+      <ul class="title_str_menu_icon_2 select_midia">
+        <li class="select_title_division2 firstOpImg" ng-click="templateConteudoIndex(0); loadMin();"><img src='./assets/images/twitter/ICONES-09.svg' class="icon_menu_top svg-icon" alt="image"></li>
+        <li class="select_title_division2" ng-click="templateConteudoIndex(1)"><img src='./assets/images/twitter/ICONES-11.svg' class="icon_menu_top svg-icon" alt="image"></li>
+        <li id="select_imgMosaico" class="select_title_division2" ng-click="templateConteudoIndex(3); changeTemporalidade(24);"><img src='./assets/images/icons/Mosaico.png' class="icon_menu_top svg-icon" alt="image"></li>
+      </ul>
+    </div>
 
-  <main class="col-sm-5">
-    <uib-tabset type="pills" justified="true">
-      <uib-tab active="true">
-        <uib-tab-heading>
-          <i class="fa fa-twitter"></i> Tweets
-        </uib-tab-heading>
-        <section ui-view="tweets-list" class="list-group"></section>
-      </uib-tab>
-      <uib-tab>
-        <uib-tab-heading>
-          <i class="fa fa-image"></i> Imagens 1
-        </uib-tab-heading>
-        <section ui-view="images-list" format="side-by-side"></section>
-      </uib-tab>
-      <uib-tab>
-        <uib-tab-heading>
-          <i class="fa fa-th"></i> Imagens 2
-        </uib-tab-heading>
-        <section ui-view="images-list" format="mosaic"></section>
-      </uib-tab>
-    </uib-tabset>
-  </main>
+    <div ng-include="templateConteudo.url" style="height:calc(100% - 50px); width:100%;"></div>
+  </div>
+  
+  <!-- <div id="div3_monitor" class="str_division" ng-controller="ResultWords"> -->
+  <div id="div3_monitor" class="str_division">
+    <div id="result_word" ng-include="template.url" ></div>
+  </div>
 </div>
 
-{{filter}}
+<script type="text/javascript">
+  $( document ).ready(function(){
+    
+    $(".select_midia").hide();
+
+    $("#twitter_midia").click(function(){
+      
+      $(".select_no_midia").hide();
+      $(".select_midia").show();
+      
+      $("#str_menu_map").animate({
+        left: "450"
+      }, 1000 );
+      setTimeout(function(){
+        $("#str_menu_midia").animate({
+          left: "-450"
+        }, 1000 );
+      }, 1000);
+
+    });
+
+    $("#twitter_hits,#twitter_geral").click(function(){
+      
+      $(".select_no_midia").show();
+      $(".select_midia").hide();
+      
+      $("#str_menu_midia").animate({
+        left: "450"
+      }, 1000 );
+
+      setTimeout(function(){
+        $("#str_menu_map").animate({
+          left: "0"
+        }, 1000 );
+      }, 1000);
+    });
+
+
+    callSvgImg();
+
+    /*NOTA: Inicializando Tipped */
+
+    $('[title]').qtip({
+      // Grab some elements to apply the tooltip to
+      def: false,
+      style: {
+        classes: 'qtip-blue',
+        //                        tip: {
+        //                            corner: 'top center',
+        //                            mimic: 'center',
+        //                        },
+      },
+      position: {
+        my: 'center center',
+        at: 'top center',
+        adjust: {
+          y: -20
+        }
+      }
+    });
+
+    /*NOTA: Inicializando SwipeBox */
+
+    $(".swipebox").swipebox();
+
+    /*NOTA: Troca de menus */
+
+    /* Standard */
+
+    $(".firstOp").css( "font-weight", "800" );
+    //        $(".firstOpBlack").css( "color", "black" );
+
+    /* Custom */
+
+    $(".select_tematica_monitor").click(function(){
+      $(".select_tematica_monitor").css( "font-weight", "300" );
+
+      $(this).css( "font-weight", "800" );
+    });
+
+    $(".select_tematica_palavras").click(function(){
+      $(".select_tematica_palavras").css( "font-weight", "300" );
+
+      $(this).css( "font-weight", "800" );
+    });
+
+    $(".select_categoria_division1").click(function(){
+      $(".select_categoria_division1").css( "font-weight", "300" );
+      $(".select_categoria_division1").css( "color", "#FFFFFF" );
+
+      $(this).css( "font-weight", "800" );
+      $(this).css( "color", "#FFFFFF" );
+
+    });
+
+    $(".select_title_division2").click(function(){
+      $(".select_title_division2").css( "opacity", "0.6" );
+
+      $(this).css( "opacity", "1" );
+    });
+
+    $(".select_title_division3,.select_title_division2").css( "opacity", "0.6" );
+    $(".firstOpImg").css( "opacity", "1" );
+
+    $(".select_title_division3").click(function(){
+      $(".select_title_division3").css( "opacity", "0.6" );
+
+      $(this).css( "opacity", "1" );
+    });
+
+    /* HighLighter CategoriaMenu */
+
+    /*NOTA: Troca Categoria */
+
+    /*NOTA: Troca Temporalidades */ 
+
+    $(".fisrtTemp p").css( "color", "#0a1227" );
+    $(".fisrtTemp").css( "background-color", "#1dbfd8" );
+    $(".fisrtTemp").css( "border-color", "#1dbfd8" );
+
+    $(".time_temporalidade").click(function(){
+      $(".time_temporalidade p").css( "color", "#1dbfd8" );
+      $(".time_temporalidade").css( "background-color", "transparent" );
+      $(".time_temporalidade").css( "border-color", "white" );
+
+      $("p", this).css( "color", "#0a1227" );
+      $(this).css( "background-color", "#1dbfd8" );
+      $(this).css( "border-color", "#1dbfd8" );
+    });
+
+    $("#select_imgMosaico").click(function(){
+      $(".time_temporalidade p").css( "color", "#1dbfd8" );
+      $(".time_temporalidade").css( "background-color", "transparent" );
+      $(".time_temporalidade").css( "border-color", "white" );
+
+      $("p", "#temporalidade24").css( "color", "#0a1227" );
+      $("#temporalidade24").css( "background-color", "#1dbfd8" );
+      $("#temporalidade24").css( "border-color", "#1dbfd8" );
+    });
+  });
+</script>
