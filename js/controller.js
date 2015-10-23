@@ -289,7 +289,11 @@ hashTwitter.controller('mainMonitor', function ($scope) {
 	$scope.templatesConteudo = [ { name: 'twTweet', url: 'app/monitor/twTweet.html'},
 								{ name: 'imgTweet', url: 'app/monitor/imgTweet.html'},
 								{ name: 'twContTweet', url: 'app/monitor/twContTweet.html'},
-								{ name: 'imgMosaicoTweet', url: 'app/monitor/imgMosaicoTweet.html'}];
+								{ name: 'imgMosaicoTweet', url: 'app/monitor/imgMosaicoTweet.html'},
+								{ name: 'usuario', url: 'app/monitor/usuario.html'},
+								{ name: 'mensoes', url: 'app/monitor/mensoes.html'},
+								{ name: 'url', url: 'app/monitor/url.html'},
+							   ];
 
 	$scope.templateConteudo = $scope.templatesConteudo[0];
 
