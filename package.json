@@ -5,13 +5,13 @@
   "main": "client-server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "postinstall": "./node_modules/bower/bin/bower install"
+    "postinstall": "./node_modules/bower/bin/bower install",
+    "start": "node client-server.js"
   },
   "repository": {
     "type": "git",
     "url": "git@bitbucket.org:labic/sdh-front-end.git"
   },
-  "author": "",
   "license": "MIT",
   "dependencies": {
     "express": "~4.13.3",
