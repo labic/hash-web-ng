@@ -2,7 +2,7 @@
   "name": "sdh-front-end",
   "version": "0.0.1",
   "description": "",
-  "main": "server.js",
+  "main": "client-server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "postinstall": "./node_modules/bower/bin/bower install"
