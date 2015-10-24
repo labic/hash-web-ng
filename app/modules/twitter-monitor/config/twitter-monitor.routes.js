@@ -11,8 +11,8 @@
         .state('app.twitter-monitor.view', {
           url: '^/twitter',
           views: {
-            'main-tags-filter': {
-              templateUrl: 'modules/twitter-monitor/views/partials/main-tags-filter.html'
+            'vertical-menu': {
+              templateUrl: 'modules/core/views/partials/vertical-menu.html'
             },
             'map-filter': {
               templateUrl: 'modules/twitter-monitor/views/partials/map-filter.html'
