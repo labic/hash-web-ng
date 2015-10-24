@@ -455,7 +455,7 @@ hashTwitter.controller('mainMonitor', function ($scope) {
 		$scope.$emit('handleEmitImage', linkImg);
 		$scope.$emit('handleEmitUser', linkUser);
 		$scope.$emit('handleEmitMentions', linkMentions);
-		$scope.$emit('handleEmitUrl', linkUrl);
+		$scope.$emit('handleEmitUrl', linkUrls);
 		$scope.$emit('handleEmitConteudo', linkConteudo, linkNoRtConteudo);
 	};
 
