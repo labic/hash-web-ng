@@ -1,0 +1,10 @@
+<a href="https://twitter.com/{{tweet.status.user.screen_name}}/status/{{tweet.status.id_str}}" class="media list-group-item" target="_blank" ng-repeat="tweet in tweets.data">
+  <div class="media-left media-middle">
+    <img src="{{tweet.status.user.profile_image_url_https}}" class="img-circle">
+  </div>
+  <div class="media-body">
+    <h4 class="media-heading">@{{tweet.status.user.screen_name}} | {{tweet.count}} RT</h4>
+    <p>{{tweet.status.text}}</p>
+    <span>Último Retweet {{tweet.status.timestamp_ms | date:"dd-MM-yyyy 'às' HH:mm:ss"}}</span>
+  </div>
+</a>
