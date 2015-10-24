@@ -11,21 +11,21 @@ var serviceBase = 'http://178.62.252.46:8080/';
 
 var nowState = new Date();
 
-var now = new Date(nowState.getTime() - 11700000);
-var now15 = new Date(now.getTime() - 15*60000);
-var now60 = new Date(now.getTime() - 3600000);
-var now12 = new Date(now.getTime() - 43200000);
-var now24 = new Date(now.getTime() - 86400000);
-var now7 = new Date(now.getTime() - 7*86400000);
-var now30 = new Date(now.getTime() - 30*86400000);
+var now 	= new Date(nowState.getTime());
+var now15 = new Date(now.getTime() - 15 * 60 * 1000);
+var now60 = new Date(now.getTime() - 60 * 60 * 1000);
+var now12 = new Date(now.getTime() - 12 * 60 * 60 * 1000);
+var now24 = new Date(now.getTime() - 24 * 60 * 60 * 1000);
+var now7 	= new Date(now.getTime() - 7 * 24 * 60 * 60 * 1000);
+var now30 = new Date(now.getTime() - 30 * 24 * 60 * 60 * 1000);
 
-var nowT = new Date(now).getTime();
-var nowT15 = new Date(now).getTime() - 15*60000;
-var nowT60 = new Date(now).getTime() - 3600000;
-var nowT12 = new Date(now.getTime() - 43200000);
-var nowT24 = new Date(now).getTime() - 86400000;
-var nowT7 = new Date(now).getTime() - 7*86400000;
-var nowT30 = new Date(now).getTime() - 30*86400000;
+var nowT 	 = new Date(now).getTime();
+var nowT15 = new Date(now).getTime() - 15 * 60 * 1000;
+var nowT60 = new Date(now).getTime() - 60 * 60 * 1000;
+var nowT12 = new Date(now).getTime() - 12 * 60 * 60 * 1000;
+var nowT24 = new Date(now).getTime() - 24 * 60 * 60 * 1000;
+var nowT7  = new Date(now).getTime() - 7 * 24 * 60 * 60 * 1000;
+var nowT30 = new Date(now).getTime() - 30 * 24 * 60 * 60 * 1000;
 
 /* Organizando data da forma nescessaria para passar para o link; */
 var dataNow = now.toISOString().replace(/z/gi,'');
