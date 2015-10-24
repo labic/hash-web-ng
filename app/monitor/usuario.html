@@ -1,5 +1,4 @@
-<div id="result_conteudo" style="height:100%;">
-<!--
+<div id="result_conteudo" style="height:100%;" ng-controller="HashUser">
 	<div class="loading" ng-show="dataLoadOFF">
 		<center><img src="img/icons/Unknown.gif" height="66px" width="66px"></center>
 		<p class="loadingWordGrey">CARREGANDO:</p>
@@ -17,37 +16,18 @@
 		<p class="loadingWordGrey">ERROR</p>
 		<p class="loadingWordGrey">Estamos tendo problemas ao carregar, volte mais tarde =)</p>
 	</div>
--->
 
 	<div style="height:100%; width:100%;">
 		<div  class="geralTweets_result">
 			<button ng-show="buttonBack" class="result_button result_button_back" ng-click='loadMoreTweetsChange(-1);' >VOLTAR</button>
 
-			<div class="each_user_result">
-
-				<p class="user_result_number">1º</p>
-				<img class="user_result_img" src="http://3.bp.blogspot.com/-_liywOc6JKs/Tgg1OwAhlUI/AAAAAAAAAAQ/mUd7b2NbLds/s1600/asd.gif">
-				<p class="user_result_name">@ Estadao: SP</p>
-				<p class="user_result_count"><img src="img/icons/ICONE-TWEET.png" height="15px" width="15px;">3234</p>
-				
-			</div>
-			
-			<div class="each_user_result">
-
-				<p class="user_result_number">1º</p>
-				<img class="user_result_img" src="http://3.bp.blogspot.com/-_liywOc6JKs/Tgg1OwAhlUI/AAAAAAAAAAQ/mUd7b2NbLds/s1600/asd.gif">
-				<p class="user_result_name">@ Estadao: SP</p>
-				<p class="user_result_count"><img src="img/icons/ICONE-TWEET.png" height="15px" width="15px;">3234</p>
-				
-			</div>
-			
-			<div class="each_user_result">
-
-				<p class="user_result_number">1º</p>
-				<img class="user_result_img" src="http://3.bp.blogspot.com/-_liywOc6JKs/Tgg1OwAhlUI/AAAAAAAAAAQ/mUd7b2NbLds/s1600/asd.gif">
-				<p class="user_result_name">@ Estadao: SP</p>
-				<p class="user_result_count"><img src="img/icons/ICONE-TWEET.png" height="15px" width="15px;">3234</p>
-				
+			<div class="each_user_result" ng-repeat="user in users">
+				<a href="http://twitter.com/{{user.screen_name}}" target="_blank">
+					<p class="user_result_number">{{users.indexOf(user) + 1}}º</p>
+					<img class="user_result_img" src="{{user.profile.image.url_https}}">
+					<p class="user_result_name">@ {{user.screen_name}}</p>
+					<p class="user_result_count"><img src="img/icons/ICONE-TWEET.png" height="15px" width="15px;">{{user.count}}</p>
+				</a>
 			</div>
 
 			<button ng-show="buttonNext" class="result_button result_button_next" ng-click='loadMoreTweetsChange(1);'></button>

@@ -1,6 +1,6 @@
 <!--<p class="subTitle_top">PALAVRAS MAIS FREQUENTES</p>-->
 
-<div ng-controller="HashWords" style="height:100%;" ng-init="loadHalf(false);">
+<div ng-controller="HashWords" style="height:100%;">
 
 	<div class="loading" ng-show="dataLoadOFF">
 		<center><img src="img/icons/spin.gif" height="66px" width="66px"></center>
@@ -12,6 +12,12 @@
 		<center><img src="img/icons/searching45blue.png" height="40px" width="40px"></center>
 		<p class="loadingWordBlue">NENHUMA PALAVRA ENCONTRADA</p>
 		<p class="loadingWordBlue">tente outra categoria ou intervalo de tempo</p>
+	</div>
+	
+	<div class="loading" ng-show="dataLoadERROR">
+		<center><img src="img/icons/searching45.png" height="40px" width="40px"></center>
+		<p class="loadingWordGrey">ERROR</p>
+		<p class="loadingWordGrey">Estamos tendo problemas ao carregar, volte mais tarde =)</p>
 	</div>
 
 	<div ng-show="dataLoadON">

@@ -5,13 +5,13 @@
 		<div id="str_menu_tematica">
 			<ul id="menu_tematica">
 				<li class="menu_tematica_op">
-					<a id="twitter_hits" ng-click=" categoriaIndex(0); linkTema = '%22tema-negros%22'; changeTema(linkTema,'Negro'); filterChange();"><p class="select_tematica_twitter firstOp">HITS</p></a>
+					<a id="twitter_hits" ng-click=" categoriaIndex(0); linkTema = '%22%22'; changeTema(linkTema,'Negro');"><p class="select_tematica_twitter firstOp">HITS</p></a>
 				</li>
 				<li class="menu_tematica_op">
-					<a id="twitter_geral" ng-click=" categoriaIndex(1); linkTema = '%22tema-lgbt%22'; changeTema(linkTema,'LGBT'); filterChange();"><p class="select_tematica_twitter">GERAL</p></a>
+					<a id="twitter_geral" ng-click=" categoriaIndex(1); linkTema = '%22tema-publico_geral%22'; changeTema(linkTema,'LGBT');"><p class="select_tematica_twitter">GERAL</p></a>
 				</li>
 				<li class="menu_tematica_op">
-					<a id="twitter_midia" ng-click=" categoriaIndex(2); linkTema = '%22tema-indigena%22'; changeTema(linkTema,'Índigena'); filterChange();"><p class="select_tematica_twitter">MÍDIA</p></a>
+					<a id="twitter_midia" ng-click=" categoriaIndex(2); linkTema = '%22tema-midia%22'; changeTema(linkTema); templateConteudoIndex(0);"><p class="select_tematica_twitter">MÍDIA</p></a>
 				</li>
 			</ul>
 		</div>
@@ -346,20 +346,20 @@
 			</div>
 
 			<div id="str_menu_midia" >
-				<div class="each_menu_midia">
-					<div class="each_str_menu_midia">
+				<div class="each_menu_midia" ng-click="linkCategoria = ',%22subtema-noticias%22'; changeCategoria(linkCategoria);">
+					<div class="each_str_menu_midia" >
 						<img src="img/twitter/ICONES-06.svg" class="svg-icon img_str_menu_midia">
 						<p>noticias mais populares</p>
 					</div>
 				</div>
-				<div class="each_menu_midia">
-					<div class="each_str_menu_midia">
+				<div class="each_menu_midia" ng-click="linkCategoria=',%22subtema-canais%22'; changeCategoria(linkCategoria)">
+					<div class="each_str_menu_midia" >
 						<img src="img/twitter/ICONES-07.svg" class="svg-icon img_str_menu_midia">
 						<p>canais especializados</p>
 					</div>
 				</div>
-				<div class="each_menu_midia">
-					<div class="each_str_menu_midia">
+				<div class="each_menu_midia" ng-click="linkCategoria=',%22subtema-celebridade%22'; changeCategoria(linkCategoria)">
+					<div class="each_str_menu_midia" >
 						<img src="img/twitter/ICONES-08.svg" class="svg-icon img_str_menu_midia">
 						<p class="centralize_p_midia">personalidades</p>
 					</div></div>
@@ -370,25 +370,25 @@
 
 			<div id="str_time_temporalidade" >
 				<div class="time_temporalidade" ng-click="temporalidadeIndex(0); loadMoreTweets(0); changeTemporalidade(15);">
-					<p>MAIS</p>
-					<p>RECENTES</p>
+					<p>15</p>
+					<p>MINUTOS</p>
 				</div>
 				<div class="time_temporalidade" ng-click="temporalidadeIndex(1); loadMoreTweets(0); changeTemporalidade(60);">
 					<p>60</p>
 					<p>MINUTOS</p>
 				</div>
-				<div id="temporalidade24" class="time_temporalidade fisrtTemp" ng-click="temporalidadeIndex(2); loadMoreTweets(0); changeTemporalidade(24);">
+				<div class="time_temporalidade fisrtTemp" ng-click="temporalidadeIndex(2); loadMoreTweets(0); changeTemporalidade(12);">
 					<p>12</p>
 					<p>HORAS</p>
 				</div>
-				<div class="time_temporalidade" ng-click="temporalidadeIndex(3); loadMoreTweets(0); changeTemporalidade(7);">
+				<div id="temporalidade24" class="time_temporalidade" ng-click="temporalidadeIndex(3); loadMoreTweets(0); changeTemporalidade(24);">
 					<p>24</p>
 					<p>HORAS</p>
 				</div>
-
 			</div>
 		</div>
 
+<!--
 		<div id="str_display_tweet">
 			<div class="display_tweet">
 				<img src="img/icons/ICONE-TWEET.png" height="30px" width="35px">
@@ -402,6 +402,7 @@
 				<p>Imagens acumulados</p>
 			</div>
 		</div>
+-->
 	</div>
 
 	<div id="div2_monitor" class="str_division">
@@ -412,11 +413,11 @@
 				<li class="select_title_division2" ng-click="templateConteudoIndex(5)"><img src='img/twitter/ICONES-12.svg' class="icon_menu_top svg-icon" alt="image"></li>
 				<li class="select_title_division2" ng-click="templateConteudoIndex(6)"><img src='img/twitter/ICONES-13.svg' class="icon_menu_top svg-icon" alt="image"></li>
 				<li class="select_title_division2" ng-click="templateConteudoIndex(1)"><img src='img/twitter/ICONES-11.svg' class="icon_menu_top svg-icon" alt="image"></li>
-				<li id="select_imgMosaico" class="select_title_division2" ng-click="templateConteudoIndex(3); changeTemporalidade(24);"><img src='img/icons/Mosaico.png' class="icon_menu_top svg-icon" alt="image"></li>
+				<li id="select_imgMosaico" class="select_title_division2" ng-click="templateConteudoIndex(3); changeTemporalidade(12);"><img src='img/icons/Mosaico.png' class="icon_menu_top svg-icon" alt="image"></li>
 			</ul>
 			
 			<ul class="title_str_menu_icon_2 select_midia">
-				<li class="select_title_division2 firstOpImg" ng-click="templateConteudoIndex(0); loadMin();"><img src='img/twitter/ICONES-09.svg' class="icon_menu_top svg-icon" alt="image"></li>
+				<li class="select_title_division2 firstOpImg" ng-click="templateConteudoIndex(0);"><img src='img/twitter/ICONES-09.svg' class="icon_menu_top svg-icon" alt="image"></li>
 				<li class="select_title_division2" ng-click="templateConteudoIndex(1)"><img src='img/twitter/ICONES-11.svg' class="icon_menu_top svg-icon" alt="image"></li>
 				<li id="select_imgMosaico" class="select_title_division2" ng-click="templateConteudoIndex(3); changeTemporalidade(24);"><img src='img/icons/Mosaico.png' class="icon_menu_top svg-icon" alt="image"></li>
 			</ul>
@@ -504,8 +505,8 @@
 
 		/* Custom */
 
-		$(".select_tematica_monitor").click(function(){
-			$(".select_tematica_monitor").css( "font-weight", "300" );
+		$(".select_tematica_twitter").click(function(){
+			$(".select_tematica_twitter").css( "font-weight", "300" );
 
 			$(this).css( "font-weight", "800" );
 		});

@@ -800,6 +800,10 @@
 				background-position: 0px 60px;
 			}
 
+				.each_user_result a{
+					color:black;
+				}
+
 				.user_result_number{
 					float:left;
 					width: auto;

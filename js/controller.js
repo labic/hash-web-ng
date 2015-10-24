@@ -5,7 +5,7 @@
 /* Variaveis de URL fixas */
 
 var baseURL = 'https://inep-enem-hash-api.herokuapp.com:443/v1/tweets';
-var serviceBase = 'http://107.170.54.11:8080/';
+var serviceBase = 'http://178.62.252.46:8080/';
 
 /* Inicializando tempo de milisegundos */
 
@@ -14,6 +14,7 @@ var nowState = new Date();
 var now = new Date(nowState.getTime() - 11700000);
 var now15 = new Date(now.getTime() - 15*60000);
 var now60 = new Date(now.getTime() - 3600000);
+var now12 = new Date(now.getTime() - 43200000);
 var now24 = new Date(now.getTime() - 86400000);
 var now7 = new Date(now.getTime() - 7*86400000);
 var now30 = new Date(now.getTime() - 30*86400000);
@@ -21,6 +22,7 @@ var now30 = new Date(now.getTime() - 30*86400000);
 var nowT = new Date(now).getTime();
 var nowT15 = new Date(now).getTime() - 15*60000;
 var nowT60 = new Date(now).getTime() - 3600000;
+var nowT12 = new Date(now.getTime() - 43200000);
 var nowT24 = new Date(now).getTime() - 86400000;
 var nowT7 = new Date(now).getTime() - 7*86400000;
 var nowT30 = new Date(now).getTime() - 30*86400000;
@@ -29,13 +31,14 @@ var nowT30 = new Date(now).getTime() - 30*86400000;
 var dataNow = now.toISOString().replace(/z/gi,'');
 var dataNow15 = now15.toISOString().replace(/z/gi,'');
 var dataNow60 = now60.toISOString().replace(/z/gi,'');
+var dataNow12 = now12.toISOString().replace(/z/gi,'');
 var dataNow24 = now24.toISOString().replace(/z/gi,'');
 var dataNow7 = now7.toISOString().replace(/z/gi,'');
 var dataNow30 = now30.toISOString().replace(/z/gi,'');
 
 /* Variaveis globais dos parametros da requisição */
-var linkTime = 24;
-var linkTema = '%22tema-negros%22';
+var linkTime = 12;
+var linkTema = '%22tema-publico_geral%22';
 var linkCategoria = '';
 var linkLocalidade = '';
 var count = 0;
@@ -46,6 +49,8 @@ function transformTime(lTime){
 		return dataNow15;
 	}else if(lTime == 60){
 		return dataNow60;
+	}else if(lTime == 12){
+		return dataNow12;
 	}else if(lTime == 24){
 		return dataNow24;
 	}else if(lTime == 7){
@@ -57,183 +62,169 @@ function transformTime(lTime){
 
 function functionConteudo(localTime, dataNow, linkTema, linkCategoria, linkLocalidade, nlimit, nskip, word, tag){
 
-	if(linkTema.length == 151){
-		if((word === undefined) && (tag === undefined)){
+	if((word === undefined) && (tag === undefined)){
 
-			return baseURL+'/analytics?type=top-retweets&filter={"where":{"status.created_at":{"gte":"'+localTime+'","lte":"'+dataNow+'"},"categories":{"inq":['+linkTema+''+linkCategoria+''+linkLocalidade+']}},"limit":'+nlimit+',"skip":'+nskip+'}';
+		return baseURL+'/analytics?type=top-retweets&filter={"where":{"status.created_at":{"gte":"'+localTime+'","lte":"'+dataNow+'"},"categories":{"all":['+linkTema+''+linkCategoria+''+linkLocalidade+']}},"limit":'+nlimit+',"skip":'+nskip+'}';
 
-		}else if(tag === undefined){
+	}else if(tag === undefined){
 
-			return serviceBase+'word_posts?filter={"where":{"status.created_at":{"gte":"'+localTime+'","lte":"'+dataNow+'"},"word":"'+word+'","categories":{"inq":['+linkTema+''+linkCategoria+''+linkLocalidade+']}},"limit":25}';
+		return serviceBase+'twitter/word_posts?filter={"where":{"status.created_at":{"gte":"'+localTime+'","lte":"'+dataNow+'"},"word":"'+word+'","categories":{"all":['+linkTema+''+linkCategoria+''+linkLocalidade+']}},"limit":25}';
 
-		}else if(word === undefined){
+	}else if(word === undefined){
 
-			return baseURL+'/analytics?type=top-retweets&filter={"where":{"status.entities.hashtags.text":{"all":["'+tag+'"]},"status.created_at":{"gte":"'+localTime+'","lte":"'+dataNow+'"},"categories":{"inq":['+linkTema+''+linkCategoria+''+linkLocalidade+']}},"limit":25,"skip":0}';
+		return baseURL+'/analytics?type=top-retweets&filter={"where":{"status.entities.hashtags.text":{"all":["'+tag+'"]},"status.created_at":{"gte":"'+localTime+'","lte":"'+dataNow+'"},"categories":{"all":['+linkTema+''+linkCategoria+''+linkLocalidade+']}},"limit":25,"skip":0}';
 
-		}
-	}else{
-		if((word === undefined) && (tag === undefined)){
-
-			return baseURL+'/analytics?type=top-retweets&filter={"where":{"status.created_at":{"gte":"'+localTime+'","lte":"'+dataNow+'"},"categories":{"all":['+linkTema+''+linkCategoria+''+linkLocalidade+']}},"limit":'+nlimit+',"skip":'+nskip+'}';
-
-		}else if(tag === undefined){
-
-			return serviceBase+'word_posts?filter={"where":{"status.created_at":{"gte":"'+localTime+'","lte":"'+dataNow+'"},"word":"'+word+'","categories":{"all":['+linkTema+''+linkCategoria+''+linkLocalidade+']}},"limit":25}';
-
-		}else if(word === undefined){
-
-			return baseURL+'/analytics?type=top-retweets&filter={"where":{"status.entities.hashtags.text":{"all":["'+tag+'"]},"status.created_at":{"gte":"'+localTime+'","lte":"'+dataNow+'"},"categories":{"all":['+linkTema+''+linkCategoria+''+linkLocalidade+']}},"limit":25,"skip":0}';
-
-		}
 	}
+};
+
+function functionUser(localTime, dataNow, linkTema, linkCategoria, linkLocalidade){
+
+	return baseURL+'/analytics?type=top-users&filter={"where":{"status.created_at":{"gte":"'+localTime+'","lte":"'+dataNow+'"},"categories":{"all":['+linkTema+''+linkCategoria+''+linkLocalidade+']}}}';
+};
+
+function functionMentions(localTime, dataNow, linkTema, linkCategoria, linkLocalidade){
+
+	return baseURL+'/analytics?type=top-mentions&filter={"where":{"status.created_at":{"gte":"'+localTime+'","lte":"'+dataNow+'"},"categories":{"all":['+linkTema+''+linkCategoria+''+linkLocalidade+']}}}';
+};
+
+function functionUrl(localTime, dataNow, linkTema, linkCategoria, linkLocalidade){
+
+	return baseURL+'/analytics?type=top-urls&filter={"where":{"status.created_at":{"gte":"'+localTime+'","lte":"'+dataNow+'"},"categories":{"all":['+linkTema+''+linkCategoria+''+linkLocalidade+']}}}';
 };
 
 /* Função que define a requisição para buscar os Tweets */
 
 function functionNoRtConteudo(localTime, dataNow, linkTema, linkCategoria, linkLocalidade, word, tag){
 
-	if(linkTema.length == 151){
-		if((word === undefined) && (tag === undefined)){
 
-			return baseURL+'?filter={"where":{"status.retweeted_status":{"exists":false},"categories":{"inq":['+linkTema+''+linkCategoria+''+linkLocalidade+']}},"limit":25,"skip":0, "order": "status.timestamp_ms DESC"}';
+	if((word === undefined) && (tag === undefined)){
 
-		}else if(tag === undefined){
+		return baseURL+'?filter={"where":{"status.retweeted_status":{"exists":false},"categories":{"all":['+linkTema+''+linkCategoria+''+linkLocalidade+']}},"limit":25,"skip":0, "order": "status.timestamp_ms DESC"}';
 
-			return serviceBase+'word_no_rt?filter={"where":{"status.created_at":{"gte":"'+localTime+'","lte":"'+dataNow+'"},"word":"'+word+'","categories":{"inq":['+linkTema+''+linkCategoria+''+linkLocalidade+']}},"limit":25}';
+	}else if(tag === undefined){
 
-		}else if(word === undefined){
+		return serviceBase+'twitter/word_no_rt?filter={"where":{"status.created_at":{"gte":"'+localTime+'","lte":"'+dataNow+'"},"word":"'+word+'","categories":{"all":['+linkTema+''+linkCategoria+''+linkLocalidade+']}},"limit":25}';
 
-			return baseURL+'?filter={"where":{"status.entities.hashtags.text":{"all":["'+tag+'"]},"status.retweeted_status":{"exists":false},"status.created_at":{"gte":"'+localTime+'","lte":"'+dataNow+'"},"categories":{"inq":['+linkTema+''+linkCategoria+''+linkLocalidade+']}},"limit":25,"skip":0}';
+	}else if(word === undefined){
 
-		}
-	}else{
-		if((word === undefined) && (tag === undefined)){
+		return baseURL+'?filter={"where":{"status.entities.hashtags.text":{"all":["'+tag+'"]},"status.retweeted_status":{"exists":false},"status.created_at":{"gte":"'+localTime+'","lte":"'+dataNow+'"},"categories":{"all":['+linkTema+''+linkCategoria+''+linkLocalidade+']}},"limit":25,"skip":0}';
 
-			return baseURL+'?filter={"where":{"status.retweeted_status":{"exists":false},"categories":{"all":['+linkTema+''+linkCategoria+''+linkLocalidade+']}},"limit":25,"skip":0, "order": "status.timestamp_ms DESC"}';
-
-		}else if(tag === undefined){
-
-			return serviceBase+'word_no_rt?filter={"where":{"status.created_at":{"gte":"'+localTime+'","lte":"'+dataNow+'"},"word":"'+word+'","categories":{"all":['+linkTema+''+linkCategoria+''+linkLocalidade+']}},"limit":25}';
-
-		}else if(word === undefined){
-
-			return baseURL+'?filter={"where":{"status.entities.hashtags.text":{"all":["'+tag+'"]},"status.retweeted_status":{"exists":false},"status.created_at":{"gte":"'+localTime+'","lte":"'+dataNow+'"},"categories":{"all":['+linkTema+''+linkCategoria+''+linkLocalidade+']}},"limit":25,"skip":0}';
-
-		}
 	}
 };
 
 function functionImage(localTime, dataNow, linkTema, linkCategoria, linkLocalidade, word, tag){
 
-	if(linkTema.length == 151){
-		if((word === undefined) && (tag === undefined)){
+	if((word === undefined) && (tag === undefined)){
 
-			return baseURL+'/analytics?type=top-images&filter={"where":{"status.created_at":{"gte":"'+localTime+'","lte":"'+dataNow+'"},"categories":{"inq":['+linkTema+''+linkCategoria+''+linkLocalidade+']}},"limit":400,"skip":0}';
+		return baseURL+'/analytics?type=top-images&filter={"where":{"status.created_at":{"gte":"'+localTime+'","lte":"'+dataNow+'"},"categories":{"all":['+linkTema+''+linkCategoria+''+linkLocalidade+']}},"limit":400,"skip":0}';
 
-		}else if(tag === undefined){
+	}else if(tag === undefined){
 
-			return serviceBase+'word_images?filter={"where":{"status.created_at":{"gte":"'+localTime+'","lte":"'+dataNow+'"},"word":"'+word+'","categories":{"inq":['+linkTema+''+linkCategoria+''+linkLocalidade+']}},"limit":400}';
+		return serviceBase+'twitter/word_images?filter={"where":{"status.created_at":{"gte":"'+localTime+'","lte":"'+dataNow+'"},"word":"'+word+'","categories":{"all":['+linkTema+''+linkCategoria+''+linkLocalidade+']}},"limit":400}';
 
-		}else if(word === undefined){
+	}else if(word === undefined){
 
-			return baseURL+'/analytics?type=top-images&filter={"where":{"status.entities.hashtags.text":{"all":["'+tag+'"]},"status.created_at":{"gte":"'+localTime+'","lte":"'+dataNow+'"},"categories":{"inq":['+linkTema+''+linkCategoria+''+linkLocalidade+']}},"limit":400,"skip":0}';
+		return baseURL+'/analytics?type=top-images&filter={"where":{"status.entities.hashtags.text":{"all":["'+tag+'"]},"status.created_at":{"gte":"'+localTime+'","lte":"'+dataNow+'"},"categories":{"all":['+linkTema+''+linkCategoria+''+linkLocalidade+']}},"limit":400,"skip":0}';
 
-		}
-	}else{
-		if((word === undefined) && (tag === undefined)){
-
-			return baseURL+'/analytics?type=top-images&filter={"where":{"status.created_at":{"gte":"'+localTime+'","lte":"'+dataNow+'"},"categories":{"all":['+linkTema+''+linkCategoria+''+linkLocalidade+']}},"limit":400,"skip":0}';
-
-		}else if(tag === undefined){
-
-			return serviceBase+'word_images?filter={"where":{"status.created_at":{"gte":"'+localTime+'","lte":"'+dataNow+'"},"word":"'+word+'","categories":{"all":['+linkTema+''+linkCategoria+''+linkLocalidade+']}},"limit":400}';
-
-		}else if(word === undefined){
-
-			return baseURL+'/analytics?type=top-images&filter={"where":{"status.entities.hashtags.text":{"all":["'+tag+'"]},"status.created_at":{"gte":"'+localTime+'","lte":"'+dataNow+'"},"categories":{"all":['+linkTema+''+linkCategoria+''+linkLocalidade+']}},"limit":400,"skip":0}';
-
-		}
 	}
 };
 
 function functionTag(localTime, dataNow, linkTema, linkCategoria, linkLocalidade){
-	if(linkTema.length == 151){
-		return baseURL+'/analytics?type=top-hashtags&filter={"where":{"status.created_at":{"gte":"'+localTime+'","lte":"'+dataNow+'"},"categories":{"inq":['+linkTema+''+linkCategoria+''+linkLocalidade+']}},"limit":25,"skip":0}';
-	}else{
-		return baseURL+'/analytics?type=top-hashtags&filter={"where":{"status.created_at":{"gte":"'+localTime+'","lte":"'+dataNow+'"},"categories":{"all":['+linkTema+''+linkCategoria+''+linkLocalidade+']}},"limit":25,"skip":0}';
-	}
+
+	return baseURL+'/analytics?type=top-hashtags&filter={"where":{"status.created_at":{"gte":"'+localTime+'","lte":"'+dataNow+'"},"categories":{"all":['+linkTema+''+linkCategoria+''+linkLocalidade+']}},"limit":25,"skip":0}';
+
 };
 
 function functionWord(localTime, dataNow, linkTema, linkCategoria, linkLocalidade){
-	if(linkTema.length == 151){
-		return serviceBase+'top_words?filter={"where":{"status.created_at":{"gte":"'+localTime+'","lte":"'+dataNow+'"}, "categories":{"inq":['+linkTema+''+linkCategoria+''+linkLocalidade+']}},"limit":20}';
-	}else{
-		return serviceBase+'top_words?filter={"where":{"status.created_at":{"gte":"'+localTime+'","lte":"'+dataNow+'"}, "categories":{"all":['+linkTema+''+linkCategoria+''+linkLocalidade+']}},"limit":20}';
-	}
+
+	return serviceBase+'twitter/top_words?filter={"where":{"status.created_at":{"gte":"'+localTime+'","lte":"'+dataNow+'"}, "categories":{"all":['+linkTema+''+linkCategoria+''+linkLocalidade+']}}}';
+
 };
 
 function functionMap(localTime, dataNow, linkTema, linkCategoria, linkLocalidade){
-	if(linkTema.length == 151){
-		return serviceBase+'map_volume?filter={"where":{"status.created_at":{"gte":"'+localTime+'","lte":"'+dataNow+'"},"categories":{"inq":['+linkTema+''+linkCategoria+''+linkLocalidade+']}}}';
-	}else{
-		return serviceBase+'map_volume?filter={"where":{"status.created_at":{"gte":"'+localTime+'","lte":"'+dataNow+'"},"categories":{"all":['+linkTema+''+linkCategoria+''+linkLocalidade+']}}}';
-	}
+
+	return serviceBase+'twitter/map_volume?filter={"where":{"status.created_at":{"gte":"'+localTime+'","lte":"'+dataNow+'"},"categories":{"all":['+linkTema+''+linkCategoria+''+linkLocalidade+']}}}';
+
 };
 
 /* variaveis Monitor */
-var linkConteudo;
-var linkImg;
-var linkTag;
-var linkMap;
-var linkWord;
-var linkNoRtConteudo;
+var linkConteudo = functionConteudo(dataNow12, dataNow, linkTema, linkCategoria, linkLocalidade, 25, 0, undefined, undefined);
 
-linkConteudo = functionConteudo(dataNow24, dataNow, linkTema, linkCategoria, linkLocalidade, 25, 0, undefined, undefined);
+var linkImg = functionNoRtConteudo(dataNow12, dataNow, linkTema, linkCategoria, linkLocalidade, undefined, undefined, 25);
 
-linkImg = functionNoRtConteudo(dataNow24, dataNow, linkTema, linkCategoria, linkLocalidade, undefined, undefined, 25);
+var linkTag = functionTag(dataNow12, dataNow, linkTema, linkCategoria, linkLocalidade);
 
-linkTag = functionTag(dataNow24, dataNow, linkTema, linkCategoria, linkLocalidade);
+var linkWord = functionWord(dataNow12, dataNow, linkTema, linkCategoria, linkLocalidade);
 
-linkWord = functionWord(dataNow24, dataNow, linkTema, linkCategoria, linkLocalidade);
-
-linkMap = functionMap(dataNow24, dataNow, linkTema, linkCategoria, linkLocalidade);
+var linkMap = functionMap(dataNow12, dataNow, linkTema, linkCategoria, linkLocalidade);
 
 var monitorCountTweet = baseURL+'/count?where={}';
 var monitorCountImage = baseURL+'/count?where={"status.entities.media":{"exists":true}}';
 
-linkNoRtConteudo = functionNoRtConteudo(dataNow24, dataNow, linkTema, linkCategoria, linkLocalidade, undefined, undefined);
+var linkNoRtConteudo = functionNoRtConteudo(dataNow12, dataNow, linkTema, linkCategoria, linkLocalidade, undefined, undefined);
+
+var linkUser = functionUser(dataNow12, dataNow, linkTema, linkCategoria, linkLocalidade);
+var linkMentions = functionMentions(dataNow12, dataNow, linkTema, linkCategoria, linkLocalidade);
+var linkUrls = functionUrl(dataNow12, dataNow, linkTema, linkCategoria, linkLocalidade);
 
 hashTwitter.run(function($rootScope) {
 
 	$rootScope.$on('handleEmitConteudo', function(event, args, args1) {
+		//		console.logo(args);
+		//		args = parser_query(args);
+		//		console.logo(args);
+		//		args1 = parser_query(args1);
 		$rootScope.$broadcast('handleBroadcastConteudo', args, args1);
 	});
 
 	$rootScope.$on('handleEmitImage', function(event, args) {
+		//		args = parser_query(args);
 		$rootScope.$broadcast('handleBroadcastImage', args);
 	});
 
-	$rootScope.$on('handleEmitTag', function(event, args, bool) {
-		$rootScope.$broadcast('handleBroadcastTag', args, bool);
+	$rootScope.$on('handleEmitTag', function(event, args) {
+		//		args = parser_query(args);
+		$rootScope.$broadcast('handleBroadcastTag', args);
 	});
 
-	$rootScope.$on('handleEmitWord', function(event, args, bool) {
-		$rootScope.$broadcast('handleBroadcastWord', args, bool);
+	$rootScope.$on('handleEmitWord', function(event, args) {
+		//		args = parser_query(args);
+		$rootScope.$broadcast('handleBroadcastWord', args);
 	});
 
 	$rootScope.$on('handleEmitMap', function(event, args) {
+		//		console.log(2);
+		//		console.log(args);
+		//		args = parser_query(args);
+		//		console.log(args);
 		$rootScope.$broadcast('handleBroadcastMap', args);
 	});
 
 	$rootScope.$on('handleEmitPalavrasWord', function(event, args) {
+		//		args = parser_query(args);
 		$rootScope.$broadcast('handleBroadcastPalavrasWord', args);
+	});
+
+	$rootScope.$on('handleEmitUrl', function(event, args) {
+		//		args = parser_query(args);
+		$rootScope.$broadcast('handleBroadcastUrl', args);
+	});
+
+	$rootScope.$on('handleEmitMentions', function(event, args) {
+		//		args = parser_query(args);
+		$rootScope.$broadcast('handleBroadcastMentions', args);
+	});
+
+	$rootScope.$on('handleEmitUser', function(event, args) {
+		//		args = parser_query(args);
+		$rootScope.$broadcast('handleBroadcastUser', args);
 	});
 });
 
 /* NOTA: MONITOR - CONTROLLER */
 
-hashTwitter.controller('mainMonitor', function ($scope, Analytics) {
-	
+hashTwitter.controller('mainMonitor', function ($scope) {
+
 	$scope.showTopWord = false;
 
 	$scope.wordChange = function(x){
@@ -252,26 +243,11 @@ hashTwitter.controller('mainMonitor', function ($scope, Analytics) {
 	var tagSelect = "";
 	var limit = 1;
 
-
 	$scope.filterChange = function(){
 		$scope.filtro = conteudoSelect+" "+categoriaSelect+" "+localidadeSelect+" "+wordSelect+" "+tagSelect;
 	};
 
 	$scope.filterChange();
-
-	$scope.loadAll = function(){
-		$scope.$emit('handleEmitMap', linkMap);
-	};
-
-	$scope.loadHalf = function(bool){
-		$scope.$emit('handleEmitTag', linkTag, bool);
-		$scope.$emit('handleEmitWord', linkWord, bool);
-	};
-
-	$scope.loadMin = function(){
-		$scope.$emit('handleEmitImage', linkImg);
-		$scope.$emit('handleEmitConteudo', linkConteudo, linkNoRtConteudo);
-	};
 
 	$scope.categoriaIndex = function (x) {
 		catNumber = x;
@@ -286,12 +262,12 @@ hashTwitter.controller('mainMonitor', function ($scope, Analytics) {
 		$scope.template = $scope.templates[x];
 	};
 
-	$scope.templatesConteudo = [ { name: 'twTweet', url: 'app/monitor/twTweet.html'},
+	$scope.templatesConteudo = [{ name: 'twTweet', url: 'app/monitor/twTweet.html'},
 								{ name: 'imgTweet', url: 'app/monitor/imgTweet.html'},
 								{ name: 'twContTweet', url: 'app/monitor/twContTweet.html'},
 								{ name: 'imgMosaicoTweet', url: 'app/monitor/imgMosaicoTweet.html'},
 								{ name: 'usuario', url: 'app/monitor/usuario.html'},
-								{ name: 'mensoes', url: 'app/monitor/mensoes.html'},
+								{ name: 'mensoes', url: 'app/monitor/mentions.html'},
 								{ name: 'url', url: 'app/monitor/url.html'},
 							   ];
 
@@ -317,8 +293,11 @@ hashTwitter.controller('mainMonitor', function ($scope, Analytics) {
 
 		linkNoRtConteudo = functionNoRtConteudo(localTime, dataNow, linkTema, linkCategoria, linkLocalidade);
 
-		$scope.loadMin();
+		$scope.$emit('handleEmitImage', linkImg);
+		$scope.$emit('handleEmitConteudo', linkConteudo, linkNoRtConteudo);
 	};
+
+	//	$scope.loadWordsPub = function (word)
 
 	$scope.loadWordsPub = function (word) {
 
@@ -342,7 +321,8 @@ hashTwitter.controller('mainMonitor', function ($scope, Analytics) {
 
 		linkImg = functionImage(localTime, dataNow, linkTema, linkCategoria, linkLocalidade, word, undefined);
 
-		$scope.loadMin();
+		$scope.$emit('handleEmitImage', linkImg);
+		$scope.$emit('handleEmitConteudo', linkConteudo, linkNoRtConteudo);
 	};
 
 	$scope.loadHastagsPub = function (tag) {
@@ -366,7 +346,8 @@ hashTwitter.controller('mainMonitor', function ($scope, Analytics) {
 
 		linkImg = functionImage(localTime, dataNow, linkTema, linkCategoria, linkLocalidade, undefined, tag);
 
-		$scope.loadMin();
+		$scope.$emit('handleEmitImage', linkImg);
+		$scope.$emit('handleEmitConteudo', linkConteudo, linkNoRtConteudo);
 	};
 
 	$scope.changeLocalidade = function (local) {
@@ -388,11 +369,23 @@ hashTwitter.controller('mainMonitor', function ($scope, Analytics) {
 		linkTag = functionTag(localTime, dataNow, linkTema, linkCategoria, linkLocalidade);
 
 		linkWord = functionWord(localTime, dataNow, linkTema, linkCategoria, linkLocalidade);
+		
+		linkUser = functionUser(localTime, dataNow, linkTema, linkCategoria, linkLocalidade);
+		
+		linkMentions = functionMentions(localTime, dataNow, linkTema, linkCategoria, linkLocalidade);
+		
+		linkUrls = functionUrl(localTime, dataNow, linkTema, linkCategoria, linkLocalidade);
 
-		$scope.loadHalf();
+		$scope.$emit('handleEmitTag', linkTag);
+		$scope.$emit('handleEmitWord', linkWord);
+		$scope.$emit('handleEmitImage', linkImg);
+		$scope.$emit('handleEmitUser', linkUser);
+		$scope.$emit('handleEmitMentions', linkMentions);
+		$scope.$emit('handleEmitUrl', linkUrl);
+		$scope.$emit('handleEmitConteudo', linkConteudo, linkNoRtConteudo);
 	};
 
-	$scope.changeCategoria = function (cat, nome) {
+	$scope.changeCategoria = function (cat) {
 
 		count = 0;
 
@@ -414,7 +407,17 @@ hashTwitter.controller('mainMonitor', function ($scope, Analytics) {
 
 		linkImg = functionImage(localTime, dataNow, linkTema, linkCategoria, linkLocalidade);
 
-		$scope.loadMin();
+		linkUser = functionUser(localTime, dataNow, linkTema, linkCategoria, linkLocalidade);
+		
+		linkMentions = functionMentions(localTime, dataNow, linkTema, linkCategoria, linkLocalidade);
+		
+		linkUrls = functionUrl(localTime, dataNow, linkTema, linkCategoria, linkLocalidade);
+
+		$scope.$emit('handleEmitUser', linkUser);
+		$scope.$emit('handleEmitMentions', linkMentions);
+		$scope.$emit('handleEmitUrl', linkUrl);
+		$scope.$emit('handleEmitImage', linkImg);
+		$scope.$emit('handleEmitConteudo', linkConteudo, linkNoRtConteudo);
 	};
 
 	$scope.changeTemporalidade = function (time) {
@@ -439,8 +442,21 @@ hashTwitter.controller('mainMonitor', function ($scope, Analytics) {
 		linkWord = functionWord(localTime, dataNow, linkTema, linkCategoria, linkLocalidade);
 
 		linkMap = functionMap(localTime, dataNow, linkTema, linkCategoria, linkLocalidade);
+		
+		linkUser = functionUser(localTime, dataNow, linkTema, linkCategoria, linkLocalidade);
+		
+		linkMentions = functionMentions(localTime, dataNow, linkTema, linkCategoria, linkLocalidade);
+		
+		linkUrls = functionUrl(localTime, dataNow, linkTema, linkCategoria, linkLocalidade);
 
-		$scope.loadAll();
+		$scope.$emit('handleEmitMap', linkMap);
+		$scope.$emit('handleEmitTag', linkTag);
+		$scope.$emit('handleEmitWord', linkWord);
+		$scope.$emit('handleEmitImage', linkImg);
+		$scope.$emit('handleEmitUser', linkUser);
+		$scope.$emit('handleEmitMentions', linkMentions);
+		$scope.$emit('handleEmitUrl', linkUrl);
+		$scope.$emit('handleEmitConteudo', linkConteudo, linkNoRtConteudo);
 	};
 
 	$scope.changeTema = function (tema, nome) {
@@ -473,8 +489,21 @@ hashTwitter.controller('mainMonitor', function ($scope, Analytics) {
 		linkWord = functionWord(localTime, dataNow, linkTema, linkCategoria, linkLocalidade);
 
 		linkMap = functionMap(localTime, dataNow, linkTema, linkCategoria, linkLocalidade);
+		
+		linkUser = functionUser(localTime, dataNow, linkTema, linkCategoria, linkLocalidade);
+		
+		linkMentions = functionMentions(localTime, dataNow, linkTema, linkCategoria, linkLocalidade);
+		
+		linkUrls = functionUrl(localTime, dataNow, linkTema, linkCategoria, linkLocalidade);
 
-		$scope.loadAll();
+		$scope.$emit('handleEmitMap', linkMap);
+		$scope.$emit('handleEmitTag', linkTag);
+		$scope.$emit('handleEmitWord', linkWord);
+		$scope.$emit('handleEmitImage', linkImg);
+		$scope.$emit('handleEmitUser', linkUser);
+		$scope.$emit('handleEmitMentions', linkMentions);
+		$scope.$emit('handleEmitUrl', linkUrl);
+		$scope.$emit('handleEmitConteudo', linkConteudo, linkNoRtConteudo);
 	};
 });
 
@@ -624,13 +653,68 @@ hashTwitter.controller('MenuMap', ['$scope', '$http', function ($scope, $http) {
 			$scope.dataMapaON = false;
 			$scope.textLoadDisplayMap = false;
 
-			$scope.loadHalf(true);
+			//			$scope.loadHalf(true);
 		});
 	});
 }]);
 
 hashTwitter.controller('HashTwitterCtr', ['$scope', '$http', function ($scope, $http) {
 	var contData = 0;
+
+	$scope.dataLoadON = false;
+	$scope.dataLoad404 = false;
+	$scope.dataLoadOFF = true;
+	$scope.dataLoadERROR = false;
+
+	if(count > 0){
+		$scope.buttonBack = true;
+	}else{
+		$scope.buttonBack = false;
+	}
+
+	$http.get(linkConteudo).success(function (data) {
+
+		contData = Object.keys(data).length;
+
+		if((data == "") || (contData < 25)){
+
+			$scope.buttonNext = false;
+
+			$http.get(linkNoRtConteudo).success(function (data1) {
+				$scope.twittes = data.concat(data1);
+
+				if(data1 == ""){
+					$scope.twittes = data;
+				}else{
+					$scope.twittes = data.concat(data1);
+				}
+
+				if((data1 == "") && (data == "")){
+					$scope.dataLoadON = false;
+					$scope.dataLoadOFF = false;
+					$scope.dataLoad404 = true;
+				}else{
+					$scope.dataLoad404 = false;
+					$scope.dataLoadOFF = false;
+					$scope.dataLoadON = true;
+				}
+			});
+		}else{
+			$scope.twittes = data;
+
+			$scope.buttonNext = true;
+
+			$scope.dataLoad404 = false;
+			$scope.dataLoadOFF = false;
+			$scope.dataLoadON = true;
+		}
+	}).error(function(data, status) {
+		$scope.dataLoadERROR = true;
+		$scope.dataLoad404 = false;
+		$scope.dataLoadOFF = false;
+		$scope.dataLoadON = false;
+		console.log(status);
+	});  
 
 	$scope.$on('handleBroadcastConteudo', function(event, args, args1) {
 
@@ -683,6 +767,9 @@ hashTwitter.controller('HashTwitterCtr', ['$scope', '$http', function ($scope, $
 			}
 		}).error(function(data, status) {
 			$scope.dataLoadERROR = true;
+			$scope.dataLoad404 = false;
+			$scope.dataLoadOFF = false;
+			$scope.dataLoadON = false;
 			console.log(status);
 		});   
 	});   
@@ -690,11 +777,39 @@ hashTwitter.controller('HashTwitterCtr', ['$scope', '$http', function ($scope, $
 
 hashTwitter.controller('HashImgCtr', ['$scope', '$http', function ($scope, $http) {
 
+	$( ".geralTweets_result" ).scrollTop( "slow" );
+
+	$scope.dataLoadON = false;
+	$scope.dataLoad404 = false;
+	$scope.dataLoadOFF = true;
+	$scope.dataLoadERROR = false;
+
+	$http.get(linkImg).success(function (data) {
+		$scope.imgs = data.splice(0,24);
+		if(data == ""){
+			$scope.dataLoadON = false;
+			$scope.dataLoadOFF = false;
+			$scope.dataLoad404 = true;
+		}else{
+			$scope.dataLoad404 = false;
+			$scope.dataLoadOFF = false;
+			$scope.dataLoadON = true;
+		}
+	}).error(function(data, status) {
+		$scope.dataLoad404 = false;
+		$scope.dataLoadOFF = false;
+		$scope.dataLoadON = false;
+		$scope.dataLoadERROR = true;
+		console.log(status);
+	});
+
 	var tamDiv = $(".geralTweets_result").css( "width" );
 	tamDiv = parseInt(tamDiv);
 	$scope.alturaImg = tamDiv / 3;
 
 	$scope.$on('handleBroadcastImage', function(event, args) {
+		$( ".geralTweets_result" ).scrollTop( "slow" );
+
 		$scope.dataLoadON = false;
 		$scope.dataLoad404 = false;
 		$scope.dataLoadOFF = true;
@@ -712,6 +827,9 @@ hashTwitter.controller('HashImgCtr', ['$scope', '$http', function ($scope, $http
 				$scope.dataLoadON = true;
 			}
 		}).error(function(data, status) {
+			$scope.dataLoad404 = false;
+			$scope.dataLoadOFF = false;
+			$scope.dataLoadON = false;
 			$scope.dataLoadERROR = true;
 			console.log(status);
 		});
@@ -720,22 +838,48 @@ hashTwitter.controller('HashImgCtr', ['$scope', '$http', function ($scope, $http
 
 hashTwitter.controller('HashImgMosaicoCtr', ['$scope', '$http', function ($scope, $http) {
 
+	$( ".geralTweets_result" ).scrollTop( "slow" );
+
+	$scope.dataLoadON = false;
+	$scope.dataLoad404 = false;
+	$scope.dataLoadOFF = true;
+	$scope.dataLoadERROR = false;
+
+	$http.get(linkImg).success(function (data) {
+
+		$scope.imgs = data;
+		$scope.imgs1 = data[0];
+		if(data == ""){
+			$scope.dataLoadON = false;
+			$scope.dataLoadOFF = false;
+			$scope.dataLoad404 = true;
+		}else{
+			$scope.dataLoad404 = false;
+			$scope.dataLoadOFF = false;
+			$scope.dataLoadON = true;
+		}
+	}).error(function(data, status) {
+		$scope.dataLoadERROR = true;
+		$scope.dataLoad404 = false;
+		$scope.dataLoadOFF = false;
+		$scope.dataLoadON = false;
+		console.log(status);
+	});
+
 	var tamDiv = $(".geralTweets_result").css( "width" );
 	tamDiv = parseInt(tamDiv);
 	$scope.alturaImg = tamDiv / 15;
 
 	$scope.$on('handleBroadcastImage', function(event, args) {
+		$( ".geralTweets_result" ).scrollTop( "slow" );
+
 		$scope.dataLoadON = false;
 		$scope.dataLoad404 = false;
 		$scope.dataLoadOFF = true;
 		$scope.dataLoadERROR = false;
 
 		$http.get(args).success(function (data) {
-			
-//			$scope.$watch('data.media_url_https', function (startTime) {
-//				console.log(2);
-//			});
-//			
+
 			$scope.imgs = data;
 			$scope.imgs1 = data[0];
 			if(data == ""){
@@ -748,6 +892,9 @@ hashTwitter.controller('HashImgMosaicoCtr', ['$scope', '$http', function ($scope
 				$scope.dataLoadON = true;
 			}
 		}).error(function(data, status) {
+			$scope.dataLoad404 = false;
+			$scope.dataLoadOFF = false;
+			$scope.dataLoadON = false;
 			$scope.dataLoadERROR = true;
 			console.log(status);
 		});
@@ -765,7 +912,42 @@ hashTwitter.controller('HashTemporalidade', function ($scope) {
 
 hashTwitter.controller('HashWords', ['$scope', '$http', function ($scope, $http) {
 
-	$scope.$on('handleBroadcastWord', function(event, args, bool) {
+	$scope.dataLoadON = false;
+	$scope.dataLoad404 = false;
+	$scope.dataLoadOFF = true;
+	$scope.dataLoadERROR = false;
+
+	$http.get(linkWord).success(function (data) {
+		$scope.words = data;
+		$scope.words = data.splice(0,11);
+		if(data == ""){
+			$scope.dataLoadON = false;
+			$scope.dataLoadOFF = false;
+			$scope.dataLoad404 = true;
+		}else{
+			$scope.dataLoad404 = false;
+			$scope.dataLoadOFF = false;
+			$scope.dataLoadON = true;
+		}
+
+		//		if (bool === true){
+		//			$scope.$emit('handleEmitConteudo', linkConteudo, linkNoRtConteudo);
+		//			$scope.$emit('handleEmitImage', linkImg);
+		//		}
+
+	}).error(function(data, status) {
+		$scope.dataLoadERROR = true;
+		$scope.dataLoad404 = false;
+		$scope.dataLoadOFF = false;
+		$scope.dataLoadON = false;
+		console.log(status);
+	});
+
+	$http.get("data/test/conteudos.json").success(function (data) {
+		$scope.conteudos = data[catNumber];
+	});
+
+	$scope.$on('handleBroadcastWord', function(event, args) {
 		$scope.dataLoadON = false;
 		$scope.dataLoad404 = false;
 		$scope.dataLoadOFF = true;
@@ -784,13 +966,16 @@ hashTwitter.controller('HashWords', ['$scope', '$http', function ($scope, $http)
 				$scope.dataLoadON = true;
 			}
 
-			if (bool === true){
-				$scope.$emit('handleEmitConteudo', linkConteudo, linkNoRtConteudo);
-				$scope.$emit('handleEmitImage', linkImg);
-			}
+			//			if (bool === true){
+			//				$scope.$emit('handleEmitConteudo', linkConteudo, linkNoRtConteudo);
+			//				$scope.$emit('handleEmitImage', linkImg);
+			//			}
 
 		}).error(function(data, status) {
 			$scope.dataLoadERROR = true;
+			$scope.dataLoad404 = false;
+			$scope.dataLoadOFF = false;
+			$scope.dataLoadON = false;
 			console.log(status);
 		});
 
@@ -800,9 +985,171 @@ hashTwitter.controller('HashWords', ['$scope', '$http', function ($scope, $http)
 	});
 }]);
 
+hashTwitter.controller('HashUser', ['$scope', '$http', function ($scope, $http) {
+
+	$scope.dataLoadON = false;
+	$scope.dataLoad404 = false;
+	$scope.dataLoadOFF = true;
+	$scope.dataLoadERROR = false;
+
+	$http.get(linkUser).success(function (data) {
+		$scope.users = data;
+		if(data == ""){
+			$scope.dataLoadON = false;
+			$scope.dataLoadOFF = false;
+			$scope.dataLoad404 = true;
+		}else{
+			$scope.dataLoad404 = false;
+			$scope.dataLoadOFF = false;
+			$scope.dataLoadON = true;
+		}
+	}).error(function(data, status) {
+		$scope.dataLoadERROR = true;
+		$scope.dataLoad404 = false;
+		$scope.dataLoadOFF = false;
+		$scope.dataLoadON = false;
+		console.log(status);
+	});
+
+	$scope.$on('handleBroadcastUser', function(event, args) {
+		$scope.dataLoadON = false;
+		$scope.dataLoad404 = false;
+		$scope.dataLoadOFF = true;
+		$scope.dataLoadERROR = false;
+
+		$http.get(args).success(function (data) {
+			$scope.users = data;
+			if(data == ""){
+				$scope.dataLoadON = false;
+				$scope.dataLoadOFF = false;
+				$scope.dataLoad404 = true;
+			}else{
+				$scope.dataLoad404 = false;
+				$scope.dataLoadOFF = false;
+				$scope.dataLoadON = true;
+			}
+
+		}).error(function(data, status) {
+			$scope.dataLoadERROR = true;
+			$scope.dataLoad404 = false;
+			$scope.dataLoadOFF = false;
+			$scope.dataLoadON = false;
+			console.log(status);
+		});
+	});
+}]);
+
+hashTwitter.controller('HashMentions', ['$scope', '$http', function ($scope, $http) {
+
+	$scope.dataLoadON = false;
+	$scope.dataLoad404 = false;
+	$scope.dataLoadOFF = true;
+	$scope.dataLoadERROR = false;
+
+	$http.get(linkMentions).success(function (data) {
+		$scope.mentions = data;
+		if(data == ""){
+			$scope.dataLoadON = false;
+			$scope.dataLoadOFF = false;
+			$scope.dataLoad404 = true;
+		}else{
+			$scope.dataLoad404 = false;
+			$scope.dataLoadOFF = false;
+			$scope.dataLoadON = true;
+		}
+	}).error(function(data, status) {
+		$scope.dataLoadERROR = true;
+		$scope.dataLoad404 = false;
+		$scope.dataLoadOFF = false;
+		$scope.dataLoadON = false;
+		console.log(status);
+	});
+
+	$scope.$on('handleBroadcastMentions', function(event, args) {
+		$scope.dataLoadON = false;
+		$scope.dataLoad404 = false;
+		$scope.dataLoadOFF = true;
+		$scope.dataLoadERROR = false;
+
+		$http.get(args).success(function (data) {
+			$scope.mentions = data;
+			if(data == ""){
+				$scope.dataLoadON = false;
+				$scope.dataLoadOFF = false;
+				$scope.dataLoad404 = true;
+			}else{
+				$scope.dataLoad404 = false;
+				$scope.dataLoadOFF = false;
+				$scope.dataLoadON = true;
+			}
+
+		}).error(function(data, status) {
+			$scope.dataLoadERROR = true;
+			$scope.dataLoad404 = false;
+			$scope.dataLoadOFF = false;
+			$scope.dataLoadON = false;
+			console.log(status);
+		});
+	});
+}]);
+
+hashTwitter.controller('HashUrls', ['$scope', '$http', function ($scope, $http) {
+
+	$scope.dataLoadON = false;
+	$scope.dataLoad404 = false;
+	$scope.dataLoadOFF = true;
+	$scope.dataLoadERROR = false;
+
+	$http.get(linkUrls).success(function (data) {
+		$scope.urls = data;
+		if(data == ""){
+			$scope.dataLoadON = false;
+			$scope.dataLoadOFF = false;
+			$scope.dataLoad404 = true;
+		}else{
+			$scope.dataLoad404 = false;
+			$scope.dataLoadOFF = false;
+			$scope.dataLoadON = true;
+		}
+	}).error(function(data, status) {
+		$scope.dataLoadERROR = true;
+		$scope.dataLoad404 = false;
+		$scope.dataLoadOFF = false;
+		$scope.dataLoadON = false;
+		console.log(status);
+	});
+
+	$scope.$on('handleBroadcastUrls', function(event, args) {
+		$scope.dataLoadON = false;
+		$scope.dataLoad404 = false;
+		$scope.dataLoadOFF = true;
+		$scope.dataLoadERROR = false;
+
+		$http.get(args).success(function (data) {
+			$scope.urls = data;
+			if(data == ""){
+				$scope.dataLoadON = false;
+				$scope.dataLoadOFF = false;
+				$scope.dataLoad404 = true;
+			}else{
+				$scope.dataLoad404 = false;
+				$scope.dataLoadOFF = false;
+				$scope.dataLoadON = true;
+			}
+
+		}).error(function(data, status) {
+			$scope.dataLoadERROR = true;
+			$scope.dataLoad404 = false;
+			$scope.dataLoadOFF = false;
+			$scope.dataLoadON = false;
+			console.log(status);
+		});
+	});
+}]);
+
 hashTwitter.controller('HashTags', ['$scope', '$http', function ($scope, $http) {
 
-	$scope.$on('handleBroadcastTag', function(event, args, bool) {
+	$scope.$on('handleBroadcastTag', function(event, args) {
 		$scope.dataLoadON = false;
 		$scope.dataLoad404 = false;
 		$scope.dataLoadOFF = true;
@@ -826,6 +1173,9 @@ hashTwitter.controller('HashTags', ['$scope', '$http', function ($scope, $http) 
 				$scope.$emit('handleEmitImage', linkImg);
 			}
 		}).error(function(data, status) {
+			$scope.dataLoad404 = false;
+			$scope.dataLoadOFF = false;
+			$scope.dataLoadON = false;
 			$scope.dataLoadERROR = true;
 			console.log(status);
 		});
