@@ -515,7 +515,7 @@
 			}
 
 				.each_menu_midia{
-					height: 115px;
+					height: 105px;
 					width: 80%;
 					margin-left:10%;
 					border-top: 5px dashed #41647a;
@@ -1705,8 +1705,63 @@
 
 .grafos_title{
 	color: #c7bead;
-	width: 100%;
+	width: 80%;
+	margin-left: 10%;
 	font-weight: bold;
 	margin-bottom: 10px;
 	font-size: 20px;
+	margin-top:15px;
+	float:left;
 }
+
+.grafos_text_title{
+	color: black;
+	width: 100%;
+	margin-top:15px;
+	font-weight: bold;
+	margin-bottom: 10px;
+	font-size: 16px;
+	float:left;
+}
+
+#grafos_text_container{
+	width:80%;
+	margin-left: 10%;
+	float:left;
+	height: 400px;
+	border-bottom: 4px solid #c8c1af;
+}
+
+.grafos_text{
+	width: 100%;
+	height: calc(100% - 60px);
+	overflow: hidden;
+	float:left;
+	font-size:14px;
+ 	text-overflow: ellipsis;
+}
+
+#grafos_visualizar{
+	width:80%;
+	height: 50px;
+	padding:10px;
+	float:left;
+	margin-left:10%;
+}
+
+.grafos_visualizar_img{
+	height: 30px;
+	width: 30px;
+	fill: #56514b;
+	float:left;
+	margin-right:10px;
+	margin-top: 5px;
+}
+
+	#grafos_visualizar p{
+		float:left;
+		font-size: 14px;
+		color: #56514b;
+		font-weight: bold;
+		width:calc(100% - 40px);
+ 	}

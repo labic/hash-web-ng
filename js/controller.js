@@ -4,7 +4,7 @@
 
 /* Variaveis de URL fixas */
 
-var baseURL = 'https://hash-api.herokuapp.com:443/v1/tweets';
+var baseURL = 'https://inep-enem-hash-api.herokuapp.com:443/v1/tweets';
 var serviceBase = 'http://107.170.54.11:8080/';
 
 /* Inicializando tempo de milisegundos */
@@ -232,7 +232,7 @@ hashTwitter.run(function($rootScope) {
 
 /* NOTA: MONITOR - CONTROLLER */
 
-hashTwitter.controller('mainMonitor', function ($scope) {
+hashTwitter.controller('mainMonitor', function ($scope, Analytics) {
 	
 	$scope.showTopWord = false;
 
