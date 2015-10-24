@@ -253,8 +253,8 @@ hashTwitter.controller('mainMonitor', function ($scope) {
 		catNumber = x;
 	};
 
-	$scope.templates = [ { name: 'WordTweet', url: 'app/monitor/wordTweet.html'},
-						{ name: 'TagTweet', url: 'app/monitor/tagTweet.html'} ];
+	$scope.templates = [ { name: 'WordTweet', url: 'monitor/wordTweet.html'},
+						{ name: 'TagTweet', url: 'monitor/tagTweet.html'} ];
 
 	$scope.template = $scope.templates[0];
 
@@ -262,13 +262,13 @@ hashTwitter.controller('mainMonitor', function ($scope) {
 		$scope.template = $scope.templates[x];
 	};
 
-	$scope.templatesConteudo = [{ name: 'twTweet', url: 'app/monitor/twTweet.html'},
-								{ name: 'imgTweet', url: 'app/monitor/imgTweet.html'},
-								{ name: 'twContTweet', url: 'app/monitor/twContTweet.html'},
-								{ name: 'imgMosaicoTweet', url: 'app/monitor/imgMosaicoTweet.html'},
-								{ name: 'usuario', url: 'app/monitor/usuario.html'},
-								{ name: 'mensoes', url: 'app/monitor/mentions.html'},
-								{ name: 'url', url: 'app/monitor/url.html'},
+	$scope.templatesConteudo = [{ name: 'twTweet', url: 'monitor/twTweet.html'},
+								{ name: 'imgTweet', url: 'monitor/imgTweet.html'},
+								{ name: 'twContTweet', url: 'monitor/twContTweet.html'},
+								{ name: 'imgMosaicoTweet', url: 'monitor/imgMosaicoTweet.html'},
+								{ name: 'usuario', url: 'monitor/usuario.html'},
+								{ name: 'mensoes', url: 'monitor/mentions.html'},
+								{ name: 'url', url: 'monitor/url.html'},
 							   ];
 
 	$scope.templateConteudo = $scope.templatesConteudo[0];

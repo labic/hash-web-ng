@@ -4,25 +4,25 @@ hashTwitter
 	.config(['$routeProvider', function($routeProvider) {
 		$routeProvider.
 		when('/monitor', {
-			templateUrl: 'app/monitor.html',
+			templateUrl: 'monitor.html',
 		}).
 		when('/palavras', {
-			templateUrl: 'app/palavras.html',
+			templateUrl: 'palavras.html',
 		}).
 		when('/territorio', {
-			templateUrl: 'app/territorio.html',
+			templateUrl: 'territorio.html',
 		}).
 		when('/twitter', {
-			templateUrl: 'app/twitter.html',
+			templateUrl: 'twitter.html',
 		}).
 		when('/instagram', {
-			templateUrl: 'app/instagram.html',
+			templateUrl: 'instagram.html',
 		}).
 		when('/facebook', {
-			templateUrl: 'app/facebook.html',
+			templateUrl: 'facebook.html',
 		}).
 		when('/relatorios', {
-			templateUrl: 'app/relatorios.html',
+			templateUrl: 'relatorios.html',
 		}).
 		otherwise({
 			redirectTo: '/'
