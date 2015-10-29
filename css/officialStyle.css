@@ -205,9 +205,9 @@
 			}
 
 			.title_str_menu_icon{
-				width: auto;
+				width: 114px;
 				float: left;
-				margin-left: calc(50% - 115px);
+				margin-left: calc(50% - 57px);
 			}
 
 				.select_title_division2{
@@ -271,7 +271,8 @@
 				#menu_tematica{
 					float:left;
 					width:auto;
-					margin-left: calc(50% - 125px);
+					margin-left: calc(50% - 170px);
+					padding-top: 5px;
 				}
 
 				.menu_tematica_op{
@@ -304,7 +305,7 @@
 						color: white;
 						width: 100%;
 						height: auto;
-						font-size: 24px;
+						font-size: 18px;
 						text-align: center;
 					}
 
@@ -1054,7 +1055,7 @@
 				}
 
 	#palavras_div2{
-		width:calc(100% - 540px);
+		width:calc(100% - 600px);
 		background-image: url(../img/subtle_dots_@2X.png);
 		overflow: hidden;
 	}
@@ -1173,6 +1174,12 @@
 				text-align: center;
 				font-size: 15px;
 			}
+
+		#palavras_div2_sunburstZoom_result_view{
+			width: 100%;
+			height: calc(100% - 55px);
+			background: red;
+		}
 
 	#palavras_div2_sunburstZoom path {
 		stroke: #000;

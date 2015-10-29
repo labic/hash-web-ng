@@ -1,6 +1,6 @@
 <!--<p class="subTitle_top">#HASHTAGS MAIS FREQUENTES</p>-->
 
-<div id="divHashtags" ng-controller="HashTags" style="height:100%;" ng-init="loadHalf(false);">
+<div id="divHashtags" style="height:100%;">
 
 	<div class="loading" ng-show="dataLoadOFF">
 		<center><img src="img/icons/spin.gif" height="66px" width="66px"></center>
@@ -21,7 +21,7 @@
 		</div>
 
 		<div class="strVertical_highWord">
-			<div title="Clique para visualizar os ultimos retweets com #{{tag.hashtag}}" ng-mouseenter="tagChange(tag)" class="each_word" ng-repeat=" tag in tags" ng-click="loadHastagsPub(tag.hashtag); filterChange();">
+			<div title="Clique para visualizar os ultimos retweets com #{{tag.hashtag}}" ng-mouseenter="tagChange(tag)" class="each_word" ng-repeat=" tag in tags" ng-click="filter.tag = tag.hashtag;">
 				<p>#{{tag.hashtag}}</p>
 				<p ng-if="tag.count == 1">{{tag.count}} vez</p>
 				<p ng-if="tag.count != 1">{{tag.count}} vezes</p>

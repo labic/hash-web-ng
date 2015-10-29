@@ -1,8 +1,9 @@
-<!--<p class="subTitle_top">PALAVRAS MAIS FREQUENTES</p>-->
+<!--<p class="subTitle_top">PALAVRAS MAIS FREQUENTES  </p>-->
 
-<div ng-controller="HashWords" style="height:100%;" ng-init="loadHalf(false);">
 
-	<div class="loading" ng-show="dataLoadOFF">
+<div style="height:100%;">
+
+	<div class="loading" ng-show="dataLoadOFF" >
 		<center><img src="img/icons/spin.gif" height="66px" width="66px"></center>
 		<p style="color:rgba(10, 18, 39, 0.65);">CARREGANDO</p>
 		<p style="color:rgba(10, 18, 39, 0.65);">estamos realizando a sua requisição, essa operação pode demorar um pouco.</p>
@@ -15,13 +16,14 @@
 	</div>
 
 	<div ng-show="dataLoadON">
-		<div id="str_highWord" ng-click="loadWordsPub(word1.word)" title='Clique para visualizar os ultimos retweets com a palavra "{{word1.word}}"'>
-			<p class="title_str_highWord">{{wordOne.word}}</p>
-			<p class="text_str_highWord" class="tipped"><span class="number_str_highWord">{{wordOne.count}}</span> vezes</p>
+		<div id="str_highWord" title='Clique para visualizar os ultimos retweets com a palavra "{{wordMouseEnter.word}}"' ng-click="filter.word = wordMouseEnter.word;">
+			<p ng-hide="wordMouseEnter"class="title_str_highWord">Passe o mouse sobre as palavras para visualiza-las</p>
+			<p ng-show="wordMouseEnter" class="title_str_highWord">{{wordMouseEnter.word}}</p>
+			<p ng-show="wordMouseEnter" class="text_str_highWord" class="tipped"><span class="number_str_highWord">{{wordMouseEnter.count}}</span> vezes</p>
 		</div>
 
 		<div class="strVertical_highWord">
-			<div ng-click="loadWordsPub(wordv.word); filterChange();" ng-mouseenter="wordChange(wordv)" title='Clique para visualizar os ultimos retweets com a palavra "{{wordv.word}}"' class="each_word" ng-repeat="wordv in words">
+			<div title='Clique para visualizar os ultimos retweets com a palavra "{{wordv.word}}"' class="each_word" ng-repeat="wordv in words" ng-mouseenter="$parent.wordMouseEnter = wordv" ng-click="filter.word = wordv.word;">
 				<p>{{wordv.word}}</p>
 				<p ng-if="wordv.count == 1">{{wordv.count}} vez</p>
 				<p ng-if="wordv.count != 1">{{wordv.count}} vezes</p>
@@ -32,7 +34,7 @@
 		<div class="fixed_words_title">
 			<p>Assuntos mais ocorrentes</p>
 		</div>
-		<p ng-repeat="conteudo in conteudos" ng-click="changeCategoria(',%22'+conteudo.query+'%22',conteudo.name); filterChange();">{{conteudo.name}}</p>
+		<p ng-repeat="conteudo in conteudos" ng-click="filter.categoria =',%22'+conteudo.query+'%22';">{{conteudo.name}}</p>
 		<p ng-click="changeCategoria(',%22conteudo-geral%22')">geral</p>
 	</div>
 </div>

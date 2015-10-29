@@ -1,4 +1,4 @@
-<html ng-app="hashTwitter">
+<html>
 	<head>
 		<title>Teste_LAB</title>
 
@@ -21,22 +21,18 @@
 		<link rel="stylesheet" href="css/animate.css">
 	</head>
 
-	<body>
+	<body ng-app="hashTwitter">
 
 		<div id="menu_fixed_bar">
 			<div class="menu_logo" src="img/SDH.png">
 				<p>HASH</p>
-				<p>ENEM</p>
+				<p>SDH</p>
 				<p>2015</p>
 			</div>
 			<ul class="menu_fixed">
-				<li class="menu_fixed_op"><a href="#/facebook"><img src="img/Index/ICONES-02.svg" class="svg-icon icon-menu-monitor" height="20px" width="20px"></a></li>
-				<li class="menu_fixed_op"><a href="#/twitter"><img src="img/Index/ICONES-01.svg" class="svg-icon icon-menu-monitor" height="20px" width="20px"></a></li>
-				<li class="menu_fixed_op"><a href="#/instagram"><img src="img/Index/ICONES-03.svg" class="svg-icon icon-menu-monitor" height="20px" width="20px"></a></li>
-			</ul>
-			<ul class="menu_fixed" style="border-top: 1px dashed #1c5e6e;">
-				<li class="menu_fixed_op"><a href="#/twitter"><img src="img/Index/ICONES-04.svg" class="svg-icon icon-menu-monitor" height="20px" width="20px"></a></li>
-				<li class="menu_fixed_op"><a href="#/instagram"><img src="img/Index/ICONES-05.svg" class="svg-icon icon-menu-monitor" height="20px" width="20px"></a></li>
+				<li class="menu_fixed_op"><a ui-sref="monitor"><img src="img/Index/ICONES-02.svg" class="svg-icon icon-menu-monitor" height="20px" width="20px"></a></li>
+				<li class="menu_fixed_op"><a ui-sref="palavra"><img src="img/Index/ICONES-01.svg" class="svg-icon icon-menu-monitor" height="20px" width="20px"></a></li>
+				<li class="menu_fixed_op"><a href="#/palavras"><img src="img/Index/ICONES-03.svg" class="svg-icon icon-menu-monitor" height="20px" width="20px"></a></li>
 			</ul>
 
 			<div id="menu_logo_down">
@@ -44,7 +40,7 @@
 			</div>
 		</div>
 
-		<div ng-view ></div>
+		<div ui-view ></div>
 
 		<!-- Jquery e Jquery UI  -->
 		<script src="bower_components/jquery/dist/jquery.min.js"></script>
@@ -58,8 +54,9 @@
 		<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.6/d3.min.js"></script>
 		<script type="text/javascript" src="js/util.js"></script>
 
-		<script src="bower_components/angular/angular.js"></script>
-		<script src="bower_components/angular-route/angular-route.js"></script>
+		<script src="bower_components/angular/angular.min.js"></script>
+		<script src="bower_components/angular-route/angular-route.min.js"></script>
+		<script src="bower_components/angular-ui-router/release/angular-ui-router.min.js"></script>
 
 		<script src="js/sunburstZoom.js"></script>
 
@@ -68,6 +65,8 @@
 
 		<script src="js/app.js"></script>
 		<script src="js/controller.js"></script>
+		<script src="js/controllerMonitor.js"></script>
+		<script src="js/controllerPalavras.js"></script>
 
 		<script src="bower_components/Processing.js/processing.min.js"></script>	
 

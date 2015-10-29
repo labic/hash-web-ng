@@ -1,14 +1,4 @@
-<div class="info_pag_on">
-</div>
-<div class="fade"><p>CLIQUE NA PARTE ESCURA PARA SAIR</p></div>
-<div class="info_pag">
-	<div>
-		<p>!</p>
-	</div>
-</div>
 <div id="str_main_palavras" class="str_main" ng-controller="mainPalavras">
-
-
 	<div id="div1_palavras" class="str_division">
 		<div id="div1_palavras_title">
 			<img src="img/icons/aspas.png" height="35px" width="40px">
@@ -19,57 +9,32 @@
 		<div id="div1_palavras_tematica">
 			<ul id="menu_tematica">
 				<li class="menu_tematica_op">
-					<a ng-click=" linkTema = '%22tema-negros%22'; changeTema(linkTema);"><p class=" select_tematica_palavras firstOp">NEGRO</p></a>
+					<a ng-click="filter.tema = '%22tema-negros%22'; "><p class=" select_tematica_palavras firstOp">NEGRO</p></a>
 				</li>
 				<li class="menu_tematica_op">
-					<a ng-click=" linkTema = '%22tema-lgbt%22'; changeTema(linkTema);"><p class=" select_tematica_palavras">LGBT</p></a>
+					<a ng-click=" filter.tema = '%22tema-lgbt%22';"><p class=" select_tematica_palavras">LGBT</p></a>
 				</li>
 				<li class="menu_tematica_op">
-					<a ng-click=" linkTema = '%22tema-indigena%22'; changeTema(linkTema);"><p class=" select_tematica_palavras">ÍNDIGENA</p></a>
+					<a ng-click=" filter.tema = '%22tema-indigena%22';"><p class=" select_tematica_palavras">ÍNDIGENA</p></a>
 				</li>
 				<li class="menu_tematica_op">
-					<a ng-click=" linkTema = '%22tema-genero%22'; changeTema(linkTema);"><p class=" select_tematica_palavras">MULHER</p></a>
+					<a ng-click=" filter.tema = '%22tema-genero%22';"><p class=" select_tematica_palavras">MULHER</p></a>
 				</li>
 			</ul>
 		</div>
 
-		<div id="div1_palavras_loop" ng-controller="PalavrasHashPalavrasWords">
-
-			<div name="searchForm" id="div1_palavras_search">
-				<div class="search_div">
-					<input id="palavras_search_words" ng-model="query" class="search_input" type="search" ng-model="search.text" placeholder="Busque por uma palavra">
-					<button class="search_button" ng-click=" changeSunburst(search.text)" >BUSCAR</button>
-				</div>
-				<img src="img/icons/LUPA.png" height="20px;" width="20px">
-			</div>
-
-			<div class="loading" ng-show="dataLoadOFF">
-				<center><img src="img/icons/Unknown.gif" height="66px" width="66px"></center>
-				<p class="loadingWordGrey">CARREGANDO</p>
-				<p class="loadingWordGrey" style="font-size:14px;">Por favor espere, pode demorar um pouco.</p>
-			</div>
-
-			<div ng-show="dataLoadON" id="div1_palavras_loop10">
-				
-				<p class="select_word_loop" ng-click="changeSunburst(wordv10.word)" ng-repeat="wordv10 in word10" >{{wordv10.word}}</p>
-			</div>
-
-			<div ng-show="dataLoadON" id="div1_palavras_loop1000">
-				<p><!--{{countTweets.count}} tweets | #### usuários--></p>
-				<p class="select_word_loop" ng-click="changeSunburst(wordv1000.word)" ng-repeat="wordv1000 in word1000 | filter:query">{{wordv1000.word}}</p>
-			</div>
-		</div>
+		<div id="div1_palavras_loop" ui-view="words"></div>
 
 		<div id="palavras_div1_str_menuTemporalidade">
-			<div class="palavras_div1_str_menuTemporalidade_temporalidade palavrasFisrtTemp" ng-click="changeTemporalidade(60);">
+			<div class="palavras_div1_str_menuTemporalidade_temporalidade palavrasFisrtTemp" ng-click="filter.time = 60">
 				<p>60</p>
 				<p>MINUTOS</p>
 			</div>
-			<div id="temporalidade24" class="palavras_div1_str_menuTemporalidade_temporalidade" ng-click="changeTemporalidade(24);">
+			<div id="temporalidade24" class="palavras_div1_str_menuTemporalidade_temporalidade" ng-click="filter.time = 24">
 				<p>24</p>
 				<p>HORAS</p>
 			</div>
-			<div class="palavras_div1_str_menuTemporalidade_temporalidade" ng-click="changeTemporalidade(7);">
+			<div class="palavras_div1_str_menuTemporalidade_temporalidade" ng-click="filter.time = 7">
 				<p>7</p>
 				<p>DIAS</p>
 			</div>
@@ -86,12 +51,17 @@
 
 		<div id="palavras_div2_sunburstZoom_result">
 			<div id="palavras_div2_sunburstZoom_result_hide"> !DESCER! </div>
-			<div class="palavras_div2_sunburstZoom_result_choise">
-				<p>TWEETS</p>
-			</div>
-			<div class="palavras_div2_sunburstZoom_result_choise">
-				<p>IMAGENS</p>
-			</div>
+			<a ui-sref="palavra.tweet">
+				<div class="palavras_div2_sunburstZoom_result_choise">
+					<p>TWEETS</p>
+				</div>
+			</a>
+			<a ui-sref="palavra.img">
+				<div class="palavras_div2_sunburstZoom_result_choise">
+					<p>IMAGENS</p>
+				</div>
+			</a>
+			<div id="palavras_div2_sunburstZoom_result_view" ui-view="conteudo.palavra"></div>
 		</div>
 
 		<div id="palavras_div2_sunburstZoom_fixed">
@@ -115,7 +85,7 @@
 
 <script type="text/javascript">
 	$( document ).ready(function(){
-		
+
 		/* select words*/
 		$(".word_loop").click(function(){
 			alert(2);
@@ -188,7 +158,7 @@
 			}, "slow" );
 		});
 
-		
+
 
 	});
 
