@@ -11,7 +11,7 @@ hashTwitter.controller('mainMonitor', function ($scope, $http, $interval) {
 
 		}else if(tag === undefined){
 
-			return serviceBase+'word_posts?filter={"where":{"status.created_at":{"gte":"'+localTime+'","lte":"'+dataNow+'"},"word":"'+word+'","categories":{"all":['+linkTema+''+linkCategoria+''+linkLocalidade+']}},"limit":25}';
+			return serviceBase+'word_posts?filter={"period":"'+$scope.filter.time+'","word":"'+word+'","categories":{"all":['+linkTema+''+linkCategoria+''+linkLocalidade+']}},"limit":25}';
 
 		}else if(word === undefined){
 
@@ -28,7 +28,7 @@ hashTwitter.controller('mainMonitor', function ($scope, $http, $interval) {
 
 		}else if(tag === undefined){
 
-			return serviceBase+'word_no_rt?filter={"where":{"status.created_at":{"gte":"'+localTime+'","lte":"'+dataNow+'"},"word":"'+word+'","categories":{"all":['+linkTema+''+linkCategoria+''+linkLocalidade+']}},"limit":25}';
+			return serviceBase+'word_no_rt?filter={"where":{"period":"'+$scope.filter.time+'","word":"'+word+'","categories":{"all":['+linkTema+''+linkCategoria+''+linkLocalidade+']}},"limit":25}';
 
 		}else if(word === undefined){
 
@@ -62,13 +62,13 @@ hashTwitter.controller('mainMonitor', function ($scope, $http, $interval) {
 
 	function functionWord(localTime, dataNow, linkTema, linkCategoria, linkLocalidade){
 
-		return serviceBase+'top_words?filter={"where":{"status.created_at":{"gte":"'+localTime+'","lte":"'+dataNow+'"}, "categories":{"all":['+linkTema+''+linkCategoria+''+linkLocalidade+']}},"limit":20}';
+		return serviceBase+'top_words?filter={"where":{"period":"'+$scope.filter.time+'", "categories":{"all":['+linkTema+''+linkCategoria+''+linkLocalidade+']}},"limit":20}';
 
 	};
 
 	function functionMap(localTime, dataNow, linkTema, linkCategoria){
 
-		return serviceBase+'map_volume?filter={"where":{"status.created_at":{"gte":"'+localTime+'","lte":"'+dataNow+'"},"categories":{"all":['+linkTema+''+linkCategoria+']}}}';
+		return serviceBase+'map_volume?filter={"where":{"period":"'+$scope.filter.time+'","categories":{"all":['+linkTema+''+linkCategoria+']}}}';
 
 	};
 
@@ -124,7 +124,7 @@ hashTwitter.controller('mainMonitor', function ($scope, $http, $interval) {
 
 	$scope.filter = {
 		tema: "%22tema-negros%22",
-		time: "7",
+		time: "7d",
 		categoria: "",
 		word: "",
 		tag: "",
@@ -158,7 +158,7 @@ hashTwitter.controller('mainMonitor', function ($scope, $http, $interval) {
 
 				$scope.setAll($scope.timeMonitor, dataNow, newFilter.tema, newFilter.categoria, newFilter.localidade, newFilter.word, newFilter.tag, 25, 0);
 			}			
-
+//localidade e tema apenas
 			if(newFilter.localidade != oldFilter.localidade){
 
 				$scope.setHalf($scope.timeMonitor, dataNow, newFilter.tema, " ", newFilter.localidade, undefined, undefined, 25, 0);

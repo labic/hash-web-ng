@@ -31,15 +31,15 @@ var dataNow15 = now15.toISOString().replace(/z/gi,'');
 var dataNow30 = now30.toISOString().replace(/z/gi,'');
 
 function transformTime(lTime){
-	if(lTime == 15){
+	if(lTime == "15m"){
 		return dataNow15;
-	}else if(lTime == 60){
+	}else if(lTime == "1h"){
 		return dataNow60;
-	}else if(lTime == 24){
+	}else if(lTime == "24h"){
 		return dataNow24;
-	}else if(lTime == 7){
+	}else if(lTime == "7d"){
 		return dataNow7;
-	}else if(lTime == 15){
+	}else if(lTime == "15d"){
 		return dataNow15;
 	}
 }
