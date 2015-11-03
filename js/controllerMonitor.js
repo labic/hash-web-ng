@@ -1,7 +1,11 @@
 'use strict';
 
 /* NOTA: MONITOR - CONTROLLER */
-hashTwitter.controller('mainMonitor', function ($scope, $http, $interval) {
+hashTwitter.controller('mainMonitor', function ($scope, $http, MetricsTwitter, AnalyticsTwitter) {
+
+	function errorHandler(err) {
+		console.log(err);
+	}
 
 	function functionConteudo(localTime, dataNow, linkTema, linkCategoria, linkLocalidade, word, tag, nlimit, nskip){
 
@@ -77,11 +81,26 @@ hashTwitter.controller('mainMonitor', function ($scope, $http, $interval) {
 	$scope.setAll = function(localTime, dataNow, linkTema, linkCategoria, linkLocalidade, word, tag, nlimit, nskip){
 		console.log("entreiALL");
 
+		AnalyticsTwitter.mostRetweetedTweets(
+			$scope.metricsParams, 
+			function success(response) {
+				console.log(response);
+			}, errorHandler);
+		
+		AnalyticsTwitter.mostRetweetedImages(
+			$scope.metricsParams, 
+			function success(response) {
+				console.log(response);
+			}, errorHandler);
+		
+		AnalyticsTwitter.mostRetweetedImages(
+			$scope.metricsParams, 
+			function success(response) {
+				console.log(response);
+			}, errorHandler);
+
 		$scope.monitorlinkNoRtTweet = functionNoRtConteudo(localTime, dataNow, linkTema, linkCategoria, linkLocalidade, word, tag);
 		$scope.monitorLinkTweet = functionConteudo(localTime, dataNow, linkTema, linkCategoria, linkLocalidade, word, tag, nlimit, nskip);
-
-		console.log($scope.monitorLinkTweet);
-		console.log(43);
 
 		$scope.monitorLinkImg = functionImage(localTime, dataNow, linkTema, linkCategoria, linkLocalidade, word, tag);
 		$scope.monitorLinkTag = functionTag(localTime, dataNow, linkTema, linkCategoria, linkLocalidade);
@@ -126,13 +145,13 @@ hashTwitter.controller('mainMonitor', function ($scope, $http, $interval) {
 	};
 
 	$scope.filter = {
-		tema: "%22tema-negros%22",
+		tema: "tema-negros",
 		time: "7d",
 		categoria: "",
-		word: undefined,
-		tag: undefined,
-		localidade: "",
-		pag: 0 
+		word: " ",
+		tag: " ",
+		localidade: " ",
+		pag: 1
 	};
 
 	$scope.monitorCountTweet = baseURL+'/count?where={}';
@@ -142,8 +161,17 @@ hashTwitter.controller('mainMonitor', function ($scope, $http, $interval) {
 	$scope.countpage = 0;
 
 	$scope.$watch('filter', function (newFilter, oldFilter) {
+		$scope.metricsParams = {
+			period: newFilter.time, 
+			'tags[]': [newFilter.tema], 
+			'hashtags[]': [], 
+			'has[]': [],
+			retrive_blocked: null, 
+			page: newFilter.pag, 
+			per_page: 25 
+		}
+
 		if(firstRun == false){
-			$scope.timeMonitor = transformTime(newFilter.time);
 
 			$scope.setAll($scope.timeMonitor, dataNow, newFilter.tema, " ", " ", undefined, undefined, 25, 0);
 

@@ -1,4 +1,4 @@
-var hashTwitter = angular.module('hashTwitter', ['ui.router',]);
+var hashTwitter = angular.module('hashTwitter', ['ui.router','ngResource']);
 
 hashTwitter
 	.config(function ($stateProvider, $urlRouterProvider){
