@@ -31,6 +31,12 @@
           url:  HASH_API_BASE_URI + '/analytics/facebook/most_commented_posts', 
           params: PARAMS,
           cache: true
+        },
+        mostCommentedPosts: {
+          method: 'GET', 
+          url:  HASH_API_BASE_URI + '/analytics/facebook/most_active_profiles', 
+          params: PARAMS,
+          cache: true
         }
       });
 
