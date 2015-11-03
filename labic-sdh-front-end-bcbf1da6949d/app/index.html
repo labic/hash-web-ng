@@ -1,0 +1,47 @@
+<html ng-app="hash.dash" ng-controller="MainCtrl">
+<head>
+  <title>Hash Web</title>
+
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+  <meta name="author" content="Labic">
+  <meta name="reply-to" content="ufes.labic@gmail.com">
+  
+  <link rel="stylesheet" href="../bower_components/bootstrap/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="../bower_components/bootstrap/dist/css/bootstrap-theme.min.css">
+  <link rel="stylesheet" href="../bower_components/components-font-awesome/css/font-awesome.min.css">
+</head>
+<body>
+
+  <main ui-view class="container-fluid"></main>
+
+  <script src="../bower_components/jquery/dist/jquery.min.js"></script>
+  <script src="../bower_components/angular/angular.min.js"></script>
+  <script src="../bower_components/angular-resource/angular-resource.min.js"></script>
+  <script src="../bower_components/angular-route/angular-route.min.js"></script>
+  <script src="../bower_components/angular-ui-router/release/angular-ui-router.min.js"></script>
+  <script src="../bower_components/angular-cache/dist/angular-cache.min.js"></script>
+  <script src="../bower_components/checklist-model/checklist-model.js"></script>
+  <script src="../bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js"></script>
+  <script src="../bower_components/underscore/underscore-min.js"></script>
+  
+  <script src="js/app.js"></script>
+
+  <script src="modules/core/hash.core.js"></script>
+  <script src="modules/core/config/core.config.js"></script>
+  <script src="modules/core/config/core.routes.js"></script>
+  <script src="modules/core/controllers/home.ctrl.js"></script>
+  <script src="modules/core/controllers/layout.ctrl.js"></script>
+  <script src="modules/core/controllers/main.ctrl.js"></script>
+  <script src="modules/core/controllers/router.ctrl.js"></script>
+
+  <script src="modules/hash-api/hash.api.js"></script>
+  <script src="modules/hash-api/resources/twitter.api.js"></script>
+  <script src="modules/hash-api/resources/metrics-twitter.api.js"></script>
+
+  <script src="modules/twitter-monitor/hash.twitter-monitor.js"></script>
+  <script src="modules/twitter-monitor/config/twitter-monitor.config.js"></script>
+  <script src="modules/twitter-monitor/config/twitter-monitor.routes.js"></script>
+  <script src="modules/twitter-monitor/controllers/twitter.ctrl.js"></script>
+</body>
+</html>

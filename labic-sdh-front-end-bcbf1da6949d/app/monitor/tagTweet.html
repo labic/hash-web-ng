@@ -1,0 +1,37 @@
+<!--<p class="subTitle_top">#HASHTAGS MAIS FREQUENTES</p>-->
+
+<div id="divHashtags" style="height:100%;">
+
+	<div class="loading" ng-show="dataLoadOFF">
+		<center><img src="img/icons/spin.gif" height="66px" width="66px"></center>
+		<p style="color:rgba(10, 18, 39, 0.65);">CARREGANDO:</p>
+		<p style="color:rgba(10, 18, 39, 0.65);">estamos realizando a sua requisição, essa operação pode demorar um pouco.</p>
+	</div>
+
+	<div class="loading" ng-show="dataLoad404">
+		<center><img src="img/icons/searching45blue.png" height="40px" width="40px"></center>
+		<p class="loadingWordBlue">NENHUMA HASHTAG ENCONTRADA</p>
+		<p class="loadingWordBlue">tente outra categoria ou intervalo de tempo</p>
+	</div>
+	
+	<div class="loading" ng-show="dataLoadERROR">
+		<center><img src="img/icons/searching45.png" height="40px" width="40px"></center>
+		<p class="loadingWordGrey">ERROR</p>
+		<p class="loadingWordGrey">Estamos tendo problemas ao carregar, volte mais tarde =)</p>
+	</div>
+
+	<div ng-show="dataLoadON" style="height:100%;">
+		<div id="str_highWord" title="Clique para visualizar os ultimos retweets com #{{tag1.hashtag}}" ng-click="loadHastagsPub(tag1.hashtag);">
+			<p class="title_str_highWord">#{{tagOne.hashtag}}</p>
+			<p class="text_str_highWord"><span class="number_str_highWord">{{tagOne.count}}</span> vezes</p>
+		</div>
+
+		<div class="strVertical_highWord">
+			<div title="Clique para visualizar os ultimos retweets com #{{tag.hashtag}}" ng-mouseenter="tagChange(tag)" class="each_word" ng-repeat=" tag in tags" ng-click="filter.tag = tag.hashtag;">
+				<p>#{{tag.hashtag}}</p>
+				<p ng-if="tag.count == 1">{{tag.count}} vez</p>
+				<p ng-if="tag.count != 1">{{tag.count}} vezes</p>
+			</div>
+		</div>
+	</div>
+</div>

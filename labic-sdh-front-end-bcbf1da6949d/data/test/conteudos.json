@@ -1,0 +1,98 @@
+[
+	[
+		{
+			"name":"inclusão social",
+			"query":"conteudo-inclusão social"
+		},
+		{
+			"name":"empoderamento negro",
+			"query":"conteudo-empoderamento negro"
+		},
+		{
+			"name":"violência",
+			"query":"conteudo-violência"
+		},
+		{
+			"name":"racismo",
+			"query":"conteudo-racismo"
+		},
+		{
+			"name":"intolerância religiosa",
+			"query":"conteudo-intolerância religiosa"
+		}
+	],
+	[
+		{
+			"name":"empoderamento",
+			"query":"conteudo-empoderamento"
+		},
+		{
+			"name":"punição",
+			"query":"conteudo-punição"
+		},
+		{
+			"name":"lesbofobia",
+			"query":"conteudo-lesbofobia"
+		},
+		{
+			"name":"transfobia",
+			"query":"conteudo-transfobia"
+		},
+		{
+			"name":"homofobia",
+			"query":"conteudo-homofobia"
+		}
+	],
+	[
+		{
+			"name":"morte e ameaça",
+			"query":"conteudo-morte e ameaça"
+		},
+		{
+			"name":"conflitos",
+			"query":"conteudo-conflitos"
+		},
+		{
+			"name":"inclusão social",
+			"query":"conteudo-inclusão social"
+		},
+		{
+			"name":"etnias",
+			"query":"conteudo-etnias"
+		},
+		{
+			"name":"empoderamento indídena",
+			"query":"conteudo-empoderamento indídena"
+		},
+		{
+			"name":"preconceito",
+			"query":"conteudo-preconceito"
+		}
+	],
+	[
+		{
+			"name":"aborto",
+			"query":"conteudo-aborto"
+		},
+		{
+			"name":"estupro",
+			"query":"conteudo-estupro"
+		},
+		{
+			"name":"feminismo",
+			"query":"conteudo-feminismo"
+		},
+		{
+			"name":"empoderamento feminino",
+			"query":"conteudo-empoderamento feminino"
+		},
+		{
+			"name":"punição",
+			"query":"conteudo-punição"
+		},
+		{
+			"name":"machismo",
+			"query":"conteudo-machismo"
+		}
+	]
+]

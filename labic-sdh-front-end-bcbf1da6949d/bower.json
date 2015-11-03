@@ -1,0 +1,34 @@
+{
+  "name": "sdh-front-end",
+  "version": "1.7.0",
+  "authors": [
+    "zoaldyck <roberto_dmoraes@hotmail.com>",
+    "Gustavo RPS <dev+labic.net@gustavorps.net>"
+  ],
+  "description": "estamos alavancando o esquema",
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "~1.4.7",
+    "angular-resource": "~1.4.7",
+    "angular-route": "~1.4.7",
+    "angular-ui-router": "~0.2.15",
+    "angular-bootstrap": "~0.14.0",
+    "bootstrap": "~3.3.5",
+    "components-font-awesome": "~4.4.0",
+    "jquery": "~2.1.4",
+    "swipebox": "~1.4.1",
+    "Chart.js": "~1.0.2",
+    "qTip2": "~2.2.1",
+    "Processing.js": "processing#~1.4.16",
+    "checklist-model": "~0.6.0",
+    "underscore": "~1.8.3",
+    "angular-fx": "~1.1.0"
+  }
+}
