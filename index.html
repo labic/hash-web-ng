@@ -1,126 +1,126 @@
 <html>
-	<head>
-		<title>Teste_LAB</title>
+  <head>
+    <title>Teste_LAB</title>
 
-		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 
-		<meta name="author" content="LABIC">
-		<meta name="reply-to" content="ufes.labic@gmail.com">
+    <meta name="author" content="LABIC">
+    <meta name="reply-to" content="ufes.labic@gmail.com">
 
-		<!-- CSS geral -->
-		<link rel="stylesheet" href="css/officialStyle.css">
+    <!-- CSS geral -->
+    <link rel="stylesheet" href="css/officialStyle.css">
 
-		<!-- other CSS -->
-		<link rel="stylesheet" href="app/bower_components/swipebox/src/css/swipebox.css">
-		<link rel="stylesheet" href="css/plugins/qtip.min.css">
+    <!-- other CSS -->
+    <link rel="stylesheet" href="app/bower_components/swipebox/src/css/swipebox.css">
+    <link rel="stylesheet" href="css/plugins/qtip.min.css">
 
-		<link href="app/bower_components/animate.css/animate.min.css" rel="stylesheet" type="text/css" />
-		<!-- angular-fx.css goes after animate.css-->
-		<link href="app/bower_components/angular-fx/src/css/angular-fx.css" rel="stylesheet" type="text/css" />
+    <link href="app/bower_components/animate.css/animate.min.css" rel="stylesheet" type="text/css" />
+    <!-- angular-fx.css goes after animate.css-->
+    <link href="app/bower_components/angular-fx/src/css/angular-fx.css" rel="stylesheet" type="text/css" />
 
-		<link rel="stylesheet" href="css/animate.css">
-	</head>
+    <link rel="stylesheet" href="css/animate.css">
+  </head>
 
-	<body ng-app="hashTwitter">
+  <body ng-app="hashTwitter">
 
-		<div id="menu_fixed_bar">
-			<div class="menu_logo" src="img/SDH.png">
-				<p>HASH</p>
-				<p>SDH</p>
-				<p>2015</p>
-			</div>
-			<ul class="menu_fixed">
-				<li class="menu_fixed_op"><a ui-sref="monitor"><img src="img/Index/ICONES-02.svg" class="svg-icon icon-menu-monitor" height="20px" width="20px"></a></li>
-				<li class="menu_fixed_op"><a ui-sref="palavra"><img src="img/Index/ICONES-01.svg" class="svg-icon icon-menu-monitor" height="20px" width="20px"></a></li>
-				<li class="menu_fixed_op"><a href="#/palavras"><img src="img/Index/ICONES-03.svg" class="svg-icon icon-menu-monitor" height="20px" width="20px"></a></li>
-			</ul>
+    <div id="menu_fixed_bar">
+      <div class="menu_logo" src="img/SDH.png">
+        <p>HASH</p>
+        <p>SDH</p>
+        <p>2015</p>
+      </div>
+      <ul class="menu_fixed">
+        <li class="menu_fixed_op"><a ui-sref="monitor"><img src="img/Index/ICONES-02.svg" class="svg-icon icon-menu-monitor" height="20px" width="20px"></a></li>
+        <li class="menu_fixed_op"><a ui-sref="palavra"><img src="img/Index/ICONES-01.svg" class="svg-icon icon-menu-monitor" height="20px" width="20px"></a></li>
+        <li class="menu_fixed_op"><a href="#/palavras"><img src="img/Index/ICONES-03.svg" class="svg-icon icon-menu-monitor" height="20px" width="20px"></a></li>
+      </ul>
 
-			<div id="menu_logo_down">
-				<img src="img/Index/logolabic.svg">
-			</div>
-		</div>
+      <div id="menu_logo_down">
+        <img src="img/Index/logolabic.svg">
+      </div>
+    </div>
 
-		<div ui-view ></div>
+    <div ui-view ></div>
 
-		<!-- Jquery e Jquery UI  -->
-		<script src="app/bower_components/jquery/dist/jquery.min.js"></script>
-		<script src="js/migrate-jquery.js"></script>
+    <!-- Jquery e Jquery UI  -->
+    <script src="app/bower_components/jquery/dist/jquery.min.js"></script>
+    <script src="js/migrate-jquery.js"></script>
 
-		<!-- Others javascripts -->
-		<script src="app/bower_components/swipebox/src/js/jquery.swipebox.js"></script>
-		<script src="app/bower_components/Chart.js/Chart.min.js"></script>
-		<script src="js/qtip.min.js"></script>
+    <!-- Others javascripts -->
+    <script src="app/bower_components/swipebox/src/js/jquery.swipebox.js"></script>
+    <script src="app/bower_components/Chart.js/Chart.min.js"></script>
+    <script src="js/qtip.min.js"></script>
 
-		<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.6/d3.min.js"></script>
-		<script type="text/javascript" src="js/util.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.6/d3.min.js"></script>
+    <script type="text/javascript" src="js/util.js"></script>
 
-		<script src="app/bower_components/angular/angular.min.js"></script>
-		<script src="app/bower_components/angular-route/angular-route.min.js"></script>
-		<script src="app/bower_components/angular-ui-router/release/angular-ui-router.min.js"></script>
-		<script src="app/bower_components/angular-resource/angular-resource.min.js"></script>
+    <script src="app/bower_components/angular/angular.min.js"></script>
+    <script src="app/bower_components/angular-route/angular-route.min.js"></script>
+    <script src="app/bower_components/angular-ui-router/release/angular-ui-router.min.js"></script>
+    <script src="app/bower_components/angular-resource/angular-resource.min.js"></script>
 
-		<script src="js/sunburstZoom.js"></script>
+    <script src="js/sunburstZoom.js"></script>
 
-		<!--		<script src="http://maps.googleapis.com/maps/api/js"></script>-->
-		<!--		<script src="js/mapTweet.js"></script>-->
-		
-		<script src="js/app.js"></script>
+    <!--    <script src="http://maps.googleapis.com/maps/api/js"></script>-->
+    <!--    <script src="js/mapTweet.js"></script>-->
+    
+    <script src="js/app.js"></script>
 
-		<script src="js/controller.js"></script>
-		<script src="js/controllerMonitor.js"></script>
-		<script src="js/controllerPalavras.js"></script>
-		
-		<script src="app/modules/hash-api/hash.api.js"></script>
-		<script src="app/modules/hash-api/resources/analytics-facebook.api.js"></script>
-		<script src="app/modules/hash-api/resources/analytics-twitter.api.js"></script>
-		<script src="app/modules/hash-api/resources/metrics-facebook.api.js"></script>
-		<script src="app/modules/hash-api/resources/metrics-twitter.api.js"></script>
-		<script src="app/modules/hash-api/resources/twitter.api.js"></script>
+    <script src="js/controller.js"></script>
+    <script src="js/controllerMonitor.js"></script>
+    <script src="js/controllerPalavras.js"></script>
+    
+    <script src="app/modules/hash-api/hash.api.js"></script>
+    <script src="app/modules/hash-api/resources/analytics-facebook.api.js"></script>
+    <script src="app/modules/hash-api/resources/analytics-twitter.api.js"></script>
+    <script src="app/modules/hash-api/resources/metrics-facebook.api.js"></script>
+    <script src="app/modules/hash-api/resources/metrics-twitter.api.js"></script>
+    <script src="app/modules/hash-api/resources/twitter.api.js"></script>
 
-		<script src="app/bower_components/Processing.js/processing.min.js"></script>	
+    <script src="app/bower_components/Processing.js/processing.min.js"></script>  
 
-		<script src="app/bower_components/angular-fx/src/js/angular-fx.js"></script>
+    <script src="app/bower_components/angular-fx/src/js/angular-fx.js"></script>
 
-		<script type="text/javascript">
-			
-			function callSvgImg(){
-				jQuery('img.svg-icon').each(function(){
-					var $img = jQuery(this);
-					var imgID = $img.attr('id');
-					var imgClass = $img.attr('class');
-					var imgURL = $img.attr('src');
+    <script type="text/javascript">
+      
+      function callSvgImg(){
+        jQuery('img.svg-icon').each(function(){
+          var $img = jQuery(this);
+          var imgID = $img.attr('id');
+          var imgClass = $img.attr('class');
+          var imgURL = $img.attr('src');
 
-					jQuery.get(imgURL, function(data) {
-						// Get the SVG tag, ignore the rest
-						var $svg = jQuery(data).find('svg');
+          jQuery.get(imgURL, function(data) {
+            // Get the SVG tag, ignore the rest
+            var $svg = jQuery(data).find('svg');
 
-						// Add replaced image's ID to the new SVG
-						if(typeof imgID !== 'undefined') {
-							$svg = $svg.attr('id', imgID);
-						}
-						// Add replaced image's classes to the new SVG
-						if(typeof imgClass !== 'undefined') {
-							$svg = $svg.attr('class', imgClass+' replaced-svg');
-						}
+            // Add replaced image's ID to the new SVG
+            if(typeof imgID !== 'undefined') {
+              $svg = $svg.attr('id', imgID);
+            }
+            // Add replaced image's classes to the new SVG
+            if(typeof imgClass !== 'undefined') {
+              $svg = $svg.attr('class', imgClass+' replaced-svg');
+            }
 
-						// Remove any invalid XML tags as per http://validator.w3.org
-						$svg = $svg.removeAttr('xmlns:a');
+            // Remove any invalid XML tags as per http://validator.w3.org
+            $svg = $svg.removeAttr('xmlns:a');
 
-						// Replace image with new SVG
-						$img.replaceWith($svg);
+            // Replace image with new SVG
+            $img.replaceWith($svg);
 
-					}, 'xml');
-				});
-			};
+          }, 'xml');
+        });
+      };
 
-			callSvgImg();
-			$(".menu_fixed_op").click(function(){
-				$(".icon-menu-monitor").css('fill','#1c5e6e');
-				$(this).find(".icon-menu-monitor").css('fill','#06ccd7');
+      callSvgImg();
+      $(".menu_fixed_op").click(function(){
+        $(".icon-menu-monitor").css('fill','#1c5e6e');
+        $(this).find(".icon-menu-monitor").css('fill','#06ccd7');
 
-				$(".menu_fixed_op").removeClass('changed');
-				$(this).addClass('changed');
-			});
-		</script>
-	</body>
+        $(".menu_fixed_op").removeClass('changed');
+        $(this).addClass('changed');
+      });
+    </script>
+  </body>
 </html>
