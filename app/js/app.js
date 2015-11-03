@@ -19,6 +19,7 @@
     ])
     // .constant('HASH_API_BASE_URI', 'http://localhost:3000/v1')
     .constant('HASH_API_BASE_URI', 'https://hash-api.herokuapp.com:443/v1')
+    .constant('WORD_API_BASE_URI', 'http://107.170.54.11:8080')
     .run(function ($http, CacheFactory) {
       $http.defaults.cache = CacheFactory('defaultCache', {
         maxAge: 15 * 60 * 1000, // Items added to this cache expire after 15 minutes
