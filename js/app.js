@@ -1,7 +1,8 @@
-var hashTwitter = angular.module('hashTwitter', ['ui.router','ngResource', 'hash.api']);
+var hashTwitter = angular.module('hashTwitter', ['ui.router','ngResource', 'hash.api', 'word.api']);
 
 hashTwitter
   .constant('HASH_API_BASE_URI', 'https://hash-api.herokuapp.com:443/v1')
+  .constant('WORD_API_BASE_URI', 'http://107.170.54.11:8080/twitter/')
   .config(function($stateProvider, $urlRouterProvider) {
     $stateProvider
       .state('monitor', {

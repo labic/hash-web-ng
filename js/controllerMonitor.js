@@ -1,7 +1,7 @@
 'use strict';
 
 /* NOTA: MONITOR - CONTROLLER */
-hashTwitter.controller('mainMonitor', function ($scope, $http, MetricsTwitter, AnalyticsTwitter) {
+hashTwitter.controller('mainMonitor', function ($scope, $http, MetricsTwitter, AnalyticsTwitter, WordTwitter) {
 
   function errorHandler(err) {
     console.log(err);
@@ -72,7 +72,7 @@ hashTwitter.controller('mainMonitor', function ($scope, $http, MetricsTwitter, A
 
   function functionMap(localTime, dataNow, linkTema, linkCategoria){
 
-    return serviceBase+'map_volume?filter={"where":{"period":"'+$scope.filter.time+'","categories":{"all":['+linkTema+''+linkCategoria+']}}}';
+    return serviceBase+'map_volume?filter={"where":{"period":"'+$scope.filter.time+'","categories":{"all":[%22'+linkTema+'%22'+linkCategoria+']}}}';
 
   };
 
@@ -81,29 +81,24 @@ hashTwitter.controller('mainMonitor', function ($scope, $http, MetricsTwitter, A
   $scope.setAll = function(localTime, dataNow, linkTema, linkCategoria, linkLocalidade, word, tag, nlimit, nskip){
     console.log("entreiALL");
 
-    AnalyticsTwitter.mostRetweetedTweets(
-      $scope.metricsParams, 
-      function success(response) {
-        console.log(response);
-      }, errorHandler);
+    //    AnalyticsTwitter.mostRetweetedTweets(
+    //      $scope.metricsParams, 
+    //      function success(response) {
+    //        $scope.twittes = response;
+    //      }, errorHandler);
 
-    AnalyticsTwitter.mostRetweetedImages(
-      $scope.metricsParams, 
-      function success(response) {
-        console.log(response);
-      }, errorHandler);
+    //    AnalyticsTwitter.mostRetweetedImages(
+    //      $scope.metricsParams, 
+    //      function success(response) {
+    //        console.log(response);
+    //      }, errorHandler);
 
-    AnalyticsTwitter.mostRetweetedImages(
-      $scope.metricsParams, 
-      function success(response) {
-        console.log(response);
-      }, errorHandler);
 
-    $scope.monitorlinkNoRtTweet = functionNoRtConteudo(localTime, dataNow, linkTema, linkCategoria, linkLocalidade, word, tag);
-    $scope.monitorLinkTweet = functionConteudo(localTime, dataNow, linkTema, linkCategoria, linkLocalidade, word, tag, nlimit, nskip);
+
+//    $scope.monitorLinkTweet = functionConteudo(localTime, dataNow, linkTema, linkCategoria, linkLocalidade, word, tag, nlimit, nskip);
 
     $scope.monitorLinkImg = functionImage(localTime, dataNow, linkTema, linkCategoria, linkLocalidade, word, tag);
-    $scope.monitorLinkTag = functionTag(localTime, dataNow, linkTema, linkCategoria, linkLocalidade);
+//    $scope.monitorLinkTag = functionTag(localTime, dataNow, linkTema, linkCategoria, linkLocalidade);
     $scope.monitorLinkWord = functionWord(localTime, dataNow, linkTema, linkCategoria, linkLocalidade);
     $scope.monitorLinkMap = functionMap(localTime, dataNow, linkTema, linkCategoria);
   };
@@ -161,17 +156,31 @@ hashTwitter.controller('mainMonitor', function ($scope, $http, MetricsTwitter, A
   $scope.countpage = 0;
 
   $scope.$watch('filter', function (newFilter, oldFilter) {
-    $scope.metricsParams = {
+    var metricsParams = {
       period: newFilter.time, 
       'tags[]': [newFilter.tema], 
       'hashtags[]': [], 
-      'has[]': [],
       retrive_blocked: null, 
-      page: newFilter.pag, 
+      page: 1, 
       per_page: 25 
     }
 
     if(firstRun == false){
+      
+      $scope.timeMonitor = transformTime($scope.filter.time);
+
+      AnalyticsTwitter.mostRetweetedTweets(
+        metricsParams, 
+        function success(response) {
+          $scope.tweets = response;
+        }, errorHandler);
+
+      AnalyticsTwitter.mostRetweetedImages(
+        metricsParams, 
+        function success(response) {
+          $scope.imgs = response.splice(0,24);
+          $scope.imgsMos = response;
+        }, errorHandler);
 
       $scope.setAll($scope.timeMonitor, dataNow, newFilter.tema, " ", " ", undefined, undefined, 25, 0);
 
@@ -314,7 +323,7 @@ hashTwitter.controller('mainMonitor', function ($scope, $http, MetricsTwitter, A
 
   /* TWEETs */
 
-  $scope.$watch('monitorLinkTweet', function() {
+  /*$scope.$watch('monitorLinkTweet', function() {
 
     var contData = 0;
 
@@ -372,11 +381,11 @@ hashTwitter.controller('mainMonitor', function ($scope, $http, MetricsTwitter, A
       $scope.dataLoadON = false;
       console.log(status);
     });   
-  }); 
+  }); */
 
   /* IMAGEM */
 
-  $scope.$watch('monitorLinkImg', function() {
+  /*$scope.$watch('monitorLinkImg', function() {
     $scope.dataLoadON = false;
     $scope.dataLoad404 = false;
     $scope.dataLoadOFF = true;
@@ -401,7 +410,7 @@ hashTwitter.controller('mainMonitor', function ($scope, $http, MetricsTwitter, A
       $scope.dataLoadON = false;
       console.log(status);
     });
-  });   
+  });   */
 
   /* WORD */
 
