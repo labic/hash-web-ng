@@ -11,7 +11,7 @@ hashTwitter.controller('mainMonitor', function ($scope, $http, $interval) {
 
 		}else if(tag === undefined){
 
-			return serviceBase+'word_posts?filter={"period":"'+$scope.filter.time+'","word":"'+word+'","categories":{"all":['+linkTema+''+linkCategoria+''+linkLocalidade+']}},"limit":25}';
+			return serviceBase+'word_posts?filter={"where":{"period":"'+$scope.filter.time+'","word":"'+word+'","categories":{"all":['+linkTema+''+linkCategoria+''+linkLocalidade+']}},"limit":25}';
 
 		}else if(word === undefined){
 
@@ -45,7 +45,7 @@ hashTwitter.controller('mainMonitor', function ($scope, $http, $interval) {
 
 		}else if(tag === undefined){
 
-			return serviceBase+'word_images?filter={"where":{"status.created_at":{"gte":"'+localTime+'","lte":"'+dataNow+'"},"word":"'+word+'","categories":{"all":['+linkTema+''+linkCategoria+''+linkLocalidade+']}},"limit":400}';
+			return serviceBase+'word_images?filter={"where":{"period":"'+$scope.filter.time+'","word":"'+word+'","categories":{"all":['+linkTema+''+linkCategoria+''+linkLocalidade+']}},"limit":400}';
 
 		}else if(word === undefined){
 
@@ -79,6 +79,9 @@ hashTwitter.controller('mainMonitor', function ($scope, $http, $interval) {
 
 		$scope.monitorlinkNoRtTweet = functionNoRtConteudo(localTime, dataNow, linkTema, linkCategoria, linkLocalidade, word, tag);
 		$scope.monitorLinkTweet = functionConteudo(localTime, dataNow, linkTema, linkCategoria, linkLocalidade, word, tag, nlimit, nskip);
+
+		console.log($scope.monitorLinkTweet);
+		console.log(43);
 
 		$scope.monitorLinkImg = functionImage(localTime, dataNow, linkTema, linkCategoria, linkLocalidade, word, tag);
 		$scope.monitorLinkTag = functionTag(localTime, dataNow, linkTema, linkCategoria, linkLocalidade);
@@ -115,19 +118,19 @@ hashTwitter.controller('mainMonitor', function ($scope, $http, $interval) {
 
 		$scope.setMin($scope.timeMonitor, dataNow, $scope.filter.tema, $scope.filter.categoria, $scope.filter.localidade, undefined, undefined, nlimit, nskip);
 	};
-	
+
 	$scope.recentTweets = function (){
-		
+
 		$scope.monitorLinkTweet = baseURL+'?filter={"where":{"categories":{"all":['+$scope.filter.tema+''+$scope.filter.categoria+''+$scope.filter.localidade+']}},"limit":25,"skip":0, "order": "status.timestamp_ms DESC"}';
-		
+
 	};
 
 	$scope.filter = {
 		tema: "%22tema-negros%22",
 		time: "7d",
 		categoria: "",
-		word: "",
-		tag: "",
+		word: undefined,
+		tag: undefined,
 		localidade: "",
 		pag: 0 
 	};
@@ -150,15 +153,21 @@ hashTwitter.controller('mainMonitor', function ($scope, $http, $interval) {
 
 			if(newFilter.tema != oldFilter.tema){ 
 
+				$scope.filter.word = undefined;
+				$scope.filter.tag = undefined;
+
 				$scope.setAll($scope.timeMonitor, dataNow, newFilter.tema, " ", " ", undefined, undefined, 25, 0);
 			}
 
 			if(newFilter.time != oldFilter.time){
 				$scope.timeMonitor = transformTime($scope.filter.time);
 
+				console.log($scope.timeMonitor);
+				console.log($scope.filter.time);
+
 				$scope.setAll($scope.timeMonitor, dataNow, newFilter.tema, newFilter.categoria, newFilter.localidade, newFilter.word, newFilter.tag, 25, 0);
 			}			
-//localidade e tema apenas
+			//localidade e tema apenas
 			if(newFilter.localidade != oldFilter.localidade){
 
 				$scope.setHalf($scope.timeMonitor, dataNow, newFilter.tema, " ", newFilter.localidade, undefined, undefined, 25, 0);
@@ -184,31 +193,31 @@ hashTwitter.controller('mainMonitor', function ($scope, $http, $interval) {
 	$http.get($scope.monitorCountTweet).success(function (data) {
 		$scope.countRetweet = data;
 
-		$scope.contConteudoChange = function(x,max){
-			$interval(function() {
-				if( x < max) {
-					x = x + 7;
-					$scope.countRetweetFinal = x;
-				}
-			},1000);
-		};
-
-		$scope.contConteudoChange(1200000, $scope.countRetweet.count);
+		//		$scope.contConteudoChange = function(x,max){
+		//			$interval(function() {
+		//				if( x < max) {
+		//					x = x + 7;
+		//					$scope.countRetweetFinal = x;
+		//				}
+		//			},1000);
+		//		};
+		//
+		//		$scope.contConteudoChange(1200000, $scope.countRetweet.count);
 	});
 
-	$http.get($scope.monitorCountImg).success(function (data) {
+	$http.get($scope.monitorCountImage).success(function (data) {
 		$scope.countImage = data;
 
-		$scope.contImageChange = function(x,max){
-			$interval(function() {
-				if( x < max) {
-					x = x + 7;
-					$scope.countImageFinal = x;
-				}
-			},1000);
-		};
-
-		$scope.contImageChange(90000,$scope.countImage.count);
+		//		$scope.contImageChange = function(x,max){
+		//			$interval(function() {
+		//				if( x < max) {
+		//					x = x + 7;
+		//					$scope.countImageFinal = x;
+		//				}
+		//			},1000);
+		//		};
+		//
+		//		$scope.contImageChange(90000,$scope.countImage.count);
 	});
 
 	/* MAP */
@@ -330,6 +339,9 @@ hashTwitter.controller('mainMonitor', function ($scope, $http, $interval) {
 			}
 		}).error(function(data, status) {
 			$scope.dataLoadERROR = true;
+			$scope.dataLoad404 = false;
+			$scope.dataLoadOFF = false;
+			$scope.dataLoadON = false;
 			console.log(status);
 		});   
 	}); 
@@ -356,6 +368,9 @@ hashTwitter.controller('mainMonitor', function ($scope, $http, $interval) {
 			}
 		}).error(function(data, status) {
 			$scope.dataLoadERROR = true;
+			$scope.dataLoad404 = false;
+			$scope.dataLoadOFF = false;
+			$scope.dataLoadON = false;
 			console.log(status);
 		});
 	});   
@@ -383,6 +398,9 @@ hashTwitter.controller('mainMonitor', function ($scope, $http, $interval) {
 
 		}).error(function(data, status) {
 			$scope.dataLoadERROR = true;
+			$scope.dataLoad404 = false;
+			$scope.dataLoadOFF = false;
+			$scope.dataLoadON = false;
 			console.log(status);
 		});
 
@@ -413,6 +431,9 @@ hashTwitter.controller('mainMonitor', function ($scope, $http, $interval) {
 			}
 		}).error(function(data, status) {
 			$scope.dataLoadERROR = true;
+			$scope.dataLoad404 = false;
+			$scope.dataLoadOFF = false;
+			$scope.dataLoadON = false;
 			console.log(status);
 		});
 	}); 

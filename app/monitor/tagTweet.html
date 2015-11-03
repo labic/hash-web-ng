@@ -13,6 +13,12 @@
 		<p class="loadingWordBlue">NENHUMA HASHTAG ENCONTRADA</p>
 		<p class="loadingWordBlue">tente outra categoria ou intervalo de tempo</p>
 	</div>
+	
+	<div class="loading" ng-show="dataLoadERROR">
+		<center><img src="img/icons/searching45.png" height="40px" width="40px"></center>
+		<p class="loadingWordGrey">ERROR</p>
+		<p class="loadingWordGrey">Estamos tendo problemas ao carregar, volte mais tarde =)</p>
+	</div>
 
 	<div ng-show="dataLoadON" style="height:100%;">
 		<div id="str_highWord" title="Clique para visualizar os ultimos retweets com #{{tag1.hashtag}}" ng-click="loadHastagsPub(tag1.hashtag);">

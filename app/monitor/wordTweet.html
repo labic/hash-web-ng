@@ -1,6 +1,3 @@
-<!--<p class="subTitle_top">PALAVRAS MAIS FREQUENTES  </p>-->
-
-
 <div style="height:100%;">
 
 	<div class="loading" ng-show="dataLoadOFF" >
@@ -13,6 +10,12 @@
 		<center><img src="img/icons/searching45blue.png" height="40px" width="40px"></center>
 		<p class="loadingWordBlue">NENHUMA PALAVRA ENCONTRADA</p>
 		<p class="loadingWordBlue">tente outra categoria ou intervalo de tempo</p>
+	</div>
+	
+	<div class="loading" ng-show="dataLoadERROR">
+		<center><img src="img/icons/searching45.png" height="40px" width="40px"></center>
+		<p class="loadingWordGrey">ERROR</p>
+		<p class="loadingWordGrey">Estamos tendo problemas ao carregar, volte mais tarde =)</p>
 	</div>
 
 	<div ng-show="dataLoadON">
@@ -35,6 +38,6 @@
 			<p>Assuntos mais ocorrentes</p>
 		</div>
 		<p ng-repeat="conteudo in conteudos" ng-click="filter.categoria =',%22'+conteudo.query+'%22';">{{conteudo.name}}</p>
-		<p ng-click="changeCategoria(',%22conteudo-geral%22')">geral</p>
+<!--		<p ng-click="changeCategoria(',%22conteudo-geral%22')">geral</p>-->
 	</div>
 </div>
