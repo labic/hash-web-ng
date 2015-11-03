@@ -11,21 +11,21 @@ var serviceBase = 'http://178.62.252.46:8080/';
 
 var nowState = new Date();
 
-var now = new Date(nowState.getTime() - 11700000);
-var now15 = new Date(now.getTime() - 15*60000);
-var now60 = new Date(now.getTime() - 3600000);
-var now12 = new Date(now.getTime() - 43200000);
-var now24 = new Date(now.getTime() - 86400000);
-var now7 = new Date(now.getTime() - 7*86400000);
-var now30 = new Date(now.getTime() - 30*86400000);
+var now 	= new Date(nowState.getTime());
+var now15 = new Date(now.getTime() - 15 * 60 * 1000);
+var now60 = new Date(now.getTime() - 60 * 60 * 1000);
+var now12 = new Date(now.getTime() - 12 * 60 * 60 * 1000);
+var now24 = new Date(now.getTime() - 24 * 60 * 60 * 1000);
+var now7 	= new Date(now.getTime() - 7 * 24 * 60 * 60 * 1000);
+var now30 = new Date(now.getTime() - 30 * 24 * 60 * 60 * 1000);
 
-var nowT = new Date(now).getTime();
-var nowT15 = new Date(now).getTime() - 15*60000;
-var nowT60 = new Date(now).getTime() - 3600000;
-var nowT12 = new Date(now.getTime() - 43200000);
-var nowT24 = new Date(now).getTime() - 86400000;
-var nowT7 = new Date(now).getTime() - 7*86400000;
-var nowT30 = new Date(now).getTime() - 30*86400000;
+var nowT 	 = new Date(now).getTime();
+var nowT15 = new Date(now).getTime() - 15 * 60 * 1000;
+var nowT60 = new Date(now).getTime() - 60 * 60 * 1000;
+var nowT12 = new Date(now).getTime() - 12 * 60 * 60 * 1000;
+var nowT24 = new Date(now).getTime() - 24 * 60 * 60 * 1000;
+var nowT7  = new Date(now).getTime() - 7 * 24 * 60 * 60 * 1000;
+var nowT30 = new Date(now).getTime() - 30 * 24 * 60 * 60 * 1000;
 
 /* Organizando data da forma nescessaria para passar para o link; */
 var dataNow = now.toISOString().replace(/z/gi,'');
@@ -253,8 +253,8 @@ hashTwitter.controller('mainMonitor', function ($scope) {
 		catNumber = x;
 	};
 
-	$scope.templates = [ { name: 'WordTweet', url: 'app/monitor/wordTweet.html'},
-						{ name: 'TagTweet', url: 'app/monitor/tagTweet.html'} ];
+	$scope.templates = [ { name: 'WordTweet', url: 'monitor/wordTweet.html'},
+						{ name: 'TagTweet', url: 'monitor/tagTweet.html'} ];
 
 	$scope.template = $scope.templates[0];
 
@@ -262,13 +262,13 @@ hashTwitter.controller('mainMonitor', function ($scope) {
 		$scope.template = $scope.templates[x];
 	};
 
-	$scope.templatesConteudo = [{ name: 'twTweet', url: 'app/monitor/twTweet.html'},
-								{ name: 'imgTweet', url: 'app/monitor/imgTweet.html'},
-								{ name: 'twContTweet', url: 'app/monitor/twContTweet.html'},
-								{ name: 'imgMosaicoTweet', url: 'app/monitor/imgMosaicoTweet.html'},
-								{ name: 'usuario', url: 'app/monitor/usuario.html'},
-								{ name: 'mensoes', url: 'app/monitor/mentions.html'},
-								{ name: 'url', url: 'app/monitor/url.html'},
+	$scope.templatesConteudo = [{ name: 'twTweet', url: 'monitor/twTweet.html'},
+								{ name: 'imgTweet', url: 'monitor/imgTweet.html'},
+								{ name: 'twContTweet', url: 'monitor/twContTweet.html'},
+								{ name: 'imgMosaicoTweet', url: 'monitor/imgMosaicoTweet.html'},
+								{ name: 'usuario', url: 'monitor/usuario.html'},
+								{ name: 'mensoes', url: 'monitor/mentions.html'},
+								{ name: 'url', url: 'monitor/url.html'},
 							   ];
 
 	$scope.templateConteudo = $scope.templatesConteudo[0];
@@ -455,7 +455,7 @@ hashTwitter.controller('mainMonitor', function ($scope) {
 		$scope.$emit('handleEmitImage', linkImg);
 		$scope.$emit('handleEmitUser', linkUser);
 		$scope.$emit('handleEmitMentions', linkMentions);
-		$scope.$emit('handleEmitUrl', linkUrl);
+		$scope.$emit('handleEmitUrl', linkUrls);
 		$scope.$emit('handleEmitConteudo', linkConteudo, linkNoRtConteudo);
 	};
 
