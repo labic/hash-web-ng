@@ -20,14 +20,14 @@
 		<p class="loadingWordGrey">Estamos tendo problemas ao carregar, volte mais tarde =)</p>
 	</div>
 
-	<div ng-show="dataLoadON" style="height:100%;">
+	<div style="height:100%;">
 		<div id="str_highWord" title="Clique para visualizar os ultimos retweets com #{{tag1.hashtag}}" ng-click="loadHastagsPub(tag1.hashtag);">
 			<p class="title_str_highWord">#{{tagOne.hashtag}}</p>
 			<p class="text_str_highWord"><span class="number_str_highWord">{{tagOne.count}}</span> vezes</p>
 		</div>
 
 		<div class="strVertical_highWord">
-			<div title="Clique para visualizar os ultimos retweets com #{{tag.hashtag}}" ng-mouseenter="tagChange(tag)" class="each_word" ng-repeat=" tag in tags" ng-click="filter.tag = tag.hashtag;">
+			<div title="Clique para visualizar os ultimos retweets com #{{tag.hashtag}}" ng-mouseenter="$parent.tagOne = tag" class="each_word" ng-repeat=" tag in tags" ng-click="filter.tag = tag.hashtag;">
 				<p>#{{tag.hashtag}}</p>
 				<p ng-if="tag.count == 1">{{tag.count}} vez</p>
 				<p ng-if="tag.count != 1">{{tag.count}} vezes</p>

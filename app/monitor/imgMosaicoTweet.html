@@ -12,7 +12,7 @@
 		<p class="loadingWordGrey">tente outra categoria ou intervalo de tempo</p>
 	</div>
 
-	<div ng-show="dataLoadON" class="geralTweets_result" style="padding:10px;">
+	<div class="geralTweets_result" style="padding:10px;">
 		<div ng-repeat="imgMos in imgsMos" class="out str_TopImg_mosaico">
 			<a href='{{imgMos.media_url_https}}' class="swipebox" title='Retweetado {{imgMos.count}} - "{{imgMos.text}}" @{{img.user.screen_name}}' >
 				<img check-image ng-src="{{imgMos.media_url_https}}:thumb" class="img_TopImg_mosaico" alt="image" width="{{alturaImg}}px" height="{{alturaImg}}px">

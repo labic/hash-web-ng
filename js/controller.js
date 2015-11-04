@@ -1,5 +1,6 @@
 var baseURL = 'https://hash-api.herokuapp.com:443/v1/tweets';
-var serviceBase = 'http://107.170.54.11:8080';
+var serviceBase = 'http://107.170.54.11:8080/twitter/';
+//criar servicebase FACEBOOK
 
 /* Inicializando tempo de milisegundos */
 
