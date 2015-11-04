@@ -1,5 +1,5 @@
 <div class="row">
-  <div class="col-sm-5">
+  <div class="col-sm-4">
     
     <aside class="filter main-tags btn-group">
       <button ng-repeat="tag in mainTagsOptions.values" class="btn btn-primary" ng-model="filter.mainTag" uib-btn-radio="tag.key">{{tag.value}}</button>
@@ -25,7 +25,7 @@
 
   </div>
 
-  <div class="col-sm-2">
+  <div class="col-sm-3">
     <uib-tabset type="pills" justified="true">
       <uib-tab active="true">
         <uib-tab-heading>
@@ -33,8 +33,8 @@
         </uib-tab-heading>
 
         <aside class="filter words">
-          <ol>
-            <li ng-repeat="wordItem in data.twitter.words.collection">
+          <ol class="list-group">
+            <li ng-repeat="wordItem in data.twitter.words.collection" class="list-group-item">
               <button class="btn btn-secundary" ng-model="filter.word" uib-btn-radio="wordItem.word">{{ wordItem.word }}</button>
             </li>
           </ol>
@@ -47,8 +47,8 @@
         </uib-tab-heading>
 
         <aside class="filter hashtags">
-          <ol>
-            <li ng-repeat="hashtagItem in data.twitter.hashtags.collection">
+          <ol class="list-group">
+            <li ng-repeat="hashtagItem in data.twitter.hashtags.collection" class="list-group-item">
               <button class="btn btn-secundary" ng-model="filter.word" uib-btn-radio="hashtagItem.hashtag">#{{ hashtagItem.hashtag }}</button>
             </li>
           </ol>
@@ -63,19 +63,55 @@
         <uib-tab-heading>
           <i class="fa fa-twitter"></i> Tweets
         </uib-tab-heading>
+
+        <section class="content tweets">
+          <a ng-repeat="tweet in data.twitter.tweets.collection" href="https://twitter.com/{{tweet.status.user.screen_name}}/status/{{tweet.status.id_str}}" class="media list-group-item" target="_blank">
+            <div class="media-left media-middle">
+              <img src="{{tweet.status.user.profile_image_url_https}}" class="img-circle">
+            </div>
+            <div class="media-body">
+              <h4 class="media-heading">@{{ tweet.status.user.screen_name }} | {{ tweet.count }} RT</h4>
+              <p>{{ tweet.status.text }}</p>
+              <span>Último Retweet {{ tweet.status.timestamp_ms | date:"dd-MM-yyyy 'às' HH:mm:ss" }}</span>
+            </div>
+          </a>
+        </section>
+
         <section ui-view="tweets-list" class="list-group"></section>
       </uib-tab>
       <uib-tab>
         <uib-tab-heading>
           <i class="fa fa-image"></i> Imagens 1
         </uib-tab-heading>
-        <section ui-view="images-list" format="side-by-side"></section>
+        <section class="content images list">
+          <ol class="row">
+            <li ng-repeat="image in data.twitter.images.collection" class="col-sm-4">
+              <a href="#">
+                <figure>
+                  <img class="img-responsive img-thumbnail" class="img-responsive" src="{{ image.media_url_https }}" alt="Imagem postada por @{{ image.user.screen_name }}">
+                  <figcaption class="hidden">{{ image.text }}</figcaption>
+                </figure>
+              </a>
+            </li>
+          </ol>
+        </section>
       </uib-tab>
       <uib-tab>
         <uib-tab-heading>
           <i class="fa fa-th"></i> Imagens 2
         </uib-tab-heading>
-        <section ui-view="images-list" format="mosaic"></section>
+        <section class="content images mozaic">
+          <ol class="row">
+            <li ng-repeat="image in data.twitter.images.collection" class="col-sm-2">
+              <a href="#">
+                <figure>
+                  <img class="img-responsive img-circle" src="{{ image.media_url_https }}" alt="Imagem postada por @{{ image.user.screen_name }}">
+                  <figcaption class="hidden">{{ image.text }}</figcaption>
+                </figure>
+              </a>
+            </li>
+          </ol>
+        </section>
       </uib-tab>
     </uib-tabset>
   </main>
