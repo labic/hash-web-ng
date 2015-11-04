@@ -3,10 +3,11 @@ var app      = express();
 
 app.use(express.static(__dirname));
 
-app.listen(8080);
+var PORT = (8081 || process.env.PORT);
+app.listen(PORT);
 
 app.get('/', function (req, res) {
   res.sendfile('./index.html');
 });
 
-console.log("App listening on port 8080");
+console.log('App listening on port ' + PORT);

@@ -11,17 +11,8 @@
         .state('app.twitter-monitor.view', {
           url: '^/twitter',
           views: {
-            'vertical-menu': {
-              templateUrl: 'modules/core/views/partials/vertical-menu.html'
-            },
             'map-filter': {
               templateUrl: 'modules/twitter-monitor/views/partials/map-filter.html'
-            },
-            'time-granularity-filter': {
-              templateUrl: 'modules/twitter-monitor/views/partials/time-granularity-filter.html'
-            },
-            'tweets-count': {
-              templateUrl: 'modules/twitter-monitor/views/partials/tweets-count.html'
             },
             'words-filter': {
               templateUrl: 'modules/twitter-monitor/views/partials/words-filter.html'

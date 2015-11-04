@@ -3,41 +3,114 @@
 
   angular
     .module('hash.twitter-monitor')
-    .controller('TwitterMonitorCtrl', function ($scope, $filter, MetricsTwitter) {
-      $scope.mainTagsFilter = [{ key: 'tema-negros', value: 'Negros' }, { key: 'tema-lgbt', value: 'LGBT' }, { key: 'tema-indigena', value: 'Indígena' }, { key: 'tema-genero', value: 'Mulher' }];
-      $scope.localtionsFilter = [];
-      $scope.timeRangerFilter = {
+    .controller('TwitterMonitorCtrl', function ($scope, $filter, AnalyticsTwitter) {
+      $scope.options = {
+        mainTags: {},
+        location: {},
+        timeRanger: {}
+      }; 
+      $scope.data = {
+        twitter: {
+          tweets: {
+            collection: [],
+            count: 10000
+          },
+          images: {
+            collection: [],
+            count: 20000
+          },
+          words: { 
+            collection: [
+              { word: 'word1', count: 999 },
+              { word: 'word2', count: 999 },
+              { word: 'word3', count: 999 },
+              { word: 'word4', count: 999 },
+              { word: 'word5', count: 999 },
+              { word: 'word6', count: 999 },
+              { word: 'word7', count: 999 },
+              { word: 'word8', count: 999 },
+              { word: 'word9', count: 999 }
+            ]
+          },
+          hashtags: {
+            collection: [
+              { hashtag: 'hashtag1', count: 999 },
+              { hashtag: 'hashtag2', count: 999 },
+              { hashtag: 'hashtag3', count: 999 },
+              { hashtag: 'hashtag4', count: 999 },
+              { hashtag: 'hashtag5', count: 999 },
+              { hashtag: 'hashtag6', count: 999 },
+              { hashtag: 'hashtag7', count: 999 }
+            ]
+          }
+        }
+      };
+      $scope.mainTagsOptions = {
+        values: [{ key: 'tema-negros', value: 'Negros' }, { key: 'tema-lgbt', value: 'LGBT' }, { key: 'tema-indigena', value: 'Índigena' }, { key: 'tema-genero', value: 'Mulher' }],
+        default: 'tema-negros'
+      };
+      $scope.localtionsOptions = [];
+      $scope.periodOptions = {
         values: [{
           key: '15 minutos', 
-          value: new Date(Date.now() - 15 * 60 * 1000)
+          value: '15m'
         },{
           key: '1 hora', 
-          value: new Date(Date.now() - 60 * 60 * 1000)
+          value: '1h'
         },{
           key: '1 dia', 
-          value: new Date(Date.now() - 24 * 60 * 60 * 1000)
+          value: '1d'
         },{
           key: '7 dias', 
-          value: new Date(Date.now() - 7 * 24 * 60 * 60 * 1000)
+          value: '7d'
         }]
       };
-      $scope.timeRangerFilter.default = $scope.timeRangerFilter.values[2];
-      $scope.tweets = {
-        data: [],
-        page: 1,
-        count: null
-      };
+      $scope.periodOptions.default = $scope.periodOptions.values[2];
 
       $scope.filter = {
-        mainTag: $scope.mainTagsFilter[0],
-        //location: $scope.localtionsFilter[],
-        timeRange: { 
-          since: $scope.timeRangerFilter.default.value,
-          until: new Date()
-        },
-        words: [ { word: 'teste 1', count: 100 }, { word: 'teste 2', count: 200 }, { word: 'teste 1', count: 300 } ],
-        hashtags: []
+        period: $scope.periodOptions.default.value,
+        mainTag: $scope.mainTagsOptions.default,
+        secondaryTag: null,
+        //location: localtionsOptions[],
+        hashtag: null,
+        word: null,
+        pagination: {
+          analyticsTwitter: {
+            mostRetweetedTweets: 1,
+            mostPopularHashtags: 1
+          },
+          wordTwitter: {
+            status: 1
+          }
+        }
       };
+
+      $scope.$watch('filter', function(newFilter, oldFilter) {
+        AnalyticsTwitter.mostRetweetedTweets({
+          period: newFilter.period,
+          // 'tags[]': [newFilter.mainTag, newFilter.secondaryTag],
+          'tags[]': [newFilter.mainTag],
+          // 'hashtags[]': [newFilter.hashtag],
+          retrive_blocked: false,
+          page: newFilter.pagination.analyticsTwitter.mostRetweetedTweets
+        }, function success(data) {
+          $scope.data.twitter.tweets.collection = data;
+        }, errorHandler);
+
+        AnalyticsTwitter.mostPopularHashtags({
+          period: newFilter.period,
+          // 'tags[]': [newFilter.mainTag, newFilter.secondaryTag],
+          'tags[]': [newFilter.mainTag],
+          // 'hashtags[]': [newFilter.hashtag],
+          retrive_blocked: false,
+          page: newFilter.pagination.analyticsTwitter.mostPopularHashtags,
+          per_page: 20
+        }, function(data) {
+          $scope.data.twitter.hashtags.collection = data;
+        }, errorHandler);
+      }, true);
+
+      function errorHandler(err){ console.error(err); };
 
       // var fistRun = true;
       // $scope.$watch('filter', function(newFilter, oldFilter) {
