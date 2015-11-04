@@ -3,15 +3,18 @@
 /* NOTA: MONITOR - CONTROLLER */
 hashTwitter.controller('mainMonitor', function ($scope, $http, MetricsTwitter, AnalyticsTwitter, WordTwitter) {
 
+  var firstRun = false;
+
+  $scope.categorieNumber = 0;
+  $scope.countpage = 0;
+
   function errorHandler(err) {
     console.log(err);
   }
 
   function functionConteudo(localTime, dataNow, linkTema, linkCategoria, linkLocalidade, word, tag, nlimit, nskip){
 
-    if((word === undefined) && (tag === undefined)){
-
-      //      return baseURL+'/analytics?type=top-retweets&filter={"where":{"status.created_at":{"gte":"'+localTime+'","lte":"'+dataNow+'"},"categories":{"all":['+linkTema+''+linkCategoria+''+linkLocalidade+']}},"limit":'+nlimit+',"skip":'+nskip+'}';
+    if((word === null) && (tag === null)){
 
       AnalyticsTwitter.mostRetweetedTweets(
         $scope.analyticsParams, 
@@ -19,18 +22,88 @@ hashTwitter.controller('mainMonitor', function ($scope, $http, MetricsTwitter, A
           $scope.twittes = response;
         }, errorHandler);
 
-    }else if(tag === undefined){
+    }else if(tag === null){
 
-      $scope.monitorLinkTweet = serviceBase+'word_posts?filter={"where":{"period":"'+$scope.filter.time+'","word":"'+word+'","categories":{"all":['+linkTema+''+linkCategoria+''+linkLocalidade+']}},"limit":25}';
+      var twRtJson = JSON.stringify(filterDavid($scope.filter.time, linkTema, linkCategoria, linkLocalidade, word, null, 25),["where","period","word","categories","all","limit"]);
 
-    }else if(word === undefined){
+      var monitorLinkWord =  serviceBase+'word_posts?filter='+twRtJson;
 
-      $scope.monitorLinkTweet = baseURL+'/analytics?type=top-retweets&filter={"where":{"status.entities.hashtags.text":{"all":["'+tag+'"]},"status.created_at":{"gte":"'+localTime+'","lte":"'+dataNow+'"},"categories":{"all":['+linkTema+''+linkCategoria+''+linkLocalidade+']}},"limit":25,"skip":0}';
+      var contData = 0;
+
+      $scope.dataLoadON = false;
+      $scope.dataLoad404 = false;
+      $scope.dataLoadOFF = true;
+      $scope.dataLoadERROR = false;
+
+      if($scope.countpage > 0){
+        $scope.buttonBack = true;
+      }else{
+        $scope.buttonBack = false;
+      }
+
+      $http.get(monitorLinkWord).success(function (data) {
+
+        $scope.twittes = data;
+
+        //        contData = Object.keys(data).length;
+
+        //        if((data == "") || (contData < 25)){
+        //
+        //          $scope.buttonNext = false;
+        //
+        //          $http.get($scope.monitorlinkNoRtTweet).success(function (data1) {
+        //            $scope.twittes = data.concat(data1);
+        //
+        //            if(data1 == ""){
+        //              $scope.twittes = data;
+        //            }else{
+        //              $scope.twittes = data.concat(data1);
+        //            }
+        //
+        //            if((data1 == "") && (data == "")){
+        //              $scope.dataLoadON = false;
+        //              $scope.dataLoadOFF = false;
+        //              $scope.dataLoad404 = true;
+        //            }else{
+        //              $scope.dataLoad404 = false;
+        //              $scope.dataLoadOFF = false;
+        //              $scope.dataLoadON = true;
+        //            }
+        //          });
+        //        }else{
+        //          $scope.twittes = data;
+        //
+        //          $scope.buttonNext = true;
+        //
+        //          $scope.dataLoad404 = false;
+        //          $scope.dataLoadOFF = false;
+        //          $scope.dataLoadON = true;
+        //        }
+      }).error(function(data, status) {
+        $scope.dataLoadERROR = true;
+        $scope.dataLoad404 = false;
+        $scope.dataLoadOFF = false;
+        $scope.dataLoadON = false;
+        console.log(status);
+      });   
+
+      //      $scope.monitorLinkTweet = serviceBase+'word_posts?filter={"where":{"period":"'+$scope.filter.time+'","word":"'+word+'","categories":{"all":['+linkTema+''+linkCategoria+''+linkLocalidade+']}},"limit":25}';
+
+    }else if(word === null){
+
+      AnalyticsTwitter.mostRetweetedTweets(
+        $scope.analyticsParams, 
+        function success(response) {
+          $scope.twittes = response;
+        }, errorHandler);
+
+
+      //      $scope.monitorLinkTweet = baseURL+'/analytics?type=top-retweets&filter={"where":{"status.entities.hashtags.text":{"all":["'+tag+'"]},"status.created_at":{"gte":"'+localTime+'","lte":"'+dataNow+'"},"categories":{"all":['+linkTema+''+linkCategoria+''+linkLocalidade+']}},"limit":25,"skip":0}';
 
     }
   };
 
-  function functionNoRtConteudo(localTime, dataNow, linkTema, linkCategoria, linkLocalidade, word, tag){
+  /* function functionNoRtConteudo(localTime, dataNow, linkTema, linkCategoria, linkLocalidade, word, tag){
 
     if((word === undefined) && (tag === undefined)){
 
@@ -44,20 +117,28 @@ hashTwitter.controller('mainMonitor', function ($scope, $http, MetricsTwitter, A
 
     }else if(tag === undefined){
 
-      $scope.monitorlinkNoRtTweet = serviceBase+'word_no_rt?filter={"where":{"period":"'+$scope.filter.time+'","word":"'+word+'","categories":{"all":['+linkTema+''+linkCategoria+''+linkLocalidade+']}},"limit":25}';
+      var twNoRtJson = JSON.stringify(filterDavid($scope.filter.time, linkTema, linkCategoria, linkLocalidade, word, null, 25),["where","period","word","categories","all","limit"]);
+
+      $scope.monitorlinkNoRtTweet =  serviceBase+'word_no_rt?filter='+twNoRtJson;
+
+      //      $scope.monitorlinkNoRtTweet = serviceBase+'word_no_rt?filter={"where":{"period":"'+$scope.filter.time+'","word":"'+word+'","categories":{"all":['+linkTema+''+linkCategoria+''+linkLocalidade+']}},"limit":25}';
 
     }else if(word === undefined){
 
-      $scope.monitorlinkNoRtTweet = baseURL+'?filter={"where":{"status.entities.hashtags.text":{"all":["'+tag+'"]},"status.retweeted_status":{"exists":false},"status.created_at":{"gte":"'+localTime+'","lte":"'+dataNow+'"},"categories":{"all":['+linkTema+''+linkCategoria+''+linkLocalidade+']}},"limit":25,"skip":0}';
+      AnalyticsTwitter.mostRetweetedTweets(
+        $scope.analyticsParams, 
+        function success(response) {
+          $scope.twittes = response;
+        }, errorHandler);
+
+      //      $scope.monitorlinkNoRtTweet = baseURL+'?filter={"where":{"status.entities.hashtags.text":{"all":["'+tag+'"]},"status.retweeted_status":{"exists":false},"status.created_at":{"gte":"'+localTime+'","lte":"'+dataNow+'"},"categories":{"all":['+linkTema+''+linkCategoria+''+linkLocalidade+']}},"limit":25,"skip":0}';
 
     }
-  };
+  };*/
 
   function functionImage(localTime, dataNow, linkTema, linkCategoria, linkLocalidade, word, tag){
 
-    if((word === undefined) && (tag === undefined)){
-
-      //      return baseURL+'/analytics?type=top-images&filter={"where":{"status.created_at":{"gte":"'+localTime+'","lte":"'+dataNow+'"},"categories":{"all":['+linkTema+''+linkCategoria+''+linkLocalidade+']}},"limit":400,"skip":0}';
+    if((word === null) && (tag === null)){
 
       AnalyticsTwitter.mostRetweetedImages(
         $scope.analyticsParams, 
@@ -66,14 +147,47 @@ hashTwitter.controller('mainMonitor', function ($scope, $http, MetricsTwitter, A
           $scope.imgsMos = response;
         }, errorHandler);
 
-    }else if(tag === undefined){
+    }else if(tag === null){
 
-      $scope.monitorLinkImg = serviceBase+'word_images?filter={"where":{"period":"'+$scope.filter.time+'","word":"'+word+'","categories":{"all":['+linkTema+''+linkCategoria+''+linkLocalidade+']}},"limit":400}';
+      var imgJson = JSON.stringify(filterDavid($scope.filter.time,linkTema, linkCategoria, linkLocalidade, word, null, 399),["where","period","word","categories","all","limit"]);
 
-    }else if(word === undefined){
+      var monitorLinkWord =  serviceBase+'word_images?filter='+imgJson;
 
-      $scope.monitorLinkImg = baseURL+'/analytics?type=top-images&filter={"where":{"status.entities.hashtags.text":{"all":["'+tag+'"]},"status.created_at":{"gte":"'+localTime+'","lte":"'+dataNow+'"},"categories":{"all":['+linkTema+''+linkCategoria+''+linkLocalidade+']}},"limit":400,"skip":0}';
+      $scope.dataLoadON = false;
+      $scope.dataLoad404 = false;
+      $scope.dataLoadOFF = true;
+      $scope.dataLoadERROR = false;
 
+      $http.get(monitorLinkWord).success(function (data) {
+        $scope.imgs = data.splice(0,24);
+        $scope.imgsMos = data;
+        if(data == ""){
+          $scope.dataLoadON = false;
+          $scope.dataLoadOFF = false;
+          $scope.dataLoad404 = true;
+        }else{
+          $scope.dataLoad404 = false;
+          $scope.dataLoadOFF = false;
+          $scope.dataLoadON = true;
+        }
+      }).error(function(data, status) {
+        $scope.dataLoadERROR = true;
+        $scope.dataLoad404 = false;
+        $scope.dataLoadOFF = false;
+        $scope.dataLoadON = false;
+        console.log(status);
+      });
+
+      //      $scope.monitorLinkImg = serviceBase+'word_images?filter={"where":{"period":"'+$scope.filter.time+'","word":"'+word+'","categories":{"all":['+linkTema+''+linkCategoria+''+linkLocalidade+']}},"limit":400}';
+
+    }else if(word === null){
+
+      AnalyticsTwitter.mostRetweetedImages(
+        $scope.analyticsParams, 
+        function success(response) {
+          $scope.imgs = response;
+          $scope.imgsMos = response;
+        }, errorHandler);
     }
   };
 
@@ -88,202 +202,46 @@ hashTwitter.controller('mainMonitor', function ($scope, $http, MetricsTwitter, A
 
   function functionWord(localTime, dataNow, linkTema, linkCategoria, linkLocalidade){
 
-    $scope.monitorLinkWord =  serviceBase+'top_words?filter={"where":{"period":"'+$scope.filter.time+'", "categories":{"all":[%22'+linkTema+'%22'+linkCategoria+''+linkLocalidade+']}},"limit":20}';
+    var wordJson = JSON.stringify(filterDavid($scope.filter.time,linkTema,null,null,20),["where","period","categories","all","limit"]);
 
+    var monitorLinkWord =  serviceBase+'top_words?filter='+wordJson;
+
+    $scope.dataLoadON = false;
+    $scope.dataLoad404 = false;
+    $scope.dataLoadOFF = true;
+    $scope.dataLoadERROR = false;
+
+    $http.get(monitorLinkWord).success(function (data) {
+      $scope.words = data;
+      $scope.words = data.splice(0,11);
+      if(data == ""){
+        $scope.dataLoadON = false;
+        $scope.dataLoadOFF = false;
+        $scope.dataLoad404 = true;
+      }else{
+        $scope.dataLoad404 = false;
+        $scope.dataLoadOFF = false;
+        $scope.dataLoadON = true;
+      }
+
+    }).error(function(data, status) {
+      $scope.dataLoadERROR = true;
+      $scope.dataLoad404 = false;
+      $scope.dataLoadOFF = false;
+      $scope.dataLoadON = false;
+      console.log(status);
+    });
+
+    $http.get("data/test/conteudos.json").success(function (data) {
+      $scope.conteudos = data[$scope.categorieNumber];
+    });
   };
 
   function functionMap(localTime, dataNow, linkTema, linkCategoria){
 
-    $scope.monitorLinkMap = serviceBase+'map_volume?filter={"where":{"period":"'+$scope.filter.time+'","categories":{"all":[%22'+linkTema+'%22'+linkCategoria+']}}}';
-  };
+    var mapJson = JSON.stringify(filterDavid($scope.filter.time, linkTema, null, null),["where","period","categories","all"]);
 
-  //  filter={
-  //    "where":{
-  //      "period":"'+$scope.filter.time+'",
-  //      "categories":{
-  //        "all":[%22'+linkTema+'%22'+linkCategoria+']
-  //      }
-  //    }
-  //  }
-
-
-  var firstRun = false;
-
-  $scope.setAll = function(localTime, dataNow, linkTema, linkCategoria, linkLocalidade, word, tag, nlimit, nskip){
-    console.log("entreiALL");
-
-    functionNoRtConteudo(localTime, dataNow, linkTema, linkCategoria, linkLocalidade, word, tag);
-    functionConteudo(localTime, dataNow, linkTema, linkCategoria, linkLocalidade, word, tag, nlimit, nskip);
-
-    functionImage(localTime, dataNow, linkTema, linkCategoria, linkLocalidade, word, tag);
-    functionTag(localTime, dataNow, linkTema, linkCategoria, linkLocalidade);
-    functionWord(localTime, dataNow, linkTema, linkCategoria, linkLocalidade);
-    functionMap(localTime, dataNow, linkTema, linkCategoria);
-  };
-
-  $scope.setHalf = function(localTime, dataNow, linkTema, linkCategoria, linkLocalidade, word, tag, nlimit, nskip){
-    console.log("entreiHalf");
-
-    functionNoRtConteudo(localTime, dataNow, linkTema, linkCategoria, linkLocalidade, word, tag);
-    functionConteudo(localTime, dataNow, linkTema, linkCategoria, linkLocalidade, word, tag, nlimit, nskip);
-
-    functionImage(localTime, dataNow, linkTema, linkCategoria, linkLocalidade, word, tag);
-    functionTag(localTime, dataNow, linkTema, linkCategoria, linkLocalidade);
-    functionWord(localTime, dataNow, linkTema, linkCategoria, linkLocalidade);
-  };
-
-  $scope.setMin = function(localTime, dataNow, linkTema, linkCategoria, linkLocalidade, word, tag, nlimit, nskip){
-    console.log("entreimin");
-
-    functionConteudo(localTime, dataNow, linkTema, linkCategoria, linkLocalidade, word, tag, nlimit, nskip);
-    functionNoRtConteudo(localTime, dataNow, linkTema, linkCategoria, linkLocalidade, word, tag);
-    $functionImage(localTime, dataNow, linkTema, linkCategoria, linkLocalidade, word, tag);
-  };
-
-  $scope.loadMoreTweetsChange = function (n) {
-    $scope.countpage = n + $scope.countpage;
-
-    $( ".geralTweets_result" ).scrollTop( "slow" );
-
-    var nskip = $scope.countpage * 25;
-    var nlimit = $scope.countpage * 25 + 25;
-
-    $scope.setMin($scope.timeMonitor, dataNow, $scope.filter.tema, $scope.filter.categoria, $scope.filter.localidade, undefined, undefined, nlimit, nskip);
-  };
-
-  $scope.recentTweets = function (){
-
-    $scope.monitorLinkTweet = baseURL+'?filter={"where":{"categories":{"all":['+$scope.filter.tema+''+$scope.filter.categoria+''+$scope.filter.localidade+']}},"limit":25,"skip":0, "order": "status.timestamp_ms DESC"}';
-
-  };
-
-  $scope.filter = {
-    tema: "tema-negros",
-    time: "7d",
-    categoria: "",
-    word: " ",
-    tag: " ",
-    localidade: " ",
-    pag: 1
-  };
-
-  function filter2(period,tema,word,tag){
-    var filter2 = {
-      where:{
-        word: word,
-        tag: tag,
-        period: period,
-        categories:{
-          all:[
-            tema
-          ]
-        }
-      }
-    }
-    
-    console.log(JSON.stringify(filter2));
-  }
-  
-  filter2("7d","tema-negros",null,"tag1");
-
-  $scope.monitorCountTweet = baseURL+'/count?where={}';
-  $scope.monitorCountImage = baseURL+'/count?where={"status.entities.media":{"exists":true}}';
-
-  $scope.categorieNumber = 0;
-  $scope.countpage = 0;
-
-  $scope.$watch('filter', function (newFilter, oldFilter) {
-    $scope.analyticsParams = {
-      period: newFilter.time, 
-      'tags[]': [newFilter.tema], 
-      'hashtags[]': [], 
-      retrive_blocked: null, 
-      page: 1, 
-      per_page: 25 
-    }
-
-    if(firstRun == false){
-
-      $scope.timeMonitor = transformTime($scope.filter.time);
-
-      $scope.setAll($scope.timeMonitor, dataNow, newFilter.tema, " ", " ", undefined, undefined, 25, 0);
-
-      firstRun = true;
-    }else{
-      $scope.countpage = 0;
-
-      if(newFilter.tema != oldFilter.tema){ 
-
-        $scope.filter.word = undefined;
-        $scope.filter.tag = undefined;
-
-        $scope.setAll($scope.timeMonitor, dataNow, newFilter.tema, " ", " ", undefined, undefined, 25, 0);
-      }
-
-      if(newFilter.time != oldFilter.time){
-        $scope.timeMonitor = transformTime($scope.filter.time);
-
-        console.log($scope.timeMonitor);
-        console.log($scope.filter.time);
-
-        $scope.setAll($scope.timeMonitor, dataNow, newFilter.tema, newFilter.categoria, newFilter.localidade, newFilter.word, newFilter.tag, 25, 0);
-      }			
-      //localidade e tema apenas
-      if(newFilter.localidade != oldFilter.localidade){
-
-        $scope.setHalf($scope.timeMonitor, dataNow, newFilter.tema, " ", newFilter.localidade, undefined, undefined, 25, 0);
-      }
-
-      if(newFilter.categoria != oldFilter.categoria){
-
-        $scope.setMin($scope.timeMonitor, dataNow, newFilter.tema, newFilter.categoria, " ", undefined, undefined, 25, 0);
-      }
-
-      if(newFilter.word != oldFilter.word){
-
-        $scope.setMin($scope.timeMonitor, dataNow, newFilter.tema,  " ", " ", newFilter.word, undefined, 25, 0);
-      }
-
-      if(newFilter.tag != oldFilter.tag){
-
-        $scope.setMin($scope.timeMonitor, dataNow, newFilter.tema, " ", " ", undefined, newFilter.tag, 25, 0);
-      }		
-    }
-  },true);
-
-  $http.get($scope.monitorCountTweet).success(function (data) {
-    $scope.countRetweet = data;
-
-    //		$scope.contConteudoChange = function(x,max){
-    //			$interval(function() {
-    //				if( x < max) {
-    //					x = x + 7;
-    //					$scope.countRetweetFinal = x;
-    //				}
-    //			},1000);
-    //		};
-    //
-    //		$scope.contConteudoChange(1200000, $scope.countRetweet.count);
-  });
-
-  $http.get($scope.monitorCountImage).success(function (data) {
-    $scope.countImage = data;
-
-    //		$scope.contImageChange = function(x,max){
-    //			$interval(function() {
-    //				if( x < max) {
-    //					x = x + 7;
-    //					$scope.countImageFinal = x;
-    //				}
-    //			},1000);
-    //		};
-    //
-    //		$scope.contImageChange(90000,$scope.countImage.count);
-  });
-
-  /* MAP */
-
-  $scope.$watch('monitorLinkMap', function() {
+    var monitorLinkMap = serviceBase+'map_volume?filter='+mapJson;
 
     var maxCont = 0;
 
@@ -295,7 +253,7 @@ hashTwitter.controller('mainMonitor', function ($scope, $http, MetricsTwitter, A
     $scope.dataMapaON = true;
     $scope.textLoadDisplayMap = true;
 
-    $http.get($scope.monitorLinkMap).success(function (data) {
+    $http.get(monitorLinkMap).success(function (data) {
 
       maxCont = 0;
 
@@ -343,159 +301,249 @@ hashTwitter.controller('mainMonitor', function ($scope, $http, MetricsTwitter, A
       $scope.dataMapaON = false;
       $scope.textLoadDisplayMap = false;
     });
+  };
+
+  $scope.setAll = function(localTime, dataNow, linkTema, linkCategoria, linkLocalidade, word, tag, nlimit, nskip){
+    console.log("entreiALL");
+
+    //    functionNoRtConteudo(localTime, dataNow, linkTema, linkCategoria, linkLocalidade, word, tag);
+    functionConteudo(localTime, dataNow, linkTema, linkCategoria, linkLocalidade, word, tag, nlimit, nskip);
+
+    functionImage(localTime, dataNow, linkTema, linkCategoria, linkLocalidade, word, tag);
+    functionTag(localTime, dataNow, linkTema, linkCategoria, linkLocalidade);
+    functionWord(localTime, dataNow, linkTema, linkCategoria, linkLocalidade);
+    functionMap(localTime, dataNow, linkTema, linkCategoria);
+  };
+
+  $scope.setHalf = function(localTime, dataNow, linkTema, linkCategoria, linkLocalidade, word, tag, nlimit, nskip){
+    console.log("entreiHalf");
+
+    //    functionNoRtConteudo(localTime, dataNow, linkTema, linkCategoria, linkLocalidade, word, tag);
+    functionConteudo(localTime, dataNow, linkTema, linkCategoria, linkLocalidade, word, tag, nlimit, nskip);
+
+    functionImage(localTime, dataNow, linkTema, linkCategoria, linkLocalidade, word, tag);
+    functionTag(localTime, dataNow, linkTema, linkCategoria, linkLocalidade);
+    functionWord(localTime, dataNow, linkTema, linkCategoria, linkLocalidade);
+  };
+
+  $scope.setMin = function(localTime, dataNow, linkTema, linkCategoria, linkLocalidade, word, tag, nlimit, nskip){
+    console.log("entreimin");
+
+    functionConteudo(localTime, dataNow, linkTema, linkCategoria, linkLocalidade, word, tag, nlimit, nskip);
+    //    functionNoRtConteudo(localTime, dataNow, linkTema, linkCategoria, linkLocalidade, word, tag);
+    functionImage(localTime, dataNow, linkTema, linkCategoria, linkLocalidade, word, tag);
+  };
+
+  function loadMore(componente) {
+    
+    switch(componente){
+      case 'tweets':
+        
+        $scope.filter.pagination.analyticsTwitter.paginationTweet++;
+        alert($scope.filter.pagination.analyticsTwitter.paginationTweet);
+        alert("EnTREI!!");
+    }
+//    $scope.countpage = 1 + $scope.countpage;
+//    
+//    var nskip = $scope.countpage * 25;
+//    var nlimit = $scope.countpage * 25 + 25;
+//
+//    $scope.analyticsParams = {
+//      period: $scope.filter.time, 
+//      'tags[]': [$scope.filter.tema], 
+//      'hashtags[]': [], 
+//      retrive_blocked: null, 
+//      page: 1, 
+//      per_page: nlimit 
+//    }
+//    
+//    AnalyticsTwitter.mostRetweetedTweets(
+//        $scope.analyticsParams, 
+//        function success(response) {
+//          $scope.twittes = response;
+//        }, errorHandler);
+
+//    $scope.setMin($scope.timeMonitor, dataNow, $scope.filter.tema, $scope.filter.categoria, $scope.filter.localidade, null, null, nlimit, nskip);
+  };
+
+  $scope.recentTweets = function (){
+
+    $scope.monitorLinkTweet = baseURL+'?filter={"where":{"categories":{"all":['+$scope.filter.tema+''+$scope.filter.categoria+''+$scope.filter.localidade+']}},"limit":25,"skip":0, "order": "status.timestamp_ms DESC"}';
+
+  };
+
+  $scope.filter = {
+    tema: "tema-negros",
+    time: "7d",
+    categoria: null,
+    word: null,
+    tag: null,
+    localidade: null,
+    pagination:{
+      analyticsTwitter:{
+        paginationTweet: 1,
+        paginationImages: 1,
+        paginationTag: 1
+      },
+      analyticsWord:{
+        
+      }    
+    }
+  };
+
+  function filterDavid(period,tema,categoria,localidade,word,tag,limit){
+    var filter = {
+      where:{
+        word: word,
+        tag: tag,
+        period: period,
+        categories:{
+          all:[
+            tema,
+            categoria,
+            localidade
+          ]
+        }
+      },
+      limit: limit
+    }
+    return filter;
+  }
+
+  $scope.$watch('filter', function (newFilter, oldFilter) {
+    if(firstRun == false){
+
+      $scope.analyticsParams = {
+        period: newFilter.time, 
+        'tags[]': [newFilter.tema], 
+        'hashtags[]': [], 
+        retrive_blocked: null, 
+        page: 1, 
+        per_page: 25 
+      }
+
+      //      $scope.timeMonitor = transformTime($scope.filter.time);
+
+      $scope.setAll($scope.filter.time, dataNow, newFilter.tema, null, null, null, null, 25, 0);
+
+      firstRun = true;
+    }else{
+      $scope.countpage = 0;
+
+      if(newFilter.tema != oldFilter.tema){ 
+
+        $scope.analyticsParams = {
+          period: newFilter.time, 
+          'tags[]': [newFilter.tema], 
+          'hashtags[]': [], 
+          retrive_blocked: null, 
+          page: 1, 
+          per_page: 25 
+        }
+
+        $scope.filter.word = null;
+        $scope.filter.tag = null;
+
+        $scope.setAll($scope.timeMonitor, dataNow, newFilter.tema, null, null, null, null, 25, 0);
+      }
+
+      if(newFilter.time != oldFilter.time){
+
+        $scope.analyticsParams = {
+          period: newFilter.time, 
+          'tags[]': [newFilter.tema], 
+          'hashtags[]': [], 
+          retrive_blocked: null, 
+          page: 1, 
+          per_page: 25 
+        }
+
+        $scope.setAll($scope.filter.time, dataNow, newFilter.tema, newFilter.categoria, newFilter.localidade, newFilter.word, newFilter.tag, 25, 0);
+      }			
+
+      if(newFilter.localidade != oldFilter.localidade){
+
+        $scope.analyticsParams = {
+          period: newFilter.time, 
+          'tags[]': [newFilter.tema], 
+          'hashtags[]': [], 
+          retrive_blocked: null, 
+          page: 1, 
+          per_page: 25 
+        }
+
+        $scope.setHalf($scope.timeMonitor, dataNow, newFilter.tema, null, newFilter.localidade, null, null, 25, 0);
+      }
+
+      if(newFilter.categoria != oldFilter.categoria){
+        
+        $scope.analyticsParams = {
+          period: newFilter.time, 
+          'tags[]': [newFilter.tema,newFilter.categoria], 
+          'hashtags[]': [], 
+          retrive_blocked: null, 
+          page: 1, 
+          per_page: 25 
+        }
+
+        $scope.setMin($scope.timeMonitor, dataNow, newFilter.tema, newFilter.categoria, null, null, null, 25, 0);
+      }
+
+      if(newFilter.word != oldFilter.word){
+
+        $scope.setMin($scope.timeMonitor, dataNow, newFilter.tema,  null, null, newFilter.word, null, 25, 0);
+      }
+
+      if(newFilter.tag != oldFilter.tag){
+
+        $scope.analyticsParams = {
+          period: newFilter.time, 
+          'tags[]': [newFilter.tema], 
+          'hashtags[]': [newFilter.tag], 
+          retrive_blocked: null, 
+          page: 1, 
+          per_page: 25 
+        }
+
+        $scope.setMin($scope.timeMonitor, dataNow, newFilter.tema, null, null, null, newFilter.tag, 25, 0);
+      }		
+      
+      if(newFilter.pagination.analyticsTwitter.paginationTweet != oldFilter.pagination.analyticsTwitter.paginationTweet){
+        
+      }
+    }
+  },true);
+
+  $scope.monitorCountTweet = baseURL+'/count?where={}';
+  $scope.monitorCountImage = baseURL+'/count?where={"status.entities.media":{"exists":true}}';
+
+  $http.get($scope.monitorCountTweet).success(function (data) {
+    $scope.countRetweet = data;
+
+    //		$scope.contConteudoChange = function(x,max){
+    //			$interval(function() {
+    //				if( x < max) {
+    //					x = x + 7;
+    //					$scope.countRetweetFinal = x;
+    //				}
+    //			},1000);
+    //		};
+    //
+    //		$scope.contConteudoChange(1200000, $scope.countRetweet.count);
   });
 
-  /* TWEETs */
+  $http.get($scope.monitorCountImage).success(function (data) {
+    $scope.countImage = data;
 
-  /* $scope.$watch('monitorLinkTweet', function() {
-
-    var contData = 0;
-
-    $scope.dataLoadON = false;
-    $scope.dataLoad404 = false;
-    $scope.dataLoadOFF = true;
-    $scope.dataLoadERROR = false;
-
-    if($scope.countpage > 0){
-      $scope.buttonBack = true;
-    }else{
-      $scope.buttonBack = false;
-    }
-
-    $http.get($scope.monitorLinkTweet).success(function (data) {
-
-      contData = Object.keys(data).length;
-
-      if((data == "") || (contData < 25)){
-
-        $scope.buttonNext = false;
-
-        $http.get($scope.monitorlinkNoRtTweet).success(function (data1) {
-          $scope.twittes = data.concat(data1);
-
-          if(data1 == ""){
-            $scope.twittes = data;
-          }else{
-            $scope.twittes = data.concat(data1);
-          }
-
-          if((data1 == "") && (data == "")){
-            $scope.dataLoadON = false;
-            $scope.dataLoadOFF = false;
-            $scope.dataLoad404 = true;
-          }else{
-            $scope.dataLoad404 = false;
-            $scope.dataLoadOFF = false;
-            $scope.dataLoadON = true;
-          }
-        });
-      }else{
-        $scope.twittes = data;
-
-        $scope.buttonNext = true;
-
-        $scope.dataLoad404 = false;
-        $scope.dataLoadOFF = false;
-        $scope.dataLoadON = true;
-      }
-    }).error(function(data, status) {
-      $scope.dataLoadERROR = true;
-      $scope.dataLoad404 = false;
-      $scope.dataLoadOFF = false;
-      $scope.dataLoadON = false;
-      console.log(status);
-    });   
-  }); */
-
-  /* IMAGEM */
-
-  /*$scope.$watch('monitorLinkImg', function() {
-    $scope.dataLoadON = false;
-    $scope.dataLoad404 = false;
-    $scope.dataLoadOFF = true;
-    $scope.dataLoadERROR = false;
-
-    $http.get($scope.monitorLinkImg).success(function (data) {
-      $scope.imgs = data.splice(0,24);
-      $scope.imgsMos = data;
-      if(data == ""){
-        $scope.dataLoadON = false;
-        $scope.dataLoadOFF = false;
-        $scope.dataLoad404 = true;
-      }else{
-        $scope.dataLoad404 = false;
-        $scope.dataLoadOFF = false;
-        $scope.dataLoadON = true;
-      }
-    }).error(function(data, status) {
-      $scope.dataLoadERROR = true;
-      $scope.dataLoad404 = false;
-      $scope.dataLoadOFF = false;
-      $scope.dataLoadON = false;
-      console.log(status);
-    });
-  });   */
-
-  /* WORD */
-
-  $scope.$watch('monitorLinkWord', function() {
-    $scope.dataLoadON = false;
-    $scope.dataLoad404 = false;
-    $scope.dataLoadOFF = true;
-    $scope.dataLoadERROR = false;
-
-    $http.get($scope.monitorLinkWord).success(function (data) {
-      $scope.words = data;
-      $scope.words = data.splice(0,11);
-      if(data == ""){
-        $scope.dataLoadON = false;
-        $scope.dataLoadOFF = false;
-        $scope.dataLoad404 = true;
-      }else{
-        $scope.dataLoad404 = false;
-        $scope.dataLoadOFF = false;
-        $scope.dataLoadON = true;
-      }
-
-    }).error(function(data, status) {
-      $scope.dataLoadERROR = true;
-      $scope.dataLoad404 = false;
-      $scope.dataLoadOFF = false;
-      $scope.dataLoadON = false;
-      console.log(status);
-    });
-
-    $http.get("data/test/conteudos.json").success(function (data) {
-      $scope.conteudos = data[$scope.categorieNumber];
-    });
-  }); 
-
-  /* TAG */
-
-  /* $scope.$watch('monitorLinkTag', function() {
-    $scope.dataLoadON = false;
-    $scope.dataLoad404 = false;
-    $scope.dataLoadOFF = true;
-    $scope.dataLoadERROR = false;
-
-    $http.get($scope.monitorLinkTag).success(function (data) {
-      $scope.tags = data;
-      $scope.tags = data.splice(0,19);
-      if(data == ""){
-        $scope.dataLoadON = false;
-        $scope.dataLoadOFF = false;
-        $scope.dataLoad404 = true;
-      }else{
-        $scope.dataLoad404 = false;
-        $scope.dataLoadOFF = false;
-        $scope.dataLoadON = true;
-      }
-    }).error(function(data, status) {
-      $scope.dataLoadERROR = true;
-      $scope.dataLoad404 = false;
-      $scope.dataLoadOFF = false;
-      $scope.dataLoadON = false;
-      console.log(status);
-    });
-  }); */
+    //		$scope.contImageChange = function(x,max){
+    //			$interval(function() {
+    //				if( x < max) {
+    //					x = x + 7;
+    //					$scope.countImageFinal = x;
+    //				}
+    //			},1000);
+    //		};
+    //
+    //		$scope.contImageChange(90000,$scope.countImage.count);
+  });
 });

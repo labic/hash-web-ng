@@ -1,5 +1,6 @@
 <div style="height:100%;">
 
+<!--
 	<div class="loading" ng-show="dataLoadOFF" >
 		<center><img src="img/icons/spin.gif" height="66px" width="66px"></center>
 		<p style="color:rgba(10, 18, 39, 0.65);">CARREGANDO</p>
@@ -17,6 +18,7 @@
 		<p class="loadingWordGrey">ERROR</p>
 		<p class="loadingWordGrey">Estamos tendo problemas ao carregar, volte mais tarde =)</p>
 	</div>
+-->
 
 	<div>
 		<div id="str_highWord" title='Clique para visualizar os ultimos retweets com a palavra "{{wordMouseEnter.word}}"' ng-click="filter.word = wordMouseEnter.word;">
@@ -37,7 +39,7 @@
 		<div class="fixed_words_title">
 			<p>Assuntos mais ocorrentes</p>
 		</div>
-		<p ng-repeat="conteudo in conteudos" ng-click="filter.categoria =',%22'+conteudo.query+'%22';">{{conteudo.name}}</p>
+		<p ng-repeat="conteudo in conteudos" ng-click="filter.categoria = conteudo.query;">{{conteudo.name}}</p>
 <!--		<p ng-click="changeCategoria(',%22conteudo-geral%22')">geral</p>-->
 	</div>
 </div>

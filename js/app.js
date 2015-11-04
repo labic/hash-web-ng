@@ -1,4 +1,4 @@
-var hashTwitter = angular.module('hashTwitter', ['ui.router','ngResource', 'hash.api', 'word.api']);
+var hashTwitter = angular.module('hashTwitter', ['ui.router','ngResource', 'hash.api', 'word.api', 'infinite-scroll']);
 
 hashTwitter
   .constant('HASH_API_BASE_URI', 'https://hash-api.herokuapp.com:443/v1')

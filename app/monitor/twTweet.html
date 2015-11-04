@@ -1,4 +1,5 @@
 <div id="result_conteudo" style="height:100%;">
+<!--
 	<div class="loading" ng-show="dataLoadOFF">
 		<center><img src="img/icons/Unknown.gif" height="66px" width="66px"></center>
 		<p class="loadingWordGrey">CARREGANDO:</p>
@@ -16,12 +17,13 @@
 		<p class="loadingWordGrey">ERROR</p>
 		<p class="loadingWordGrey">Estamos tendo problemas ao carregar, volte mais tarde =)</p>
 	</div>
+-->
 
 	<div style="height:100%; width:100%;">
-		<div  class="geralTweets_result">
-			<button ng-show="buttonBack" class="result_button result_button_back" ng-click='loadMoreTweetsChange(-1);' >VOLTAR</button>
+		<div id="janeladeLoad" class="geralTweets_result" infinite-scroll="loadMore('tweets');" infinite-scroll-distance="3">
+<!--			<button ng-show="buttonBack" class="result_button result_button_back" ng-click='loadMoreTweetsChange(-1);' >VOLTAR</button>-->
 
-			<div class="each_tweet_result" ng-repeat="twitte in twittes">
+			<div class="each_tweet_result" ng-repeat="twitte in twittes" >
 
 				<img class="img_tweet_result" src="{{twitte.status.user.profile_image_url_https}}" title="{{twitte.status.user.description}}">
 				<p>@{{twitte.status.user.screen_name}}</p>
@@ -36,7 +38,7 @@
 				<p>ÚLTIMO COMPARTILHAMENTO: {{twitte.status.timestamp_ms | date:'HH:mm:ss'}} HS</p>
 			</div>
 
-			<button ng-show="buttonNext" class="result_button result_button_next" ng-click='loadMoreTweetsChange(1);'></button>
+<!--			<button ng-show="buttonNext" class="result_button result_button_next" ng-click='loadMoreTweetsChange(1);'></button>-->
 		</div>
 	</div>
 </div>
