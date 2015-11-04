@@ -10,9 +10,10 @@
 
   angular
     .module('hash.dash', [
+      'angular-cache',
       'ui.router',
       'ui.bootstrap',
-      'angular-cache',
+      'highcharts-ng',
       'hash.core',
       'hash.api',
       'hash.twitter-monitor'
