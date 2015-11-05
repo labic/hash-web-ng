@@ -1510,3 +1510,21 @@
     height: 50%;
     width: 50%;
   }
+
+/* TODO: swipebox */
+
+#swipebox-overlay {
+  background: rgba(13, 13, 13, 0.60) !important;
+}
+
+#swipebox-slider .slide img,
+#swipebox-slider .slide .swipebox-video-container,
+#swipebox-slider .slide .swipebox-inline-container {
+  display: inline-block;
+  max-height: 80% !important;
+  max-width: 80% !important; 
+}
+
+#swipebox-bottom-bar, #swipebox-top-bar {
+    background: rgba(0, 0, 0, 0.65) !important;
+}

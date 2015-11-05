@@ -11,7 +11,7 @@ hashTwitter.controller('mainMonitor', function ($scope, $http, MetricsTwitter, A
   function errorHandlerTweet(err) {
     $scope.dataLoadTweetON = false;
     $scope.dataLoadTweet404 = false;
-    $scope.dataLoadTweetOFF = true;
+    $scope.dataLoadTweetOFF = false;
     $scope.dataLoadTweetERROR = true;
     console.log(err);
   }
@@ -19,7 +19,7 @@ hashTwitter.controller('mainMonitor', function ($scope, $http, MetricsTwitter, A
   function errorHandlerImage(err) {
     $scope.dataLoadImageON = false;
     $scope.dataLoadImage404 = false;
-    $scope.dataLoadImageOFF = true;
+    $scope.dataLoadImageOFF = false;
     $scope.dataLoadImageERROR = true;
     console.log(err);
   }
@@ -27,7 +27,7 @@ hashTwitter.controller('mainMonitor', function ($scope, $http, MetricsTwitter, A
   function errorHandlerTag(err) {
     $scope.dataLoadTagON = false;
     $scope.dataLoadTag404 = false;
-    $scope.dataLoadTagOFF = true;
+    $scope.dataLoadTagOFF = false;
     $scope.dataLoadTagERROR = true;
     console.log(err);
   }
@@ -657,6 +657,26 @@ hashTwitter.controller('mainMonitor', function ($scope, $http, MetricsTwitter, A
   $scope.monitorCountTweet = baseURL+'/count?where={}';
   $scope.monitorCountImage = baseURL+'/count?where={"status.entities.media":{"exists":true}}';
 
+//  MetricsTwitter.count({
+//    period: 15d,
+//    'tags[]': ['tema-negros','tema-lgbt','tema-indigena','tema-genero'],
+////    'has[]': ['media']
+//  }, 
+//                       function success(res) {
+//    $scope.countRetweet = res.count;
+//  });
+
+//  MetricsTwitter.count({
+//    period: newFilter.period,
+//    'tags[]': newFilter.tags,
+//    'hashtags[]': newFilter.hashtag === null ? null : [newFilter.hashtag],
+//    'has[]': ['media']
+//  }, 
+//                       function success(res) {
+//    $scope.data.twitter.images.count = res.count;
+//  }, 
+//                       errorHandler);
+//
   $http.get($scope.monitorCountTweet).success(function (data) {
     $scope.countRetweet = data;
   });
