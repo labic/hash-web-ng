@@ -95,9 +95,6 @@ hashTwitter.controller('mainMonitor', function ($scope, $http, MetricsTwitter, A
 
         contData = Object.keys(data).length;
 
-        console.log(contData);
-        console.log(nlimit);
-
         if(contData < nlimit){
           $scope.buttonNext = false;
         }else{
@@ -384,7 +381,6 @@ hashTwitter.controller('mainMonitor', function ($scope, $http, MetricsTwitter, A
   };
 
   $scope.setAll = function(localTime, dataNow, linkTema, linkCategoria, linkLocalidade, word, tag, nlimit, nskip){
-    console.log("entreiALL");
 
     //    functionNoRtConteudo(localTime, dataNow, linkTema, linkCategoria, linkLocalidade, word, tag);
     functionConteudo(localTime, dataNow, linkTema, linkCategoria, linkLocalidade, word, tag, nlimit, nskip);
@@ -396,7 +392,6 @@ hashTwitter.controller('mainMonitor', function ($scope, $http, MetricsTwitter, A
   };
 
   $scope.setHalf = function(localTime, dataNow, linkTema, linkCategoria, linkLocalidade, word, tag, nlimit, nskip){
-    console.log("entreiHalf");
 
     //    functionNoRtConteudo(localTime, dataNow, linkTema, linkCategoria, linkLocalidade, word, tag);
     functionConteudo(localTime, dataNow, linkTema, linkCategoria, linkLocalidade, word, tag, nlimit, nskip);
@@ -407,7 +402,6 @@ hashTwitter.controller('mainMonitor', function ($scope, $http, MetricsTwitter, A
   };
 
   $scope.setMin = function(localTime, dataNow, linkTema, linkCategoria, linkLocalidade, word, tag, nlimit, nskip){
-    console.log("entreimin");
 
     functionConteudo(localTime, dataNow, linkTema, linkCategoria, linkLocalidade, word, tag, nlimit, nskip);
     //    functionNoRtConteudo(localTime, dataNow, linkTema, linkCategoria, linkLocalidade, word, tag);
