@@ -7,7 +7,7 @@
     </aside>
 
     <!-- <aside ui-view="map-filter"></aside> -->
-    <highchart config="config.map"></highchart>
+    <highchart config="config.map" disableDataWatch="false"></highchart>
     
     <aside class="filter period btn-group">
       <button ng-repeat="period in options.period.values" class="btn btn-primary" ng-model="filter.period" uib-btn-radio="period.value">{{period.key}}</button>
