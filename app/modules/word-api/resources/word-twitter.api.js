@@ -6,7 +6,7 @@
     .factory('WordTwitter', function($resource, WORD_API_BASE_URI) {
       
       return $resource('', null, {
-        wordTree: {
+        wordConcurrence: {
           method: 'GET', 
           url: WORD_API_BASE_URI + '/twitter/word_concur', 
           params: {
@@ -27,10 +27,11 @@
           method: 'GET', 
           url: WORD_API_BASE_URI + '/twitter/top_words', 
           params: {
-            period: null,  // string
-            tags: [],      // array of string
-            page: null,    // number
-            per_page: null // number
+            filter: null
+            // period: null,  // string
+            // tags: [],      // array of string
+            // page: null,    // number
+            // per_page: null // number
           },
           isArray: true,
           cache: true
@@ -39,11 +40,12 @@
           method: 'GET', 
           url: WORD_API_BASE_URI + '/twitter/word_posts', 
           params: {
-            period: null,  // string
-            tags: [],      // array of string
-            word: null,    // string
-            page: null,    // number
-            per_page: null // number
+            filter: null
+            // period: null,  // string
+            // tags: [],      // array of string
+            // word: null,    // string
+            // page: null,    // number
+            // per_page: null // number
           },
           isArray: true,
           cache: true
@@ -52,11 +54,12 @@
           method: 'GET', 
           url: WORD_API_BASE_URI + '/twitter/word_images', 
           params: {
-            period: null,  // string
-            tags: [],      // array of string
-            word: null,    // string
-            page: null,    // number
-            per_page: null // number
+            filter: null
+            // period: null,  // string
+            // tags: [],      // array of string
+            // word: null,    // string
+            // page: null,    // number
+            // per_page: null // number
           },
           isArray: true,
           cache: true
