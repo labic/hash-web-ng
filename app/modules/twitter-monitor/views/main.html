@@ -6,7 +6,8 @@
       <button ng-repeat="tag in options.mainTags.values" class="btn btn-primary" ng-model="filter.mainTag" uib-btn-radio="tag.key">{{tag.value}}</button>
     </aside>
 
-    <aside ui-view="map-filter"></aside>
+    <!-- <aside ui-view="map-filter"></aside> -->
+    <highchart config="config.map"></highchart>
     
     <aside class="filter period btn-group">
       <button ng-repeat="period in options.period.values" class="btn btn-primary" ng-model="filter.period" uib-btn-radio="period.value">{{period.key}}</button>
