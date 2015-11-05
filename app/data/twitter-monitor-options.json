@@ -1,0 +1,127 @@
+{
+  "period": {
+    "values": [
+      {
+        "key": "15 dias",
+        "value": "15d"
+      },{
+        "key": "7 dias",
+        "value": "7d"
+      },{
+        "key": "1 dia",
+        "value": "1d"
+      },{
+        "key": "1 hora",
+        "value": "1h"
+      },{
+        "key": "15 minutos",
+        "value": "15m"
+      }
+    ],
+    "default": "1d"
+  },
+  "mainTags": {
+    "values": [
+      {
+        "key": "tema-negros",
+        "value": "Negros"
+      },{
+        "key": "tema-lgbt",
+        "value": "LGBT"
+      },{
+        "key": "tema-indigena",
+        "value": "Indígena"
+      },{
+        "key": "tema-genero",
+        "value": "Mulher"
+      }
+    ],
+    "default": "tema-negros"
+  },
+  "secondaryTags": [
+    {
+      "key": "tema-negros",
+      "values": [
+        {
+          "key": "inclusao-social",
+          "value": "Inclusão Social"
+        },{
+          "key": "empoderamento-negro",
+          "value": "Empoderamento Negro"
+        },{
+          "key": "violencia",
+          "value": "Violência"
+        },{
+          "key": "racismo",
+          "value": "Racismo"
+        },{
+          "key": "intolerponcia-religiosa",
+          "value": "Intolerância Religiosa"
+        }
+      ]
+    },{
+      "key": "tema-lgbt",
+      "values": [
+        {
+          "key": "empoderamento",
+          "value": "Empoderamento"
+        },{
+          "key": "punicao",
+          "value": "Punição"
+        },{
+          "key": "lesbofobia",
+          "value": "Lesbofobia"
+        },{
+          "key": "transfobia",
+          "value": "Transfobia"
+        },{
+          "key": "homofobia",
+          "value": "Homofobia"
+        }
+      ]
+    },{
+      "key": "tema-indigena",
+      "values": [
+        {
+          "key": "morte-e-ameaca",
+          "value": "Morte e Ameaça"
+        },{
+          "key": "conflitos",
+          "value": "Conflitos"
+        },{
+          "key": "etnias",
+          "value": "Etnias"
+        },{
+          "key": "empoderamento-indigena",
+          "value": "Empoderamento Indígena"
+        },{
+          "key": "preconceito",
+          "value": "Preconceito"
+        }
+      ]
+    },{
+      "key": "tema-genero",
+      "values": [
+        {
+          "key": "aborto",
+          "value": "Aborto"
+        },{
+          "key": "estupro",
+          "value": "Estupro"
+        },{
+          "key": "feminismo",
+          "value": "Feminismo"
+        },{
+          "key": "empoderamento-feminino",
+          "value": "Empoderamento Feminino"
+        },{
+          "key": "punicao",
+          "value": "Punição"
+        },{
+          "key": "machismo",
+          "value": "Machismo"
+        }
+      ]
+    }
+  ]
+}

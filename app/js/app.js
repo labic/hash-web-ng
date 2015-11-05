@@ -16,6 +16,7 @@
       'highcharts-ng',
       'hash.core',
       'hash.api',
+      'word.api',
       'hash.twitter-monitor'
     ])
     // .constant('HASH_API_BASE_URI', 'http://localhost:3000/v1')

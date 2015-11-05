@@ -1,14 +1,15 @@
+<!-- TODO: Reset Filter Button -->
 <div class="row">
   <div class="col-sm-4">
     
     <aside class="filter main-tags btn-group">
-      <button ng-repeat="tag in mainTagsOptions.values" class="btn btn-primary" ng-model="filter.mainTag" uib-btn-radio="tag.key">{{tag.value}}</button>
+      <button ng-repeat="tag in options.mainTags.values" class="btn btn-primary" ng-model="filter.mainTag" uib-btn-radio="tag.key">{{tag.value}}</button>
     </aside>
 
     <aside ui-view="map-filter"></aside>
     
     <aside class="filter period btn-group">
-      <button ng-repeat="period in periodOptions.values" class="btn btn-primary" ng-model="filter.period" uib-btn-radio="period.value">{{period.key}}</button>
+      <button ng-repeat="period in options.period.values" class="btn btn-primary" ng-model="filter.period" uib-btn-radio="period.value">{{period.key}}</button>
     </aside>
     
     <div class="row">
@@ -49,12 +50,21 @@
         <aside class="filter hashtags">
           <ol class="list-group">
             <li ng-repeat="hashtagItem in data.twitter.hashtags.collection" class="list-group-item">
-              <button class="btn btn-secundary" ng-model="filter.word" uib-btn-radio="hashtagItem.hashtag">#{{ hashtagItem.hashtag }}</button>
+              <button class="btn btn-secundary" ng-model="filter.hashtag" uib-btn-radio="hashtagItem.hashtag">#{{ hashtagItem.hashtag }}</button>
             </li>
           </ol>
         </aside>
       </uib-tab>
     </uib-tabset>
+
+    <aside class="filter secondaryTags">
+      <h3>Assuntos Mais Ocorrentes</h3>
+      <ol ng-repeat="secondaryTag in options.secondaryTags | filter:filter.mainTag" class="list-group">
+        <li ng-repeat="tag in secondaryTag.values" class="list-group-item">
+          <button class="btn btn-secundary" ng-model="filter.secondaryTag" uib-btn-radio="tag.key">{{ tag.value }}</button>
+        </li>
+      </ol>
+    </aside>
   </div>
 
   <main class="col-sm-5">
