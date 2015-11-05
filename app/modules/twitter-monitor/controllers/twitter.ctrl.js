@@ -20,7 +20,7 @@
               analyticsTwitter: {
                 mostRetweetedTweets: { page: 1, perPage: 25 },
                 mostPopularHashtags: { page: 1, perPage: 20 },
-                mostRetweetedImages: { page: 1, perPage: 75 },
+                mostRetweetedImages: { page: 1, perPage: 75 }
               },
               wordTwitter: {
                 status: 1
@@ -92,17 +92,44 @@
           filter: {
             where: {
               period: newFilter.period,
-              // word: newFilter.word,
-              // tag: newFilter.mainTag,
               categories: {
                 all: newFilter.tags
               }
-              // skip: 0,
-              // limit: 10
             }
           }
         }, function(res) {
           $scope.data.twitter.words.collection = res;
+        }, errorHandler);
+          
+        WordTwitter.geolocation({
+          filter: {
+            where: {
+              period: newFilter.period,
+              categories: {
+                all: newFilter.tags
+              }
+            }
+          }
+        }, function(res) {
+          var seriesData = [];
+
+          var map = { 
+            count: 'value',
+            name: 'postal-code'
+          };
+
+          _.map(res, function(item) { 
+            var newItem = {};
+            _.each(item, function(value, key) {
+              key = map[key] || key;
+              newItem[key] = value;
+            });
+
+            seriesData.push(newItem);
+          });
+
+          console.log(seriesData);
+          $scope.config.map.series.data = seriesData;
         }, errorHandler);
 
         MetricsTwitter.count({
@@ -128,5 +155,71 @@
       }, true);
 
       function errorHandler(err){ console.error(err); };
+
+      $scope.config = {
+        map: {
+          options: {
+            legend: {
+              layout: 'horizontal',
+              borderWidth: 0,
+              backgroundColor: 'rgba(255,255,255,0.85)',
+              verticalAlign: 'bottom'
+            },
+            colorAxis: {
+              min: 0,
+              minColor: '#EEEEFF',
+              maxColor: '#000022'
+            },
+            plotOptions: {
+              map: {
+                mapData: Highcharts.maps['countries/br/br-all'],
+                joinBy: ['postal-code']
+              }
+            }
+          },
+          chartType: 'map',
+          title: { text: null },
+          series: [
+            {
+              name: 'Tweets',
+              allAreas: true,
+              data: [
+                {
+                  'postal-code': 'ES',
+                  value: 10
+                },
+                {
+                  'postal-code': 'SP',
+                  value: 20
+                },
+                {
+                  'postal-code': 'MG',
+                  value: 30
+                },
+                {
+                  'postal-code': 'RJ',
+                  value: 40
+                },
+                {
+                  'postal-code': 'PR',
+                  value: 50
+                },
+                {
+                  'postal-code': 'AM',
+                  value: 60
+                },
+                {
+                  'postal-code': 'SC',
+                  value: 70
+                },
+                {
+                  'postal-code': 'BA',
+                  value: 80
+                }
+              ]
+            }
+          ]
+        }
+      };
     });
 })();
