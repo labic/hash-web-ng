@@ -72,6 +72,7 @@
             tags: [],     // array of string
             word: null   // string
           },
+          isArray: true,
           cache: true
         }
       });
