@@ -4,7 +4,7 @@
   angular
     .module('hash.twitter-monitor')
     .controller('TwitterMonitorCtrl', function ($scope, $filter, $http, AnalyticsTwitter, MetricsTwitter, WordTwitter) {
-      var DEBUG = true;
+      var DEBUG = false;
       $http.get('/data/twitter-monitor-options.json')
         .then(function(res) {
           $scope.options = res.data;
