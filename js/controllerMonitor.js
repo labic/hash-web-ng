@@ -33,6 +33,8 @@ hashTwitter.controller('mainMonitor', function ($scope, $http, MetricsTwitter, A
   }
 
   function functionConteudo(localTime, dataNow, linkTema, linkCategoria, linkLocalidade, word, tag, nlimit, nskip){
+    var contData;
+
     if(word === null){
 
       $scope.dataLoadTweetON = false;
@@ -54,6 +56,15 @@ hashTwitter.controller('mainMonitor', function ($scope, $http, MetricsTwitter, A
             $scope.dataLoadTweet404 = false;
             $scope.dataLoadTweetERROR = false;
           }
+
+          contData = Object.keys(response).length;
+
+          if(contData-2 < nlimit){
+            $scope.buttonNext = false;
+          }else{
+            $scope.buttonNext = true;
+          }
+
           $scope.twittes = response;
         }, errorHandlerTweet);
 
@@ -63,18 +74,10 @@ hashTwitter.controller('mainMonitor', function ($scope, $http, MetricsTwitter, A
 
       var monitorLinkTweet =  serviceBase+'word_posts?filter='+twRtJson;
 
-      var contData = 0;
-
       $scope.dataLoadTweetON = false;
       $scope.dataLoadTweet404 = false;
       $scope.dataLoadTweetOFF = true;
       $scope.dataLoadTweetERROR = false;
-
-      if($scope.countpage > 0){
-        $scope.buttonBack = true;
-      }else{
-        $scope.buttonBack = false;
-      }
 
       $http.get(monitorLinkTweet).success(function (data) {
 
@@ -88,6 +91,17 @@ hashTwitter.controller('mainMonitor', function ($scope, $http, MetricsTwitter, A
           $scope.dataLoadTweetOFF = false;
           $scope.dataLoadTweet404 = false;
           $scope.dataLoadTweetERROR = false;
+        }
+
+        contData = Object.keys(data).length;
+
+        console.log(contData);
+        console.log(nlimit);
+
+        if(contData < nlimit){
+          $scope.buttonNext = false;
+        }else{
+          $scope.buttonNext = true;
         }
 
         $scope.twittes = data;
@@ -419,7 +433,7 @@ hashTwitter.controller('mainMonitor', function ($scope, $http, MetricsTwitter, A
       functionConteudo($scope.filter.time, dataNow, $scope.filter.tema, null, null, null, null, nlimit, 0);
 
     }else if(turn == "word"){
-      
+
       functionConteudo($scope.filter.time, dataNow, $scope.filter.tema, null, null, $scope.filter.word, null, nlimit, 0);
 
     }else if(turn == "tag"){
@@ -445,7 +459,7 @@ hashTwitter.controller('mainMonitor', function ($scope, $http, MetricsTwitter, A
         page: 1, 
         per_page: nlimit  
       }
-      
+
       functionConteudo($scope.filter.time, dataNow, $scope.filter.tema, $scope.filter.categoria, null, null, null, nlimit, 0);
     }
   };

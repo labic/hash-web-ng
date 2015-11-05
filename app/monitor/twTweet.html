@@ -36,7 +36,7 @@
 				<p>ÚLTIMO COMPARTILHAMENTO: {{twitte.status.timestamp_ms | date:'HH:mm:ss'}} HS</p>
 			</div>
 
-			<button class="result_button result_button_next" ng-click='loadMore(1);'></button>
+			<button ng-show="buttonNext" class="result_button result_button_next" ng-click='loadMore(1);'></button>
 		</div>
 	</div>
 </div>
