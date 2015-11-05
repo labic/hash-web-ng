@@ -24,9 +24,9 @@
     <div id="str_menu_temporalidade">
 
       <div id="str_time_temporalidade" >
-        <div class="time_temporalidade" ng-click='filter.time = "15m"'>
-          <p>15</p>
-          <p>MINUTOS</p>
+        <div class="time_temporalidade" ng-click='filter.time = "1h"'>
+          <p>1</p>
+          <p>HORA</p>
         </div>
         <div class="time_temporalidade" ng-click='filter.time = "1d"'>
           <p>24</p>
@@ -54,13 +54,13 @@
     <div id="str_display_tweet">
       <div class="display_tweet">
         <img src="img/icons/ICONE-TWEET.png" height="30px" width="35px">
-        <p class="display_tweet_p">{{countRetweet.count}}</p>
+        <p class="display_tweet_p">{{countRetweet}}</p>
         <p>Tweets acumulados</p>
       </div>
 
       <div class="display_tweet">
         <img src="img/icons/ICONE-IMAGEM.png" height="30px" width="35px">
-        <p class="display_tweet_p">{{countImage.count}}</p>
+        <p class="display_tweet_p">{{countImage}}</p>
         <p>Imagens acumulados</p>
       </div>
     </div>

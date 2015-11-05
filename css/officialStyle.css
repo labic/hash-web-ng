@@ -265,6 +265,7 @@
         float:left;
         height: 50px;
         padding-top: 5px;
+        margin-bottom: 20px;
         border-bottom: 2px dashed #41647A;
       }
 
@@ -456,7 +457,7 @@
         .display_tweet{
           width:180px;
           float:left;
-          padding:10px;
+          padding:10px 10px 10px 0px;
           height: auto;
         }
 

@@ -464,12 +464,6 @@ hashTwitter.controller('mainMonitor', function ($scope, $http, MetricsTwitter, A
     }
   };
 
-  $scope.recentTweets = function (){
-
-    $scope.monitorLinkTweet = baseURL+'?filter={"where":{"categories":{"all":['+$scope.filter.tema+''+$scope.filter.categoria+''+$scope.filter.localidade+']}},"limit":25,"skip":0, "order": "status.timestamp_ms DESC"}';
-
-  };
-
   $scope.filter = {
     tema: "tema-negros",
     time: "7d",
@@ -525,6 +519,21 @@ hashTwitter.controller('mainMonitor', function ($scope, $http, MetricsTwitter, A
 
       turn = "tweet";
 
+      MetricsTwitter.count({
+        period: newFilter.time,
+        'tags[]': [newFilter.tema]
+      }, function success(res) {
+        $scope.countRetweet = res.count;
+      });
+
+      MetricsTwitter.count({
+        period: newFilter.time,
+        'tags[]': [newFilter.tema],
+        'has[]': ['media']
+      }, function success(res) {
+        $scope.countImage = res.count;
+      });
+
       $scope.setAll($scope.filter.time, dataNow, newFilter.tema, null, null, null, null, 25, 0);
 
       firstRun = true;
@@ -545,6 +554,21 @@ hashTwitter.controller('mainMonitor', function ($scope, $http, MetricsTwitter, A
           page: 1, 
           per_page: 25 
         }
+
+        MetricsTwitter.count({
+          period: newFilter.time,
+          'tags[]': [newFilter.tema]
+        }, function success(res) {
+          $scope.countRetweet = res.count;
+        });
+
+        MetricsTwitter.count({
+          period: newFilter.time,
+          'tags[]': [newFilter.tema],
+          'has[]': ['media']
+        }, function success(res) {
+          $scope.countImage = res.count;
+        });
 
         $scope.setAll($scope.timeMonitor, dataNow, newFilter.tema, null, null, null, null, 25, 0);
       }
@@ -654,34 +678,34 @@ hashTwitter.controller('mainMonitor', function ($scope, $http, MetricsTwitter, A
     }
   },true);
 
-  $scope.monitorCountTweet = baseURL+'/count?where={}';
-  $scope.monitorCountImage = baseURL+'/count?where={"status.entities.media":{"exists":true}}';
+//  $scope.monitorCountTweet = baseURL+'/count?where={}';
+//  $scope.monitorCountImage = baseURL+'/count?where={"status.entities.media":{"exists":true}}';
 
-//  MetricsTwitter.count({
-//    period: 15d,
-//    'tags[]': ['tema-negros','tema-lgbt','tema-indigena','tema-genero'],
-////    'has[]': ['media']
-//  }, 
-//                       function success(res) {
-//    $scope.countRetweet = res.count;
+  //  MetricsTwitter.count({
+  //    period: 15d,
+  //    'tags[]': ['tema-negros','tema-lgbt','tema-indigena','tema-genero'],
+  ////    'has[]': ['media']
+  //  }, 
+  //                       function success(res) {
+  //    $scope.countRetweet = res.count;
+  //  });
+
+  //  MetricsTwitter.count({
+  //    period: newFilter.period,
+  //    'tags[]': newFilter.tags,
+  //    'hashtags[]': newFilter.hashtag === null ? null : [newFilter.hashtag],
+  //    'has[]': ['media']
+  //  }, 
+  //                       function success(res) {
+  //    $scope.data.twitter.images.count = res.count;
+  //  }, 
+  //                       errorHandler);
+  //
+//  $http.get($scope.monitorCountTweet).success(function (data) {
+//    $scope.countRetweet = data;
 //  });
-
-//  MetricsTwitter.count({
-//    period: newFilter.period,
-//    'tags[]': newFilter.tags,
-//    'hashtags[]': newFilter.hashtag === null ? null : [newFilter.hashtag],
-//    'has[]': ['media']
-//  }, 
-//                       function success(res) {
-//    $scope.data.twitter.images.count = res.count;
-//  }, 
-//                       errorHandler);
 //
-  $http.get($scope.monitorCountTweet).success(function (data) {
-    $scope.countRetweet = data;
-  });
-
-  $http.get($scope.monitorCountImage).success(function (data) {
-    $scope.countImage = data;
-  });
+//  $http.get($scope.monitorCountImage).success(function (data) {
+//    $scope.countImage = data;
+//  });
 });

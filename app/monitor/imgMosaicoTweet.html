@@ -16,10 +16,12 @@
 		<p class="loadingWordGrey">ERROR</p>
 		<p class="loadingWordGrey">Estamos tendo problemas ao carregar, volte mais tarde =)</p>
 	</div>
+  
+  <!-- <a href="https://twitter.com/{{imgMos.user.screen_name}}/status/{{imgMos.user.id_str}}" target="_blank" style="color:white;"></a> -->
 
 	<div ng-show="dataLoadImageON" class="geralTweets_result" style="padding:10px;">
 		<div ng-repeat="imgMos in imgsMos" class="out str_TopImg_mosaico">
-			<a href='{{imgMos.media_url_https}}' class="swipebox" title='Retweetado {{imgMos.count}} - "{{imgMos.text}}" @{{img.user.screen_name}}' >
+			<a href='{{imgMos.media_url_https}}' class="swipebox" title=' Retweetado {{imgMos.count}} - "{{imgMos.text}}" @{{imgMos.user.screen_name}}' >
 				<img check-image ng-src="{{imgMos.media_url_https}}:thumb" class="img_TopImg_mosaico" alt="image" width="{{alturaImg}}px" height="{{alturaImg}}px">
 			</a>
 			<div class="hover_img_TopImg_mosaico">
