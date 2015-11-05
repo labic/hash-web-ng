@@ -114,8 +114,7 @@
           var seriesData = [];
 
           var map = { 
-            count: 'value',
-            name: 'postal-code'
+            count: 'value'
           };
 
           _.map(res, function(item) { 
@@ -128,8 +127,8 @@
             seriesData.push(newItem);
           });
 
-          console.log(seriesData);
-          $scope.config.map.series.data = seriesData;
+          if (DEBUG) console.info('Mapped seriesData: %j', seriesData);
+          $scope.config.map.series = [{ name: 'Tweets', data: seriesData, allAreas: true }];
         }, errorHandler);
 
         MetricsTwitter.count({
@@ -158,6 +157,8 @@
 
       $scope.config = {
         map: {
+          title: { text: null },
+          chartType: 'map',
           options: {
             legend: {
               layout: 'horizontal',
@@ -173,50 +174,15 @@
             plotOptions: {
               map: {
                 mapData: Highcharts.maps['countries/br/br-all'],
-                joinBy: ['postal-code']
+                joinBy: ['postal-code', 'name']
               }
             }
           },
-          chartType: 'map',
-          title: { text: null },
           series: [
             {
               name: 'Tweets',
               allAreas: true,
-              data: [
-                {
-                  'postal-code': 'ES',
-                  value: 10
-                },
-                {
-                  'postal-code': 'SP',
-                  value: 20
-                },
-                {
-                  'postal-code': 'MG',
-                  value: 30
-                },
-                {
-                  'postal-code': 'RJ',
-                  value: 40
-                },
-                {
-                  'postal-code': 'PR',
-                  value: 50
-                },
-                {
-                  'postal-code': 'AM',
-                  value: 60
-                },
-                {
-                  'postal-code': 'SC',
-                  value: 70
-                },
-                {
-                  'postal-code': 'BA',
-                  value: 80
-                }
-              ]
+              data: []
             }
           ]
         }
