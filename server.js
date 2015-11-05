@@ -3,7 +3,7 @@ var app      = express();
 
 app.use(express.static(__dirname));
 
-var PORT = (8080 || process.env.PORT);
+var PORT = process.env.PORT || 8080;
 app.listen(PORT);
 
 app.get('/', function (req, res) {
