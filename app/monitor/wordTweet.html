@@ -1,26 +1,24 @@
 <div style="height:100%;">
 
-<!--
-	<div class="loading" ng-show="dataLoadOFF" >
+	<div class="loading" ng-show="dataLoadWordOFF" >
 		<center><img src="img/icons/spin.gif" height="66px" width="66px"></center>
 		<p style="color:rgba(10, 18, 39, 0.65);">CARREGANDO</p>
 		<p style="color:rgba(10, 18, 39, 0.65);">estamos realizando a sua requisição, essa operação pode demorar um pouco.</p>
 	</div>
 
-	<div class="loading" ng-show="dataLoad404">
+	<div class="loading" ng-show="dataLoadWord404">
 		<center><img src="img/icons/searching45blue.png" height="40px" width="40px"></center>
 		<p class="loadingWordBlue">NENHUMA PALAVRA ENCONTRADA</p>
 		<p class="loadingWordBlue">tente outra categoria ou intervalo de tempo</p>
 	</div>
 	
-	<div class="loading" ng-show="dataLoadERROR">
+	<div class="loading" ng-show="dataLoadWordERROR">
 		<center><img src="img/icons/searching45.png" height="40px" width="40px"></center>
 		<p class="loadingWordGrey">ERROR</p>
 		<p class="loadingWordGrey">Estamos tendo problemas ao carregar, volte mais tarde =)</p>
 	</div>
--->
 
-	<div>
+	<div ng-show="dataLoadWordON">
 		<div id="str_highWord" title='Clique para visualizar os ultimos retweets com a palavra "{{wordMouseEnter.word}}"' ng-click="filter.word = wordMouseEnter.word;">
 			<p ng-hide="wordMouseEnter"class="title_str_highWord">Passe o mouse sobre as palavras para visualiza-las</p>
 			<p ng-show="wordMouseEnter" class="title_str_highWord">{{wordMouseEnter.word}}</p>

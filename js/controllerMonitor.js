@@ -8,32 +8,67 @@ hashTwitter.controller('mainMonitor', function ($scope, $http, MetricsTwitter, A
   $scope.categorieNumber = 0;
   $scope.countpage = 0;
 
-  function errorHandler(err) {
+  function errorHandlerTweet(err) {
+    $scope.dataLoadTweetON = false;
+    $scope.dataLoadTweet404 = false;
+    $scope.dataLoadTweetOFF = true;
+    $scope.dataLoadTweetERROR = true;
+    console.log(err);
+  }
+
+  function errorHandlerImage(err) {
+    $scope.dataLoadImageON = false;
+    $scope.dataLoadImage404 = false;
+    $scope.dataLoadImageOFF = true;
+    $scope.dataLoadImageERROR = true;
+    console.log(err);
+  }
+
+  function errorHandlerTag(err) {
+    $scope.dataLoadTagON = false;
+    $scope.dataLoadTag404 = false;
+    $scope.dataLoadTagOFF = true;
+    $scope.dataLoadTagERROR = true;
     console.log(err);
   }
 
   function functionConteudo(localTime, dataNow, linkTema, linkCategoria, linkLocalidade, word, tag, nlimit, nskip){
+    if(word === null){
 
-    if((word === null) && (tag === null)){
+      $scope.dataLoadTweetON = false;
+      $scope.dataLoadTweet404 = false;
+      $scope.dataLoadTweetOFF = true;
+      $scope.dataLoadTweetERROR = false;
 
       AnalyticsTwitter.mostRetweetedTweets(
         $scope.analyticsParams, 
         function success(response) {
+          if(response == ""){
+            $scope.dataLoadTweetON = false;
+            $scope.dataLoadTweetOFF = false;
+            $scope.dataLoadTweet404 = true;
+            $scope.dataLoadTweetERROR = false;
+          }else{
+            $scope.dataLoadTweetON = true;
+            $scope.dataLoadTweetOFF = false;
+            $scope.dataLoadTweet404 = false;
+            $scope.dataLoadTweetERROR = false;
+          }
           $scope.twittes = response;
-        }, errorHandler);
+        }, errorHandlerTweet);
 
     }else if(tag === null){
 
-      var twRtJson = JSON.stringify(filterDavid($scope.filter.time, linkTema, linkCategoria, linkLocalidade, word, null, 25),["where","period","word","categories","all","limit"]);
+      var twRtJson = JSON.stringify(filterDavid($scope.filter.time, linkTema, linkCategoria, linkLocalidade, word, null, nlimit),["where","period","word","categories","all","limit"]);
 
-      var monitorLinkWord =  serviceBase+'word_posts?filter='+twRtJson;
+      var monitorLinkTweet =  serviceBase+'word_posts?filter='+twRtJson;
 
       var contData = 0;
 
-      $scope.dataLoadON = false;
-      $scope.dataLoad404 = false;
-      $scope.dataLoadOFF = true;
-      $scope.dataLoadERROR = false;
+      $scope.dataLoadTweetON = false;
+      $scope.dataLoadTweet404 = false;
+      $scope.dataLoadTweetOFF = true;
+      $scope.dataLoadTweetERROR = false;
 
       if($scope.countpage > 0){
         $scope.buttonBack = true;
@@ -41,7 +76,19 @@ hashTwitter.controller('mainMonitor', function ($scope, $http, MetricsTwitter, A
         $scope.buttonBack = false;
       }
 
-      $http.get(monitorLinkWord).success(function (data) {
+      $http.get(monitorLinkTweet).success(function (data) {
+
+        if(data == ""){
+          $scope.dataLoadTweetON = false;
+          $scope.dataLoadTweetOFF = false;
+          $scope.dataLoadTweet404 = true;
+          $scope.dataLoadTweetERROR = false;
+        }else{
+          $scope.dataLoadTweetON = true;
+          $scope.dataLoadTweetOFF = false;
+          $scope.dataLoadTweet404 = false;
+          $scope.dataLoadTweetERROR = false;
+        }
 
         $scope.twittes = data;
 
@@ -80,26 +127,12 @@ hashTwitter.controller('mainMonitor', function ($scope, $http, MetricsTwitter, A
         //          $scope.dataLoadON = true;
         //        }
       }).error(function(data, status) {
-        $scope.dataLoadERROR = true;
-        $scope.dataLoad404 = false;
-        $scope.dataLoadOFF = false;
-        $scope.dataLoadON = false;
+        $scope.dataLoadTweetERROR = true;
+        $scope.dataLoadTweet404 = false;
+        $scope.dataLoadTweetOFF = false;
+        $scope.dataLoadTweetON = false;
         console.log(status);
       });   
-
-      //      $scope.monitorLinkTweet = serviceBase+'word_posts?filter={"where":{"period":"'+$scope.filter.time+'","word":"'+word+'","categories":{"all":['+linkTema+''+linkCategoria+''+linkLocalidade+']}},"limit":25}';
-
-    }else if(word === null){
-
-      AnalyticsTwitter.mostRetweetedTweets(
-        $scope.analyticsParams, 
-        function success(response) {
-          $scope.twittes = response;
-        }, errorHandler);
-
-
-      //      $scope.monitorLinkTweet = baseURL+'/analytics?type=top-retweets&filter={"where":{"status.entities.hashtags.text":{"all":["'+tag+'"]},"status.created_at":{"gte":"'+localTime+'","lte":"'+dataNow+'"},"categories":{"all":['+linkTema+''+linkCategoria+''+linkLocalidade+']}},"limit":25,"skip":0}';
-
     }
   };
 
@@ -138,66 +171,99 @@ hashTwitter.controller('mainMonitor', function ($scope, $http, MetricsTwitter, A
 
   function functionImage(localTime, dataNow, linkTema, linkCategoria, linkLocalidade, word, tag){
 
-    if((word === null) && (tag === null)){
+    if(word === null){
+
+      $scope.dataLoadImageON = false;
+      $scope.dataLoadImage404 = false;
+      $scope.dataLoadImageOFF = true;
+      $scope.dataLoadImageERROR = false;
 
       AnalyticsTwitter.mostRetweetedImages(
-        $scope.analyticsParams, 
+        {
+          period: $scope.filter.time, 
+          'tags[]': [$scope.filter.tema], 
+          'hashtags[]': [], 
+          retrive_blocked: null, 
+          page: 1, 
+          per_page: 399 
+        }, 
         function success(response) {
-          $scope.imgs = response;
+          if(response == ""){
+            $scope.dataLoadImageON = false;
+            $scope.dataLoadImageOFF = false;
+            $scope.dataLoadImage404 = true;
+            $scope.dataLoadImageERROR = false;
+          }else{
+            $scope.dataLoadImageON = true;
+            $scope.dataLoadImageOFF = false;
+            $scope.dataLoadImage404 = false;
+            $scope.dataLoadImageERROR = false;
+          }
+          $scope.imgs = response.splice(0,24);
           $scope.imgsMos = response;
-        }, errorHandler);
+        }, errorHandlerImage);
 
     }else if(tag === null){
 
       var imgJson = JSON.stringify(filterDavid($scope.filter.time,linkTema, linkCategoria, linkLocalidade, word, null, 399),["where","period","word","categories","all","limit"]);
 
-      var monitorLinkWord =  serviceBase+'word_images?filter='+imgJson;
+      var monitorLinkImage =  serviceBase+'word_images?filter='+imgJson;
 
-      $scope.dataLoadON = false;
-      $scope.dataLoad404 = false;
-      $scope.dataLoadOFF = true;
-      $scope.dataLoadERROR = false;
+      $scope.dataLoadImageON = false;
+      $scope.dataLoadImage404 = false;
+      $scope.dataLoadImageOFF = true;
+      $scope.dataLoadImageERROR = false;
 
-      $http.get(monitorLinkWord).success(function (data) {
+      $http.get(monitorLinkImage).success(function (data) {
         $scope.imgs = data.splice(0,24);
         $scope.imgsMos = data;
         if(data == ""){
-          $scope.dataLoadON = false;
-          $scope.dataLoadOFF = false;
-          $scope.dataLoad404 = true;
+          $scope.dataLoadImageON = false;
+          $scope.dataLoadImageOFF = false;
+          $scope.dataLoadImage404 = true;
+          $scope.dataLoadImageERROR = false;
         }else{
-          $scope.dataLoad404 = false;
-          $scope.dataLoadOFF = false;
-          $scope.dataLoadON = true;
+          $scope.dataLoadImageON = true;
+          $scope.dataLoadImageOFF = false;
+          $scope.dataLoadImage404 = false;
+          $scope.dataLoadImageERROR = false;
         }
       }).error(function(data, status) {
-        $scope.dataLoadERROR = true;
-        $scope.dataLoad404 = false;
-        $scope.dataLoadOFF = false;
-        $scope.dataLoadON = false;
+        $scope.dataLoadImageERROR = true;
+        $scope.dataLoadImage404 = false;
+        $scope.dataLoadImageOFF = false;
+        $scope.dataLoadImageON = false;
         console.log(status);
       });
 
       //      $scope.monitorLinkImg = serviceBase+'word_images?filter={"where":{"period":"'+$scope.filter.time+'","word":"'+word+'","categories":{"all":['+linkTema+''+linkCategoria+''+linkLocalidade+']}},"limit":400}';
 
-    }else if(word === null){
-
-      AnalyticsTwitter.mostRetweetedImages(
-        $scope.analyticsParams, 
-        function success(response) {
-          $scope.imgs = response;
-          $scope.imgsMos = response;
-        }, errorHandler);
     }
   };
 
   function functionTag(localTime, dataNow, linkTema, linkCategoria, linkLocalidade){
 
+    $scope.dataLoadTagON = false;
+    $scope.dataLoadTag404 = false;
+    $scope.dataLoadTagOFF = true;
+    $scope.dataLoadTagERROR = false;
+
     AnalyticsTwitter.mostPopularHashtags(
       $scope.analyticsParams, 
       function success(response) {
+        if(response == ""){
+          $scope.dataLoadTagON = false;
+          $scope.dataLoadTagOFF = false;
+          $scope.dataLoadTag404 = true;
+          $scope.dataLoadTagERROR = false;
+        }else{
+          $scope.dataLoadTagON = true;
+          $scope.dataLoadTagOFF = false;
+          $scope.dataLoadTag404 = false;
+          $scope.dataLoadTagERROR = false;
+        }
         $scope.tags = response.splice(0,19);
-      }, errorHandler);
+      }, errorHandlerTag);
   };
 
   function functionWord(localTime, dataNow, linkTema, linkCategoria, linkLocalidade){
@@ -206,29 +272,29 @@ hashTwitter.controller('mainMonitor', function ($scope, $http, MetricsTwitter, A
 
     var monitorLinkWord =  serviceBase+'top_words?filter='+wordJson;
 
-    $scope.dataLoadON = false;
-    $scope.dataLoad404 = false;
-    $scope.dataLoadOFF = true;
-    $scope.dataLoadERROR = false;
+    $scope.dataLoadWordON = false;
+    $scope.dataLoadWord404 = false;
+    $scope.dataLoadWordOFF = true;
+    $scope.dataLoadWordERROR = false;
 
     $http.get(monitorLinkWord).success(function (data) {
       $scope.words = data;
       $scope.words = data.splice(0,11);
       if(data == ""){
-        $scope.dataLoadON = false;
-        $scope.dataLoadOFF = false;
-        $scope.dataLoad404 = true;
+        $scope.dataLoadWordON = false;
+        $scope.dataLoadWordOFF = false;
+        $scope.dataLoadWord404 = true;
       }else{
-        $scope.dataLoad404 = false;
-        $scope.dataLoadOFF = false;
-        $scope.dataLoadON = true;
+        $scope.dataLoadWord404 = false;
+        $scope.dataLoadWordOFF = false;
+        $scope.dataLoadWordON = true;
       }
 
     }).error(function(data, status) {
-      $scope.dataLoadERROR = true;
-      $scope.dataLoad404 = false;
-      $scope.dataLoadOFF = false;
-      $scope.dataLoadON = false;
+      $scope.dataLoadWordERROR = true;
+      $scope.dataLoadWord404 = false;
+      $scope.dataLoadWordOFF = false;
+      $scope.dataLoadWordON = false;
       console.log(status);
     });
 
@@ -334,36 +400,54 @@ hashTwitter.controller('mainMonitor', function ($scope, $http, MetricsTwitter, A
     functionImage(localTime, dataNow, linkTema, linkCategoria, linkLocalidade, word, tag);
   };
 
-  function loadMore(componente) {
-    
-    switch(componente){
-      case 'tweets':
-        
-        $scope.filter.pagination.analyticsTwitter.paginationTweet++;
-        alert($scope.filter.pagination.analyticsTwitter.paginationTweet);
-        alert("EnTREI!!");
-    }
-//    $scope.countpage = 1 + $scope.countpage;
-//    
-//    var nskip = $scope.countpage * 25;
-//    var nlimit = $scope.countpage * 25 + 25;
-//
-//    $scope.analyticsParams = {
-//      period: $scope.filter.time, 
-//      'tags[]': [$scope.filter.tema], 
-//      'hashtags[]': [], 
-//      retrive_blocked: null, 
-//      page: 1, 
-//      per_page: nlimit 
-//    }
-//    
-//    AnalyticsTwitter.mostRetweetedTweets(
-//        $scope.analyticsParams, 
-//        function success(response) {
-//          $scope.twittes = response;
-//        }, errorHandler);
+  $scope.loadMore = function(x) {
+    $scope.countpage = x + $scope.countpage;
 
-//    $scope.setMin($scope.timeMonitor, dataNow, $scope.filter.tema, $scope.filter.categoria, $scope.filter.localidade, null, null, nlimit, nskip);
+    var nskip = $scope.countpage * 25;
+    var nlimit = $scope.countpage * 25 + 25;
+
+    if(turn == "tweet"){
+      $scope.analyticsParams = {
+        period: $scope.filter.time, 
+        'tags[]': [$scope.filter.tema], 
+        'hashtags[]': [], 
+        retrive_blocked: null, 
+        page: 1, 
+        per_page: nlimit 
+      }
+
+      functionConteudo($scope.filter.time, dataNow, $scope.filter.tema, null, null, null, null, nlimit, 0);
+
+    }else if(turn == "word"){
+      
+      functionConteudo($scope.filter.time, dataNow, $scope.filter.tema, null, null, $scope.filter.word, null, nlimit, 0);
+
+    }else if(turn == "tag"){
+
+      $scope.analyticsParams = {
+        period: $scope.filter.time, 
+        'tags[]': [$scope.filter.tema], 
+        'hashtags[]': [$scope.filter.tag], 
+        retrive_blocked: null, 
+        page: 1, 
+        per_page: nlimit 
+      }
+
+      functionConteudo($scope.filter.time, dataNow, $scope.filter.tema, null, null, null, $scope.filter.tag, nlimit, 0);
+
+    }else if(turn == "categoria"){
+
+      $scope.analyticsParams = {
+        period: $scope.filter.time, 
+        'tags[]': [$scope.filter.tema, $scope.filter.categoria], 
+        'hashtags[]': [], 
+        retrive_blocked: null, 
+        page: 1, 
+        per_page: nlimit  
+      }
+      
+      functionConteudo($scope.filter.time, dataNow, $scope.filter.tema, $scope.filter.categoria, null, null, null, nlimit, 0);
+    }
   };
 
   $scope.recentTweets = function (){
@@ -386,7 +470,7 @@ hashTwitter.controller('mainMonitor', function ($scope, $http, MetricsTwitter, A
         paginationTag: 1
       },
       analyticsWord:{
-        
+
       }    
     }
   };
@@ -410,7 +494,10 @@ hashTwitter.controller('mainMonitor', function ($scope, $http, MetricsTwitter, A
     return filter;
   }
 
+  var turn;
+
   $scope.$watch('filter', function (newFilter, oldFilter) {
+
     if(firstRun == false){
 
       $scope.analyticsParams = {
@@ -422,15 +509,19 @@ hashTwitter.controller('mainMonitor', function ($scope, $http, MetricsTwitter, A
         per_page: 25 
       }
 
-      //      $scope.timeMonitor = transformTime($scope.filter.time);
+      turn = "tweet";
 
       $scope.setAll($scope.filter.time, dataNow, newFilter.tema, null, null, null, null, 25, 0);
 
       firstRun = true;
     }else{
-      $scope.countpage = 0;
 
-      if(newFilter.tema != oldFilter.tema){ 
+      $scope.countpage = 0;
+      $( ".geralTweets_result" ).scrollTop( "slow" );
+
+      if(newFilter.tema != oldFilter.tema){     
+
+        turn = "tweet";
 
         $scope.analyticsParams = {
           period: newFilter.time, 
@@ -440,25 +531,54 @@ hashTwitter.controller('mainMonitor', function ($scope, $http, MetricsTwitter, A
           page: 1, 
           per_page: 25 
         }
-
-        $scope.filter.word = null;
-        $scope.filter.tag = null;
 
         $scope.setAll($scope.timeMonitor, dataNow, newFilter.tema, null, null, null, null, 25, 0);
       }
 
       if(newFilter.time != oldFilter.time){
 
-        $scope.analyticsParams = {
-          period: newFilter.time, 
-          'tags[]': [newFilter.tema], 
-          'hashtags[]': [], 
-          retrive_blocked: null, 
-          page: 1, 
-          per_page: 25 
-        }
+        if(turn == "tweet"){
+          $scope.analyticsParams = {
+            period: newFilter.time, 
+            'tags[]': [newFilter.tema], 
+            'hashtags[]': [], 
+            retrive_blocked: null, 
+            page: 1, 
+            per_page: 25 
+          }
 
-        $scope.setAll($scope.filter.time, dataNow, newFilter.tema, newFilter.categoria, newFilter.localidade, newFilter.word, newFilter.tag, 25, 0);
+          $scope.setAll($scope.filter.time, dataNow, newFilter.tema, null, null, null, null, 25, 0);
+
+        }else if(turn == "word"){
+
+          $scope.setAll($scope.filter.time, dataNow, newFilter.tema, null, null, newFilter.word, null, 25, 0);
+
+        }else if(turn == "tag"){
+
+          $scope.analyticsParams = {
+            period: newFilter.time, 
+            'tags[]': [newFilter.tema], 
+            'hashtags[]': [], 
+            retrive_blocked: null, 
+            page: 1, 
+            per_page: 25 
+          }
+
+          $scope.setAll($scope.filter.time, dataNow, newFilter.tema, null, null, null, newFilter.tag, 25, 0);
+
+        }else if(turn == "categoria"){
+
+          $scope.analyticsParams = {
+            period: newFilter.time, 
+            'tags[]': [newFilter.tema, newFilter.categoria], 
+            'hashtags[]': [], 
+            retrive_blocked: null, 
+            page: 1, 
+            per_page: 25 
+          }
+
+          $scope.setAll($scope.filter.time, dataNow, newFilter.tema, newFilter.categoria, null, null, null, 25, 0);
+        }
       }			
 
       if(newFilter.localidade != oldFilter.localidade){
@@ -476,7 +596,9 @@ hashTwitter.controller('mainMonitor', function ($scope, $http, MetricsTwitter, A
       }
 
       if(newFilter.categoria != oldFilter.categoria){
-        
+
+        turn = "categoria";
+
         $scope.analyticsParams = {
           period: newFilter.time, 
           'tags[]': [newFilter.tema,newFilter.categoria], 
@@ -491,10 +613,14 @@ hashTwitter.controller('mainMonitor', function ($scope, $http, MetricsTwitter, A
 
       if(newFilter.word != oldFilter.word){
 
+        turn = "word";
+
         $scope.setMin($scope.timeMonitor, dataNow, newFilter.tema,  null, null, newFilter.word, null, 25, 0);
       }
 
       if(newFilter.tag != oldFilter.tag){
+
+        turn = "tag";
 
         $scope.analyticsParams = {
           period: newFilter.time, 
@@ -507,9 +633,9 @@ hashTwitter.controller('mainMonitor', function ($scope, $http, MetricsTwitter, A
 
         $scope.setMin($scope.timeMonitor, dataNow, newFilter.tema, null, null, null, newFilter.tag, 25, 0);
       }		
-      
+
       if(newFilter.pagination.analyticsTwitter.paginationTweet != oldFilter.pagination.analyticsTwitter.paginationTweet){
-        
+
       }
     }
   },true);
@@ -519,31 +645,9 @@ hashTwitter.controller('mainMonitor', function ($scope, $http, MetricsTwitter, A
 
   $http.get($scope.monitorCountTweet).success(function (data) {
     $scope.countRetweet = data;
-
-    //		$scope.contConteudoChange = function(x,max){
-    //			$interval(function() {
-    //				if( x < max) {
-    //					x = x + 7;
-    //					$scope.countRetweetFinal = x;
-    //				}
-    //			},1000);
-    //		};
-    //
-    //		$scope.contConteudoChange(1200000, $scope.countRetweet.count);
   });
 
   $http.get($scope.monitorCountImage).success(function (data) {
     $scope.countImage = data;
-
-    //		$scope.contImageChange = function(x,max){
-    //			$interval(function() {
-    //				if( x < max) {
-    //					x = x + 7;
-    //					$scope.countImageFinal = x;
-    //				}
-    //			},1000);
-    //		};
-    //
-    //		$scope.contImageChange(90000,$scope.countImage.count);
   });
 });
