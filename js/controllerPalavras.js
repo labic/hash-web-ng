@@ -4,7 +4,6 @@ hashTwitter.controller('mainPalavras', function ($scope, $http) {
   /* NOTA: PALAVRAS - CONTROLLER */
   /*******************************/
 
-  //	var palavraLinkWord;
   var urlsun;
   var firstRun = false;
 
@@ -43,7 +42,7 @@ hashTwitter.controller('mainPalavras', function ($scope, $http) {
 
   function functionSunburst(time,tema,word,limit,height,depth,duplicity,rt,repeat){
 
-    var SunburstJson = JSON.stringify(filterDavid(time,tema,word,limit,height,depth,duplicity,rt,repeat),["where","period","categories","all","MAX_WORDS","MAX_HEIGHT","MAX_DEPTH","duplicity","rt","repeated_text"]);
+    var SunburstJson = JSON.stringify(filterDavid(time,tema,word,limit,height,depth,duplicity,rt,repeat),["where","period","categories","all","top_words","MAX_WORDS","MAX_HEIGHT","MAX_DEPTH","duplicity","rt","repeated_text"]);
 
     var linkSunburst =  serviceBase+'word_concur?filter='+SunburstJson;
 
@@ -63,6 +62,7 @@ hashTwitter.controller('mainPalavras', function ($scope, $http) {
         }
       },
       limit: limit,
+      top_words: word,
       MAX_WORDS: limit,
       MAX_HEIGHT: height,
       MAX_DEPTH: depth,
@@ -96,7 +96,7 @@ hashTwitter.controller('mainPalavras', function ($scope, $http) {
       d3.select("#palavras_div2_sunburstZoom").select('g').remove();
       d3.select("#palavras_div2_sunburstZoom_fixed").select('p').remove();
 
-      functionSunburst(newFilter.time, newFilter.tema," ",10,5,3,false,false,false);
+      functionSunburst(newFilter.time, newFilter.tema,null,10,5,3,false,false,false);
 
       $scope.dataLoadON = true;
       $scope.dataLoad404 = false;
@@ -112,7 +112,7 @@ hashTwitter.controller('mainPalavras', function ($scope, $http) {
         d3.select("#palavras_div2_sunburstZoom").select('g').remove();
         d3.select("#palavras_div2_sunburstZoom_fixed").select('p').remove();
 
-        functionSunburst(newFilter.time, newFilter.tema," ",10,5,3,false,false,false);
+        functionSunburst(newFilter.time, newFilter.tema,null,10,5,3,false,false,false);
       }
 
       if(newFilter.word != oldFilter.word){
@@ -136,7 +136,7 @@ hashTwitter.controller('mainPalavras', function ($scope, $http) {
         d3.select("#palavras_div2_sunburstZoom").select('g').remove();
         d3.select("#palavras_div2_sunburstZoom_fixed").select('p').remove();
 
-        functionSunburst(newFilter.time, newFilter.tema," ",10,5,3,false,false,false);
+        functionSunburst(newFilter.time, newFilter.tema,null,10,5,3,false,false,false);
       }
     }
   },true);
