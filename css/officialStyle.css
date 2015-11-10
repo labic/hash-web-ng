@@ -936,7 +936,7 @@
   #div1_palavras{
     width:540px;
     padding: 30px;
-    background: #e7e8ea;
+    background: #2B3044;
   }
 
     #div1_palavras_title{
@@ -946,12 +946,14 @@
 
       #div1_palavras_title img{
         float:left;
+        color: #1dbfd8;
         margin-right: 10px;
       }
 
       #div1_palavras_title p{
         font-size: 14px;
         font-weight: bold;
+        color:#1dbfd8;
       }
 
     #div1_palavras_tematica{
@@ -982,6 +984,7 @@
         border:none;
         background: transparent;
         float:left;
+        color:white;
         padding:5px 10px 5px 10px;
       }
 
