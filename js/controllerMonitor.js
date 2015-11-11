@@ -188,42 +188,6 @@ hashTwitter.controller('mainMonitor', function ($scope, $http, MetricsTwitter, A
   };*/
 
   function functionImage(localTime, dataNow, linkTema, linkCategoria, linkLocalidade, word, tag){
-
-    //    if((word === null) && (tag === null)){
-    //
-    //      $scope.dataLoadImageON = false;
-    //      $scope.dataLoadImage404 = false;
-    //      $scope.dataLoadImageOFF = true;
-    //      $scope.dataLoadImageERROR = false;
-    //
-    //      AnalyticsTwitter.mostRetweetedImages(
-    //        {
-    //          period: $scope.filter.time, 
-    //          'tags[]': [$scope.filter.tema], 
-    //          'hashtags[]': [], 
-    //          retrive_blocked: null, 
-    //          page: 1, 
-    //          per_page: 399 
-    //        }, 
-    //        function success(response) {
-    //          if(response == ""){
-    //            $scope.dataLoadImageON = false;
-    //            $scope.dataLoadImageOFF = false;
-    //            $scope.dataLoadImage404 = true;
-    //            $scope.dataLoadImageERROR = false;
-    //          }else{
-    //            $scope.dataLoadImageON = true;
-    //            $scope.dataLoadImageOFF = false;
-    //            $scope.dataLoadImage404 = false;
-    //            $scope.dataLoadImageERROR = false;
-    //          }
-    //          $scope.imgs = response.splice(0,24);
-    //          $scope.imgsMos = response;
-    //        }, errorHandlerImage);
-    //
-    //
-    //    }else 
-
     if(word === null){
 
       $scope.dataLoadImageON = false;
@@ -247,6 +211,7 @@ hashTwitter.controller('mainMonitor', function ($scope, $http, MetricsTwitter, A
           }
           $scope.imgs = response.splice(0,24);
           $scope.imgsMos = response;
+          $scope.imgsMos = $scope.imgsMos.concat($scope.imgs);
         }, errorHandlerImage);
 
     }else if(tag === null){

@@ -39,6 +39,8 @@ function d3Sunburst(url, word){
 	d3.json(url, function(error, root) {
 
 		if (error) throw error;
+      
+        tweetstext.append("p").html(root.tweet_count)
 
 		var path = svg.selectAll("path")
 		.data(partition.nodes(root))
@@ -91,8 +93,8 @@ function d3Sunburst(url, word){
 				t = t + d.name +" ("+d.size+")"
 			}
 			
-			tweetstext.append("p").html(d.size)
-			seqtext.append("p").html(t)
+//			tweetstext.append("p").html(t.size)
+			seqtext.append("p").html("<p style='color:white;'>PALAVRAS</p>"+t)
 
 			path.transition()
 				.duration(750)

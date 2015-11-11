@@ -1,7 +1,7 @@
 <div id="str_main_palavras" class="str_main" ng-controller="mainPalavras">
   <div id="div1_palavras" class="str_division">
     <div id="div1_palavras_title">
-      <img src="img/Index/icones-vis-01.svg" class="svg-icon" height="40px" width="40px">
+      <img src="img/Index/icones-vis-01.svg" class="svg-icon div1_palavras_title_img">
       <p>ANÁLISE</p>
       <p>TEXTUAL</p>
     </div>
@@ -26,17 +26,17 @@
     <div id="div1_palavras_loop" ui-view="words"></div>
 
     <div id="palavras_div1_str_menuTemporalidade">
-      <div class="palavras_div1_str_menuTemporalidade_temporalidade palavrasFisrtTemp" ng-click="filter.time = '1h'">
-        <p>1</p>
-        <p>HORA</p>
+      <div class="palavras_div1_str_menuTemporalidade_temporalidade fisrtTemp" ng-click="filter.time = '30m'">
+        <p>30</p>
+        <p>MINUTOS</p>
       </div>
-      <div id="temporalidade24" class="palavras_div1_str_menuTemporalidade_temporalidade" ng-click="filter.time = '1d'">
-        <p>24</p>
-        <p>HORAS</p>
+      <div id="temporalidade24" class="palavras_div1_str_menuTemporalidade_temporalidade" ng-click="filter.time = '1h'">
+        <p>60</p>
+        <p>MINUTOS</p>
       </div>
-      <div class="palavras_div1_str_menuTemporalidade_temporalidade" ng-click="filter.time = '7d'">
-        <p>7</p>
-        <p>DIAS</p>
+      <div class="palavras_div1_str_menuTemporalidade_temporalidade" ng-click="filter.time = '1h30m'">
+        <p>90</p>
+        <p>MINUTOS</p>
       </div>
     </div>	
   </div>
@@ -49,43 +49,48 @@
       </div>
     </div>
 
-    <div id="palavras_div2_sunburstZoom_result">
-      <div id="palavras_div2_sunburstZoom_result_hide"> !DESCER! </div>
-      <a ui-sref="palavra.tweet">
-        <div class="palavras_div2_sunburstZoom_result_choise">
-          <p>TWEETS</p>
-        </div>
-      </a>
-      <a ui-sref="palavra.img">
-        <div class="palavras_div2_sunburstZoom_result_choise">
-          <p>IMAGENS</p>
-        </div>
-      </a>
-      <div id="palavras_div2_sunburstZoom_result_view" ui-view="conteudo.palavra"></div>
-    </div>
+    <!--
+<div id="palavras_div2_sunburstZoom_result">
+<div id="palavras_div2_sunburstZoom_result_hide"> !DESCER! </div>
+<a ui-sref="palavra.tweet">
+<div class="palavras_div2_sunburstZoom_result_choise">
+<p>TWEETS</p>
+</div>
+</a>
+<a ui-sref="palavra.img">
+<div class="palavras_div2_sunburstZoom_result_choise">
+<p>IMAGENS</p>
+</div>
+</a>
+<div id="palavras_div2_sunburstZoom_result_view" ui-view="conteudo.palavra"></div>
+</div>
+-->
 
     <div id="palavras_div2_sunburstZoom_fixed">
       <div id="palavras_div2_sunburstZoom_words"><p></p></div>
 
-<!--
       <div id="palavras_div2_sunburstZoom_action">
         <div class="palavras_div2_sunburstZoom_action_each">
-          <img src="img/icons/TWEETS.png" height="40px" width="40px">
-          <div id="tweets_count_ofWord"><p>________</p></div>
+          <img src="img/Index/ICONES-01.svg" class="svg-icon palavras_div2_sunburstZoom_action_each_img">
+          <div id="tweets_count_ofWord"></div>
           <p>Tweets</p>
         </div>
+<!--
         <div class="palavras_div2_sunburstZoom_action_each">
           <img src="img/icons/IMAGENS.png" height="40px" width="40px">
           <div id="images_count_ofWord"><p>________</p></div>
           <p>Imagens</p>
         </div>
-      </div>
 -->
+      </div>
+
     </div>
   </div>
 </div>
 
 <script type="text/javascript">
+
+  callSvgImg();
 
   $( document ).ready(function(){
 
@@ -113,16 +118,16 @@
 
     /*NOTA: Troca Temporalidades */ 
 
-    $(".fisrtTemp p").css( "color", "#0a1227" );
+    $(".fisrtTemp p").css( "color", "#2B3044" );
     $(".fisrtTemp").css( "background-color", "#1dbfd8" );
     $(".fisrtTemp").css( "border-color", "#1dbfd8" );
 
-    $(".time_temporalidade").click(function(){
-      $(".time_temporalidade p").css( "color", "#1dbfd8" );
-      $(".time_temporalidade").css( "background-color", "transparent" );
-      $(".time_temporalidade").css( "border-color", "white" );
+    $(".palavras_div1_str_menuTemporalidade_temporalidade").click(function(){
+      $(".palavras_div1_str_menuTemporalidade_temporalidade p").css( "color", "#1dbfd8" );
+      $(".palavras_div1_str_menuTemporalidade_temporalidade").css( "background-color", "transparent" );
+      $(".palavras_div1_str_menuTemporalidade_temporalidade").css( "border-color", "white" );
 
-      $("p", this).css( "color", "#0a1227" );
+      $("p", this).css( "color", "#2B3044" );
       $(this).css( "background-color", "#1dbfd8" );
       $(this).css( "border-color", "#1dbfd8" );
     });
@@ -139,40 +144,40 @@
 
     /* FUTURO: MOVES TELA*/
 
-//    $(".info_pag").click(function(){
-//      $(".fade").fadeIn("slow");
-//      $(".info_pag").fadeOut("slow");
-//      $(".info_pag_on").animate({
-//        marginLeft: "300px"
-//      }, "slow" );
-//      $( "#str_main_palavras" ).animate({
-//        marginLeft: "300px"
-//      }, "slow" );
-//    });
-//
-//    $(".fade").click(function(){
-//      $(".fade").fadeOut("slow");
-//      $(".info_pag").fadeIn("slow");
-//      $(".info_pag_on").animate({
-//        marginLeft: "0"
-//      }, "slow" );
-//      $( "#str_main_palavras" ).animate({
-//        marginLeft: "0"
-//      }, "slow" );
-//    });
+    //    $(".info_pag").click(function(){
+    //      $(".fade").fadeIn("slow");
+    //      $(".info_pag").fadeOut("slow");
+    //      $(".info_pag_on").animate({
+    //        marginLeft: "300px"
+    //      }, "slow" );
+    //      $( "#str_main_palavras" ).animate({
+    //        marginLeft: "300px"
+    //      }, "slow" );
+    //    });
+    //
+    //    $(".fade").click(function(){
+    //      $(".fade").fadeOut("slow");
+    //      $(".info_pag").fadeIn("slow");
+    //      $(".info_pag_on").animate({
+    //        marginLeft: "0"
+    //      }, "slow" );
+    //      $( "#str_main_palavras" ).animate({
+    //        marginLeft: "0"
+    //      }, "slow" );
+    //    });
 
   });
-
-  $("#palavras_div2_sunburstZoom_action").click(function(){
-    $("#palavras_div2_sunburstZoom").animate({
-      marginTop: "-500"
-    }, "slow" );
-  });
-
-  $("#palavras_div2_sunburstZoom_result_hide").click(function(){
-    $("#palavras_div2_sunburstZoom").animate({
-      marginTop: "0"
-    }, "slow" );
-  });
+  //
+  //  $("#palavras_div2_sunburstZoom_action").click(function(){
+  //    $("#palavras_div2_sunburstZoom").animate({
+  //      marginTop: "-500"
+  //    }, "slow" );
+  //  });
+  //
+  //  $("#palavras_div2_sunburstZoom_result_hide").click(function(){
+  //    $("#palavras_div2_sunburstZoom").animate({
+  //      marginTop: "0"
+  //    }, "slow" );
+  //  });
 
 </script>
