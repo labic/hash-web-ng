@@ -18,7 +18,7 @@
 	</div>
 
 	<div ng-show="dataLoadImageON"  class="geralTweets_result" style="height:calc(100% - 10px);">
-		<a ng-repeat="img in imgs" href='{{img.media_url_https}}' class="swipebox" title='Retweetado {{img.count}} - "{{img.text}}" @{{img.user.screen_name}}'>
+		<a ng-repeat="img in imgs" href='{{img.media_url_https}}' class="swipebox" title='<a href="https://twitter.com/{{img.user.screen_name}}/status/{{img.status.id_str}}" target="_blank" style="color:white;">Retweetado {{img.count}} - "{{img.text}}" @{{img.user.screen_name}}</a>" @{{img.user.screen_name}}'>
 				<img src="{{img.media_url_https}}:small" class="img_TopImg" alt="image" width="{{alturaImg}}px" height="{{alturaImg}}px"  >
 		</a>
 	</div>

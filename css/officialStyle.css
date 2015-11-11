@@ -378,7 +378,7 @@
           width: auto;
           height: auto;
           float: left;
-          margin-left: calc(50% - 180px);
+          margin-left: calc(50% - 144px);
         }
 
           .time_temporalidade{
@@ -936,7 +936,7 @@
   #div1_palavras{
     width:540px;
     padding: 30px;
-    background: #e7e8ea;
+    background: #2B3044;
   }
 
     #div1_palavras_title{
@@ -944,14 +944,18 @@
       padding-left: 150px;
     }
 
-      #div1_palavras_title img{
+      .div1_palavras_title_img{
         float:left;
+        fill: #fff;
+        height: 40px;
+        width: 40px;
         margin-right: 10px;
       }
 
       #div1_palavras_title p{
         font-size: 14px;
         font-weight: bold;
+        color:#fff;
       }
 
     #div1_palavras_tematica{
@@ -965,7 +969,7 @@
       }
 
       #div1_palavras_tematica li p{
-        color: black;
+        color: #1dbfd8;
         font-size: 15px;
       }
 
@@ -982,6 +986,7 @@
         border:none;
         background: transparent;
         float:left;
+        color:white;
         padding:5px 10px 5px 10px;
       }
 
@@ -989,8 +994,10 @@
         width: 250px;
       }
 
-      .search_button{
-
+      .search_div_img{
+        height: 20px;
+        width: 20px;
+        fill: #1dbfd8;
       }
 
     #div1_palavras_search{
@@ -1006,7 +1013,7 @@
 
     #div1_palavras_loop{
       width: 100%;
-      height: calc(100% - 260px);
+      height: 370px;
       float:left;
     }
 
@@ -1021,12 +1028,13 @@
         font-size: 18px;
         text-align: right;
         cursor: pointer;
+        color: #1dbfd8;
         overflow: hidden;
       }
 
         #div1_palavras_loop10 p:hover{
           overflow: auto;
-          background: #e7e8ea;
+/*          background: #e7e8ea;*/
         }
 
     #div1_palavras_loop1000{
@@ -1046,6 +1054,7 @@
         cursor: pointer;
         font-weight: bold;
         float:left; 
+        color: white;
         font-size: 10px;
         padding:0px 2px 0px 2px;
       }
@@ -1097,7 +1106,7 @@
 
     #palavras_div2_sunburstZoom_fixed{
       position: absolute;
-      background: #E7E8EA;
+      background: #2B3044;
       padding:25px;
       width:200px;
       height: 250px;
@@ -1107,14 +1116,16 @@
     }
 
       #palavras_div2_sunburstZoom_words{
+        margin-top:10px;
         width:100%;
-        height: 80px;
+        height: 110px;
       }
 
       #palavras_div2_sunburstZoom_words p{
         width:100%;
         text-align: center;
         font-size: 16px;
+        color: #1dbfd8;
         font-weight: bold;
         padding:2px;
       }
@@ -1122,10 +1133,10 @@
     #palavras_div2_sunburstZoom_action{
       width:100%;
       height: 150px;
-      border-top: 2px solid #969696;
+      border-top: 2px solid #fff;
       padding: 10px;
       margin-top:10px;
-      cursor:pointer;
+/*      cursor:pointer;*/
     }
 
       .palavras_div2_sunburstZoom_action_each{
@@ -1142,6 +1153,15 @@
           width: calc(100% - 40px);
           font-size: 14px;
           padding-left:7px;
+          color: white;
+        }
+
+        .palavras_div2_sunburstZoom_action_each_img{
+          fill:white;
+          height: 30px;
+          width: 30px;
+          float:left;
+          margin-top:5px;
         }
 
   #palavras_div2_sunburstZoom_result{
@@ -1183,8 +1203,8 @@
     }
 
   #palavras_div2_sunburstZoom path {
-    stroke: #000;
-    stroke-width: 0.25;
+    stroke: #bebebe;
+    stroke-width: 0.2;
     fill-rule: "evenodd";
   }
 
@@ -1199,7 +1219,6 @@
     width: auto;
     height: auto;
     float: right;
-    margin-top: 50px;
     margin-right: calc(50% - 130px);
   }
 
@@ -1209,21 +1228,23 @@
       margin: 6px;
       border-radius: 60px;
       float: right;
-      border: 1px solid #1DBFD8;
+      border: 1px solid #fff;
       cursor: pointer;
       padding-top: 10px;
     }
 
+/*
     .palavras_div1_str_menuTemporalidade_temporalidade:hover{
       width: 70px;
       height: 70px;
       border-radius: 70px;
       padding-top: 17px;
     }
+*/
 
       .palavras_div1_str_menuTemporalidade_temporalidade p{
         text-align: center;
-        color: #5D5D5D;
+        color: #1dbfd8;
         font-weight: bold;
       }
 
@@ -1399,6 +1420,7 @@
     padding-top: 100px;
     width: 100%;
     height: calc(100% - 200px);
+    padding:10px;
   }
 
     .loading p{

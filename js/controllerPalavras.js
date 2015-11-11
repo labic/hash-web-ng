@@ -1,104 +1,152 @@
 hashTwitter.controller('mainPalavras', function ($scope, $http) {
 
-	/*******************************/
-	/* NOTA: PALAVRAS - CONTROLLER */
-	/*******************************/
+  /*******************************/
+  /* NOTA: PALAVRAS - CONTROLLER */
+  /*******************************/
 
-	//	var palavraLinkWord;
-	var urlsun;
-	var firstRun = false;
+  var urlsun;
+  var firstRun = false;
 
-	/* Variaveis globais dos parametros da requisição */
+  function functionWord(time, tema){
 
-	$scope.sunburstON = false;
-	$scope.sunburstOFF = true;
+    var wordJson = JSON.stringify(filterDavid(time,tema,null,170),["where","period","categories","all","limit"]);
 
-	$scope.filter = {
-		tema: '%22tema-negros%22',
-		time: '60',
-		word: ''
-	};
+    var linkWord =  serviceBase+'top_words?filter='+wordJson;
 
-	$scope.$watch('filter', function (newFilter, oldFilter) {
-		console.log(newFilter);
-		if(firstRun == false){
-			$scope.timePalavras = transformTime(newFilter.time);
+    $scope.dataLoadWordON = false;
+    $scope.dataLoadWord404 = false;
+    $scope.dataLoadWordOFF = true;
+    $scope.dataLoadWordERROR = false;
 
-			$scope.sunburstON = true;
-			$scope.sunburstOFF = false;
+    $http.get(linkWord).success(function (data) {
+      $scope.word10 = data.splice(0,10);
+      $scope.word1000 = data.splice(10,200);
+      if(data == ""){
+        $scope.dataLoadWordON = false;
+        $scope.dataLoadWordOFF = false;
+        $scope.dataLoadWord404 = true;
+      }else{
+        $scope.dataLoadWord404 = false;
+        $scope.dataLoadWordOFF = false;
+        $scope.dataLoadWordON = true;
+      }
 
-			$scope.palavraLinkWord = serviceBase+'top_words?filter={"where":{"status.created_at":{"gte":"'+$scope.timePalavras+'","lte":"'+dataNow+'"},"categories":{"all":['+newFilter.tema+']}},"limit":170}';
+    }).error(function(data, status) {
+      $scope.dataLoadWordERROR = true;
+      $scope.dataLoadWord404 = false;
+      $scope.dataLoadWordOFF = false;
+      $scope.dataLoadWordON = false;
+      console.log(status);
+    });
+  };
 
-			urlsun = 'http://107.170.54.11:8080/word_concur?filter={"where": {"status.created_at": {"gte":"'+$scope.timePalavras+'","lte":"'+dataNow+'"}, "categories": {"all": ['+newFilter.tema+']}}, "MAX_WORDS":10,"MAX_HEIGHT":5, "MAX_DEPTH":3, "duplicity" : "false", "rt":"false", "repeated_text":"false"}';
+  function functionSunburst(time,tema,word,limit,height,depth,duplicity,rt,repeat){
+    
+    if(word == null){
+      var SunburstJson = JSON.stringify(filterDavid(time,tema,word,limit,height,depth,duplicity,rt,repeat),["where","period","categories","all","MAX_WORDS","MAX_HEIGHT","MAX_DEPTH","duplicity","rt","repeated_text"]);
+    }else{
+      var SunburstJson = JSON.stringify(filterDavid(time,tema,word,limit,height,depth,duplicity,rt,repeat),["where","period","categories","all","top_words","MAX_WORDS","MAX_HEIGHT","MAX_DEPTH","duplicity","rt","repeated_text"]);
+    }
 
-			d3.select("#palavras_div2_sunburstZoom").select('svg').remove();
-			d3.select("#palavras_div2_sunburstZoom").select('g').remove();
-			d3.select("#palavras_div2_sunburstZoom_fixed").select('p').remove();
+    var linkSunburst =  serviceBase+'word_concur?filter='+SunburstJson;
+    d3Sunburst(linkSunburst,word);
+  };
 
-			newFilter.word = "";
+  // estrutura de requisição para requisiçõs API DAVID
+  function filterDavid(period,tema,word,limit,height,depth,duplicity,rt,repeat){
+    var filter = {
+      where:{
+        word: word,
+        period: period,
+        categories:{
+          all:[
+            tema
+          ]
+        }
+      },
+      limit: limit,
+      top_words: [word],
+      MAX_WORDS: limit,
+      MAX_HEIGHT: height,
+      MAX_DEPTH: depth,
+      duplicity: duplicity,
+      rt: rt,
+      repeated_text: repeat
+    }
+    return filter;
+  }
 
-			d3Sunburst(urlsun,newFilter.word);
+  /* Variaveis globais dos parametros da requisição */
+  $scope.sunburstON = true;
+  $scope.sunburstOFF = false;
 
-			firstRun = true;
-		}else{
+  $scope.filter = {
+    tema: 'tema-negros',
+    time: '30m',
+    word: ''
+  };
 
-			if(newFilter.time != oldFilter.time){
-				$scope.timePalavras = transformTime($scope.filter.time);
+  $scope.$watch('filter', function (newFilter, oldFilter) {
 
-				$scope.palavraLinkWord = serviceBase+'top_words?filter={"where":{"status.created_at":{"gte":"'+$scope.timePalavras+'","lte":"'+dataNow+'"},"categories":{"all":['+$scope.filter.tema+']}},"limit":170}';
-			}
+    if(firstRun == false){
 
-			if(newFilter.word != oldFilter.word){
-				$scope.sunburstON = true;
-				$scope.sunburstOFF = false;
+//      $scope.sunburstON = false;
+//      $scope.sunburstOFF = true;
 
-				urlsun = 'http://107.170.54.11:8080/word_concur?filter={"where": {"status.created_at": {"gte":"'+$scope.timePalavras+'","lte":"'+dataNow+'"}, "categories": {"all": ['+$scope.filter.tema+']}},"top_words":["'+$scope.filter.word+'"], "MAX_WORDS":5,"MAX_HEIGHT":5, "MAX_DEPTH":3, "duplicity" : "false", "rt":"false"}';
+      functionWord(newFilter.time, newFilter.tema);
 
-				var palavrasCountTweet = baseURL+'/count?where={"word":}';
-				var palavrasCountImage = baseURL+'/count?where={"status.entities.media":{"exists":true},"word":}';
+      d3.select("#palavras_div2_sunburstZoom").select('svg').remove();
+      d3.select("#palavras_div2_sunburstZoom").select('g').remove();
+      d3.select("#palavras_div2_sunburstZoom_fixed").select('p').remove();
+      d3.select("#tweets_count_ofWord").select('p').remove();
 
-				d3.select("#palavras_div2_sunburstZoom").select('svg').remove();
-				d3.select("#palavras_div2_sunburstZoom").select('g').remove();
-				d3.select("#palavras_div2_sunburstZoom_fixed").select('p').remove();
+      functionSunburst(newFilter.time, newFilter.tema,null,10,5,3,false,false,false);
 
-				d3Sunburst(urlsun,$scope.filter.word);
-			}
+      $scope.dataLoadON = true;
+      $scope.dataLoad404 = false;
+      $scope.dataLoadOFF = false;
 
-			if(newFilter.tema != oldFilter.tema){ 
-				$scope.sunburstON = true;
-				$scope.sunburstOFF = false;
+      firstRun = true;
+    }else{
 
-				$scope.palavraLinkWord = serviceBase+'top_words?filter={"where":{"status.created_at":{"gte":"'+$scope.timePalavras+'","lte":"'+dataNow+'"},"categories":{"all":['+$scope.filter.tema+']}},"limit":170}';
+      if(newFilter.time != oldFilter.time){
+        functionWord(newFilter.time, newFilter.tema);
 
-				urlsun = 'http://107.170.54.11:8080/word_concur?filter={"where": {"status.created_at": {"gte":"'+$scope.timePalavras+'","lte":"'+dataNow+'"}, "categories": {"all": ['+$scope.filter.tema+']}}, "MAX_WORDS":10,"MAX_HEIGHT":5, "MAX_DEPTH":3, "duplicity" : "false", "rt":"false", "repeated_text":"false"}';
+        d3.select("#palavras_div2_sunburstZoom").select('svg').remove();
+        d3.select("#palavras_div2_sunburstZoom").select('g').remove();
+        d3.select("#palavras_div2_sunburstZoom_fixed").select('p').remove();
+        d3.select("#tweets_count_ofWord").select('p').remove();
 
-				d3.select("#palavras_div2_sunburstZoom").select('svg').remove();
-				d3.select("#palavras_div2_sunburstZoom").select('g').remove();
-				d3.select("#palavras_div2_sunburstZoom_fixed").select('p').remove();
+        functionSunburst(newFilter.time, newFilter.tema,null,10,5,3,false,false,false);
+      }
 
-				$scope.filter.word = "";
+      if(newFilter.word != oldFilter.word){
+        $scope.sunburstON = true;
+        $scope.sunburstOFF = false;
 
-				d3Sunburst(urlsun,$scope.filter.word);
-			}
-		}
-	},true);
-	
-	$scope.$watch('palavraLinkWord', function () {
-		$scope.dataLoadON = false;
-		$scope.dataLoad404 = false;
-		$scope.dataLoadOFF = true;
+        d3.select("#palavras_div2_sunburstZoom").select('svg').remove();
+        d3.select("#palavras_div2_sunburstZoom").select('g').remove();
+        d3.select("#palavras_div2_sunburstZoom_fixed").select('p').remove();
+        d3.select("#tweets_count_ofWord").select('p').remove();
+        
+        console.log(newFilter.word);
 
-		$http.get($scope.palavraLinkWord).success(function (data) {
-			$scope.word10 = data.splice(0,10);
-			$scope.word1000 = data.splice(10,200);
+        functionSunburst(newFilter.time, newFilter.tema, newFilter.word,10,5,3,false,false,false);
+      }
 
-			$scope.dataLoadON = true;
-			$scope.dataLoad404 = false;
-			$scope.dataLoadOFF = false;
-		});
-	}, true);
+      if(newFilter.tema != oldFilter.tema){ 
+        $scope.sunburstON = true;
+        $scope.sunburstOFF = false;
 
-	//	$http.get(palavraCountWord).success(function (data1) {
-	//		$scope.countTweets = data1;
-	//	});
+        functionWord(newFilter.time, newFilter.tema);
+
+        d3.select("#palavras_div2_sunburstZoom").select('svg').remove();
+        d3.select("#palavras_div2_sunburstZoom").select('g').remove();
+        d3.select("#palavras_div2_sunburstZoom_fixed").select('p').remove();
+        d3.select("#tweets_count_ofWord").select('p').remove();
+
+        functionSunburst(newFilter.time, newFilter.tema,null,10,5,3,false,false,false);
+      }
+    }
+  },true);
 });
