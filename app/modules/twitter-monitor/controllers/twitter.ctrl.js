@@ -3,7 +3,7 @@
 
   angular
     .module('hash.twitter-monitor')
-    .controller('TwitterMonitorCtrl', function ($scope, $filter, $http, AnalyticsTwitter, MetricsTwitter, WordTwitter) {
+    .controller('TwitterMonitorCtrl', function ($scope, $filter, $http, AnalyticsTwitter, MetricsTwitter, WordTwitter, Tweet) {
       var DEBUG = false;
       $http.get('/data/twitter-monitor-options.json')
         .then(function(res) {
@@ -54,6 +54,9 @@
         newFilter.tags = newFilter.secondaryTag === null 
                            ? [newFilter.mainTag]
                            : [newFilter.mainTag, newFilter.secondaryTag];
+        newFilter.hashtag = newItem.hashtag === null
+                               ? null
+                               : [newItem.hashtag];
 
         AnalyticsTwitter.mostRetweetedTweets({
             period: newFilter.period,
@@ -151,6 +154,17 @@
             $scope.data.twitter.images.count = res.count;
           }, 
           errorHandler);
+
+        Tweet.find({
+            period: newFilter.period,
+            'filter[contain_tags]': newFilter.tags,
+            'filter[hashtags]': newFilter.hashtag,
+            //'filter[retweeted]': false
+          }, 
+          function success(res) {
+            console.log(res);
+          },
+          errorHandler)
       }, true);
 
       function errorHandler(err){ console.error(err); };
