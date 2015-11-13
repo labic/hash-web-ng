@@ -41,7 +41,7 @@ hashTwitter.controller('mainPalavras', function ($scope, $http) {
   };
 
   function functionSunburst(time,tema,word,limit,height,depth,duplicity,rt,repeat){
-    
+
     if(word == null){
       var SunburstJson = JSON.stringify(filterDavid(time,tema,word,limit,height,depth,duplicity,rt,repeat),["where","period","categories","all","MAX_WORDS","MAX_HEIGHT","MAX_DEPTH","duplicity","rt","repeated_text"]);
     }else{
@@ -86,19 +86,23 @@ hashTwitter.controller('mainPalavras', function ($scope, $http) {
     word: ''
   };
 
+  $scope.cleanSunburst = function(){
+    d3.select("#palavras_div2_sunburstZoom").select('svg').remove();
+    d3.select("#palavras_div2_sunburstZoom").select('g').remove();
+    d3.select("#palavras_div2_sunburstZoom_fixed").select('p').remove();
+    d3.select("#tweets_count_ofWord").select('p').remove();
+  }
+
   $scope.$watch('filter', function (newFilter, oldFilter) {
 
     if(firstRun == false){
 
-//      $scope.sunburstON = false;
-//      $scope.sunburstOFF = true;
+      //      $scope.sunburstON = false;
+      //      $scope.sunburstOFF = true;
 
       functionWord(newFilter.time, newFilter.tema);
 
-      d3.select("#palavras_div2_sunburstZoom").select('svg').remove();
-      d3.select("#palavras_div2_sunburstZoom").select('g').remove();
-      d3.select("#palavras_div2_sunburstZoom_fixed").select('p').remove();
-      d3.select("#tweets_count_ofWord").select('p').remove();
+      $scope.cleanSunburst();
 
       functionSunburst(newFilter.time, newFilter.tema,null,10,5,3,false,false,false);
 
@@ -112,10 +116,7 @@ hashTwitter.controller('mainPalavras', function ($scope, $http) {
       if(newFilter.time != oldFilter.time){
         functionWord(newFilter.time, newFilter.tema);
 
-        d3.select("#palavras_div2_sunburstZoom").select('svg').remove();
-        d3.select("#palavras_div2_sunburstZoom").select('g').remove();
-        d3.select("#palavras_div2_sunburstZoom_fixed").select('p').remove();
-        d3.select("#tweets_count_ofWord").select('p').remove();
+       $scope.cleanSunburst();
 
         functionSunburst(newFilter.time, newFilter.tema,null,10,5,3,false,false,false);
       }
@@ -124,11 +125,8 @@ hashTwitter.controller('mainPalavras', function ($scope, $http) {
         $scope.sunburstON = true;
         $scope.sunburstOFF = false;
 
-        d3.select("#palavras_div2_sunburstZoom").select('svg').remove();
-        d3.select("#palavras_div2_sunburstZoom").select('g').remove();
-        d3.select("#palavras_div2_sunburstZoom_fixed").select('p').remove();
-        d3.select("#tweets_count_ofWord").select('p').remove();
-        
+        $scope.cleanSunburst();
+
         console.log(newFilter.word);
 
         functionSunburst(newFilter.time, newFilter.tema, newFilter.word,10,5,3,false,false,false);
@@ -140,10 +138,7 @@ hashTwitter.controller('mainPalavras', function ($scope, $http) {
 
         functionWord(newFilter.time, newFilter.tema);
 
-        d3.select("#palavras_div2_sunburstZoom").select('svg').remove();
-        d3.select("#palavras_div2_sunburstZoom").select('g').remove();
-        d3.select("#palavras_div2_sunburstZoom_fixed").select('p').remove();
-        d3.select("#tweets_count_ofWord").select('p').remove();
+        $scope.cleanSunburst();
 
         functionSunburst(newFilter.time, newFilter.tema,null,10,5,3,false,false,false);
       }
