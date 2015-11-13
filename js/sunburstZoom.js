@@ -1,7 +1,7 @@
 function d3Sunburst(url, word){
 
-	var width = 500,
-		height = width + 20,
+	var width = $("#palavras_div2_sunburstZoom").width(),
+		height = $("#palavras_div2_sunburstZoom").height(),
 		radius = Math.min(width, height) / 2;
 
 	x = d3.scale.linear().range([0, 2 * Math.PI]),
@@ -80,7 +80,7 @@ function d3Sunburst(url, word){
 
 		function click(d) {
 			seqtext.select("p").remove()
-			tweetstext.select("p").remove()
+//			tweetstext.select("p").remove()
 			imagestext.select("p").remove()
 			var t = ""
 			if(d.name != "top_words"){
