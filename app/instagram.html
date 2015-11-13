@@ -1,0 +1,36 @@
+<div id="instagram_container" class="str_main" ng-controller="mainInstagram">
+  <div id="instagram_menu">
+    <ul id="menu_tematica_instagram">
+      <li class="menu_tematica_op">
+        <a ng-click='filter.tema = "tema-negros";'><p class="select_tematica_monitor firstOp">NEGRO</p></a>
+      </li>
+      <li class="menu_tematica_op">
+        <a ng-click='filter.tema = "tema-lgbt";'><p class="select_tematica_monitor">LGBT</p></a>
+      </li>
+      <li class="menu_tematica_op">
+        <a ng-click='filter.tema = "tema-indigena";'><p class="select_tematica_monitor">INDÍGENA</p></a>
+      </li>
+      <li class="menu_tematica_op">
+        <a ng-click='filter.tema = "tema-genero";'><p class="select_tematica_monitor">MULHER</p></a>
+      </li>
+    </ul>
+  </div>
+
+  <container id="instagram_map" class="instagram_display"></container>
+  <container id="instagram_cloudImage" class="instagram_display"></container>
+</div>
+
+<script type="text/javascript">
+  $( document ).ready(function(){
+    $("#instagram_container").twentytwenty();
+
+    $(".firstOp").css( "font-weight", "800" );
+    
+    $(".select_tematica_monitor").click(function(){
+      $(".select_tematica_monitor").css( "font-weight", "300" );
+
+      $(this).css( "font-weight", "800" );
+    });
+  });
+</script>
+
