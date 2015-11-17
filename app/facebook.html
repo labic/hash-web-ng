@@ -1,0 +1,226 @@
+<div id="str_main_monitor" class="str_main" ng-controller="mainMonitor">
+
+  <div id="div1_monitor" class="str_division">
+
+    <div id="str_menu_tematica">
+      <ul id="menu_tematica">
+        <li class="menu_tematica_op">
+          <a ng-click='filter.tema = "tema-negros"; categorieNumber = 0;'><p class="rotate select_tematica_monitor firstOp">NEGRO</p></a>
+        </li>
+        <li class="menu_tematica_op">
+          <a ng-click='filter.tema = "tema-lgbt"; categorieNumber = 1;'><p class="rotate select_tematica_monitor">LGBT</p></a>
+        </li>
+        <li class="menu_tematica_op">
+          <a ng-click='filter.tema = "tema-indigena"; categorieNumber = 2;'><p class="rotate select_tematica_monitor">INDÍGENA</p></a>
+        </li>
+        <li class="menu_tematica_op">
+          <a ng-click='filter.tema = "tema-genero"; categorieNumber = 3;'><p class="rotate select_tematica_monitor">MULHER</p></a>
+        </li>
+      </ul>
+    </div>
+    
+    <div id="str_menu_choice_facebook">
+      <button id="button1_choice_facebook" class="button_choice_facebook">COMENTARIOS</button>
+      <button id="button2_choice_facebook" class="button_choice_facebook">PUBLICAÇÕES</button>
+    </div>
+
+    <div id="str_menu_temporalidade">
+
+      <div id="str_time_temporalidade" >
+<!--
+        <div class="time_temporalidade" ng-click='filter.time = "recent"'>
+          <p>mais</p>
+          <p>RECENTES</p>
+        </div>
+-->
+        <div class="time_temporalidade" ng-click='filter.time = "1h"'>
+          <p>1</p>
+          <p>HORA</p>
+        </div>
+        <div class="time_temporalidade" ng-click='filter.time = "1d"'>
+          <p>24</p>
+          <p>HORAS</p>
+        </div>
+        <div id="temporalidade24" class="time_temporalidade fisrtTemp" ng-click='filter.time = "7d"'>
+          <p>7</p>
+          <p>DIAS</p>
+        </div>
+        <div class="time_temporalidade" ng-click='filter.time = "15d"'>
+          <p>15</p>
+          <p>DIAS</p>
+        </div>
+
+      </div>
+    </div>
+
+    <div id="str_display_tweet">
+      <div class="display_tweet">
+        <img src="img/icons/ICONE-TWEET.png" height="30px" width="35px">
+        <p class="display_tweet_p">{{countRetweet}}</p>
+        <p>Tweets acumulados</p>
+      </div>
+
+      <div class="display_tweet">
+        <img src="img/icons/ICONE-IMAGEM.png" height="30px" width="35px">
+        <p class="display_tweet_p">{{countImage}}</p>
+        <p>Imagens acumulados</p>
+      </div>
+    </div>
+  </div>
+
+  <div id="div3_monitor" class="str_division">
+    <div class="title_str">
+      <ul class="title_str_dualOP">
+        <a ui-sref="monitor.word">
+          <li class="title_str_dualOP_1 select_title_division3 firstOpImg">
+            <img src='img/icons/PALAVRAS.png' class="icon_menu_top" alt="image">
+          </li>
+        </a>
+        <a ui-sref="monitor.tag">
+          <li class="title_str_dualOP_2 select_title_division3">
+            <img src='img/icons/HASHTAG.png' class="icon_menu_top" alt="image" height="25px" width="25px">
+          </li>
+        </a>
+      </ul>
+    </div>
+
+    <aside id="result_word" ui-view="word&Tag"></aside>
+  </div>
+
+  <div id="div2_monitor" class="str_division">
+    <div class="title_str">
+      <ul class="title_str_menu_icon">
+        <a ui-sref="monitor.tweet">
+          <li class="select_title_division2 firstOpCont">
+            <img src='img/icons/TWEETS.png' class="icon_menu_top" alt="image">
+          </li>
+        </a>
+        <a ui-sref="monitor.img">
+          <li class="select_title_division2">
+            <img src='img/icons/IMAGENS.png' class="icon_menu_top" alt="image">
+          </li>
+        </a>
+        <a ui-sref="monitor.mosaico">
+          <li id="select_imgMosaico" class="select_title_division2" ng-click="filter.time = '7d'">
+            <img src='img/icons/Mosaico.png' class="icon_menu_top" alt="image">
+          </li>
+        </a>
+      </ul>
+    </div>
+
+    <aside ui-view="conteudo" style="height:calc(100% - 50px); width:100%;"></aside>
+  </div>
+</div>
+
+<script type="text/javascript">
+  $( document ).ready(function(){
+
+    /*NOTA: Inicializando Tipped */
+
+    $('[title]').qtip({
+      // Grab some elements to apply the tooltip to
+      def: false,
+      style: {
+        classes: 'qtip-blue',
+        //                        tip: {
+        //                            corner: 'top center',
+        //                            mimic: 'center',
+        //                        },
+      },
+      position: {
+        my: 'center center',
+        at: 'top center',
+        adjust: {
+          y: -20
+        }
+      }
+    });
+
+    /*NOTA: Inicializando SwipeBox */
+
+    $(".swipebox").swipebox({
+      hideBarsDelay : 10000000
+    });
+
+    /*NOTA: Troca de menus */
+
+    /* Standard */
+
+    $(".firstOp").css( "font-weight", "800" );
+    //				$(".firstOpBlack").css( "color", "black" );
+
+    /* Custom */
+
+    $(".select_tematica_monitor").click(function(){
+      $(".select_tematica_monitor").css( "font-weight", "300" );
+
+      $(this).css( "font-weight", "800" );
+    });
+
+    $(".select_tematica_palavras").click(function(){
+      $(".select_tematica_palavras").css( "font-weight", "300" );
+
+      $(this).css( "font-weight", "800" );
+    });
+
+    $(".select_categoria_division1").click(function(){
+      $(".select_categoria_division1").css( "font-weight", "300" );
+      $(".select_categoria_division1").css( "color", "#FFFFFF" );
+
+      $(this).css( "font-weight", "800" );
+      $(this).css( "color", "#FFFFFF" );
+
+    });
+
+    $(".select_title_division2").click(function(){
+      $(".select_title_division2").css( "opacity", "0.6" );
+
+      $(this).css( "opacity", "1" );
+      
+      $(".select_title_division3").css( "opacity", "0.6" );
+      $(".title_str_dualOP_1").css( "opacity", "1" );
+    });
+
+    $(".select_title_division3,.select_title_division2").css( "opacity", "0.6" );
+    $(".firstOpImg").css( "opacity", "1" );
+
+    $(".firstOpCont").css( "opacity", "1" );
+
+    $(".select_title_division3").click(function(){
+      $(".select_title_division3").css( "opacity", "0.6" );
+      $(".select_title_division2").css( "opacity", "0.6" );
+
+      $(".firstOpCont").css( "opacity", "1" );
+      $(this).css( "opacity", "1" );
+    });
+    /* HighLighter CategoriaMenu */
+
+    /*NOTA: Troca Categoria */
+
+    /*NOTA: Troca Temporalidades */ 
+
+    $(".fisrtTemp p").css( "color", "#0a1227" );
+    $(".fisrtTemp").css( "background-color", "#1dbfd8" );
+    $(".fisrtTemp").css( "border-color", "#1dbfd8" );
+
+    $(".time_temporalidade").click(function(){
+      $(".time_temporalidade p").css( "color", "#1dbfd8" );
+      $(".time_temporalidade").css( "background-color", "transparent" );
+      $(".time_temporalidade").css( "border-color", "white" );
+
+      $("p", this).css( "color", "#0a1227" );
+      $(this).css( "background-color", "#1dbfd8" );
+      $(this).css( "border-color", "#1dbfd8" );
+    });
+
+    $("#select_imgMosaico").click(function(){
+      $(".time_temporalidade p").css( "color", "#1dbfd8" );
+      $(".time_temporalidade").css( "background-color", "transparent" );
+      $(".time_temporalidade").css( "border-color", "white" );
+
+      $("p", "#temporalidade24").css( "color", "#0a1227" );
+      $("#temporalidade24").css( "background-color", "#1dbfd8" );
+      $("#temporalidade24").css( "border-color", "#1dbfd8" );
+    });
+  });
+</script>

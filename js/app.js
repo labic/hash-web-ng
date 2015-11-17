@@ -5,6 +5,9 @@ hashTwitter
   .constant('WORD_API_BASE_URI', 'http://107.170.35.149:8080/twitter/')
   .config(function($stateProvider, $urlRouterProvider) {
   $stateProvider
+
+  /* PAGINA: Monitor */
+
     .state('monitor', {
     url: "/monitor",
     views: {
@@ -56,6 +59,9 @@ hashTwitter
       },
     }
   })
+
+  /* PAGINA: Palavra */
+
     .state('palavra', {
     url: "/palavras",
     views: {
@@ -81,11 +87,19 @@ hashTwitter
       "conteudo.palavra": { templateUrl: "app/palavra/imgTweet.html" },
     }
   })
+
+  /* PAGINA: Instagram */
+
     .state('instagram', {
     url: "/instagram",
     views: {
-      "": { templateUrl: "app/instagram.html" },
-//      "sunburst@palavra": { templateUrl: "app/palavra/sunburstPalavra.html" }
+      "": { templateUrl: "app/instagram.html" }
+    }
+  })
+    .state('facebook', {
+    url: "/facebook",
+    views: {
+      "": { templateUrl: "app/facebook.html" }
     }
   });
 });

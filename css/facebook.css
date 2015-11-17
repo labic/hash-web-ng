@@ -1,0 +1,24 @@
+#str_menu_choice_facebook{
+  width: 90%;
+  margin-left: 5%;
+  padding: 5px;
+  height: 50px;
+  background: red;
+  border: 2px solid green;
+  float:left;
+}
+
+#button1_choice_facebook{
+  margin-right:40
+}
+
+#button2_choice_facebook{
+  
+}
+
+.button_choice_facebook{
+  width:50%;
+  height: 100%;
+  float:left;
+  margin
+}
