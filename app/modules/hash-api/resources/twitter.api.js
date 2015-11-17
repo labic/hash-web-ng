@@ -16,15 +16,16 @@
             method: 'GET', 
             url:  HASH_API_BASE_URI + '/tweets', 
             params: { 
-              period: null,
-              'filter[with_tags]': null,
-              'filter[contain_tags]': null,
-              'filter[hashtags]': null,
-              'filter[users]': null,
-              'filter[mentions]': null,
-              'filter[has]': null,
-              'filter[retweeted]': null,
-              'filter[blocked]': null
+              'period': null, 
+              'filter[with_tags]': [], // Array of String
+              'filter[contain_tags]': [], // Array of String
+              'filter[hashtags]': [], // Array of String
+              'filter[mentions]': [], // Array of String
+              'filter[users]': [], // Array of String 
+              'filter[has]': [], // Array of String
+              'filter[retweeted]': null, // Bollean
+              'filter[blocked]': null, // Bollean
+              'last': null // Number
             },
             isArray: true,
             cache: true
@@ -33,15 +34,16 @@
             method: 'GET', 
             url:  HASH_API_BASE_URI + '/tweets/count', 
             params: { 
-              period: null,
-              'filter[with_tags]': null,
-              'filter[contain_tags]': null,
-              'filter[hashtags]': null,
-              'filter[users]': null,
-              'filter[mentions]': null,
-              'filter[has]': null,
-              'filter[retweeted]': null,
-              'filter[blocked]': null
+              'period': null, 
+              'filter[with_tags]': [], // Array of String
+              'filter[contain_tags]': [], // Array of String
+              'filter[hashtags]': [], // Array of String
+              'filter[mentions]': [], // Array of String
+              'filter[users]': [], // Array of String 
+              'filter[has]': [], // Array of String
+              'filter[retweeted]': null, // Bollean
+              'filter[blocked]': null, // Bollean
+              'last': null // Number
             },
             cache: true
           }
