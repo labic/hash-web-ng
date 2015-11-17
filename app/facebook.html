@@ -1,4 +1,4 @@
-<div id="str_main_monitor" class="str_main" ng-controller="mainMonitor">
+<div id="str_main_monitor" class="str_main" ng-controller="mainFacebook">
 
   <div id="div1_monitor" class="str_division">
 
@@ -19,9 +19,38 @@
       </ul>
     </div>
     
-    <div id="str_menu_choice_facebook">
-      <button id="button1_choice_facebook" class="button_choice_facebook">COMENTARIOS</button>
-      <button id="button2_choice_facebook" class="button_choice_facebook">PUBLICAÇÕES</button>
+    <div id="facebook-menu-choice">
+      <button id="facebook-choice-button1" class="facebook-choice-button">
+        <img src="../img/facebook/COMEN%20E%20PUBLIC-01.svg" class="svg-icon facebook-choice-button-image">
+        <p>COMENTARIOS</p>
+      </button>
+      <button id="facebook-choice-button2" class="facebook-choice-button">
+        <img src="../img/facebook/COMEN%20E%20PUBLIC-02.svg" class="svg-icon facebook-choice-button-image">
+        <p>PUBLICAÇÕES</p>
+      </button>
+    </div>
+    
+    <div id="facebook-menu-atores">
+      <div class="facebook-actors-each">
+        <img src="../img/facebook/FACEBOOK-01.svg" class="svg-icon facebook-actors-each-image">
+        <p>governos e organizações internacionais</p>
+      </div>
+      <div class="facebook-actors-each">
+        <img src="../img/facebook/FACEBOOK-02.svg" class="svg-icon facebook-actors-each-image">
+        <p>governos e organizações internacionais</p>
+      </div>
+      <div class="facebook-actors-each">
+        <img src="../img/facebook/FACEBOOK-03.svg" class="svg-icon facebook-actors-each-image">
+        <p>governos e organizações internacionais</p>
+      </div>
+      <div class="facebook-actors-each">
+        <img src="../img/facebook/FACEBOOK-04.svg" class="svg-icon facebook-actors-each-image">
+        <p>governos e organizações internacionais</p>
+      </div>
+      <div class="facebook-actors-each">
+        <img src="../img/facebook/FACEBOOK-05.svg" class="svg-icon facebook-actors-each-image">
+        <p>governos e organizações internacionais</p>
+      </div>
     </div>
 
     <div id="str_menu_temporalidade">
@@ -56,6 +85,7 @@
     <div id="str_display_tweet">
       <div class="display_tweet">
         <img src="img/icons/ICONE-TWEET.png" height="30px" width="35px">
+<!--        <img src="img/facebook/ICONES-01.svg" class="svg-icon display_tweet_icon" height="30px" width="35px">-->
         <p class="display_tweet_p">{{countRetweet}}</p>
         <p>Tweets acumulados</p>
       </div>
@@ -69,6 +99,7 @@
   </div>
 
   <div id="div3_monitor" class="str_division">
+<!--
     <div class="title_str">
       <ul class="title_str_dualOP">
         <a ui-sref="monitor.word">
@@ -83,6 +114,7 @@
         </a>
       </ul>
     </div>
+-->
 
     <aside id="result_word" ui-view="word&Tag"></aside>
   </div>
@@ -113,29 +145,10 @@
 </div>
 
 <script type="text/javascript">
+  callSvgImg();
+  
   $( document ).ready(function(){
-
-    /*NOTA: Inicializando Tipped */
-
-    $('[title]').qtip({
-      // Grab some elements to apply the tooltip to
-      def: false,
-      style: {
-        classes: 'qtip-blue',
-        //                        tip: {
-        //                            corner: 'top center',
-        //                            mimic: 'center',
-        //                        },
-      },
-      position: {
-        my: 'center center',
-        at: 'top center',
-        adjust: {
-          y: -20
-        }
-      }
-    });
-
+    
     /*NOTA: Inicializando SwipeBox */
 
     $(".swipebox").swipebox({
@@ -147,7 +160,6 @@
     /* Standard */
 
     $(".firstOp").css( "font-weight", "800" );
-    //				$(".firstOpBlack").css( "color", "black" );
 
     /* Custom */
 
