@@ -1,7 +1,7 @@
 <div name="searchForm" id="div1_palavras_search">
 	<div class="search_div">
 		<input id="palavras_search_words" ng-model="query" class="search_input" type="search" ng-model="search.text" placeholder="Busque por uma palavra">
-		<button class="search_button" ng-click=" $parent.wordPalavras = search.text;" >BUSCAR</button>
+<!--		<button class="search_button" ng-click=" $parent.wordPalavras = search.text;" >BUSCAR</button>-->
 	</div>
 	<img src="img/palavras/lupa.svg" class="svg-icon search_div_img">
 </div>
@@ -19,5 +19,5 @@
 
 <div ng-show="dataLoadON" id="div1_palavras_loop1000">
 	<p><!--{{countTweets.count}} tweets | #### usuários--></p>
-	<p class="select_word_loop" ng-click="filter.word = wordv1000.words" ng-repeat="wordv1000 in word1000 | filter:query">{{wordv1000.word}}</p>
+	<p class="select_word_loop" ng-click="filter.word = wordv1000.word" ng-repeat="wordv1000 in word1000 | filter:query">{{wordv1000.word}}</p>
 </div>

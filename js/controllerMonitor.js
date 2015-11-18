@@ -190,30 +190,49 @@ hashTwitter.controller('mainMonitor', function ($scope, $http, MetricsTwitter, A
   function functionImage(localTime, dataNow, linkTema, linkCategoria, linkLocalidade, word, tag){
     if(word === null){
 
+      var responseImg = [];
+      var contResponseImg = 0;
+
       $scope.dataLoadImageON = false;
       $scope.dataLoadImage404 = false;
       $scope.dataLoadImageOFF = true;
       $scope.dataLoadImageERROR = false;
 
-      AnalyticsTwitter.mostRetweetedImages(
-        $scope.analyticsImageParams, 
-        function success(response) {
-          if(response == ""){
-            $scope.dataLoadImageON = false;
-            $scope.dataLoadImageOFF = false;
-            $scope.dataLoadImage404 = true;
-            $scope.dataLoadImageERROR = false;
-          }else{
-            $scope.dataLoadImageON = true;
-            $scope.dataLoadImageOFF = false;
-            $scope.dataLoadImage404 = false;
-            $scope.dataLoadImageERROR = false;
-          }
-          $scope.imgs = response.splice(0,24);
-          $scope.imgsMos = response;
-          $scope.imgsMos = $scope.imgsMos.concat($scope.imgs);
-        }, errorHandlerImage);
+      for(var x = 1; x <= 4; x++){
+        AnalyticsTwitter.mostRetweetedImages(
+          {
+            period: localTime, 
+            'tags[]': [linkTema], 
+            'hashtags[]': [], 
+            retrive_blocked: null, 
+            page: x, 
+            per_page: 100 
+          }, 
+          function success(response) {
 
+            contResponseImg++;
+            responseImg = response.concat(responseImg);
+
+            if(contResponseImg == 3){
+
+              if(responseImg == ""){
+                $scope.dataLoadImageON = false;
+                $scope.dataLoadImageOFF = false;
+                $scope.dataLoadImage404 = true;
+                $scope.dataLoadImageERROR = false;
+              }else{
+                $scope.dataLoadImageON = true;
+                $scope.dataLoadImageOFF = false;
+                $scope.dataLoadImage404 = false;
+                $scope.dataLoadImageERROR = false;
+              }
+
+              $scope.imgs = responseImg.splice(0,24);
+              $scope.imgsMos = responseImg;
+              $scope.imgsMos = $scope.imgsMos.concat($scope.imgs);
+            }
+          }, errorHandlerImage);
+      }
     }else if(tag === null){
 
       var imgJson = JSON.stringify(filterDavid($scope.filter.time,linkTema, linkCategoria, linkLocalidade, word, null, 399),["where","period","word","categories","all","limit"]);
@@ -273,7 +292,7 @@ hashTwitter.controller('mainMonitor', function ($scope, $http, MetricsTwitter, A
           $scope.dataLoadTag404 = false;
           $scope.dataLoadTagERROR = false;
         }
-        $scope.tags = response.splice(0,19);
+        $scope.tags = response.splice(0,10);
       }, errorHandlerTag);
   };
 
@@ -290,7 +309,7 @@ hashTwitter.controller('mainMonitor', function ($scope, $http, MetricsTwitter, A
 
     $http.get(monitorLinkWord).success(function (data) {
       $scope.words = data;
-      $scope.words = data.splice(0,11);
+      $scope.words = data.splice(0,10);
       if(data == ""){
         $scope.dataLoadWordON = false;
         $scope.dataLoadWordOFF = false;
@@ -429,7 +448,7 @@ hashTwitter.controller('mainMonitor', function ($scope, $http, MetricsTwitter, A
         'hashtags[]': [], 
         retrive_blocked: null, 
         page: 1, 
-        per_page: 399 
+        per_page: 100 
       }
     }else if(turn == "categoria"){
       $scope.analyticsParams = {
@@ -447,7 +466,7 @@ hashTwitter.controller('mainMonitor', function ($scope, $http, MetricsTwitter, A
         'hashtags[]': [], 
         retrive_blocked: null, 
         page: 1, 
-        per_page: 399 
+        per_page: 100 
       }
     }else if(turn == "localidade"){
       $scope.analyticsParams = {
@@ -465,7 +484,7 @@ hashTwitter.controller('mainMonitor', function ($scope, $http, MetricsTwitter, A
         'hashtags[]': [], 
         retrive_blocked: null, 
         page: 1, 
-        per_page: 399 
+        per_page: 100 
       }
     }else if(turn == "tag"){
       $scope.analyticsParams = {
@@ -483,7 +502,7 @@ hashTwitter.controller('mainMonitor', function ($scope, $http, MetricsTwitter, A
         'hashtags[]': [tag], 
         retrive_blocked: null, 
         page: 1, 
-        per_page: 399 
+        per_page: 100
       }
     }
   }

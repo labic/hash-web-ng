@@ -6,22 +6,34 @@
     .factory('MetricsTwitter', function($resource, HASH_API_BASE_URI) {
 
       var metricsParams = {
-        period: null, 
-        'tags[]': [], 
-        'hashtags[]': [], 
-        'has[]': [],
-        retrive_blocked: null, 
-        page: null, 
-        per_page: null 
+        'period': null, // String
+        'granularity': null, // String 
+        'filter[with_tags]': [], // Array of String
+        'filter[contain_tags]': [], // Array of String
+        'filter[hashtags]': [], // Array of String
+        'filter[mentions]': [], // Array of String
+        'filter[users]': [], // Array of String 
+        'filter[has]': [], // Array of String
+        'filter[retweeted]': null, // Bollean
+        'filter[blocked]': null, // Bollean
+        'last': null, // Number
+        'page': null, // Number 
+        'per_page': null // Number
       };
       
       return $resource('', null, {
-        count: {
+        interationsRate: {
           method: 'GET', 
-          url:  HASH_API_BASE_URI + '/metrics/twitter/count', 
+          url:  HASH_API_BASE_URI + '/metrics/twitter/interations_rate', 
           params: metricsParams,
           cache: true
         },
+        tagsCount: {
+          method: 'GET', 
+          url:  HASH_API_BASE_URI + '/metrics/twitter/tags_count', 
+          params: metricsParams,
+          cache: true
+        }
       });
 
     });

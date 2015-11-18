@@ -282,7 +282,7 @@
           float: left;
           font-size: 20px;
           text-align: center;
-          margin: 0px 10px 0px 10px;
+          margin: 0px 9px 0px 9px;
         }
 
           .menu_tematica_op:hover:after{
@@ -941,7 +941,7 @@
 
     #div1_palavras_title{
       width:100%;
-      padding-left: 150px;
+      padding-left: 155px;
     }
 
       .div1_palavras_title_img{
@@ -970,7 +970,7 @@
 
       #div1_palavras_tematica li p{
         color: #1dbfd8;
-        font-size: 15px;
+        font-size: 18px;
       }
 
     .search_div{
@@ -991,7 +991,7 @@
       }
 
       .search_input{
-        width: 250px;
+        width: 320px;
       }
 
       .search_div_img{
@@ -1072,10 +1072,9 @@
 
     #palavras_div2_sunburstZoom{
       float:left;
-      width:100%;
-      height: 100%;
-      padding-top: calc(50% - 360px);
-      margin-left: 50px;
+      width: calc(100% - 200px);
+      height: 80%;
+      margin-top: 10%;
     }
 
     #palavras_div2_sunburstZoomOFF_str{
@@ -1550,4 +1549,8 @@
 
 #swipebox-bottom-bar, #swipebox-top-bar {
     background: rgba(0, 0, 0, 0.65) !important;
+}
+
+#swipebox-title{
+  font-size: 14px;
 }
