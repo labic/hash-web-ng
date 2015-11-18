@@ -79,7 +79,7 @@ hashTwitter.controller('mainMonitor', function ($scope, $http, MetricsTwitter, A
 
       var twRtJson = JSON.stringify(filterDavid($scope.filter.time, linkTema, linkCategoria, linkLocalidade, word, null, nlimit),["where","period","word","categories","all","limit"]);
 
-      var monitorLinkTweet =  serviceBase+'word_posts?filter='+twRtJson;
+      var monitorLinkTweet =  serviceBase+'/twitter/word_posts?filter='+twRtJson;
 
       $scope.dataLoadTweetON = false;
       $scope.dataLoadTweet404 = false;
@@ -237,7 +237,7 @@ hashTwitter.controller('mainMonitor', function ($scope, $http, MetricsTwitter, A
 
       var imgJson = JSON.stringify(filterDavid($scope.filter.time,linkTema, linkCategoria, linkLocalidade, word, null, 399),["where","period","word","categories","all","limit"]);
 
-      var monitorLinkImage =  serviceBase+'word_images?filter='+imgJson;
+      var monitorLinkImage =  serviceBase+'/twitter/word_images?filter='+imgJson;
 
       $scope.dataLoadImageON = false;
       $scope.dataLoadImage404 = false;
@@ -300,7 +300,7 @@ hashTwitter.controller('mainMonitor', function ($scope, $http, MetricsTwitter, A
 
     var wordJson = JSON.stringify(filterDavid($scope.filter.time,linkTema,null,linkLocalidade,20),["where","period","categories","all","limit"]);
 
-    var monitorLinkWord =  serviceBase+'top_words?filter='+wordJson;
+    var monitorLinkWord =  serviceBase+'/twitter/top_words?filter='+wordJson;
 
     $scope.dataLoadWordON = false;
     $scope.dataLoadWord404 = false;
@@ -337,7 +337,7 @@ hashTwitter.controller('mainMonitor', function ($scope, $http, MetricsTwitter, A
 
     var mapJson = JSON.stringify(filterDavid($scope.filter.time, linkTema, null, null),["where","period","categories","all"]);
 
-    var monitorLinkMap = serviceBase+'map_volume?filter='+mapJson;
+    var monitorLinkMap = serviceBase+'/twitter/map_volume?filter='+mapJson;
 
     var maxCont = 0;
 

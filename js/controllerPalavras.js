@@ -11,7 +11,7 @@ hashTwitter.controller('mainPalavras', function ($scope, $http) {
 
     var wordJson = JSON.stringify(filterDavid(time,tema,null,170),["where","period","categories","all","limit"]);
 
-    var linkWord =  serviceBase+'top_words?filter='+wordJson;
+    var linkWord =  serviceBase+'/twitter/top_words?filter='+wordJson;
 
     $scope.dataLoadWordON = false;
     $scope.dataLoadWord404 = false;
@@ -48,7 +48,7 @@ hashTwitter.controller('mainPalavras', function ($scope, $http) {
       var SunburstJson = JSON.stringify(filterDavid(time,tema,word,limit,height,depth,duplicity,rt,repeat),["where","period","categories","all","top_words","MAX_WORDS","MAX_HEIGHT","MAX_DEPTH","duplicity","rt","repeated_text"]);
     }
 
-    var linkSunburst =  serviceBase+'word_concur?filter='+SunburstJson;
+    var linkSunburst =  serviceBase+'/twitter/word_concur?filter='+SunburstJson;
     d3Sunburst(linkSunburst,word);
   };
 
