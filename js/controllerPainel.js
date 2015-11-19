@@ -199,7 +199,7 @@ hashTwitter.controller('mainMonitor', function ($scope, $http, MetricsTwitter, A
       $scope.dataLoadImageERROR = false;
 
       for(var x = 1; x <= 4; x++){
-        AnalyticsTwitter.mostRetweetedImages(
+        AnalyticsTwitter.mostRecurringImages(
           {
             period: localTime, 
             'filter[with_tags]': [linkTema], 
@@ -278,7 +278,7 @@ hashTwitter.controller('mainMonitor', function ($scope, $http, MetricsTwitter, A
     $scope.dataLoadTagOFF = true;
     $scope.dataLoadTagERROR = false;
 
-    AnalyticsTwitter.mostPopularHashtags(
+    AnalyticsTwitter.mostRecurringHashtags(
       $scope.analyticsParams, 
       function success(response) {
         if(response == ""){
