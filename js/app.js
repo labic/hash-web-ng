@@ -2,7 +2,7 @@ var hashTwitter = angular.module('hashTwitter', ['ui.router','ngResource', 'hash
 
 hashTwitter
   .constant('HASH_API_BASE_URI', 'https://hash-api.herokuapp.com:443/v1')
-  .constant('WORD_API_BASE_URI', 'http://107.170.35.149:8080/twitter/')
+  .constant('WORD_API_BASE_URI', 'http://107.170.35.149:8080')
   .config(function($stateProvider, $urlRouterProvider) {
   $stateProvider
 
@@ -96,10 +96,39 @@ hashTwitter
       "": { templateUrl: "app/instagram.html" }
     }
   })
+
+  /* PAGINA: Facebook */
+
     .state('facebook', {
     url: "/facebook",
     views: {
-      "": { templateUrl: "app/facebook.html" }
+      "": { templateUrl: "app/facebook.html" },
+      "facebook.word@facebook": { templateUrl: "app/facebook/wordFacebook.html" },
+      "facebook.conteudo@facebook": { templateUrl: "app/facebook/wordFacebook.html" },
+    }
+  })
+    .state('facebook.word', {
+    url: '',
+    views: {
+      "facebook.word": { templateUrl: "app/facebook/wordFacebook.html" },
+    }
+  })
+  .state('facebook.posts', {
+    url: '',
+    views: {
+      "facebook.conteudo": { templateUrl: "app/facebook/wordFacebook.html" },
+    }
+  })
+  .state('facebook.postsImage', {
+    url: '',
+    views: {
+      "facebook.conteudo": { templateUrl: "app/facebook/wordFacebook.html" },
+    }
+  })
+  .state('facebook.postsMosaico', {
+    url: '',
+    views: {
+      "facebook.conteudo": { templateUrl: "app/facebook/wordFacebook.html" },
     }
   });
 });

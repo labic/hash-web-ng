@@ -6,7 +6,6 @@
     .factory('AnalyticsFacebook', function($resource, HASH_API_BASE_URI) {
 
       var PARAMS = {
-        'profile_type': null, // String
         'period': null, 
         'filter[contain_tags]': [], // Array of String
         'filter[hashtags]': [], // Array of String
@@ -41,7 +40,7 @@
           isArray: true,
           cache: true
         },
-        mostSharedPosts: {
+        mostActiveProfiles: {
           method: 'GET', 
           url:  HASH_API_BASE_URI + '/analytics/facebook/most_shared_posts', 
           params: PARAMS,
