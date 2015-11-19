@@ -43,7 +43,7 @@ hashTwitter.controller('mainFacebook', function ($scope, $http, MetricsFacebook,
       period: newFilter.time,
       tags: [newFilter.tema],      
       page: 1,    
-      per_page: 20
+      per_page: 10
     };
 
     $http.get("data/test/conteudos.json").success(function (data) {

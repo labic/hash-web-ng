@@ -1,4 +1,6 @@
 hashTwitter.controller('mainPalavras', function ($scope, $http) {
+  
+  var serviceMandala = 'http://mandala-api.ddns.net:7070';
 
   /*******************************/
   /* NOTA: PALAVRAS - CONTROLLER */
@@ -48,7 +50,7 @@ hashTwitter.controller('mainPalavras', function ($scope, $http) {
       var SunburstJson = JSON.stringify(filterDavid(time,tema,word,limit,height,depth,duplicity,rt,repeat),["where","period","categories","all","top_words","MAX_WORDS","MAX_HEIGHT","MAX_DEPTH","duplicity","rt","repeated_text"]);
     }
 
-    var linkSunburst =  serviceBase+'/twitter/word_concur?filter='+SunburstJson;
+    var linkSunburst =  serviceMandala+'/twitter/mandala?filter='+SunburstJson;
     d3Sunburst(linkSunburst,word);
   };
 
