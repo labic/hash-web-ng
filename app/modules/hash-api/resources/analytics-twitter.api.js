@@ -42,9 +42,9 @@
           isArray: true,
           cache: true
         },
-        mostPopularHashtags: {
+        mostRecurringHashtags: {
           method: 'GET', 
-          url:  HASH_API_BASE_URI + '/analytics/twitter/most_popular_hashtags', 
+          url:  HASH_API_BASE_URI + '/analytics/twitter/most_recurring_hashtags', 
           params: PARAMS,
           isArray: true,
           cache: true
@@ -63,16 +63,16 @@
           isArray: true,
           cache: true
         },
-        mostRetweetedImages: {
+        mostRecurringImages: {
           method: 'GET', 
-          url:  HASH_API_BASE_URI + '/analytics/twitter/most_retweeted_images', 
+          url:  HASH_API_BASE_URI + '/analytics/twitter/most_recurring_images', 
           params: PARAMS,
           isArray: true,
           cache: true
         },
-        mostRetweetedUrls: {
+        mostRecurringUrls: {
           method: 'GET', 
-          url:  HASH_API_BASE_URI + '/analytics/twitter/most_retweeted_urls', 
+          url:  HASH_API_BASE_URI + '/analytics/twitter/most_recurring_urls', 
           params: PARAMS,
           isArray: true,
           cache: true
