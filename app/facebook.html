@@ -20,14 +20,15 @@
     </div>
     
     <div id="facebook-menu-choice">
-      <button id="facebook-choice-button1" class="facebook-choice-button inicializeOpacity" ng-click="filter.type = 'comentario'; ">
-        <img src="../img/facebook/COMEN%20E%20PUBLIC-01.svg" class="svg-icon facebook-choice-button-image">
-        <p>COMENTARIOS</p>
-      </button>
-      <button id="facebook-choice-button2" class="facebook-choice-button" ng-click="filter.type = 'publicacao'; ">
+      <button id="facebook-choice-button1" class="facebook-choice-button inicializeOpacity" ng-click="filter.type = 'publicacao'; ">
         <img src="../img/facebook/COMEN%20E%20PUBLIC-02.svg" class="svg-icon facebook-choice-button-image">
         <p>PUBLICAÇÕES</p>
       </button>
+      <button id="facebook-choice-button2" class="facebook-choice-button " ng-click="filter.type = 'comentario'; ">
+        <img src="../img/facebook/COMEN%20E%20PUBLIC-01.svg" class="svg-icon facebook-choice-button-image">
+        <p>COMENTARIOS</p>
+      </button>
+      
     </div>
     
     <div id="facebook-menu-atores">
@@ -110,11 +111,13 @@
             <img src='img/icons/TWEETS.png' class="icon_menu_top" alt="image">
           </li>
         </a>
+<!--
         <a ui-sref="facebook.img">
           <li class="select_title_division2">
             <img src='img/icons/IMAGENS.png' class="icon_menu_top" alt="image">
           </li>
         </a>
+-->
 <!--
         <a ui-sref="monitor.mosaico">
           <li id="select_imgMosaico" class="select_title_division2" ng-click="filter.time = '7d'">
