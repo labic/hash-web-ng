@@ -1,39 +1,39 @@
 var hashTwitter = angular.module('hashTwitter', ['ui.router','ngResource', 'hash.api', 'word.api', 'infinite-scroll']);
 
 hashTwitter
-  .constant('HASH_API_BASE_URI', 'https://hash-api.herokuapp.com:443/v1')
+  .constant('HASH_API_BASE_URI', 'https://sdh-hash-api-dev.herokuapp.com/v2')
   .constant('WORD_API_BASE_URI', 'http://word-api.ddns.net:8081')
   .config(function($stateProvider, $urlRouterProvider) {
   $stateProvider
 
-  /* PAGINA: Monitor */
+  /* PAGINA: painel */
 
-    .state('monitor', {
-    url: "/monitor",
+    .state('painel', {
+    url: "/painel",
     views: {
-      "": { templateUrl: "app/monitor.html" },
-      "map@monitor": { templateUrl: "app/monitor/map.html" },
-      "word&Tag@monitor": { templateUrl: "app/monitor/wordTweet.html" },
-      "conteudo@monitor": { templateUrl: "app/monitor/twTweet.html" }
+      "": { templateUrl: "app/painel.html" },
+      "map@painel": { templateUrl: "app/painel/map.html" },
+      "word&Tag@painel": { templateUrl: "app/painel/wordTweet.html" },
+      "conteudo@painel": { templateUrl: "app/painel/twTweet.html" }
     }
   })
-    .state('monitor.word', {
+    .state('painel.word', {
     url: '',
     views: {
-      "word&Tag": { templateUrl: "app/monitor/wordTweet.html" },
+      "word&Tag": { templateUrl: "app/painel/wordTweet.html" },
     }
   })
-    .state('monitor.tag', {
+    .state('painel.tag', {
     url: '',
     views: {
-      "word&Tag": { templateUrl: "app/monitor/tagTweet.html" },
+      "word&Tag": { templateUrl: "app/painel/tagTweet.html" },
     }
   })
-    .state('monitor.img', {
+    .state('painel.img', {
     url: '',
     views: {
       "conteudo": { 
-        templateUrl: "app/monitor/imgTweet.html", controller: function($scope) {
+        templateUrl: "app/painel/imgTweet.html", controller: function($scope) {
           var tamDiv = $(".geralTweets_result").css( "width" );
           tamDiv = parseInt(tamDiv);
           $scope.alturaImg = tamDiv / 3;
@@ -41,17 +41,17 @@ hashTwitter
       }
     }
   })
-    .state('monitor.tweet', {
+    .state('painel.tweet', {
     url: '',
     views: {
-      "conteudo": { templateUrl: "app/monitor/twTweet.html" },
+      "conteudo": { templateUrl: "app/painel/twTweet.html" },
     }
   })
-    .state('monitor.mosaico', {
+    .state('painel.mosaico', {
     url: '',
     views: {
       "conteudo": { 
-        templateUrl: "app/monitor/imgMosaicoTweet.html", controller: function($scope) {
+        templateUrl: "app/painel/imgMosaicoTweet.html", controller: function($scope) {
           var tamDiv = $(".geralTweets_result").css( "width" );
           tamDiv = parseInt(tamDiv);
           $scope.alturaImg = tamDiv / 15;

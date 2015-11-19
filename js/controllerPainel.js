@@ -1,7 +1,7 @@
 'use strict';
 
 /* NOTA: MONITOR - CONTROLLER */
-hashTwitter.controller('mainMonitor', function ($scope, $http, MetricsTwitter, AnalyticsTwitter, WordTwitter) {
+hashTwitter.controller('mainMonitor', function ($scope, $http, MetricsTwitter, AnalyticsTwitter, WordTwitter, Tweet) {
 
   // variavel para inicializar o watch, quando esta falso executa um if com a inicialização da tela;
   var firstRun = false;
@@ -202,8 +202,8 @@ hashTwitter.controller('mainMonitor', function ($scope, $http, MetricsTwitter, A
         AnalyticsTwitter.mostRetweetedImages(
           {
             period: localTime, 
-            'tags[]': [linkTema], 
-            'hashtags[]': [], 
+            'filter[with_tags]': [linkTema], 
+            'filter[hashtags]': [], 
             retrive_blocked: null, 
             page: x, 
             per_page: 100 
@@ -435,8 +435,8 @@ hashTwitter.controller('mainMonitor', function ($scope, $http, MetricsTwitter, A
     if(turn == "tweet"){
       $scope.analyticsParams = {
         period: time, 
-        'tags[]': [tema], 
-        'hashtags[]': [], 
+        'filter[with_tags]': [tema], 
+        'filter[hashtags]': [], 
         retrive_blocked: null, 
         page: 1, 
         per_page: 25 
@@ -444,8 +444,8 @@ hashTwitter.controller('mainMonitor', function ($scope, $http, MetricsTwitter, A
 
       $scope.analyticsImageParams = {
         period: time, 
-        'tags[]': [tema], 
-        'hashtags[]': [], 
+        'filter[with_tags]': [tema], 
+        'filter[hashtags]': [], 
         retrive_blocked: null, 
         page: 1, 
         per_page: 100 
@@ -453,8 +453,8 @@ hashTwitter.controller('mainMonitor', function ($scope, $http, MetricsTwitter, A
     }else if(turn == "categoria"){
       $scope.analyticsParams = {
         period: time, 
-        'tags[]': [tema,categoria], 
-        'hashtags[]': [], 
+        'filter[with_tags]': [tema,categoria], 
+        'filter[hashtags]': [], 
         retrive_blocked: null, 
         page: 1, 
         per_page: 25 
@@ -462,8 +462,8 @@ hashTwitter.controller('mainMonitor', function ($scope, $http, MetricsTwitter, A
 
       $scope.analyticsImageParams = {
         period: time, 
-        'tags[]': [tema,categoria],
-        'hashtags[]': [], 
+        'filter[with_tags]': [tema,categoria],
+        'filter[hashtags]': [], 
         retrive_blocked: null, 
         page: 1, 
         per_page: 100 
@@ -471,8 +471,8 @@ hashTwitter.controller('mainMonitor', function ($scope, $http, MetricsTwitter, A
     }else if(turn == "localidade"){
       $scope.analyticsParams = {
         period: time, 
-        'tags[]': [tema,localidade], 
-        'hashtags[]': [], 
+        'filter[with_tags]': [tema,localidade], 
+        'filter[hashtags]': [], 
         retrive_blocked: null, 
         page: 1, 
         per_page: 25 
@@ -480,8 +480,8 @@ hashTwitter.controller('mainMonitor', function ($scope, $http, MetricsTwitter, A
 
       $scope.analyticsImageParams = {
         period: time, 
-        'tags[]': [tema,localidade],
-        'hashtags[]': [], 
+        'filter[with_tags]': [tema,localidade],
+        'filter[hashtags]': [], 
         retrive_blocked: null, 
         page: 1, 
         per_page: 100 
@@ -489,8 +489,8 @@ hashTwitter.controller('mainMonitor', function ($scope, $http, MetricsTwitter, A
     }else if(turn == "tag"){
       $scope.analyticsParams = {
         period: time, 
-        'tags[]': [tema], 
-        'hashtags[]': [tag], 
+        'filter[with_tags]': [tema], 
+        'filter[hashtags]': [tag], 
         retrive_blocked: null, 
         page: 1, 
         per_page: 25 
@@ -498,8 +498,8 @@ hashTwitter.controller('mainMonitor', function ($scope, $http, MetricsTwitter, A
 
       $scope.analyticsImageParams = {
         period: time, 
-        'tags[]': [tema],
-        'hashtags[]': [tag], 
+        'filter[with_tags]': [tema],
+        'filter[hashtags]': [tag], 
         retrive_blocked: null, 
         page: 1, 
         per_page: 100
@@ -517,8 +517,8 @@ hashTwitter.controller('mainMonitor', function ($scope, $http, MetricsTwitter, A
     if(turn == "tweet"){
       $scope.analyticsParams = {
         period: $scope.filter.time, 
-        'tags[]': [$scope.filter.tema], 
-        'hashtags[]': [], 
+        'filter[with_tags]': [$scope.filter.tema], 
+        'filter[hashtags]': [], 
         retrive_blocked: null, 
         page: 1, 
         per_page: nlimit 
@@ -534,8 +534,8 @@ hashTwitter.controller('mainMonitor', function ($scope, $http, MetricsTwitter, A
 
       $scope.analyticsParams = {
         period: $scope.filter.time, 
-        'tags[]': [$scope.filter.tema], 
-        'hashtags[]': [$scope.filter.tag], 
+        'filter[with_tags]': [$scope.filter.tema], 
+        'filter[hashtags]': [$scope.filter.tag], 
         retrive_blocked: null, 
         page: 1, 
         per_page: nlimit 
@@ -547,8 +547,8 @@ hashTwitter.controller('mainMonitor', function ($scope, $http, MetricsTwitter, A
 
       $scope.analyticsParams = {
         period: $scope.filter.time, 
-        'tags[]': [$scope.filter.tema, $scope.filter.categoria], 
-        'hashtags[]': [], 
+        'filter[with_tags]': [$scope.filter.tema, $scope.filter.categoria], 
+        'filter[hashtags]': [], 
         retrive_blocked: null, 
         page: 1, 
         per_page: nlimit  
@@ -560,17 +560,17 @@ hashTwitter.controller('mainMonitor', function ($scope, $http, MetricsTwitter, A
 
   // Função que carrega os contadores de Tweets e Imagens
   $scope.loadContadores = function(time,tema){
-    MetricsTwitter.count({
+    Tweet.count({
       period: time,
-      'tags[]': [tema]
+      'filter[with_tags]': [tema]
     }, function success(res) {
       $scope.countRetweet = res.count;
     });
 
-    MetricsTwitter.count({
+    Tweet.count({
       period: time,
-      'tags[]': [tema],
-      'has[]': ['media']
+      'filter[with_tags]': [tema],
+      'filter[has]': ['media']
     }, function success(res) {
       $scope.countImage = res.count;
     });
