@@ -6,7 +6,8 @@
     .factory('AnalyticsFacebook', function($resource, HASH_API_BASE_URI) {
 
       var PARAMS = {
-        'period': null, 
+        'profile_type': null, // String
+        'period': null, // String
         'filter[contain_tags]': [], // Array of String
         'filter[hashtags]': [], // Array of String
         'filter[mentions]': [], // Array of String
