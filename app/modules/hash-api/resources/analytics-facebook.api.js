@@ -33,6 +33,13 @@
           isArray: true,
           cache: true
         },
+        mostLikedComments: {
+          method: 'GET', 
+          url:  HASH_API_BASE_URI + '/analytics/facebook/most_liked_comments', 
+          params: PARAMS,
+          isArray: true,
+          cache: true
+        },
         mostLikedPosts: {
           method: 'GET', 
           url:  HASH_API_BASE_URI + '/analytics/facebook/most_liked_posts', 
