@@ -104,7 +104,7 @@ hashTwitter
     views: {
       "": { templateUrl: "app/facebook.html" },
       "facebook.word@facebook": { templateUrl: "app/facebook/wordFacebook.html" },
-      "facebook.conteudo@facebook": { templateUrl: "app/facebook/wordFacebook.html" },
+      "facebook.conteudo@facebook": { templateUrl: "app/facebook/postsFacebook.html" },
     }
   })
     .state('facebook.word', {
@@ -116,7 +116,7 @@ hashTwitter
   .state('facebook.posts', {
     url: '',
     views: {
-      "facebook.conteudo": { templateUrl: "app/facebook/wordFacebook.html" },
+      "facebook.conteudo": { templateUrl: "app/facebook/postsFacebook.html" },
     }
   })
   .state('facebook.postsImage', {

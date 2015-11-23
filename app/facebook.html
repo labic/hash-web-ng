@@ -32,30 +32,29 @@
     </div>
     
     <div id="facebook-menu-atores">
-      <div class="facebook-actors-each inicializeOpacity">
+      <div class="facebook-actors-each inicializeOpacity" ng-click="filter.actor = 'ator-imprensa';">
         <img src="../img/facebook/FACEBOOK-01.svg" class="svg-icon facebook-actors-each-image">
         <p>imprensa</p>
       </div>
-      <div class="facebook-actors-each">
+      <div class="facebook-actors-each" ng-click="filter.actor = 'ator-defensores';">
         <img src="../img/facebook/FACEBOOK-02.svg" class="svg-icon facebook-actors-each-image">
         <p>defensores de direitos humanos</p>
       </div>
-      <div class="facebook-actors-each">
+      <div class="facebook-actors-each" ng-click="filter.actor = 'ator-criticos';">
         <img src="../img/facebook/FACEBOOK-03.svg" class="svg-icon facebook-actors-each-image">
         <p>críticos de direitos humanos</p>
       </div>
-      <div class="facebook-actors-each">
+      <div class="facebook-actors-each" ng-click="filter.actor = 'ator-personalidades';">
         <img src="../img/facebook/FACEBOOK-04.svg" class="svg-icon facebook-actors-each-image">
         <p>personalidades</p>
       </div>
-      <div class="facebook-actors-each">
+      <div class="facebook-actors-each" ng-click="filter.actor = 'ator-governos';">
         <img src="../img/facebook/FACEBOOK-05.svg" class="svg-icon facebook-actors-each-image">
         <p>governos e organizações internacionais</p>
       </div>
     </div>
 
     <div id="str_menu_temporalidade">
-
       <div id="str_time_temporalidade" >
 <!--
         <div class="time_temporalidade" ng-click='filter.time = "recent"'>
@@ -83,10 +82,11 @@
       </div>
     </div>
 
+<!--
     <div id="str_display_tweet">
       <div class="display_tweet">
         <img src="img/icons/ICONE-TWEET.png" height="30px" width="35px">
-<!--        <img src="img/facebook/ICONES-01.svg" class="svg-icon display_tweet_icon" height="30px" width="35px">-->
+        <img src="img/facebook/ICONES-01.svg" class="svg-icon display_tweet_icon" height="30px" width="35px">
         <p class="display_tweet_p">{{countRetweet}}</p>
         <p>Tweets acumulados</p>
       </div>
@@ -97,6 +97,7 @@
         <p>Imagens acumulados</p>
       </div>
     </div>
+-->
   </div>
 
   <div id="div3_monitor" class="str_division">
@@ -106,9 +107,10 @@
   <div id="div2_monitor" class="str_division">
     <div class="title_str">
       <ul class="title_str_menu_icon">
-        <a ui-sref="facebook.tweet">
+        <a ui-sref="facebook.posts">
           <li class="select_title_division2 firstOpCont">
-            <img src='img/icons/TWEETS.png' class="icon_menu_top" alt="image">
+            <img ng-show="filter.type == 'comentarios'" src='../img/facebook/COMEN%20E%20PUBLIC-01.svg' class="icon_menu_top" alt="image">
+            <img ng-show="filter.type != 'comentarios'" src='../img/facebook/COMEN%20E%20PUBLIC-02.svg' class="icon_menu_top" alt="image">
           </li>
         </a>
 <!--
@@ -128,7 +130,7 @@
       </ul>
     </div>
     
-    <aside ui-view="conteudo" style="height:calc(100% - 50px); width:100%;"></aside>
+    <aside ui-view="facebook.conteudo" style="height:calc(100% - 50px); width:100%;"></aside>
   
   </div>
 </div>

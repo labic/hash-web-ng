@@ -1,5 +1,6 @@
 var baseURL = 'https://sdh-hash-api-dev.herokuapp.com/tweets';
-var serviceBase = 'http://word-api.ddns.net:8081';
+var serviceBase = 'http://107.170.35.149:8081';
+//var serviceBase = 'http://word-api.ddns.net:8081';
 //criar servicebase FACEBOOK
 
 /* Inicializando tempo de milisegundos */
