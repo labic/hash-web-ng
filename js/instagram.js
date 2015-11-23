@@ -36,7 +36,7 @@ function initialize(result,divID) {
 function showInfo(data){	
   img = "<img src=\"" + data.images.thumbnail.url + "\"></img>";
 	info = new google.maps.InfoWindow({
-		content: img + "<br/>text: " + data.caption.text,
+		content: img + "<br/>Legenda: " + data.caption.text,
 		position: new google.maps.LatLng(data.location.latitude,data.location.longitude)
 	});		
   info.setMap(map);

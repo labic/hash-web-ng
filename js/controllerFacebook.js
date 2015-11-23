@@ -4,10 +4,13 @@ hashTwitter.controller('mainFacebook', function ($scope, $http, MetricsFacebook,
     tema: 'tema-negros',
     time: '7d',
     word: '',
-    type: 'comentario',
-    actor: 'imprensa',
+    profileType: 'page',
+    type: 'publicacoes',
+    actor: 'ator-imprensa',
     categoria: null,
-    categorieNumber: 0
+    categorieNumber: 0,
+    page: 1,
+    per_page: 25
   };
 
   //  MetricsFacebook.count({
@@ -21,18 +24,24 @@ hashTwitter.controller('mainFacebook', function ($scope, $http, MetricsFacebook,
   $scope.$watch('filter', function (newFilter, oldFilter) {
 
     $scope.analyticsFacebookParams = {
-      period: newFilter.time, 
-      profile_type: newFilter.actor, 
-      'post_type[]': [newFilter.tema], 
-      page: null, 
-      per_page: null
+      'period': newFilter.time, 
+      'profile_type': newFilter.profileType, 
+      'filter[contain_tags]': [newFilter.tema,newFilter.actor], 
+      'filter[hashtags]': [],
+      'filter[mentions]': [],
+      'filter[profiles]': [], 
+      'filter[post_type]': [],
+      'filter[blocked]': null,
+      'last': null,
+      'page': 1, 
+      'per_page': 25
     };
 
     $scope.wordFacebookParams = {
       period: newFilter.time,
-      tags: [newFilter.tema],      
-      page: null,    
-      per_page: null
+      'tags[]': [newFilter.tema,newFilter.actor],      
+      page: 1,    
+      per_page: 10
     };
 
     $http.get("data/test/conteudos.json").success(function (data) {
@@ -44,10 +53,14 @@ hashTwitter.controller('mainFacebook', function ($scope, $http, MetricsFacebook,
       function success(response) {
         $scope.words = response;
       }, errorHandler);
+    
+    console.log(newFilter.type);
 
     if(newFilter.type == 'comentario'){
 
-      AnalyticsFacebook.mostCommentedPosts(
+      // falta o receber os comentários mais curtidos e não os posts mais comentados.
+
+      AnalyticsFacebook.mostLikedComments(
         $scope.analyticsFacebookParams, 
         function success(response) {
           $scope.posts = response;
