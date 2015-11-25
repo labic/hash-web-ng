@@ -18,19 +18,19 @@
         </li>
       </ul>
     </div>
-    
+
     <div id="facebook-menu-choice">
-      <button id="facebook-choice-button1" class="facebook-choice-button inicializeOpacity" ng-click="filter.type = 'publicacao'; ">
+      <button id="facebook-choice-button1" class="facebook-choice-button inicializeOpacity" ng-click="filter.type = 'publicacao'; " ui-sref="facebook.posts">
         <img src="../img/facebook/COMEN%20E%20PUBLIC-02.svg" class="svg-icon facebook-choice-button-image">
         <p>PUBLICAÇÕES</p>
       </button>
-      <button id="facebook-choice-button2" class="facebook-choice-button " ng-click="filter.type = 'comentario'; ">
+      <button id="facebook-choice-button2" class="facebook-choice-button " ng-click="filter.type = 'comentario';" ui-sref="facebook.posts">
         <img src="../img/facebook/COMEN%20E%20PUBLIC-01.svg" class="svg-icon facebook-choice-button-image">
         <p>COMENTARIOS</p>
       </button>
-      
+
     </div>
-    
+
     <div id="facebook-menu-atores">
       <div class="facebook-actors-each inicializeOpacity" ng-click="filter.actor = 'ator-imprensa';">
         <img src="../img/facebook/FACEBOOK-01.svg" class="svg-icon facebook-actors-each-image">
@@ -55,21 +55,7 @@
     </div>
 
     <div id="str_menu_temporalidade">
-      <div id="str_time_temporalidade" >
-<!--
-        <div class="time_temporalidade" ng-click='filter.time = "recent"'>
-          <p>mais</p>
-          <p>RECENTES</p>
-        </div>
--->
-        <div class="time_temporalidade" ng-click='filter.time = "1h"'>
-          <p>1</p>
-          <p>HORA</p>
-        </div>
-        <div class="time_temporalidade" ng-click='filter.time = "1d"'>
-          <p>24</p>
-          <p>HORAS</p>
-        </div>
+      <div id="facebook-menu-temporalidade" >
         <div id="temporalidade24" class="time_temporalidade fisrtTemp" ng-click='filter.time = "7d"'>
           <p>7</p>
           <p>DIAS</p>
@@ -78,26 +64,8 @@
           <p>15</p>
           <p>DIAS</p>
         </div>
-
       </div>
     </div>
-
-<!--
-    <div id="str_display_tweet">
-      <div class="display_tweet">
-        <img src="img/icons/ICONE-TWEET.png" height="30px" width="35px">
-        <img src="img/facebook/ICONES-01.svg" class="svg-icon display_tweet_icon" height="30px" width="35px">
-        <p class="display_tweet_p">{{countRetweet}}</p>
-        <p>Tweets acumulados</p>
-      </div>
-
-      <div class="display_tweet">
-        <img src="img/icons/ICONE-IMAGEM.png" height="30px" width="35px">
-        <p class="display_tweet_p">{{countImage}}</p>
-        <p>Imagens acumulados</p>
-      </div>
-    </div>
--->
   </div>
 
   <div id="div3_monitor" class="str_division">
@@ -109,45 +77,50 @@
       <ul class="title_str_menu_icon">
         <a ui-sref="facebook.posts">
           <li class="select_title_division2 firstOpCont">
-            <img ng-show="filter.type == 'comentarios'" src='../img/facebook/COMEN%20E%20PUBLIC-01.svg' class="icon_menu_top" alt="image">
-            <img ng-show="filter.type != 'comentarios'" src='../img/facebook/COMEN%20E%20PUBLIC-02.svg' class="icon_menu_top" alt="image">
+            <span ng-show="!selectComentario">
+              <img src='../img/facebook/iconesface-02.svg' class="svg-icon icon_menu_top" alt="image">
+            </span>
+            <span ng-show="selectComentario">
+              <img src='../img/facebook/iconesface-01.svg' class="svg-icon icon_menu_top" alt="image">
+            </span>
           </li>
         </a>
-<!--
-        <a ui-sref="facebook.img">
+        <a ui-sref="facebook.postsImage">
           <li class="select_title_division2">
-            <img src='img/icons/IMAGENS.png' class="icon_menu_top" alt="image">
+            <span ng-show="!selectComentario" >
+              <img src='img/icons/IMAGENS.png' class="icon_menu_top " alt="image">
+            </span>
           </li>
         </a>
--->
-<!--
-        <a ui-sref="monitor.mosaico">
+        <a ui-sref="facebook.postsMosaico" ng-show="!selectComentario">
           <li id="select_imgMosaico" class="select_title_division2" ng-click="filter.time = '7d'">
-            <img src='img/icons/Mosaico.png' class="icon_menu_top" alt="image">
+            <span ng-show="!selectComentario">
+              <img src='img/icons/Mosaico.png' class="icon_menu_top" alt="image">
+            </span>
           </li>
         </a>
--->
       </ul>
     </div>
-    
+
     <aside ui-view="facebook.conteudo" style="height:calc(100% - 50px); width:100%;"></aside>
-  
+
   </div>
 </div>
 
 <script type="text/javascript">
+
   callSvgImg();
-  
+
   $( document ).ready(function(){
-    
+
     /*NOTA: Inicializando SwipeBox */
 
     $(".swipebox").swipebox({
       hideBarsDelay : 10000000
     });
-    
+
     /* Standard */
-    
+
     $(".inicializeOpacity").css( "opacity", "1" );
     $(".firstOp").css( "font-weight", "800" );
 
@@ -165,12 +138,12 @@
       $(".select_title_division2").css( "opacity", "0.6" );
 
       $(this).css( "opacity", "1" );
-      
+
       $(".select_title_division3").css( "opacity", "0.6" );
       $(".title_str_dualOP_1").css( "opacity", "1" );
     });
 
-//    $(".select_title_division3,.select_title_division2").css( "opacity", "0.6" );
+    //    $(".select_title_division3,.select_title_division2").css( "opacity", "0.6" );
 
     /*NOTA: Troca Temporalidades */ 
 
@@ -197,14 +170,17 @@
       $("#temporalidade24").css( "background-color", "#1dbfd8" );
       $("#temporalidade24").css( "border-color", "#1dbfd8" );
     });
-    
+
     /*NOTA: Troca actors */
-    
+
     $(".facebook-choice-button").click(function(){
       $(".facebook-choice-button").css( "opacity", "0.3" );
-      $(this).css( "opacity", "1" ); 
+      $(this).css( "opacity", "1" );
+      
+      $(".select_title_division2").css( "opacity", "0.6" );
+      $(".firstOpCont").css( "opacity", "1" );
     });
-    
+
     $(".facebook-actors-each").click(function(){
       $(".facebook-actors-each").css( "opacity", "0.3" );
       $(this).css( "opacity", "1" );

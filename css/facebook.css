@@ -53,7 +53,6 @@
 }
 
 .facebook-choice-button-image{
-  fill: red;
   height: 18px;
   width: 18px;
 }
@@ -98,6 +97,20 @@
   vertical-align: middle;
   font-size: 12px;
   font-weight: bold;
+}
+
+/* Menu 3º bloco */
+
+.facebook-menu-icon{
+  fill: black;
+}
+
+.facebook-images-title{
+  color:white; white-space: nowrap; 
+  overflow:hidden ; 
+  text-overflow: ellipsis; 
+  margin-left: 10%; 
+  width: 80%;
 }
 
 /* Posts */
@@ -148,9 +161,9 @@
 
 /*
 .facebook-post-text p:last-child{
-  position: absolute;
-  background: white;
-  left: 10px;
+position: absolute;
+background: white;
+left: 10px;
 }
 */
 
@@ -160,7 +173,7 @@
   width: calc(100% - 50px);
   float:right;
   cursor:pointer;
-/*  font-weight: bold;*/
+  /*  font-weight: bold;*/
 }
 
 .facebook-post-coment{
@@ -187,3 +200,12 @@
   margin: 2px 0px 0px 5px;
   fill: red;
 } 
+
+/* Menu temporalidade */
+
+#facebook-menu-temporalidade{
+  width: auto;
+  height: auto;
+  float: left;
+  margin-left: calc(50% - 79px);
+}

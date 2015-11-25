@@ -25,21 +25,22 @@
       <!--			<button ng-show="buttonBack" class="result_button result_button_back" ng-click='loadMoreTweetsChange(-1);' >VOLTAR</button>-->
 
       <div class="facebook-posts-each" ng-repeat="post in posts" >
-        <p class="facebook-post-time" ng-show="filter.type == 'comentarios'">{{post.created_time_ms | date:'dd-MM-yyyy HH:mm:ss'}} HS</p>
+        <p class="facebook-post-time" ng-show="selectComentario">{{post.created_time_ms | date:'HH:mm:ss - dd/MM/yyyy'}}</p>
         <div class="facebook-post-ranking">
           <p>{{$index + 1}}º</p>
         </div>
         <div class="facebook-post-text">
           <p>{{post.message}}</p>
-<!--          <p>…</p>-->
+          <!--          <p>…</p>-->
         </div>   
-        <div class="facebook-post-coment">
+        <div ng-show="!selectComentario" class="facebook-post-coment">
           <img src="img/facebook/fac-03.svg">
           <p>{{post.comments_count}}</p>
         </div>
         <div class="facebook-post-like">
-           <img src="img/facebook/fac-02.svg">
-          <p>{{post.likes_count}}</p>
+          <img src="img/facebook/fac-02.svg">
+          <p ng-show="!selectComentario">{{post.likes_count}}</p>
+          <p ng-show="selectComentario">{{post.like_count}}</p>
         </div>
         <a href="https://facebook.com/{{post.id}}" target="_blank"><p class="facebook-post-verMais">VER MAIS</p></a>
       </div>

@@ -2,7 +2,7 @@ var hashTwitter = angular.module('hashTwitter', ['ui.router','ngResource', 'hash
 
 hashTwitter
 //  .constant('HASH_API_BASE_URI', 'https://sdh-hash-api-dev.herokuapp.com/v2')
-  .constant('HASH_API_BASE_URI', 'https://sdh-hash-api.herokuapp.com/v2/')
+  .constant('HASH_API_BASE_URI', 'https://sdh-hash-api.herokuapp.com/v2')
   .constant('WORD_API_BASE_URI', 'http://word-api.ddns.net:8081')
   .config(function($stateProvider, $urlRouterProvider) {
   $stateProvider
@@ -114,22 +114,32 @@ hashTwitter
       "facebook.word": { templateUrl: "app/facebook/wordFacebook.html" },
     }
   })
-  .state('facebook.posts', {
+    .state('facebook.posts', {
     url: '',
     views: {
       "facebook.conteudo": { templateUrl: "app/facebook/postsFacebook.html" },
     }
   })
-  .state('facebook.postsImage', {
+    .state('facebook.postsImage', {
     url: '',
     views: {
-      "facebook.conteudo": { templateUrl: "app/facebook/wordFacebook.html" },
+      "facebook.conteudo": { templateUrl: "app/facebook/imgFacebook.html" }, 
+      controller: function($scope) {
+        var tamDiv = $(".geralTweets_result").css( "width" );
+        tamDiv = parseInt(tamDiv);
+        $scope.alturaImg = tamDiv / 3;
+      }
     }
   })
-  .state('facebook.postsMosaico', {
+    .state('facebook.postsMosaico', {
     url: '',
     views: {
-      "facebook.conteudo": { templateUrl: "app/facebook/wordFacebook.html" },
+      "facebook.conteudo": { templateUrl: "app/facebook/imgMosaicoFacebook.html" }, 
+      controller: function($scope) {
+        var tamDiv = $(".geralTweets_result").css( "width" );
+        tamDiv = parseInt(tamDiv);
+        $scope.alturaImg = tamDiv / 15;
+      }
     }
   });
 });

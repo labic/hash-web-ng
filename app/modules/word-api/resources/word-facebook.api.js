@@ -35,9 +35,34 @@
           isArray: true,
           cache: true
         },
-        status: {
+        topWordsComments: {
+          method: 'GET', 
+          url: WORD_API_BASE_URI + '/facebook_comments/top_words', 
+          params: {
+            period: null,  // string
+            tags: [],      // array of string
+            page: null,    // number
+            per_page: null // number
+          },
+          isArray: true,
+          cache: true
+        },
+        posts: {
           method: 'GET', 
           url: WORD_API_BASE_URI + '/facebook/word_posts', 
+          params: {
+            period: null,  // string
+            tags: [],      // array of string
+            word: null,    // string
+            page: null,    // number
+            per_page: null // number
+          },
+          isArray: true,
+          cache: true
+        },
+        postsComments: {
+          method: 'GET', 
+          url: WORD_API_BASE_URI + '/facebook_comments/word_posts', 
           params: {
             period: null,  // string
             tags: [],      // array of string

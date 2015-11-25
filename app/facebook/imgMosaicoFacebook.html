@@ -1,32 +1,37 @@
 <div id="result_conteudo_img" style="height:100%;">
-	<div class="loading" ng-show="dataLoadImageOFF">
-		<center><img src="img/icons/Unknown.gif" height="66px" width="66px"></center>
-		<p class="loadingWordGrey">CARREGANDO:</p>
-		<p class="loadingWordGrey">estamos realizando a sua requisição, essa operação pode demorar um pouco.</p>
-	</div>
+  <!--
+<div class="loading" ng-show="dataLoadImageOFF">
+<center><img src="img/icons/Unknown.gif" height="66px" width="66px"></center>
+<p class="loadingWordGrey">CARREGANDO:</p>
+<p class="loadingWordGrey">estamos realizando a sua requisição, essa operação pode demorar um pouco.</p>
+</div>
 
-	<div class="loading" ng-show="dataLoadImage404">
-		<center><img src="img/icons/searching45.png" height="40px" width="40px"></center>
-		<p class="loadingWordGrey">NENHUM IMAGEM ENCONTRADA</p>
-		<p class="loadingWordGrey">tente outra categoria ou intervalo de tempo</p>
-	</div>
-  
-  <div class="loading" ng-show="dataLoadImageERROR">
-		<center><img src="img/icons/searching45.png" height="40px" width="40px"></center>
-		<p class="loadingWordGrey">ERROR</p>
-		<p class="loadingWordGrey">Estamos tendo problemas ao carregar, volte mais tarde =)</p>
-	</div>
-  
-  <!-- <a href="https://twitter.com/{{imgMos.user.screen_name}}/status/{{imgMos.user.id_str}}" target="_blank" style="color:white;"></a> -->
+<div class="loading" ng-show="dataLoadImage404">
+<center><img src="img/icons/searching45.png" height="40px" width="40px"></center>
+<p class="loadingWordGrey">NENHUM IMAGEM ENCONTRADA</p>
+<p class="loadingWordGrey">tente outra categoria ou intervalo de tempo</p>
+</div>
 
-	<div ng-show="dataLoadImageON" class="geralTweets_result" style="padding:10px;">
-		<div ng-repeat="imgMos in imgsMos" class="out str_TopImg_mosaico">
-			<a href='{{imgMos.media_url_https}}' class="swipebox" title=' <a href="https://twitter.com/{{imgMos.user.screen_name}}/status/{{imgMos.status.id_str}}" target="_blank" style="color:white;">Retweetado {{imgMos.count}} - "{{imgMos.text}}" @{{imgMos.user.screen_name}}</a>'>
-				<img check-image ng-src="{{imgMos.media_url_https}}:thumb" class="img_TopImg_mosaico" alt="image" width="{{alturaImg}}px" height="{{alturaImg}}px">
-			</a>
-			<div class="hover_img_TopImg_mosaico">
-				<img src="{{imgMos.media_url_https}}:thumb" class="img_TopImg_mosaico" alt="image" width="100%" height="100%">
-			</div>
-		</div>
-	</div>
+<div class="loading" ng-show="dataLoadImageERROR">
+<center><img src="img/icons/searching45.png" height="40px" width="40px"></center>
+<p class="loadingWordGrey">ERROR</p>
+<p class="loadingWordGrey">Estamos tendo problemas ao carregar, volte mais tarde =)</p>
+</div>
+
+-->
+  <!-- <a href="https://twitter.com/{{img.user.screen_name}}/status/{{img.user.id_str}}" target="_blank" style="color:white;"></a> -->
+
+  <div class="geralTweets_result" style="padding:10px;">
+    <div ng-repeat="img in imgs | orderBy:'-count'" class="out str_TopImg_mosaico">
+      <a ng-show="img.message != null" href='{{img.full_picture}}' class="swipebox" title=' <a class="facebook-images-title" href="https://facebook.com/{{img.id}}" target="_blank">Curtida(s): {{img.count}} - {{img.message}}</a>'>
+        <img check-image ng-src="{{img.full_picture}}" class="img_TopImg_mosaico" alt="image" width="{{alturaImgMosaico}}px" height="{{alturaImgMosaico}}px">
+      </a>
+      <a ng-show="img.message == null" href='{{img.full_picture}}' class="swipebox" title=' <a class="facebook-images-title" href="https://facebook.com/{{img.id}}" target="_blank">Curtida(s): {{img.count}}</a>'> 
+        <img check-image ng-src="{{img.full_picture}}" class="img_TopImg_mosaico" alt="image" width="{{alturaImgMosaico}}px" height="{{alturaImgMosaico}}px">
+      </a>
+      <div class="hover_img_TopImg_mosaico">
+        <img src="{{img.full_picture}}" class="img_TopImg_mosaico" alt="image" width="100%" height="100%">
+      </div>
+    </div>
+  </div>
 </div>
