@@ -4,11 +4,11 @@
   angular
     .module('hash.api')
     .factory('FacebookPosts', function($resource, HASH_API_BASE_URI) {
-      
+
       return $resource('', null, {
         count: {
           method: 'GET', 
-          url:  HASH_API_BASE_URI + '/facebook/pages/count', 
+          url:  HASH_API_BASE_URI + '/facebook/posts/count', 
           params: { 
             'profile_type': null, // String
             'period': null, // String
