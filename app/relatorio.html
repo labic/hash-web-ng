@@ -1,15 +1,118 @@
 <div id="str_main_monitor" class="str_main" ng-controller="mainRelatorio">
   <div class="relatorio-display">
     <div class="relatorio-display-title">
-      <p>Estatísticas dos últimos 7 dias</p>
-    </div>
-    <div class="relatorio-display-statistic">
-      <div class="relatorio-display-statistic-each">
-        
+      <div class="relatorio-display-title-str">
+        <p>Estatísticas<br>dos últimos 7 dias</p>
+        <div class="relatorio-display-title-menu">
+          <span>
+            <img src="../img/relatorio/icones-01.svg" class="svg-icon relatorio-display-title-menu-img twitter-color">
+            <p>PUBLICAÇÕES</p>
+          </span>
+        </div>
       </div>
     </div>
-    <div class="relatorio-display-line"></div>
-    <div class="relatorio-display-bar"></div>
+
+    <div class="relatorio-display-statistic">
+      <div class="relatorio-display-statistic-str">
+        <div class="relatorio-display-statistic-each">
+          <span>
+            <img src="../img/relatorio/icones-02.svg" class="svg-icon relatorio-display-statistic-image twitter-color">
+          </span>
+          <span>
+            <img src="../img/relatorio/icones-03.svg" class="svg-icon relatorio-display-statistic-image link-color">
+          </span>
+          <p>{{countTweetTwitter}}</p>
+          <p>Publicações acumuladas do Twitter</p>
+        </div>
+        <div class="relatorio-display-statistic-each">
+          <span>
+            <img src="../img/relatorio/icones-02.svg" class="svg-icon relatorio-display-statistic-image twitter-color">
+          </span>
+          <span>
+            <img src="../img/relatorio/icones-04.svg" class="svg-icon relatorio-display-statistic-image link-color">
+          </span>
+          <p>{{countImageTwitter}}</p>
+          <p>Imagens acumuladas do Twitter</p>
+        </div>
+        <div class="relatorio-display-statistic-each">
+          <span>
+            <img src="../img/relatorio/icones-05.svg" class="svg-icon relatorio-display-statistic-image facebook-color">
+          </span>
+          <span>
+            <img src="../img/relatorio/icones-03.svg" class="svg-icon relatorio-display-statistic-image link-color">
+          </span>
+          <p>123231</p>
+          <p>Publicações acumuladas do Facebook</p>
+        </div>
+        <div class="relatorio-display-statistic-each">
+          <span>
+            <img src="../img/relatorio/icones-05.svg" class="svg-icon relatorio-display-statistic-image facebook-color">
+          </span>
+          <span>
+            <img src="../img/relatorio/icones-02.svg" class="svg-icon relatorio-display-statistic-image link-color">
+          </span>
+          <p>123231</p>
+          <p>Imagens acumuladas do Facebook</p>
+        </div>
+        <div class="relatorio-display-statistic-each">
+          <span>
+            <img src="../img/relatorio/icones-08.svg" class="svg-icon relatorio-display-statistic-image instagram-color">
+          </span>
+          <span>
+            <img src="../img/relatorio/icones-03.svg" class="svg-icon relatorio-display-statistic-image link-color">
+          </span>
+          <p>123231</p>
+          <p>Imagens acumuladas do Instagram</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="relatorio-display-line">
+      <div class="relatorio-display-line-title">
+        <p>Publicações x Tempo</p>
+      </div>
+      <div id="lineChart"></div>
+    </div>
+
+    <div class="relatorio-display-bar">
+
+      <div id="relatorio-display-bar-menu">
+        <ul id="menu_tematica_instagram">
+          <li class="menu_tematica_op">
+            <a ng-click='filter.tema = "tema-indigenas";'><p class="select_tematica_monitor" style="color:#c7144f">INDÍGENA</p></a>
+          </li>
+          <li class="menu_tematica_op">
+            <a ng-click='filter.tema = "tema-genero";'><p class="select_tematica_monitor" style="color:#426083">MULHER</p></a>
+          </li>
+          <li class="menu_tematica_op">
+            <a ng-click='filter.tema = "tema-negros";'><p class="select_tematica_monitor firstOp" style="color:#f7931e">NEGRO</p></a>
+          </li>
+          <li class="menu_tematica_op">
+            <a ng-click='filter.tema = "tema-lgbt";'><p class="select_tematica_monitor" style="color:#8c6239">LGBT</p></a>
+          </li>
+        </ul>
+      </div>
+
+      <div class="relatorio-display-bar-verticalDisplay">
+        <div class="relatorio-display-bar-verticalDisplay-each">
+          <img src="../img/relatorio/icones-02.svg" class="svg-icon relatorio-display-bar-verticalDisplay-each-image twitter-color">
+          <p>Twitter</p>
+        </div>
+
+        <div class="relatorio-display-bar-verticalDisplay-each">
+          <img src="../img/relatorio/icones-05.svg" class="svg-icon relatorio-display-bar-verticalDisplay-each-image facebook-color">
+          <p>Facebook</p>
+        </div>
+
+        <div class="relatorio-display-bar-verticalDisplay-each">
+          <img src="../img/relatorio/icones-08.svg" class="svg-icon relatorio-display-bar-verticalDisplay-each-image instagram-color">
+          <p>Instagram</p>
+        </div>
+      </div>
+
+      <div id="barChart"></div>
+    </div>
+
   </div>
 </div>
 
@@ -18,6 +121,14 @@
   callSvgImg();
 
   $( document ).ready(function(){
+
+    var colorMap = {"indigena":"#c7144f","genero":"#426083","negros":"#f7931e","lgbt":"#8c6239"};
+
+    var widthLineChart = $("#lineChart").width();
+    var widthBarChart = $("#barChart").width();
+
+    plotBarChart("data/teste2.json","barChart",widthBarChart,120,15,25,colorMap);
+    plotLineCharts("data/teste.json","lineChart",widthLineChart-100,150);
 
   });
 </script>
