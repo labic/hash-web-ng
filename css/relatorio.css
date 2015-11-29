@@ -1,0 +1,31 @@
+.relatorio-display{
+  background: #e7e2d6;
+  width: 100%;
+  height: 100%;
+}
+
+.relatorio-display-title{
+  width: 100%;
+  background: #d6e7e4;
+  height: 60px;
+}
+
+.relatorio-display-statistic{
+  width: 100%;
+  height: 150px;
+  background: blue;
+}
+
+.relatorio-display-line{
+  width: 100%;
+  height: 270px;
+  background: red;
+  
+}
+
+.relatorio-display-bar{
+  width: 100%;
+  height: 150px;
+  background: green;
+}
+

@@ -7,7 +7,7 @@ hashTwitter
   .config(function($stateProvider, $urlRouterProvider) {
   $stateProvider
 
-  /* PAGINA: painel */
+  /* PAGINA: Painel */
 
     .state('painel', {
     url: "/painel",
@@ -140,6 +140,17 @@ hashTwitter
         tamDiv = parseInt(tamDiv);
         $scope.alturaImg = tamDiv / 15;
       }
+    }
+  })
+  
+  /* PAGINA: Relatorio */
+  
+  .state('relatorio', {
+    url: "/relatorio",
+    views: {
+      "": { templateUrl: "app/relatorio.html" },
+//      "facebook.word@facebook": { templateUrl: "app/facebook/wordFacebook.html" },
+//      "facebook.conteudo@facebook": { templateUrl: "app/facebook/postsFacebook.html" },
     }
   });
 });
