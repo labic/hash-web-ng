@@ -16,52 +16,52 @@
       <div class="relatorio-display-statistic-str">
         <div class="relatorio-display-statistic-each">
           <span>
-            <img src="../img/relatorio/icones-02.svg" class="svg-icon relatorio-display-statistic-image twitter-color">
+            <img src="../img/relatorio/icones-02.svg" class="svg-icon relatorio-display-statistic-image-left twitter-color">
           </span>
           <span>
-            <img src="../img/relatorio/icones-03.svg" class="svg-icon relatorio-display-statistic-image link-color">
+            <img src="../img/relatorio/icones-03.svg" class="svg-icon relatorio-display-statistic-image-right link-color">
           </span>
           <p>{{TwitterTweet}}</p>
           <p>Publicações acumuladas do Twitter</p>
         </div>
         <div class="relatorio-display-statistic-each">
           <span>
-            <img src="../img/relatorio/icones-02.svg" class="svg-icon relatorio-display-statistic-image twitter-color">
+            <img src="../img/relatorio/icones-02.svg" class="svg-icon relatorio-display-statistic-image-left twitter-color">
           </span>
           <span>
-            <img src="../img/relatorio/icones-04.svg" class="svg-icon relatorio-display-statistic-image link-color">
+            <img src="../img/relatorio/icones-04.svg" class="svg-icon relatorio-display-statistic-image-right link-color">
           </span>
           <p>{{TwitterImage}}</p>
           <p>Imagens acumuladas do Twitter</p>
         </div>
         <div class="relatorio-display-statistic-each">
           <span>
-            <img src="../img/relatorio/icones-05.svg" class="svg-icon relatorio-display-statistic-image facebook-color">
+            <img src="../img/relatorio/icones-05.svg" class="svg-icon relatorio-display-statistic-image-left facebook-color">
           </span>
           <span>
-            <img src="../img/relatorio/icones-03.svg" class="svg-icon relatorio-display-statistic-image link-color">
+            <img src="../img/relatorio/icones-03.svg" class="svg-icon relatorio-display-statistic-image-right link-color">
           </span>
           <p>{{FacebookPosts}}</p>
           <p>Publicações acumuladas do Facebook</p>
         </div>
         <div class="relatorio-display-statistic-each">
           <span>
-            <img src="../img/relatorio/icones-05.svg" class="svg-icon relatorio-display-statistic-image facebook-color">
+            <img src="../img/relatorio/icones-05.svg" class="svg-icon relatorio-display-statistic-image-left facebook-color">
           </span>
           <span>
-            <img src="../img/relatorio/icones-02.svg" class="svg-icon relatorio-display-statistic-image link-color">
+            <img src="../img/relatorio/icones-04.svg" class="svg-icon relatorio-display-statistic-image-right link-color">
           </span>
           <p>{{FacebookImage}}</p>
           <p>Imagens acumuladas do Facebook</p>
         </div>
         <div class="relatorio-display-statistic-each">
           <span>
-            <img src="../img/relatorio/icones-08.svg" class="svg-icon relatorio-display-statistic-image instagram-color">
+            <img src="../img/relatorio/icones-08.svg" class="svg-icon relatorio-display-statistic-image-left instagram-color">
           </span>
           <span>
-            <img src="../img/relatorio/icones-03.svg" class="svg-icon relatorio-display-statistic-image link-color">
+            <img src="../img/relatorio/icones-04.svg" class="svg-icon relatorio-display-statistic-image-right link-color">
           </span>
-          <p>123231</p>
+          <p>{{InstagramImage}}</p>
           <p>Imagens acumuladas do Instagram</p>
         </div>
       </div>
@@ -69,8 +69,24 @@
 
     <div class="relatorio-display-line">
       <div class="relatorio-display-line-title">
-        <p>Publicações x Tempo</p>
+        <p>Interações x Tempo</p>
       </div>
+      
+      <div class="relatorio-display-bar-verticalDisplay" style="float:left;margin-left:5%; width:170px;">
+        <p style="color:#426083">Filtrar por rede social</p>
+        <div title="Twitter" class="relatorio-display-bar-verticalDisplay-each" style="float:left; margin-left: 20px; margin-top:20px; cursor:pointer;" ng-click="filterLineChart.status = 'twitter';">
+          <img src="../img/relatorio/icones-02.svg" class="svg-icon relatorio-display-bar-verticalDisplay-each-image twitter-color">
+        </div>
+
+        <div title="Facebook" class="relatorio-display-bar-verticalDisplay-each" style="float:left; margin-left: 20px; margin-top:20px; cursor:pointer;" ng-click="filterLineChart.status = 'facebook';">
+          <img src="../img/relatorio/icones-05.svg" class="svg-icon relatorio-display-bar-verticalDisplay-each-image facebook-color">
+        </div>
+
+        <div title="Instagram" class="relatorio-display-bar-verticalDisplay-each" style="float:left; margin-left: 20px; margin-top:20px; cursor:pointer;" ng-click="filterLineChart.status = 'instagram';">
+          <img src="../img/relatorio/icones-08.svg" class="svg-icon relatorio-display-bar-verticalDisplay-each-image instagram-color">
+        </div>
+      </div>
+      
       <div id="lineChart"></div>
     </div>
 
@@ -120,10 +136,6 @@
 
   callSvgImg();
 
-  $( document ).ready(function(){
-
-//    plotBarChart("data/teste2.json","barChart",widthBarChart,120,15,25,colorMap);
-//    plotLineCharts("data/teste.json","lineChart",widthLineChart-100,150);
-
-  });
+  $( document ).ready(function(){});
+  
 </script>

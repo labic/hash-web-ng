@@ -63,7 +63,7 @@
 }
 
 .relatorio-display-statistic-each{
-  width:150px;
+  width: calc(100% / 5);
   height: 100%;
   border-left: 1px dashed #94a1ac;
   padding: 0px 35px;
@@ -86,8 +86,17 @@
   border-left:none;
 }
 
-.relatorio-display-statistic-image{
-  margin-left: 7.5px;
+.relatorio-display-statistic-image-left{
+  float: right;
+  margin-right: 15px;
+  margin-top: 7.5px;
+  height: 25px;
+  width: 25px;
+}
+
+.relatorio-display-statistic-image-right{
+  float:left;
+  margin-left: 15px;
   margin-top: 7.5px;
   height: 25px;
   width: 25px;
@@ -145,15 +154,15 @@
 }
 
 #lineChart{
-  width: 90%;
+  float:left;
+  width: calc(90% - 170px);
   height: 100%;
-  margin-left: 5%;
   background-image: url("../img/subtle_dots_@2X.png");
 }
 
 #barChart{
   float:left;
-  width: calc(90% - 130px);
+  width: calc(100% - 130px);
 }
 
 .relatorio-display-bar{
@@ -244,3 +253,14 @@
   font-weight: bold;
   font-size: 11px;
 }
+
+/****/
+
+#relatorio-display-bar-menu .menu_tematica_op:after{
+  display: none;
+}
+
+#relatorio-display-bar-menu li{
+  cursor:default;
+}
+
