@@ -25,7 +25,6 @@
           method: 'GET', 
           url:  HASH_API_BASE_URI + '/analytics/twitter/geolocation', 
           params: PARAMS,
-          isArray: true,
           cache: true
         },
         mostActiveUsers: {

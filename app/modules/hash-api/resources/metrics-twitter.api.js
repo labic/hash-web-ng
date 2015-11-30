@@ -26,12 +26,21 @@
           method: 'GET', 
           url:  HASH_API_BASE_URI + '/metrics/twitter/interations_rate', 
           params: metricsParams,
+          isArray: true,
           cache: true
         },
         tagsCount: {
           method: 'GET', 
           url:  HASH_API_BASE_URI + '/metrics/twitter/tags_count', 
           params: metricsParams,
+          isArray: true,
+          cache: true
+        },
+        usersRate: {
+          method: 'GET', 
+          url:  HASH_API_BASE_URI + '/metrics/twitter/users_rate', 
+          params: metricsParams,
+          isArray: true,
           cache: true
         }
       });
