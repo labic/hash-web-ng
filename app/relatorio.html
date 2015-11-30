@@ -21,7 +21,7 @@
           <span>
             <img src="../img/relatorio/icones-03.svg" class="svg-icon relatorio-display-statistic-image link-color">
           </span>
-          <p>{{countTweetTwitter}}</p>
+          <p>{{TwitterTweet}}</p>
           <p>Publicações acumuladas do Twitter</p>
         </div>
         <div class="relatorio-display-statistic-each">
@@ -31,7 +31,7 @@
           <span>
             <img src="../img/relatorio/icones-04.svg" class="svg-icon relatorio-display-statistic-image link-color">
           </span>
-          <p>{{countImageTwitter}}</p>
+          <p>{{TwitterImage}}</p>
           <p>Imagens acumuladas do Twitter</p>
         </div>
         <div class="relatorio-display-statistic-each">
@@ -41,7 +41,7 @@
           <span>
             <img src="../img/relatorio/icones-03.svg" class="svg-icon relatorio-display-statistic-image link-color">
           </span>
-          <p>123231</p>
+          <p>{{FacebookPosts}}</p>
           <p>Publicações acumuladas do Facebook</p>
         </div>
         <div class="relatorio-display-statistic-each">
@@ -51,7 +51,7 @@
           <span>
             <img src="../img/relatorio/icones-02.svg" class="svg-icon relatorio-display-statistic-image link-color">
           </span>
-          <p>123231</p>
+          <p>{{FacebookImage}}</p>
           <p>Imagens acumuladas do Facebook</p>
         </div>
         <div class="relatorio-display-statistic-each">
@@ -122,13 +122,8 @@
 
   $( document ).ready(function(){
 
-    var colorMap = {"indigena":"#c7144f","genero":"#426083","negros":"#f7931e","lgbt":"#8c6239"};
-
-    var widthLineChart = $("#lineChart").width();
-    var widthBarChart = $("#barChart").width();
-
-    plotBarChart("data/teste2.json","barChart",widthBarChart,120,15,25,colorMap);
-    plotLineCharts("data/teste.json","lineChart",widthLineChart-100,150);
+//    plotBarChart("data/teste2.json","barChart",widthBarChart,120,15,25,colorMap);
+//    plotLineCharts("data/teste.json","lineChart",widthLineChart-100,150);
 
   });
 </script>

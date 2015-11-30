@@ -1,9 +1,9 @@
 function plotBarChart(url,divId,width,height,barHeight,jump,colorMap){
 	mapa = [];
 	d3.json(url, function(err,json){
-		mapeia(mapa,json.twitter,width,0);
-		mapeia(mapa,json.facebook,width,1);
-		mapeia(mapa,json.instagram,width,2);				
+		mapeia(mapa,url.twitter,width,0);
+		mapeia(mapa,url.facebook,width,1);
+		mapeia(mapa,url.instagram,width,2);				
 
 		var tooltip = d3.select("body")
 		.append("div")
