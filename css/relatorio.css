@@ -176,6 +176,7 @@
 }
 
 #relatorio-display-bar-menu{
+  width:400px;
   position: absolute;
   top: -35px;
   background: white none repeat scroll 0% 0%;
