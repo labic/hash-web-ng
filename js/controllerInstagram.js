@@ -12,7 +12,7 @@ hashTwitter.controller('mainInstagram', function ($scope, $http) {
     startMap(url,"instagram_map");
 
     var url1 = serviceBase+"/instagram/media?page=1&per_page=100&period=recent&tags[]="+newFilter.tema+"";
-    startImageCloud(url1,"instagram_cloudImage",$("#instagram_container").width());
+    startImageCloud(url1,"instagram_cloudImage",$("#instagram_cloudImage").width());
   },true);
 
 });

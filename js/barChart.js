@@ -1,39 +1,41 @@
-function plotBarChart(url,divId,width,height,barHeight,jump,colorMap){
-	mapa = [];
-	d3.json(url, function(err,json){
-		mapeia(mapa,url.twitter,width,0);
-		mapeia(mapa,url.facebook,width,1);
-		mapeia(mapa,url.instagram,width,2);				
+var offsetTop;
+var offsetLeft;
 
-		var tooltip = d3.select("body")
-		.append("div")
-		.attr("class","tooltipChart")
-		.style("position", "absolute")
-		.style("z-index", "10")
-		.style("visibility", "hidden");
+function plotBarChart(json,divId,width,height,barHeight,jump,colorMap){
+	mapa = [];	
+	mapeia(mapa,json.twitter,width,0);
+	mapeia(mapa,json.facebook,width,1);
+	mapeia(mapa,json.instagram,width,2);	
+		
+	var svg = d3.select("#" + divId).append("svg")
+    .attr("width", width)
+    .attr("height", height);
 
-		var svg = d3.select("#" + divId).append("svg")
-    	.attr("width", width)
-    	.attr("height", height);
+    var bars = svg.selectAll("rect").data(mapa).enter().append("rect");
 
-    	var bars = svg.selectAll("rect").data(mapa).enter().append("rect");
+    bars.attr("x",function(d){return d.x0})
+    .attr("y", function(d){return d.line*jump + d.line*barHeight;})
+    .attr("width",function(d){return d.w;})
+    .attr("height",barHeight)
+    .style("fill",function(d){return colorMap[d.tema];})
+    .on("mouseover", function(d){
+    	tooltip.text((d.percentual * 100).toFixed(2) + "% " + d.tema.toUpperCase());    		
+    	tooltip.style("top", ((d.line + 1)*barHeight + d.line*(jump) + offsetTop) + "px")
+    	.style("left",(d.x0 + d.w*0.2 + offsetLeft)+"px")
+    	.style("visibility", "visible");
+    })		
+	.on("mouseout", function(){return tooltip.style("visibility", "hidden");});
 
-    	bars.attr("x",function(d){return d.x0})
-    	.attr("y", function(d){return d.line*jump + d.line*barHeight;})
-    	.attr("width",function(d){return d.w;})
-    	.attr("height",barHeight)
-    	.style("fill",function(d){return colorMap[d.tema];})
-    	.on("mouseover", function(d){
-    		tooltip.text((d.percentual * 100).toFixed(2) + "% " + d.tema.toUpperCase());
+	divData = d3.select("#" + divId)[0][0];
+	offsetTop = divData.offsetTop;
+	offsetLeft = divData.offsetLeft;
 
-    		console.log(tooltip.attr("width"));
-
-    		tooltip.style("margin-top", ""+((d.line + 1)*barHeight + d.line*(jump) - 125) + "px")
-    		.style("margin-left",(d.x0 + d.w*0.2)+230+"px")
-    		.style("visibility", "visible");
-    	})		
-		.on("mouseout", function(){return tooltip.style("visibility", "hidden");});    	
-	});	
+	var tooltip = d3.select("#" + divId)
+	.append("div")
+	.attr("class","tooltip")
+	.style("position", "absolute")
+	.style("z-index", "10")
+	.style("visibility", "hidden");    		
 }
 
 function mapeia(mapa, rede, width, indice){
