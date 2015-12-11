@@ -25,7 +25,7 @@
     "jquery": "~2.1.4",
     "swipebox": "~1.4.1",
     "Chart.js": "~1.0.2",
-    "qTip2": "~2.2.1",
+    "qTip2": "~2.1.0",
     "Processing.js": "processing#~1.4.16",
     "checklist-model": "~0.6.0",
     "underscore": "~1.8.3",
