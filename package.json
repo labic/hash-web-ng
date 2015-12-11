@@ -16,5 +16,9 @@
   "dependencies": {
     "bower": "^1.6.5",
     "express": "~4.13.3"
+  },
+  "engines": {
+    "node": "0.12.x",
+    "npm": "3.3.x"
   }
 }
