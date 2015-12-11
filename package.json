@@ -14,7 +14,7 @@
   },
   "license": "MIT",
   "dependencies": {
-    "bower": "^1.7.0",
+    "bower": "~1.5.3",
     "express": "~4.13.3"
   },
   "engines": {
