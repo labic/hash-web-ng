@@ -6,6 +6,15 @@ hashTwitter
   .constant('WORD_API_BASE_URI', 'http://word-api.ddns.net:8081')
   .config(function($stateProvider, $urlRouterProvider) {
   $stateProvider
+  
+  /* PAGINA: HOME */
+  
+  .state('home', {
+    url: "",
+    views: {
+      "": { templateUrl: "app/home.html" },
+    }
+  })
 
   /* PAGINA: Painel */
 

@@ -1,5 +1,24 @@
 <div id="str_main_monitor" class="str_main" ng-controller="mainRelatorio">
   <div class="relatorio-display">
+
+    <div class="loading loading_relatorio">
+      <!--      <center><img src="img/icons/Unknown.gif" height="66px" width="66px"></center>-->
+      <div class="cssload-container">
+        <div class="cssload-shaft1"></div>
+        <div class="cssload-shaft2"></div>
+        <div class="cssload-shaft3"></div>
+        <div class="cssload-shaft4"></div>
+        <div class="cssload-shaft5"></div>
+        <div class="cssload-shaft6"></div>
+        <div class="cssload-shaft7"></div>
+        <div class="cssload-shaft8"></div>
+        <div class="cssload-shaft9"></div>
+        <div class="cssload-shaft10"></div>
+      </div>
+      <p class="loadingWordGrey">RECEBENDO OS DADOS ESTATÍSTICOS</p>
+      <p class="loadingWordGrey">realizando multiplás requisições. Por favor aguarde com paciência, essa operação pode demorar cerca de 1 minuto.</p>
+    </div>
+
     <div class="relatorio-display-title">
       <div class="relatorio-display-title-str">
         <p>Estatísticas<br>dos últimos 7 dias</p>
@@ -68,25 +87,26 @@
     </div>
 
     <div class="relatorio-display-line">
+
+      <div class="relatorio-display-line-horizontalDisplay">
+        <p>Clique na rede social que deseja visualizar:</p>
+        <div title="Twitter" id="line-twitter" class="relatorio-display-line-horizontalDisplay-each" ng-click="filterLineChart.status = 'twitter';">
+          <img src="img/relatorio/icones-02.svg" class="svg-icon relatorio-display-line-horizontalDisplay-each-image relatorio-display-bar-verticalDisplay-each-image twitter-color">
+        </div>
+
+        <div title="Facebook" id="line-facebook" class="relatorio-display-line-horizontalDisplay-each" ng-click="filterLineChart.status = 'facebook';">
+          <img src="img/relatorio/icones-05.svg" class="svg-icon relatorio-display-line-horizontalDisplay-each-image relatorio-display-bar-verticalDisplay-each-image facebook-color">
+        </div>
+
+        <div title="Instagram" id="line-instagram" class="relatorio-display-line-horizontalDisplay-each" ng-click="filterLineChart.status = 'instagram';">
+          <img src="img/relatorio/icones-08.svg" class="svg-icon relatorio-display-line-horizontalDisplay-each-image relatorio-display-bar-verticalDisplay-each-image instagram-color">
+        </div>
+      </div>
+
       <div class="relatorio-display-line-title">
         <p>Interações x Tempo</p>
       </div>
-      
-      <div class="relatorio-display-bar-verticalDisplay" style="float:left;margin-left:5%; width:170px;">
-        <p style="color:#426083">Filtrar por rede social</p>
-        <div title="Twitter" class="relatorio-display-bar-verticalDisplay-each" style="float:left; margin-left: 20px; margin-top:20px; cursor:pointer;" ng-click="filterLineChart.status = 'twitter';">
-          <img src="img/relatorio/icones-02.svg" class="svg-icon relatorio-display-bar-verticalDisplay-each-image twitter-color">
-        </div>
 
-        <div title="Facebook" class="relatorio-display-bar-verticalDisplay-each" style="float:left; margin-left: 20px; margin-top:20px; cursor:pointer;" ng-click="filterLineChart.status = 'facebook';">
-          <img src="img/relatorio/icones-05.svg" class="svg-icon relatorio-display-bar-verticalDisplay-each-image facebook-color">
-        </div>
-
-        <div title="Instagram" class="relatorio-display-bar-verticalDisplay-each" style="float:left; margin-left: 20px; margin-top:20px; cursor:pointer;" ng-click="filterLineChart.status = 'instagram';">
-          <img src="img/relatorio/icones-08.svg" class="svg-icon relatorio-display-bar-verticalDisplay-each-image instagram-color">
-        </div>
-      </div>
-      
       <div id="lineChart"></div>
     </div>
 
@@ -136,6 +156,42 @@
 
   callSvgImg();
 
-  $( document ).ready(function(){});
-  
+  $( document ).ready(function(){
+
+    $("#line-twitter").css( "background-image", "url('../img/subtle_dots_@2X.png')");
+    $("#line-twitter").css( "border-style", "solid");
+    $("#line-twitter").css( "border-color", "rgb(86, 200, 231)");
+    $("#line-twitter").css( "border-width", "1px 1px 0px");
+
+    $("#line-twitter").click(function(){
+      $(".relatorio-display-line-horizontalDisplay-each").css( "background-image", "none");
+      $(".relatorio-display-line-horizontalDisplay-each").css( "border-width", "0px 0px 0px");
+
+      $(this).css( "background-image", "url('../img/subtle_dots_@2X.png')");
+      $(this).css( "border-style", "solid");
+      $(this).css( "border-color", "rgb(86, 200, 231)");
+      $(this).css( "border-width", "1px 1px 0px");
+    });
+
+    $("#line-facebook").click(function(){
+      $(".relatorio-display-line-horizontalDisplay-each").css( "background-image", "none");
+      $(".relatorio-display-line-horizontalDisplay-each").css( "border-width", "0px 0px 0px");
+
+      $(this).css( "background-image", "url('../img/subtle_dots_@2X.png')");
+      $(this).css( "border-style", "solid");
+      $(this).css( "border-color", "#426083");
+      $(this).css( "border-width", "1px 1px 0px");
+    });
+
+    $("#line-instagram").click(function(){
+      $(".relatorio-display-line-horizontalDisplay-each").css( "background-image", "none");
+      $(".relatorio-display-line-horizontalDisplay-each").css( "border-width", "0px 0px 0px");
+
+      $(this).css( "background-image", "url('../img/subtle_dots_@2X.png')");
+      $(this).css( "border-style", "solid");
+      $(this).css( "border-color", "#736357");
+      $(this).css( "border-width", "1px 1px 0px");
+    });
+  });
+
 </script>

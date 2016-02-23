@@ -1,25 +1,36 @@
 <div id="result_conteudo_img" style="height:100%;">
-	<div class="loading" ng-show="dataLoadImageOFF">
-		<center><img src="img/icons/Unknown.gif" height="66px" width="66px"></center>
-		<p class="loadingWordGrey">CARREGANDO:</p>
-		<p class="loadingWordGrey">estamos realizando a sua requisição, essa operação pode demorar um pouco.</p>
-	</div>
+  <div class="loading" ng-show="dataLoadImageOFF">
+    <div class="cssload-container">
+      <div class="cssload-shaft1"></div>
+      <div class="cssload-shaft2"></div>
+      <div class="cssload-shaft3"></div>
+      <div class="cssload-shaft4"></div>
+      <div class="cssload-shaft5"></div>
+      <div class="cssload-shaft6"></div>
+      <div class="cssload-shaft7"></div>
+      <div class="cssload-shaft8"></div>
+      <div class="cssload-shaft9"></div>
+      <div class="cssload-shaft10"></div>
+    </div>
+    <p class="loadingWordGrey">CARREGANDO:</p>
+    <p class="loadingWordGrey">estamos realizando a sua requisição, essa operação pode demorar um pouco.</p>
+  </div>
 
-	<div class="loading" ng-show="dataLoadImage404">
-		<center><img src="img/icons/searching45.png" height="40px" width="40px"></center>
-		<p class="loadingWordGrey">NENHUM IMAGEM ENCONTRADA</p>
-		<p class="loadingWordGrey">tente outra categoria ou intervalo de tempo</p>
-	</div>
-  
+  <div class="loading" ng-show="dataLoadImage404">
+    <center><img src="img/icons/searching45.png" height="40px" width="40px"></center>
+    <p class="loadingWordGrey">NENHUM IMAGEM ENCONTRADA</p>
+    <p class="loadingWordGrey">tente outra categoria ou intervalo de tempo</p>
+  </div>
+
   <div class="loading" ng-show="dataLoadImageERROR">
-		<center><img src="img/icons/searching45.png" height="40px" width="40px"></center>
-		<p class="loadingWordGrey">ERROR</p>
-		<p class="loadingWordGrey">Estamos tendo problemas ao carregar, volte mais tarde =)</p>
-	</div>
+    <center><img src="img/icons/searching45.png" height="40px" width="40px"></center>
+    <p class="loadingWordGrey">ERROR</p>
+    <p class="loadingWordGrey">Estamos tendo problemas ao carregar, volte mais tarde =)</p>
+  </div>
 
-	<div ng-show="dataLoadImageON"  class="geralTweets_result" style="height:calc(100% - 10px);">
-		<a ng-repeat="img in imgs" href='{{img.media_url_https}}' class="swipebox" title='<a href="https://twitter.com/{{img.user.screen_name}}/status/{{img.status.id_str}}" target="_blank" style="color:white;">Retweetado {{img.count}} - "{{img.text}}" @{{img.user.screen_name}}</a>'>
-				<img src="{{img.media_url_https}}:small" class="img_TopImg" alt="image" width="{{alturaImg}}px" height="{{alturaImg}}px"  >
-		</a>
-	</div>
+  <div ng-show="dataLoadImageON"  class="geralTweets_result" style="height:calc(100% - 10px);">
+    <a ng-repeat="img in imgs" href='{{img.media_url_https}}' class="swipebox" title='<a href="https://twitter.com/{{img.user.screen_name}}/status/{{img.status.id_str}}" target="_blank" style="color:white;">Retweetado {{img.count}} - "{{img.text}}" @{{img.user.screen_name}}</a>'>
+      <img src="{{img.media_url_https}}:small" class="img_TopImg" alt="image" width="{{alturaImg}}px" height="{{alturaImg}}px"  >
+    </a>
+  </div>
 </div>

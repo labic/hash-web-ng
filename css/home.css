@@ -1,0 +1,46 @@
+#home-tile{
+  margin-left:calc(50% - 125px); 
+  margin-top: 50px; 
+  float:left;
+}
+
+#home-tile p{
+  color: #1c5e6e; 
+  font-size: 25px; 
+  font-weight:bold; 
+  text-align: center; 
+  margin-top: 20px;
+}
+
+#home-menu{
+  float:left; 
+  width: calc(1200px - 60px); 
+  height:auto; 
+  margin-top: 50px;
+  margin-left: calc(50% - 540px);
+}
+
+.home-menu-each{
+  width:20%; 
+  height: 400px; 
+  border-right: 1px solid #1c5e6e; 
+  float:left;
+}
+
+.home-menu-each-title{
+  width:100%; 
+  height: 60px; 
+  background: green;
+}
+
+.home-menu-each-text{
+  width:100%; 
+  height: auto; 
+  padding:10px;
+}
+
+.home-menu-each-text p{
+  font-size:15px; 
+  text-align:center; 
+  color:#1c5e6e;
+}

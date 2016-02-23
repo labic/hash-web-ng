@@ -96,6 +96,8 @@ hashTwitter.controller('mainPalavras', function ($scope, $http) {
   }
 
   $scope.$watch('filter', function (newFilter, oldFilter) {
+    
+    $(".loading-palavras").show();
 
     if(firstRun == false){
 

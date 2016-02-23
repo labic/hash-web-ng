@@ -8,6 +8,7 @@
 .relatorio-display-title{
   width: 100%;
   height: 60px;
+  margin-top:20px;
 }
 
 .relatorio-display-title-str{
@@ -140,8 +141,10 @@
 }
 
 .relatorio-display-line-title{
-  width:100%;
+  width:300px;
+  float:left;
   background: white;
+  margin-left: 400px;
 }
 
 .relatorio-display-line-title p {
@@ -153,16 +156,46 @@
   font-weight: bold;
 }
 
+.relatorio-display-line-horizontalDisplay{
+  float:left;
+  margin-left:5%;
+}
+
+.relatorio-display-line-horizontalDisplay p{
+  float:left;
+  color:rgb(66, 96, 131);
+}
+
+.relatorio-display-line-horizontalDisplay-each{
+  float:left;
+  margin-left: 20px;
+  cursor: pointer;
+  padding: 6px;
+  width: 35px;
+  transition: all 0s linear 0s;
+}
+
+.loading_relatorio{
+  position: absolute;
+  z-index: 999;
+  padding: 25px;
+  padding-top: 210px;
+  width: calc(100% - 50px);
+  height: 100%;
+  background: rgba(255, 255, 255, 0.8)
+}
+
 #lineChart{
   float:left;
-  width: calc(90% - 170px);
+  width: 90%;
   height: 100%;
   background-image: url("../img/subtle_dots_@2X.png");
+  margin-left:5%;
 }
 
 #barChart{
   float:left;
-  width: calc(100% - 130px);
+  width: calc(100% - 170px);
 }
 
 .relatorio-display-bar{
@@ -189,10 +222,14 @@
   font-weight: bold;
 }
 
+#relatorio-display-bar-menu a{
+  cursor:default;
+}
+
 .relatorio-display-bar-verticalDisplay{
   float:left;
-  width:130px;
   height: 100%;
+  width:170px;
 }
 
 .relatorio-display-bar-verticalDisplay-each{

@@ -1,0 +1,17 @@
+.loading-palavras{
+  position: absolute;
+  padding: 25px;
+  z-index: 999;
+  padding-top: 210px;
+  background: rgba(255, 255, 255, 0.8);
+  width: calc(100% - 50px);
+  height: 100%;
+  display: block;
+}
+
+#palavras-display{
+  background: #ffffff;
+  width: calc(100% - 60px);
+  height: 100%;
+  float: left;
+}

@@ -39,6 +39,11 @@ function d3Sunburst(url, word){
   d3.json(url, function(error, root) {
 
     if (error) throw error;
+    
+    console.log(2);
+    /* loading da pagina */
+    $(".loading-palavras").hide();
+    /* loading da pagina */
 
     tweetstext.append("p").html(root.tweet_count)
 

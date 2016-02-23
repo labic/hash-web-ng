@@ -1,0 +1,24 @@
+{
+	"regex": {
+		"prefix": "(?:\\/\\*|\\/\\/|#|<!--) *@?(",
+		"suffix": "):? *(.*?) ?(?=\\*/|\\n|$|-->)"
+	},
+	"tags": [
+		"TODO",
+		"Nota",
+		"Error",
+		"Mudancas",
+		"Futuro",
+		"Pagina",
+        "capitulo"
+	],
+	"case": false,
+	"search": {
+		"scope": "current",
+		"excludeFolders": [],
+		"excludeFiles": []
+	},
+	"sort": {
+		"done": true
+	}
+}

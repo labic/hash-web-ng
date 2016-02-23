@@ -1,19 +1,23 @@
 var info;
 var map;
+var atualInfoWindow = null;
 
 var width;
 var increment; 
 
-function startMap(url,divID){    
+function startMap(url,divID){
+  
   d3.json(url,function(err,json){
-    if(err){console.log(err)}        
+    if(err){console.log(err)}
     initialize(json,divID);
+    
+    $("#loading_mapa").hide();
   });
 }
 
 function initialize(result,divID) {
   var mapProp = {
-    center:new google.maps.LatLng(-18.72156,-39.8852),
+    center:new google.maps.LatLng(-13.72156,-28.8852),
     zoom:4,
     mapTypeId:google.maps.MapTypeId.ROADMAP
   };
@@ -33,12 +37,16 @@ function initialize(result,divID) {
   }          
 }
 
-function showInfo(data){	
-  img = "<img src=\"" + data.images.thumbnail.url + "\"></img>";
+function showInfo(data){
+  if(atualInfoWindow != null) atualInfoWindow.close();
+
+  img = "<img class=\"instagram-preview-image\" src=\"" + data.images.low_resolution.url + "\"></img>";
 	info = new google.maps.InfoWindow({
-		content: img + "<br/>Legenda: " + data.caption.text,
-		position: new google.maps.LatLng(data.location.latitude,data.location.longitude)
-	});		
+		content: img + "<br/><p class=\"instagram-preview-text\" style=\"word-wrap:break-word;\">Legenda: " + data.caption.text + "</p>",
+		position: new google.maps.LatLng(data.location.latitude,data.location.longitude),
+    maxWidth:300
+	});
+  atualInfoWindow = info;		
   info.setMap(map);
 }
 
@@ -51,9 +59,12 @@ function getMarkers(data, indice){
 
 /*IMAGECLOUD*/
 function startImageCloud(url,divID,width){  
-  d3.json(url,function(err,json){    
+  d3.json(url,function(err,json){
+    d3.select("#instagram_cloudImage").select('svg').remove();
     json.sort(function(a,b){return (parseInt(b.data.created_time) - parseInt(a.data.created_time));});
-    runImageCloud(json,divID,width);    
+    runImageCloud(json,divID,width); 
+    $("#loading_fotos").hide();
+    $(".fade_white").hide();
   });
 }
 
@@ -131,4 +142,3 @@ function calcY(){
   }
   return r;  
 }
-

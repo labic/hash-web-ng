@@ -1065,7 +1065,7 @@
         }
 
   #palavras_div2{
-    width:calc(100% - 600px);
+    width:calc(100% - 540px);
     background-image: url(../img/subtle_dots_@2X.png);
     overflow: hidden;
   }
