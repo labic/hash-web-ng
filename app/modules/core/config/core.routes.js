@@ -12,7 +12,7 @@
         // })
         .state('home', {
           url: '',
-          templateUrl: 'app/modules/core/views/home.html',
+          templateUrl: 'modules/core/views/home.html',
         });
         // .state('router', {
         //   url: '/router',

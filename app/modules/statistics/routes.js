@@ -7,7 +7,7 @@
         .state('relatorio', {
           url: '/relatorio',
           views: {
-            '': { templateUrl: 'app/modules/statistics/views/main.html' }
+            '': { templateUrl: 'modules/statistics/views/main.html' }
           }
         });
     });

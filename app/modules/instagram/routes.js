@@ -7,7 +7,7 @@
         .state('instagram', {
           url: '/instagram',
           views: {
-            '': { templateUrl: 'app/modules/instagram/views/main.html' }
+            '': { templateUrl: 'modules/instagram/views/main.html' }
           }
         });
     });

@@ -295,7 +295,7 @@ hashTwitter.controller('mainMonitor', function ($scope, $http, MetricsTwitter, A
       console.log(status);
     });
 
-    $http.get("app/data/conteudos.json").success(function (data) {
+    $http.get("data/conteudos.json").success(function (data) {
       $scope.conteudos = data[$scope.categorieNumber];
     });
   };
