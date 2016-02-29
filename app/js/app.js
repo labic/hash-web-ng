@@ -1,33 +1,63 @@
-// READ
-// https://docs.angularjs.org/tutorial/step_11
-// https://docs.angularjs.org/guide/filter
-// https://docs.angularjs.org/api/ng/directive
-// https://docs.angularjs.org/guide/directive
-// https://docs.angularjs.org/api/ng/directive/ngController
-// https://github.com/pablojim/highcharts-ng
-(function () {
-  'use strict';
+var hashTwitter = angular.module('hashTwitter', [
+  'ui.router',
+  'ngResource',
+  'hash.api',
+  'word.api',
+  'hash.core',
+  'hash.twitter.dashboard',
+  'hash.instagram',
+  'hash.facebook',
+  'hash.words',
+  'hash.statistics',
+  'infinite-scroll'
+]);
 
-  angular
-    .module('hash.dash', [
-      'angular-cache',
-      'ui.router',
-      'ui.bootstrap',
-      'highcharts-ng',
-      'hash.core',
-      'hash.api',
-      'word.api',
-      'hash.twitter-monitor'
-    ])
-    .constant('HASH_API_BASE_URI', 'http://localhost:3000/v1')
-    // .constant('HASH_API_BASE_URI', 'https://hash-api.herokuapp.com:443/v1')
-    .constant('WORD_API_BASE_URI', 'http://107.170.54.11:8080')
-    // .run(function ($http, CacheFactory) {
-    //   $http.defaults.cache = CacheFactory('defaultCache', {
-    //     maxAge: 15 * 60 * 1000, // Items added to this cache expire after 15 minutes
-    //     cacheFlushInterval: 60 * 60 * 1000, // This cache will clear itself every hour
-    //     deleteOnExpire: 'aggressive', // Items will be deleted from this cache when they expire
-    //     storageMode: 'localStorage'
-    //   });
-    // });
-})()
+hashTwitter
+  .constant('HASH_API_BASE_URI', 'https://sdh-hash-api-dev.herokuapp.com/v2')
+  // .constant('HASH_API_BASE_URI', 'https://sdh-hash-api.herokuapp.com/v2')
+  .constant('WORD_API_BASE_URI', 'http://word-api.ddns.net:8081');
+
+// TODO: Clean this!
+var serviceBase = 'http://107.170.35.149:8081';
+
+/* Inicializando tempo de milisegundos */
+var nowState = new Date();
+
+var now = new Date(nowState.getTime() - 11700000);
+var now15m = new Date(now.getTime() - 15*60000);
+var now60 = new Date(now.getTime() - 3600000);
+var now24 = new Date(now.getTime() - 86400000);
+var now7 = new Date(now.getTime() - 7*86400000);
+var now15d = new Date(now.getTime() - 15*86400000);
+var now30 = new Date(now.getTime() - 30*86400000);
+
+var nowT = new Date(now).getTime();
+var nowT15m = new Date(now).getTime() - 15*60000;
+var nowT60 = new Date(now).getTime() - 3600000;
+var nowT24 = new Date(now).getTime() - 86400000;
+var nowT7 = new Date(now).getTime() - 7*86400000;
+var nowT15d = new Date(now).getTime() - 15*86400000;
+var nowT30 = new Date(now).getTime() - 30*86400000;
+
+/* Organizando data da forma nescessaria para passar para o link; */
+var dataNow = now.toISOString().replace(/z/gi,'');
+var dataNow15m = now15m.toISOString().replace(/z/gi,'');
+var dataNow60 = now60.toISOString().replace(/z/gi,'');
+var dataNow24 = now24.toISOString().replace(/z/gi,'');
+var dataNow7 = now7.toISOString().replace(/z/gi,'');
+var dataNow15d = now15d.toISOString().replace(/z/gi,'');
+var dataNow30 = now30.toISOString().replace(/z/gi,'');
+
+function transformTime(lTime){
+	if (lTime == "15m") {
+		return dataNow15m;
+	} else if (lTime == "1h") {
+		return dataNow60;
+	} else if (lTime == "1d") {
+		return dataNow24;
+	} else if (lTime == "7d") {
+		return dataNow7;
+	} else if (lTime == "15d") {
+		return dataNow15d;
+	}
+}
