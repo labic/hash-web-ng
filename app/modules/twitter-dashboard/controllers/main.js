@@ -154,39 +154,6 @@ hashTwitter.controller('mainMonitor', function ($scope, $http, MetricsTwitter, A
     }
   };
 
-  /* function functionNoRtConteudo(localTime, dataNow, linkTema, linkCategoria, linkLocalidade, word, tag){
-
-    if((word === undefined) && (tag === undefined)){
-
-      //      return baseURL+'?filter={"where":{"status.retweeted_status":{"exists":false},"categories":{"all":['+linkTema+''+linkCategoria+''+linkLocalidade+']}},"limit":25,"skip":0, "order": "status.timestamp_ms DESC"}';
-
-      AnalyticsTwitter.mostRetweetedTweets(
-        $scope.analyticsParams,
-        function success(response) {
-          $scope.twittes = response;
-        }, errorHandler);
-
-    }else if(tag === undefined){
-
-      var twNoRtJson = JSON.stringify(filterDavid($scope.filter.time, linkTema, linkCategoria, linkLocalidade, word, null, 25),["where","period","word","categories","all","limit"]);
-
-      $scope.monitorlinkNoRtTweet =  serviceBase+'word_no_rt?filter='+twNoRtJson;
-
-      //      $scope.monitorlinkNoRtTweet = serviceBase+'word_no_rt?filter={"where":{"period":"'+$scope.filter.time+'","word":"'+word+'","categories":{"all":['+linkTema+''+linkCategoria+''+linkLocalidade+']}},"limit":25}';
-
-    }else if(word === undefined){
-
-      AnalyticsTwitter.mostRetweetedTweets(
-        $scope.analyticsParams,
-        function success(response) {
-          $scope.twittes = response;
-        }, errorHandler);
-
-      //      $scope.monitorlinkNoRtTweet = baseURL+'?filter={"where":{"status.entities.hashtags.text":{"all":["'+tag+'"]},"status.retweeted_status":{"exists":false},"status.created_at":{"gte":"'+localTime+'","lte":"'+dataNow+'"},"categories":{"all":['+linkTema+''+linkCategoria+''+linkLocalidade+']}},"limit":25,"skip":0}';
-
-    }
-  };*/
-
   function functionImage(localTime, dataNow, linkTema, linkCategoria, linkLocalidade, word, tag){
     if(word === null){
 
@@ -328,7 +295,7 @@ hashTwitter.controller('mainMonitor', function ($scope, $http, MetricsTwitter, A
       console.log(status);
     });
 
-    $http.get("data/test/conteudos.json").success(function (data) {
+    $http.get("app/data/conteudos.json").success(function (data) {
       $scope.conteudos = data[$scope.categorieNumber];
     });
   };
@@ -355,8 +322,6 @@ hashTwitter.controller('mainMonitor', function ($scope, $http, MetricsTwitter, A
 
     var monitorLinkMap = serviceBase+'/twitter/map_volume?filter='+mapJson;
 
-    var maxCont = 0;
-
     $("#svg-map a path").css( "fill", "#d1e8c5" );
 
     $scope.legendMetade = 0;
@@ -366,10 +331,7 @@ hashTwitter.controller('mainMonitor', function ($scope, $http, MetricsTwitter, A
     $scope.textLoadDisplayMap = true;
 
     $http.get(monitorLinkMap).success(function (data) {
-
-      maxCont = 0;
-
-      var teste = "AC";
+      var maxCont = 0;
 
       for(var x=0; x<27 ;x++){
         if(data[x].count > maxCont){
