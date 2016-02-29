@@ -33,7 +33,7 @@ hashTwitter.controller('mainFacebook', function ($scope, $http, MetricsFacebook,
 
   $scope.$watch('filter', function (newFilter, oldFilter) {
 
-    $http.get("data/test/conteudos.json").success(function (data) {
+    $http.get("app/data/conteudos.json").success(function (data) {
       $scope.conteudos = data[newFilter.categorieNumber];
     });
 
@@ -44,10 +44,10 @@ hashTwitter.controller('mainFacebook', function ($scope, $http, MetricsFacebook,
       WordFacebook.topWordsComments(
         {
           'period': newFilter.time,
-          'tags[]': [newFilter.tema,newFilter.actor],      
-          'page': 1,    
+          'tags[]': [newFilter.tema,newFilter.actor],
+          'page': 1,
           'per_page': 10
-        }, 
+        },
         function success(response) {
           $scope.words = response;
         }, errorHandler);
@@ -61,11 +61,11 @@ hashTwitter.controller('mainFacebook', function ($scope, $http, MetricsFacebook,
 
         AnalyticsFacebook.mostLikedComments(
           {
-            'period': newFilter.time, 
-            'filter[with_tags]': [newFilter.tema,newFilter.actor], 
-            'page': 1, 
+            'period': newFilter.time,
+            'filter[with_tags]': [newFilter.tema,newFilter.actor],
+            'page': 1,
             'per_page': 25
-          }, 
+          },
           function success(response) {
             $scope.posts = response;
 
@@ -90,9 +90,9 @@ hashTwitter.controller('mainFacebook', function ($scope, $http, MetricsFacebook,
             period: newFilter.time,
             'tags[]': [newFilter.tema,newFilter.actor],
             'word': newFilter.word,
-            'page': 1, 
+            'page': 1,
             'per_page': 25
-          }, 
+          },
           function success(response) {
             $scope.posts = response;
 
@@ -114,11 +114,11 @@ hashTwitter.controller('mainFacebook', function ($scope, $http, MetricsFacebook,
 
         AnalyticsFacebook.mostLikedComments(
           {
-            'period': newFilter.time, 
-            'filter[with_tags]': [newFilter.tema,newFilter.actor,newFilter.categoria], 
-            'page': 1, 
+            'period': newFilter.time,
+            'filter[with_tags]': [newFilter.tema,newFilter.actor,newFilter.categoria],
+            'page': 1,
             'per_page': 25
-          }, 
+          },
           function success(response) {
             $scope.posts = response;
 
@@ -140,11 +140,11 @@ hashTwitter.controller('mainFacebook', function ($scope, $http, MetricsFacebook,
 
           AnalyticsFacebook.mostLikedComments(
             {
-              'period': newFilter.time, 
-              'filter[with_tags]': [newFilter.tema,newFilter.actor], 
-              'page': 1, 
+              'period': newFilter.time,
+              'filter[with_tags]': [newFilter.tema,newFilter.actor],
+              'page': 1,
               'per_page': 25
-            }, 
+            },
             function success(response) {
               $scope.posts = response;
 
@@ -164,9 +164,9 @@ hashTwitter.controller('mainFacebook', function ($scope, $http, MetricsFacebook,
               period: newFilter.time,
               'tags[]': [newFilter.tema,newFilter.actor],
               'word': newFilter.word,
-              'page': 1, 
+              'page': 1,
               'per_page': 25
-            }, 
+            },
             function success(response) {
               $scope.posts = response;
 
@@ -183,11 +183,11 @@ hashTwitter.controller('mainFacebook', function ($scope, $http, MetricsFacebook,
 
           AnalyticsFacebook.mostLikedComments(
             {
-              'period': newFilter.time, 
-              'filter[with_tags]': [newFilter.tema,newFilter.actor,newFilter.categoria], 
-              'page': 1, 
+              'period': newFilter.time,
+              'filter[with_tags]': [newFilter.tema,newFilter.actor,newFilter.categoria],
+              'page': 1,
               'per_page': 25
-            }, 
+            },
             function success(response) {
               $scope.posts = response;
 
@@ -198,19 +198,19 @@ hashTwitter.controller('mainFacebook', function ($scope, $http, MetricsFacebook,
               }else{
                 $scope.buttonNext = true;
               }
-            }, errorHandler);    
-        } 
+            }, errorHandler);
+        }
       }else if(newFilter.page != oldFilter.page){
 
         if($scope.stateFilter == "tema"){
 
           AnalyticsFacebook.mostLikedComments(
             {
-              'period': newFilter.time, 
-              'filter[with_tags]': [newFilter.tema,newFilter.actor], 
-              'page': 1, 
+              'period': newFilter.time,
+              'filter[with_tags]': [newFilter.tema,newFilter.actor],
+              'page': 1,
               'per_page': newFilter.per_page
-            }, 
+            },
             function success(response) {
               $scope.posts = response;
 
@@ -230,9 +230,9 @@ hashTwitter.controller('mainFacebook', function ($scope, $http, MetricsFacebook,
               period: newFilter.time,
               'tags[]': [newFilter.tema,newFilter.actor],
               'word': newFilter.word,
-              'page': 1, 
+              'page': 1,
               'per_page': newFilter.per_page
-            }, 
+            },
             function success(response) {
               $scope.posts = response;
 
@@ -249,11 +249,11 @@ hashTwitter.controller('mainFacebook', function ($scope, $http, MetricsFacebook,
 
           AnalyticsFacebook.mostLikedComments(
             {
-              'period': newFilter.time, 
-              'filter[with_tags]': [newFilter.tema,newFilter.actor,newFilter.categoria], 
-              'page': 1, 
+              'period': newFilter.time,
+              'filter[with_tags]': [newFilter.tema,newFilter.actor,newFilter.categoria],
+              'page': 1,
               'per_page': newFilter.per_page
-            }, 
+            },
             function success(response) {
               $scope.posts = response;
 
@@ -264,7 +264,7 @@ hashTwitter.controller('mainFacebook', function ($scope, $http, MetricsFacebook,
               }else{
                 $scope.buttonNext = false;
               }
-            }, errorHandler);    
+            }, errorHandler);
         }
       }
     }else{
@@ -277,10 +277,10 @@ hashTwitter.controller('mainFacebook', function ($scope, $http, MetricsFacebook,
       WordFacebook.topWords(
         {
           'period': newFilter.time,
-          'tags[]': [newFilter.tema,newFilter.actor],      
-          'page': 1,    
+          'tags[]': [newFilter.tema,newFilter.actor],
+          'page': 1,
           'per_page': 10
-        }, 
+        },
         function success(response) {
           $scope.words = response;
         }, errorHandler);
@@ -294,12 +294,12 @@ hashTwitter.controller('mainFacebook', function ($scope, $http, MetricsFacebook,
 
         AnalyticsFacebook.mostLikedPosts(
           {
-            'period': newFilter.time, 
-            'profile_type': newFilter.profileType, 
-            'filter[with_tags]': [newFilter.tema,newFilter.actor], 
-            'page': 1, 
+            'period': newFilter.time,
+            'profile_type': newFilter.profileType,
+            'filter[with_tags]': [newFilter.tema,newFilter.actor],
+            'page': 1,
             'per_page': 25
-          }, 
+          },
           function success(response) {
             $scope.posts = response;
 
@@ -315,12 +315,12 @@ hashTwitter.controller('mainFacebook', function ($scope, $http, MetricsFacebook,
         for(var x = 1; x <= 4; x++){
           AnalyticsFacebook.mostRecurringImages(
             {
-              'period': newFilter.time, 
-              'profile_type': newFilter.profileType, 
-              'filter[with_tags]': [newFilter.tema,newFilter.actor], 
-              'page': x, 
+              'period': newFilter.time,
+              'profile_type': newFilter.profileType,
+              'filter[with_tags]': [newFilter.tema,newFilter.actor],
+              'page': x,
               'per_page': 100
-            }, 
+            },
             function success(response) {
 
               contResponseImg++;
@@ -345,9 +345,9 @@ hashTwitter.controller('mainFacebook', function ($scope, $http, MetricsFacebook,
             period: newFilter.time,
             'tags[]': [newFilter.tema,newFilter.actor],
             'word': newFilter.word,
-            'page': 1,    
+            'page': 1,
             'per_page': 25
-          }, 
+          },
           function success(response) {
             $scope.posts = response;
 
@@ -365,9 +365,9 @@ hashTwitter.controller('mainFacebook', function ($scope, $http, MetricsFacebook,
             period: newFilter.time,
             'tags[]': [newFilter.tema,newFilter.actor],
             'word': newFilter.word,
-            'page': 1,    
+            'page': 1,
             'per_page': 400
-          }, 
+          },
           function success(response) {
             $scope.posts = response;
           }, errorHandler);
@@ -381,12 +381,12 @@ hashTwitter.controller('mainFacebook', function ($scope, $http, MetricsFacebook,
 
         AnalyticsFacebook.mostLikedPosts(
           {
-            'period': newFilter.time, 
+            'period': newFilter.time,
             'profile_type': newFilter.profileType,
-            'filter[with_tags]': [newFilter.tema,newFilter.actor,newFilter.categoria], 
-            'page': 1, 
+            'filter[with_tags]': [newFilter.tema,newFilter.actor,newFilter.categoria],
+            'page': 1,
             'per_page': 25
-          }, 
+          },
           function success(response) {
             $scope.posts = response;
 
@@ -402,12 +402,12 @@ hashTwitter.controller('mainFacebook', function ($scope, $http, MetricsFacebook,
         for(var x = 1; x <= 4; x++){
           AnalyticsFacebook.mostRecurringImages(
             {
-              'period': newFilter.time, 
-              'profile_type': newFilter.profileType, 
-              'filter[with_tags]': [newFilter.tema,newFilter.actor,newFilter.categoria], 
-              'page': x, 
+              'period': newFilter.time,
+              'profile_type': newFilter.profileType,
+              'filter[with_tags]': [newFilter.tema,newFilter.actor,newFilter.categoria],
+              'page': x,
               'per_page': 100
-            }, 
+            },
             function success(response) {
 
               contResponseImg++;
@@ -429,12 +429,12 @@ hashTwitter.controller('mainFacebook', function ($scope, $http, MetricsFacebook,
 
           AnalyticsFacebook.mostLikedPosts(
             {
-              'period': newFilter.time, 
-              'profile_type': newFilter.profileType, 
-              'filter[with_tags]': [newFilter.tema,newFilter.actor], 
-              'page': 1, 
+              'period': newFilter.time,
+              'profile_type': newFilter.profileType,
+              'filter[with_tags]': [newFilter.tema,newFilter.actor],
+              'page': 1,
               'per_page': 25
-            }, 
+            },
             function success(response) {
               $scope.posts = response;
 
@@ -450,12 +450,12 @@ hashTwitter.controller('mainFacebook', function ($scope, $http, MetricsFacebook,
           for(var x = 1; x <= 4; x++){
             AnalyticsFacebook.mostRecurringImages(
               {
-                'period': newFilter.time, 
-                'profile_type': newFilter.profileType, 
-                'filter[with_tags]': [newFilter.tema,newFilter.actor], 
-                'page': x, 
+                'period': newFilter.time,
+                'profile_type': newFilter.profileType,
+                'filter[with_tags]': [newFilter.tema,newFilter.actor],
+                'page': x,
                 'per_page': 100
-              }, 
+              },
               function success(response) {
 
                 contResponseImg++;
@@ -475,9 +475,9 @@ hashTwitter.controller('mainFacebook', function ($scope, $http, MetricsFacebook,
               period: newFilter.time,
               'tags[]': [newFilter.tema,newFilter.actor],
               'word': newFilter.word,
-              'page': 1,    
+              'page': 1,
               'per_page': 25
-            }, 
+            },
             function success(response) {
               $scope.posts = response;
 
@@ -495,9 +495,9 @@ hashTwitter.controller('mainFacebook', function ($scope, $http, MetricsFacebook,
               period: newFilter.time,
               'tags[]': [newFilter.tema,newFilter.actor],
               'word': newFilter.word,
-              'page': 1,    
+              'page': 1,
               'per_page': 400
-            }, 
+            },
             function success(response) {
               $scope.posts = response;
             }, errorHandler);
@@ -506,12 +506,12 @@ hashTwitter.controller('mainFacebook', function ($scope, $http, MetricsFacebook,
 
           AnalyticsFacebook.mostLikedPosts(
             {
-              'period': newFilter.time, 
+              'period': newFilter.time,
               'profile_type': newFilter.profileType,
-              'filter[with_tags]': [newFilter.tema,newFilter.actor,newFilter.categoria], 
-              'page': 1, 
+              'filter[with_tags]': [newFilter.tema,newFilter.actor,newFilter.categoria],
+              'page': 1,
               'per_page': 25
-            }, 
+            },
             function success(response) {
 
               v//            var contData = Object.keys(response).length;
@@ -528,12 +528,12 @@ hashTwitter.controller('mainFacebook', function ($scope, $http, MetricsFacebook,
           for(var x = 1; x <= 4; x++){
             AnalyticsFacebook.mostRecurringImages(
               {
-                'period': newFilter.time, 
-                'profile_type': newFilter.profileType, 
-                'filter[with_tags]': [newFilter.tema,newFilter.actor,newFilter.categoria], 
-                'page': x, 
+                'period': newFilter.time,
+                'profile_type': newFilter.profileType,
+                'filter[with_tags]': [newFilter.tema,newFilter.actor,newFilter.categoria],
+                'page': x,
                 'per_page': 100
-              }, 
+              },
               function success(response) {
 
                 contResponseImg++;
@@ -545,19 +545,19 @@ hashTwitter.controller('mainFacebook', function ($scope, $http, MetricsFacebook,
               }, errorHandler
             );
           }
-        } 
+        }
       }else if(newFilter.page != oldFilter.page){
 
         if($scope.stateFilter == "tema"){
 
           AnalyticsFacebook.mostLikedPosts(
             {
-              'period': newFilter.time, 
-              'profile_type': newFilter.profileType, 
-              'filter[with_tags]': [newFilter.tema,newFilter.actor], 
-              'page': newFilter.page, 
+              'period': newFilter.time,
+              'profile_type': newFilter.profileType,
+              'filter[with_tags]': [newFilter.tema,newFilter.actor],
+              'page': newFilter.page,
               'per_page': 25
-            }, 
+            },
             function success(response) {
               $scope.posts = response;
 
@@ -577,9 +577,9 @@ hashTwitter.controller('mainFacebook', function ($scope, $http, MetricsFacebook,
               period: newFilter.time,
               'tags[]': [newFilter.tema,newFilter.actor],
               'word': newFilter.word,
-              'page': newFilter.page, 
+              'page': newFilter.page,
               'per_page': 25
-            }, 
+            },
             function success(response) {
               $scope.posts = response;
 
@@ -596,12 +596,12 @@ hashTwitter.controller('mainFacebook', function ($scope, $http, MetricsFacebook,
 
           AnalyticsFacebook.mostLikedPosts(
             {
-              'period': newFilter.time, 
-              'profile_type': newFilter.profileType, 
-              'filter[with_tags]': [newFilter.tema,newFilter.actor,newFilter.categoria], 
-              'page': newFilter.page, 
+              'period': newFilter.time,
+              'profile_type': newFilter.profileType,
+              'filter[with_tags]': [newFilter.tema,newFilter.actor,newFilter.categoria],
+              'page': newFilter.page,
               'per_page': 25
-            }, 
+            },
             function success(response) {
               $scope.posts = response;
 
@@ -612,10 +612,10 @@ hashTwitter.controller('mainFacebook', function ($scope, $http, MetricsFacebook,
               }else{
                 $scope.buttonNext = false;
               }
-            }, errorHandler);    
+            }, errorHandler);
         }
       }
-    }           
+    }
     $scope.start = 0;
   },true);
 
