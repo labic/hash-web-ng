@@ -7,27 +7,27 @@
         .state('facebook', {
           url: '/facebook',
           views: {
-            '': { templateUrl: 'app/modules/facebook/views/main.html' },
-            'facebook.word@facebook': { templateUrl: 'app/modules/facebook/views/wordFacebook.html' },
-            'facebook.conteudo@facebook': { templateUrl: 'app/modules/facebook/views/postsFacebook.html' },
+            '': { templateUrl: 'modules/facebook/views/main.html' },
+            'facebook.word@facebook': { templateUrl: 'modules/facebook/views/wordFacebook.html' },
+            'facebook.conteudo@facebook': { templateUrl: 'modules/facebook/views/postsFacebook.html' },
           }
         })
         .state('facebook.word', {
           url: '',
           views: {
-            'facebook.word': { templateUrl: 'app/modules/facebook/views/wordFacebook.html' },
+            'facebook.word': { templateUrl: 'modules/facebook/views/wordFacebook.html' },
           }
         })
         .state('facebook.posts', {
           url: '',
           views: {
-            'facebook.conteudo': { templateUrl: 'app/modules/facebook/views/postsFacebook.html' },
+            'facebook.conteudo': { templateUrl: 'modules/facebook/views/postsFacebook.html' },
           }
         })
         .state('facebook.postsImage', {
           url: '',
           views: {
-            'facebook.conteudo': { templateUrl: 'app/modules/facebook/views/imgFacebook.html' },
+            'facebook.conteudo': { templateUrl: 'modules/facebook/views/imgFacebook.html' },
             controller: function($scope) {
               var tamDiv = $('.geralTweets_result').css( 'width' );
               tamDiv = parseInt(tamDiv);
@@ -38,7 +38,7 @@
         .state('facebook.postsMosaico', {
           url: '',
           views: {
-            'facebook.conteudo': { templateUrl: 'app/modules/facebook/views/imgMosaicoFacebook.html' },
+            'facebook.conteudo': { templateUrl: 'modules/facebook/views/imgMosaicoFacebook.html' },
             controller: function($scope) {
               var tamDiv = $('.geralTweets_result').css( 'width' );
               tamDiv = parseInt(tamDiv);

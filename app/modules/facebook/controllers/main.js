@@ -33,7 +33,7 @@ hashTwitter.controller('mainFacebook', function ($scope, $http, MetricsFacebook,
 
   $scope.$watch('filter', function (newFilter, oldFilter) {
 
-    $http.get("app/data/conteudos.json").success(function (data) {
+    $http.get("data/conteudos.json").success(function (data) {
       $scope.conteudos = data[newFilter.categorieNumber];
     });
 
