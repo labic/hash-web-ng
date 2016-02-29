@@ -1,11 +1,11 @@
 {
-  "name": "sdh-front-end",
+  "name": "hash-web",
   "version": "1.7.0",
   "authors": [
     "zoaldyck <roberto_dmoraes@hotmail.com>",
     "Gustavo RPS <dev+labic.net@gustavorps.net>"
   ],
-  "description": "estamos alavancando o esquema",
+  "description": "A app view data and information from social networks",
   "license": "MIT",
   "ignore": [
     "**/.*",

@@ -1,6 +1,11 @@
 {
-  "name": "sdh-front-end",
-  "version": "0.0.1",
+  "name": "hash-web",
+  "version": "1.0.0",
+  "description": "A app view data and information from social networks",
+  "authors": [
+    "Gustavo RPS <dev+labic.net@gustavorps.net>",
+    "zoaldyck <roberto_dmoraes@hotmail.com>"
+  ],
   "description": "",
   "main": "server.js",
   "scripts": {
@@ -10,7 +15,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git@bitbucket.org:labic/sdh-front-end.git"
+    "url": "git@bitbucket.org:labic/hash-web.git"
   },
   "license": "MIT",
   "dependencies": {
