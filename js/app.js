@@ -3,6 +3,7 @@ var hashTwitter = angular.module('hashTwitter', [
   'ngResource',
   'hash.core',
   'hash.twitter.dashboard',
+  'hash.words',
   'hash.api',
   'word.api',
   'infinite-scroll'
@@ -14,27 +15,6 @@ hashTwitter
   .constant('WORD_API_BASE_URI', 'http://word-api.ddns.net:8081')
   .config(function($stateProvider, $urlRouterProvider) {
     $stateProvider
-      .state('palavra', {
-        url: '/palavras',
-        views: {
-          '': { templateUrl: 'app/palavras.html' },
-          'sunburst@palavra': { templateUrl: 'app/palavra/sunburstPalavra.html' },
-          'words@palavra': { templateUrl: 'app/palavra/wordsPalavra.html' },
-          'conteudo.tweet@palavra': { templateUrl: 'app/palavra/twPalavra.html' }
-        }
-      })
-      .state('palavra.tweet', {
-        url: '',
-        views: {
-          'conteudo.palavra': { templateUrl: 'app/palavra/twTweet.html' },
-        }
-      })
-      .state('palavra.img', {
-        url: '',
-        views: {
-          'conteudo.palavra': { templateUrl: 'app/palavra/imgTweet.html' },
-        }
-      })
       .state('instagram', {
         url: '/instagram',
         views: {
