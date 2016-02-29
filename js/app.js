@@ -1,4 +1,11 @@
-var hashTwitter = angular.module('hashTwitter', ['ui.router','ngResource', 'hash.api', 'word.api', 'infinite-scroll']);
+var hashTwitter = angular.module('hashTwitter', [
+  'ui.router',
+  'ngResource',
+  'hash.core',
+  'hash.api',
+  'word.api',
+  'infinite-scroll'
+]);
 
 hashTwitter
   .constant('HASH_API_BASE_URI', 'https://sdh-hash-api-dev.herokuapp.com/v2')
@@ -7,40 +14,33 @@ hashTwitter
   .config(function($stateProvider, $urlRouterProvider) {
     $stateProvider
 
-    .state('home', {
-      url: "",
-      views: {
-        "": { templateUrl: "app/home.html" },
-      }
-    })
-
     .state('painel', {
-      url: "/painel",
+      url: '/painel',
       views: {
-        "": { templateUrl: "app/painel.html" },
-        "map@painel": { templateUrl: "app/painel/map.html" },
-        "word&Tag@painel": { templateUrl: "app/painel/wordTweet.html" },
-        "conteudo@painel": { templateUrl: "app/painel/twTweet.html" }
+        '': { templateUrl: 'app/painel.html' },
+        'map@painel': { templateUrl: 'app/painel/map.html' },
+        'word&Tag@painel': { templateUrl: 'app/painel/wordTweet.html' },
+        'conteudo@painel': { templateUrl: 'app/painel/twTweet.html' }
       }
     })
     .state('painel.word', {
     url: '',
       views: {
-        "word&Tag": { templateUrl: "app/painel/wordTweet.html" },
+        'word&Tag': { templateUrl: 'app/painel/wordTweet.html' },
       }
     })
     .state('painel.tag', {
       url: '',
       views: {
-        "word&Tag": { templateUrl: "app/painel/tagTweet.html" },
+        'word&Tag': { templateUrl: 'app/painel/tagTweet.html' },
       }
     })
     .state('painel.img', {
       url: '',
       views: {
-        "conteudo": {
-          templateUrl: "app/painel/imgTweet.html", controller: function($scope) {
-            var tamDiv = $(".geralTweets_result").css( "width" );
+        'conteudo': {
+          templateUrl: 'app/painel/imgTweet.html', controller: function($scope) {
+            var tamDiv = $('.geralTweets_result').css( 'width' );
             tamDiv = parseInt(tamDiv);
             $scope.alturaImg = tamDiv / 3;
           }
@@ -50,15 +50,15 @@ hashTwitter
     .state('painel.tweet', {
       url: '',
       views: {
-        "conteudo": { templateUrl: "app/painel/twTweet.html" },
+        'conteudo': { templateUrl: 'app/painel/twTweet.html' },
       }
     })
     .state('painel.mosaico', {
       url: '',
       views: {
-        "conteudo": {
-          templateUrl: "app/painel/imgMosaicoTweet.html", controller: function($scope) {
-            var tamDiv = $(".geralTweets_result").css( "width" );
+        'conteudo': {
+          templateUrl: 'app/painel/imgMosaicoTweet.html', controller: function($scope) {
+            var tamDiv = $('.geralTweets_result').css( 'width' );
             tamDiv = parseInt(tamDiv);
             $scope.alturaImg = tamDiv / 15;
           }
@@ -66,58 +66,58 @@ hashTwitter
       }
     })
     .state('palavra', {
-      url: "/palavras",
+      url: '/palavras',
       views: {
-        "": { templateUrl: "app/palavras.html" },
-        "sunburst@palavra": { templateUrl: "app/palavra/sunburstPalavra.html" },
-        "words@palavra": { templateUrl: "app/palavra/wordsPalavra.html" },
-        "conteudo.tweet@palavra": { templateUrl: "app/palavra/twPalavra.html" }
+        '': { templateUrl: 'app/palavras.html' },
+        'sunburst@palavra': { templateUrl: 'app/palavra/sunburstPalavra.html' },
+        'words@palavra': { templateUrl: 'app/palavra/wordsPalavra.html' },
+        'conteudo.tweet@palavra': { templateUrl: 'app/palavra/twPalavra.html' }
       }
     })
     .state('palavra.tweet', {
       url: '',
       views: {
-        "conteudo.palavra": { templateUrl: "app/palavra/twTweet.html" },
+        'conteudo.palavra': { templateUrl: 'app/palavra/twTweet.html' },
       }
     })
     .state('palavra.img', {
       url: '',
       views: {
-        "conteudo.palavra": { templateUrl: "app/palavra/imgTweet.html" },
+        'conteudo.palavra': { templateUrl: 'app/palavra/imgTweet.html' },
       }
     })
     .state('instagram', {
-      url: "/instagram",
+      url: '/instagram',
       views: {
-        "": { templateUrl: "app/instagram.html" }
+        '': { templateUrl: 'app/instagram.html' }
       }
     })
     .state('facebook', {
-      url: "/facebook",
+      url: '/facebook',
       views: {
-        "": { templateUrl: "app/facebook.html" },
-        "facebook.word@facebook": { templateUrl: "app/facebook/wordFacebook.html" },
-        "facebook.conteudo@facebook": { templateUrl: "app/facebook/postsFacebook.html" },
+        '': { templateUrl: 'app/facebook.html' },
+        'facebook.word@facebook': { templateUrl: 'app/facebook/wordFacebook.html' },
+        'facebook.conteudo@facebook': { templateUrl: 'app/facebook/postsFacebook.html' },
       }
     })
     .state('facebook.word', {
       url: '',
       views: {
-        "facebook.word": { templateUrl: "app/facebook/wordFacebook.html" },
+        'facebook.word': { templateUrl: 'app/facebook/wordFacebook.html' },
       }
     })
     .state('facebook.posts', {
       url: '',
       views: {
-        "facebook.conteudo": { templateUrl: "app/facebook/postsFacebook.html" },
+        'facebook.conteudo': { templateUrl: 'app/facebook/postsFacebook.html' },
       }
     })
     .state('facebook.postsImage', {
       url: '',
       views: {
-        "facebook.conteudo": { templateUrl: "app/facebook/imgFacebook.html" },
+        'facebook.conteudo': { templateUrl: 'app/facebook/imgFacebook.html' },
         controller: function($scope) {
-          var tamDiv = $(".geralTweets_result").css( "width" );
+          var tamDiv = $('.geralTweets_result').css( 'width' );
           tamDiv = parseInt(tamDiv);
           $scope.alturaImg = tamDiv / 3;
         }
@@ -126,18 +126,18 @@ hashTwitter
     .state('facebook.postsMosaico', {
       url: '',
       views: {
-        "facebook.conteudo": { templateUrl: "app/facebook/imgMosaicoFacebook.html" },
+        'facebook.conteudo': { templateUrl: 'app/facebook/imgMosaicoFacebook.html' },
         controller: function($scope) {
-          var tamDiv = $(".geralTweets_result").css( "width" );
+          var tamDiv = $('.geralTweets_result').css( 'width' );
           tamDiv = parseInt(tamDiv);
           $scope.alturaImg = tamDiv / 15;
         }
       }
     })
     .state('relatorio', {
-      url: "/relatorio",
+      url: '/relatorio',
       views: {
-        "": { templateUrl: "app/relatorio.html" }
+        '': { templateUrl: 'app/relatorio.html' }
       }
     });
 });
