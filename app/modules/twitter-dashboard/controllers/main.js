@@ -50,7 +50,7 @@ hashTwitter.controller('mainMonitor', function ($scope, $http, MetricsTwitter, A
       $scope.dataLoadTweetERROR = false;
 
       AnalyticsTwitter.mostRetweetedTweets(
-        $scope.analyticsParams, 
+        $scope.analyticsParams,
         function success(response) {
           if(response == ""){
             $scope.dataLoadTweetON = false;
@@ -150,7 +150,7 @@ hashTwitter.controller('mainMonitor', function ($scope, $http, MetricsTwitter, A
         $scope.dataLoadTweetOFF = false;
         $scope.dataLoadTweetON = false;
         console.log(status);
-      });   
+      });
     }
   };
 
@@ -161,7 +161,7 @@ hashTwitter.controller('mainMonitor', function ($scope, $http, MetricsTwitter, A
       //      return baseURL+'?filter={"where":{"status.retweeted_status":{"exists":false},"categories":{"all":['+linkTema+''+linkCategoria+''+linkLocalidade+']}},"limit":25,"skip":0, "order": "status.timestamp_ms DESC"}';
 
       AnalyticsTwitter.mostRetweetedTweets(
-        $scope.analyticsParams, 
+        $scope.analyticsParams,
         function success(response) {
           $scope.twittes = response;
         }, errorHandler);
@@ -177,7 +177,7 @@ hashTwitter.controller('mainMonitor', function ($scope, $http, MetricsTwitter, A
     }else if(word === undefined){
 
       AnalyticsTwitter.mostRetweetedTweets(
-        $scope.analyticsParams, 
+        $scope.analyticsParams,
         function success(response) {
           $scope.twittes = response;
         }, errorHandler);
@@ -201,13 +201,13 @@ hashTwitter.controller('mainMonitor', function ($scope, $http, MetricsTwitter, A
       for(var x = 1; x <= 4; x++){
         AnalyticsTwitter.mostRecurringImages(
           {
-            period: localTime, 
-            'filter[with_tags]': [linkTema], 
-            'filter[hashtags]': [], 
-            retrive_blocked: null, 
-            page: x, 
-            per_page: 100 
-          }, 
+            period: localTime,
+            'filter[with_tags]': [linkTema],
+            'filter[hashtags]': [],
+            retrive_blocked: null,
+            page: x,
+            per_page: 100
+          },
           function success(response) {
 
             contResponseImg++;
@@ -279,7 +279,7 @@ hashTwitter.controller('mainMonitor', function ($scope, $http, MetricsTwitter, A
     $scope.dataLoadTagERROR = false;
 
     AnalyticsTwitter.mostRecurringHashtags(
-      $scope.analyticsParams, 
+      $scope.analyticsParams,
       function success(response) {
         if(response == ""){
           $scope.dataLoadTagON = false;
@@ -332,6 +332,22 @@ hashTwitter.controller('mainMonitor', function ($scope, $http, MetricsTwitter, A
       $scope.conteudos = data[$scope.categorieNumber];
     });
   };
+
+  function getColors(vetor, corA, corB){
+  	var min = d3.min(vetor, function(d){return d.count;});
+  	var max = d3.max(vetor, function(d){return d.count;});
+
+  	var colorScale = d3.scale
+                       .linear()
+                       .domain([min, max])
+                       .range([corA, corB]);
+
+      for (var i in vetor ){
+      	vetor[i].cor = colorScale(vetor[i].count);
+      }
+
+      return vetor;
+  }
 
   function functionMap(localTime, dataNow, linkTema, linkCategoria){
 
@@ -434,74 +450,74 @@ hashTwitter.controller('mainMonitor', function ($scope, $http, MetricsTwitter, A
 
     if(turn == "tweet"){
       $scope.analyticsParams = {
-        period: time, 
-        'filter[with_tags]': [tema], 
-        'filter[hashtags]': [], 
-        retrive_blocked: null, 
-        page: 1, 
-        per_page: 25 
+        period: time,
+        'filter[with_tags]': [tema],
+        'filter[hashtags]': [],
+        retrive_blocked: null,
+        page: 1,
+        per_page: 25
       }
 
       $scope.analyticsImageParams = {
-        period: time, 
-        'filter[with_tags]': [tema], 
-        'filter[hashtags]': [], 
-        retrive_blocked: null, 
-        page: 1, 
-        per_page: 100 
+        period: time,
+        'filter[with_tags]': [tema],
+        'filter[hashtags]': [],
+        retrive_blocked: null,
+        page: 1,
+        per_page: 100
       }
     }else if(turn == "categoria"){
       $scope.analyticsParams = {
-        period: time, 
-        'filter[with_tags]': [tema,categoria], 
-        'filter[hashtags]': [], 
-        retrive_blocked: null, 
-        page: 1, 
-        per_page: 25 
+        period: time,
+        'filter[with_tags]': [tema,categoria],
+        'filter[hashtags]': [],
+        retrive_blocked: null,
+        page: 1,
+        per_page: 25
       }
 
       $scope.analyticsImageParams = {
-        period: time, 
+        period: time,
         'filter[with_tags]': [tema,categoria],
-        'filter[hashtags]': [], 
-        retrive_blocked: null, 
-        page: 1, 
-        per_page: 100 
+        'filter[hashtags]': [],
+        retrive_blocked: null,
+        page: 1,
+        per_page: 100
       }
     }else if(turn == "localidade"){
       $scope.analyticsParams = {
-        period: time, 
-        'filter[with_tags]': [tema,localidade], 
-        'filter[hashtags]': [], 
-        retrive_blocked: null, 
-        page: 1, 
-        per_page: 25 
+        period: time,
+        'filter[with_tags]': [tema,localidade],
+        'filter[hashtags]': [],
+        retrive_blocked: null,
+        page: 1,
+        per_page: 25
       }
 
       $scope.analyticsImageParams = {
-        period: time, 
+        period: time,
         'filter[with_tags]': [tema,localidade],
-        'filter[hashtags]': [], 
-        retrive_blocked: null, 
-        page: 1, 
-        per_page: 100 
+        'filter[hashtags]': [],
+        retrive_blocked: null,
+        page: 1,
+        per_page: 100
       }
     }else if(turn == "tag"){
       $scope.analyticsParams = {
-        period: time, 
-        'filter[with_tags]': [tema], 
-        'filter[hashtags]': [tag], 
-        retrive_blocked: null, 
-        page: 1, 
-        per_page: 25 
+        period: time,
+        'filter[with_tags]': [tema],
+        'filter[hashtags]': [tag],
+        retrive_blocked: null,
+        page: 1,
+        per_page: 25
       }
 
       $scope.analyticsImageParams = {
-        period: time, 
+        period: time,
         'filter[with_tags]': [tema],
-        'filter[hashtags]': [tag], 
-        retrive_blocked: null, 
-        page: 1, 
+        'filter[hashtags]': [tag],
+        retrive_blocked: null,
+        page: 1,
         per_page: 100
       }
     }
@@ -516,12 +532,12 @@ hashTwitter.controller('mainMonitor', function ($scope, $http, MetricsTwitter, A
 
     if(turn == "tweet"){
       $scope.analyticsParams = {
-        period: $scope.filter.time, 
-        'filter[with_tags]': [$scope.filter.tema], 
-        'filter[hashtags]': [], 
-        retrive_blocked: null, 
-        page: 1, 
-        per_page: nlimit 
+        period: $scope.filter.time,
+        'filter[with_tags]': [$scope.filter.tema],
+        'filter[hashtags]': [],
+        retrive_blocked: null,
+        page: 1,
+        per_page: nlimit
       }
 
       functionConteudo($scope.filter.time, dataNow, $scope.filter.tema, null, null, null, null, nlimit, 0);
@@ -533,12 +549,12 @@ hashTwitter.controller('mainMonitor', function ($scope, $http, MetricsTwitter, A
     }else if(turn == "tag"){
 
       $scope.analyticsParams = {
-        period: $scope.filter.time, 
-        'filter[with_tags]': [$scope.filter.tema], 
-        'filter[hashtags]': [$scope.filter.tag], 
-        retrive_blocked: null, 
-        page: 1, 
-        per_page: nlimit 
+        period: $scope.filter.time,
+        'filter[with_tags]': [$scope.filter.tema],
+        'filter[hashtags]': [$scope.filter.tag],
+        retrive_blocked: null,
+        page: 1,
+        per_page: nlimit
       }
 
       functionConteudo($scope.filter.time, dataNow, $scope.filter.tema, null, null, null, $scope.filter.tag, nlimit, 0);
@@ -546,12 +562,12 @@ hashTwitter.controller('mainMonitor', function ($scope, $http, MetricsTwitter, A
     }else if(turn == "categoria"){
 
       $scope.analyticsParams = {
-        period: $scope.filter.time, 
-        'filter[with_tags]': [$scope.filter.tema, $scope.filter.categoria], 
-        'filter[hashtags]': [], 
-        retrive_blocked: null, 
-        page: 1, 
-        per_page: nlimit  
+        period: $scope.filter.time,
+        'filter[with_tags]': [$scope.filter.tema, $scope.filter.categoria],
+        'filter[hashtags]': [],
+        retrive_blocked: null,
+        page: 1,
+        per_page: nlimit
       }
 
       functionConteudo($scope.filter.time, dataNow, $scope.filter.tema, $scope.filter.categoria, null, null, null, nlimit, 0);
@@ -592,7 +608,7 @@ hashTwitter.controller('mainMonitor', function ($scope, $http, MetricsTwitter, A
       },
       analyticsWord:{
 
-      }    
+      }
     }
   };
 
@@ -640,7 +656,7 @@ hashTwitter.controller('mainMonitor', function ($scope, $http, MetricsTwitter, A
       $( ".geralTweets_result" ).scrollTop( "slow" );
 
       // Se o tema for alterado
-      if(newFilter.tema != oldFilter.tema){     
+      if(newFilter.tema != oldFilter.tema){
 
         turn = "tweet";
 
@@ -683,7 +699,7 @@ hashTwitter.controller('mainMonitor', function ($scope, $http, MetricsTwitter, A
 
           $scope.setHalf(newFilter.time, dataNow, newFilter.tema, null, newFilter.localidade, null, null, 25, 0);
         }
-      }			
+      }
 
       if(newFilter.localidade != oldFilter.localidade){
 
@@ -717,8 +733,7 @@ hashTwitter.controller('mainMonitor', function ($scope, $http, MetricsTwitter, A
         $scope.setAnalyticsParam(turn,newFilter.time, dataNow, newFilter.tema, null, null, null, newFilter.tag, 25, 0);
 
         $scope.setMin(newFilter.time, dataNow, newFilter.tema, null, null, null, newFilter.tag, 25, 0);
-      }		
+      }
     }
   },true);
 });
-
