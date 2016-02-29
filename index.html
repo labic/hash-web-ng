@@ -34,14 +34,23 @@
       <div class="menu_logo" src="img/SDH.png">
         <p>HASH</p>
         <!--        <p>SDH</p>-->
-        <p>2015</p>
       </div>
       <ul class="menu_fixed">
-        <li class="menu_fixed_op"><a ui-sref="painel"><img src="img/Index/ICONES-01.svg" class="svg-icon icon-menu-monitor" height="20px" width="20px"></a></li>
-        <li class="menu_fixed_op"><a ui-sref="facebook"><img src="img/Index/ICONES-02.svg" class="svg-icon icon-menu-monitor" height="20px" width="20px"></a></li>
-        <li class="menu_fixed_op"><a ui-sref="instagram"><img src="img/Index/ICONES-03.svg" class="svg-icon icon-menu-monitor" height="20px" width="20px"></a></li>  
-        <li class="menu_fixed_op"><a ui-sref="palavra"><img src="img/Index/icones-vis-01.svg" class="svg-icon icon-menu-monitor" height="20px" width="20px"></a></li> 
-        <li class="menu_fixed_op"><a ui-sref="relatorio"><img src="img/Index/esta-01.svg" class="svg-icon icon-menu-monitor" height="20px" width="20px"></a></li> 
+        <li class="menu_fixed_op">
+          <a ui-sref="painel"><img src="img/Index/ICONES-01.svg" class="svg-icon icon-menu-monitor" height="20px" width="20px"></a>
+        </li>
+        <li class="menu_fixed_op">
+          <a ui-sref="facebook"><img src="img/Index/ICONES-02.svg" class="svg-icon icon-menu-monitor" height="20px" width="20px"></a>
+        </li>
+        <li class="menu_fixed_op">
+          <a ui-sref="instagram"><img src="img/Index/ICONES-03.svg" class="svg-icon icon-menu-monitor" height="20px" width="20px"></a>
+        </li>
+        <li class="menu_fixed_op">
+          <a ui-sref="palavra"><img src="img/Index/icones-vis-01.svg" class="svg-icon icon-menu-monitor" height="20px" width="20px"></a>
+        </li>
+        <li class="menu_fixed_op">
+          <a ui-sref="relatorio"><img src="img/Index/esta-01.svg" class="svg-icon icon-menu-monitor" height="20px" width="20px"></a>
+        </li>
       </ul>
 
       <div id="menu_logo_down">
@@ -54,7 +63,7 @@
       </div>
     </div>
 
-    <div ui-view ></div>
+    <div ui-view></div>
 
     <!-- Jquery e Jquery UI  -->
     <script src="app/bower_components/jquery/dist/jquery.min.js"></script>
@@ -118,7 +127,7 @@
     <script src="app/modules/word-api/resources/word-facebook.api.js"></script>
     <script src="app/modules/word-api/resources/word-twitter.api.js"></script>
 
-    <script src="app/bower_components/Processing.js/processing.min.js"></script>  
+    <script src="app/bower_components/Processing.js/processing.min.js"></script>
 
     <script src="app/bower_components/angular-fx/src/js/angular-fx.js"></script>
 
@@ -155,7 +164,7 @@
       };
 
       callSvgImg();
-      $(".menu_fixed_op").click(function(){ 
+      $(".menu_fixed_op").click(function(){
         $(".icon-menu-monitor").css('fill','#1c5e6e');
         $(this).find(".icon-menu-monitor").css('fill','#06ccd7');
 
