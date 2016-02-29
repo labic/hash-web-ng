@@ -4,6 +4,7 @@ var hashTwitter = angular.module('hashTwitter', [
   'hash.core',
   'hash.twitter.dashboard',
   'hash.words',
+  'hash.instagram',
   'hash.api',
   'word.api',
   'infinite-scroll'
@@ -15,12 +16,6 @@ hashTwitter
   .constant('WORD_API_BASE_URI', 'http://word-api.ddns.net:8081')
   .config(function($stateProvider, $urlRouterProvider) {
     $stateProvider
-      .state('instagram', {
-        url: '/instagram',
-        views: {
-          '': { templateUrl: 'app/instagram.html' }
-        }
-      })
       .state('facebook', {
         url: '/facebook',
         views: {
