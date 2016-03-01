@@ -2,8 +2,8 @@
   "name": "hash-web",
   "version": "1.7.0",
   "authors": [
-    "zoaldyck <roberto_dmoraes@hotmail.com>",
-    "Gustavo RPS <dev+labic.net@gustavorps.net>"
+    "Gustavo RPS <dev+labic.net@gustavorps.net>",
+    "zoaldyck <roberto_dmoraes@hotmail.com>"
   ],
   "description": "A app view data and information from social networks",
   "license": "MIT",
@@ -16,25 +16,109 @@
   ],
   "dependencies": {
     "angular": "~1.4.7",
+    "angular-bootstrap": "~0.14.0",
+    "angular-fx": "~1.1.0",
     "angular-resource": "~1.4.7",
     "angular-route": "~1.4.7",
     "angular-ui-router": "~0.2.15",
-    "angular-bootstrap": "~0.14.0",
-    "bootstrap": "~3.3.5",
-    "components-font-awesome": "~4.4.0",
-    "jquery": "~2.1.4",
-    "swipebox": "~1.4.1",
-    "Chart.js": "~1.0.2",
-    "Processing.js": "processing#~1.4.16",
-    "checklist-model": "~0.6.0",
-    "underscore": "~1.8.3",
-    "angular-fx": "~1.1.0",
-    "highcharts-ng": "~0.0.11",
-    "ngInfiniteScroll": "~1.2.1",
-    "twentytwenty": "*",
-    "jquery-migrate": "^1.3.0",
     "animate.css": "^3.5.1",
+    "bootstrap": "~3.3.5",
+    "Chart.js": "~1.0.2",
+    "checklist-model": "~0.6.0",
+    "components-font-awesome": "~4.4.0",
     "d3": "^3.5.16",
-    "d3-cloud": "d3.layout.cloud#^1.2.1"
+    "d3-cloud": "d3.layout.cloud#^1.2.1",
+    "highcharts-ng": "~0.0.11",
+    "jquery": "~2.1.4",
+    "jquery-migrate": "^1.3.0",
+    "ngInfiniteScroll": "~1.2.1",
+    "Processing.js": "processing#~1.4.16",
+    "swipebox": "~1.4.1",
+    "twentytwenty": "*",
+    "underscore": "~1.8.3"
+  },
+  "overrides": {
+    "angular": {
+      "main": ["angular.min.js"]
+    },
+    "angular-bootstrap": {
+      "main": ["ui-bootstrap-tpls.min.js", "ui-bootstrap.min.js"]
+    },
+    "angular-fx": {
+      "main": ["dist/angular-fx.min.js", "dist/angular-fx.min.css"]
+    },
+    "angular-resource": {
+      "main": ["angular-resource.min.js"]
+    },
+    "angular-route": {
+      "main": ["angular-route.min.js"]
+    },
+    "angular-ui-router": {
+      "main": ["release/angular-ui-router.min.js"]
+    },
+    "animate.css": {
+      "main": ["animate.min.css"]
+    },
+    "bootstrap": {
+      "main": [
+        "dist/js/bootstrap.min.js",
+        "dist/css/bootstrap.min.css",
+        "dist/fonts/glyphicons-halflings-regular.eot",
+        "dist/fonts/glyphicons-halflings-regular.svg",
+        "dist/fonts/glyphicons-halflings-regular.ttf",
+        "dist/fonts/glyphicons-halflings-regular.woff",
+        "dist/fonts/glyphicons-halflings-regular.woff2"
+      ]
+    },
+    "Chart.js": {
+      "main": ["Chart.min.js"]
+    },
+    "checklist-model": {
+      "main": ["checklist-model.js"]
+    },
+    "components-font-awesome": {
+      "main": [
+        "css/font-awesome.min.css",
+        "fonts/fontawesome-webfont.eot",
+        "fonts/fontawesome-webfont.woff",
+        "fonts/fontawesome-webfont.woff2",
+        "fonts/fontawesome-webfont.ttf",
+        "fonts/fontawesome-webfont.svg"
+      ]
+    },
+    "d3": {
+      "main": ["d3.min.js"]
+    },
+    "d3-cloud": {
+      "main": ["build/d3.layout.cloud.js"]
+    },
+    "highcharts-ng": {
+      "main": ["dist/highcharts-ng.min.js"]
+    },
+    "jquery": {
+      "main": ["dist/jquery.min.js"]
+    },
+    "jquery-migrate": {
+      "main": ["jquery-migrate.min.js"]
+    },
+    "ngInfiniteScroll": {
+      "main": ["build/ng-infinite-scroll.min.js"]
+    },
+    "Processing.js": {
+      "main": ["processing.min.js"]
+    },
+    "swipebox": {
+      "main": ["src/js/processing.min.js", "src/css/swipebox.min.css"]
+    },
+    "twentytwenty": {
+      "main": [
+        "js/jquery.event.move.js",
+        "js/jquery.twentytwenty.js",
+        "css/twentytwenty.css"
+      ]
+    },
+    "underscore": {
+      "main": ["underscore-min.js"]
+    }
   }
 }
