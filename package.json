@@ -6,21 +6,19 @@
     "Gustavo RPS <dev+labic.net@gustavorps.net>",
     "zoaldyck <roberto_dmoraes@hotmail.com>"
   ],
-  "description": "",
-  "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js",
-    "postinstall": "./node_modules/bower/bin/bower install"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
     "url": "git@bitbucket.org:labic/hash-web.git"
   },
   "license": "MIT",
-  "dependencies": {
-    "bower": "~1.5.3",
-    "express": "~4.13.3"
+  "devDependencies": {
+    "browser-sync": "^2.11.1",
+    "gulp": "^3.9.1",
+    "gulp-bower": "0.0.13",
+    "gulp-watch": "^4.3.5"
   },
   "engines": {
     "node": "0.12.x",
