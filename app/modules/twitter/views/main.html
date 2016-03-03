@@ -2,22 +2,7 @@
 
   <div id="div1_monitor" class="str_division">
 
-    <div id="str_menu_tematica">
-      <ul id="menu_tematica">
-        <li class="menu_tematica_op">
-          <a ng-click='filter.tema = "tema-negros"; categorieNumber = 0;'><p class="rotate select_tematica_monitor firstOp">NEGRO</p></a>
-        </li>
-        <li class="menu_tematica_op">
-          <a ng-click='filter.tema = "tema-lgbt"; categorieNumber = 1;'><p class="rotate select_tematica_monitor">LGBT</p></a>
-        </li>
-        <li class="menu_tematica_op">
-          <a ng-click='filter.tema = "tema-indigena"; categorieNumber = 2;'><p class="rotate select_tematica_monitor">INDÍGENA</p></a>
-        </li>
-        <li class="menu_tematica_op">
-          <a ng-click='filter.tema = "tema-genero"; categorieNumber = 3;'><p class="rotate select_tematica_monitor">MULHER</p></a>
-        </li>
-      </ul>
-    </div>
+    <themes-filter options="options.main_themes" />
 
     <aside id="str_menu_map" ui-view="map"></aside>
 

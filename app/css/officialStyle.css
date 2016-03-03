@@ -301,7 +301,7 @@
             transform: translateY(10px);
           }
 
-          .menu_tematica_op p{
+          .menu_tematica_op a{
             color: white;
             width: 100%;
             height: auto;
@@ -1553,4 +1553,8 @@
 
 #swipebox-title{
   font-size: 14px;
+}
+
+.hide {
+  display: none;
 }
