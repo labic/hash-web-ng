@@ -8,6 +8,7 @@ var paths = {
 gulp.task('watch', function() {
   gulp.watch('app/**/*.html').on('change', browserSync.reload);
   gulp.watch('app/**/*.js').on('change', browserSync.reload);
+  gulp.watch('app/**/*.css').on('change', browserSync.reload);
 });
 
 gulp.task('serve', ['watch'], function() {
