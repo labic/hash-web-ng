@@ -3,17 +3,14 @@
 /* NOTA: MONITOR - CONTROLLER */
 hash
 .controller('mainMonitor', function ($scope, $http, MetricsTwitter, AnalyticsTwitter, WordTwitter, Tweet) {
-  $http.get('/data/twitter.config.json')
-    .then(function(res) {
-      $scope.options = res.data;
-    });
+  $http.get('/data/twitter.config.json').then(function(res) {
+    $scope.options = res.data;
+  });
   // variavel para inicializar o watch, quando esta falso executa um if com a inicialização da tela;
   var firstRun = false;
   // variavel Turn que falará em qual filtro está a página.
   var turn;
 
-  // no momento que se escolhe um tema carrega as categorias {0=Negros/1=LGBT/2=Indigena/3=Mulher}
-  $scope.categorieNumber = 0;
   // conta em que pagina você está serve para a paginação
   $scope.countpage = 0;
 
@@ -300,7 +297,7 @@ hash
     });
 
     $http.get("data/conteudos.json").success(function (data) {
-      $scope.conteudos = data[$scope.categorieNumber];
+      $scope.conteudos = data[$scope.filter.themes];
     });
   };
 
