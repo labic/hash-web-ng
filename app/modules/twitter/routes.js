@@ -2,7 +2,7 @@
   'use strict';
   angular
     // TODO: Change module name
-    .module('hash.twitter.dashboard')
+    .module('hash.twitter')
     .config(function ($stateProvider) {
       $stateProvider
         .state('painel', {
