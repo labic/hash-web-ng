@@ -1,4 +1,4 @@
-hashTwitter.controller('mainFacebook', function ($scope, $http, MetricsFacebook, AnalyticsFacebook, WordFacebook) {
+hash.controller('mainFacebook', function ($scope, $http, MetricsFacebook, AnalyticsFacebook, WordFacebook) {
 
   $scope.filter = {
     tema: 'tema-negros',

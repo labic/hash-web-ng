@@ -1,8 +1,12 @@
 'use strict';
 
 /* NOTA: MONITOR - CONTROLLER */
-hashTwitter.controller('mainMonitor', function ($scope, $http, MetricsTwitter, AnalyticsTwitter, WordTwitter, Tweet) {
-
+hash
+.controller('mainMonitor', function ($scope, $http, MetricsTwitter, AnalyticsTwitter, WordTwitter, Tweet) {
+  $http.get('/data/twitter.config.json')
+    .then(function(res) {
+      $scope.options = res.data;
+    });
   // variavel para inicializar o watch, quando esta falso executa um if com a inicialização da tela;
   var firstRun = false;
   // variavel Turn que falará em qual filtro está a página.

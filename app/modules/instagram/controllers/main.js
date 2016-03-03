@@ -1,4 +1,4 @@
-hashTwitter.controller('mainInstagram', function ($scope, $http) {
+hash.controller('mainInstagram', function ($scope, $http) {
 
   
 //  $(".fade_white").show();

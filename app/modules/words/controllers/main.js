@@ -1,4 +1,4 @@
-hashTwitter.controller('mainPalavras', function ($scope, $http) {
+hash.controller('mainPalavras', function ($scope, $http) {
   
   var serviceMandala = 'http://mandala-api.ddns.net:7070';
 
