@@ -2,7 +2,7 @@
   <ul id="menu_tematica" class="themes__main">
     <li class="themes__main-item menu_tematica_op" ng-repeat="option in options">
       <a href="#">{{option.title}}</a>
-      <ul class="hide" ng-if="option.children.length > 0">
+      <ul class="hide themes__main-item-children" ng-if="option.children.length > 0">
         <li class="themes__main-item menu_tematica_op" ng-repeat="children in option.children">
           <a href="#">{{children.title}}</a>
         </li>
