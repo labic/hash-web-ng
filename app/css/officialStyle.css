@@ -289,7 +289,7 @@
             transform: translateY(0px);
           }
 
-          .menu_tematica_op:after{
+          .menu_tematica_op:after {
             content: '';
             display: block;
             background: #1dbfd8;
@@ -301,7 +301,7 @@
             transform: translateY(10px);
           }
 
-          .menu_tematica_op a{
+          .menu_tematica_op a {
             color: white;
             width: 100%;
             height: auto;
@@ -1557,4 +1557,8 @@
 
 .hide {
   display: none;
+}
+
+.selected {
+  font-weight: 800;
 }
