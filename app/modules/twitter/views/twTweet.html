@@ -1,4 +1,4 @@
-<div id="result_conteudo" style="height:100%;">
+<div id="painel-posts">
   <div class="loading" ng-show="dataLoadTweetOFF">
     <div class="cssload-container">
       <div class="cssload-shaft1"></div>
@@ -29,22 +29,22 @@
   </div>
 
   <div ng-show="dataLoadTweetON" style="height:100%; width:100%;">
-    <div class="geralTweets_result">
+    <div id="painel-posts-list">
       <!--			<button ng-show="buttonBack" class="result_button result_button_back" ng-click='loadMoreTweetsChange(-1);' >VOLTAR</button>-->
 
-      <div class="each_tweet_result" ng-repeat="twitte in twittes" >
+      <div class="painel-posts-list-each" ng-repeat="twitte in twittes" >
 
-        <img class="img_tweet_result" src="{{twitte.status.user.profile_image_url_https}}" title="{{twitte.status.user.description}}">
-        <p>@{{twitte.status.user.screen_name}}</p>
-        <p ng-if="twitte.count"> | {{twitte.count}} RT </p>
-        <p ng-if="!twitte.count"> </p>
-        <p>
+        <img class="painel-posts-list-each-image" src="{{twitte.status.user.profile_image_url_https}}" title="{{twitte.status.user.description}}">
+        <p class="painel-posts-list-each-title">@{{twitte.status.user.screen_name}}</p>
+        <p class="painel-posts-list-each-title" ng-if="twitte.count">{{twitte.count}} RT </p>
+        <p class="painel-posts-list-each-title" ng-if="!twitte.count"> </p>
+        <p class="painel-posts-list-each-text">
           <a ng-if="twitte.count" title="Clique para visualizar o retweeter, @{{twitte.status.user.screen_name}}, no Twitter." href="https://twitter.com/{{twitte.status.user.screen_name}}/status/{{twitte.status.id}}" target="_blank">RT @{{twitte.status.retweeted_status.user.screen_name}}:{{twitte.status.retweeted_status.text}}</a>
 
           <a ng-if="!twitte.count" ng-if="" title="Clique para visualizar o retweeter, @{{twitte.status.user.screen_name}}, no Twitter." href="https://twitter.com/{{twitte.status.user.screen_name}}/status/{{twitte.status.id}}" target="_blank">RT @{{twitte.status.user.screen_name}}:{{twitte.status.text}} {{twitte.get('count')}}</a>
         </p>
 
-        <p>ÚLTIMO COMPARTILHAMENTO: {{twitte.status.timestamp_ms | date:'HH:mm:ss'}} HS</p>
+        <p class="painel-posts-list-each-time">ÚLTIMO COMPARTILHAMENTO: {{twitte.status.timestamp_ms | date:'HH:mm:ss'}} HS</p>
       </div>
 
       <button ng-show="buttonNext" class="result_button result_button_next" ng-click='loadMore(1);'></button>
