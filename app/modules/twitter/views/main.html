@@ -51,12 +51,6 @@
           <li ui-sref="painel.img" class="select_title_division2">
             <img src='img/icons/IMAGENS.png' class="icon_menu_top" alt="image">
           </li>
-          <li ui-sref="painel.img" class="select_title_division2">
-            <img src='img/icons/IMAGENS.png' class="icon_menu_top" alt="image">
-          </li>
-          <li ui-sref="painel.img" class="select_title_division2">
-            <img src='img/icons/IMAGENS.png' class="icon_menu_top" alt="image">
-          </li>
           <li ui-sref="painel.mosaico" id="select_imgMosaico" class="select_title_division2" ng-click="filter.time = '7d'">
             <img src='img/icons/Mosaico.png' class="icon_menu_top" alt="image">
           </li>
@@ -78,12 +72,12 @@
     /*NOTA: Troca de menus */
 
     /* menu centralizado com width variavel division2 */
-    
+
     var menuIconWidth = $(".title_str_menu_icon").width();
     var resultMenuIconWidth = menuIconWidth/2;
     alert(resultMenuIconWidth);
     $(".title_str_menu_icon").css( "margin-left", "calc(50% - "+resultMenuIconWidth+"px" );
-    
+
     /* Standard */
 
     $(".firstOp").css( "font-weight", "800" );
