@@ -63,97 +63,14 @@
 
 <script type="text/javascript">
   $(document).ready(function() {
-    /*NOTA: Inicializando SwipeBox */
-
     $(".swipebox").swipebox({
       hideBarsDelay : 10000000
     });
 
-    /*NOTA: Troca de menus */
-
     /* menu centralizado com width variavel division2 */
-
     var menuIconWidth = $(".title_str_menu_icon").width();
     var resultMenuIconWidth = menuIconWidth/2;
-    
+
     $(".title_str_menu_icon").css( "margin-left", "calc(50% - "+resultMenuIconWidth+"px" );
-
-    /* Standard */
-
-    $(".firstOp").css( "font-weight", "800" );
-
-    /* Custom */
-
-    $(".select_tematica_monitor").click(function(){
-      $(".select_tematica_monitor").css( "font-weight", "300" );
-
-      $(this).css( "font-weight", "800" );
-    });
-
-    $(".select_tematica_palavras").click(function(){
-      $(".select_tematica_palavras").css( "font-weight", "300" );
-
-      $(this).css( "font-weight", "800" );
-    });
-
-    $(".select_categoria_division1").click(function(){
-      $(".select_categoria_division1").css( "font-weight", "300" );
-      $(".select_categoria_division1").css( "color", "#FFFFFF" );
-
-      $(this).css( "font-weight", "800" );
-      $(this).css( "color", "#FFFFFF" );
-
-    });
-
-    $(".select_title_division2").click(function(){
-      $(".select_title_division2").css( "opacity", "0.6" );
-
-      $(this).css( "opacity", "1" );
-
-      $(".select_title_division3").css( "opacity", "0.6" );
-      $(".title_str_dualOP_1").css( "opacity", "1" );
-    });
-
-    $(".select_title_division3,.select_title_division2").css( "opacity", "0.6" );
-    $(".firstOpImg").css( "opacity", "1" );
-
-    $(".firstOpCont").css( "opacity", "1" );
-
-    $(".select_title_division3").click(function(){
-      $(".select_title_division3").css( "opacity", "0.6" );
-      $(".select_title_division2").css( "opacity", "0.6" );
-
-      $(".firstOpCont").css( "opacity", "1" );
-      $(this).css( "opacity", "1" );
-    });
-    /* HighLighter CategoriaMenu */
-
-    /*NOTA: Troca Categoria */
-
-    /*NOTA: Troca Temporalidades */
-
-    $(".fisrtTemp p").css( "color", "#0a1227" );
-    $(".fisrtTemp").css( "background-color", "#1dbfd8" );
-    $(".fisrtTemp").css( "border-color", "#1dbfd8" );
-
-    $(".time_temporalidade").click(function(){
-      $(".time_temporalidade p").css( "color", "#1dbfd8" );
-      $(".time_temporalidade").css( "background-color", "transparent" );
-      $(".time_temporalidade").css( "border-color", "white" );
-
-      $("p", this).css( "color", "#0a1227" );
-      $(this).css( "background-color", "#1dbfd8" );
-      $(this).css( "border-color", "#1dbfd8" );
-    });
-
-    $("#select_imgMosaico").click(function(){
-      $(".time_temporalidade p").css( "color", "#1dbfd8" );
-      $(".time_temporalidade").css( "background-color", "transparent" );
-      $(".time_temporalidade").css( "border-color", "white" );
-
-      $("p", "#temporalidade24").css( "color", "#0a1227" );
-      $("#temporalidade24").css( "background-color", "#1dbfd8" );
-      $("#temporalidade24").css( "border-color", "#1dbfd8" );
-    });
   });
 </script>
