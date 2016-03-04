@@ -110,41 +110,6 @@ hash
         }
 
         $scope.twittes = data;
-
-        //        contData = Object.keys(data).length;
-
-        //        if((data == "") || (contData < 25)){
-        //
-        //          $scope.buttonNext = false;
-        //
-        //          $http.get($scope.monitorlinkNoRtTweet).success(function (data1) {
-        //            $scope.twittes = data.concat(data1);
-        //
-        //            if(data1 == ""){
-        //              $scope.twittes = data;
-        //            }else{
-        //              $scope.twittes = data.concat(data1);
-        //            }
-        //
-        //            if((data1 == "") && (data == "")){
-        //              $scope.dataLoadON = false;
-        //              $scope.dataLoadOFF = false;
-        //              $scope.dataLoad404 = true;
-        //            }else{
-        //              $scope.dataLoad404 = false;
-        //              $scope.dataLoadOFF = false;
-        //              $scope.dataLoadON = true;
-        //            }
-        //          });
-        //        }else{
-        //          $scope.twittes = data;
-        //
-        //          $scope.buttonNext = true;
-        //
-        //          $scope.dataLoad404 = false;
-        //          $scope.dataLoadOFF = false;
-        //          $scope.dataLoadON = true;
-        //        }
       }).error(function(data, status) {
         $scope.dataLoadTweetERROR = true;
         $scope.dataLoadTweet404 = false;
@@ -233,8 +198,6 @@ hash
         $scope.dataLoadImageON = false;
         console.log(status);
       });
-
-      //      $scope.monitorLinkImg = serviceBase+'word_images?filter={"where":{"period":"'+$scope.filter.time+'","word":"'+word+'","categories":{"all":['+linkTema+''+linkCategoria+''+linkLocalidade+']}},"limit":400}';
 
     }
   };
