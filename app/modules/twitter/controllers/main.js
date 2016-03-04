@@ -423,7 +423,7 @@ hash
         'filter[hashtags]': [],
         retrive_blocked: null,
         page: 1,
-        per_page: 25
+        per_page: 24
       }
 
       $scope.analyticsImageParams = {
@@ -495,8 +495,8 @@ hash
   $scope.loadMore = function(x) {
     $scope.countpage = x + $scope.countpage;
 
-    var nskip = $scope.countpage * 25;
-    var nlimit = $scope.countpage * 25 + 25;
+    var nskip = $scope.countpage * 24;
+    var nlimit = $scope.countpage * 24 + 24;
 
     if(turn == "tweet"){
       $scope.analyticsParams = {
@@ -600,6 +600,8 @@ hash
     return filter;
   }
 
+  
+  var defaultLimit = 24;
   // Quando o filtro mudar...
   $scope.$watch('filter', function (newFilter, oldFilter) {
 
@@ -608,12 +610,12 @@ hash
 
       turn = "tweet";
 
-      $scope.setAnalyticsParam(turn,newFilter.time, dataNow, newFilter.themes, null, null, null, null, 25, 0);
+      $scope.setAnalyticsParam(turn,newFilter.time, dataNow, newFilter.themes, null, null, null, null, defaultLimit, 0);
 
       // Contadores ao iniciar a página.
       $scope.loadContadores(newFilter.time,newFilter.themes);
 
-      $scope.setAll(newFilter.time, dataNow, newFilter.themes, null, null, null, null, 25, 0);
+      $scope.setAll(newFilter.time, dataNow, newFilter.themes, null, null, null, null, defaultLimit, 0);
 
       firstRun = true;
     }else{
@@ -628,11 +630,11 @@ hash
 
         turn = "tweet";
 
-        $scope.setAnalyticsParam(turn,newFilter.time, dataNow, newFilter.themes, null, null, null, null, 25, 0);
+        $scope.setAnalyticsParam(turn,newFilter.time, dataNow, newFilter.themes, null, null, null, null, defaultLimit, 0);
 
         $scope.loadContadores(newFilter.time,newFilter.themes);
 
-        $scope.setAll(newFilter.time, dataNow, newFilter.themes, null, null, null, null, 25, 0);
+        $scope.setAll(newFilter.time, dataNow, newFilter.themes, null, null, null, null, defaultLimit, 0);
       }
 
       // Se o tempo for alterado
@@ -641,31 +643,31 @@ hash
         $scope.loadContadores(newFilter.time,newFilter.themes);
 
         if(turn == "tweet"){
-          $scope.setAnalyticsParam(turn,newFilter.time, dataNow, newFilter.themes, null, null, null, null, 25, 0);
+          $scope.setAnalyticsParam(turn,newFilter.time, dataNow, newFilter.themes, null, null, null, null, defaultLimit, 0);
 
-          $scope.setAll(newFilter.time, dataNow, newFilter.themes, null, null, null, null, 25, 0);
+          $scope.setAll(newFilter.time, dataNow, newFilter.themes, null, null, null, null, defaultLimit, 0);
 
         }else if(turn == "word"){
 
-          $scope.setAll(newFilter.time, dataNow, newFilter.themes, null, null, newFilter.word, null, 25, 0);
+          $scope.setAll(newFilter.time, dataNow, newFilter.themes, null, null, newFilter.word, null, defaultLimit, 0);
 
         }else if(turn == "tag"){
 
-          $scope.setAnalyticsParam(turn,newFilter.time, dataNow, newFilter.themes, null, null, null, newFilter.tag, 25, 0);
+          $scope.setAnalyticsParam(turn,newFilter.time, dataNow, newFilter.themes, null, null, null, newFilter.tag, defaultLimit, 0);
 
-          $scope.setAll(newFilter.time, dataNow, newFilter.themes, null, null, null, newFilter.tag, 25, 0);
+          $scope.setAll(newFilter.time, dataNow, newFilter.themes, null, null, null, newFilter.tag, defaultLimit, 0);
 
         }else if(turn == "categoria"){
 
-          $scope.setAnalyticsParam(turn,newFilter.time, dataNow, newFilter.themes, newFilter.categoria, null, null, null, 25, 0);
+          $scope.setAnalyticsParam(turn,newFilter.time, dataNow, newFilter.themes, newFilter.categoria, null, null, null, defaultLimit, 0);
 
-          $scope.setAll(newFilter.time, dataNow, newFilter.themes, newFilter.categoria, null, null, null, 25, 0);
+          $scope.setAll(newFilter.time, dataNow, newFilter.themes, newFilter.categoria, null, null, null, defaultLimit, 0);
 
         }else if(turn == "localidade"){
 
-          $scope.setAnalyticsParam(turn,newFilter.time, dataNow, newFilter.themes, null, newFilter.localidade, null, null, 25, 0);
+          $scope.setAnalyticsParam(turn,newFilter.time, dataNow, newFilter.themes, null, newFilter.localidade, null, null, defaultLimit, 0);
 
-          $scope.setHalf(newFilter.time, dataNow, newFilter.themes, null, newFilter.localidade, null, null, 25, 0);
+          $scope.setHalf(newFilter.time, dataNow, newFilter.themes, null, newFilter.localidade, null, null, defaultLimit, 0);
         }
       }
 
@@ -673,34 +675,34 @@ hash
 
         turn = "localidade";
 
-        $scope.setAnalyticsParam(turn,newFilter.time, dataNow, newFilter.themes, null, newFilter.localidade, null, null, 25, 0);
+        $scope.setAnalyticsParam(turn,newFilter.time, dataNow, newFilter.themes, null, newFilter.localidade, null, null, defaultLimit, 0);
 
-        $scope.setHalf(newFilter.time, dataNow, newFilter.themes, null, newFilter.localidade, null, null, 25, 0);
+        $scope.setHalf(newFilter.time, dataNow, newFilter.themes, null, newFilter.localidade, null, null, defaultLimit, 0);
       }
 
       if(newFilter.categoria != oldFilter.categoria){
 
         turn = "categoria";
 
-        $scope.setAnalyticsParam(turn,newFilter.time, dataNow, newFilter.themes, newFilter.categoria, null, null, null, 25, 0);
+        $scope.setAnalyticsParam(turn,newFilter.time, dataNow, newFilter.themes, newFilter.categoria, null, null, null, defaultLimit, 0);
 
-        $scope.setMin(newFilter.time, dataNow, newFilter.themes, newFilter.categoria, null, null, null, 25, 0);
+        $scope.setMin(newFilter.time, dataNow, newFilter.themes, newFilter.categoria, null, null, null, defaultLimit, 0);
       }
 
       if(newFilter.word != oldFilter.word){
 
         turn = "word";
 
-        $scope.setMin(newFilter.time, dataNow, newFilter.themes,  null, null, newFilter.word, null, 25, 0);
+        $scope.setMin(newFilter.time, dataNow, newFilter.themes,  null, null, newFilter.word, null, defaultLimit, 0);
       }
 
       if(newFilter.tag != oldFilter.tag){
 
         turn = "tag";
 
-        $scope.setAnalyticsParam(turn,newFilter.time, dataNow, newFilter.themes, null, null, null, newFilter.tag, 25, 0);
+        $scope.setAnalyticsParam(turn,newFilter.time, dataNow, newFilter.themes, null, null, null, newFilter.tag, defaultLimit, 0);
 
-        $scope.setMin(newFilter.time, dataNow, newFilter.themes, null, null, null, newFilter.tag, 25, 0);
+        $scope.setMin(newFilter.time, dataNow, newFilter.themes, null, null, null, newFilter.tag, defaultLimit, 0);
       }
     }
   },true);
