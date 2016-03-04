@@ -36,12 +36,14 @@
       <p ng-show="wordMouseEnter" class="text_str_highWord"><span class="number_str_highWord">{{wordMouseEnter.count}}</span> vezes</p>
     </div>
 
-    <div class="strVertical_highWord">
+    <div id="wordCloud" class="strVertical_highWord">
+<!--
       <div title='Clique para visualizar os ultimos retweets com a palavra "{{wordv.word}}"' class="each_word" ng-repeat="wordv in words" ng-mouseenter="$parent.wordMouseEnter = wordv" ng-click="filter.word = wordv.word;">
         <p>{{wordv.word}}</p>
         <p ng-if="wordv.count == 1">{{wordv.count}} vez</p>
         <p ng-if="wordv.count != 1">{{wordv.count}} vezes</p>
       </div>
+-->
     </div>
   </div>
   <div class="str_fixed_words">

@@ -269,6 +269,8 @@ hash
     var wordJson = JSON.stringify(filterDavid($scope.filter.time,linkTema,null,linkLocalidade,20),["where","period","categories","all","limit"]);
 
     var monitorLinkWord =  serviceBase+'/twitter/top_words?filter='+wordJson;
+    
+    plotWordCloud(297,284,"wordCloud",monitorLinkWord); //(width,heigth,divId,url)
 
     $scope.dataLoadWordON = false;
     $scope.dataLoadWord404 = false;
