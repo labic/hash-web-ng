@@ -302,14 +302,6 @@ hash.controller('mainFacebook', function ($scope, $http, MetricsFacebook, Analyt
           },
           function success(response) {
             $scope.posts = response;
-
-            //            var contData = Object.keys(response).length;
-            //
-            //              if(contData < 25){
-            //                $scope.buttonNext = false;
-            //              }else{
-            //                $scope.buttonNext = true;
-            //              }
           }, errorHandler);
 
         for(var x = 1; x <= 4; x++){
@@ -350,14 +342,6 @@ hash.controller('mainFacebook', function ($scope, $http, MetricsFacebook, Analyt
           },
           function success(response) {
             $scope.posts = response;
-
-            //            var contData = Object.keys(response).length;
-            //
-            //              if(contData < 25){
-            //                $scope.buttonNext = false;
-            //              }else{
-            //                $scope.buttonNext = true;
-            //              }
           }, errorHandler);
 
         WordFacebook.images(
@@ -389,14 +373,6 @@ hash.controller('mainFacebook', function ($scope, $http, MetricsFacebook, Analyt
           },
           function success(response) {
             $scope.posts = response;
-
-            //            var contData = Object.keys(response).length;
-            //
-            //              if(contData < 25){
-            //                $scope.buttonNext = false;
-            //              }else{
-            //                $scope.buttonNext = true;
-            //              }
           }, errorHandler);
 
         for(var x = 1; x <= 4; x++){
@@ -437,14 +413,6 @@ hash.controller('mainFacebook', function ($scope, $http, MetricsFacebook, Analyt
             },
             function success(response) {
               $scope.posts = response;
-
-              //            var contData = Object.keys(response).length;
-              //
-              //              if(contData < 25){
-              //                $scope.buttonNext = false;
-              //              }else{
-              //                $scope.buttonNext = true;
-              //              }
             }, errorHandler);
 
           for(var x = 1; x <= 4; x++){
@@ -480,14 +448,6 @@ hash.controller('mainFacebook', function ($scope, $http, MetricsFacebook, Analyt
             },
             function success(response) {
               $scope.posts = response;
-
-              //            var contData = Object.keys(response).length;
-              //
-              //              if(contData < 25){
-              //                $scope.buttonNext = false;
-              //              }else{
-              //                $scope.buttonNext = true;
-              //              }
             }, errorHandler);
 
           WordFacebook.images(
@@ -513,15 +473,6 @@ hash.controller('mainFacebook', function ($scope, $http, MetricsFacebook, Analyt
               'per_page': 25
             },
             function success(response) {
-
-              v//            var contData = Object.keys(response).length;
-              //
-              //              if(contData < 25){
-              //                $scope.buttonNext = false;
-              //              }else{
-              //                $scope.buttonNext = true;
-              //              }
-
               $scope.posts = response;
             }, errorHandler);
 
@@ -620,6 +571,6 @@ hash.controller('mainFacebook', function ($scope, $http, MetricsFacebook, Analyt
   },true);
 
   function errorHandler(err) {
-    console.log(err);
+    console.error(err);
   }
 });

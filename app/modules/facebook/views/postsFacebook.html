@@ -1,29 +1,8 @@
 <div id="result_conteudo" style="height:100%;">
-  <!--
-<div class="loading" ng-show="dataLoadTweetOFF">
-<center><img src="img/icons/Unknown.gif" height="66px" width="66px"></center>
-<p class="loadingWordGrey">CARREGANDO:</p>
-<p class="loadingWordGrey">estamos realizando a sua requisição, essa operação pode demorar um pouco.</p>
-</div>
-
-<div class="loading" ng-show="dataLoadTweet404">
-<center><img src="img/icons/searching45.png" height="40px" width="40px"></center>
-<p class="loadingWordGrey">NENHUM TWEET ENCONTRADO</p>
-<p class="loadingWordGrey">tente outra categoria ou intervalo de tempo</p>
-</div>
-
-<div class="loading" ng-show="dataLoadTweetERROR">
-<center><img src="img/icons/searching45.png" height="40px" width="40px"></center>
-<p class="loadingWordGrey">ERROR</p>
-<p class="loadingWordGrey">Estamos tendo problemas ao carregar, volte mais tarde =)</p>
-</div>
--->
 
   <div style="height:100%; width:100%;">
 
     <div class="geralTweets_result">
-      <!--			<button ng-show="buttonBack" class="result_button result_button_back" ng-click='loadMoreTweetsChange(-1);' >VOLTAR</button>-->
-
       <div class="facebook-posts-each" ng-repeat="post in posts" >
         <p class="facebook-post-time" ng-show="selectComentario">{{post.created_time_ms | date:'HH:mm:ss - dd/MM/yyyy'}}</p>
         <div class="facebook-post-ranking">
@@ -31,8 +10,7 @@
         </div>
         <div class="facebook-post-text">
           <p>{{post.message}}</p>
-          <!--          <p>…</p>-->
-        </div>   
+        </div>
         <div ng-show="!selectComentario" class="facebook-post-coment">
           <img src="img/facebook/fac-03.svg">
           <p>{{post.comments_count}}</p>
