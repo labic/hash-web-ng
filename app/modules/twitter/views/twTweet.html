@@ -51,3 +51,14 @@
     </div>
   </div>
 </div>
+
+<script>
+  $( document ).ready(function(){
+
+    var postWidth = $(".painel-posts-list-each").width();
+    
+    var resultPostWidth = (33000 / postWidth) + 10;
+    
+    $(".painel-posts-list-each-text").css( "min-height", resultPostWidth+"px" );
+  });
+</script>
