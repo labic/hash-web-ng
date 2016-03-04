@@ -1561,3 +1561,39 @@
 .selected {
   font-weight: 800;
 }
+
+.period-filter__single-option {
+  margin-top:15px;
+  width: 100%;
+  height: auto;
+  float: left;
+}
+
+.period-filter__single-option {
+  margin-top:15px;
+  padding-left: calc(50% - 144px);
+}
+
+.period-filter__single-option input[type="radio"] {
+  display: none;
+}
+
+.period-filter__single-option label {
+  width: 60px;
+  height: 60px;
+  margin: 6px;
+  border-radius: 60px;
+  float: left;
+  border: 1px solid #fff;
+  cursor: pointer;
+  color: #1dbfd8;
+  padding-top: 20px;
+  font-size: 12px;
+  text-align: center;
+  font-weight: bold;
+}
+
+.period-filter__single-option input[type="radio"]:checked+label{
+  color: #000;
+  background-color: #1dbfd8;
+}

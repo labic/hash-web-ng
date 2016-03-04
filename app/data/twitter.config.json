@@ -13,5 +13,23 @@
       "title": "Mulher",
       "tag": "tema-genero"
     }
-  ]
+  ],
+  "period": {
+    "type": "single-option",
+    "values": [
+      {
+        "title": "1 Hora",
+        "value": "1h"
+      },{
+        "title": "1 Dia",
+        "value": "1d"
+      },{
+        "title": "7 Dias",
+        "value": "7d"
+      },{
+        "title": "15 Dias",
+        "value": "15d"
+      }
+    ]
+  }
 }

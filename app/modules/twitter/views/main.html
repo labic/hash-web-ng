@@ -6,34 +6,7 @@
 
     <aside id="str_menu_map" ui-view="map"></aside>
 
-    <div id="str_menu_temporalidade">
-
-      <div id="str_time_temporalidade" >
-        <!--
-<div class="time_temporalidade" ng-click='filter.time = "recent"'>
-<p>mais</p>
-<p>RECENTES</p>
-</div>
--->
-        <div class="time_temporalidade" ng-click='filter.time = "1h"'>
-          <p>1</p>
-          <p>HORA</p>
-        </div>
-        <div class="time_temporalidade" ng-click='filter.time = "1d"'>
-          <p>24</p>
-          <p>HORAS</p>
-        </div>
-        <div id="temporalidade24" class="time_temporalidade fisrtTemp" ng-click='filter.time = "7d"'>
-          <p>7</p>
-          <p>DIAS</p>
-        </div>
-        <div class="time_temporalidade" ng-click='filter.time = "15d"'>
-          <p>15</p>
-          <p>DIAS</p>
-        </div>
-
-      </div>
-    </div>
+    <period-filter type="single-option" options="options.period.values" filter="filter.time"></period-filter>
 
     <div id="str_display_tweet">
       <div class="display_tweet">
@@ -103,7 +76,7 @@
     });
 
     /*NOTA: Troca de menus */
-    
+
     /* menu centralizado com width variavel division2 */
     
     var menuIconWidth = $(".title_str_menu_icon").width();
