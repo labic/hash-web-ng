@@ -37,6 +37,7 @@ function draw(words) {
       .selectAll("text")
         .data(words)
       .enter().append("a")
+        .attr("href", "painel")
         .attr("title",function(d) {
           return d.text;
         })
