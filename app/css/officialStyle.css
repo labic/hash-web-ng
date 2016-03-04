@@ -204,9 +204,8 @@
       }
 
       .title_str_menu_icon{
-        width: 114px;
+        width: auto;
         float: left;
-        margin-left: calc(50% - 57px);
       }
 
         .select_title_division2{

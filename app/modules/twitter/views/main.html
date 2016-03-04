@@ -9,11 +9,11 @@
     <div id="str_menu_temporalidade">
 
       <div id="str_time_temporalidade" >
-<!--
-        <div class="time_temporalidade" ng-click='filter.time = "recent"'>
-          <p>mais</p>
-          <p>RECENTES</p>
-        </div>
+        <!--
+<div class="time_temporalidade" ng-click='filter.time = "recent"'>
+<p>mais</p>
+<p>RECENTES</p>
+</div>
 -->
         <div class="time_temporalidade" ng-click='filter.time = "1h"'>
           <p>1</p>
@@ -71,23 +71,23 @@
 
   <div id="div2_monitor" class="str_division">
     <div class="title_str">
-      <ul class="title_str_menu_icon">
-        <a ui-sref="painel.tweet">
-          <li class="select_title_division2 firstOpCont">
+        <ul class="title_str_menu_icon">
+          <li ui-sref="painel.tweet" class="select_title_division2 firstOpCont">
             <img src='img/icons/TWEETS.png' class="icon_menu_top" alt="image">
           </li>
-        </a>
-        <a ui-sref="painel.img">
-          <li class="select_title_division2">
+          <li ui-sref="painel.img" class="select_title_division2">
             <img src='img/icons/IMAGENS.png' class="icon_menu_top" alt="image">
           </li>
-        </a>
-        <a ui-sref="painel.mosaico">
-          <li id="select_imgMosaico" class="select_title_division2" ng-click="filter.time = '7d'">
+          <li ui-sref="painel.img" class="select_title_division2">
+            <img src='img/icons/IMAGENS.png' class="icon_menu_top" alt="image">
+          </li>
+          <li ui-sref="painel.img" class="select_title_division2">
+            <img src='img/icons/IMAGENS.png' class="icon_menu_top" alt="image">
+          </li>
+          <li ui-sref="painel.mosaico" id="select_imgMosaico" class="select_title_division2" ng-click="filter.time = '7d'">
             <img src='img/icons/Mosaico.png' class="icon_menu_top" alt="image">
           </li>
-        </a>
-      </ul>
+        </ul>
     </div>
 
     <aside ui-view="conteudo" style="height:calc(100% - 50px); width:100%;"></aside>
@@ -103,7 +103,14 @@
     });
 
     /*NOTA: Troca de menus */
-
+    
+    /* menu centralizado com width variavel division2 */
+    
+    var menuIconWidth = $(".title_str_menu_icon").width();
+    var resultMenuIconWidth = menuIconWidth/2;
+    alert(resultMenuIconWidth);
+    $(".title_str_menu_icon").css( "margin-left", "calc(50% - "+resultMenuIconWidth+"px" );
+    
     /* Standard */
 
     $(".firstOp").css( "font-weight", "800" );
