@@ -1,0 +1,9 @@
+<div id="instagram_menu">
+  <ul id="menu_tematica_instagram">
+    <li ng-repeat="option in options"
+        class="menu_tematica_op"
+        ng-class="{selected: filter==option.tag}">
+      <a href ng-click="setFilter(option, $event)"><p class="select_tematica_monitor">{{option.title}}</p></a>
+    </li>
+  </ul>
+</div>

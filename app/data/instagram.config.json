@@ -1,0 +1,111 @@
+{
+  "main_tags": [
+    {
+      "title": "Negros",
+      "tag": "tema-negros",
+      "children": [{
+          "title": "Questões Pedagógicas",
+          "tag": "geral-questoes-pedagodicas"
+        },{
+          "title": "Infra Estrutura & Logísticas",
+          "tag": "geral-infra-estrutura-logistica"
+        },{
+          "title": "Orientações",
+          "tag": "geral-orientacoes"
+        },{
+          "title": "Sentimentos",
+          "tag": "geral-sentimentos"
+        },{
+          "title": "Rumores",
+          "tag": "geral-rumores"
+        },{
+          "title": "Humor",
+          "tag": "geral-humores"
+      }]
+    },{
+      "title": "LGBT",
+      "tag": "tema-lgbt",
+      "children": [{
+          "title": "Questões Pedagógicas",
+          "tag": "geral-questoes-pedagodicas"
+        },{
+          "title": "Infra Estrutura & Logísticas",
+          "tag": "geral-infra-estrutura-logistica"
+        },{
+          "title": "Orientações",
+          "tag": "geral-orientacoes"
+        },{
+          "title": "Sentimentos",
+          "tag": "geral-sentimentos"
+        },{
+          "title": "Rumores",
+          "tag": "geral-rumores"
+        },{
+          "title": "Humor",
+          "tag": "geral-humores"
+      }]
+    },{
+      "title": "Indigena",
+      "tag": "tema-indigena",
+      "children": [{
+          "title": "Questões Pedagógicas",
+          "tag": "geral-questoes-pedagodicas"
+        },{
+          "title": "Infra Estrutura & Logísticas",
+          "tag": "geral-infra-estrutura-logistica"
+        },{
+          "title": "Orientações",
+          "tag": "geral-orientacoes"
+        },{
+          "title": "Sentimentos",
+          "tag": "geral-sentimentos"
+        },{
+          "title": "Rumores",
+          "tag": "geral-rumores"
+        },{
+          "title": "Humor",
+          "tag": "geral-humores"
+      }]
+    },{
+      "title": "Mulher",
+      "tag": "tema-genero",
+      "children": [{
+          "title": "Questões Pedagógicas",
+          "tag": "geral-questoes-pedagodicas"
+        },{
+          "title": "Infra Estrutura & Logísticas",
+          "tag": "geral-infra-estrutura-logistica"
+        },{
+          "title": "Orientações",
+          "tag": "geral-orientacoes"
+        },{
+          "title": "Sentimentos",
+          "tag": "geral-sentimentos"
+        },{
+          "title": "Rumores",
+          "tag": "geral-rumores"
+        },{
+          "title": "Humor",
+          "tag": "geral-humores"
+      }]
+    }
+  ],
+  "period": {
+    "type": "single-option",
+    "values": [
+      {
+        "title": "1 Hora",
+        "value": "1h"
+      },{
+        "title": "1 Dia",
+        "value": "1d"
+      },{
+        "title": "7 Dias",
+        "value": "7d"
+      },{
+        "title": "15 Dias",
+        "value": "15d"
+      }
+    ]
+  }
+}

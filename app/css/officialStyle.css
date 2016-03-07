@@ -307,6 +307,10 @@
             text-align: center;
           }
 
+          .menu_tematica_op.selected {
+            font-weight: bold;
+          }
+
       #str_menu_categoria{
         width: 100%;
         height: auto;

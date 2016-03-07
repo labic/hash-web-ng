@@ -1,4 +1,7 @@
 hash.controller('mainInstagram', function ($scope, $http) {
+  $http.get('/data/instagram.config.json').then(function(res) {
+    $scope.options = res.data;
+  });
 
   $scope.filter = {
     tema: 'tema-negros',
