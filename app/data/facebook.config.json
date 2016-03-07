@@ -1,0 +1,50 @@
+{
+  "main_tags": [
+    {
+      "title": "Negros",
+      "tag": "tema-negros"
+    },{
+      "title": "LGBT",
+      "tag": "tema-lgbt"
+    },{
+      "title": "Indigena",
+      "tag": "tema-indigena"
+    },{
+      "title": "Mulher",
+      "tag": "tema-genero"
+    }
+  ],
+  "actors": [{
+      "title": "Imprensa",
+      "tag": "ator-imprensa",
+      "icon": "FACEBOOK-01.svg"
+    },{
+      "title": "Defensores de Direitos Humanos",
+      "tag": "ator-defensores",
+      "icon": "FACEBOOK-03.svg"
+    },{
+      "title": "Críticos de Direitos Humanos",
+      "tag": "ator-criticos",
+      "icon": "FACEBOOK-02.svg"
+    },{
+      "title": "Personalidades",
+      "tag": "ator-personalidades",
+      "icon": "FACEBOOK-04.svg"
+    },{
+      "title": "Governos e Organizações Internacionais",
+      "tag": "ator-governos",
+      "icon": "FACEBOOK-05.svg"
+    }],
+  "period": {
+    "type": "single-option",
+    "values": [
+      {
+        "title": "7 Dias",
+        "value": "7d"
+      },{
+        "title": "15 Dias",
+        "value": "15d"
+      }
+    ]
+  }
+}

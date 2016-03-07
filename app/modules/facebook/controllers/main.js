@@ -1,4 +1,7 @@
 hash.controller('mainFacebook', function ($scope, $http, MetricsFacebook, AnalyticsFacebook, WordFacebook) {
+  $http.get('/data/facebook.config.json').then(function(res) {
+    $scope.options = res.data;
+  });
 
   $scope.filter = {
     tema: 'tema-negros',

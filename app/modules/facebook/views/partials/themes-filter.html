@@ -1,0 +1,20 @@
+<div id="str_menu_tematica" class="menu__main-tags">
+
+  <ul id="menu_tematica" class="menu__main-tags-options">
+    <li
+      class="menu__main-tags-option menu_tematica_op"
+      ng-class="{selected: filter==option.tag}"
+      ng-repeat="option in options">
+      <a href ng-click="setFilter(option, $event, true)">{{option.title}}</a>
+
+      <ul class="menu__main-tags-options-children" ng-if="option.children.length > 0">
+        <li class="menu__main-tags-option">
+          <a href ng-click="setFilter(option, $event, true)">Todos</a>
+        </li>
+        <li class="menu__main-tags-option" ng-repeat="children in option.children">
+          <a href ng-click="setFilter(children, $event)">{{children.title}}</a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</div>

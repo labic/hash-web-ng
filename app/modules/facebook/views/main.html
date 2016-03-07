@@ -1,26 +1,11 @@
-<div id="str_main_monitor" class="str_main" ng-controller="mainFacebook">
+<div id="str_main_monitor" class="str_main facebook" ng-controller="mainFacebook">
 
   <div id="div1_monitor" class="str_division">
 
-    <div id="str_menu_tematica" class="facebook-menu-tematica">
-      <ul id="menu_tematica">
-        <li class="menu_tematica_op">
-          <a ng-click='filter.tema = "tema-negros"; filter.categorieNumber = 0;'><p class="rotate select_tematica_monitor firstOp">NEGRO</p></a>
-        </li>
-        <li class="menu_tematica_op">
-          <a ng-click='filter.tema = "tema-lgbt"; filter.categorieNumber = 1;'><p class="rotate select_tematica_monitor">LGBT</p></a>
-        </li>
-        <li class="menu_tematica_op">
-          <a ng-click='filter.tema = "tema-indigena"; filter.categorieNumber = 2;'><p class="rotate select_tematica_monitor">INDÍGENA</p></a>
-        </li>
-        <li class="menu_tematica_op">
-          <a ng-click='filter.tema = "tema-genero"; filter.categorieNumber = 3;'><p class="rotate select_tematica_monitor">MULHER</p></a>
-        </li>
-      </ul>
-    </div>
+    <fb-themes-filter options="options.main_tags" filter="filter.tema"></fb-themes-filter>
 
     <div id="facebook-menu-choice">
-      <button id="facebook-choice-button1" class="facebook-choice-button inicializeOpacity" ng-click="filter.type = 'publicacao'; " ui-sref="facebook.posts">
+      <button id="facebook-choice-button1" class="facebook-choice-button selected" ng-click="filter.type = 'publicacao'; " ui-sref="facebook.posts">
         <img src="img/facebook/COMEN%20E%20PUBLIC-02.svg" class="svg-icon facebook-choice-button-image">
         <p>PUBLICAÇÕES</p>
       </button>
@@ -30,41 +15,9 @@
       </button>
     </div>
 
-    <div id="facebook-menu-atores">
-      <div class="facebook-actors-each inicializeOpacity" ng-click="filter.actor = 'ator-imprensa';">
-        <img src="img/facebook/FACEBOOK-01.svg" class="svg-icon facebook-actors-each-image">
-        <p>imprensa</p>
-      </div>
-      <div class="facebook-actors-each" ng-click="filter.actor = 'ator-defensores';">
-        <img src="img/facebook/FACEBOOK-03.svg" class="svg-icon facebook-actors-each-image">
-        <p>defensores de direitos humanos</p>
-      </div>
-      <div class="facebook-actors-each" ng-click="filter.actor = 'ator-criticos';">
-        <img src="img/facebook/FACEBOOK-02.svg" class="svg-icon facebook-actors-each-image">
-        <p>críticos de direitos humanos</p>
-      </div>
-      <div class="facebook-actors-each" ng-click="filter.actor = 'ator-personalidades';">
-        <img src="img/facebook/FACEBOOK-04.svg" class="svg-icon facebook-actors-each-image">
-        <p>personalidades</p>
-      </div>
-      <div class="facebook-actors-each" ng-click="filter.actor = 'ator-governos';">
-        <img src="img/facebook/FACEBOOK-05.svg" class="svg-icon facebook-actors-each-image">
-        <p>governos e organizações internacionais</p>
-      </div>
-    </div>
+    <fb-actors-filter options="options.actors" filter="filter.actor"></fb-actors-filter>
 
-    <div id="str_menu_temporalidade">
-      <div id="facebook-menu-temporalidade" >
-        <div id="temporalidade24" class="time_temporalidade fisrtTemp" ng-click='filter.time = "7d"'>
-          <p>7</p>
-          <p>DIAS</p>
-        </div>
-        <div class="time_temporalidade" ng-click='filter.time = "15d"'>
-          <p>15</p>
-          <p>DIAS</p>
-        </div>
-      </div>
-    </div>
+    <period-filter type="single-option" options="options.period.values" filter="filter.time"></period-filter>
   </div>
 
   <div id="div3_monitor" class="str_division">
@@ -120,18 +73,7 @@
 
     /* Standard */
 
-    $(".inicializeOpacity").css( "opacity", "1" );
-    $(".firstOp").css( "font-weight", "800" );
-
-    $(".firstOpCont").css( "opacity", "1" );
-
     /* Custom */
-
-    $(".select_tematica_monitor").click(function(){
-      $(".select_tematica_monitor").css( "font-weight", "300" );
-
-      $(this).css( "font-weight", "800" );
-    });
 
     $(".select_title_division2").click(function(){
       $(".select_title_division2").css( "opacity", "0.6" );
@@ -142,47 +84,10 @@
       $(".title_str_dualOP_1").css( "opacity", "1" );
     });
 
-    //    $(".select_title_division3,.select_title_division2").css( "opacity", "0.6" );
-
-    /*NOTA: Troca Temporalidades */ 
-
-    $(".fisrtTemp p").css( "color", "#0a1227" );
-    $(".fisrtTemp").css( "background-color", "#1dbfd8" );
-    $(".fisrtTemp").css( "border-color", "#1dbfd8" );
-
-    $(".time_temporalidade").click(function(){
-      $(".time_temporalidade p").css( "color", "#1dbfd8" );
-      $(".time_temporalidade").css( "background-color", "transparent" );
-      $(".time_temporalidade").css( "border-color", "white" );
-
-      $("p", this).css( "color", "#0a1227" );
-      $(this).css( "background-color", "#1dbfd8" );
-      $(this).css( "border-color", "#1dbfd8" );
-    });
-
-    $("#select_imgMosaico").click(function(){
-      $(".time_temporalidade p").css( "color", "#1dbfd8" );
-      $(".time_temporalidade").css( "background-color", "transparent" );
-      $(".time_temporalidade").css( "border-color", "white" );
-
-      $("p", "#temporalidade24").css( "color", "#0a1227" );
-      $("#temporalidade24").css( "background-color", "#1dbfd8" );
-      $("#temporalidade24").css( "border-color", "#1dbfd8" );
-    });
-
     /*NOTA: Troca actors */
-
     $(".facebook-choice-button").click(function(){
-      $(".facebook-choice-button").css( "opacity", "0.3" );
-      $(this).css( "opacity", "1" );
-      
-      $(".select_title_division2").css( "opacity", "0.6" );
-      $(".firstOpCont").css( "opacity", "1" );
-    });
-
-    $(".facebook-actors-each").click(function(){
-      $(".facebook-actors-each").css( "opacity", "0.3" );
-      $(this).css( "opacity", "1" );
+      $(".facebook-choice-button").removeClass('selected');
+      $(this).addClass('selected');
     });
   });
 </script>
