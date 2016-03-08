@@ -16,6 +16,7 @@
   position: fixed;
   background: #2B3044;
   z-index: 100;
+  left: calc(50% - 160px);
 }
 
 #menu_tematica_instagram{

@@ -15,25 +15,21 @@
     }
   ],
   "actors": [{
-      "title": "Imprensa",
-      "tag": "ator-imprensa",
+      "title": "Mídia",
+      "tag": "categoria-midia",
       "icon": "FACEBOOK-01.svg"
     },{
-      "title": "Defensores de Direitos Humanos",
-      "tag": "ator-defensores",
+      "title": "Institucional",
+      "tag": "categoria-instituicao",
       "icon": "FACEBOOK-03.svg"
     },{
-      "title": "Críticos de Direitos Humanos",
-      "tag": "ator-criticos",
-      "icon": "FACEBOOK-02.svg"
-    },{
-      "title": "Personalidades",
-      "tag": "ator-personalidades",
-      "icon": "FACEBOOK-04.svg"
-    },{
-      "title": "Governos e Organizações Internacionais",
-      "tag": "ator-governos",
+      "title": "Educação",
+      "tag": "categoria-educacao",
       "icon": "FACEBOOK-05.svg"
+    },{
+      "title": "Humor",
+      "tag": "categoria-humor",
+      "icon": "FACEBOOK-04.svg"
     }],
   "period": {
     "type": "single-option",

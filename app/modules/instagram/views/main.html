@@ -44,22 +44,15 @@
 
   $( document ).ready(function(){
 
-    checkContainer();
-
     $("#instagram_container").twentytwenty();
   });
 
   // Função para centralizar menu na tela dinamicamente.
-  function checkContainer(){
-    if($('#instagram_menu').is(':visible')){ // Se for visivel na página...
-      
-      var menuInstagramWidth = $("#instagram_menu").width();
-      var resultMenuInstagramWidth = menuInstagramWidth/2-60;
-      $("#instagram_menu").css( "left", "calc(50% - "+resultMenuInstagramWidth+"px" );
-      
-    } else {
-      setTimeout(checkContainer, 50); // Espera 50 ms e tenta novamente.
-    }
-  }
+//  function centerMenuInstagram(){
+//    var menuInstagramWidth = $("#instagram_menu").width();
+//    alert(menuInstagramWidth);
+//    var resultMenuInstagramWidth = menuInstagramWidth/2-60;
+//    $("#instagram_menu").css( "left", "calc(50% - "+resultMenuInstagramWidth+"px" );
+//  }
 
 </script>
