@@ -2,7 +2,7 @@
 
 /* NOTA: MONITOR - CONTROLLER */
 hash
-.controller('mainMonitor', function ($scope, $http, MetricsTwitter, AnalyticsTwitter, WordTwitter, Tweet) {
+.controller('mainMonitor', function ($scope, $http, MetricsTwitter, AnalyticsTwitter, WordTwitter, Tweet, WORD_API_BASE_URI) {
   $http.get('/data/twitter.config.json').then(function(res) {
     $scope.options = res.data;
   });
@@ -80,7 +80,7 @@ hash
 
       var twRtJson = JSON.stringify(filterDavid($scope.filter.time, linkTema, linkCategoria, linkLocalidade, word, null, nlimit),["where","period","word","categories","all","limit"]);
 
-      var monitorLinkTweet =  serviceBase+'/twitter/word_posts?filter='+twRtJson;
+      var monitorLinkTweet =  WORD_API_BASE_URI+'/twitter/word_posts?filter='+twRtJson;
 
       $scope.dataLoadTweetON = false;
       $scope.dataLoadTweet404 = false;
@@ -170,7 +170,7 @@ hash
 
       var imgJson = JSON.stringify(filterDavid($scope.filter.time,linkTema, linkCategoria, linkLocalidade, word, null, 399),["where","period","word","categories","all","limit"]);
 
-      var monitorLinkImage =  serviceBase+'/twitter/word_images?filter='+imgJson;
+      var monitorLinkImage =  WORD_API_BASE_URI+'/twitter/word_images?filter='+imgJson;
 
       $scope.dataLoadImageON = false;
       $scope.dataLoadImage404 = false;
@@ -231,12 +231,12 @@ hash
 
     var wordJson = JSON.stringify(filterDavid($scope.filter.time,linkTema,null,linkLocalidade,20),["where","period","categories","all","limit"]);
 
-    var monitorLinkWord =  serviceBase+'/twitter/top_words?filter='+wordJson;
-    
+    var monitorLinkWord =  WORD_API_BASE_URI+'/twitter/top_words?filter='+wordJson;
+
     var cloudWidth = $("#wordCloud").width();
-    
+
     plotWordCloud(cloudWidth,284,"wordCloud",monitorLinkWord); //(width,heigth,divId,url)
-    
+
 
     $scope.dataLoadWordON = false;
     $scope.dataLoadWord404 = false;
@@ -289,7 +289,7 @@ hash
 
     var mapJson = JSON.stringify(filterDavid($scope.filter.time, linkTema, null, null),["where","period","categories","all"]);
 
-    var monitorLinkMap = serviceBase+'/twitter/map_volume?filter='+mapJson;
+    var monitorLinkMap = WORD_API_BASE_URI+'/twitter/map_volume?filter='+mapJson;
 
     $("#svg-map a path").css( "fill", "#d1e8c5" );
 
@@ -563,7 +563,7 @@ hash
     return filter;
   }
 
-  
+
   var defaultLimit = 24;
   // Quando o filtro mudar...
   $scope.$watch('filter', function (newFilter, oldFilter) {

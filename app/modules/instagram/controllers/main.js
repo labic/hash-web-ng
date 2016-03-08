@@ -1,4 +1,4 @@
-hash.controller('mainInstagram', function ($scope, $http) {
+hash.controller('mainInstagram', function ($scope, $http, WORD_API_BASE_URI) {
   $http.get('/data/instagram.config.json').then(function(res) {
     $scope.options = res.data;
   });
@@ -12,10 +12,10 @@ hash.controller('mainInstagram', function ($scope, $http) {
     $(".loading_instagram").show();
     $(".fade_white").show();
 
-    var url = serviceBase+"/instagram/media?page=1&per_page=100&period=recent&geo=true&tags[]="+newFilter.tema+"";
+    var url = WORD_API_BASE_URI+"/instagram/media?page=1&per_page=100&period=recent&geo=true&tags[]="+newFilter.tema+"";
     startMap(url,"instagram_map");
 
-    var url1 = serviceBase+"/instagram/media?page=1&per_page=100&period=recent&tags[]="+newFilter.tema+"";
+    var url1 = WORD_API_BASE_URI+"/instagram/media?page=1&per_page=100&period=recent&tags[]="+newFilter.tema+"";
     startImageCloud(url1,"instagram_cloudImage",$("#instagram_cloudImage").width());
   },true);
 

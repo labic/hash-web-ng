@@ -1,6 +1,7 @@
 var hash = angular.module('hash', [
   'ui.router',
   'ngResource',
+  'hash.config',
   'hash.api',
   'word.api',
   'hash.core',
@@ -11,14 +12,6 @@ var hash = angular.module('hash', [
   'hash.statistics',
   'infinite-scroll'
 ]);
-
-hash
-  .constant('HASH_API_BASE_URI', 'https://sdh-hash-api-dev.herokuapp.com/v2')
-  // .constant('HASH_API_BASE_URI', 'https://sdh-hash-api.herokuapp.com/v2')
-  .constant('WORD_API_BASE_URI', 'http://word-api.ddns.net:8081');
-
-// TODO: Clean this!
-var serviceBase = 'http://107.170.35.149:8081';
 
 /* Inicializando tempo de milisegundos */
 var nowState = new Date();

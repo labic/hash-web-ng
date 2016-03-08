@@ -1,5 +1,7 @@
 bower_components
 node_modules
 /dist
+/app/js/config.js
+config.json
 .tmp
 *.tmp*

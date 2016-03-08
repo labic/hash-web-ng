@@ -1,4 +1,4 @@
-hash.controller('mainPalavras', function ($scope, $http) {
+hash.controller('mainPalavras', function ($scope, $http, WORD_API_BASE_URI) {
   $http.get('/data/words.config.json').then(function(res) {
     $scope.options = res.data;
   });
@@ -16,7 +16,7 @@ hash.controller('mainPalavras', function ($scope, $http) {
 
     var wordJson = JSON.stringify(filterDavid(time,tema,null,170),["where","period","categories","all","limit"]);
 
-    var linkWord =  serviceBase+'/twitter/top_words?filter='+wordJson;
+    var linkWord =  WORD_API_BASE_URI+'/twitter/top_words?filter='+wordJson;
 
     $scope.dataLoadWordON = false;
     $scope.dataLoadWord404 = false;
