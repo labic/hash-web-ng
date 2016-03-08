@@ -11,20 +11,18 @@
 }
 
 #instagram_menu{
-  width:400px;
-  height: 70px;
+  width: auto;
+  height: auto;
   position: fixed;
   background: #2B3044;
-  left: calc(50% - 160px);
   z-index: 100;
 }
 
-  #menu_tematica_instagram{
-    float:left;
-    width:auto;
-    margin-left: calc(50% - 170px);
-    padding-top: 20px;
-  }
+#menu_tematica_instagram{
+  float: left;
+  width: auto;
+  padding: 20px;
+}
 
 .fade_white{
   position: absolute; 

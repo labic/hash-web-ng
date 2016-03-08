@@ -1,4 +1,5 @@
 hash.controller('mainInstagram', function ($scope, $http, WORD_API_BASE_URI) {
+
   $http.get('/data/instagram.config.json').then(function(res) {
     $scope.options = res.data;
   });
@@ -62,20 +63,20 @@ hash.controller('mainInstagram', function ($scope, $http, WORD_API_BASE_URI) {
     if(atualInfoWindow != null) atualInfoWindow.close();
 
     img = "<img class=\"instagram-preview-image\" src=\"" + data.images.low_resolution.url + "\"></img>";
-  	info = new google.maps.InfoWindow({
-  		content: img + "<br/><p class=\"instagram-preview-text\" style=\"word-wrap:break-word;\">Legenda: " + data.caption.text + "</p>",
-  		position: new google.maps.LatLng(data.location.latitude,data.location.longitude),
+    info = new google.maps.InfoWindow({
+      content: img + "<br/><p class=\"instagram-preview-text\" style=\"word-wrap:break-word;\">Legenda: " + data.caption.text + "</p>",
+      position: new google.maps.LatLng(data.location.latitude,data.location.longitude),
       maxWidth:300
-  	});
+    });
     atualInfoWindow = info;
     info.setMap(map);
   }
 
   function getMarkers(data, indice){
     return new google.maps.Marker({
-  		position: new google.maps.LatLng(data.location.latitude,data.location.longitude),
+      position: new google.maps.LatLng(data.location.latitude,data.location.longitude),
       _id: indice,
-  	});
+    });
   }
 
   /*IMAGECLOUD*/
@@ -91,32 +92,32 @@ hash.controller('mainInstagram', function ($scope, $http, WORD_API_BASE_URI) {
 
   function runImageCloud(json, divID, w){
 
-  var y;
-  var n;
-  var counter;
-  var thumbnail_width;
-  width = w;
+    var y;
+    var n;
+    var counter;
+    var thumbnail_width;
+    width = w;
 
-  reset();
+    reset();
 
-  increment = 3;
+    increment = 3;
 
-  var svg = d3.select("#" + divID).append("svg")
+    var svg = d3.select("#" + divID).append("svg")
     .attr("width", width)
     .attr("height", width);
     //.append("g");
 
-  var images = svg.selectAll("a")
-      .data(json).enter()
-      .append("a")
-      .attr("xlink:href",function(d){return d.data.link;})
-      .attr("target","_blank")
-      .append("image")
-      .attr("xlink:href",function(d){return d.data.images.standard_resolution.url})
-      .attr("x",function(d,i){if(i==0){reset()}; return calcX();})
-      .attr("width",function(d,i){if(i==0){reset()}; return calcWidth()+ "px";})
-      .attr("height",function(d,i){if(i==0){reset()}; return calcWidth()+ "px";})
-      .attr("y",function(d,i){if(i==0){reset()}; return calcY();});
+    var images = svg.selectAll("a")
+    .data(json).enter()
+    .append("a")
+    .attr("xlink:href",function(d){return d.data.link;})
+    .attr("target","_blank")
+    .append("image")
+    .attr("xlink:href",function(d){return d.data.images.standard_resolution.url})
+    .attr("x",function(d,i){if(i==0){reset()}; return calcX();})
+    .attr("width",function(d,i){if(i==0){reset()}; return calcWidth()+ "px";})
+    .attr("height",function(d,i){if(i==0){reset()}; return calcWidth()+ "px";})
+    .attr("y",function(d,i){if(i==0){reset()}; return calcY();});
   }
 
   function reset(){
@@ -129,7 +130,7 @@ hash.controller('mainInstagram', function ($scope, $http, WORD_API_BASE_URI) {
   function calcX(){
     r = thumbnail_width * counter;
     counter++;
-      if (counter == n){
+    if (counter == n){
       counter = 0;
       n = n + increment;
       thumbnail_width = parseInt(width/n);
@@ -140,7 +141,7 @@ hash.controller('mainInstagram', function ($scope, $http, WORD_API_BASE_URI) {
   function calcWidth(){
     r = thumbnail_width;
     counter++;
-      if (counter == n){
+    if (counter == n){
       counter = 0;
       n = n + increment;
       thumbnail_width = parseInt(width/n);
