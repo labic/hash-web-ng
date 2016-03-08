@@ -1,93 +1,21 @@
 {
   "main_tags": [
     {
-      "title": "Negros",
-      "tag": "tema-negros",
-      "children": [{
-          "title": "Questões Pedagógicas",
-          "tag": "geral-questoes-pedagodicas"
-        },{
-          "title": "Infra Estrutura & Logísticas",
-          "tag": "geral-infra-estrutura-logistica"
-        },{
-          "title": "Orientações",
-          "tag": "geral-orientacoes"
-        },{
-          "title": "Sentimentos",
-          "tag": "geral-sentimentos"
-        },{
-          "title": "Rumores",
-          "tag": "geral-rumores"
-        },{
-          "title": "Humor",
-          "tag": "geral-humores"
-      }]
+      "title": "Mídia",
+      "tag": "categoria-midia",
+      "children": []
     },{
-      "title": "LGBT",
-      "tag": "tema-lgbt",
-      "children": [{
-          "title": "Questões Pedagógicas",
-          "tag": "geral-questoes-pedagodicas"
-        },{
-          "title": "Infra Estrutura & Logísticas",
-          "tag": "geral-infra-estrutura-logistica"
-        },{
-          "title": "Orientações",
-          "tag": "geral-orientacoes"
-        },{
-          "title": "Sentimentos",
-          "tag": "geral-sentimentos"
-        },{
-          "title": "Rumores",
-          "tag": "geral-rumores"
-        },{
-          "title": "Humor",
-          "tag": "geral-humores"
-      }]
+      "title": "Institucional",
+      "tag": "categoria-instituicao",
+      "children": []
     },{
-      "title": "Indigena",
-      "tag": "tema-indigena",
-      "children": [{
-          "title": "Questões Pedagógicas",
-          "tag": "geral-questoes-pedagodicas"
-        },{
-          "title": "Infra Estrutura & Logísticas",
-          "tag": "geral-infra-estrutura-logistica"
-        },{
-          "title": "Orientações",
-          "tag": "geral-orientacoes"
-        },{
-          "title": "Sentimentos",
-          "tag": "geral-sentimentos"
-        },{
-          "title": "Rumores",
-          "tag": "geral-rumores"
-        },{
-          "title": "Humor",
-          "tag": "geral-humores"
-      }]
+      "title": "Educação",
+      "tag": "categoria-humor",
+      "children": []
     },{
-      "title": "Mulher",
-      "tag": "tema-genero",
-      "children": [{
-          "title": "Questões Pedagógicas",
-          "tag": "geral-questoes-pedagodicas"
-        },{
-          "title": "Infra Estrutura & Logísticas",
-          "tag": "geral-infra-estrutura-logistica"
-        },{
-          "title": "Orientações",
-          "tag": "geral-orientacoes"
-        },{
-          "title": "Sentimentos",
-          "tag": "geral-sentimentos"
-        },{
-          "title": "Rumores",
-          "tag": "geral-rumores"
-        },{
-          "title": "Humor",
-          "tag": "geral-humores"
-      }]
+      "title": "Humor",
+      "tag": "categoria-educacao",
+      "children": []
     }
   ],
   "period": {

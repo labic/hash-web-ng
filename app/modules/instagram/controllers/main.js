@@ -5,7 +5,7 @@ hash.controller('mainInstagram', function ($scope, $http, WORD_API_BASE_URI) {
   });
 
   $scope.filter = {
-    tema: 'tema-negros',
+    tema: 'categoria-midia',
     time: 'recent',
   };
 
