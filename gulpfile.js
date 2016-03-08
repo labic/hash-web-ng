@@ -20,7 +20,7 @@ gulp.task('watch', function() {
 // });
 
 // gulp.task('serve', ['watch', 'config'], function() {
-gulp.task('serve', ['watch', 'config'], function() {
+gulp.task('serve', ['watch'], function() {
   browserSync.init({
     server: paths.app
   });
