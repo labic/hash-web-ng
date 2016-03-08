@@ -1,0 +1,11 @@
+<form class="period-filter__single-option">
+  <span ng-repeat="option in options">
+    <input id="period-option-{{$index}}"
+      type="radio"
+      name="period"
+      ng-model="filter"
+      ng-click="setFilter($event)"
+      value="{{option.value}}" />
+    <label for="period-option-{{$index}}">{{option.title}}</label>
+  </span>
+</form>

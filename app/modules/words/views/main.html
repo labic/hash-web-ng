@@ -1,4 +1,4 @@
-<div id="str_main_palavras" class="str_main" ng-controller="mainPalavras">
+<div id="str_main_palavras" class="str_main words-module" ng-controller="mainPalavras">
 
   <div id="palavras-display">
 
@@ -27,39 +27,11 @@
         <p>TEXTUAL - Twitter</p>
       </div>
 
-      <div id="div1_palavras_tematica">
-        <ul id="menu_tematica">
-          <li class="menu_tematica_op">
-            <a ng-click="filter.tema = 'tema-negros'; "><p class=" select_tematica_palavras firstOp">NEGRO</p></a>
-          </li>
-          <li class="menu_tematica_op">
-            <a ng-click=" filter.tema = 'tema-lgbt';"><p class=" select_tematica_palavras">LGBT</p></a>
-          </li>
-          <li class="menu_tematica_op">
-            <a ng-click=" filter.tema = 'tema-indigena';"><p class=" select_tematica_palavras">INDÍGENA</p></a>
-          </li>
-          <li class="menu_tematica_op">
-            <a ng-click=" filter.tema = 'tema-genero';"><p class=" select_tematica_palavras">MULHER</p></a>
-          </li>
-        </ul>
-      </div>
+      <wd-themes-filter options="options.main_tags" filter="filter.tema"></wd-themes-filter>
 
       <div id="div1_palavras_loop" ui-view="words"></div>
 
-      <div id="palavras_div1_str_menuTemporalidade">
-        <div class="palavras_div1_str_menuTemporalidade_temporalidade fisrtTemp" ng-click="filter.time = '30m'">
-          <p>30</p>
-          <p>MINUTOS</p>
-        </div>
-        <div id="temporalidade24" class="palavras_div1_str_menuTemporalidade_temporalidade" ng-click="filter.time = '1h'">
-          <p>60</p>
-          <p>MINUTOS</p>
-        </div>
-        <div class="palavras_div1_str_menuTemporalidade_temporalidade" ng-click="filter.time = '1h30m'">
-          <p>90</p>
-          <p>MINUTOS</p>
-        </div>
-      </div>	
+      <wd-period-filter options="options.period.values" filter="filter.time"></wd-period-filter>
     </div>
 
     <div id="palavras_div2" class="str_division">
@@ -127,80 +99,6 @@
       $(this).css( "border", "1px solid black" );
     });
 
-    /*NOTA: Troca de menus */
-
-    $(".select_tematica_palavras").click(function(){
-      $(".select_tematica_palavras").css( "font-weight", "300" );
-
-      $(this).css( "font-weight", "800" );
-    });
-
-    /* Standard */
-
-    $(".firstOp").css( "font-weight", "800" );
-
-    /*NOTA: Troca Temporalidades */ 
-
-    $(".fisrtTemp p").css( "color", "#2B3044" );
-    $(".fisrtTemp").css( "background-color", "#1dbfd8" );
-    $(".fisrtTemp").css( "border-color", "#1dbfd8" );
-
-    $(".palavras_div1_str_menuTemporalidade_temporalidade").click(function(){
-      $(".palavras_div1_str_menuTemporalidade_temporalidade p").css( "color", "#1dbfd8" );
-      $(".palavras_div1_str_menuTemporalidade_temporalidade").css( "background-color", "transparent" );
-      $(".palavras_div1_str_menuTemporalidade_temporalidade").css( "border-color", "white" );
-
-      $("p", this).css( "color", "#2B3044" );
-      $(this).css( "background-color", "#1dbfd8" );
-      $(this).css( "border-color", "#1dbfd8" );
-    });
-
-    $("#select_imgMosaico").click(function(){
-      $(".time_temporalidade p").css( "color", "#1dbfd8" );
-      $(".time_temporalidade").css( "background-color", "transparent" );
-      $(".time_temporalidade").css( "border-color", "white" );
-
-      $("p", "#temporalidade24").css( "color", "#0a1227" );
-      $("#temporalidade24").css( "background-color", "#1dbfd8" );
-      $("#temporalidade24").css( "border-color", "#1dbfd8" );
-    });
-
-    /* FUTURO: MOVES TELA*/
-
-    //    $(".info_pag").click(function(){
-    //      $(".fade").fadeIn("slow");
-    //      $(".info_pag").fadeOut("slow");
-    //      $(".info_pag_on").animate({
-    //        marginLeft: "300px"
-    //      }, "slow" );
-    //      $( "#str_main_palavras" ).animate({
-    //        marginLeft: "300px"
-    //      }, "slow" );
-    //    });
-    //
-    //    $(".fade").click(function(){
-    //      $(".fade").fadeOut("slow");
-    //      $(".info_pag").fadeIn("slow");
-    //      $(".info_pag_on").animate({
-    //        marginLeft: "0"
-    //      }, "slow" );
-    //      $( "#str_main_palavras" ).animate({
-    //        marginLeft: "0"
-    //      }, "slow" );
-    //    });
-
   });
-  //
-  //  $("#palavras_div2_sunburstZoom_action").click(function(){
-  //    $("#palavras_div2_sunburstZoom").animate({
-  //      marginTop: "-500"
-  //    }, "slow" );
-  //  });
-  //
-  //  $("#palavras_div2_sunburstZoom_result_hide").click(function(){
-  //    $("#palavras_div2_sunburstZoom").animate({
-  //      marginTop: "0"
-  //    }, "slow" );
-  //  });
 
 </script>

@@ -1,4 +1,7 @@
 hash.controller('mainPalavras', function ($scope, $http) {
+  $http.get('/data/words.config.json').then(function(res) {
+    $scope.options = res.data;
+  });
 
   var serviceMandala = 'http://mandala-api.ddns.net:7070';
 
@@ -190,9 +193,6 @@ hash.controller('mainPalavras', function ($scope, $http) {
     d3.json(url, function(error, root) {
 
       if (error) throw error;
-
-      console.log(2);
-      /* loading da pagina */
       $(".loading-palavras").hide();
       /* loading da pagina */
 

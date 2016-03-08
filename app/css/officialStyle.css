@@ -1650,3 +1650,7 @@
   color: #000;
   background-color: #1dbfd8;
 }
+
+.words-module .menu__main-tags {
+  border-bottom: 0;
+}
