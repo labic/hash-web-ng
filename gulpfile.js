@@ -13,12 +13,13 @@ gulp.task('watch', function() {
   gulp.watch('config.json').on('change', browserSync.reload);
 });
 
-gulp.task('config', function () {
-  gulp.src('./config.json')
-    .pipe(ngConstant())
-    .pipe(gulp.dest(paths.app+'/js'));
-});
+// gulp.task('config', function () {
+//   gulp.src('./config.json')
+//     .pipe(ngConstant())
+//     .pipe(gulp.dest(paths.app+'/js'));
+// });
 
+// gulp.task('serve', ['watch', 'config'], function() {
 gulp.task('serve', ['watch', 'config'], function() {
   browserSync.init({
     server: paths.app
