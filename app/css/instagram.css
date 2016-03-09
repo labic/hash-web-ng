@@ -14,15 +14,16 @@
   width: auto;
   height: auto;
   position: fixed;
-  background: #2B3044;
   z-index: 100;
-  left: calc(50% - 160px);
+  left: calc(50% + 60px);
 }
 
 #menu_tematica_instagram{
   float: left;
   width: auto;
   padding: 20px;
+  margin-left: -50%;
+  background: #2B3044;
 }
 
 .fade_white{
