@@ -1624,15 +1624,15 @@
   margin-top:15px;
   width: auto;
   height: auto;
-  float:left;
-  margin-left: 50%;
+  float:right;
+  margin-right: 50%;
 }
 
 .period-filter__single-div{
   width: auto;
   height: auto;
-  float: left;
-  margin-left: -50%;
+  float: right;
+  margin-right: -50%;
 }
 
 .period-filter__single-option input[type="radio"] {
