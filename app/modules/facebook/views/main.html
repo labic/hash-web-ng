@@ -2,19 +2,19 @@
 
   <div id="div1_monitor" class="str_division">
 
-<!--    <fb-themes-filter options="options.main_tags" filter="filter.tema"></fb-themes-filter>-->
+    <!--    <fb-themes-filter options="options.main_tags" filter="filter.tema"></fb-themes-filter>-->
 
-<!--
-    <div id="facebook-menu-choice">
-      <button id="facebook-choice-button1" class="facebook-choice-button selected" ng-click="filter.type = 'publicacao'; " ui-sref="facebook.posts">
-        <img src="img/facebook/COMEN%20E%20PUBLIC-02.svg" class="svg-icon facebook-choice-button-image">
-        <p>PUBLICAÇÕES</p>
-      </button>
-      <button id="facebook-choice-button2" class="facebook-choice-button " ng-click="filter.type = 'comentario';" ui-sref="facebook.posts">
-        <img src="img/facebook/COMEN%20E%20PUBLIC-01.svg" class="svg-icon facebook-choice-button-image">
-        <p>COMENTARIOS</p>
-      </button>
-    </div>
+    <!--
+<div id="facebook-menu-choice">
+<button id="facebook-choice-button1" class="facebook-choice-button selected" ng-click="filter.type = 'publicacao'; " ui-sref="facebook.posts">
+<img src="img/facebook/COMEN%20E%20PUBLIC-02.svg" class="svg-icon facebook-choice-button-image">
+<p>PUBLICAÇÕES</p>
+</button>
+<button id="facebook-choice-button2" class="facebook-choice-button " ng-click="filter.type = 'comentario';" ui-sref="facebook.posts">
+<img src="img/facebook/COMEN%20E%20PUBLIC-01.svg" class="svg-icon facebook-choice-button-image">
+<p>COMENTARIOS</p>
+</button>
+</div>
 -->
 
     <fb-actors-filter options="options.actors" filter="filter.actor"></fb-actors-filter>
@@ -27,32 +27,18 @@
   </div>
 
   <div id="div2_monitor" class="str_division">
+
     <div class="title_str">
       <ul class="title_str_menu_icon">
-        <a ui-sref="facebook.posts">
-          <li class="select_title_division2 firstOpCont">
-            <span ng-show="!selectComentario">
-              <img src='img/facebook/iconesface-02.svg' class="svg-icon icon_menu_top" alt="image">
-            </span>
-            <span ng-show="selectComentario">
-              <img src='img/facebook/iconesface-01.svg' class="svg-icon icon_menu_top" alt="image">
-            </span>
-          </li>
-        </a>
-        <a ui-sref="facebook.postsImage">
-          <li class="select_title_division2">
-            <span ng-show="!selectComentario" >
-              <img src='img/icons/IMAGENS.png' class="icon_menu_top " alt="image">
-            </span>
-          </li>
-        </a>
-        <a ui-sref="facebook.postsMosaico" ng-show="!selectComentario">
-          <li id="select_imgMosaico" class="select_title_division2" ng-click="filter.time = '7d'">
-            <span ng-show="!selectComentario">
-              <img src='img/icons/Mosaico.png' class="icon_menu_top" alt="image">
-            </span>
-          </li>
-        </a>
+        <li ui-sref="painel.tweet" class="select_title_division2 firstOpCont">
+          <img src='img/twitter/ICONES-09.svg'>
+        </li>
+        <li ui-sref="painel.img" class="select_title_division2">
+          <img src='img/twitter/ICONES-11.svg' class="icon_menu_top" alt="image">
+        </li>
+        <li ui-sref="painel.mosaico" id="select_imgMosaico" class="select_title_division2" ng-click="filter.time = '7d'">
+          <img src='img/icons/Mosaico.png' class="icon_menu_top" alt="image">
+        </li>
       </ul>
     </div>
 
@@ -74,6 +60,11 @@
     });
 
     /* Standard */
+    /* menu centralizado com width variavel division2 */
+    
+    var menuIconWidth = $(".title_str_menu_icon").width();
+    var resultMenuIconWidth = menuIconWidth/2;
+    $(".title_str_menu_icon").css( "margin-left", "calc(50% - "+resultMenuIconWidth+"px" );
 
     /* Custom */
 
