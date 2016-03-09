@@ -86,7 +86,7 @@ hash.controller('mainPalavras', function ($scope, $http, WORD_API_BASE_URI) {
   $scope.sunburstOFF = false;
 
   $scope.filter = {
-    tema: 'tema-negros',
+    tema: 'categoria-midia',
     time: '30m',
     word: ''
   };
