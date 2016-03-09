@@ -1,4 +1,5 @@
 <form class="period-filter__single-option">
+  <div class="period-filter__single-div">
   <span ng-repeat="option in options">
     <input id="period-option-{{$index}}"
       type="radio"
@@ -8,4 +9,5 @@
       value="{{option.value}}" />
     <label for="period-option-{{$index}}">{{option.title}}</label>
   </span>
+    </div>
 </form>

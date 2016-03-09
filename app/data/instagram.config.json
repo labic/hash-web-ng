@@ -6,15 +6,15 @@
       "children": []
     },{
       "title": "Institucional",
-      "tag": "categoria-instituicao",
+      "tag": "categoria-institucional",
       "children": []
     },{
       "title": "Educação",
-      "tag": "categoria-humor",
+      "tag": "categoria-educacional",
       "children": []
     },{
       "title": "Humor",
-      "tag": "categoria-educacao",
+      "tag": "categoria-humor",
       "children": []
     }
   ],
