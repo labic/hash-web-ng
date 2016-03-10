@@ -11,7 +11,7 @@ var hash = angular.module('hash', [
   'hash.statistics',
   'infinite-scroll'
 ])
-.constant("HASH_API_BASE_URI", "https://sdh-hash-api-dev.herokuapp.com/v2")
+.constant("HASH_API_BASE_URI", "https://inep-enem-2016-api-dev.herokuapp.com/v2")
 .constant("WORD_API_BASE_URI", "http://188.166.40.27:8081");
 
 /* Inicializando tempo de milisegundos */
