@@ -35,29 +35,47 @@
     "Processing.js": "processing#~1.4.16",
     "swipebox": "~1.4.1",
     "twentytwenty": "*",
-    "underscore": "~1.8.3"
+    "underscore": "~1.8.3",
+    "angular-google-maps": "^2.3.2",
+    "lodash": "^4.6.1"
   },
   "overrides": {
     "angular": {
-      "main": ["angular.min.js"]
+      "main": [
+        "angular.min.js"
+      ]
     },
     "angular-bootstrap": {
-      "main": ["ui-bootstrap-tpls.min.js", "ui-bootstrap.min.js"]
+      "main": [
+        "ui-bootstrap-tpls.min.js",
+        "ui-bootstrap.min.js"
+      ]
     },
     "angular-fx": {
-      "main": ["dist/angular-fx.min.js", "dist/angular-fx.min.css"]
+      "main": [
+        "dist/angular-fx.min.js",
+        "dist/angular-fx.min.css"
+      ]
     },
     "angular-resource": {
-      "main": ["angular-resource.min.js"]
+      "main": [
+        "angular-resource.min.js"
+      ]
     },
     "angular-route": {
-      "main": ["angular-route.min.js"]
+      "main": [
+        "angular-route.min.js"
+      ]
     },
     "angular-ui-router": {
-      "main": ["release/angular-ui-router.min.js"]
+      "main": [
+        "release/angular-ui-router.min.js"
+      ]
     },
     "animate.css": {
-      "main": ["animate.min.css"]
+      "main": [
+        "animate.min.css"
+      ]
     },
     "bootstrap": {
       "main": [
@@ -71,10 +89,14 @@
       ]
     },
     "Chart.js": {
-      "main": ["Chart.min.js"]
+      "main": [
+        "Chart.min.js"
+      ]
     },
     "checklist-model": {
-      "main": ["checklist-model.js"]
+      "main": [
+        "checklist-model.js"
+      ]
     },
     "components-font-awesome": {
       "main": [
@@ -87,28 +109,45 @@
       ]
     },
     "d3": {
-      "main": ["d3.min.js"]
+      "main": [
+        "d3.min.js"
+      ]
     },
     "d3-cloud": {
-      "main": ["build/d3.layout.cloud.js"]
+      "main": [
+        "build/d3.layout.cloud.js"
+      ]
     },
     "highcharts-ng": {
-      "main": ["dist/highcharts-ng.min.js"]
+      "main": [
+        "dist/highcharts-ng.min.js"
+      ]
     },
     "jquery": {
-      "main": ["dist/jquery.min.js"]
+      "main": [
+        "dist/jquery.min.js"
+      ]
     },
     "jquery-migrate": {
-      "main": ["jquery-migrate.min.js"]
+      "main": [
+        "jquery-migrate.min.js"
+      ]
     },
     "ngInfiniteScroll": {
-      "main": ["build/ng-infinite-scroll.min.js"]
+      "main": [
+        "build/ng-infinite-scroll.min.js"
+      ]
     },
     "Processing.js": {
-      "main": ["processing.min.js"]
+      "main": [
+        "processing.min.js"
+      ]
     },
     "swipebox": {
-      "main": ["src/js/processing.min.js", "src/css/swipebox.min.css"]
+      "main": [
+        "src/js/processing.min.js",
+        "src/css/swipebox.min.css"
+      ]
     },
     "twentytwenty": {
       "main": [
@@ -118,7 +157,9 @@
       ]
     },
     "underscore": {
-      "main": ["underscore-min.js"]
+      "main": [
+        "underscore-min.js"
+      ]
     }
   }
 }

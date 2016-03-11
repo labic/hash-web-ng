@@ -21,6 +21,7 @@
     width: 100%;
     height: 100%;
     font-family: 'Open Sans', sans-serif;
+    /*padding-left: 60px;*/
     font-weight: 300;
     background:#fff;
     overflow-x:hidden;
@@ -69,8 +70,7 @@
     background-color: #2b3044;
     z-index: 7;
     box-shadow: 3px 0px 3px 0px rgba(0, 0, 0, 0.47);
-    position: relative;
-    float: left;
+    position: absolute;
   }
 
     .menu_logo{
@@ -1662,4 +1662,8 @@
 
 .words-module .menu__main-tags {
   border-bottom: 0;
+}
+
+body > div.ng-scope {
+  margin-left: 60px;
 }

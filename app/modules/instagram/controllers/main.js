@@ -1,164 +1,69 @@
-hash.controller('mainInstagram', function ($scope, $http, WORD_API_BASE_URI) {
-
+hash.controller('mainInstagram', function ($scope, $http, InstagramMedia, CONFIG) {
   $http.get('/data/instagram.config.json').then(function(res) {
     $scope.options = res.data;
   });
 
   $scope.filter = {
     tema: 'categoria-midia',
-    time: 'recent',
+    period: 'recent',
   };
 
+  $scope.config = {
+    map: {
+      center: { latitude: -13.32156, longitude: -53.8852 },
+      zoom: 4,
+      options: {}
+    }
+  };
+
+  $scope.mediasGeolocation = [];
+  $scope.mediasImages = [];
+
   $scope.$watch('filter', function (newFilter, oldFilter) {
-    $(".loading_instagram").show();
-    $(".fade_white").show();
+    // Populate the map
+    InstagramMedia.find({
+      'period': $scope.filter.period,
+      'tags': [newFilter.tema],
+      'geo': true,
+      'page': 1,
+      'per_page': 100
+    }, function(medias) {
+      var makers = [];
 
-    var url = WORD_API_BASE_URI+"/instagram/media?page=1&per_page=100&period=recent&geo=true&tags[]="+newFilter.tema+"";
-    startMap(url,"instagram_map");
+      for (var i = 0; i < medias.length; i++) {
+        var maker = {
+          id: i,
+          latitude: medias[i].data.location.latitude,
+          longitude: medias[i].data.location.longitude
+        }
+        if (medias[i].data.caption)
+          maker.title = medias[i].data.caption.text
 
-    var url1 = WORD_API_BASE_URI+"/instagram/media?page=1&per_page=100&period=recent&tags[]="+newFilter.tema+"";
-    startImageCloud(url1,"instagram_cloudImage",$("#instagram_cloudImage").width());
+        makers.push(maker);
+      }
+
+      $scope.mediasGeolocation = makers;
+    });
+
+    // Populate the mosaic
+    InstagramMedia.find({
+      'period': $scope.filter.period,
+      'tags': [newFilter.tema],
+      'page': 1,
+      'per_page': 100
+    }, function(medias) {
+      medias = _.sortBy(medias, ['data.created_time']);
+      var images = [];
+
+      for (var i = 0; i < medias.length; i++) {
+        images.push({
+          link: medias[i].data.link,
+          src: medias[i].data.images.standard_resolution.url
+        });
+      }
+
+      $scope.mediasImages = images;
+    });
   },true);
-
-  var info;
-  var map;
-  var atualInfoWindow = null;
-
-  var width;
-  var increment;
-
-  function startMap(url, divID){
-
-    d3.json(url,function(err,json){
-      if(err){console.log(err)}
-      initialize(json,divID);
-
-      $("#loading_mapa").hide();
-    });
-  }
-
-  function initialize(result, divID) {
-    var mapProp = {
-      center:new google.maps.LatLng(-13.72156,-28.8852),
-      zoom:4,
-      mapTypeId:google.maps.MapTypeId.ROADMAP
-    };
-
-    map = new google.maps.Map(document.getElementById(divID),mapProp);
-
-    var markers = [];
-
-    count = 0;
-    for(i in result){
-      markers[count] = getMarkers(result[i].data, i);
-      markers[count].setMap(map);
-      markers[count].addListener('click', function(){
-        showInfo(result[this._id].data);
-      });
-      count++;
-    }
-  }
-
-  function showInfo(data){
-    if(atualInfoWindow != null) atualInfoWindow.close();
-
-    img = "<img class=\"instagram-preview-image\" src=\"" + data.images.low_resolution.url + "\"></img>";
-    info = new google.maps.InfoWindow({
-      content: img + "<br/><p class=\"instagram-preview-text\" style=\"word-wrap:break-word;\">Legenda: " + data.caption.text + "</p>",
-      position: new google.maps.LatLng(data.location.latitude,data.location.longitude),
-      maxWidth:300
-    });
-    atualInfoWindow = info;
-    info.setMap(map);
-  }
-
-  function getMarkers(data, indice){
-    return new google.maps.Marker({
-      position: new google.maps.LatLng(data.location.latitude,data.location.longitude),
-      _id: indice,
-    });
-  }
-
-  /*IMAGECLOUD*/
-  function startImageCloud(url,divID,width){
-    d3.json(url,function(err,json){
-      d3.select("#instagram_cloudImage").select('svg').remove();
-      json.sort(function(a,b){return (parseInt(b.data.created_time) - parseInt(a.data.created_time));});
-      runImageCloud(json,divID,width);
-      $("#loading_fotos").hide();
-      $(".fade_white").hide();
-    });
-  }
-
-  function runImageCloud(json, divID, w){
-
-    var y;
-    var n;
-    var counter;
-    var thumbnail_width;
-    width = w;
-
-    reset();
-
-    increment = 3;
-
-    var svg = d3.select("#" + divID).append("svg")
-    .attr("width", width)
-    .attr("height", width);
-    //.append("g");
-
-    var images = svg.selectAll("a")
-    .data(json).enter()
-    .append("a")
-    .attr("xlink:href",function(d){return d.data.link;})
-    .attr("target","_blank")
-    .append("image")
-    .attr("xlink:href",function(d){return d.data.images.standard_resolution.url})
-    .attr("x",function(d,i){if(i==0){reset()}; return calcX();})
-    .attr("width",function(d,i){if(i==0){reset()}; return calcWidth()+ "px";})
-    .attr("height",function(d,i){if(i==0){reset()}; return calcWidth()+ "px";})
-    .attr("y",function(d,i){if(i==0){reset()}; return calcY();});
-  }
-
-  function reset(){
-    y = 0;
-    n = 5;
-    counter = 0;
-    thumbnail_width = parseInt(width/n);
-  }
-
-  function calcX(){
-    r = thumbnail_width * counter;
-    counter++;
-    if (counter == n){
-      counter = 0;
-      n = n + increment;
-      thumbnail_width = parseInt(width/n);
-    }
-    return r;
-  }
-
-  function calcWidth(){
-    r = thumbnail_width;
-    counter++;
-    if (counter == n){
-      counter = 0;
-      n = n + increment;
-      thumbnail_width = parseInt(width/n);
-    }
-    return r;
-  }
-
-  function calcY(){
-    counter++;
-    var r = y;
-    if (counter == n){
-      counter = 0;
-      n = n + increment;
-      y = y + thumbnail_width;
-      thumbnail_width = parseInt(width/n);
-    }
-    return r;
-  }
 
 });
