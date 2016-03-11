@@ -11,8 +11,12 @@ var hash = angular.module('hash', [
   'hash.statistics',
   'infinite-scroll'
 ])
-.constant("HASH_API_BASE_URI", "https://inep-enem-2016-api-dev.herokuapp.com/v2")
-.constant("WORD_API_BASE_URI", "http://188.166.40.27:8081");
+.constant('HASH_API_BASE_URI', 'https://inep-enem-2016-api-dev.herokuapp.com/v2')
+.constant('WORD_API_BASE_URI', 'http://188.166.40.27:8081')
+.constant('CONFIG', {
+  'HASH_API_URL': 'https://inep-enem-2016-api-dev.herokuapp.com/v2',
+  'INSTAGRAM_API_URL': 'http://188.166.40.27:8081',
+});
 
 /* Inicializando tempo de milisegundos */
 var nowState = new Date();
