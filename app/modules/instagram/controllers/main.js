@@ -1,19 +1,16 @@
-hash.controller('mainInstagram', function ($scope, $http, InstagramMedia, CONFIG) {
-  $http.get('/data/instagram.config.json').then(function(res) {
-    $scope.options = res.data;
-  });
-
-  $scope.filter = {
-    tema: 'categoria-midia',
-    period: 'recent',
-  };
-
+hash.controller('mainInstagram', function ($scope, settings, InstagramMedia) {
   $scope.config = {
+    filter: settings.get('instagram.filters'),
     map: {
       center: { latitude: -13.32156, longitude: -53.8852 },
       zoom: 4,
       options: {}
     }
+  };
+
+  $scope.filter = {
+    tags: 'categoria-midia',
+    period: 'recent',
   };
 
   $scope.mediasGeolocation = [];
