@@ -2,11 +2,11 @@
 
   <div id="div1_monitor" class="str_division">
 
-    <themes-filter options="options.main_tags" filter="filter.themes"></themes-filter>
+    <themes-filter options="config.filter.main" filter="filter.themes"></themes-filter>
 
     <aside id="str_menu_map" ui-view="map"></aside>
 
-    <period-filter type="single-option" options="options.period.values" filter="filter.time"></period-filter>
+    <period-filter options="config.filter.period.values" filter="filter.time"></period-filter>
 
     <div id="str_display_tweet">
       <div class="display_tweet">

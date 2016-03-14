@@ -2,10 +2,11 @@
 
 /* NOTA: MONITOR - CONTROLLER */
 hash
-.controller('mainMonitor', function ($scope, $http, MetricsTwitter, AnalyticsTwitter, WordTwitter, Tweet, WORD_API_BASE_URI) {
-  $http.get('/data/twitter.config.json').then(function(res) {
-    $scope.options = res.data;
-  });
+.controller('mainMonitor', function ($scope, $http, settings, MetricsTwitter, AnalyticsTwitter, WordTwitter, Tweet, WORD_API_BASE_URI) {
+  $scope.config = {
+    filter: settings.get('twitter.filters')
+  };
+
   // variavel para inicializar o watch, quando esta falso executa um if com a inicialização da tela;
   var firstRun = false;
   // variavel Turn que falará em qual filtro está a página.
@@ -264,9 +265,8 @@ hash
       console.log(status);
     });
 
-    $http.get("data/conteudos.json").success(function (data) {
-      $scope.conteudos = data[$scope.filter.themes];
-    });
+    // TODO: refactor
+    $scope.conteudos =  _.find($scope.config.filter.main, {tag: $scope.filter.themes}).children;
   };
 
   function getColors(vetor, corA, corB){
@@ -525,7 +525,7 @@ hash
 
   // filtro para preencher post de requisição API RPS
   $scope.filter = {
-    themes: "tema-negros",
+    themes: $scope.config.filter.main[0].tag,
     time: "7d",
     categoria: null,
     word: null,
@@ -537,9 +537,7 @@ hash
         paginationImages: 1,
         paginationTag: 1
       },
-      analyticsWord:{
-
-      }
+      analyticsWord: {}
     }
   };
 
