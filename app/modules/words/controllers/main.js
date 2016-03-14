@@ -1,7 +1,13 @@
-hash.controller('mainPalavras', function ($scope, $http, WORD_API_BASE_URI) {
-  $http.get('/data/words.config.json').then(function(res) {
-    $scope.options = res.data;
-  });
+hash.controller('mainPalavras', function ($scope, $http, settings, WORD_API_BASE_URI) {
+  $scope.config = {
+    filter: settings.get('words.filters')
+  };
+
+  $scope.filter = {
+    tema: $scope.config.filter.main[0].tag,
+    time: '30m',
+    word: ''
+  };
 
   var serviceMandala = 'http://mandala-api.ddns.net:7070';
 
@@ -84,12 +90,6 @@ hash.controller('mainPalavras', function ($scope, $http, WORD_API_BASE_URI) {
   /* Variaveis globais dos parametros da requisição */
   $scope.sunburstON = true;
   $scope.sunburstOFF = false;
-
-  $scope.filter = {
-    tema: 'categoria-midia',
-    time: '30m',
-    word: ''
-  };
 
   $scope.cleanSunburst = function(){
     d3.select("#palavras_div2_sunburstZoom").select('svg').remove();
