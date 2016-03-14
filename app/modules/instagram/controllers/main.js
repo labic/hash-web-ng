@@ -20,7 +20,7 @@ hash.controller('mainInstagram', function ($scope, settings, InstagramMedia) {
     // Populate the map
     InstagramMedia.find({
       'period': $scope.filter.period,
-      'tags': [newFilter.themes],
+      'tags[]': [newFilter.themes],
       'geo': true,
       'page': 1,
       'per_page': 100
@@ -45,7 +45,7 @@ hash.controller('mainInstagram', function ($scope, settings, InstagramMedia) {
     // Populate the mosaic
     InstagramMedia.find({
       'period': $scope.filter.period,
-      'tags': [newFilter.themes],
+      'tags[]': [newFilter.themes],
       'page': 1,
       'per_page': 100
     }, function(medias) {

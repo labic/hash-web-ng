@@ -27,7 +27,8 @@
                   x = 0,
                   y = 0;
 
-              d3.select($svg[0]).selectAll('a')
+              reset();
+              d3.select($svg[0]).selectAll('a').remove()
                 .data(scope.images)
                 .enter()
                 .append('a')
