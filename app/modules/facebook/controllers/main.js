@@ -1,15 +1,15 @@
-hash.controller('mainFacebook', function ($scope, $http, MetricsFacebook, AnalyticsFacebook, WordFacebook) {
-  $http.get('/data/facebook.config.json').then(function(res) {
-    $scope.options = res.data;
-  });
+hash.controller('mainFacebook', function ($scope, $http, settings, MetricsFacebook, AnalyticsFacebook, WordFacebook) {
+  $scope.config = {
+    filter: settings.get('facebook.filters')
+  };
 
   $scope.filter = {
-    tema: 'tema-negros',
+    tema: $scope.config.filter.main[0].tag,
     time: '7d',
     word: '',
     profileType: 'page',
     type: 'publicacoes',
-    actor: 'ator-imprensa',
+    actor: $scope.config.filter.actors[0].tag,
     categoria: null,
     categorieNumber: 0,
     page: 1,
@@ -47,7 +47,9 @@ hash.controller('mainFacebook', function ($scope, $http, MetricsFacebook, Analyt
       WordFacebook.topWordsComments(
         {
           'period': newFilter.time,
-          'tags[]': [newFilter.tema,newFilter.actor],
+          // TODO: BUG
+          // 'tags[]': [newFilter.tema, newFilter.actor],
+          'tags[]': [newFilter.actor],
           'page': 1,
           'per_page': 10
         },
@@ -65,7 +67,9 @@ hash.controller('mainFacebook', function ($scope, $http, MetricsFacebook, Analyt
         AnalyticsFacebook.mostLikedComments(
           {
             'period': newFilter.time,
-            'filter[with_tags]': [newFilter.tema,newFilter.actor],
+            // 'filter[with_tags]': [newFilter.tema,newFilter.actor],
+            // TODO: BUG
+            'filter[with_tags]': [newFilter.actor],
             'page': 1,
             'per_page': 25
           },
@@ -91,7 +95,9 @@ hash.controller('mainFacebook', function ($scope, $http, MetricsFacebook, Analyt
         WordFacebook.postsComments(
           {
             period: newFilter.time,
-            'tags[]': [newFilter.tema,newFilter.actor],
+            // 'filter[with_tags]': [newFilter.tema,newFilter.actor],
+            // TODO: BUG
+            'filter[with_tags]': [newFilter.actor],
             'word': newFilter.word,
             'page': 1,
             'per_page': 25
@@ -118,7 +124,9 @@ hash.controller('mainFacebook', function ($scope, $http, MetricsFacebook, Analyt
         AnalyticsFacebook.mostLikedComments(
           {
             'period': newFilter.time,
-            'filter[with_tags]': [newFilter.tema,newFilter.actor,newFilter.categoria],
+            // 'filter[with_tags]': [newFilter.tema,newFilter.actor,newFilter.categoria],
+            // TODO: BUG
+            'filter[with_tags]': [newFilter.actor],
             'page': 1,
             'per_page': 25
           },
@@ -144,7 +152,9 @@ hash.controller('mainFacebook', function ($scope, $http, MetricsFacebook, Analyt
           AnalyticsFacebook.mostLikedComments(
             {
               'period': newFilter.time,
-              'filter[with_tags]': [newFilter.tema,newFilter.actor],
+              // 'filter[with_tags]': [newFilter.tema,newFilter.actor],
+              // TODO: BUG
+              'filter[with_tags]': [newFilter.actor],
               'page': 1,
               'per_page': 25
             },
@@ -165,7 +175,8 @@ hash.controller('mainFacebook', function ($scope, $http, MetricsFacebook, Analyt
           WordFacebook.postsComments(
             {
               period: newFilter.time,
-              'tags[]': [newFilter.tema,newFilter.actor],
+              // 'tags[]': [newFilter.tema,newFilter.actor],
+              'tags[]': [newFilter.actor],
               'word': newFilter.word,
               'page': 1,
               'per_page': 25
@@ -187,7 +198,8 @@ hash.controller('mainFacebook', function ($scope, $http, MetricsFacebook, Analyt
           AnalyticsFacebook.mostLikedComments(
             {
               'period': newFilter.time,
-              'filter[with_tags]': [newFilter.tema,newFilter.actor,newFilter.categoria],
+              // 'filter[with_tags]': [newFilter.tema,newFilter.actor,newFilter.categoria],
+              'filter[with_tags]': [newFilter.actor],
               'page': 1,
               'per_page': 25
             },
@@ -210,7 +222,8 @@ hash.controller('mainFacebook', function ($scope, $http, MetricsFacebook, Analyt
           AnalyticsFacebook.mostLikedComments(
             {
               'period': newFilter.time,
-              'filter[with_tags]': [newFilter.tema,newFilter.actor],
+              // 'filter[with_tags]': [newFilter.tema,newFilter.actor],
+              'filter[with_tags]': [newFilter.actor],
               'page': 1,
               'per_page': newFilter.per_page
             },
@@ -253,7 +266,8 @@ hash.controller('mainFacebook', function ($scope, $http, MetricsFacebook, Analyt
           AnalyticsFacebook.mostLikedComments(
             {
               'period': newFilter.time,
-              'filter[with_tags]': [newFilter.tema,newFilter.actor,newFilter.categoria],
+              // 'filter[with_tags]': [newFilter.tema,newFilter.actor,newFilter.categoria],
+              'filter[with_tags]': [newFilter.actor],
               'page': 1,
               'per_page': newFilter.per_page
             },
@@ -280,7 +294,8 @@ hash.controller('mainFacebook', function ($scope, $http, MetricsFacebook, Analyt
       WordFacebook.topWords(
         {
           'period': newFilter.time,
-          'tags[]': [newFilter.tema,newFilter.actor],
+          // 'tags[]': [newFilter.tema,newFilter.actor],
+          'tags[]': [newFilter.actor],
           'page': 1,
           'per_page': 10
         },
@@ -299,7 +314,8 @@ hash.controller('mainFacebook', function ($scope, $http, MetricsFacebook, Analyt
           {
             'period': newFilter.time,
             'profile_type': newFilter.profileType,
-            'filter[with_tags]': [newFilter.tema,newFilter.actor],
+            // 'filter[with_tags]': [newFilter.tema,newFilter.actor],
+            'filter[with_tags]': [newFilter.actor],
             'page': 1,
             'per_page': 25
           },
@@ -312,7 +328,8 @@ hash.controller('mainFacebook', function ($scope, $http, MetricsFacebook, Analyt
             {
               'period': newFilter.time,
               'profile_type': newFilter.profileType,
-              'filter[with_tags]': [newFilter.tema,newFilter.actor],
+              // 'filter[with_tags]': [newFilter.tema,newFilter.actor],
+              'filter[with_tags]': [newFilter.actor],
               'page': x,
               'per_page': 100
             },
@@ -370,7 +387,8 @@ hash.controller('mainFacebook', function ($scope, $http, MetricsFacebook, Analyt
           {
             'period': newFilter.time,
             'profile_type': newFilter.profileType,
-            'filter[with_tags]': [newFilter.tema,newFilter.actor,newFilter.categoria],
+            // 'filter[with_tags]': [newFilter.tema,newFilter.actor,newFilter.categoria],
+            'filter[with_tags]': [newFilter.actor],
             'page': 1,
             'per_page': 25
           },
@@ -383,7 +401,8 @@ hash.controller('mainFacebook', function ($scope, $http, MetricsFacebook, Analyt
             {
               'period': newFilter.time,
               'profile_type': newFilter.profileType,
-              'filter[with_tags]': [newFilter.tema,newFilter.actor,newFilter.categoria],
+              // 'filter[with_tags]': [newFilter.tema,newFilter.actor,newFilter.categoria],
+              'filter[with_tags]': [newFilter.actor],
               'page': x,
               'per_page': 100
             },
@@ -410,7 +429,8 @@ hash.controller('mainFacebook', function ($scope, $http, MetricsFacebook, Analyt
             {
               'period': newFilter.time,
               'profile_type': newFilter.profileType,
-              'filter[with_tags]': [newFilter.tema,newFilter.actor],
+              // 'filter[with_tags]': [newFilter.tema,newFilter.actor],
+              'filter[with_tags]': [newFilter.actor],
               'page': 1,
               'per_page': 25
             },
@@ -423,7 +443,8 @@ hash.controller('mainFacebook', function ($scope, $http, MetricsFacebook, Analyt
               {
                 'period': newFilter.time,
                 'profile_type': newFilter.profileType,
-                'filter[with_tags]': [newFilter.tema,newFilter.actor],
+                // 'filter[with_tags]': [newFilter.tema,newFilter.actor],
+                'filter[with_tags]': [newFilter.actor],
                 'page': x,
                 'per_page': 100
               },
@@ -471,7 +492,8 @@ hash.controller('mainFacebook', function ($scope, $http, MetricsFacebook, Analyt
             {
               'period': newFilter.time,
               'profile_type': newFilter.profileType,
-              'filter[with_tags]': [newFilter.tema,newFilter.actor,newFilter.categoria],
+              // 'filter[with_tags]': [newFilter.tema,newFilter.actor,newFilter.categoria],
+              'filter[with_tags]': [newFilter.actor],
               'page': 1,
               'per_page': 25
             },
@@ -484,7 +506,8 @@ hash.controller('mainFacebook', function ($scope, $http, MetricsFacebook, Analyt
               {
                 'period': newFilter.time,
                 'profile_type': newFilter.profileType,
-                'filter[with_tags]': [newFilter.tema,newFilter.actor,newFilter.categoria],
+                // 'filter[with_tags]': [newFilter.tema,newFilter.actor,newFilter.categoria],
+                'filter[with_tags]': [newFilter.actor],
                 'page': x,
                 'per_page': 100
               },
@@ -508,7 +531,8 @@ hash.controller('mainFacebook', function ($scope, $http, MetricsFacebook, Analyt
             {
               'period': newFilter.time,
               'profile_type': newFilter.profileType,
-              'filter[with_tags]': [newFilter.tema,newFilter.actor],
+              // 'filter[with_tags]': [newFilter.tema,newFilter.actor],
+              'filter[with_tags]': [newFilter.actor],
               'page': newFilter.page,
               'per_page': 25
             },
@@ -552,7 +576,8 @@ hash.controller('mainFacebook', function ($scope, $http, MetricsFacebook, Analyt
             {
               'period': newFilter.time,
               'profile_type': newFilter.profileType,
-              'filter[with_tags]': [newFilter.tema,newFilter.actor,newFilter.categoria],
+              // 'filter[with_tags]': [newFilter.tema,newFilter.actor,newFilter.categoria],
+              'filter[with_tags]': [newFilter.actor],
               'page': newFilter.page,
               'per_page': 25
             },

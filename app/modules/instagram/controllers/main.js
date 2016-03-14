@@ -9,7 +9,7 @@ hash.controller('mainInstagram', function ($scope, settings, InstagramMedia) {
   };
 
   $scope.filter = {
-    tags: 'categoria-midia',
+    tags: $scope.config.filter.main[0].tag,
     period: 'recent',
   };
 

@@ -16,9 +16,6 @@ var hash = angular.module('hash', [
 .constant('CONFIG', {
   'HASH_API_URL': 'https://inep-enem-2016-api-dev.herokuapp.com/v2',
   'INSTAGRAM_API_URL': 'http://188.166.40.27:8081',
-})
-.run(function (settings) {
-  settings.setFromFile('instagram.filters', '/data/instagram.config.json');
 });
 
 /* Inicializando tempo de milisegundos */

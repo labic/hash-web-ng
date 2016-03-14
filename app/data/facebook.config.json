@@ -1,17 +1,20 @@
 {
-  "main_tags": [
+  "main": [
     {
-      "title": "Negros",
-      "tag": "tema-negros"
+      "title": "Hits",
+      "tag": ""
     },{
-      "title": "LGBT",
-      "tag": "tema-lgbt"
+      "title": "Educacional",
+      "tag": "categoria-educacional"
     },{
-      "title": "Indigena",
-      "tag": "tema-indigena"
+      "title": "Institucional",
+      "tag": "categoria-institucional"
     },{
-      "title": "Mulher",
-      "tag": "tema-genero"
+      "title": "Humor",
+      "tag": "categoria-humor"
+    },{
+      "title": "Mídia",
+      "tag": "categoria-midia"
     }
   ],
   "actors": [{
