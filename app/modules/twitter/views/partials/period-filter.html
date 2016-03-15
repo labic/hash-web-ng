@@ -7,7 +7,10 @@
       ng-model="filter"
       ng-click="setFilter($event)"
       value="{{option.value}}" />
-    <label for="period-option-{{$index}}">{{option.title}}</label>
+    <label for="period-option-{{$index}}">
+      <p>{{option.number}}</p>
+      <p>{{option.time}}</p>
+    </label>
   </span>
     </div>
 </form>

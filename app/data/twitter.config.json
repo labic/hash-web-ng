@@ -149,6 +149,7 @@
   "period": {
     "type": "single-option",
     "values": [
+
       {
         "title": "1 Hora",
         "value": "1h"

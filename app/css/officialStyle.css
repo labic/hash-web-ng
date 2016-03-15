@@ -1649,16 +1649,18 @@
   padding-top: 10px; 
 }
 
-.period-filter__single-option label p:first-child{
-  font-size:12px; 
+.period-filter__single-option label p{
   text-align: center;
   font-weight: bold;
 }
 
+.period-filter__single-option label p:first-child{
+  font-size:12px; 
+}
+
 .period-filter__single-option label p:last-child{
   font-size:10px; 
-  text-align: center;
-  font-weight: bold;
+  text-transform: uppercase;
 }
 
 
