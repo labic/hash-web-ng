@@ -7,13 +7,13 @@
     "zoaldyck <roberto_dmoraes@hotmail.com>"
   ],
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js",
+    "postinstall": "bower install"
   },
-  "repository": {
-    "type": "git",
-    "url": "git@bitbucket.org:labic/hash-web.git"
+  "dependencies": {
+    "express": "^4.13.4"
   },
-  "license": "MIT",
   "devDependencies": {
     "browser-sync": "^2.11.1",
     "gulp-bower": "0.0.13",
@@ -23,5 +23,10 @@
   "engines": {
     "node": "0.12.x",
     "npm": "3.3.x"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@bitbucket.org:labic/hash-web.git"
+  },
+  "license": "MIT"
 }
