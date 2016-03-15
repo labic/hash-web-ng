@@ -15,7 +15,7 @@
         }]
     },{
       "title": "Público Geral",
-      "tag": "",
+      "tag": "usuario-geral",
       "children": [{
           "title": "Conteúdo Pedagógico",
           "tag": "categoria-conteudo",
