@@ -38,10 +38,12 @@
     "type": "single-option",
     "values": [
       {
-        "title": "7 Dias",
+        "number": "7",
+        "time": "Dias",
         "value": "7d"
       },{
-        "title": "15 Dias",
+        "number": "15",
+        "time": "Dias",
         "value": "15d"
       }
     ]

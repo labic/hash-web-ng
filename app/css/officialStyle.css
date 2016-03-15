@@ -1627,6 +1627,10 @@
   float:right;
 }
 
+.twitter .period-filter__single-option {
+  margin-right: 18%;
+}
+
 .period-filter__single-div{
   width: auto;
   height: auto;
@@ -1646,7 +1650,7 @@
   border: 1px solid #fff;
   cursor: pointer;
   color: #1dbfd8;
-  padding-top: 10px; 
+  padding-top: 10px;
 }
 
 .period-filter__single-option label p{
@@ -1655,11 +1659,11 @@
 }
 
 .period-filter__single-option label p:first-child{
-  font-size:12px; 
+  font-size:12px;
 }
 
 .period-filter__single-option label p:last-child{
-  font-size:10px; 
+  font-size:10px;
   text-transform: uppercase;
 }
 
