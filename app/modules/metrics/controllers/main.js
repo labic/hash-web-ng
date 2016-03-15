@@ -1,4 +1,4 @@
-hash.controller('mainRelatorio', function ($scope, $http, MetricsFacebook, MetricsTwitter, Tweet, FacebookPosts, InstagramMedia, MetricsInstagram) {
+hash.controller('mainMetrics', function ($scope, $http, MetricsFacebook, MetricsTwitter, Tweet, FacebookPosts, InstagramMedia, MetricsInstagram) {
 
   var colorMap = {"indigena":"#c7144f","genero":"#426083","negros":"#f7931e","lgbt":"#8c6239"};
 

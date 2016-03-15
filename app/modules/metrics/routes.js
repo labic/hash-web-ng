@@ -1,13 +1,13 @@
 (function () {
   'use strict';
   angular
-    .module('hash.words')
+    .module('hash.metrics')
     .config(function ($stateProvider) {
       $stateProvider
         .state('relatorio', {
           url: '/relatorio',
           views: {
-            '': { templateUrl: 'modules/statistics/views/main.html' }
+            '': { templateUrl: 'modules/metrics/views/main.html' }
           }
         });
     });

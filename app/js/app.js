@@ -8,7 +8,7 @@ var hash = angular.module('hash', [
   'hash.instagram',
   'hash.facebook',
   'hash.words',
-  'hash.statistics',
+  'hash.metrics',
   'infinite-scroll'
 ])
 .constant('HASH_API_BASE_URI', 'https://inep-enem-2016-api-dev.herokuapp.com/v2')
