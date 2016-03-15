@@ -2,7 +2,6 @@
   <div class="relatorio-display">
 
     <div class="loading loading_relatorio">
-      <!--      <center><img src="img/icons/Unknown.gif" height="66px" width="66px"></center>-->
       <div class="cssload-container">
         <div class="cssload-shaft1"></div>
         <div class="cssload-shaft2"></div>
@@ -90,9 +89,9 @@
 
       <div class="relatorio-display-line-horizontalDisplay">
         <p>Clique na rede social que deseja visualizar:</p>
-        <div title="Twitter" id="line-twitter" class="relatorio-display-line-horizontalDisplay-each" ng-click="filterLineChart.status = 'twitter';">
+        <!-- <div title="Twitter" id="line-twitter" class="relatorio-display-line-horizontalDisplay-each" ng-click="filterLineChart.status = 'twitter';">
           <img src="img/relatorio/icones-02.svg" class="svg-icon relatorio-display-line-horizontalDisplay-each-image relatorio-display-bar-verticalDisplay-each-image twitter-color">
-        </div>
+        </div> -->
 
         <div title="Facebook" id="line-facebook" class="relatorio-display-line-horizontalDisplay-each" ng-click="filterLineChart.status = 'facebook';">
           <img src="img/relatorio/icones-05.svg" class="svg-icon relatorio-display-line-horizontalDisplay-each-image relatorio-display-bar-verticalDisplay-each-image facebook-color">
@@ -114,26 +113,26 @@
 
       <div id="relatorio-display-bar-menu">
         <ul id="menu-tematica-relatorio">
+        <li class="menu_tematica_op">
+          <a ng-click='filter.tema = "categoria-educacional";'><p class="select_tematica_monitor firstOp" style="color:#c7144f">Educacional</p></a>
+        </li>
           <li class="menu_tematica_op">
-            <a ng-click='filter.tema = "tema-indigena";'><p class="select_tematica_monitor" style="color:#c7144f">INDÍGENA</p></a>
+            <a ng-click='filter.tema = "categoria-institucional";'><p class="select_tematica_monitor" style="color:#426083">Institucional</p></a>
           </li>
           <li class="menu_tematica_op">
-            <a ng-click='filter.tema = "tema-genero";'><p class="select_tematica_monitor" style="color:#426083">MULHER</p></a>
+            <a ng-click='filter.tema = "categoria-midia";'><p class="select_tematica_monitor" style="color:#f7931e">Mídia</p></a>
           </li>
           <li class="menu_tematica_op">
-            <a ng-click='filter.tema = "tema-negros";'><p class="select_tematica_monitor firstOp" style="color:#f7931e">NEGRO</p></a>
-          </li>
-          <li class="menu_tematica_op">
-            <a ng-click='filter.tema = "tema-lgbt";'><p class="select_tematica_monitor" style="color:#8c6239">LGBT</p></a>
+            <a ng-click='filter.tema = "categoria-humor";'><p class="select_tematica_monitor" style="color:#8c6239">Humor</p></a>
           </li>
         </ul>
       </div>
 
       <div class="relatorio-display-bar-verticalDisplay">
-        <div class="relatorio-display-bar-verticalDisplay-each">
+        <!-- <div class="relatorio-display-bar-verticalDisplay-each">
           <img src="img/relatorio/icones-02.svg" class="svg-icon relatorio-display-bar-verticalDisplay-each-image twitter-color">
           <p>Twitter</p>
-        </div>
+        </div> -->
 
         <div class="relatorio-display-bar-verticalDisplay-each">
           <img src="img/relatorio/icones-05.svg" class="svg-icon relatorio-display-bar-verticalDisplay-each-image facebook-color">

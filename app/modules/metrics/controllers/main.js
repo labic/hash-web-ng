@@ -1,6 +1,9 @@
-hash.controller('mainMetrics', function ($scope, $http, MetricsFacebook, MetricsTwitter, Tweet, FacebookPosts, InstagramMedia, MetricsInstagram) {
+hash.controller('mainMetrics', function ($scope, $http, settings, MetricsFacebook, MetricsTwitter, Tweet, FacebookPosts, InstagramMedia, MetricsInstagram) {
+  $scope.config = {
+    filter: settings.get('metrics.filters'),
+  };
 
-  var colorMap = {"indigena":"#c7144f","genero":"#426083","negros":"#f7931e","lgbt":"#8c6239"};
+  var colorMap = {"educacional":"#c7144f","indicional":"#426083","midia":"#f7931e","humor":"#8c6239"};
 
   var widthLineChart = $("#lineChart").width();
   var widthBarChart = $("#barChart").width();
@@ -13,20 +16,20 @@ hash.controller('mainMetrics', function ($scope, $http, MetricsFacebook, Metrics
 
   $scope.filterLineChart = {
     count : 0,
-    status : "twitter"
+    status : "facebook"
   }
 
   Tweet.count({
-    period: "7d",
-    'filter[contain_tags]': ["tema-negros","tema-genero","tema-indigena","tema-lgbt"]
+    'period': $scope.config.filter.period,
+    'filter[contain_tags]': ["usuario-geral","usuario-midia"]
   }, function success(res) {
     $scope.TwitterTweet = res.count;
     $scope.countLoad++;
   });
 
   Tweet.count({
-    period: "7d",
-    'filter[contain_tags]': ["tema-negros","tema-genero","tema-indigena","tema-lgbt"],
+    'period': $scope.config.filter.period,
+    'filter[contain_tags]': ["usuario-geral","usuario-midia"],
     'filter[has]': ['media']
   }, function success(res) {
     $scope.TwitterImage = res.count;
@@ -34,18 +37,18 @@ hash.controller('mainMetrics', function ($scope, $http, MetricsFacebook, Metrics
   });
 
   FacebookPosts.count({
-    period: "7d",
-    profile_type: 'page',
-    'filter[contain_tags]': ["tema-negros","tema-genero","tema-indigena","tema-lgbt"],
+    'period': $scope.config.filter.period,
+    'profile_type': 'page',
+    'filter[contain_tags]': ["categoria-midia","categoria-institucional","categoria-educacional","categoria-humor"],
   }, function success(res) {
     $scope.FacebookPosts = res.count;
     $scope.countLoad++;
   });
 
   FacebookPosts.count({
-    period: "7d",
-    profile_type: 'page',
-    //    'filter[contain_tags]': ["tema-negros","tema-genero","tema-indigena","tema-lgbt"],
+    'period': $scope.config.filter.period,
+    'profile_type': 'page',
+    'filter[contain_tags]': ["categoria-midia","categoria-institucional","categoria-educacional","categoria-humor"],
     'filter[types]':['photo']
   }, function success(res) {
     $scope.FacebookImage = res.count;
@@ -53,26 +56,26 @@ hash.controller('mainMetrics', function ($scope, $http, MetricsFacebook, Metrics
   });
 
   InstagramMedia.count({
-    'period': "7d",
-    'filter[contain_tags]': ["tema-negros","tema-genero","tema-indigena","tema-lgbt"],
+    'period': $scope.config.filter.period,
+    'filter[contain_tags]': ["categoria-midia","categoria-institucional","categoria-educacional","categoria-humor"],
   }, function success(res) {
     $scope.InstagramImage = res.count;
     $scope.countLoad++;
   });
 
-  MetricsTwitter.interationsRate({
-    'granularity': "7d",
-    'filter[contain_tags]': ["tema-negros","tema-genero","tema-indigena","tema-lgbt"],
-  }, function success(res) {
-    $scope.TwitterInteration = res.splice(0,7);
-    $scope.filterLineChart.count++;
-    $scope.countLoad++;
-  });
+  // MetricsTwitter.interationsRate({
+  //   'period': $scope.config.filter.period,
+  //   'filter[contain_tags]': ["categoria-midia","categoria-institucional","categoria-educacional","categoria-humor"],
+  // }, function success(res) {
+  //   $scope.TwitterInteration = res.splice(0,7);
+  //   $scope.filterLineChart.count++;
+  //   $scope.countLoad++;
+  // });
 
   MetricsFacebook.interationsRate({
-    profile_type: 'page',
-    'granularity': "7d",
-    'filter[contain_tags]': ["tema-negros","tema-genero","tema-indigena","tema-lgbt"],
+    'profile_type': 'page',
+    'period': $scope.config.filter.period,
+    'filter[contain_tags]': ["categoria-midia","categoria-institucional","categoria-educacional","categoria-humor"],
   }, function success(res) {
     $scope.FacebookInteration = res.splice(0,7);
     $scope.filterLineChart.count++;
@@ -81,8 +84,8 @@ hash.controller('mainMetrics', function ($scope, $http, MetricsFacebook, Metrics
 
   MetricsInstagram.interationsRate({
     'node':'media',
-    'granularity': "7d",
-    'filter[contain_tags]': ["tema-negros","tema-genero","tema-indigena","tema-lgbt"],
+    'period': $scope.config.filter.period,
+    'filter[contain_tags]': ["categoria-midia","categoria-institucional","categoria-educacional","categoria-humor"],
   }, function success(res) {
     $scope.InstagramInteration = res.splice(0,7);
     $scope.filterLineChart.count++;
@@ -90,8 +93,8 @@ hash.controller('mainMetrics', function ($scope, $http, MetricsFacebook, Metrics
   });
 
   Tweet.count({
-    period: "7d",
-    'filter[contain_tags]': ["tema-negros"]
+    'period': $scope.config.filter.period,
+    'filter[contain_tags]': ["usuario-geral"]
   }, function success(res) {
     $scope.TwitterNegros = res.count;
     $scope.countBar++;
@@ -99,36 +102,36 @@ hash.controller('mainMetrics', function ($scope, $http, MetricsFacebook, Metrics
   });
 
   Tweet.count({
-    period: "7d",
-    'filter[contain_tags]': ["tema-genero"]
+    'period': $scope.config.filter.period,
+    'filter[contain_tags]': ["usuario-midia"]
   }, function success(res) {
     $scope.TwitterGenero = res.count;
     $scope.countBar++;
     $scope.countLoad++;
   });
 
-  Tweet.count({
-    period: "7d",
-    'filter[contain_tags]': ["tema-indigena"]
-  }, function success(res) {
-    $scope.TwitterIndigena = res.count;
-    $scope.countBar++;
-    $scope.countLoad++;
-  });
-
-  Tweet.count({
-    period: "7d",
-    'filter[contain_tags]': ["tema-lgbt"]
-  }, function success(res) {
-    $scope.TwitterLgbt = res.count;
-    $scope.countBar++;
-    $scope.countLoad++;
-  });
+//  Tweet.count({
+//    period: "7d",
+//    'filter[contain_tags]': ["tema-indigena"]
+//  }, function success(res) {
+//    $scope.TwitterIndigena = res.count;
+//    $scope.countBar++;
+//    $scope.countLoad++;
+//  });
+//
+//  Tweet.count({
+//    period: "7d",
+//    'filter[contain_tags]': ["tema-lgbt"]
+//  }, function success(res) {
+//    $scope.TwitterLgbt = res.count;
+//    $scope.countBar++;
+//    $scope.countLoad++;
+//  });
 
   FacebookPosts.count({
-    period: "7d",
-    profile_type: 'page',
-    'filter[contain_tags]': ["tema-negros"],
+    'period': $scope.config.filter.period,
+    'profile_type': 'page',
+    'filter[contain_tags]': ["categoria-midia"],
   }, function success(res) {
     $scope.FacebookNegros = res.count;
     $scope.countBar++;
@@ -136,9 +139,9 @@ hash.controller('mainMetrics', function ($scope, $http, MetricsFacebook, Metrics
   });
 
   FacebookPosts.count({
-    period: "7d",
-    profile_type: 'page',
-    'filter[contain_tags]': ["tema-genero"],
+    'period': $scope.config.filter.period,
+    'profile_type': 'page',
+    'filter[contain_tags]': ["categoria-institucional"],
   }, function success(res) {
     $scope.FacebookGenero = res.count;
     $scope.countBar++;
@@ -146,9 +149,9 @@ hash.controller('mainMetrics', function ($scope, $http, MetricsFacebook, Metrics
   });
 
   FacebookPosts.count({
-    period: "7d",
-    profile_type: 'page',
-    'filter[contain_tags]': ["tema-indigena"],
+    'period': $scope.config.filter.period,
+    'profile_type': 'page',
+    'filter[contain_tags]': ["categoria-educacional"],
   }, function success(res) {
     $scope.FacebookIndigena = res.count;
     $scope.countBar++;
@@ -156,9 +159,9 @@ hash.controller('mainMetrics', function ($scope, $http, MetricsFacebook, Metrics
   });
 
   FacebookPosts.count({
-    period: "7d",
-    profile_type: 'page',
-    'filter[contain_tags]': ["tema-lgbt"],
+    'period': $scope.config.filter.period,
+    'profile_type': 'page',
+    'filter[contain_tags]': ["categoria-humor"],
   }, function success(res) {
     $scope.FacebookLgbt = res.count;
     $scope.countBar++;
@@ -166,8 +169,8 @@ hash.controller('mainMetrics', function ($scope, $http, MetricsFacebook, Metrics
   });
 
   InstagramMedia.count({
-    period: "7d",
-    'filter[contain_tags]': ["tema-negros"]
+    'period': $scope.config.filter.period,
+    'filter[contain_tags]': ["categoria-midia"]
   }, function success(res) {
     $scope.InstagramNegros = res.count;
     $scope.countBar++;
@@ -175,8 +178,8 @@ hash.controller('mainMetrics', function ($scope, $http, MetricsFacebook, Metrics
   });
 
   InstagramMedia.count({
-    period: "7d",
-    'filter[contain_tags]': ["tema-genero"]
+    'period': $scope.config.filter.period,
+    'filter[contain_tags]': ["categoria-institucional"]
   }, function success(res) {
     $scope.InstagramGenero = res.count;
     $scope.countBar++;
@@ -184,8 +187,8 @@ hash.controller('mainMetrics', function ($scope, $http, MetricsFacebook, Metrics
   });
 
   InstagramMedia.count({
-    period: "7d",
-    'filter[contain_tags]': ["tema-indigena"]
+    'period': $scope.config.filter.period,
+    'filter[contain_tags]': ["categoria-educacional"]
   }, function success(res) {
     $scope.InstagramIndigena = res.count;
     $scope.countBar++;
@@ -193,8 +196,8 @@ hash.controller('mainMetrics', function ($scope, $http, MetricsFacebook, Metrics
   });
 
   InstagramMedia.count({
-    period: "7d",
-    'filter[contain_tags]': ["tema-lgbt"]
+    'period': $scope.config.filter.period,
+    'filter[contain_tags]': ["categoria-humor"]
   }, function success(res) {
     $scope.InstagramLgbt = res.count;
     $scope.countBar++;
@@ -202,15 +205,30 @@ hash.controller('mainMetrics', function ($scope, $http, MetricsFacebook, Metrics
   });
 
   $scope.$watch('countBar', function (newFilter, oldFilter) {
-    if(newFilter == 12){
-      var barChart =
-          {
-            "twitter":{"indigena": $scope.TwitterIndigena, "genero": $scope.TwitterGenero, "negros": $scope.TwitterNegros, "lgbt": $scope.TwitterLgbt},
-            "facebook":{"indigena": $scope.FacebookIndigena,"genero": $scope.FacebookGenero,"negros": $scope.FacebookNegros,"lgbt": $scope.FacebookLgbt},
-            "instagram":{"indigena": $scope.InstagramIndigena,"genero": $scope.InstagramGenero,"negros": $scope.InstagramNegros,"lgbt": $scope.InstagramLgbt}
-          };
 
-      plotBarChart(barChart,"barChart",widthBarChart,120,15,25,colorMap);
+    if(newFilter == 10){
+      var barChart = {
+        "twitter": {
+          "indigena": $scope.TwitterIndigena,
+          "genero": $scope.TwitterGenero,
+          "negros": $scope.TwitterNegros,
+          "lgbt": $scope.TwitterLgbt
+        },
+        "facebook": {
+          "educacional": $scope.FacebookIndigena,
+          "indicional": $scope.FacebookGenero,
+          "midia": $scope.FacebookNegros,
+          "humor": $scope.FacebookLgbt
+        },
+        "instagram": {
+          "educacional": $scope.InstagramIndigena,
+          "indicional": $scope.InstagramGenero,
+          "midia": $scope.InstagramNegros,
+          "humor": $scope.InstagramLgbt
+        }
+      };
+
+      plotBarChart(barChart, "barChart", widthBarChart, 120, 15, 25, colorMap);
     }
   });
 
@@ -218,21 +236,20 @@ hash.controller('mainMetrics', function ($scope, $http, MetricsFacebook, Metrics
     console.log(newFilter.status);
     console.log(oldFilter.status);
 
-    if((newFilter.count == 3) || (newFilter.status != oldFilter.status)){
+    if((newFilter.count == 2) || (newFilter.status != oldFilter.status)){
       var redes = [newFilter.status];
-      var lineChart =
-          {
-            "facebook":$scope.FacebookInteration,
-            "twitter":$scope.TwitterInteration,
-            "instagram":$scope.InstagramInteration
-          };
+      var lineChart = {
+        "facebook": $scope.FacebookInteration,
+        "instagram": $scope.InstagramInteration,
+        // "twitter": $scope.TwitterInteration,
+      };
       d3.select("#lineChart").select('svg').remove();
       plotLineCharts(lineChart,"lineChart",widthLineChart-100,150, redes);
     }
   },true);
 
   $scope.$watch('countLoad', function (newFilter, oldFilter) {
-    if(newFilter == 20){
+    if(newFilter == 17){
       $(".loading_relatorio").hide();
     }
   });
@@ -242,9 +259,9 @@ hash.controller('mainMetrics', function ($scope, $http, MetricsFacebook, Metrics
 
   function plotBarChart(json,divId,width,height,barHeight,jump,colorMap){
   	mapa = [];
-  	mapeia(mapa,json.twitter,width,0);
-  	mapeia(mapa,json.facebook,width,1);
-  	mapeia(mapa,json.instagram,width,2);
+  	// mapeia(mapa,json.twitter,width,0);
+  	mapeia(mapa,json.facebook,width,0);
+  	mapeia(mapa,json.instagram,width,1);
 
   	var svg = d3.select("#" + divId).append("svg")
       .attr("width", width)
@@ -289,7 +306,11 @@ hash.controller('mainMetrics', function ($scope, $http, MetricsFacebook, Metrics
   }
 
   function soma(rede){
-  	return rede.lgbt + rede.genero + rede.negros + rede.indigena;
+    var sum = 0;
+    for (var key in rede) {
+      sum += rede[key];
+    }
+    return sum;
   }
 
   function plotLineCharts(json,divId,width,height,redes){
@@ -432,7 +453,6 @@ hash.controller('mainMetrics', function ($scope, $http, MetricsFacebook, Metrics
         legendas[i].text(controlMap[i].rede + " " + controlMap[i].timeMap[t]);
         legendas[i].attr("x",x(x0) + 7).attr("y",y(controlMap[i].timeMap[t]) + 4);
       }
-
     }
   }
 });
