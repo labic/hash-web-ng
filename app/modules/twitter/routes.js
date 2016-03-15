@@ -44,6 +44,24 @@
             'conteudo': { templateUrl: 'modules/twitter/views/twTweet.html' },
           }
         })
+        .state('painel.url', {
+          url: '',
+          views: {
+            'conteudo': { templateUrl: 'modules/twitter/views/url.html' },
+          }
+        })
+        .state('painel.user', {
+          url: '',
+          views: {
+            'conteudo': { templateUrl: 'modules/twitter/views/user.html' },
+          }
+        })
+        .state('painel.mentions', {
+          url: '',
+          views: {
+            'conteudo': { templateUrl: 'modules/twitter/views/mentions.html' },
+          }
+        })
         .state('painel.mosaico', {
           url: '',
           views: {

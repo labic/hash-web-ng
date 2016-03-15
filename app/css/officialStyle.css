@@ -603,7 +603,7 @@
 /*TODO: DIVISION 2 */
 
     #div2_monitor{
-      width: calc( (100% - 550px) * 0.65);
+      width: calc( (100% - 450px) * 0.65);
       background-color: #f8f9fa;
       z-index: 1;
 /*

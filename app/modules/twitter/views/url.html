@@ -1,0 +1,35 @@
+<div id="result_conteudo" style="height:100%;">
+
+    <div class="loading" ng-show="dataLoadTweetOFF">
+    <div class="cssload-container">
+      <div class="cssload-shaft1"></div>
+      <div class="cssload-shaft2"></div>
+      <div class="cssload-shaft3"></div>
+      <div class="cssload-shaft4"></div>
+      <div class="cssload-shaft5"></div>
+      <div class="cssload-shaft6"></div>
+      <div class="cssload-shaft7"></div>
+      <div class="cssload-shaft8"></div>
+      <div class="cssload-shaft9"></div>
+      <div class="cssload-shaft10"></div>
+    </div>
+    <p class="loadingWordGrey">CARREGANDO:</p>
+    <p class="loadingWordGrey">estamos realizando a sua requisição, essa operação pode demorar um pouco.</p>
+  </div>
+  
+  <div style="height:100%; width:100%;">
+    <div  class="geralTweets_result">
+      <button ng-show="buttonBack" class="result_button result_button_back" ng-click='loadMoreTweetsChange(-1);' >VOLTAR</button>
+
+      <div class="each_user_result" ng-repeat="url in urls">
+        <a href="{{url.url}}" target="_blank">
+          <p class="user_result_number">{{urls.indexOf(url) + 1}}º</p>
+          <p class="user_result_name">{{url.url}}</p>
+          <p class="user_result_count"><img src="img/icons/ICONE-TWEET.png" height="15px" width="15px;">{{url.count}}</p>
+        </a>
+      </div>
+
+      <button ng-show="buttonNext" class="result_button result_button_next" ng-click='loadMoreTweetsChange(1);'></button>
+    </div>
+  </div>
+</div>
