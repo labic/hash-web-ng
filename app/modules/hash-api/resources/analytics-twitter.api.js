@@ -3,7 +3,7 @@
 
   angular
     .module('hash.api')
-    .factory('AnalyticsTwitter', function($resource, HASH_API_BASE_URI) {
+    .factory('AnalyticsTwitter', function($resource, CONFIG) {
 
       var PARAMS = {
         'period': null, 
@@ -22,56 +22,56 @@
       
       return $resource('', null, {
         geolocation: {
-          method: 'GET', 
-          url:  HASH_API_BASE_URI + '/analytics/twitter/geolocation', 
+          method: 'GET',
+          url: CONFIG.HASH_API_URL + '/analytics/twitter/geolocation',
           params: PARAMS,
           cache: true
         },
         mostActiveUsers: {
-          method: 'GET', 
-          url:  HASH_API_BASE_URI + '/analytics/twitter/most_active_users', 
+          method: 'GET',
+          url: CONFIG.HASH_API_URL + '/analytics/twitter/most_active_users',
           params: PARAMS,
           isArray: true,
           cache: true
         },
         mostMentionedUsers: {
-          method: 'GET', 
-          url:  HASH_API_BASE_URI + '/analytics/twitter/most_mentioned_users', 
+          method: 'GET',
+          url: CONFIG.HASH_API_URL + '/analytics/twitter/most_mentioned_users',
           params: PARAMS,
           isArray: true,
           cache: true
         },
         mostRecurringHashtags: {
-          method: 'GET', 
-          url:  HASH_API_BASE_URI + '/analytics/twitter/most_recurring_hashtags', 
+          method: 'GET',
+          url: CONFIG.HASH_API_URL + '/analytics/twitter/most_recurring_hashtags',
           params: PARAMS,
           isArray: true,
           cache: true
         },
         mostRecentlyRetweetedTweets: {
-          method: 'GET', 
-          url:  HASH_API_BASE_URI + '/analytics/twitter/most_recently_retweeted_tweets', 
+          method: 'GET',
+          url: CONFIG.HASH_API_URL + '/analytics/twitter/most_recently_retweeted_tweets',
           params: PARAMS,
           isArray: true,
           cache: true
         },
         mostRetweetedTweets: {
-          method: 'GET', 
-          url:  HASH_API_BASE_URI + '/analytics/twitter/most_retweeted_tweets', 
+          method: 'GET',
+          url: CONFIG.HASH_API_URL + '/analytics/twitter/most_retweeted_tweets',
           params: PARAMS,
           isArray: true,
           cache: true
         },
         mostRecurringImages: {
-          method: 'GET', 
-          url:  HASH_API_BASE_URI + '/analytics/twitter/most_recurring_images', 
+          method: 'GET',
+          url: CONFIG.HASH_API_URL + '/analytics/twitter/most_recurring_images',
           params: PARAMS,
           isArray: true,
           cache: true
         },
         mostRecurringUrls: {
-          method: 'GET', 
-          url:  HASH_API_BASE_URI + '/analytics/twitter/most_recurring_urls', 
+          method: 'GET',
+          url: CONFIG.HASH_API_URL + '/analytics/twitter/most_recurring_urls',
           params: PARAMS,
           isArray: true,
           cache: true
