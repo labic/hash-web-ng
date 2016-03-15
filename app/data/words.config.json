@@ -151,16 +151,20 @@
     "type": "single-option",
     "values": [
       {
-        "title": "30 minutos",
+        "number": "30",
+        "time": "Minutos",
         "value": "30m"
       },{
-        "title": "1 Hora",
+        "number": "1",
+        "time": "Hora",
         "value": "1h"
       },{
-        "title": "90 minutos",
+        "number": "90",
+        "time": "Minutos",
         "value": "1h30m"
       },{
-        "title": "6 horas",
+        "number": "6",
+        "time": "Horas",
         "value": "6h"
       }
     ]

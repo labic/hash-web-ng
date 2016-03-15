@@ -1580,12 +1580,12 @@
   font-size: 10px;
   visibility: hidden;
   position: absolute;
-  top: 23px;
+/*  top: 23px;*/
   left: 0;
   width: 100%;
   text-align: center;
   background-color: #2B3044;
-  margin-top: 30px;
+  margin-top: 10px;
 }
 
 .menu__main-tags-option:hover > .menu__main-tags-options-children {
@@ -1625,14 +1625,12 @@
   width: auto;
   height: auto;
   float:right;
-  margin-right: 50%;
 }
 
 .period-filter__single-div{
   width: auto;
   height: auto;
   float: right;
-  margin-right: -50%;
 }
 
 .period-filter__single-option input[type="radio"] {
@@ -1648,14 +1646,24 @@
   border: 1px solid #fff;
   cursor: pointer;
   color: #1dbfd8;
-  padding-top: 20px;
-  font-size: 12px;
+  padding-top: 10px; 
+}
+
+.period-filter__single-option label p:first-child{
+  font-size:12px; 
   text-align: center;
   font-weight: bold;
 }
 
+.period-filter__single-option label p:last-child{
+  font-size:10px; 
+  text-align: center;
+  font-weight: bold;
+}
+
+
 .period-filter__single-option input[type="radio"]:checked+label{
-  color: #000;
+  color: #2b3044;
   background-color: #1dbfd8;
   border: 1px solid #1dbfd8;
 }
