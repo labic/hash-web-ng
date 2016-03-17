@@ -24,7 +24,7 @@
       <div class="each_user_result" ng-repeat="mention in mentions">
         <a href="http://twitter.com/{{mentions.status.user.screen_name}}" target="_blank">
           <p class="user_result_number">{{mentions.indexOf(mention) + 1}}º</p>
-          <img class="user_result_img" src="https://pbs.twimg.com/profile_images/685545181328756736/xYRETZ4f.png">
+          <img class="user_result_img" ng-src="https://avatars.io/twitter/{{mention.screen_name}}/small">
           <p class="user_result_name">@ {{mention.screen_name}}</p>
           <p class="user_result_count"><img src="img/icons/ICONE-TWEET.png" height="15px" width="15px;">{{mention.count}}</p>
         </a>
