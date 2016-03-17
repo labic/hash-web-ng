@@ -1,6 +1,6 @@
 <div id="str_main_monitor" class="str_main facebook" ng-controller="mainFacebook">
 
-  <div id="div1_monitor" class="str_division">
+  <div id="div1_monitor" class="str_division" style="padding-top: 30px;">
 
   <!-- <fb-themes-filter options="config.filter.main" filter="filter.tema"></fb-themes-filter> -->
 
@@ -18,8 +18,10 @@
 
 
     <fb-actors-filter options="config.filter.actors" filter="filter.actor"></fb-actors-filter>
-
-    <period-filter type="single-option" options="config.filter.period.values" filter="filter.time"></period-filter>
+    
+    <div style="margin-left:calc(50% - 72px); float:left;">
+      <period-filter type="single-option" options="config.filter.period.values" filter="filter.time"></period-filter>
+    </div>
   </div>
 
   <div id="div3_monitor" class="str_division">
