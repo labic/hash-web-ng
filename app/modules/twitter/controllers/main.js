@@ -268,6 +268,90 @@ hash
     // TODO: refactor
     $scope.conteudos =  _.find($scope.config.filter.main, {tag: $scope.filter.themes}).children;
   };
+  
+  function functionUrl(localTime, dataNow, linkTema, linkCategoria, linkLocalidade, word, tag, nlimit, nskip){
+    AnalyticsTwitter.mostRecurringUrls(
+        $scope.analyticsParams,
+        function success(response) {
+          if(response == ""){
+            $scope.dataLoadTweetON = false;
+            $scope.dataLoadTweetOFF = false;
+            $scope.dataLoadTweet404 = true;
+            $scope.dataLoadTweetERROR = false;
+          }else{
+            $scope.dataLoadTweetON = true;
+            $scope.dataLoadTweetOFF = false;
+            $scope.dataLoadTweet404 = false;
+            $scope.dataLoadTweetERROR = false;
+          }
+
+//          contData = Object.keys(response).length;
+//
+//          if(contData-2 < nlimit){
+//            $scope.buttonNext = false;
+//          }else{
+//            $scope.buttonNext = true;
+//          }
+
+          $scope.urls = response;
+        }, errorHandlerTweet);
+  }
+  
+  function functionMention(localTime, dataNow, linkTema, linkCategoria, linkLocalidade, word, tag, nlimit, nskip){
+    AnalyticsTwitter.mostMentionedUsers(
+        $scope.analyticsParams,
+        function success(response) {
+          if(response == ""){
+            $scope.dataLoadTweetON = false;
+            $scope.dataLoadTweetOFF = false;
+            $scope.dataLoadTweet404 = true;
+            $scope.dataLoadTweetERROR = false;
+          }else{
+            $scope.dataLoadTweetON = true;
+            $scope.dataLoadTweetOFF = false;
+            $scope.dataLoadTweet404 = false;
+            $scope.dataLoadTweetERROR = false;
+          }
+//
+//          contData = Object.keys(response).length;
+//
+//          if(contData-2 < nlimit){
+//            $scope.buttonNext = false;
+//          }else{
+//            $scope.buttonNext = true;
+//          }
+
+          $scope.mentions = response;
+        }, errorHandlerTweet);
+  }
+  
+  function functionUser(localTime, dataNow, linkTema, linkCategoria, linkLocalidade, word, tag, nlimit, nskip){
+    AnalyticsTwitter.mostActiveUsers(
+        $scope.analyticsParams,
+        function success(response) {
+          if(response == ""){
+            $scope.dataLoadTweetON = false;
+            $scope.dataLoadTweetOFF = false;
+            $scope.dataLoadTweet404 = true;
+            $scope.dataLoadTweetERROR = false;
+          }else{
+            $scope.dataLoadTweetON = true;
+            $scope.dataLoadTweetOFF = false;
+            $scope.dataLoadTweet404 = false;
+            $scope.dataLoadTweetERROR = false;
+          }
+//
+//          contData = Object.keys(response).length;
+//
+//          if(contData-2 < nlimit){
+//            $scope.buttonNext = false;
+//          }else{
+//            $scope.buttonNext = true;
+//          }
+
+          $scope.users = response;
+        }, errorHandlerTweet);
+  }  
 
   function getColors(vetor, corA, corB){
   	var min = d3.min(vetor, function(d){return d.count;});
@@ -351,9 +435,10 @@ hash
   // Funções que CHAMAM as funções que fazem as requisições. Cada um carrega uma parte da tela
   // All chama todas as partes da tela
   $scope.setAll = function(localTime, dataNow, linkTema, linkCategoria, linkLocalidade, word, tag, nlimit, nskip){
-    //    functionNoRtConteudo(localTime, dataNow, linkTema, linkCategoria, linkLocalidade, word, tag);
     functionConteudo(localTime, dataNow, linkTema, linkCategoria, linkLocalidade, word, tag, nlimit, nskip);
-
+    functionUrl(localTime, dataNow, linkTema, linkCategoria, linkLocalidade, word, tag, nlimit, nskip);
+    functionMention(localTime, dataNow, linkTema, linkCategoria, linkLocalidade, word, tag, nlimit, nskip);
+    functionUser(localTime, dataNow, linkTema, linkCategoria, linkLocalidade, word, tag, nlimit, nskip);
     functionImage(localTime, dataNow, linkTema, linkCategoria, linkLocalidade, word, tag);
     functionTag(localTime, dataNow, linkTema, linkCategoria, linkLocalidade);
     functionWord(localTime, dataNow, linkTema, linkCategoria, linkLocalidade);
@@ -560,7 +645,6 @@ hash
     }
     return filter;
   }
-
 
   var defaultLimit = 24;
   // Quando o filtro mudar...
