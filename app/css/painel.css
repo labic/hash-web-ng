@@ -143,28 +143,28 @@
 }
 
 .user_result_number{
-  float:left;
-  width: auto;
+  width: 70px;
   height: 100%;
   font-size: 25px;
-  float:left;
+  float: left;
   font-weight: bold;
-  padding:5px;
-  margin-right: 70px;
+  padding: 5px;
+  margin-right: 50px;
+  text-align: center;
 }
 
 .user_result_number:after{
   position: relative;
   top: 8px;
-  left: 55px;
+  left: 70px;
   float: left;
   content: "";
   display: inline-block;
   width: 13px;
   height: 13px;
   border-top: 10px solid transparent;
-  border-bottom: 10px solid transparent; 
-  border-left: 18px solid #12b177; 
+  border-bottom: 10px solid transparent;
+  border-left: 18px solid #12b177;
 }
 
 .user_result_img{
