@@ -285,14 +285,6 @@ hash
             $scope.dataLoadTweetERROR = false;
           }
 
-//          contData = Object.keys(response).length;
-//
-//          if(contData-2 < nlimit){
-//            $scope.buttonNext = false;
-//          }else{
-//            $scope.buttonNext = true;
-//          }
-
           $scope.urls = response;
         }, errorHandlerTweet);
   }
@@ -312,14 +304,6 @@ hash
             $scope.dataLoadTweet404 = false;
             $scope.dataLoadTweetERROR = false;
           }
-//
-//          contData = Object.keys(response).length;
-//
-//          if(contData-2 < nlimit){
-//            $scope.buttonNext = false;
-//          }else{
-//            $scope.buttonNext = true;
-//          }
 
           $scope.mentions = response;
         }, errorHandlerTweet);
@@ -340,14 +324,6 @@ hash
             $scope.dataLoadTweet404 = false;
             $scope.dataLoadTweetERROR = false;
           }
-//
-//          contData = Object.keys(response).length;
-//
-//          if(contData-2 < nlimit){
-//            $scope.buttonNext = false;
-//          }else{
-//            $scope.buttonNext = true;
-//          }
 
           $scope.users = response;
         }, errorHandlerTweet);
@@ -668,7 +644,7 @@ hash
       // Toda vez que for alterado alguma coisa a paginação volta a 0
       $scope.countpage = 0;
       // E... o scroll volta a ficar em cima
-      $( ".geralTweets_result" ).scrollTop( "slow" );
+      $( "#painel-posts-list" ).scrollTop( "slow" );
 
       // Se o tema for alterado
       if(newFilter.themes != oldFilter.themes){
