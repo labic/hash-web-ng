@@ -37,12 +37,12 @@ function draw(words) {
       .selectAll("text")
         .data(words)
       .enter().append("a")
-        .attr("href", "painel")
+//        .attr("href", "painel")
         .attr("title",function(d) {
           return d.text;
         })
         .attr("ng-click",function(d){
-          return "filter.word = '" + d.text+"'"; 
+          return "filter.word = '" + d.text+"';"; 
         })
       .append("text")
         .style("font-size", function(d) { return d.size + "px"; })
