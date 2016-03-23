@@ -1,17 +1,24 @@
 {
   "main": [
     {
-      "title": "Repercussões Midiáticas",
+      "title": "Mídia",
       "tag": "usuario-midia",
       "children": [{
-          "title": "Canais Especializados",
-          "tag": "categoria-canais"
-        },{
           "title": "Notícias mais Populares",
           "tag": "categoria-noticias"
         },{
           "title": "Celebridades",
           "tag": "categoria-celebridades"
+        }]
+    },{
+      "title": "Canais",
+      "tag": "usuario-canal",
+      "children": [{
+          "title": "Canais Educacionais",
+          "tag": "categoria-canais"
+        },{
+          "title": "Instituições Educacionais",
+          "tag": "categoria-instituicoes"
         }]
     },{
       "title": "Público Geral",
