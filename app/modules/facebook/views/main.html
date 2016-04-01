@@ -2,26 +2,26 @@
 
   <div id="div1_monitor" class="str_division" style="padding-top: 30px;">
 
-  <!-- <fb-themes-filter options="config.filter.main" filter="filter.tema"></fb-themes-filter> -->
+    <!-- <fb-themes-filter options="config.filter.main" filter="filter.tema"></fb-themes-filter> -->
 
 
     <!-- <div id="facebook-menu-choice">
-      <button id="facebook-choice-button1" class="facebook-choice-button selected" ng-click="filter.type = 'publicacao'; " ui-sref="facebook.posts">
-        <img src="img/facebook/COMEN%20E%20PUBLIC-02.svg" class="svg-icon facebook-choice-button-image">
-        <p>PUBLICAÇÕES</p>
-      </button>
-      <button id="facebook-choice-button2" class="facebook-choice-button " ng-click="filter.type = 'comentario';" ui-sref="facebook.posts">
-        <img src="img/facebook/COMEN%20E%20PUBLIC-01.svg" class="svg-icon facebook-choice-button-image">
-        <p>COMENTARIOS</p>
-      </button>
-    </div> -->
+<button id="facebook-choice-button1" class="facebook-choice-button selected" ng-click="filter.type = 'publicacao'; " ui-sref="facebook.posts">
+<img src="img/facebook/COMEN%20E%20PUBLIC-02.svg" class="svg-icon facebook-choice-button-image">
+<p>PUBLICAÇÕES</p>
+</button>
+<button id="facebook-choice-button2" class="facebook-choice-button " ng-click="filter.type = 'comentario';" ui-sref="facebook.posts">
+<img src="img/facebook/COMEN%20E%20PUBLIC-01.svg" class="svg-icon facebook-choice-button-image">
+<p>COMENTARIOS</p>
+</button>
+</div> -->
 
 
     <fb-actors-filter options="config.filter.actors" filter="filter.actor"></fb-actors-filter>
-    
-    <div style="margin-left:calc(50% - 72px); float:left;">
-      <period-filter type="single-option" options="config.filter.period.values" filter="filter.time"></period-filter>
-    </div>
+
+
+    <period-filter type="single-option" options="config.filter.period.values" filter="filter.time"></period-filter>
+
   </div>
 
   <div id="div3_monitor" class="str_division">
@@ -60,13 +60,6 @@
     $(".swipebox").swipebox({
       hideBarsDelay : 10000000
     });
-
-    /* Standard */
-    /* menu centralizado com width variavel division2 */
-
-    var menuIconWidth = $(".title_str_menu_icon").width();
-    var resultMenuIconWidth = menuIconWidth/2;
-    $(".title_str_menu_icon").css( "margin-left", "calc(50% - "+resultMenuIconWidth+"px" );
 
     /* Custom */
 
