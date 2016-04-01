@@ -25,7 +25,7 @@ hash.controller('mainPalavras', function ($scope, $http, settings, CONFIG, WordT
       $scope.word1000 = data.splice(10,200);
       $(".loading-palavras").hide();
     }, function error(err) {
-      console.error('DEU ZICA!');
+      console.error('ERROR!');
     });
 
     WordTwitter.mandala({
@@ -37,7 +37,7 @@ hash.controller('mainPalavras', function ($scope, $http, settings, CONFIG, WordT
       $(".loading-palavras").hide();
     }, function error(err) {
 
-      console.error('DEU ZICA!');
+      console.error('ERROR!');
     });
 
     $scope.dataLoadON = true;

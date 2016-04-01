@@ -2,7 +2,7 @@
   'use strict';
 
   angular
-    .module('hash.twitter')
+    .module('hash.words')
     .directive('wdThemesFilter', function () {
       return {
         templateUrl: 'modules/words/views/partials/themes-filter.html',

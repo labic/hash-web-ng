@@ -234,10 +234,9 @@ hash
 
     var monitorLinkWord =  WORD_API_BASE_URI+'/twitter/top_words?filter='+wordJson;
 
-    var cloudWidth = $("#wordCloud").width();
+    var cloudWidth = $("#div3_monitor").width();
 
     plotWordCloud(cloudWidth,284,"wordCloud",monitorLinkWord); //(width,heigth,divId,url)
-
 
     $scope.dataLoadWordON = false;
     $scope.dataLoadWord404 = false;
