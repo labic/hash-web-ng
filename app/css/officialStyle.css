@@ -205,7 +205,8 @@
 
       .title_str_menu_icon{
         width: auto;
-        float: left;
+        display: flex;
+        justify-content: center;
       }
 
         .select_title_division2{
@@ -263,7 +264,6 @@
         float:left;
         height: 75px;
         padding-top: 5px;
-        margin-bottom: 20px;
         border-bottom: 2px dashed #41647A;
       }
 
@@ -1625,17 +1625,20 @@
   margin-top:15px;
   width: auto;
   height: auto;
-  float:right;
+  display: flex;
+  width: 100%;
+  justify-content: center;
 }
 
+/*
 .twitter .period-filter__single-option {
   margin-right: 18%;
 }
+*/
 
 .period-filter__single-div{
   width: auto;
   height: auto;
-  float: right;
 }
 
 .period-filter__single-option input[type="radio"] {

@@ -11,10 +11,10 @@
 }
 
 #menu_tematica{
-  float:left;
   width:auto;
-  margin-left: calc(50% - 170px);
   padding-top: 5px;
+  display: flex;
+  justify-content: center;
 }
 
 .menu_tematica_op{
