@@ -36,10 +36,6 @@ hash.controller('mainFacebook', function ($scope, $http, settings, MetricsFacebo
 
   $scope.$watch('filter', function (newFilter, oldFilter) {
 
-    $http.get("data/conteudos.json").success(function (data) {
-      $scope.conteudos = data[newFilter.categorieNumber];
-    });
-
     if(newFilter.type == 'comentario'){
 
       $scope.selectComentario = true;
