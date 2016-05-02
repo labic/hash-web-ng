@@ -1,4 +1,4 @@
-var fill = d3.scale.category20();
+var fill = ["#ffffff","#2b3044"];
 var w;
 var id;
 var h;
@@ -12,13 +12,13 @@ function plotWordCloud(width, heigth, divID, url){
 
 	  wordMap = data;
 	          
-	  var sizeScale = d3.scale.linear().domain([0,wordMap[0].count]).range([10,100]);
+	  var sizeScale = d3.scale.linear().domain([0,wordMap[0].count]).range([15,60]);
 
 	  d3.layout.cloud().size([width, heigth])
 	      .words(wordMap.map(function(d,i) {
 	        return {text: d.word, size: sizeScale(d.count)};
 	      }))
-	      .padding(5)
+	      .padding(0)
 	      .rotate(function() { return 0; })//~~(Math.random() * 2) * 90; })
 	      .font("Impact")
 	      .fontSize(function(d) { return d.size; })
@@ -37,7 +37,6 @@ function draw(words) {
       .selectAll("text")
         .data(words)
       .enter().append("a")
-//        .attr("href", "painel")
         .attr("title",function(d) {
           return d.text;
         })
@@ -46,9 +45,9 @@ function draw(words) {
         })
       .append("text")
         .style("font-size", function(d) { return d.size + "px"; })
-        .style("font-family", "Impact")
+        .style("font-family", "Walbaum")
         .style("cursor", "pointer")
-        .style("fill", function(d, i) { return fill(i); })
+        .style("fill", function(d, i) { return fill[i%2]; })
         .attr("text-anchor", "middle")
         .attr("transform", function(d) {
           return "translate(" + [d.x, d.y] + ")rotate(" + d.rotate + ")";
