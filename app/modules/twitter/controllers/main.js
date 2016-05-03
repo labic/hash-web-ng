@@ -1,21 +1,22 @@
 'use strict';
 
 /* NOTA: MONITOR - CONTROLLER */
-hash
-.controller('mainMonitor', function ($scope, $http, settings, MetricsTwitter, AnalyticsTwitter, WordTwitter, Tweet, WORD_API_BASE_URI) {
+hash.controller('mainMonitor', function ($scope, $http, settings, MetricsTwitter, AnalyticsTwitter, WordTwitter, Tweet, WORD_API_BASE_URI) {
+
   $scope.config = {
     filter: settings.get('twitter.filters')
   };
 
-  // variavel para inicializar o watch, quando esta falso executa um if com a inicialização da tela;
+  // Variavel para inicializar o watch, quando esta falso executa um if com a inicialização da tela.
   var firstRun = false;
-  // variavel Turn que falará em qual filtro está a página.
+
+  // Variavel Turn que falará em qual filtro está a página.
   var turn;
 
-  // conta em que pagina você está serve para a paginação
+  // Conta em que pagina você está serve para a paginação.
   $scope.countpage = 0;
 
-  // Retorno para erros na busca de tweet/imagem/hashtags
+  // NOTA: Retorno para erros na busca de tweet/imagem/hashtags.
   function errorHandlerTweet(err) {
     $scope.dataLoadTweetON = false;
     $scope.dataLoadTweet404 = false;
@@ -40,7 +41,7 @@ hash
     console.log(err);
   }
 
-  // Funções que REALIZAM as requisições
+  // NOTA: Funções que REALIZAM as requisições
   function functionConteudo(localTime, dataNow, linkTema, linkCategoria, linkLocalidade, word, tag, nlimit, nskip){
     var contData;
 
@@ -230,22 +231,62 @@ hash
 
   function functionWord(localTime, dataNow, linkTema, linkCategoria, linkLocalidade){
 
-    var wordJson = JSON.stringify(filterDavid($scope.filter.time,linkTema,null,linkLocalidade,20),["where","period","categories","all","limit"]);
+    var wordJson = JSON.stringify(filterDavid(undefined,undefined,localTime,linkTema,undefined,linkLocalidade,40));
 
     var monitorLinkWord =  WORD_API_BASE_URI+'/twitter/top_words?filter='+wordJson;
 
     var cloudWidth = $("#div3_monitor").width();
 
-    plotWordCloud(cloudWidth,284,"wordCloud",monitorLinkWord); //(width,heigth,divId,url)
+    $scope.loadWordTagON = false;
+    $scope.loadWordTag404 = false;
+    $scope.loadWordTagOFF = true;
+    $scope.loadWordTagERROR = false;
+
+    $http.get(monitorLinkWord).success(function (data) {
+
+      plotWordCloud(cloudWidth,284,"wordCloud",data); //(width,heigth,divId,url)
+
+      $scope.words = data;
+      $scope.words = data.splice(0,10);
+      if(data == ""){
+        $scope.loadWordTagON = false;
+        $scope.loadWordTagOFF = false;
+        $scope.loadWordTag404 = true;
+      }else{
+        $scope.loadWordTag404 = false;
+        $scope.loadWordTagOFF = false;
+        $scope.loadWordTagON = true;
+      }
+
+    }).error(function(data, status) {
+      $scope.loadWordTagERROR = true;
+      $scope.loadWordTag404 = false;
+      $scope.loadWordTagOFF = false;
+      $scope.loadWordTagON = false;
+      console.log(status);
+    });
+
+    // TODO: refactor
+    $scope.conteudos =  _.find($scope.config.filter.main, {tag: $scope.filter.themes}).children;
+  };
+
+  function functionTopTags(localTime,linkTema,linkCategoria){
+
+    if(linkCategoria == null){
+      var topTagsLink = "http://188.166.40.27:4025/topTags?rede=twitter&usuario="+linkTema+"&period="+localTime;
+    }else{
+      var topTagsLink = "http://188.166.40.27:4025/topTags?rede=twitter&categoria="+linkCategoria+"&usuario="+linkTema+"&period="+localTime;
+    }
 
     $scope.dataLoadWordON = false;
     $scope.dataLoadWord404 = false;
     $scope.dataLoadWordOFF = true;
     $scope.dataLoadWordERROR = false;
 
-    $http.get(monitorLinkWord).success(function (data) {
-      $scope.words = data;
-      $scope.words = data.splice(0,10);
+    $http.get(topTagsLink).success(function (data){
+
+      $scope.topTags = data.tags.splice(0,5);
+
       if(data == ""){
         $scope.dataLoadWordON = false;
         $scope.dataLoadWordOFF = false;
@@ -255,7 +296,6 @@ hash
         $scope.dataLoadWordOFF = false;
         $scope.dataLoadWordON = true;
       }
-
     }).error(function(data, status) {
       $scope.dataLoadWordERROR = true;
       $scope.dataLoadWord404 = false;
@@ -263,90 +303,87 @@ hash
       $scope.dataLoadWordON = false;
       console.log(status);
     });
+  }
 
-    // TODO: refactor
-    $scope.conteudos =  _.find($scope.config.filter.main, {tag: $scope.filter.themes}).children;
-  };
-  
   function functionUrl(localTime, dataNow, linkTema, linkCategoria, linkLocalidade, word, tag, nlimit, nskip){
     AnalyticsTwitter.mostRecurringUrls(
-        $scope.analyticsParams,
-        function success(response) {
-          if(response == ""){
-            $scope.dataLoadTweetON = false;
-            $scope.dataLoadTweetOFF = false;
-            $scope.dataLoadTweet404 = true;
-            $scope.dataLoadTweetERROR = false;
-          }else{
-            $scope.dataLoadTweetON = true;
-            $scope.dataLoadTweetOFF = false;
-            $scope.dataLoadTweet404 = false;
-            $scope.dataLoadTweetERROR = false;
-          }
+      $scope.analyticsParams,
+      function success(response) {
+        if(response == ""){
+          $scope.dataLoadTweetON = false;
+          $scope.dataLoadTweetOFF = false;
+          $scope.dataLoadTweet404 = true;
+          $scope.dataLoadTweetERROR = false;
+        }else{
+          $scope.dataLoadTweetON = true;
+          $scope.dataLoadTweetOFF = false;
+          $scope.dataLoadTweet404 = false;
+          $scope.dataLoadTweetERROR = false;
+        }
 
-          $scope.urls = response;
-        }, errorHandlerTweet);
+        $scope.urls = response;
+      }, errorHandlerTweet);
   }
-  
+
   function functionMention(localTime, dataNow, linkTema, linkCategoria, linkLocalidade, word, tag, nlimit, nskip){
     AnalyticsTwitter.mostMentionedUsers(
-        $scope.analyticsParams,
-        function success(response) {
-          if(response == ""){
-            $scope.dataLoadTweetON = false;
-            $scope.dataLoadTweetOFF = false;
-            $scope.dataLoadTweet404 = true;
-            $scope.dataLoadTweetERROR = false;
-          }else{
-            $scope.dataLoadTweetON = true;
-            $scope.dataLoadTweetOFF = false;
-            $scope.dataLoadTweet404 = false;
-            $scope.dataLoadTweetERROR = false;
-          }
+      $scope.analyticsParams,
+      function success(response) {
+        if(response == ""){
+          $scope.dataLoadTweetON = false;
+          $scope.dataLoadTweetOFF = false;
+          $scope.dataLoadTweet404 = true;
+          $scope.dataLoadTweetERROR = false;
+        }else{
+          $scope.dataLoadTweetON = true;
+          $scope.dataLoadTweetOFF = false;
+          $scope.dataLoadTweet404 = false;
+          $scope.dataLoadTweetERROR = false;
+        }
 
-          $scope.mentions = response;
-        }, errorHandlerTweet);
+        $scope.mentions = response;
+      }, errorHandlerTweet);
   }
-  
+
   function functionUser(localTime, dataNow, linkTema, linkCategoria, linkLocalidade, word, tag, nlimit, nskip){
     AnalyticsTwitter.mostActiveUsers(
-        $scope.analyticsParams,
-        function success(response) {
-          if(response == ""){
-            $scope.dataLoadTweetON = false;
-            $scope.dataLoadTweetOFF = false;
-            $scope.dataLoadTweet404 = true;
-            $scope.dataLoadTweetERROR = false;
-          }else{
-            $scope.dataLoadTweetON = true;
-            $scope.dataLoadTweetOFF = false;
-            $scope.dataLoadTweet404 = false;
-            $scope.dataLoadTweetERROR = false;
-          }
+      $scope.analyticsParams,
+      function success(response) {
+        if(response == ""){
+          $scope.dataLoadTweetON = false;
+          $scope.dataLoadTweetOFF = false;
+          $scope.dataLoadTweet404 = true;
+          $scope.dataLoadTweetERROR = false;
+        }else{
+          $scope.dataLoadTweetON = true;
+          $scope.dataLoadTweetOFF = false;
+          $scope.dataLoadTweet404 = false;
+          $scope.dataLoadTweetERROR = false;
+        }
 
-          $scope.users = response;
-        }, errorHandlerTweet);
+        $scope.users = response;
+      }, errorHandlerTweet);
   }  
 
   function getColors(vetor, corA, corB){
-  	var min = d3.min(vetor, function(d){return d.count;});
-  	var max = d3.max(vetor, function(d){return d.count;});
+    var min = d3.min(vetor, function(d){return d.count;});
+    var max = d3.max(vetor, function(d){return d.count;});
 
-  	var colorScale = d3.scale
-                       .linear()
-                       .domain([min, max])
-                       .range([corA, corB]);
+    var colorScale = d3.scale
+    .linear()
+    .domain([min, max])
+    .range([corA, corB]);
 
-      for (var i in vetor ){
-      	vetor[i].cor = colorScale(vetor[i].count);
-      }
+    for (var i in vetor ){
+      vetor[i].cor = colorScale(vetor[i].count);
+    }
 
-      return vetor;
+    return vetor;
   }
 
   function functionMap(localTime, dataNow, linkTema, linkCategoria){
 
-    var mapJson = JSON.stringify(filterDavid($scope.filter.time, linkTema, null, null),["where","period","categories","all"]);
+    var mapJson = JSON.stringify(filterDavid(undefined,undefined,localTime,linkTema,undefined,undefined,undefined));
 
     var monitorLinkMap = WORD_API_BASE_URI+'/twitter/map_volume?filter='+mapJson;
 
@@ -407,7 +444,7 @@ hash
     });
   };
 
-  // Funções que CHAMAM as funções que fazem as requisições. Cada um carrega uma parte da tela
+  // NOTA: Funções que CHAMAM as funções que fazem as requisições. Cada um carrega uma parte da tela
   // All chama todas as partes da tela
   $scope.setAll = function(localTime, dataNow, linkTema, linkCategoria, linkLocalidade, word, tag, nlimit, nskip){
     functionConteudo(localTime, dataNow, linkTema, linkCategoria, linkLocalidade, word, tag, nlimit, nskip);
@@ -418,6 +455,7 @@ hash
     functionTag(localTime, dataNow, linkTema, linkCategoria, linkLocalidade);
     functionWord(localTime, dataNow, linkTema, linkCategoria, linkLocalidade);
     functionMap(localTime, dataNow, linkTema, linkCategoria);
+    functionTopTags(localTime,linkTema,linkCategoria);
   };
 
   // Half chama apenas a 2º e a 3º parte da tela
@@ -428,6 +466,7 @@ hash
     functionImage(localTime, dataNow, linkTema, linkCategoria, linkLocalidade, word, tag);
     functionTag(localTime, dataNow, linkTema, linkCategoria, linkLocalidade);
     functionWord(localTime, dataNow, linkTema, linkCategoria, linkLocalidade);
+    functionTopTags(localTime,linkTema,linkCategoria);
   };
 
   // Min chama apenas a 3º parte da tela
@@ -437,6 +476,7 @@ hash
     functionImage(localTime, dataNow, linkTema, linkCategoria, linkLocalidade, word, tag);
   };
 
+  // NOTA: Colocando parametros 
   $scope.setAnalyticsParam = function(turn,time,dataNow,tema,categoria,localidade,word,tag,limit,skip){
 
     if(turn == "tweet"){
@@ -602,7 +642,7 @@ hash
   };
 
   // estrutura de requisição para requisiçõs API DAVID
-  function filterDavid(period,tema,categoria,localidade,word,tag,limit){
+  function filterDavid(word,tag,period,tema,categoria,localidade,limit){
     var filter = {
       where:{
         word: word,
@@ -617,7 +657,8 @@ hash
         }
       },
       limit: limit
-    }
+    };
+
     return filter;
   }
 
@@ -649,6 +690,8 @@ hash
       if(newFilter.themes != oldFilter.themes){
 
         turn = "tweet";
+
+        functionTopTags(newFilter.time,newFilter.themes,null);
 
         $scope.setAnalyticsParam(turn,newFilter.time, dataNow, newFilter.themes, null, null, null, null, defaultLimit, 0);
 
@@ -703,6 +746,8 @@ hash
       if(newFilter.categoria != oldFilter.categoria){
 
         turn = "categoria";
+
+        alert("Categoria");
 
         $scope.setAnalyticsParam(turn,newFilter.time, dataNow, newFilter.themes, newFilter.categoria, null, null, null, defaultLimit, 0);
 
