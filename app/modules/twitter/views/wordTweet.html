@@ -30,27 +30,16 @@
   </div>
 
   <div ng-show="dataLoadWordON">
-    <div id="str_highWord" title='Clique para visualizar os ultimos retweets com a palavra "{{wordMouseEnter.word}}"' ng-click="filter.word = wordMouseEnter.word;">
-      <p ng-hide="wordMouseEnter"class="title_str_highWord">Passe o mouse sobre as palavras para visualiza-las</p>
-      <p ng-show="wordMouseEnter" class="title_str_highWord">{{wordMouseEnter.word}}</p>
-      <p ng-show="wordMouseEnter" class="text_str_highWord"><span class="number_str_highWord">{{wordMouseEnter.count}}</span> vezes</p>
-    </div>
+    
+      <p ng-hide="wordMouseEnter"class="title_str_highWord">WORD CLOUD</p>
 
-    <div id="wordCloud" class="strVertical_highWord">
-<!--
-      <div title='Clique para visualizar os ultimos retweets com a palavra "{{wordv.word}}"' class="each_word" ng-repeat="wordv in words" ng-mouseenter="$parent.wordMouseEnter = wordv" ng-click="filter.word = wordv.word;">
-        <p>{{wordv.word}}</p>
-        <p ng-if="wordv.count == 1">{{wordv.count}} vez</p>
-        <p ng-if="wordv.count != 1">{{wordv.count}} vezes</p>
-      </div>
--->
-    </div>
+    <div id="wordCloud" class="strVertical_highWord"></div>
   </div>
   <div class="str_fixed_words">
     <div class="fixed_words_title">
       <p>Categorias</p>
     </div>
-    <p ng-repeat="conteudo in conteudos" ng-click="filter.categoria = conteudo.tag;">{{conteudo.title}}</p>
+    <p ng-repeat="topTag in topTags" ng-click="filter.categoria = topTag.slug;">{{topTag.label}}</p>
     <!--		<p ng-click="changeCategoria(',%22conteudo-geral%22')">geral</p>-->
   </div>
 </div>
