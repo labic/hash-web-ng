@@ -3,28 +3,26 @@ var w;
 var id;
 var h;
 
-function plotWordCloud(width, heigth, divID, url){
+function plotWordCloud(width, heigth, divID, data){
   w = width;
   id = divID;
   h = heigth;
 
-	d3.json(url,function(data){
+  wordMap = data;
+          
+  var sizeScale = d3.scale.linear().domain([0,wordMap[0].count]).range([15,60]);
 
-	  wordMap = data;
-	          
-	  var sizeScale = d3.scale.linear().domain([0,wordMap[0].count]).range([15,60]);
+  d3.layout.cloud().size([width, heigth])
+    .words(wordMap.map(function(d,i) {
+      return {text: d.word, size: sizeScale(d.count)};
+    }))
+    .padding(0)
+    .rotate(function() { return 0; })//~~(Math.random() * 2) * 90; })
+    .font("Impact")
+    .fontSize(function(d) { return d.size; })
+    .on("end", draw)
+    .start();
 
-	  d3.layout.cloud().size([width, heigth])
-	      .words(wordMap.map(function(d,i) {
-	        return {text: d.word, size: sizeScale(d.count)};
-	      }))
-	      .padding(0)
-	      .rotate(function() { return 0; })//~~(Math.random() * 2) * 90; })
-	      .font("Impact")
-	      .fontSize(function(d) { return d.size; })
-	      .on("end", draw)
-	      .start();
-	});
 }
 
 function draw(words) {
