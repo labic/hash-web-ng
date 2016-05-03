@@ -2,17 +2,43 @@
 
   <div id="str_highWord">
     <p ng-hide="wordMouseEnter"class="title_str_highWord">Nuvem de palavras</p>
+
+    <div id="wordCloud" class="strVertical_highWord" ng-show="loadWordTagON"></div>
   </div>
 
-  <div id="wordCloud" class="strVertical_highWord">
-
+  <div class="loading" ng-show="loadWordTagOFF" >
+    <div class="cssload-container">
+      <div class="cssload-shaft1"></div>
+      <div class="cssload-shaft2"></div>
+      <div class="cssload-shaft3"></div>
+      <div class="cssload-shaft4"></div>
+      <div class="cssload-shaft5"></div>
+      <div class="cssload-shaft6"></div>
+      <div class="cssload-shaft7"></div>
+      <div class="cssload-shaft8"></div>
+      <div class="cssload-shaft9"></div>
+      <div class="cssload-shaft10"></div>
+    </div>
+    <p style="color:rgba(10, 18, 39, 0.65);">CARREGANDO...</p>
+    <p style="color:rgba(10, 18, 39, 0.65);">Estamos realizando a sua requisição, essa operação pode demorar um pouco.</p>
   </div>
 
-  <!--  TODO: Refactor-->
+  <div class="loading" ng-show="loadWordTag404">
+    <center><img src="img/icons/searching45blue.png" height="40px" width="40px"></center>
+    <p class="loadingWordBlue">NÃO HÁ PALAVRAS COM ESSE FILTRO</p>
+    <p class="loadingWordBlue">Tente outra categoria ou intervalo de tempo</p>
+  </div>
+
+  <div class="loading" ng-show="loadWordTagERROR">
+    <center><img src="img/icons/searching45.png" height="40px" width="40px"></center>
+    <p class="loadingWordGrey">UM ERRRO OCORREU!</p>
+    <p class="loadingWordGrey">Por favor carregue novamente a página.</p>
+  </div>
+
   <div class="str_fixed_words">
     <div class="fixed_words_title">
       <p>Categorias</p>
     </div>
-    <p ng-repeat="conteudo in conteudos" ng-click="filter.categoria = conteudo.query;">{{conteudo.name}}</p>
+    <p ng-repeat="topTag in topTags" ng-click="filter.categoria = topTag.slug;">{{topTag.label}}</p>
   </div> 
 </div>
