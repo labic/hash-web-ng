@@ -2,21 +2,6 @@
 
   <div id="div1_monitor" class="str_division" style="padding-top: 30px;">
 
-    <!-- <fb-themes-filter options="config.filter.main" filter="filter.tema"></fb-themes-filter> -->
-
-
-    <!-- <div id="facebook-menu-choice">
-<button id="facebook-choice-button1" class="facebook-choice-button selected" ng-click="filter.type = 'publicacao'; " ui-sref="facebook.posts">
-<img src="img/facebook/COMEN%20E%20PUBLIC-02.svg" class="svg-icon facebook-choice-button-image">
-<p>PUBLICAÇÕES</p>
-</button>
-<button id="facebook-choice-button2" class="facebook-choice-button " ng-click="filter.type = 'comentario';" ui-sref="facebook.posts">
-<img src="img/facebook/COMEN%20E%20PUBLIC-01.svg" class="svg-icon facebook-choice-button-image">
-<p>COMENTARIOS</p>
-</button>
-</div> -->
-
-
     <fb-actors-filter options="config.filter.actors" filter="filter.actor"></fb-actors-filter>
 
 
@@ -25,7 +10,23 @@
   </div>
 
   <div id="div3_monitor" class="str_division">
-    <aside id="result_word" ui-view="facebook.word"></aside>
+    
+    <div class="title_str">
+      <ul class="title_str_dualOP">
+        <a ui-sref="facebook.word">
+          <li class="title_str_dualOP_1 select_title_division3 firstOpImg">
+            <img src='img/icons/PALAVRAS.png' class="icon_menu_top" alt="image">
+          </li>
+        </a>
+        <a ui-sref="facebook.tag">
+          <li class="title_str_dualOP_2 select_title_division3">
+            <img src='img/icons/HASHTAG.png' class="icon_menu_top" alt="image" height="25px" width="25px">
+          </li>
+        </a>
+      </ul>
+    </div>
+    
+    <aside id="result_word" ui-view="facebook.word&tag"></aside>
   </div>
 
   <div id="div2_monitor" class="str_division">
