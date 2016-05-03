@@ -5,7 +5,6 @@ hash.controller('mainFacebook', function ($scope, $http, settings, MetricsFacebo
   };
 
   // NOTA: Filtro para Ator do Facebook.
-  // Mudancas: Entretanto precisa de otimização.
   $scope.filter = {
     time: '7d',
     word: '',
@@ -37,21 +36,38 @@ hash.controller('mainFacebook', function ($scope, $http, settings, MetricsFacebo
     $scope.filter.per_page = $scope.countpage * 25 + 25;
   };
 
+  // Watch assiste a todos os filtros presentes na página esperando alguma alteração.
   $scope.$watch('filter', function (newFilter, oldFilter) {
 
     var responseImg = [];
     var contResponseImg = 0;
+    var cloudWidth = $("#div3_monitor").width();
 
-    $scope.selectComentario = false;
+    //Request: WordFacebook.topWords
+
+    $scope.loadWordTagON = false;
+    $scope.loadWordTagOFF = true;
+    $scope.loadWordTag404 = false;
+    $scope.loadWordTagERROR = false;
 
     WordFacebook.topWords({
       'period': newFilter.time,
       'tags[]': [newFilter.actor],
       'page': 1,
-      'per_page': 10
-    }, function success(response) {
-      $scope.words = response;
-    }, errorHandler);
+      'per_page': 40
+    }, function success(data) {
+
+      plotWordCloud(cloudWidth,284,"wordCloud",data);
+
+      if(data == ""){
+        $scope.loadWordTagOFF = false;
+        $scope.loadWordTag404 = true;
+      }else{
+        $scope.loadWordTagOFF = false;
+        $scope.loadWordTagON = true;
+      }
+
+    }, errorWordTag);
 
     $( ".geralTweets_result" ).scrollTop( "slow" );
     $scope.countpage = 0;
@@ -309,7 +325,16 @@ hash.controller('mainFacebook', function ($scope, $http, settings, MetricsFacebo
     $scope.start = 0;
   },true);
 
-  function errorHandler(err) {
-    console.error(err);
+  // Handler: Tratamento de Erros das requisições
+
+  function errorWordTag(erro) {
+    $scope.loadWordTagOFF = false;
+    $scope.loadWordTagERROR = true;
+    console.log(erro);
   }
+
+  function errorHandler(erro) {
+    console.error(erro);
+  }
+
 });
