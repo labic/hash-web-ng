@@ -8,14 +8,20 @@
           url: '/facebook',
           views: {
             '': { templateUrl: 'modules/facebook/views/main.html' },
-            'facebook.word@facebook': { templateUrl: 'modules/facebook/views/wordFacebook.html' },
+            'facebook.word&tag@facebook': { templateUrl: 'modules/facebook/views/wordFacebook.html' },
             'facebook.conteudo@facebook': { templateUrl: 'modules/facebook/views/postsFacebook.html' },
           }
         })
         .state('facebook.word', {
           url: '',
           views: {
-            'facebook.word': { templateUrl: 'modules/facebook/views/wordFacebook.html' },
+            'facebook.word&tag': { templateUrl: 'modules/facebook/views/wordFacebook.html' },
+          }
+        })
+        .state('facebook.tag', {
+          url: '',
+          views: {
+            'facebook.word&tag': { templateUrl: 'modules/facebook/views/tagFacebook.html' },
           }
         })
         .state('facebook.posts', {
