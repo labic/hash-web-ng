@@ -3,7 +3,7 @@ hash.controller('mainMetrics', function ($scope, $http, settings, MetricsFaceboo
     filter: settings.get('metrics.filters'),
   };
 
-  var colorMap = {"educacional":"#c7144f","indicional":"#426083","midia":"#f7931e","humor":"#8c6239"};
+  var colorMap = {"educacional":"#c7144f","institucional":"#426083","midia":"#f7931e","humor":"#8c6239"};
 
   var widthLineChart = $("#lineChart").width();
   var widthBarChart = $("#barChart").width();
@@ -216,13 +216,13 @@ hash.controller('mainMetrics', function ($scope, $http, settings, MetricsFaceboo
         },
         "facebook": {
           "educacional": $scope.FacebookIndigena,
-          "indicional": $scope.FacebookGenero,
+          "institucional": $scope.FacebookGenero,
           "midia": $scope.FacebookNegros,
           "humor": $scope.FacebookLgbt
         },
         "instagram": {
           "educacional": $scope.InstagramIndigena,
-          "indicional": $scope.InstagramGenero,
+          "institucional": $scope.InstagramGenero,
           "midia": $scope.InstagramNegros,
           "humor": $scope.InstagramLgbt
         }
