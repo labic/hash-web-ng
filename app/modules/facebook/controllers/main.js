@@ -20,7 +20,7 @@ hash.controller('mainFacebook', function ($scope, $http, settings, MetricsFacebo
 
   // Functions: Estrutura de funções que chamarão por zonas da página
   // Request: AnalyticsFacebook.mostLikedPosts / AnalyticsFacebook.mostRecurringImages
-  $scope.replyPostImg = function(time,type,actor,word,theme){
+  $scope.replyPostImg = function(time,type,actor,word,theme,tag){
 
     var responseImg = [];
     var contResponseImg = 0;
@@ -30,9 +30,9 @@ hash.controller('mainFacebook', function ($scope, $http, settings, MetricsFacebo
     AnalyticsFacebook.mostLikedPosts({
       'period': time,
       'profile_type': type,
-      'filter[with_tags]': actor,
+      'filter[with_tags]': (theme === undefined ? [actor] : [actor, theme]),
       'word': word,
-      'theme': theme,
+      'filter[hashtags]': tag,
       'page': 1,
       'per_page': 25
     }, function success(response) {
@@ -43,9 +43,9 @@ hash.controller('mainFacebook', function ($scope, $http, settings, MetricsFacebo
       AnalyticsFacebook.mostRecurringImages({
         'period': time,
         'profile_type': type,
-        'filter[with_tags]': actor,
+        'filter[with_tags]': [actor,theme],
         'word': word,
-        'tag': theme,
+        'filter[hashtags]': tag,
         'page': x,
         'per_page': 100
       }, function success(response) {
@@ -90,6 +90,34 @@ hash.controller('mainFacebook', function ($scope, $http, settings, MetricsFacebo
     }, errorWordTag);
   }
 
+  // Request: AnalyticsFacebook.mostRecurringHashtags
+  $scope.replyTopHashtags = function(time,type,actor){
+
+    $scope.loadWordTagON = false;
+    $scope.loadWordTagOFF = true;
+    $scope.loadWordTag404 = false;
+    $scope.loadWordTagERROR = false;
+
+    AnalyticsFacebook.mostRecurringHashtags({
+      'period': time,
+      'profile_type': type,
+      'filter[with_tags]': [actor],
+      'page': 1,
+      'per_page': 13
+    }, function success(data) {
+      if(data == ""){
+        $scope.loadWordTagOFF = false;
+        $scope.loadWordTag404 = true;
+      }else{
+        $scope.hashtags = data;
+        
+        $scope.loadWordTagOFF = false;
+        $scope.loadWordTagON = true;
+      }
+
+    }, errorWordTag);
+  }
+
   // Request: TopTags = Themes
   $scope.replyTopTags = function(time,actor){
 
@@ -109,9 +137,9 @@ hash.controller('mainFacebook', function ($scope, $http, settings, MetricsFacebo
 
   // Request: When click on Actor or time
   $scope.loadReplys = function(time,type,actor){
-
-    $scope.replyPostImg(time,type,actor,undefined,undefined);
+    $scope.replyPostImg(time,type,actor,undefined,undefined,undefined);
     $scope.replyTopWords(time,type,actor);
+    $scope.replyTopHashtags(time,type,actor);
     $scope.replyTopTags(time,actor);
     // FUTURO: Tophashtags
   }
@@ -135,17 +163,17 @@ hash.controller('mainFacebook', function ($scope, $http, settings, MetricsFacebo
 
   // Watch assiste a todos os filtros presentes na página esperando alguma alteração.
   $scope.$watch('filter', function (newFilter, oldFilter) {
-    
+
     $( ".geralTweets_result" ).scrollTop( "slow" );
     $scope.countpage = 0;
-    
+
     if($scope.startPage == 1){
 
       $scope.loadReplys(newFilter.time,newFilter.profileType,newFilter.actor);
 
       $scope.startPage = 0;
     }else{
-      
+
       if((newFilter.actor != oldFilter.actor) || (newFilter.time != oldFilter.time)){
         $scope.loadReplys(newFilter.time,newFilter.profileType,newFilter.actor);
       }
