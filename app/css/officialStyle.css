@@ -1419,7 +1419,7 @@
   .loading{
     padding-top: 100px;
     width: 100%;
-    height: calc(100% - 200px);
+    height: 350px;
     padding:10px;
   }
 

@@ -74,10 +74,10 @@ hash.controller('mainFacebook', function ($scope, $http, settings, MetricsFacebo
       'period': time,
       'tags[]': [actor],
       'page': 1,
-      'per_page': 40
+      'per_page': 50
     }, function success(data) {
 
-      plotWordCloud(cloudWidth,284,"wordCloud",data);
+      plotWordCloud(cloudWidth,330,"wordCloud",data);
 
       if(data == ""){
         $scope.loadWordTagOFF = false;
