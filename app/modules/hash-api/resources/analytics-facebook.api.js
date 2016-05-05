@@ -55,6 +55,13 @@
           isArray: true,
           cache: true
         },
+        mostRecurringHashtags: {
+          method: 'GET', 
+          url:  HASH_API_BASE_URI + '/analytics/facebook/most_recurring_hashtags', 
+          params: PARAMS,
+          isArray: true,
+          cache: true
+        },
         mostActiveProfiles: {
           method: 'GET', 
           url:  HASH_API_BASE_URI + '/analytics/facebook/most_shared_posts', 
