@@ -835,7 +835,7 @@
           width: 100%;
           font-size: 20px;
           font-weight: bold;
-          color: white;
+          color: #2b3044;
           text-align: center;
         }
 
@@ -918,16 +918,16 @@
         }
 
         .fixed_words_title{
-          border-top: 2px solid red;
-          width:100px;
-          margin-left:calc(50% - 50px);
+          border-top: 2px solid #2b3044;
+          width:80%;
+          margin-left:10%;
           margin-top:10px;
           margin-bottom:10px;
           padding-top:10px;
         }
 
           .fixed_words_title p{
-            color: #5d5d5d;
+            color: #2b3044;
             font-size: 12px;
             cursor:auto;
           }
