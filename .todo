@@ -10,7 +10,12 @@
 		"Mudancas",
 		"Futuro",
 		"Pagina",
-        "capitulo"
+        "capitulo",
+        "Alternative",
+        "Main",
+        "Handler:#eb5f5f",
+        "Request:#4444ba",
+        "Functions:#59a259"
 	],
 	"case": false,
 	"search": {

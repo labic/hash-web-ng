@@ -1,15 +1,10 @@
-<div id="result_conteudo" style="height:100%;">
+<div id="facebook-result-post" style="height:100%;">
 
   <div style="height:100%; width:100%;">
 
     <div class="geralTweets_result">
       <div class="facebook-posts-each" ng-repeat="post in posts" >
         <p class="facebook-post-time">{{post.created_time | date:'HH:mm:ss - dd/MM/yyyy'}}</p>
-<!--
-        <div class="facebook-post-ranking">
-          <p>{{$index + 1}}º</p>
-        </div>
--->
         <div class="facebook-post-text">
           <p>{{post.message}}</p>
         </div>
@@ -21,7 +16,7 @@
           <img src="img/facebook/fac-02.svg">
           <p>{{post.likes_count}}</p>
         </div>
-        <a href="https://facebook.com/{{post.id}}" target="_blank" style="float: right;"><p class="facebook-post-verMais">VER MAIS</p></a>
+        <a href="https://facebook.com/{{post.id}}" target="_blank" style="float: right;"><p class="facebook-post-verMais">VER POST ORIGINAL NO FACEBOOK</p></a>
       </div>
 
       <button ng-show="buttonNext" class="result_button result_button_next" ng-click='loadMore(1);'></button>
