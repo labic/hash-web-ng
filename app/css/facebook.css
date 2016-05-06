@@ -156,6 +156,7 @@
 .facebook-post-text{
   float: left;
   height: auto;
+  width: 100%;
 }
 
 .facebook-post-text p{

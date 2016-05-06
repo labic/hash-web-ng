@@ -93,10 +93,10 @@ hash.controller('mainFacebook', function ($scope, $http, settings, MetricsFacebo
   // Request: AnalyticsFacebook.mostRecurringHashtags
   $scope.replyTopHashtags = function(time,type,actor){
 
-    $scope.loadWordTagON = false;
-    $scope.loadWordTagOFF = true;
-    $scope.loadWordTag404 = false;
-    $scope.loadWordTagERROR = false;
+    $scope.loadHashTagON = false;
+    $scope.loadHashTagOFF = true;
+    $scope.loadHashTag404 = false;
+    $scope.loadHashTagERROR = false;
 
     AnalyticsFacebook.mostRecurringHashtags({
       'period': time,
@@ -105,17 +105,15 @@ hash.controller('mainFacebook', function ($scope, $http, settings, MetricsFacebo
       'page': 1,
       'per_page': 13
     }, function success(data) {
+      $scope.hashtags = data;
       if(data == ""){
-        $scope.loadWordTagOFF = false;
-        $scope.loadWordTag404 = true;
+        $scope.loadHashTagOFF = false;
+        $scope.loadHashTag404 = true;
       }else{
-        $scope.hashtags = data;
-        
-        $scope.loadWordTagOFF = false;
-        $scope.loadWordTagON = true;
+        $scope.loadHashTagOFF = false;
+        $scope.loadHashTagON = true;
       }
-
-    }, errorWordTag);
+    }, errorHashTag);
   }
 
   // Request: TopTags = Themes
@@ -190,6 +188,12 @@ hash.controller('mainFacebook', function ($scope, $http, settings, MetricsFacebo
   },true);
 
   // Handler: Tratamento de Erros das requisições
+  function errorHashTag(erro) {
+    $scope.loadHashTagOFF = false;
+    $scope.loadHashTagERROR = true;
+    console.log(erro);
+  }
+  
   function errorWordTag(erro) {
     $scope.loadWordTagOFF = false;
     $scope.loadWordTagERROR = true;
