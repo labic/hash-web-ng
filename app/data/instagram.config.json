@@ -1,16 +1,20 @@
 {
   "main": [
     {
+      "title": "Publico geral",
+      "tag": "categoria-geral",
+      "children": []
+    },{
+      "title": "Educação",
+      "tag": "categoria-educacional",
+      "children": []
+    },{
       "title": "Mídia",
       "tag": "categoria-midia",
       "children": []
     },{
       "title": "Institucional",
       "tag": "categoria-institucional",
-      "children": []
-    },{
-      "title": "Educação",
-      "tag": "categoria-educacional",
       "children": []
     },{
       "title": "Humor",

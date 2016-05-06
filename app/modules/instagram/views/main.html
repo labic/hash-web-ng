@@ -1,6 +1,8 @@
 <div ng-controller="mainInstagram">
 
   <in-themes-filter options="config.filter.main" filter="filter.themes"></in-themes-filter>
+  
+  <image-cloud images="mediasImages"></image-cloud>
 
   <ui-gmap-google-map center="config.map.center"
                       zoom="config.map.zoom"
@@ -8,7 +10,4 @@
                       options="config.map.options">
     <ui-gmap-markers models="mediasGeolocation" coords="'self'" icon="'icon'"></ui-gmap-markers>
   </ui-gmap-google-map>
-
-  <image-cloud images="mediasImages"></image-cloud>
-
 </div>
