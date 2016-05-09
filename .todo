@@ -7,15 +7,13 @@
 		"TODO",
 		"Nota",
 		"Error",
-		"Mudancas",
 		"Futuro",
-		"Pagina",
-        "capitulo",
         "Alternative",
         "Main",
         "Handler:#eb5f5f",
         "Request:#4444ba",
-        "Functions:#59a259"
+        "Functions:#59a259",
+        "Filter:#ff00c4"
 	],
 	"case": false,
 	"search": {

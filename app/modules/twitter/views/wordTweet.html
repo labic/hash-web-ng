@@ -1,4 +1,4 @@
-<div style="height:100%;">
+<div style="height:100%;" data-ng-init="functionWord(filter.period,filter.theme,filter.categoria,filter.localidade);">
 
   <div id="str_highWord">
     <p ng-hide="wordMouseEnter"class="title_str_highWord">Nuvem de palavras</p>
@@ -26,7 +26,7 @@
   <div class="loading" ng-show="loadWordTag404">
     <center><img src="img/icons/searching45blue.png" height="40px" width="40px"></center>
     <p class="loadingWordBlue">NÃO HÁ PALAVRAS COM ESSE FILTRO</p>
-    <p class="loadingWordBlue">Tente outra categoria ou intervalo de tempo</p>
+    <p class="loadingWordBlue">Tente outra categoria ou intervalo de tempo.</p>
   </div>
 
   <div class="loading" ng-show="loadWordTagERROR">
@@ -39,6 +39,6 @@
     <div class="fixed_words_title">
       <p>Temas mais frequentes</p>
     </div>
-    <p ng-repeat="topTag in topTags" ng-click="filter.categoria = topTag.slug;">{{topTag.label}}</p>
+    <p ng-repeat="topTag in topTags" ng-click="filter.category = topTag.slug;">{{topTag.label}}</p>
   </div>
 </div>

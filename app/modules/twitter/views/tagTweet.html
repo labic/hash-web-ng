@@ -15,20 +15,20 @@
       <div class="cssload-shaft9"></div>
       <div class="cssload-shaft10"></div>
     </div>
-    <p style="color:rgba(10, 18, 39, 0.65);">CARREGANDO:</p>
-    <p style="color:rgba(10, 18, 39, 0.65);">estamos realizando a sua requisição, essa operação pode demorar um pouco.</p>
+    <p style="color:rgba(10, 18, 39, 0.65);">CARREGANDO...</p>
+    <p style="color:rgba(10, 18, 39, 0.65);">Estamos realizando a sua requisição, essa operação pode demorar um pouco.</p>
   </div>
 
   <div class="loading" ng-show="dataLoadTag404">
     <center><img src="img/icons/searching45blue.png" height="40px" width="40px"></center>
-    <p class="loadingWordBlue">NENHUMA HASHTAG ENCONTRADA</p>
-    <p class="loadingWordBlue">tente outra categoria ou intervalo de tempo</p>
+    <p class="loadingWordBlue">NÃO HÁ HASHTAGS COM ESSE FILTRO</p>
+    <p class="loadingWordBlue">Tente outra categoria ou intervalo de tempo.</p>
   </div>
 
   <div class="loading" ng-show="dataLoadTagERROR">
     <center><img src="img/icons/searching45.png" height="40px" width="40px"></center>
-    <p class="loadingWordGrey">ERROR</p>
-    <p class="loadingWordGrey">Estamos tendo problemas ao carregar, volte mais tarde =)</p>
+    <p class="loadingWordGrey">UM ERRRO OCORREU!</p>
+    <p class="loadingWordGrey">Por favor carregue novamente a página.</p>
   </div>
 
   <div ng-show="dataLoadTagON" style="height:auto;">
@@ -38,7 +38,7 @@
     </div>
 
     <div class="strVertical_highWord">
-      <div title="Clique para visualizar os ultimos retweets com #{{tag.hashtag}}" ng-mouseenter="$parent.tagOne = tag" class="each_word" ng-repeat=" tag in tags" ng-click="filter.tag = tag.hashtag;">
+      <div title="Clique para visualizar os ultimos retweets com #{{tag.hashtag}}" ng-mouseenter="$parent.tagOne = tag" class="each_word" ng-repeat=" tag in tags" ng-click="filter.hashTag = tag.hashtag;">
         <p>#{{tag.hashtag}}</p>
         <p ng-if="tag.count == 1">{{tag.count}} vez</p>
         <p ng-if="tag.count != 1">{{tag.count}} vezes</p>
@@ -47,9 +47,8 @@
   </div>
   <div class="str_fixed_words">
     <div class="fixed_words_title">
-      <p>Categorias</p>
+      <p>Temas mais frequentes</p>
     </div>
-    <p ng-repeat="conteudo in conteudos" ng-click="filter.categoria = conteudo.tag;">{{conteudo.title}}</p>
-    <!--		<p ng-click="changeCategoria(',%22conteudo-geral%22')">geral</p>-->
+    <p ng-repeat="topTag in topTags" ng-click="filter.category = topTag.slug;">{{topTag.label}}</p>
   </div>
 </div>
