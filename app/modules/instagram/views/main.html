@@ -7,7 +7,15 @@
   <ui-gmap-google-map center="config.map.center"
                       zoom="config.map.zoom"
                       pan="1"
-                      options="config.map.options">
-    <ui-gmap-markers models="mediasGeolocation" coords="'self'" icon="'icon'"></ui-gmap-markers>
+                      options="config.map.options"
+                      >
+    <ui-gmap-markers models="mediasGeolocation" coords="'self'" icon="'icon'" click="onClick">
+      <ui-gmap-windows show="show">
+        <div ng-non-bindable style="width:300px;">
+          <img class="instagramMapImage" style="width:300px; text-align:center;" src={{url}}>
+          <p style="width:300px; font-size:12px; top: 20px;">{{title}}</p>
+        </div>
+      </ui-gmap-windows>
+    </ui-gmap-markers>
   </ui-gmap-google-map>
 </div>

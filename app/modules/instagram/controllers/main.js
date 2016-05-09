@@ -1,10 +1,13 @@
 hash.controller('mainInstagram', function ($scope, settings, InstagramMedia) {
   $scope.config = {
     filter: settings.get('instagram.filters'),
-    map: {
+    map : {
       center: { latitude: -13.32156, longitude: -53.8852 },
       zoom: 4,
-      options: {}
+      options: {
+        mapTypeControl: false,
+        streetViewControl: false
+      }
     }
   };
 
@@ -31,15 +34,18 @@ hash.controller('mainInstagram', function ($scope, settings, InstagramMedia) {
         var maker = {
           id: i,
           latitude: medias[i].data.location.latitude,
-          longitude: medias[i].data.location.longitude
+          longitude: medias[i].data.location.longitude,
+          url: medias[i].data.images.low_resolution.url,
+          show: false
         }
         if (medias[i].data.caption)
           maker.title = medias[i].data.caption.text
 
-        makers.push(maker);
+          makers.push(maker);
       }
 
       $scope.mediasGeolocation = makers;
+      $scope.infoWindow = null;
     });
 
     // Populate the mosaic
@@ -59,8 +65,22 @@ hash.controller('mainInstagram', function ($scope, settings, InstagramMedia) {
         });
       }
 
-      $scope.mediasImages = images;
+      $scope.mediasImages = images.reverse();
     });
   },true);
 
+  $scope.onClick = function(marker, eventName, model) {
+    if(model.show == true){
+      model.show = false;
+      $scope.activeWindow = null;        
+    }else{
+      model.show = true;
+      if($scope.activeWindow != null){
+        $scope.activeWindow.show = false;
+      }
+      $scope.activeWindow = model;
+    }
+  };
+
+  $scope.activeWindow = null;
 });
