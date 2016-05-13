@@ -33,10 +33,10 @@
   <div ng-show="dataLoadImageON" class="geralTweets_result" style="padding:10px;">
     <div ng-repeat="imgMos in imgsMos" class="out str_TopImg_mosaico">
       <a href='{{imgMos.media_url_https}}' class="swipebox" title=' <a href="https://twitter.com/{{imgMos.user.screen_name}}/status/{{imgMos.status.id_str}}" target="_blank" style="color:white;">Retweetado {{imgMos.count}} - "{{imgMos.text}}" @{{imgMos.user.screen_name}}</a>'>
-        <img check-image ng-src="{{imgMos.media_url_https}}:thumb" class="img_TopImg_mosaico" alt="image" width="{{alturaImg}}px" height="{{alturaImg}}px">
+        <img check-image ng-src="{{imgMos.media_url_https}}:thumb" on-error-src="img/image_not_found.jpg" class="img_TopImg_mosaico" width="{{alturaImg}}px" height="{{alturaImg}}px">
       </a>
       <div class="hover_img_TopImg_mosaico">
-        <img src="{{imgMos.media_url_https}}:thumb" class="img_TopImg_mosaico" alt="image" width="100%" height="100%">
+        <img ng-src="{{imgMos.media_url_https}}:thumb" on-error-src="img/image_not_found.jpg" class="img_TopImg_mosaico" alt="image" width="100%" height="100%">
       </div>
     </div>
   </div>

@@ -2,10 +2,10 @@
   <div class="geralTweets_result" style="height:calc(100% - 10px);">
     <div ng-repeat="img in imgs | orderBy:'-count' | limitTo:24">
       <a ng-show="img.message != null" href='{{img.full_picture}}' class="swipebox" title=' <a class="facebook-images-title" href="https://facebook.com/{{img.id}}" target="_blank">Curtida(s): {{img.count}} - {{img.message}}</a>'>
-        <img src="{{img.full_picture}}" class="img_TopImg" alt="image" width="{{alturaImg}}px" height="{{alturaImg}}px">
+        <img ng-src="{{img.full_picture}}" on-error-src="img/image_not_found.jpg" class="img_TopImg" width="{{alturaImg}}px" height="{{alturaImg}}px">
       </a>
       <a ng-show="img.message == null" href='{{img.full_picture}}' class="swipebox" title=' <a class="facebook-images-title" href="https://facebook.com/{{img.id}}" target="_blank">Curtida(s): {{img.count}}</a>'>
-        <img src="{{img.full_picture}}" class="img_TopImg" alt="image" width="{{alturaImg}}px" height="{{alturaImg}}px">
+        <img ng-src="{{img.full_picture}}" on-error-src="img/image_not_found.jpg" class="img_TopImg" width="{{alturaImg}}px" height="{{alturaImg}}px">
       </a>
     </div>
   </div>

@@ -2,14 +2,11 @@
 
   <div class="geralTweets_result" style="padding:10px;">
     <div ng-repeat="img in imgs | orderBy:'-count'" class="out str_TopImg_mosaico">
-      <a ng-show="img.message != null" href='{{img.full_picture}}' class="swipebox" title=' <a class="facebook-images-title" href="https://facebook.com/{{img.id}}" target="_blank">Curtida(s): {{img.count}} - {{img.message}}</a>'>
-        <img check-image ng-src="{{img.full_picture}}" class="img_TopImg_mosaico" alt="image" width="{{alturaImgMosaico}}px" height="{{alturaImgMosaico}}px">
-      </a>
-      <a ng-show="img.message == null" href='{{img.full_picture}}' class="swipebox" title=' <a class="facebook-images-title" href="https://facebook.com/{{img.id}}" target="_blank">Curtida(s): {{img.count}}</a>'>
-        <img check-image ng-src="{{img.full_picture}}" class="img_TopImg_mosaico" alt="image" width="{{alturaImgMosaico}}px" height="{{alturaImgMosaico}}px">
+      <a href='{{img.full_picture}}' class="swipebox" title=' <a class="facebook-images-title" href="https://facebook.com/{{img.id}}" target="_blank">Curtida(s): {{img.count}} - {{img.message}}</a>'>
+        <img ng-src="{{img.full_picture}}" alt="negocio0" on-error-src="img/image_not_found.jpg" class="img_TopImg_mosaico" width="{{alturaImgMosaico}}px" height="{{alturaImgMosaico}}px">
       </a>
       <div class="hover_img_TopImg_mosaico">
-        <img src="{{img.full_picture}}" class="img_TopImg_mosaico" alt="image" width="100%" height="100%">
+        <img ng-src="{{img.full_picture}}" on-error-src="img/image_not_found.jpg" class="img_TopImg_mosaico" width="100%" height="100%">
       </div>
     </div>
   </div>
