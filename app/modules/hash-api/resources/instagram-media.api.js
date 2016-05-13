@@ -29,7 +29,7 @@
           params: {
             'period': 'recent',
             'tags[]': [],
-            'geo': false,
+            'geo': null,
             'page': 1,
             'per_page': 25,
           },

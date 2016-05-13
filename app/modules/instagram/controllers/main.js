@@ -26,9 +26,11 @@ hash.controller('mainInstagram', function ($scope, settings, InstagramMedia) {
       'tags[]': [newFilter.themes],
       'geo': true,
       'page': 1,
-      'per_page': 100
+      'per_page': 200
     }, function(medias) {
       var makers = [];
+      
+      $scope.postsGeoTrue = medias;
 
       for (var i = 0; i < medias.length; i++) {
         var maker = {
@@ -52,11 +54,16 @@ hash.controller('mainInstagram', function ($scope, settings, InstagramMedia) {
     InstagramMedia.find({
       'period': $scope.filter.period,
       'tags[]': [newFilter.themes],
+      'geo': false,
       'page': 1,
-      'per_page': 100
+      'per_page': 200
     }, function(medias) {
-      medias = _.sortBy(medias, ['data.created_time']);
+      
       var images = [];
+      
+      medias = $scope.postsGeoTrue.concat(medias);
+      
+      medias = _.sortBy(medias, ['data.created_time']);
 
       for (var i = 0; i < medias.length; i++) {
         images.push({
