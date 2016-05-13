@@ -22,7 +22,7 @@
       <button ng-show="buttonBack" class="result_button result_button_back" ng-click='loadMoreTweetsChange(-1);'>VOLTAR</button>
 
       <div class="each_user_result" ng-repeat="mention in mentions">
-        <a href="http://twitter.com/{{mentions.status.user.screen_name}}" target="_blank">
+        <a href="http://twitter.com/{{mention.screen_name}}" target="_blank">
           <p class="user_result_number">{{mentions.indexOf(mention) + 1}}º</p>
           <img class="user_result_img" ng-src="https://avatars.io/twitter/{{mention.screen_name}}/small">
           <p class="user_result_name">@ {{mention.screen_name}}</p>

@@ -22,7 +22,7 @@
       <button ng-show="buttonBack" class="result_button result_button_back" ng-click='loadMoreTweetsChange(-1);' >VOLTAR</button>
 
       <div class="each_user_result" ng-repeat="user in users">
-        <a href="http://twitter.com/{{user.status.user.screen_name}}" target="_blank">
+        <a href="http://twitter.com/{{user.screen_name}}" target="_blank">
           <p class="user_result_number">{{users.indexOf(user) + 1}}º</p>
           <img class="user_result_img" src="{{user.profile_image_url_https}}">
           <p class="user_result_name">@ {{user.screen_name}}</p>
