@@ -37,7 +37,7 @@ hash.controller('mainMonitor', function ($scope, $http, settings, MetricsTwitter
   };
 
   // Filter: Estrutura de requisição para requisiçõs API DAVID
-  function filterDavid(period,word,tag,theme,category,location,limit){
+  $scope.filterAnalyticsWord = function(period,word,tag,theme,category,location,limit){
 
     var categories = $scope.filterCategories(theme, category, location); 
 
@@ -53,6 +53,11 @@ hash.controller('mainMonitor', function ($scope, $http, settings, MetricsTwitter
       limit: limit
     };
     return filter;
+  }
+
+  $scope.changeFilterWord = function(text){
+    $scope.filter.word = text;
+    $scope.$apply();
   }
 
   $scope.filterCategories = function(theme, category, location){
@@ -112,6 +117,48 @@ hash.controller('mainMonitor', function ($scope, $http, settings, MetricsTwitter
     );
   };
 
+  $scope.functionConteudoWord = function(){
+    //      var contData;
+    var wordConteudo =  WORD_API_BASE_URI+'/twitter/word_posts?filter='+$scope.analyticsWordFeed;
+
+    $scope.dataLoadTweetON = false;
+    $scope.dataLoadTweet404 = false;
+    $scope.dataLoadTweetOFF = true;
+    $scope.dataLoadTweetERROR = false;
+
+    $http.get(wordConteudo).success(function (data) {
+
+      if(data == ""){
+        $scope.dataLoadTweetON = false;
+        $scope.dataLoadTweetOFF = false;
+        $scope.dataLoadTweet404 = true;
+        $scope.dataLoadTweetERROR = false;
+      }else{
+        $scope.dataLoadTweetON = true;
+        $scope.dataLoadTweetOFF = false;
+        $scope.dataLoadTweet404 = false;
+        $scope.dataLoadTweetERROR = false;
+      }
+      //
+      //        contData = Object.keys(data).length;
+      //
+      //        if(contData < nlimit){
+      //          $scope.buttonNext = false;
+      //        }else{
+      //          $scope.buttonNext = true;
+      //        }
+
+      $scope.twittes = data;
+
+    }).error(function(data, status) {
+      $scope.dataLoadTweetERROR = true;
+      $scope.dataLoadTweet404 = false;
+      $scope.dataLoadTweetOFF = false;
+      $scope.dataLoadTweetON = false;
+      console.log(status);
+    });
+  }
+
   $scope.functionImage = function(){
 
     var responseImg = [];
@@ -153,6 +200,40 @@ hash.controller('mainMonitor', function ($scope, $http, settings, MetricsTwitter
     }
   };
 
+  $scope.functionImageWord = function(){
+
+    var wordConteudoImage =  WORD_API_BASE_URI+'/twitter/word_images?filter='+$scope.analyticsWordFeed;
+
+    $scope.dataLoadImageON = false;
+    $scope.dataLoadImage404 = false;
+    $scope.dataLoadImageOFF = true;
+    $scope.dataLoadImageERROR = false;
+
+    $http.get(wordConteudoImage).success(function (data) {
+      $scope.imgs = data.splice(0,24);
+      $scope.imgsMos = data;
+      $scope.imgsMos = $scope.imgsMos.concat($scope.imgs);
+      
+      if(data == ""){
+        $scope.dataLoadImageON = false;
+        $scope.dataLoadImageOFF = false;
+        $scope.dataLoadImage404 = true;
+        $scope.dataLoadImageERROR = false;
+      }else{
+        $scope.dataLoadImageON = true;
+        $scope.dataLoadImageOFF = false;
+        $scope.dataLoadImage404 = false;
+        $scope.dataLoadImageERROR = false;
+      }
+    }).error(function(data, status) {
+      $scope.dataLoadImageERROR = true;
+      $scope.dataLoadImage404 = false;
+      $scope.dataLoadImageOFF = false;
+      $scope.dataLoadImageON = false;
+      console.log(status);
+    });
+  }
+
   $scope.functionHashTag = function(){
 
     $scope.dataLoadTagON = false;
@@ -183,12 +264,11 @@ hash.controller('mainMonitor', function ($scope, $http, settings, MetricsTwitter
 
   $scope.functionWord = function(period, theme, category, location){
 
-    var wordJson = JSON.stringify(filterDavid(period, undefined, undefined, theme, category, location, 50));
-
-    var monitorLinkWord =  WORD_API_BASE_URI+'/twitter/top_words?filter='+wordJson;
+    var monitorLinkWord =  WORD_API_BASE_URI+'/twitter/top_words?filter='+$scope.analyticsWordCloud;
+    //    alert(monitorLinkWord+"234");
 
     var cloudWidth = $("#div3_monitor").width();
-    
+
     $scope.loadWordTagON = false;
     $scope.loadWordTag404 = false;
     $scope.loadWordTagOFF = true;
@@ -217,7 +297,7 @@ hash.controller('mainMonitor', function ($scope, $http, settings, MetricsTwitter
     });
 
     // TODO: refactor
-//    $scope.conteudos =  _.find($scope.config.filter.main, {tag: $scope.filter.theme}).children;
+    //    $scope.conteudos =  _.find($scope.config.filter.main, {tag: $scope.filter.theme}).children;
   };
 
   $scope.functionTopTags = function(period,theme){
@@ -327,11 +407,12 @@ hash.controller('mainMonitor', function ($scope, $http, settings, MetricsTwitter
     return vetor;
   }
 
-  $scope.functionMap = function(period, theme, category){
+  $scope.functionMap = function(){
 
-    var mapJson = JSON.stringify(filterDavid(period,undefined,undefined,theme,category,undefined,undefined));
+    var monitorLinkMap = WORD_API_BASE_URI+'/twitter/map_volume?filter='+$scope.analyticsMap;
 
-    var monitorLinkMap = WORD_API_BASE_URI+'/twitter/map_volume?filter='+mapJson;
+    //    alert(monitorLinkMap);
+    //    alert(3);
 
     $("#svg-map a path").css( "fill", "#d1e8c5" );
 
@@ -382,7 +463,7 @@ hash.controller('mainMonitor', function ($scope, $http, settings, MetricsTwitter
 
       $("#svg-map a path").removeAttr( "style" );
 
-      $scope.legendMetade = maxCont/2;
+      $scope.legendMetade = Math.floor(maxCont/2);
       $scope.legendMax = maxCont;
 
       $scope.dataMapaON = false;
@@ -397,7 +478,7 @@ hash.controller('mainMonitor', function ($scope, $http, settings, MetricsTwitter
     $scope.functionHashTag();
     $scope.functionWord(period, theme, category, location);
     $scope.functionTopTags(period, theme);
-    $scope.functionMap(period, theme, category);
+    $scope.functionMap();
   };
 
   // Min chama apenas a 3º parte da tela
@@ -426,12 +507,15 @@ hash.controller('mainMonitor', function ($scope, $http, settings, MetricsTwitter
     $scope.analyticsImageParams = {
       period: period,
       'filter[with_tags]': filterTags,
-      //      'filter[with_tags]': (category === undefined ? (location === undefined ? [theme] : [theme, location]) : (location === undefined ? [theme, category] : [theme, category,location])),
       'filter[hashtags]': tag,
       retrive_blocked: undefined,
       page: 1,
       per_page: 100
     }
+
+    $scope.analyticsWordFeed = JSON.stringify($scope.filterAnalyticsWord(period, word, tag, theme, category, location, 24));
+    $scope.analyticsWordCloud = JSON.stringify($scope.filterAnalyticsWord(period, word, tag, theme, category, location, 50));
+    $scope.analyticsMap = JSON.stringify($scope.filterAnalyticsWord(period, word, tag, theme, category, location));
   }
 
   // Função usada para carregar mais tweets
@@ -528,7 +612,7 @@ hash.controller('mainMonitor', function ($scope, $http, settings, MetricsTwitter
         $scope.loadContadores(newFilter.period,newFilter.theme);
         $scope.loadAll(newFilter.period, newFilter.theme, undefined, undefined);
       }
-      
+
       if(newFilter.hashTag != oldFilter.hashTag){
         $scope.setAnalyticsParam(newFilter.period, newFilter.theme, undefined, undefined, undefined, newFilter.hashTag);
         $scope.loadFeed();
@@ -551,8 +635,9 @@ hash.controller('mainMonitor', function ($scope, $http, settings, MetricsTwitter
       }
 
       if(newFilter.word != oldFilter.word){
-
-        $scope.setMin(newFilter.period, newFilter.theme,  undefined, undefined, newFilter.word, undefined, defaultLimit, 0);
+        $scope.setAnalyticsParam(newFilter.period, newFilter.theme,  undefined, undefined, newFilter.word, undefined);
+        $scope.functionConteudoWord();
+        $scope.functionImageWord();
       }
     }
   },true);
