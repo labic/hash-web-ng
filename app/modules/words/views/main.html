@@ -1,43 +1,59 @@
 <div id="str_main_palavras" class="str_main words-module" ng-controller="mainPalavras">
 
-  <div id="palavras-display">
+  <!--  <div id="palavras-display">-->
 
-    <div class="loading loading-palavras">
-      <div class="cssload-container">
-        <div class="cssload-shaft1"></div>
-        <div class="cssload-shaft2"></div>
-        <div class="cssload-shaft3"></div>
-        <div class="cssload-shaft4"></div>
-        <div class="cssload-shaft5"></div>
-        <div class="cssload-shaft6"></div>
-        <div class="cssload-shaft7"></div>
-        <div class="cssload-shaft8"></div>
-        <div class="cssload-shaft9"></div>
-        <div class="cssload-shaft10"></div>
-      </div>
-      <p class="loadingWordGrey">MONTANDO GRÁFICO</p>
-      <p class="loadingWordGrey">buscando palavras correlacionadas. Por favor aguarde.</p>
+  <!--
+<div class="loading loading-palavras">
+<div class="cssload-container">
+<div class="cssload-shaft1"></div>
+<div class="cssload-shaft2"></div>
+<div class="cssload-shaft3"></div>
+<div class="cssload-shaft4"></div>
+<div class="cssload-shaft5"></div>
+<div class="cssload-shaft6"></div>
+<div class="cssload-shaft7"></div>
+<div class="cssload-shaft8"></div>
+<div class="cssload-shaft9"></div>
+<div class="cssload-shaft10"></div>
+</div>
+<p class="loadingWordGrey">MONTANDO GRÁFICO</p>
+<p class="loadingWordGrey">buscando palavras correlacionadas. Por favor aguarde.</p>
+</div>
+-->
+  <div id="palavras_menu">
+
+    <div id="div1_palavras_title">
+      <img src="img/Index/icones-vis-01.svg" class="svg-icon div1_palavras_title_img">
+      <p>ANÁLISE</p>
+      <p>TEXTUAL - Twitter</p>
     </div>
 
-    <div id="div1_palavras" class="str_division">
+    <wd-themes-filter options="config.filter.main" filter="filter.tema"></wd-themes-filter>
 
-      <div id="div1_palavras_title">
-        <img src="img/Index/icones-vis-01.svg" class="svg-icon div1_palavras_title_img">
-        <p>ANÁLISE</p>
-        <p>TEXTUAL - Twitter</p>
-      </div>
+    <!--      <div id="div1_palavras_loop" ui-view="words"></div>-->
 
-      <wd-themes-filter options="config.filter.main" filter="filter.tema"></wd-themes-filter>
+    <wd-period-filter options="config.filter.period.values" filter="filter.time"></wd-period-filter>
 
-      <div id="div1_palavras_loop" ui-view="words"></div>
-
-      <wd-period-filter options="config.filter.period.values" filter="filter.time"></wd-period-filter>
-    </div>
-
-    <div id="palavras_div2" class="str_division">
-      <sunburst data="mandala"></sunburst>
-    </div>
   </div>
+
+  <div id="palavras_div2" class="str_division">
+    <sunburst data="mandala"></sunburst>
+  </div>
+
+  <button id="palavras_menu_button_go">
+    MENU DE FILTROS
+  </button>
+
+  <button id="palavras_menu_button_back">
+    VOLTAR PARA MANDALA
+  </button>
+
+  <div id="palavras_filter">
+    <p>Tema: {{filter.tema}} | Tempo: {{filter.time}}</p>
+  </div>
+
+
+  <!--  </div>-->
 </div>
 
 <script type="text/javascript">
@@ -46,16 +62,37 @@
 
   $( document ).ready(function(){
 
+    $("body").css( "overflow-y", "hidden" );
+
+    $('html, body').animate({
+      scrollTop: $("#palavras_div2").offset().top
+    }, 0);
+
     /* select words*/
     $(".word_loop").click(function(){
-      alert(2);
       $(".word_loop").css( "color", "#000000" );
       $(".word_loop").css( "border", "none" );
-      alert(2);
       $(this).css( "color", "#ffffff" );
       $(this).css( "border", "1px solid black" );
     });
 
+    $("#palavras_menu_button_go").click(function(){
+      $('#palavras_menu_button_go').hide();
+      $('#palavras_filter').hide();
+      $('html, body').animate({
+        scrollTop: $("#palavras_menu").offset().top
+      }, 1300);
+      $('#palavras_menu_button_back').show();
+    });
+
+    $("#palavras_menu_button_back").click(function(){
+      $('#palavras_menu_button_back').hide();
+      $('html, body').animate({
+        scrollTop: $("#palavras_div2").offset().top
+      }, 1300);
+      $('#palavras_filter').show();
+      $('#palavras_menu_button_go').show();
+    });
   });
 
 </script>
