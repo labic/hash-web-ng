@@ -5,7 +5,10 @@ hash.controller('mainPalavras', function ($scope, $http, settings, CONFIG, WordT
 
   $scope.filter = {
     tema: $scope.config.filter.main[0].tag,
+    title: $scope.config.filter.main[0].title,
     time: $scope.config.filter.period.values[3].value,
+    number: $scope.config.filter.period.values[3].number,
+    unidade: $scope.config.filter.period.values[3].time,
     word: null
   };
 
@@ -16,17 +19,17 @@ hash.controller('mainPalavras', function ($scope, $http, settings, CONFIG, WordT
     $(".loading-palavras").show();
     $scope.dataLoadOFF = true;
 
-    WordTwitter.mostRecurrentWords({
-      'tags[]': [newFilter.tema],
-      'period': newFilter.time,
-      'per_page': 170,
-    }, function success(data) {
-      $scope.word10 = data.splice(0,10);
-      $scope.word1000 = data.splice(10,200);
-      $(".loading-palavras").hide();
-    }, function error(err) {
-      console.error('ERROR!');
-    });
+//    WordTwitter.mostRecurrentWords({
+//      'tags[]': [newFilter.tema],
+//      'period': newFilter.time,
+//      'per_page': 170,
+//    }, function success(data) {
+//      $scope.word10 = data.splice(0,10);
+//      $scope.word1000 = data.splice(10,200);
+//      $(".loading-palavras").hide();
+//    }, function error(err) {
+//      console.error('ERROR!');
+//    });
 
     WordTwitter.mandala({
       'tags[]': [newFilter.tema],

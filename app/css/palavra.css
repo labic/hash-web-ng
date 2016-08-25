@@ -28,7 +28,7 @@
 }
 
 #palavras_filter{
-  position: fixed;
+  position: absolute;
   width: 100%;
   display: flex;
   background: transparent;
@@ -36,7 +36,6 @@
   justify-content: center;
   color: black;
   bottom: 10px;
-  left: 30px;
 }
 
 #palavras_filter p{
@@ -47,6 +46,7 @@
 }
 
 #palavras_menu{
+  position: relative;
   float:left;
   width:100%;
   height: 100%;
@@ -89,30 +89,8 @@
 }
 
 #palavras_menu_button_go{
-  width:200px;
-  height: 40px;
-  background: transparent;
-  position: fixed;
   color: #2b3044;
   border: 1px solid #2b3044;
-  border-radius: 5px;
-  font-size: 11px;
-  text-transform: uppercase;
-  left: calc(50% - 70px);
-  top:10px;
-}
-
-#palavras_menu_button_go:hover{
-  width:200px;
-  height: 40px;
-  background: transparent;
-  position: fixed;
-  color: #2b3044;
-  border: 1px solid #2b3044;
-  border-radius: 5px;
-  font-size: 11px;
-  text-transform: uppercase;
-  left: calc(50% - 70px);
   top:10px;
 }
 
@@ -123,17 +101,8 @@
 }
 
 #palavras_menu_button_back{
-  display: none;
-  width:200px;
-  height: 40px;
-  background: transparent;
-  position: fixed;
   color: #1dbfd8;
   border: 1px solid white;
-  border-radius: 5px;
-  font-size: 11px;
-  text-transform: uppercase;
-  left: calc(50% - 70px);
   bottom: 20px;
 }
 
@@ -141,4 +110,15 @@
   background: white;
   color: #2b3044;
   border: 1px solid white;
+}
+
+.palavras-button{
+  width:200px;
+  height: 40px;
+  background: transparent;
+  position: absolute;
+  border-radius: 5px;
+  font-size: 11px;
+  text-transform: uppercase;
+  margin-left: calc(50% - 100px);
 }

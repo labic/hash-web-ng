@@ -34,24 +34,24 @@
 
     <wd-period-filter options="config.filter.period.values" filter="filter.time"></wd-period-filter>
 
+    <button id="palavras_menu_button_back" class="palavras-button">
+      VOLTAR PARA MANDALA
+    </button>
+
+
   </div>
 
   <div id="palavras_div2" class="str_division">
+    <button id="palavras_menu_button_go" class="palavras-button">
+      MENU DE FILTROS
+    </button>
+    
     <sunburst data="mandala"></sunburst>
+    
+    <div id="palavras_filter">
+      <p>Tema: {{filter.tema}} | Tempo: {{filter.time}}</p>
+    </div>
   </div>
-
-  <button id="palavras_menu_button_go">
-    MENU DE FILTROS
-  </button>
-
-  <button id="palavras_menu_button_back">
-    VOLTAR PARA MANDALA
-  </button>
-
-  <div id="palavras_filter">
-    <p>Tema: {{filter.tema}} | Tempo: {{filter.time}}</p>
-  </div>
-
 
   <!--  </div>-->
 </div>
@@ -68,31 +68,17 @@
       scrollTop: $("#palavras_div2").offset().top
     }, 0);
 
-    /* select words*/
-    $(".word_loop").click(function(){
-      $(".word_loop").css( "color", "#000000" );
-      $(".word_loop").css( "border", "none" );
-      $(this).css( "color", "#ffffff" );
-      $(this).css( "border", "1px solid black" );
-    });
-
     $("#palavras_menu_button_go").click(function(){
-      $('#palavras_menu_button_go').hide();
-      $('#palavras_filter').hide();
       $('html, body').animate({
         scrollTop: $("#palavras_menu").offset().top
       }, 1300);
-      $('#palavras_menu_button_back').show();
     });
 
     $("#palavras_menu_button_back").click(function(){
-      $('#palavras_menu_button_back').hide();
       $('html, body').animate({
         scrollTop: $("#palavras_div2").offset().top
       }, 1300);
-      $('#palavras_filter').show();
-      $('#palavras_menu_button_go').show();
     });
   });
-
+  
 </script>
