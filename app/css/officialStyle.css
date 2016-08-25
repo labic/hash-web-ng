@@ -942,7 +942,7 @@
 
     #div1_palavras_title{
       width:100%;
-      padding-left: 155px;
+      padding:50px;
     }
 
       .div1_palavras_title_img{
@@ -1602,7 +1602,7 @@
 }
 
 .menu__main-tags-options-children .menu__main-tags-option *:hover {
-  font-weight: bolder;
+/*  font-weight: bolder;*/
 }
 
 .menu__main-tags-options-children .menu__main-tags-option:last-child {
