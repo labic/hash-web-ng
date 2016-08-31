@@ -17,13 +17,13 @@
             scope.filter = option.tag;
             $('li', element).removeClass('selected');
             $(e.currentTarget).parent().addClass('selected');
-            $(e.currentTarget)
-              .parent()
-              .parent()
-              .parent('.menu__main-tags-option').addClass('selected');
-            $(e.currentTarget)
-              .parent()
-              .parent('.menu__main-tags-options-children').css('display: none;');
+//            $(e.currentTarget)
+//              .parent()
+//              .parent()
+//              .parent('.menu__main-tags-option').addClass('selected');
+//            $(e.currentTarget)
+//              .parent()
+//              .parent('.menu__main-tags-options-children').css('display: none;');
 
             main
               ? $('.menu__main-tags-current', element).text('Todos')
