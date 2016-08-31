@@ -1,0 +1,79 @@
+{
+  "main": [
+    {
+      "title": "Twitter",
+      "tag": "",
+      "children": [
+        {
+          "title": "Todos",
+          "tag": ""
+        },{
+          "title": "Mídia",
+          "tag": "usuario-midia"
+        },{
+          "title": "Público Geral",
+          "tag": "usuario-geral"
+        }
+        ,{
+          "title": "Canais",
+          "tag": "usuario-canal"
+        }
+      ]
+    },{
+      "title": "Facebook",
+      "tag": "",
+      "children": [
+        {
+          "title": "Todos",
+          "tag": ""
+        },{
+          "title": "Imprensa",
+          "tag": "usuario-midia"
+        },{
+          "title": "Defensores de direitos humanos",
+          "tag": "usuario-geral"
+        },{
+          "title": "Críticos de direitos humanos",
+          "tag": "usuario-geral"
+        },{
+          "title": "Personalidades",
+          "tag": "usuario-geral"
+        },{
+          "title": "Governos e organizações internacionais",
+          "tag": "usuario-geral"
+        }
+      ]
+    },{
+      "title": "Flickr",
+      "tag": "",
+      "children": [
+        {
+          "title": "Todos",
+          "tag": ""
+        }
+      ]
+    }
+  ],
+  "period": {
+    "type": "single-option",
+    "values": [
+      {
+        "number": "30",
+        "time": "Minutos",
+        "value": "30m"
+      },{
+        "number": "1",
+        "time": "Hora",
+        "value": "1h"
+      },{
+        "number": "90",
+        "time": "Minutos",
+        "value": "1h30m"
+      },{
+        "number": "6",
+        "time": "Horas",
+        "value": "6h"
+      }
+    ]
+  }
+}

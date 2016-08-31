@@ -1,0 +1,161 @@
+#instagram_menu{
+  width: 100%;
+  height: auto;
+  position: fixed;
+  z-index: 100;
+  display: flex;
+  justify-content: center;
+}
+
+#menu_tematica_instagram {
+  width: auto;
+  padding: 20px;
+  background: #2B3044;
+}
+
+.angular-google-map-container {
+  float: left;
+  height:100%;
+  width: 50%;
+}
+
+.images-display{
+  float: left;
+  width: 100%%;
+  height: 100%;
+}
+
+/********************/
+
+#images-display{
+  background: #ffffff;
+  width: 100%;
+  height: 100%;
+  float: left;
+}
+
+#palavras_div2{
+  width:100%;
+}
+
+#palavras_div2_sunburstZoom{
+  width:100%;
+  padding: 5%;
+  height: 100%;
+  margin-top: 0;
+}
+
+#palavras_filter{
+  position: absolute;
+  width: 100%;
+  display: flex;
+  background: transparent;
+  height: 40px;
+  justify-content: center;
+  color: black;
+  bottom: 10px;
+}
+
+#palavras_filter p{
+  border-bottom: 1px solid #1dbfd8;
+  padding:10px;
+  font-size: 13px;
+  text-transform: uppercase;
+}
+
+/* IMAGES MENU */
+
+.universe-menu{
+  position: relative;
+  float:left;
+  width:100%;
+  height: 100%;
+  background: #2b3044;
+}
+
+.universe-menu-title{
+  width: 100%;
+  padding: 50px;
+}
+
+  .universe-menu-title img{
+    float: left;
+    fill: #fff;
+    height: 40px;
+    width: 40px;
+    margin-right: 10px;
+  }
+
+  .universe-menu-title p{
+    font-size: 14px;
+    font-weight: bold;
+    color: #fff;
+  }  
+
+#menu_tematica_palavras{
+  width: auto;
+  padding-top: 5px;
+  display: flex;
+  justify-content: space-around;
+  margin-left: 0;
+}
+
+.menu__main-tags-options-children-palavras{
+  visibility: visible;
+  position: relative;
+  background-color: transparent;
+}
+
+.menu__main-tags-options-children-palavras .menu__main-tags-option:last-child {
+  border-bottom: 0px dashed #41647A;
+}
+
+.menu__main-tags-palavras{
+  width: 100%;
+  float: left;
+  padding: 20px;
+  height: auto;
+  margin-left: 0px;
+}
+
+
+
+.period-filter__single-option-palavras{
+  padding: 30px;
+  margin-top: 0px;
+}
+
+#palavras_menu_button_go{
+  color: #2b3044;
+  border: 1px solid #2b3044;
+  top:10px;
+}
+
+#palavras_menu_button_go:hover{
+  background: rgba(29, 191, 216, 0.50);
+  color: #2b3044;
+  border: 1px solid rgba(29, 191, 216, 0.50);
+}
+
+#palavras_menu_button_back{
+  color: #1dbfd8;
+  border: 1px solid white;
+  bottom: 20px;
+}
+
+#palavras_menu_button_back:hover{
+  background: white;
+  color: #2b3044;
+  border: 1px solid white;
+}
+
+.palavras-button{
+  width:200px;
+  height: 40px;
+  background: transparent;
+  position: absolute;
+  border-radius: 5px;
+  font-size: 11px;
+  text-transform: uppercase;
+  margin-left: calc(50% - 100px);
+}
