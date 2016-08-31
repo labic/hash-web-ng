@@ -1,21 +1,78 @@
 <div ng-controller="mainInstagram">
 
-  <in-themes-filter options="config.filter.main" filter="filter.themes"></in-themes-filter>
+  <!--  <in-themes-filter options="config.filter.main" filter="filter.themes"></in-themes-filter>-->
   
-  <image-cloud images="mediasImages"></image-cloud>
+  <div class="universe-menu">
 
-  <ui-gmap-google-map center="config.map.center"
-                      zoom="config.map.zoom"
-                      pan="1"
-                      options="config.map.options"
-                      >
-    <ui-gmap-markers models="mediasGeolocation" coords="'self'" icon="'icon'" click="onClick">
-      <ui-gmap-windows show="show">
-        <div ng-non-bindable style="width:300px;">
-          <img class="instagramMapImage" style="width:300px; text-align:center;" src={{url}}>
-          <p style="width:300px; font-size:12px; top: 20px;">{{title}}</p>
-        </div>
-      </ui-gmap-windows>
-    </ui-gmap-markers>
-  </ui-gmap-google-map>
+    <div class="universe-menu-title">
+      <img src="img/Index/icones-vis-01.svg" class="svg-icon">
+      <p>ANÁLISE</p>
+      <p>DE IMAGENS</p>
+    </div>
+
+    <wd-themes-filter options="config.filter.main" filter="filter.tema"></wd-themes-filter>
+
+    <wd-period-filter options="config.filter.period.values" filter="filter.time"></wd-period-filter>
+
+    <button id="images_menu_button_back" class="images-button">
+      VOLTAR PARA MANDALA
+    </button>
+  </div>
+
+  <div id="images-main" class="str_division">
+    <button id="images_menu_button_go" class="images-button">
+      MENU DE FILTROS
+    </button>
+
+    <!--    <sunburst data="mandala"></sunburst>-->
+    <image-cloud images="mediasImages"></image-cloud>
+
+    <div id="images-filter">
+      <p>Tema: {{filter.tema}} | Tempo: {{filter.time}}</p>
+    </div>
+  </div>
+
+  <!--
+<ui-gmap-google-map center="config.map.center"
+zoom="config.map.zoom"
+pan="1"
+options="config.map.options"
+>
+<ui-gmap-markers models="mediasGeolocation" coords="'self'" icon="'icon'" click="onClick">
+<ui-gmap-windows show="show">
+<div ng-non-bindable style="width:300px;">
+<img class="instagramMapImage" style="width:300px; text-align:center;" src={{url}}>
+<p style="width:300px; font-size:12px; top: 20px;">{{title}}</p>
 </div>
+</ui-gmap-windows>
+</ui-gmap-markers>
+</ui-gmap-google-map>
+-->
+</div>
+
+<script type="text/javascript">
+
+  callSvgImg();
+
+  $( document ).ready(function(){
+
+//    $("body").css( "overflow-y", "hidden" );
+//
+//    $('html, body').animate({
+//      scrollTop: $("#palavras_div2").offset().top
+//    }, 0);
+//
+//    $("#palavras_menu_button_go").click(function(){
+//      $('html, body').animate({
+//        scrollTop: $("#palavras_menu").offset().top
+//      }, 1300);
+//    });
+//
+//    $("#palavras_menu_button_back").click(function(){
+//      $('html, body').animate({
+//        scrollTop: $("#palavras_div2").offset().top
+//      }, 1300);
+//    });
+  });
+  
+</script>

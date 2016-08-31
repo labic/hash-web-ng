@@ -81,10 +81,12 @@
 
 .menu_tematica_title{
   text-transform: uppercase;
+  margin-bottom: 10px;
+  cursor: default;
 }
 
 .period-filter__single-option-palavras{
-  padding: 30px;
+  padding: 15px;
   margin-top: 0px;
 }
 
@@ -115,6 +117,7 @@
 .palavras-button{
   width:200px;
   height: 40px;
+  font-weight: bold;
   background: transparent;
   position: absolute;
   border-radius: 5px;

@@ -1575,6 +1575,10 @@
   font-weight: 800;
 }
 
+.menu__main-tags-option:not(.selected) a:hover{
+  color:#1dbfd8;
+}
+
 .menu__main-tags-options-children {
   font-weight: normal;
   font-size: 10px;
@@ -1676,6 +1680,12 @@
   color: #2b3044;
   background-color: #1dbfd8;
   border: 1px solid #1dbfd8;
+}
+
+.period-filter__single-option input[type="radio"]:not(:checked):hover+label{
+  color: #2b3044;
+  background-color: #fff;
+  border: 1px solid #fff;
 }
 
 .words-module .menu__main-tags {
