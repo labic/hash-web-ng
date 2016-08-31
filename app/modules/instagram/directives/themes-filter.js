@@ -3,7 +3,7 @@
 
   angular
     .module('hash.instagram')
-    .directive('inThemesFilter', function () {
+    .directive('imThemesFilter', function () {
       return {
         templateUrl: 'modules/instagram/views/partials/themes-filter.html',
         restrict: 'E',
@@ -21,5 +21,4 @@
         }
       };
     });
-
 })();

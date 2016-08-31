@@ -5,7 +5,7 @@
     .module('hash.instagram')
     .directive('imageCloud', function () {
       return {
-        template: '<div class="d3-mosaic"><svg></svg></div>',
+        template: '<div class="images-display"><svg></svg></div>',
         restrict: 'E',
         replace: true,
         scope: {
@@ -18,7 +18,7 @@
 
           scope.$watch('images', function (newImages, oldImages) {
 
-            d3.select(".d3-mosaic").selectAll('a').remove();
+            d3.select(".images-display").selectAll('a').remove();
 
             var counter,
                 n,
