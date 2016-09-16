@@ -1,6 +1,6 @@
 hashTwitter.controller('mainPalavras', function ($scope, $http) {
-  
-  var serviceMandala = 'http://mandala-api.ddns.net:7070';
+
+  var serviceMandala = 'http://107.170.35.149:7070';
 
   /*******************************/
   /* NOTA: PALAVRAS - CONTROLLER */
@@ -134,7 +134,7 @@ hashTwitter.controller('mainPalavras', function ($scope, $http) {
         functionSunburst(newFilter.time, newFilter.tema, newFilter.word,10,5,3,false,false,false);
       }
 
-      if(newFilter.tema != oldFilter.tema){ 
+      if(newFilter.tema != oldFilter.tema){
         $scope.sunburstON = true;
         $scope.sunburstOFF = false;
 

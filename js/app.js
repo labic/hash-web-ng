@@ -3,7 +3,7 @@ var hashTwitter = angular.module('hashTwitter', ['ui.router','ngResource', 'hash
 hashTwitter
   .constant('HASH_API_BASE_URI', 'https://sdh-hash-api-dev.herokuapp.com/v2')
 //  .constant('HASH_API_BASE_URI', 'https://sdh-hash-api.herokuapp.com/v2')
-  .constant('WORD_API_BASE_URI', 'http://word-api.ddns.net:8081')
+  .constant('WORD_API_BASE_URI', 'http://107.170.35.149:8081')
   .config(function($stateProvider, $urlRouterProvider) {
   $stateProvider
 
@@ -33,7 +33,7 @@ hashTwitter
     .state('painel.img', {
     url: '',
     views: {
-      "conteudo": { 
+      "conteudo": {
         templateUrl: "app/painel/imgTweet.html", controller: function($scope) {
           var tamDiv = $(".geralTweets_result").css( "width" );
           tamDiv = parseInt(tamDiv);
@@ -51,7 +51,7 @@ hashTwitter
     .state('painel.mosaico', {
     url: '',
     views: {
-      "conteudo": { 
+      "conteudo": {
         templateUrl: "app/painel/imgMosaicoTweet.html", controller: function($scope) {
           var tamDiv = $(".geralTweets_result").css( "width" );
           tamDiv = parseInt(tamDiv);
@@ -123,7 +123,7 @@ hashTwitter
     .state('facebook.postsImage', {
     url: '',
     views: {
-      "facebook.conteudo": { templateUrl: "app/facebook/imgFacebook.html" }, 
+      "facebook.conteudo": { templateUrl: "app/facebook/imgFacebook.html" },
       controller: function($scope) {
         var tamDiv = $(".geralTweets_result").css( "width" );
         tamDiv = parseInt(tamDiv);
@@ -134,7 +134,7 @@ hashTwitter
     .state('facebook.postsMosaico', {
     url: '',
     views: {
-      "facebook.conteudo": { templateUrl: "app/facebook/imgMosaicoFacebook.html" }, 
+      "facebook.conteudo": { templateUrl: "app/facebook/imgMosaicoFacebook.html" },
       controller: function($scope) {
         var tamDiv = $(".geralTweets_result").css( "width" );
         tamDiv = parseInt(tamDiv);
@@ -142,9 +142,9 @@ hashTwitter
       }
     }
   })
-  
+
   /* PAGINA: Relatorio */
-  
+
   .state('relatorio', {
     url: "/relatorio",
     views: {
