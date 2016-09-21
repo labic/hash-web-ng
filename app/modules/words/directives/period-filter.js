@@ -10,14 +10,17 @@
         replace: true,
         scope: {
           options: '=',
-          filter: '='
+          period: '=',
+          number: '=',
+          unit: '='
         },
         link: function(scope, element, attrs) {
-          scope.setFilter = function(e) {
-            scope.filter = $(e.currentTarget).attr('value');
+          scope.setFilter = function(option,e) {
+            scope.period = option.value;
+            scope.number = option.number;
+            scope.unit = option.unit;
           }
         }
       };
     });
-
 })();

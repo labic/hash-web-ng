@@ -4,11 +4,11 @@ hash.controller('mainPalavras', function ($scope, $http, settings, CONFIG, WordT
   };
 
   $scope.filter = {
-    tema: $scope.config.filter.main[0].children[0].tag,
-    title: $scope.config.filter.main[0].children[0].title,
-    time: $scope.config.filter.period.values[3].value,
+    tag: $scope.config.filter.main[2].tag,
+    title: $scope.config.filter.main[2].title,
+    period: $scope.config.filter.period.values[3].value,
     number: $scope.config.filter.period.values[3].number,
-    unidade: $scope.config.filter.period.values[3].time,
+    unit: $scope.config.filter.period.values[3].unit,
     word: null
   };
 
@@ -20,8 +20,8 @@ hash.controller('mainPalavras', function ($scope, $http, settings, CONFIG, WordT
     $scope.dataLoadOFF = true;
 
     WordTwitter.mandala({
-      'tags[]': [newFilter.tema],
-      'period': newFilter.time,
+      'tags[]': [newFilter.tag],
+      'period': newFilter.period,
       'top_word': newFilter.word,
     }, function success(data) {
       $scope.mandala = data;
