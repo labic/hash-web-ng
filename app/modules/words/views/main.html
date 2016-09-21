@@ -28,9 +28,9 @@
       <p>TEXTUAL - Twitter</p>
     </div>
 
-    <wd-themes-filter options="config.filter.main" filter="filter.tema"></wd-themes-filter>
+    <wd-themes-filter options="config.filter.main" tag="filter.tag" title="filter.title"></wd-themes-filter>
 
-    <wd-period-filter options="config.filter.period.values" filter="filter.time"></wd-period-filter>
+    <wd-period-filter options="config.filter.period.values" period="filter.period" number="filter.number" unit="filter.unit"></wd-period-filter>
 
     <button id="palavras_menu_button_back" class="palavras-button">
       VOLTAR PARA A MANDALA
@@ -45,7 +45,7 @@
     <sunburst data="mandala"></sunburst>
     
     <div id="palavras_filter">
-      <p>Tema: {{filter.tema}} | Tempo: {{filter.time}}</p>
+      <p>Tema: {{filter.title}} | Tempo: {{filter.number}} {{filter.unit}}</p>
     </div>
   </div>
 </div>

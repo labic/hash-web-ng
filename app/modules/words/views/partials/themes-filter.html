@@ -2,13 +2,15 @@
 
   <ul id="menu_tematica_palavras" class="menu__main-tags-options">
     <li
-      class="menu__main-tags-option menu_tematica_op"
-      ng-class="{selected: filter==option.tag}"
-      ng-repeat="option in options">
-<!--      <a href ng-click="setFilter(option, $event, true)" class="menu_tematica_title" style="font-size:25px;">{{option.title}}</a>-->
+        class="menu__main-tags-option menu_tematica_op"
+        ng-repeat="option in options">
       <p class="menu_tematica_title" style="font-size:25px;">{{option.title}}</p>
 
-      <ul class="menu__main-tags-options-children menu__main-tags-options-children-palavras" ng-if="option.children.length > 0">
+      <ul class="menu__main-tags-options-children menu__main-tags-options-children-palavras" ng-if="option.children.length >= 0">
+        <li class="menu__main-tags-option" ng-class="{selected: title==option.title}">
+          <a href ng-click="setFilter(option, $event)" >Todos</a>
+        </li>
+
         <li class="menu__main-tags-option" ng-repeat="children in option.children">
           <a href ng-click="setFilter(children, $event)">{{children.title}}</a>
         </li>
