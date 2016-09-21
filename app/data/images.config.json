@@ -5,9 +5,6 @@
       "tag": "",
       "children": [
         {
-          "title": "Todos",
-          "tag": ""
-        },{
           "title": "Mídia",
           "tag": "usuario-midia"
         },{
@@ -24,33 +21,23 @@
       "tag": "",
       "children": [
         {
-          "title": "Todos",
-          "tag": ""
+          "title": "Mídia",
+          "tag": "categoria-midia"
         },{
-          "title": "Imprensa",
-          "tag": "usuario-midia"
+          "title": "Institucional",
+          "tag": "categoria-institucional"
         },{
-          "title": "Defensores de direitos humanos",
-          "tag": "usuario-geral"
+          "title": "Educação",
+          "tag": "categoria-educacional"
         },{
-          "title": "Críticos de direitos humanos",
-          "tag": "usuario-geral"
-        },{
-          "title": "Personalidades",
-          "tag": "usuario-geral"
-        },{
-          "title": "Governos e organizações internacionais",
-          "tag": "usuario-geral"
+          "title": "Humor",
+          "tag": "categoria-humor"
         }
       ]
     },{
       "title": "Flickr",
       "tag": "",
       "children": [
-        {
-          "title": "Todos",
-          "tag": ""
-        }
       ]
     }
   ],
@@ -58,21 +45,21 @@
     "type": "single-option",
     "values": [
       {
-        "number": "30",
-        "time": "Minutos",
-        "value": "30m"
-      },{
         "number": "1",
-        "time": "Hora",
+        "unit": "Hora",
         "value": "1h"
       },{
-        "number": "90",
-        "time": "Minutos",
-        "value": "1h30m"
-      },{
         "number": "6",
-        "time": "Horas",
+        "unit": "Horas",
         "value": "6h"
+      },{
+        "number": "7",
+        "unit": "Dias",
+        "value": "7d"
+      },{
+        "number": "15",
+        "unit": "Dias",
+        "value": "15d"
       }
     ]
   }

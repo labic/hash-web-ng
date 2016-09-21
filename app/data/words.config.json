@@ -2,12 +2,9 @@
   "main": [
     {
       "title": "Mídia",
-      "tag": "",
+      "tag": "usuario-midia",
       "children": [
         {
-          "title": "Todos",
-          "tag": "usuario-midia"
-        },{
           "title": "Notícias mais Populares",
           "tag": "categoria-noticias"
         },{
@@ -17,12 +14,8 @@
       ]
     },{
       "title": "Público Geral",
-      "tag": "",
+      "tag": "usuario-geral",
       "children": [
-        {
-          "title": "Todos",
-          "tag": "usuario-geral"
-        },
         {
           "title": "Conteúdo Pedagógico",
           "tag": "categoria-conteudo",
@@ -165,12 +158,9 @@
       ]
     },{
       "title": "Canais",
-      "tag": "",
+      "tag": "usuario-canal",
       "children": [
         {
-          "title": "Todos",
-          "tag": "usuario-canal"
-        },{
           "title": "Canais Educacionais",
           "tag": "categoria-canais"
         },{
@@ -185,19 +175,19 @@
     "values": [
       {
         "number": "30",
-        "time": "Minutos",
+        "unit": "Minutos",
         "value": "30m"
       },{
         "number": "1",
-        "time": "Hora",
+        "unit": "Hora",
         "value": "1h"
       },{
         "number": "90",
-        "time": "Minutos",
+        "unit": "Minutos",
         "value": "1h30m"
       },{
         "number": "6",
-        "time": "Horas",
+        "unit": "Horas",
         "value": "6h"
       }
     ]
