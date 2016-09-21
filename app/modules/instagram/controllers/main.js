@@ -1,93 +1,56 @@
-hash.controller('mainInstagram', function ($scope, settings, InstagramMedia) {
+hash.controller('mainInstagram', function ($scope, settings, InstagramMedia, AnalyticsFacebook, AnalyticsTwitter) {
   $scope.config = {
     filter: settings.get('instagram.filters'),
-    map : {
-      center: { latitude: -13.32156, longitude: -53.8852 },
-      zoom: 4,
-      options: {
-        mapTypeControl: false,
-        streetViewControl: false
-      }
-    }
   };
 
+  var tamDiv = $("#images-display").css( "width" );
+  tamDiv = parseInt(tamDiv);
+  $scope.alturaImg = tamDiv / 6;
+  $scope.alturaImgMosaico = tamDiv / 12;
+
+  // Filter: Filtro para preencher post de requisição API RPS
   $scope.filter = {
-    themes: $scope.config.filter.main[0].tag,
-    period: 'recent',
+    tag: $scope.config.filter.main[1].tag,
+    title: $scope.config.filter.main[1].title,
+    period: $scope.config.filter.period.values[2].value,
+    number: $scope.config.filter.period.values[2].number,
+    unit: $scope.config.filter.period.values[2].unit,
+    social: $scope.config.filter.main[1].title
   };
-
-  $scope.mediasGeolocation = [];
-  $scope.mediasImages = [];
 
   $scope.$watch('filter', function (newFilter, oldFilter) {
-    // Populate the map
-    InstagramMedia.find({
-      'period': $scope.filter.period,
-      'tags[]': [newFilter.themes],
-      'geo': true,
-      'page': 1,
-      'per_page': 200
-    }, function(medias) {
-      var makers = [];
-      
-      $scope.postsGeoTrue = medias;
 
-      for (var i = 0; i < medias.length; i++) {
-        var maker = {
-          id: i,
-          latitude: medias[i].data.location.latitude,
-          longitude: medias[i].data.location.longitude,
-          url: medias[i].data.images.low_resolution.url,
-          show: false
-        }
-        if (medias[i].data.caption)
-          maker.title = medias[i].data.caption.text
+    if(newFilter.social == "Facebook"){
 
-          makers.push(maker);
-      }
+      AnalyticsFacebook.mostRecurringImages({
+        'period': newFilter.period,
+        'profile_type': 'page',
+        'filter[with_tags]': newFilter.tag,
+        'page': 1,
+        'per_page': 96
+      }, function success(response) {
+        $scope.imgs = response;
+      }, function error(err) {
+        console.error('ERROR!');
+      });
 
-      $scope.mediasGeolocation = makers;
-      $scope.infoWindow = null;
-    });
+    }else if(newFilter.social == "Twitter"){
 
-    // Populate the mosaic
-    InstagramMedia.find({
-      'period': $scope.filter.period,
-      'tags[]': [newFilter.themes],
-      'geo': false,
-      'page': 1,
-      'per_page': 200
-    }, function(medias) {
-      
-      var images = [];
-      
-      medias = $scope.postsGeoTrue.concat(medias);
-      
-      medias = _.sortBy(medias, ['data.created_time']);
+      AnalyticsTwitter.mostRecurringImages({
+        period: newFilter.period,
+        'filter[with_tags]': newFilter.tag,
+        retrive_blocked: undefined,
+        page: 1,
+        per_page: 96
+      },function success(response) {
+        $scope.imgs = response;
+      }, function error(err) {
+        console.error('ERROR!');
+      });
 
-      for (var i = 0; i < medias.length; i++) {
-        images.push({
-          link: medias[i].data.link,
-          src: medias[i].data.images.standard_resolution.url
-        });
-      }
+    }else if(newFilter.social == "Flickr"){
 
-      $scope.mediasImages = images.reverse();
-    });
-  },true);
-
-  $scope.onClick = function(marker, eventName, model) {
-    if(model.show == true){
-      model.show = false;
-      $scope.activeWindow = null;        
-    }else{
-      model.show = true;
-      if($scope.activeWindow != null){
-        $scope.activeWindow.show = false;
-      }
-      $scope.activeWindow = model;
     }
-  };
 
-  $scope.activeWindow = null;
+  },true);
 });

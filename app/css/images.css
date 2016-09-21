@@ -19,19 +19,16 @@
   width: 50%;
 }
 
-.images-display{
-  float: left;
-  width: 100%%;
-  height: 100%;
-}
-
 /********************/
 
-#images-display{
-  background: #ffffff;
+#images-main{
   width: 100%;
-  height: 100%;
-  float: left;
+}
+
+#images-display{
+  width: 100%;
+  height: calc(100% - 140px);
+  margin-top: 80px;
 }
 
 #palavras_div2{
@@ -45,7 +42,7 @@
   margin-top: 0;
 }
 
-#palavras_filter{
+#images-filter{
   position: absolute;
   width: 100%;
   display: flex;
@@ -56,7 +53,7 @@
   bottom: 10px;
 }
 
-#palavras_filter p{
+#images-filter p{
   border-bottom: 1px solid #1dbfd8;
   padding:10px;
   font-size: 13px;
@@ -78,19 +75,19 @@
   padding: 50px;
 }
 
-  .universe-menu-title img{
-    float: left;
-    fill: #fff;
-    height: 40px;
-    width: 40px;
-    margin-right: 10px;
-  }
+.universe-menu-title-image{
+  float: left;
+  fill: #fff;
+  height: 40px;
+  width: 40px;
+  margin-right: 10px;
+}
 
-  .universe-menu-title p{
-    font-size: 14px;
-    font-weight: bold;
-    color: #fff;
-  }  
+.universe-menu-title p{
+  font-size: 14px;
+  font-weight: bold;
+  color: #fff;
+}  
 
 #menu_tematica_palavras{
   width: auto;
@@ -118,38 +115,36 @@
   margin-left: 0px;
 }
 
-
-
 .period-filter__single-option-palavras{
   padding: 30px;
   margin-top: 0px;
 }
 
-#palavras_menu_button_go{
+#images-menu-button-go{
   color: #2b3044;
   border: 1px solid #2b3044;
-  top:10px;
+  top:20px;
 }
 
-#palavras_menu_button_go:hover{
+#images-menu-button-go:hover{
   background: rgba(29, 191, 216, 0.50);
   color: #2b3044;
   border: 1px solid rgba(29, 191, 216, 0.50);
 }
 
-#palavras_menu_button_back{
+#images-menu-button-back{
   color: #1dbfd8;
   border: 1px solid white;
   bottom: 20px;
 }
 
-#palavras_menu_button_back:hover{
+#images-menu-button-back:hover{
   background: white;
   color: #2b3044;
   border: 1px solid white;
 }
 
-.palavras-button{
+.images-button{
   width:200px;
   height: 40px;
   background: transparent;
@@ -157,5 +152,12 @@
   border-radius: 5px;
   font-size: 11px;
   text-transform: uppercase;
-  margin-left: calc(50% - 100px);
+  left: calc(50% - 100px);
+}
+
+.images-picture{
+  cursor: pointer;
+  float: left;
+  width: calc(100% / 6);
+  padding: 4px;
 }
