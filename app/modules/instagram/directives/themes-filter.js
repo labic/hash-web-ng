@@ -10,11 +10,15 @@
         replace: true,
         scope: {
           options: '=',
-          filter: '='
+          tag: '=',
+          title: '=',
+          social: '='
         },
         link: function(scope, element, attrs) {
-          scope.setFilter = function(option, e) {
-            scope.filter = option.tag;
+          scope.setFilter = function(option, e, social) {
+            scope.tag = option.tag;
+            scope.title = option.title;
+            scope.social = social;
             $('li', element).removeClass('selected');
             $(e.currentTarget).parent().addClass('selected');
           }
