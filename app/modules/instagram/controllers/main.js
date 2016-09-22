@@ -3,19 +3,19 @@ hash.controller('mainInstagram', function ($scope, settings, InstagramMedia, Ana
     filter: settings.get('instagram.filters'),
   };
 
-  var tamDiv = $("#images-display").css( "width" );
-  tamDiv = parseInt(tamDiv);
-  $scope.alturaImg = tamDiv / 6;
-  $scope.alturaImgMosaico = tamDiv / 12;
+//  var tamDiv = $("#images-display").css( "width" );
+//  tamDiv = parseInt(tamDiv);
+//  $scope.alturaImg = tamDiv / 6;
+//  $scope.alturaImgMosaico = tamDiv / 12;
 
   // Filter: Filtro para preencher post de requisição API RPS
   $scope.filter = {
     tag: $scope.config.filter.main[1].tag,
     title: $scope.config.filter.main[1].title,
+    social: $scope.config.filter.main[1].title,
     period: $scope.config.filter.period.values[2].value,
     number: $scope.config.filter.period.values[2].number,
-    unit: $scope.config.filter.period.values[2].unit,
-    social: $scope.config.filter.main[1].title
+    unit: $scope.config.filter.period.values[2].unit
   };
 
   $scope.$watch('filter', function (newFilter, oldFilter) {

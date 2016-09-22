@@ -32,16 +32,16 @@
 
             <div ng-if="filter.social == 'Facebook'">
               <a ng-show="img.message != null" href='{{img.full_picture}}' class="swipebox" title=' <a class="facebook-images-title" href="https://facebook.com/{{img.id}}" target="_blank">Curtida(s): {{img.count}} - {{img.message}}</a>'>
-                <img ng-src="{{img.full_picture}}" on-error-src="img/image_not_found.jpg" class="images-picture" width="{{alturaImg}}px" height="{{alturaImg}}px">  
+                <img ng-src="{{img.full_picture}}" on-error-src="img/image_not_found.jpg" class="images-picture">  
               </a>
               <a ng-show="img.message == null" href='{{img.full_picture}}' class="swipebox" title=' <a class="facebook-images-title" href="https://facebook.com/{{img.id}}" target="_blank">Curtida(s): {{img.count}}</a>'>
-                <img ng-src="{{img.full_picture}}" on-error-src="img/image_not_found.jpg" class="images-picture" width="{{alturaImg}}px" height="{{alturaImg}}px">
+                <img ng-src="{{img.full_picture}}" on-error-src="img/image_not_found.jpg" class="images-picture">
               </a>
             </div>
 
             <div ng-if="filter.social == 'Twitter'">
               <a href='{{img.media_url_https}}' class="swipebox" title='<a href="https://twitter.com/{{img.user.screen_name}}/status/{{img.status.id_str}}" target="_blank" style="color:white;">Retweetado {{img.count}} - "{{img.text}}" @{{img.user.screen_name}}</a>'>
-                <img ng-src="{{img.media_url_https}}:small" on-error-src="img/image_not_found.jpg" class="images-picture" width="{{alturaImg}}px" height="{{alturaImg}}px">
+                <img ng-src="{{img.media_url_https}}:small" on-error-src="img/image_not_found.jpg" class="images-picture">
               </a>
             </div>
 
@@ -61,6 +61,10 @@
   callSvgImg();
 
   $( document ).ready(function(){
+    
+    $(".swipebox").swipebox({
+      hideBarsDelay : 10000000
+    });
 
     $("body").css( "overflow-y", "hidden" );
 
