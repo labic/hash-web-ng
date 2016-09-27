@@ -158,8 +158,8 @@
 .images-picture{
   cursor: pointer;
   float: left;
-  width: 16.6%;
-  height: 16.6vw;
+  width: 20%;
+  height: 20vw;
   padding: 4px;
-  object-fit: cover;
+  object-fit: contain;
 }

@@ -3,11 +3,6 @@ hash.controller('mainInstagram', function ($scope, settings, InstagramMedia, Ana
     filter: settings.get('instagram.filters'),
   };
 
-//  var tamDiv = $("#images-display").css( "width" );
-//  tamDiv = parseInt(tamDiv);
-//  $scope.alturaImg = tamDiv / 6;
-//  $scope.alturaImgMosaico = tamDiv / 12;
-
   // Filter: Filtro para preencher post de requisição API RPS
   $scope.filter = {
     tag: $scope.config.filter.main[1].tag,
@@ -27,9 +22,9 @@ hash.controller('mainInstagram', function ($scope, settings, InstagramMedia, Ana
         'profile_type': 'page',
         'filter[with_tags]': newFilter.tag,
         'page': 1,
-        'per_page': 96
+        'per_page': 100
       }, function success(response) {
-        $scope.imgs = response;
+        response != '' ? $scope.imgs = response : alert(2);
       }, function error(err) {
         console.error('ERROR!');
       });
@@ -41,7 +36,7 @@ hash.controller('mainInstagram', function ($scope, settings, InstagramMedia, Ana
         'filter[with_tags]': newFilter.tag,
         retrive_blocked: undefined,
         page: 1,
-        per_page: 96
+        per_page: 100
       },function success(response) {
         $scope.imgs = response;
       }, function error(err) {
