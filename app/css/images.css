@@ -145,6 +145,7 @@
 }
 
 .images-button{
+  font-weight: bold;
   width:200px;
   height: 40px;
   background: transparent;
@@ -161,5 +162,5 @@
   width: 20%;
   height: 20vw;
   padding: 4px;
-  object-fit: contain;
+  object-fit: cover;
 }

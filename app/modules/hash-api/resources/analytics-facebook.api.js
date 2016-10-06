@@ -20,7 +20,7 @@
       };
       
       return $resource('', null, {
-        mostCommentedPosts: {
+        mostActiveProfiles: {
           method: 'GET', 
           url:  HASH_API_BASE_URI + '/analytics/facebook/most_active_profiles', 
           params: PARAMS,
@@ -62,7 +62,7 @@
           isArray: true,
           cache: true
         },
-        mostActiveProfiles: {
+        mostSharedPosts: {
           method: 'GET', 
           url:  HASH_API_BASE_URI + '/analytics/facebook/most_shared_posts', 
           params: PARAMS,
