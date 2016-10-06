@@ -125,3 +125,20 @@
   text-transform: uppercase;
   margin-left: calc(50% - 100px);
 }
+
+.handlers{
+  position: absolute; 
+  top: calc(50% - 40px);
+  width: 100%;
+}
+
+.handlers img{
+  margin-left: calc(50% - 30px);
+}
+
+.handlers p{
+  color: #2b3044;
+  margin-top:10px;
+  width: 100%;
+  text-align: center;
+}

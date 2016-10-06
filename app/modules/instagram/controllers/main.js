@@ -15,6 +15,8 @@ hash.controller('mainInstagram', function ($scope, settings, InstagramMedia, Ana
 
   $scope.$watch('filter', function (newFilter, oldFilter) {
 
+    $scope.loading();
+
     if(newFilter.social == "Facebook"){
 
       AnalyticsFacebook.mostRecurringImages({
@@ -24,9 +26,9 @@ hash.controller('mainInstagram', function ($scope, settings, InstagramMedia, Ana
         'page': 1,
         'per_page': 100
       }, function success(response) {
-        response != '' ? $scope.imgs = response : alert(2);
+        response != '' ? $scope.sucess(response) : $scope.empty();   
       }, function error(err) {
-        console.error('ERROR!');
+        $scope.error();
       });
 
     }else if(newFilter.social == "Twitter"){
@@ -38,14 +40,36 @@ hash.controller('mainInstagram', function ($scope, settings, InstagramMedia, Ana
         page: 1,
         per_page: 100
       },function success(response) {
-        $scope.imgs = response;
+        response != '' ? $scope.sucess(response) : $scope.empty();
       }, function error(err) {
-        console.error('ERROR!');
+        $scope.error();
       });
 
     }else if(newFilter.social == "Flickr"){
 
     }
-
   },true);
+
+  $scope.loading = function(){
+    $("#loading").show();
+    $("#error").hide();
+    $("#empty").hide();
+    $("#images-display").hide();
+  } 
+
+  $scope.sucess = function(data){
+    $("#loading").hide();
+    $("#images-display").show();
+    $scope.imgs = data;
+  } 
+
+  $scope.empty = function(){
+    $("#loading").hide();
+    $("#empty").show();
+  }  
+
+  $scope.error = function(){
+    $("#loading").hide();
+    $("#error").show();
+  } 
 });

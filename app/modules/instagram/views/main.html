@@ -1,6 +1,6 @@
 <div ng-controller="mainInstagram">
 
-  <div class="universe-menu">
+  <div id="images-menu" class="universe-menu">
 
     <div class="universe-menu-title">
       <img src="img/twitter/ICONES-11.svg" class="svg-icon universe-menu-title-image">
@@ -13,8 +13,9 @@
     <im-period-filter options="config.filter.period.values" period="filter.period" number="filter.number" unit="filter.unit"></im-period-filter>
 
     <button id="images-menu-button-back" class="images-button">
-      VOLTAR PARA MANDALA
+      VOLTAR PARA IMAGENS
     </button>
+
   </div>
 
   <div id="images-main" class="str_division">
@@ -22,8 +23,20 @@
       MENU DE FILTROS
     </button>
 
-    <!--    <sunburst data="mandala"></sunburst>-->
-    <!--    <image-cloud images="mediasImages"></image-cloud>-->
+    <div id="loading" class="handlers">
+      <img src="bower_components/SVG-Loaders/svg-loaders/spinning-circles.svg">
+      <p>estamos carregando os dados</p>
+    </div>
+    
+    <div id="error" class="handlers">
+      <img src="img/svg/error_outline.svg">
+      <p>ocorreu um erro com esses requisição, tente outro parâmetro</p>
+    </div>
+    
+    <div id="empty" class="handlers">
+      <img src="img/svg/error_outline.svg">
+      <p>não há dados dessa categoria nesse intervalo de tempo, tente outros parâmetros</p>
+    </div>
 
     <div id="images-display">
       <div id="result_conteudo_img" style="height:100%;">
@@ -67,21 +80,15 @@
     });
 
     $("body").css( "overflow-y", "hidden" );
-
-    $('html, body').animate({
-      scrollTop: $("#images-main").offset().top
-    }, 0);
+    
+    document.getElementById("images-main").scrollIntoView();
 
     $("#images-menu-button-go").click(function(){
-      $('html, body').animate({
-        scrollTop: $(".universe-menu").offset().top
-      }, 1300);
+      document.getElementById("images-menu").scrollIntoView({block: "end", behavior: "smooth"});
     });
 
-    $("#images-menu-button-back").click(function(){
-      $('html, body').animate({
-        scrollTop: $("#images-main").offset().top
-      }, 1300);
+    $("#images-menu-button-back").click(function(){   
+      document.getElementById("images-main").scrollIntoView({block: "end", behavior: "smooth"});
     });
   });
 

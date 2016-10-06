@@ -6,9 +6,9 @@ hash.controller('mainPalavras', function ($scope, $http, settings, CONFIG, WordT
   $scope.filter = {
     tag: $scope.config.filter.main[2].tag,
     title: $scope.config.filter.main[2].title,
-    period: $scope.config.filter.period.values[3].value,
-    number: $scope.config.filter.period.values[3].number,
-    unit: $scope.config.filter.period.values[3].unit,
+    period: $scope.config.filter.period.values[2].value,
+    number: $scope.config.filter.period.values[2].number,
+    unit: $scope.config.filter.period.values[2].unit,
     word: null
   };
 
@@ -16,25 +16,28 @@ hash.controller('mainPalavras', function ($scope, $http, settings, CONFIG, WordT
 
   $scope.$watch('filter', function (newFilter, oldFilter) {
 
-    $(".loading-palavras").show();
-    $scope.dataLoadOFF = true;
+    $("#loading").show();
+    $("#error").hide();
+    $("#empty").hide();
+    $("#palavras_mandala").hide();
 
     WordTwitter.mandala({
       'tags[]': [newFilter.tag],
       'period': newFilter.period,
       'top_word': newFilter.word,
     }, function success(data) {
+      if ((JSON.stringify(data.children)) != '[]'){
+        $("#loading").hide();
+        $("#palavras_mandala").show();
+      }else{
+        $("#loading").hide();
+        $("#empty").show();
+      }    
       $scope.mandala = data;
-      $(".loading-palavras").hide();
     }, function error(err) {
-
-      console.error('ERROR!');
+      $("#loading").hide();
+      $("#error").show();
     });
-
-    $scope.dataLoadON = true;
-    $scope.dataLoad404 = false;
-    $scope.dataLoadOFF = false;
-    // functionSunburst(newFilter.time, newFilter.tema,null,10,5,3,false,false,false);
   },true);
 
   /* Variaveis globais dos parametros da requisição */

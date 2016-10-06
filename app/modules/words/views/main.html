@@ -2,26 +2,7 @@
 
   <!--  <div id="palavras-display">-->
 
-  <!--
-<div class="loading loading-palavras">
-<div class="cssload-container">
-<div class="cssload-shaft1"></div>
-<div class="cssload-shaft2"></div>
-<div class="cssload-shaft3"></div>
-<div class="cssload-shaft4"></div>
-<div class="cssload-shaft5"></div>
-<div class="cssload-shaft6"></div>
-<div class="cssload-shaft7"></div>
-<div class="cssload-shaft8"></div>
-<div class="cssload-shaft9"></div>
-<div class="cssload-shaft10"></div>
-</div>
-<p class="loadingWordGrey">MONTANDO GRÁFICO</p>
-<p class="loadingWordGrey">buscando palavras correlacionadas. Por favor aguarde.</p>
-</div>
--->
   <div id="palavras_menu">
-
     <div id="div1_palavras_title">
       <img src="img/Index/icones-vis-01.svg" class="svg-icon div1_palavras_title_img">
       <p>ANÁLISE</p>
@@ -41,9 +22,24 @@
     <button id="palavras_menu_button_go" class="palavras-button">
       MENU DE FILTROS
     </button>
+
+    <div id="loading" class="handlers">
+      <img src="bower_components/SVG-Loaders/svg-loaders/spinning-circles.svg">
+      <p>estamos carregando os dados</p>
+    </div>
     
-    <sunburst data="mandala"></sunburst>
+    <div id="error" class="handlers">
+      <img src="img/svg/error_outline.svg">
+      <p>ocorreu um erro com esses requisição, tente outro parâmetro</p>
+    </div>
     
+    <div id="empty" class="handlers">
+      <img src="img/svg/error_outline.svg">
+      <p>não há dados dessa categoria nesse intervalo de tempo, tente outros parâmetros</p>
+    </div>
+
+    <sunburst id="palavras_mandala" data="mandala"></sunburst>
+
     <div id="palavras_filter">
       <p>Tema: {{filter.title}} | Tempo: {{filter.number}} {{filter.unit}}</p>
     </div>
@@ -58,21 +54,15 @@
 
     $("body").css( "overflow-y", "hidden" );
 
-    $('html, body').animate({
-      scrollTop: $("#palavras_div2").offset().top
-    }, 0);
+    document.getElementById("palavras_div2").scrollIntoView();
 
     $("#palavras_menu_button_go").click(function(){
-      $('html, body').animate({
-        scrollTop: $("#palavras_menu").offset().top
-      }, 1300);
+      document.getElementById("palavras_menu").scrollIntoView({block: "end", behavior: "smooth"});
     });
 
     $("#palavras_menu_button_back").click(function(){
-      $('html, body').animate({
-        scrollTop: $("#palavras_div2").offset().top
-      }, 1300);
+      document.getElementById("palavras_div2").scrollIntoView({block: "end", behavior: "smooth"});
     });
   });
-  
+
 </script>
