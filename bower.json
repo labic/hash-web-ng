@@ -38,7 +38,7 @@
     "underscore": "~1.8.3",
     "angular-google-maps": "^2.3.2",
     "lodash": "^4.6.1",
-    "SVG-Loaders": "1.0.2"
+    "SVG-Loaders": "https://github.com/SamHerbert/SVG-Loaders.git#1.0.2"
   },
   "overrides": {
     "angular": {
