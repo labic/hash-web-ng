@@ -37,7 +37,8 @@
     "twentytwenty": "*",
     "underscore": "~1.8.3",
     "angular-google-maps": "^2.3.2",
-    "lodash": "^4.6.1"
+    "lodash": "^4.6.1",
+    "SVG-Loaders": "1.0.2"
   },
   "overrides": {
     "angular": {
@@ -154,6 +155,11 @@
         "js/jquery.event.move.js",
         "js/jquery.twentytwenty.js",
         "css/twentytwenty.css"
+      ]
+    },
+    "SVG-Loaders": {
+      "main": [
+        "svg-loaders/spinning-circles.svg"
       ]
     },
     "underscore": {
