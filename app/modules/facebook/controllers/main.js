@@ -43,7 +43,7 @@ hash.controller('mainFacebook', function ($scope, $http, settings, MetricsFacebo
       AnalyticsFacebook.mostRecurringImages({
         'period': time,
         'profile_type': type,
-        'filter[with_tags]': (theme === undefined ? [actor] : [actor, theme]),
+        'filter[with_tags]': [actor,theme],
         'word': word,
         'filter[hashtags]': tag,
         'page': x,
@@ -62,7 +62,7 @@ hash.controller('mainFacebook', function ($scope, $http, settings, MetricsFacebo
 
   // Request: WordFacebook.topWords
   $scope.replyTopWords = function(time,type,actor){
-    
+
     var cloudWidth = $("#div3_monitor").width();
 
     $scope.loadWordTagON = false;
@@ -86,6 +86,7 @@ hash.controller('mainFacebook', function ($scope, $http, settings, MetricsFacebo
         $scope.loadWordTagOFF = false;
         $scope.loadWordTagON = true;
       }
+
     }, errorWordTag);
   }
 
