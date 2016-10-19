@@ -24,7 +24,7 @@
     </button>
 
     <div id="loading" class="handlers">
-      <img src="bower_components/SVG-Loaders/svg-loaders/spinning-circles.svg">
+      <img src="img/icons/spinning-circles.svg">
       <p>estamos carregando os dados</p>
     </div>
     
@@ -44,11 +44,8 @@
           <div ng-repeat="img in imgs | orderBy:'-count'">
 
             <div ng-if="filter.social == 'Facebook'">
-              <a ng-show="img.message != null" href='{{img.full_picture}}' class="swipebox" title=' <a class="facebook-images-title" href="https://facebook.com/{{img.id}}" target="_blank">Curtida(s): {{img.count}} - {{img.message}}</a>'>
+              <a href='{{img.full_picture}}' class="swipebox" title=' <a class="facebook-images-title" href="https://facebook.com/{{img.id}}" target="_blank">Curtida(s): {{img.count}} - {{img.message}}</a>'>
                 <img ng-src="{{img.full_picture}}" on-error-src="img/image_not_found.jpg" class="images-picture">  
-              </a>
-              <a ng-show="img.message == null" href='{{img.full_picture}}' class="swipebox" title=' <a class="facebook-images-title" href="https://facebook.com/{{img.id}}" target="_blank">Curtida(s): {{img.count}}</a>'>
-                <img ng-src="{{img.full_picture}}" on-error-src="img/image_not_found.jpg" class="images-picture">
               </a>
             </div>
 
