@@ -1,196 +1,112 @@
 <div id="str_main_monitor" class="str_main" ng-controller="mainMetrics">
-  <div class="relatorio-display">
+  <div class="relatorio">
 
-    <div class="loading loading_relatorio">
-      <div class="cssload-container">
-        <div class="cssload-shaft1"></div>
-        <div class="cssload-shaft2"></div>
-        <div class="cssload-shaft3"></div>
-        <div class="cssload-shaft4"></div>
-        <div class="cssload-shaft5"></div>
-        <div class="cssload-shaft6"></div>
-        <div class="cssload-shaft7"></div>
-        <div class="cssload-shaft8"></div>
-        <div class="cssload-shaft9"></div>
-        <div class="cssload-shaft10"></div>
-      </div>
-      <p class="loadingWordGrey">RECEBENDO OS DADOS ESTATÍSTICOS</p>
-      <p class="loadingWordGrey">realizando multiplás requisições. Por favor aguarde com paciência, essa operação pode demorar cerca de 1 minuto.</p>
-    </div>
-
-    <div class="relatorio-display-title">
-      <div class="relatorio-display-title-str">
+    <div class="relatorio-title">
+      <div class="relatorio-title-str">
         <p>Estatísticas<br>dos últimos 7 dias</p>
-        <div class="relatorio-display-title-menu">
+        <div class="relatorio-title-menu">
           <span>
-            <img src="img/relatorio/icones-01.svg" class="svg-icon relatorio-display-title-menu-img twitter-color">
+            <img src="img/relatorio/icones-01.svg" class="svg-icon relatorio-title-menu-img twitter-color">
             <p>PUBLICAÇÕES</p>
           </span>
         </div>
       </div>
     </div>
 
-    <div class="relatorio-display-statistic">
-      <div class="relatorio-display-statistic-str">
-        <div class="relatorio-display-statistic-each">
-          <span>
-            <img src="img/relatorio/icones-02.svg" class="svg-icon relatorio-display-statistic-image-left twitter-color">
-          </span>
-          <span>
-            <img src="img/relatorio/icones-03.svg" class="svg-icon relatorio-display-statistic-image-right link-color">
-          </span>
-          <p>{{TwitterTweet}}</p>
-          <p>Publicações acumuladas do Twitter</p>
+    <div class="relatorio-social" id="relatorio-twitter">
+      <p class="relatorio-social-title">Twitter</p>
+      <div class="relatorio-social-metrics">
+        <div class="relatorio-social-metrics-each">
+          <img src="img/twitter/ICONES-09.svg" class="svg-icon">
+          <p>{{twitterTweets}}</p>
         </div>
-        <div class="relatorio-display-statistic-each">
-          <span>
-            <img src="img/relatorio/icones-02.svg" class="svg-icon relatorio-display-statistic-image-left twitter-color">
-          </span>
-          <span>
-            <img src="img/relatorio/icones-04.svg" class="svg-icon relatorio-display-statistic-image-right link-color">
-          </span>
-          <p>{{TwitterImage}}</p>
-          <p>Imagens acumuladas do Twitter</p>
+        <div class="relatorio-social-metrics-each">
+          <img src="img/twitter/ICONES-10.svg" class="svg-icon">
+          <p>0</p>
         </div>
-        <div class="relatorio-display-statistic-each">
-          <span>
-            <img src="img/relatorio/icones-05.svg" class="svg-icon relatorio-display-statistic-image-left facebook-color">
-          </span>
-          <span>
-            <img src="img/relatorio/icones-03.svg" class="svg-icon relatorio-display-statistic-image-right link-color">
-          </span>
-          <p>{{FacebookPosts}}</p>
-          <p>Publicações acumuladas do Facebook</p>
-        </div>
-        <div class="relatorio-display-statistic-each">
-          <span>
-            <img src="img/relatorio/icones-05.svg" class="svg-icon relatorio-display-statistic-image-left facebook-color">
-          </span>
-          <span>
-            <img src="img/relatorio/icones-04.svg" class="svg-icon relatorio-display-statistic-image-right link-color">
-          </span>
-          <p>{{FacebookImage}}</p>
-          <p>Imagens acumuladas do Facebook</p>
-        </div>
-        <div class="relatorio-display-statistic-each">
-          <span>
-            <img src="img/relatorio/icones-08.svg" class="svg-icon relatorio-display-statistic-image-left instagram-color">
-          </span>
-          <span>
-            <img src="img/relatorio/icones-04.svg" class="svg-icon relatorio-display-statistic-image-right link-color">
-          </span>
-          <p>{{InstagramImage}}</p>
-          <p>Imagens acumuladas do Instagram</p>
+        <div class="relatorio-social-metrics-each">
+          <img src="img/twitter/ICONES-11.svg" class="svg-icon">
+          <p>{{twitterImage}}</p>
         </div>
       </div>
+
+      <div id="twitter1" class="relatorio-social-graficos" ></div>
+      <div id="twitter2" class="relatorio-social-graficos" ></div>
     </div>
 
-    <div class="relatorio-display-line">
-
-      <div class="relatorio-display-line-horizontalDisplay">
-        <p>Clique na rede social que deseja visualizar:</p>
-        <!-- <div title="Twitter" id="line-twitter" class="relatorio-display-line-horizontalDisplay-each" ng-click="filterLineChart.status = 'twitter';">
-          <img src="img/relatorio/icones-02.svg" class="svg-icon relatorio-display-line-horizontalDisplay-each-image relatorio-display-bar-verticalDisplay-each-image twitter-color">
-        </div> -->
-
-        <div title="Facebook" id="line-facebook" class="relatorio-display-line-horizontalDisplay-each" ng-click="filterLineChart.status = 'facebook';">
-          <img src="img/relatorio/icones-05.svg" class="svg-icon relatorio-display-line-horizontalDisplay-each-image relatorio-display-bar-verticalDisplay-each-image facebook-color">
+    <div class="relatorio-social" id="relatorio-facebook">
+      <p class="relatorio-social-title">Facebook</p>
+      <div class="relatorio-social-metrics">
+        <div class="relatorio-social-metrics-each">
+          <img src="img/Index/ICONES-02.svg" class="svg-icon">
+          <p>{{facebookPosts}}</p>
         </div>
-
-        <div title="Instagram" id="line-instagram" class="relatorio-display-line-horizontalDisplay-each" ng-click="filterLineChart.status = 'instagram';">
-          <img src="img/relatorio/icones-08.svg" class="svg-icon relatorio-display-line-horizontalDisplay-each-image relatorio-display-bar-verticalDisplay-each-image instagram-color">
+        <div class="relatorio-social-metrics-each">
+          <img src="img/twitter/ICONES-10.svg" class="svg-icon">
+          <p>0</p>
+        </div>
+        <div class="relatorio-social-metrics-each">
+          <img src="img/twitter/ICONES-11.svg" class="svg-icon">
+          <p>{{facebookImage}}</p>
         </div>
       </div>
 
-      <div class="relatorio-display-line-title">
-        <p>Interações x Tempo</p>
-      </div>
-
-      <div id="lineChart"></div>
+      <div id="facebook1" class="relatorio-social-graficos"></div>
+      <div id="facebook2" class="relatorio-social-graficos"></div>
     </div>
-
-    <div class="relatorio-display-bar">
-
-      <div id="relatorio-display-bar-menu">
-        <ul id="menu-tematica-relatorio">
-        <li class="menu_tematica_op">
-          <a ng-click='filter.tema = "categoria-educacional";'><p class="select_tematica_monitor firstOp" style="color:#c7144f">Educacional</p></a>
-        </li>
-          <li class="menu_tematica_op">
-            <a ng-click='filter.tema = "categoria-institucional";'><p class="select_tematica_monitor" style="color:#426083">Institucional</p></a>
-          </li>
-          <li class="menu_tematica_op">
-            <a ng-click='filter.tema = "categoria-midia";'><p class="select_tematica_monitor" style="color:#f7931e">Mídia</p></a>
-          </li>
-          <li class="menu_tematica_op">
-            <a ng-click='filter.tema = "categoria-humor";'><p class="select_tematica_monitor" style="color:#8c6239">Humor</p></a>
-          </li>
-        </ul>
-      </div>
-
-      <div class="relatorio-display-bar-verticalDisplay">
-        <!-- <div class="relatorio-display-bar-verticalDisplay-each">
-          <img src="img/relatorio/icones-02.svg" class="svg-icon relatorio-display-bar-verticalDisplay-each-image twitter-color">
-          <p>Twitter</p>
-        </div> -->
-
-        <div class="relatorio-display-bar-verticalDisplay-each">
-          <img src="img/relatorio/icones-05.svg" class="svg-icon relatorio-display-bar-verticalDisplay-each-image facebook-color">
-          <p>Facebook</p>
-        </div>
-
-        <div class="relatorio-display-bar-verticalDisplay-each">
-          <img src="img/relatorio/icones-08.svg" class="svg-icon relatorio-display-bar-verticalDisplay-each-image instagram-color">
-          <p>Instagram</p>
-        </div>
-      </div>
-
-      <div id="barChart"></div>
-    </div>
-
   </div>
 </div>
 
 <script type="text/javascript">
 
   callSvgImg();
+  
+  $("body").css( "overflow-y", "auto" );
+  document.getElementById("str_main_monitor").scrollIntoView();
+
+  d3.json('data/estatisticas_24h.json',function(err,json){
+    plotGraph("twitter1",json.twitter,"Twitter",1);
+    plotGraph("twitter2",json["twitter-categorias"],"Twitter: Categorias",1);
+    plotGraph("facebook1",json.facebook,"Facebook",1);
+    plotGraph("facebook2",json["facebook-categorias"],"Facebook: Categorias",1);
+  });
 
   $( document ).ready(function(){
 
-    $("#line-twitter").css( "background-image", "url('img/subtle_dots_@2X.png')");
-    $("#line-twitter").css( "border-style", "solid");
-    $("#line-twitter").css( "border-color", "rgb(86, 200, 231)");
-    $("#line-twitter").css( "border-width", "1px 1px 0px");
-
-    $("#line-twitter").click(function(){
-      $(".relatorio-display-line-horizontalDisplay-each").css( "background-image", "none");
-      $(".relatorio-display-line-horizontalDisplay-each").css( "border-width", "0px 0px 0px");
-
-      $(this).css( "background-image", "url('img/subtle_dots_@2X.png')");
-      $(this).css( "border-style", "solid");
-      $(this).css( "border-color", "rgb(86, 200, 231)");
-      $(this).css( "border-width", "1px 1px 0px");
-    });
-
-    $("#line-facebook").click(function(){
-      $(".relatorio-display-line-horizontalDisplay-each").css( "background-image", "none");
-      $(".relatorio-display-line-horizontalDisplay-each").css( "border-width", "0px 0px 0px");
-
-      $(this).css( "background-image", "url('img/subtle_dots_@2X.png')");
-      $(this).css( "border-style", "solid");
-      $(this).css( "border-color", "#426083");
-      $(this).css( "border-width", "1px 1px 0px");
-    });
-
-    $("#line-instagram").click(function(){
-      $(".relatorio-display-line-horizontalDisplay-each").css( "background-image", "none");
-      $(".relatorio-display-line-horizontalDisplay-each").css( "border-width", "0px 0px 0px");
-
-      $(this).css( "background-image", "url('img/subtle_dots_@2X.png')");
-      $(this).css( "border-style", "solid");
-      $(this).css( "border-color", "#736357");
-      $(this).css( "border-width", "1px 1px 0px");
-    });
+    //    $("#line-twitter").css( "background-image", "url('img/subtle_dots_@2X.png')");
+    //    $("#line-twitter").css( "border-style", "solid");
+    //    $("#line-twitter").css( "border-color", "rgb(86, 200, 231)");
+    //    $("#line-twitter").css( "border-width", "1px 1px 0px");
+    //
+    //    $("#line-twitter").click(function(){
+    //      $(".relatorio-display-line-horizontalDisplay-each").css( "background-image", "none");
+    //      $(".relatorio-display-line-horizontalDisplay-each").css( "border-width", "0px 0px 0px");
+    //
+    //      $(this).css( "background-image", "url('img/subtle_dots_@2X.png')");
+    //      $(this).css( "border-style", "solid");
+    //      $(this).css( "border-color", "rgb(86, 200, 231)");
+    //      $(this).css( "border-width", "1px 1px 0px");
+    //    });
+    //
+    //    $("#line-facebook").click(function(){
+    //      $(".relatorio-display-line-horizontalDisplay-each").css( "background-image", "none");
+    //      $(".relatorio-display-line-horizontalDisplay-each").css( "border-width", "0px 0px 0px");
+    //
+    //      $(this).css( "background-image", "url('img/subtle_dots_@2X.png')");
+    //      $(this).css( "border-style", "solid");
+    //      $(this).css( "border-color", "#426083");
+    //      $(this).css( "border-width", "1px 1px 0px");
+    //    });
+    //
+    //    $("#line-instagram").click(function(){
+    //      $(".relatorio-display-line-horizontalDisplay-each").css( "background-image", "none");
+    //      $(".relatorio-display-line-horizontalDisplay-each").css( "border-width", "0px 0px 0px");
+    //
+    //      $(this).css( "background-image", "url('img/subtle_dots_@2X.png')");
+    //      $(this).css( "border-style", "solid");
+    //      $(this).css( "border-color", "#736357");
+    //      $(this).css( "border-width", "1px 1px 0px");
+    //    });
   });
 
 </script>
