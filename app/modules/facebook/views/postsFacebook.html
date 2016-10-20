@@ -4,7 +4,8 @@
 
     <div class="geralTweets_result">
       <div class="facebook-posts-each" ng-repeat="post in posts" >
-        <p class="facebook-post-time">{{post.created_time | date:'HH:mm:ss - dd/MM/yyyy'}}</p>
+        <p class="facebook-post-time" ng-if="post.created_time_ms == undefined">{{post.created_time | date:'HH:mm - dd/MM/yyyy'}}</p>
+        <p class="facebook-post-time" ng-if="post.created_time_ms != undefined">{{post.created_time_ms | date:'HH:mm - dd/MM/yyyy'}}</p>
         <div class="facebook-post-text">
           <p>{{post.message}}</p>
         </div>

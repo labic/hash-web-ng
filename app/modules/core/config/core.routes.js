@@ -10,10 +10,10 @@
     //   templateUrl: 'modules/core/views/app.html',
     //   controller: 'MainCtrl'
     // })
-      .state('home', {
-      url: '',
-      templateUrl: 'modules/core/views/app.html',
-    });
+//      .state('home', {
+//      url: '',
+//      templateUrl: 'modules/core/views/app.html',
+//    });
     // .state('router', {
     //   url: '/router',
     //   template: '<div class="lockscreen" style="height: 100%"></div>',
@@ -23,8 +23,8 @@
     //   url: '/error',
     //   template: '<div class="text-center alert alert-danger" style="margin: 100px">An error occurred.</div>'
     // });
-    $urlRouterProvider.when('/home', '/painel');
-    //      $urlRouterProvider.otherwise('/router');
+//    $urlRouterProvider.when('/#', '/painel');
+          $urlRouterProvider.otherwise('/painel');
     //    $urlRouterProvider.otherwise(redirectTo: '/painel');
     //    $location.path( "/painel" );
   });

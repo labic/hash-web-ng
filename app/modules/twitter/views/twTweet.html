@@ -44,7 +44,7 @@
           <a ng-if="!twitte.count" ng-if="" title="Clique para visualizar o retweeter, @{{twitte.status.user.screen_name}}, no Twitter." href="https://twitter.com/{{twitte.status.user.screen_name}}/status/{{twitte.status.id}}" target="_blank">RT @{{twitte.status.user.screen_name}}:{{twitte.status.text}} {{twitte.get('count')}}</a>
         </p>
 
-        <p class="painel-posts-list-each-time">ÚLTIMO COMPARTILHAMENTO: {{twitte.status.timestamp_ms | date:'HH:mm:ss'}} HS</p>
+        <p class="painel-posts-list-each-time">ÚLTIMO COMPARTILHAMENTO: {{twitte.status.timestamp_ms | date:'HH:mm'}} HS</p>
       </div>
 
       <button ng-show="buttonNext" class="result_button result_button_next" ng-click='loadMore(1);'></button>

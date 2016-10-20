@@ -62,7 +62,7 @@
         },
         postsComments: {
           method: 'GET', 
-          url: WORD_API_BASE_URI + '/facebook_comments/word_posts', 
+          url: WORD_API_BASE_URI + '/facebook_comments/word_postsComments', 
           params: {
             period: null,  // string
             tags: [],      // array of string

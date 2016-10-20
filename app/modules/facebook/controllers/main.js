@@ -11,21 +11,21 @@ hash.controller('mainFacebook', function ($scope, $http, settings, MetricsFacebo
     time: '7d',
     profileType: 'page',
     actor: $scope.config.filter.actors[0].tag,
-    word: '',
-    theme: '',
-    tag:'',
+    word: undefined,
+    theme: undefined,
+    tag: undefined,
     page: 1,
     per_page: 25
   };
+  
+  $scope.changeFilterWord = function(text){
+    $scope.filter.word = text;
+    $scope.$apply();
+  }
 
   // Functions: Estrutura de funções que chamarão por zonas da página
   // Request: AnalyticsFacebook.mostLikedPosts / AnalyticsFacebook.mostRecurringImages
-  $scope.replyPostImg = function(time,type,actor,word,theme,tag){
-
-    var responseImg = [];
-    var contResponseImg = 0;
-
-    $scope.stateFilter = "tema";
+  $scope.replyPost = function(time,type,actor,word,theme,tag){
 
     AnalyticsFacebook.mostLikedPosts({
       'period': time,
@@ -38,26 +38,6 @@ hash.controller('mainFacebook', function ($scope, $http, settings, MetricsFacebo
     }, function success(response) {
       $scope.posts = response;
     }, errorHandler);
-
-    for(var x = 1; x <= 4; x++){
-      AnalyticsFacebook.mostRecurringImages({
-        'period': time,
-        'profile_type': type,
-        'filter[with_tags]': [actor,theme],
-        'word': word,
-        'filter[hashtags]': tag,
-        'page': x,
-        'per_page': 100
-      }, function success(response) {
-
-        contResponseImg++;
-        responseImg = response.concat(responseImg);
-
-        if(contResponseImg == 3){
-          $scope.imgs = responseImg;
-        }
-      }, errorHandler);
-    }
   }
 
   // Request: WordFacebook.topWords
@@ -88,6 +68,18 @@ hash.controller('mainFacebook', function ($scope, $http, settings, MetricsFacebo
       }
 
     }, errorWordTag);
+  }
+  
+  $scope.replyWordPosts = function(time,actor,word){
+    WordFacebook.posts({
+      'period': time,
+      'tags[]': [actor],
+      'word': word,
+      'page': 1,
+      'per_page': 25
+    }, function success(data) {
+      $scope.posts = data;
+    }, errorHandler);
   }
 
   // Request: AnalyticsFacebook.mostRecurringHashtags
@@ -135,17 +127,12 @@ hash.controller('mainFacebook', function ($scope, $http, settings, MetricsFacebo
 
   // Request: When click on Actor or time
   $scope.loadReplys = function(time,type,actor){
-    $scope.replyPostImg(time,type,actor,undefined,undefined,undefined);
+    $scope.replyPost(time,type,actor,undefined,undefined,undefined);
     $scope.replyTopWords(time,type,actor);
     $scope.replyTopHashtags(time,type,actor);
     $scope.replyTopTags(time,actor);
     // FUTURO: Tophashtags
   }
-
-  var tamDiv = $("#div2_monitor").css( "width" );
-  tamDiv = parseInt(tamDiv);
-  $scope.alturaImg = tamDiv / 3;
-  $scope.alturaImgMosaico = tamDiv / 15;
 
   // Função usada para carregar mais posts
   $scope.loadMore = function(x) {
@@ -176,13 +163,13 @@ hash.controller('mainFacebook', function ($scope, $http, settings, MetricsFacebo
         $scope.loadReplys(newFilter.time,newFilter.profileType,newFilter.actor);
       }
       if(newFilter.word != oldFilter.word){
-        $scope.replyPostImg(newFilter.time,newFilter.profileType,newFilter.actor,newFilter.word,undefined,undefined);
+        $scope.replyWordPosts(newFilter.time,newFilter.actor,newFilter.word);
       }
       if(newFilter.theme != oldFilter.theme){
-        $scope.replyPostImg(newFilter.time,newFilter.profileType,newFilter.actor,undefined,newFilter.theme,undefined);
+        $scope.replyPost(newFilter.time,newFilter.profileType,newFilter.actor,undefined,newFilter.theme,undefined);
       }
       if(newFilter.tag != oldFilter.tag){
-        $scope.replyPostImg(newFilter.time,newFilter.profileType,newFilter.actor,undefined,undefined,newFilter.tag);
+        $scope.replyPost(newFilter.time,newFilter.profileType,newFilter.actor,undefined,undefined,newFilter.tag);
       }
     }
   },true);
