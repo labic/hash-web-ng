@@ -64,49 +64,5 @@
   $("body").css( "overflow-y", "auto" );
   document.getElementById("str_main_monitor").scrollIntoView();
 
-  d3.json('data/estatisticas_24h.json',function(err,json){
-    plotGraph("twitter1",json.twitter,"Twitter",1);
-    plotGraph("twitter2",json["twitter-categorias"],"Twitter: Categorias",1);
-    plotGraph("facebook1",json.facebook,"Facebook",1);
-    plotGraph("facebook2",json["facebook-categorias"],"Facebook: Categorias",1);
-  });
-
-  $( document ).ready(function(){
-
-    //    $("#line-twitter").css( "background-image", "url('img/subtle_dots_@2X.png')");
-    //    $("#line-twitter").css( "border-style", "solid");
-    //    $("#line-twitter").css( "border-color", "rgb(86, 200, 231)");
-    //    $("#line-twitter").css( "border-width", "1px 1px 0px");
-    //
-    //    $("#line-twitter").click(function(){
-    //      $(".relatorio-display-line-horizontalDisplay-each").css( "background-image", "none");
-    //      $(".relatorio-display-line-horizontalDisplay-each").css( "border-width", "0px 0px 0px");
-    //
-    //      $(this).css( "background-image", "url('img/subtle_dots_@2X.png')");
-    //      $(this).css( "border-style", "solid");
-    //      $(this).css( "border-color", "rgb(86, 200, 231)");
-    //      $(this).css( "border-width", "1px 1px 0px");
-    //    });
-    //
-    //    $("#line-facebook").click(function(){
-    //      $(".relatorio-display-line-horizontalDisplay-each").css( "background-image", "none");
-    //      $(".relatorio-display-line-horizontalDisplay-each").css( "border-width", "0px 0px 0px");
-    //
-    //      $(this).css( "background-image", "url('img/subtle_dots_@2X.png')");
-    //      $(this).css( "border-style", "solid");
-    //      $(this).css( "border-color", "#426083");
-    //      $(this).css( "border-width", "1px 1px 0px");
-    //    });
-    //
-    //    $("#line-instagram").click(function(){
-    //      $(".relatorio-display-line-horizontalDisplay-each").css( "background-image", "none");
-    //      $(".relatorio-display-line-horizontalDisplay-each").css( "border-width", "0px 0px 0px");
-    //
-    //      $(this).css( "background-image", "url('img/subtle_dots_@2X.png')");
-    //      $(this).css( "border-style", "solid");
-    //      $(this).css( "border-color", "#736357");
-    //      $(this).css( "border-width", "1px 1px 0px");
-    //    });
-  });
-
+  $( document ).ready(function(){});
 </script>

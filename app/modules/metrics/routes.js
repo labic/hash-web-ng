@@ -5,7 +5,7 @@
     .config(function ($stateProvider) {
       $stateProvider
         .state('relatorio', {
-          url: '/relatorio',
+          url: '/estatisticas',
           views: {
             '': { templateUrl: 'modules/metrics/views/main.html' }
           }
