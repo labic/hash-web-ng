@@ -637,9 +637,7 @@
       }
 
       #result_conteudo{
-        width: 386px;
-        margin-left: calc(50% - 193px);
-        height: calc(100% - 60px);
+        width: 100%;
       }
 
       #result_conteudo_img{
@@ -696,9 +694,9 @@
 
         .geralTweets_result{
           width:100%;
-/*          height: calc(100% - 210px);*/
           height: 100%;
           overflow-y: auto;
+          padding: 0 10%;
         }
 
         .geralTweets_result_ContTweet{
@@ -820,6 +818,8 @@
         cursor: pointer;
         margin-top: 20px;
         width: 100%;
+        height: 370px;
+        position: relative;
       }
 
         .subTitle_top{
@@ -906,10 +906,11 @@
       .str_fixed_words{
         width:100%;
         height: 150px;
+        position: relative;
 /*        background: blue;*/
       }
 
-        .str_fixed_words p{
+        #str_topTags p,.fixed_words_title{
           text-transform: uppercase;
           font-size: 14px;
           text-align: center;

@@ -1,54 +1,57 @@
-<!--<p class="subTitle_top">#HASHTAGS MAIS FREQUENTES</p>-->
+<div id="divHashtags" style="height:100%;" data-ng-init="functionHashTag();functionTopTags(filter.period,filter.theme);">
+  <div style="height:auto; position: relative;">
 
-<div id="divHashtags" style="height:100%;">
-
-  <div class="loading" ng-show="dataLoadTagOFF">
-    <div class="cssload-container">
-      <div class="cssload-shaft1"></div>
-      <div class="cssload-shaft2"></div>
-      <div class="cssload-shaft3"></div>
-      <div class="cssload-shaft4"></div>
-      <div class="cssload-shaft5"></div>
-      <div class="cssload-shaft6"></div>
-      <div class="cssload-shaft7"></div>
-      <div class="cssload-shaft8"></div>
-      <div class="cssload-shaft9"></div>
-      <div class="cssload-shaft10"></div>
+    <div id="loadingTwitterTopHashTags" class="handlers">
+      <img src="img/icons/spinning-circles.svg">
+      <p>estamos carregando os dados</p>
     </div>
-    <p style="color:rgba(10, 18, 39, 0.65);">CARREGANDO...</p>
-    <p style="color:rgba(10, 18, 39, 0.65);">Estamos realizando a sua requisição, essa operação pode demorar um pouco.</p>
-  </div>
 
-  <div class="loading" ng-show="dataLoadTag404">
-    <center><img src="img/icons/searching45blue.png" height="40px" width="40px"></center>
-    <p class="loadingWordBlue">NÃO HÁ HASHTAGS COM ESSE FILTRO</p>
-    <p class="loadingWordBlue">Tente outra categoria ou intervalo de tempo.</p>
-  </div>
+    <div id="errorTwitterTopHashTags" class="handlers">
+      <img src="img/icons/error_outline.svg">
+      <p>ocorreu um erro com esses requisição, tente outro parâmetro</p>
+    </div>
 
-  <div class="loading" ng-show="dataLoadTagERROR">
-    <center><img src="img/icons/searching45.png" height="40px" width="40px"></center>
-    <p class="loadingWordGrey">UM ERRRO OCORREU!</p>
-    <p class="loadingWordGrey">Por favor carregue novamente a página.</p>
-  </div>
+    <div id="emptyTwitterTopHashTags" class="handlers">
+      <img src="img/icons/error_outline.svg">
+      <p>não há dados dessa categoria nesse intervalo de tempo, tente outros parâmetros</p>
+    </div>
 
-  <div ng-show="dataLoadTagON" style="height:auto;">
     <div id="str_highWord" title="Clique para visualizar os ultimos retweets com #{{tag1.hashtag}}" ng-click="loadHastagsPub(tag1.hashtag);">
       <p class="title_str_highWord">#{{tagOne.hashtag}}</p>
       <p class="text_str_highWord"><span class="number_str_highWord">{{tagOne.count}}</span> vezes</p>
-    </div>
-
-    <div class="strVertical_highWord">
-      <div title="Clique para visualizar os ultimos retweets com #{{tag.hashtag}}" ng-mouseenter="$parent.tagOne = tag" class="each_word" ng-repeat=" tag in tags" ng-click="filter.hashTag = tag.hashtag;">
-        <p>#{{tag.hashtag}}</p>
-        <p ng-if="tag.count == 1">{{tag.count}} vez</p>
-        <p ng-if="tag.count != 1">{{tag.count}} vezes</p>
+      
+      <div id="str_hashTag" class="strVertical_highWord">
+        <div title="Clique para visualizar os ultimos retweets com #{{tag.hashtag}}" ng-mouseenter="$parent.tagOne = tag" class="each_word" ng-repeat=" tag in tags" ng-click="filter.hashTag = tag.hashtag;">
+          <p>#{{tag.hashtag}}</p>
+          <p ng-if="tag.count == 1">{{tag.count}} vez</p>
+          <p ng-if="tag.count != 1">{{tag.count}} vezes</p>
+        </div>
       </div>
     </div>
   </div>
+
   <div class="str_fixed_words">
     <div class="fixed_words_title">
       <p>Temas mais frequentes</p>
     </div>
-    <p ng-repeat="topTag in topTags" ng-click="filter.category = topTag.slug;">{{topTag.label}}</p>
+
+    <div id="loadingTwitterTopTags" class="handlers">
+      <img src="img/icons/spinning-circles.svg">
+      <p>estamos carregando os dados</p>
+    </div>
+
+    <div id="errorTwitterTopTags" class="handlers">
+      <img src="img/icons/error_outline.svg">
+      <p>ocorreu um erro com esses requisição, tente outro parâmetro</p>
+    </div>
+
+    <div id="emptyTwitterTopTags" class="handlers">
+      <img src="img/icons/error_outline.svg">
+      <p>não há dados dessa categoria nesse intervalo de tempo, tente outros parâmetros</p>
+    </div>
+
+    <div id="str_topTags">
+      <p ng-repeat="topTag in topTags" ng-click="filter.category = topTag.slug;">{{topTag.label}}</p>
+    </div>
   </div>
 </div>

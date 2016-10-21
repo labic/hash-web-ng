@@ -14,7 +14,7 @@
           title: '='
         },
         link: function(scope, element, attrs) {
-          scope.setFilter = function(option, e, main) {
+          scope.setFilter = function(option, e,main) {
             scope.tag = option.tag;
             scope.title = option.title;
             $('li', element).removeClass('selected');

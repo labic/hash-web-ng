@@ -2,8 +2,24 @@
 
   <div style="height:100%; width:100%;">
 
-    <div class="geralTweets_result">
-      <div class="facebook-posts-each" ng-repeat="post in posts" >
+    <div id="loadingFacebookPosts" class="handlers">
+      <img src="img/icons/spinning-circles.svg">
+      <p>estamos carregando os dados</p>
+    </div>
+
+    <div id="errorFacebookPosts" class="handlers">
+      <img src="img/icons/error_outline.svg">
+      <p>ocorreu um erro com esses requisição, tente outro parâmetro</p>
+    </div>
+
+    <div id="emptyFacebookPosts" class="handlers">
+      <img src="img/icons/error_outline.svg">
+      <p>não há dados dessa categoria nesse intervalo de tempo, tente outros parâmetros</p>
+    </div>
+
+    <div id="facebookPosts" class="geralTweets_result">
+
+      <div  class="facebook-posts-each" ng-repeat="post in posts" >
         <p class="facebook-post-time" ng-if="post.created_time_ms == undefined">{{post.created_time | date:'HH:mm - dd/MM/yyyy'}}</p>
         <p class="facebook-post-time" ng-if="post.created_time_ms != undefined">{{post.created_time_ms | date:'HH:mm - dd/MM/yyyy'}}</p>
         <div class="facebook-post-text">
@@ -20,7 +36,7 @@
         <a href="https://facebook.com/{{post.id}}" target="_blank" style="float: right;"><p class="facebook-post-verMais">VER POST ORIGINAL NO FACEBOOK</p></a>
       </div>
 
-      <button ng-show="buttonNext" class="result_button result_button_next" ng-click='loadMore(1);'></button>
+      <!--      <button ng-show="buttonNext" class="result_button result_button_next" ng-click='loadMore(1);'></button>-->
     </div>
   </div>
 </div>

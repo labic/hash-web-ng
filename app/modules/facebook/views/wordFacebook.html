@@ -1,44 +1,48 @@
-<div style="height:100%;" data-ng-init="replyTopWords(filter.time,filter.profileType,filter.actor);">
+<div style="height:100%;" data-ng-init="replyTopWords(filter.time,filter.profileType,filter.actor);replyTopTags(filter.time,filter.actor);">
 
   <div id="str_highWord">
     <p class="title_str_highWord">Nuvem de palavras</p>
 
-    <div id="wordCloud" class="strVertical_highWord" ng-show="loadWordTagON"></div>
-  </div>
-
-  <div class="loading" ng-show="loadWordTagOFF">
-    <div class="cssload-container">
-      <div class="cssload-shaft1"></div>
-      <div class="cssload-shaft2"></div>
-      <div class="cssload-shaft3"></div>
-      <div class="cssload-shaft4"></div>
-      <div class="cssload-shaft5"></div>
-      <div class="cssload-shaft6"></div>
-      <div class="cssload-shaft7"></div>
-      <div class="cssload-shaft8"></div>
-      <div class="cssload-shaft9"></div>
-      <div class="cssload-shaft10"></div>
+    <div id="loadingFacebookTopWords" class="handlers">
+      <img src="img/icons/spinning-circles.svg">
+      <p>estamos carregando os dados</p>
     </div>
-    <p style="color:rgba(10, 18, 39, 0.65);">CARREGANDO...</p>
-    <p style="color:rgba(10, 18, 39, 0.65);">Estamos realizando a sua requisição, essa operação pode demorar um pouco.</p>
-  </div>
 
-  <div class="loading" ng-show="loadWordTag404">
-    <center><img src="img/icons/searching45blue.png" height="40px" width="40px"></center>
-    <p class="loadingWordBlue">NÃO HÁ PALAVRAS COM ESSE FILTRO</p>
-    <p class="loadingWordBlue">Tente outra categoria ou intervalo de tempo.</p>
-  </div>
+    <div id="errorFacebookTopWords" class="handlers">
+      <img src="img/icons/error_outline.svg">
+      <p>ocorreu um erro com esses requisição, tente outro parâmetro</p>
+    </div>
 
-  <div class="loading" ng-show="loadWordTagERROR">
-    <center><img src="img/icons/searching45.png" height="40px" width="40px"></center>
-    <p class="loadingWordGrey">UM ERRRO OCORREU!</p>
-    <p class="loadingWordGrey">Por favor carregue novamente a página.</p>
-  </div>
+    <div id="emptyFacebookTopWords" class="handlers">
+      <img src="img/icons/error_outline.svg">
+      <p>não há dados dessa categoria nesse intervalo de tempo, tente outros parâmetros</p>
+    </div>
 
+    <div id="wordCloud" class="strVertical_highWord"></div>
+  </div>
+  
   <div class="str_fixed_words">
     <div class="fixed_words_title">
       <p>Temas mais frequentes</p>
     </div>
-    <p ng-repeat="theme in themes" ng-click="filter.theme = theme.slug;">{{theme.label}}</p>
+    
+    <div id="loadingFacebookTopTags" class="handlers">
+      <img src="img/icons/spinning-circles.svg">
+      <p>estamos carregando os dados</p>
+    </div>
+
+    <div id="errorFacebookTopTags" class="handlers">
+      <img src="img/icons/error_outline.svg">
+      <p>ocorreu um erro com esses requisição, tente outro parâmetro</p>
+    </div>
+
+    <div id="emptyFacebookTopTags" class="handlers">
+      <img src="img/icons/error_outline.svg">
+      <p>não há dados dessa categoria nesse intervalo de tempo, tente outros parâmetros</p>
+    </div>
+    
+    <div id="str_topTags">
+      <p ng-repeat="theme in themes" ng-click="filter.theme = theme.slug;">{{theme.label}}</p>
+    </div>
   </div> 
 </div>

@@ -1,24 +1,22 @@
-<div id="result_conteudo" style="height:100%;">
-
-    <div class="loading" ng-show="dataLoadTweetOFF">
-    <div class="cssload-container">
-      <div class="cssload-shaft1"></div>
-      <div class="cssload-shaft2"></div>
-      <div class="cssload-shaft3"></div>
-      <div class="cssload-shaft4"></div>
-      <div class="cssload-shaft5"></div>
-      <div class="cssload-shaft6"></div>
-      <div class="cssload-shaft7"></div>
-      <div class="cssload-shaft8"></div>
-      <div class="cssload-shaft9"></div>
-      <div class="cssload-shaft10"></div>
-    </div>
-    <p class="loadingWordGrey">CARREGANDO:</p>
-    <p class="loadingWordGrey">estamos realizando a sua requisição, essa operação pode demorar um pouco.</p>
-  </div>
-  
+<div id="result_conteudo" style="height:100%;" data-ng-init="functionUrl();">
   <div style="height:100%; width:100%;">
-    <div  class="geralTweets_result">
+
+    <div id="loadingTwitterPosts" class="handlers">
+      <img src="img/icons/spinning-circles.svg">
+      <p>estamos carregando os dados</p>
+    </div>
+
+    <div id="errorTwitterPosts" class="handlers">
+      <img src="img/icons/error_outline.svg">
+      <p>ocorreu um erro com esses requisição, tente outro parâmetro</p>
+    </div>
+
+    <div id="emptyTwitterPosts" class="handlers">
+      <img src="img/icons/error_outline.svg">
+      <p>não há dados dessa categoria nesse intervalo de tempo, tente outros parâmetros</p>
+    </div>
+
+    <div id="str_TwitterUrl" class="geralTweets_result">
       <button ng-show="buttonBack" class="result_button result_button_back" ng-click='loadMoreTweetsChange(-1);' >VOLTAR</button>
 
       <div class="each_user_result" ng-repeat="url in urls">
@@ -29,7 +27,7 @@
         </a>
       </div>
 
-<!--      <button ng-show="buttonNext" class="result_button result_button_next" ng-click='loadMoreTweetsChange(1);'></button>-->
+      <!--      <button ng-show="buttonNext" class="result_button result_button_next" ng-click='loadMoreTweetsChange(1);'></button>-->
     </div>
   </div>
 </div>

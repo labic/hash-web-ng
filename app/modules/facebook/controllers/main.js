@@ -17,15 +17,18 @@ hash.controller('mainFacebook', function ($scope, $http, settings, MetricsFacebo
     page: 1,
     per_page: 25
   };
-  
+
+  // Pega a palavra selecionada no WordCloud
   $scope.changeFilterWord = function(text){
     $scope.filter.word = text;
     $scope.$apply();
   }
 
   // Functions: Estrutura de funções que chamarão por zonas da página
-  // Request: AnalyticsFacebook.mostLikedPosts / AnalyticsFacebook.mostRecurringImages
+  // Request: AnalyticsFacebook.mostLikedPosts
   $scope.replyPost = function(time,type,actor,word,theme,tag){
+
+    $scope.loading('FacebookPosts','facebookPosts');
 
     AnalyticsFacebook.mostLikedPosts({
       'period': time,
@@ -35,9 +38,12 @@ hash.controller('mainFacebook', function ($scope, $http, settings, MetricsFacebo
       'filter[hashtags]': tag,
       'page': 1,
       'per_page': 25
-    }, function success(response) {
-      $scope.posts = response;
-    }, errorHandler);
+    }, function (data){
+      data != '' ? $scope.sucess('FacebookPosts','facebookPosts') : $scope.empty('FacebookPosts');  
+      $scope.posts = data;
+    }, function (error){
+      $scope.error('FacebookPosts');
+    });
   }
 
   // Request: WordFacebook.topWords
@@ -45,31 +51,22 @@ hash.controller('mainFacebook', function ($scope, $http, settings, MetricsFacebo
 
     var cloudWidth = $("#div3_monitor").width();
 
-    $scope.loadWordTagON = false;
-    $scope.loadWordTagOFF = true;
-    $scope.loadWordTag404 = false;
-    $scope.loadWordTagERROR = false;
+    $scope.loading('FacebookTopWords','wordCloud');
 
     WordFacebook.topWords({
       'period': time,
       'tags[]': [actor],
       'page': 1,
       'per_page': 50
-    }, function success(data) {
-
+    }, function (data){
+      data != '' ? $scope.sucess('FacebookTopWords','wordCloud') : $scope.empty('FacebookTopWords');  
       plotWordCloud(cloudWidth,330,"wordCloud",data);
-
-      if(data == ""){
-        $scope.loadWordTagOFF = false;
-        $scope.loadWordTag404 = true;
-      }else{
-        $scope.loadWordTagOFF = false;
-        $scope.loadWordTagON = true;
-      }
-
-    }, errorWordTag);
+    }, function (error){
+      $scope.error('FacebookTopWords');
+    });
   }
-  
+
+  // Request: WordPosts = Clica na palavra do WordCloud
   $scope.replyWordPosts = function(time,actor,word){
     WordFacebook.posts({
       'period': time,
@@ -84,11 +81,8 @@ hash.controller('mainFacebook', function ($scope, $http, settings, MetricsFacebo
 
   // Request: AnalyticsFacebook.mostRecurringHashtags
   $scope.replyTopHashtags = function(time,type,actor){
-
-    $scope.loadHashTagON = false;
-    $scope.loadHashTagOFF = true;
-    $scope.loadHashTag404 = false;
-    $scope.loadHashTagERROR = false;
+    
+    $scope.loading('FacebookTopHashTags','str_hashTag');
 
     AnalyticsFacebook.mostRecurringHashtags({
       'period': time,
@@ -96,33 +90,27 @@ hash.controller('mainFacebook', function ($scope, $http, settings, MetricsFacebo
       'filter[with_tags]': [actor],
       'page': 1,
       'per_page': 13
-    }, function success(data) {
+    }, function (data){
+      data != '' ? $scope.sucess('FacebookTopHashTags','str_hashTag') : $scope.empty('FacebookTopHashTags');
       $scope.hashtags = data;
-      if(data == ""){
-        $scope.loadHashTagOFF = false;
-        $scope.loadHashTag404 = true;
-      }else{
-        $scope.loadHashTagOFF = false;
-        $scope.loadHashTagON = true;
-      }
-    }, errorHashTag);
+    }, function (error){
+      $scope.error('FacebookTopHashTags');
+    });
   }
 
   // Request: TopTags = Themes
   $scope.replyTopTags = function(time,actor){
 
     var topTagsLink = "http://188.166.40.27:4025/topTags?rede=facebook&categoria="+actor+"&period="+time;
+    
+    $scope.loading('FacebookTopTags','str_topTags');
 
     $http.get(topTagsLink).success(function (data){
-
+      data != '' ? $scope.sucess('FacebookTopTags','str_topTags') : $scope.empty('FacebookTopTags');
       $scope.themes = data.tags.splice(0,5);
-
-      if(data == ""){
-
-      }else{
-
-      }
-    }).error(function(data, status) {});
+    }).error(function(data, status) {
+      $scope.error('FacebookTopTags');
+    });
   }
 
   // Request: When click on Actor or time
@@ -131,18 +119,17 @@ hash.controller('mainFacebook', function ($scope, $http, settings, MetricsFacebo
     $scope.replyTopWords(time,type,actor);
     $scope.replyTopHashtags(time,type,actor);
     $scope.replyTopTags(time,actor);
-    // FUTURO: Tophashtags
   }
 
   // Função usada para carregar mais posts
-  $scope.loadMore = function(x) {
-
-    $scope.countpage = x + $scope.countpage;
-
-    //    $scope.filter.page = $scope.countpage * 25;
-    $scope.filter.page = $scope.countpage;
-    $scope.filter.per_page = $scope.countpage * 25 + 25;
-  };
+//  $scope.loadMore = function(x) {
+//
+//    $scope.countpage = x + $scope.countpage;
+//
+//    //    $scope.filter.page = $scope.countpage * 25;
+//    $scope.filter.page = $scope.countpage;
+//    $scope.filter.per_page = $scope.countpage * 25 + 25;
+//  };
 
   $scope.startPage = 1;
 
@@ -154,7 +141,7 @@ hash.controller('mainFacebook', function ($scope, $http, settings, MetricsFacebo
 
     if($scope.startPage == 1){
 
-      $scope.loadReplys(newFilter.time,newFilter.profileType,newFilter.actor);
+      $scope.replyPost(newFilter.time,newFilter.profileType,newFilter.actor,undefined,undefined,undefined);
 
       $scope.startPage = 0;
     }else{
@@ -173,21 +160,28 @@ hash.controller('mainFacebook', function ($scope, $http, settings, MetricsFacebo
       }
     }
   },true);
-
-  // Handler: Tratamento de Erros das requisições
-  function errorHashTag(erro) {
-    $scope.loadHashTagOFF = false;
-    $scope.loadHashTagERROR = true;
-    console.log(erro);
-  }
   
-  function errorWordTag(erro) {
-    $scope.loadWordTagOFF = false;
-    $scope.loadWordTagERROR = true;
-    console.log(erro);
-  }
+  /*************** Funções de tratamento ***************/
 
-  function errorHandler(erro) {
-    console.error(erro);
-  }
+  $scope.loading = function(divId,divResult){
+    $("#loading"+divId).show();
+    $("#error"+divId).hide();
+    $("#empty"+divId).hide();
+    $("#"+divResult).hide();
+  } 
+
+  $scope.sucess = function(divId,divResult){
+    $("#loading"+divId).hide();
+    $("#"+divResult).show();
+  } 
+
+  $scope.empty = function(divId){
+    $("#loading"+divId).hide();
+    $("#empty"+divId).show();
+  }  
+
+  $scope.error = function(divId){
+    $("#loading"+divId).hide();
+    $("#error"+divId).show();
+  } 
 });

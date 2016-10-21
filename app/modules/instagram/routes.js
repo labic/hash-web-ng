@@ -5,7 +5,7 @@
     .config(function ($stateProvider) {
       $stateProvider
         .state('instagram', {
-          url: '/images',
+          url: '/imagens',
           views: {
             '': { templateUrl: 'modules/instagram/views/main.html' }
           }
