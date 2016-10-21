@@ -76,7 +76,9 @@ hash.controller('mainFacebook', function ($scope, $http, settings, MetricsFacebo
       'per_page': 25
     }, function success(data) {
       $scope.posts = data;
-    }, errorHandler);
+    }, function (error){
+      $scope.error('FacebookPosts');
+    });
   }
 
   // Request: AnalyticsFacebook.mostRecurringHashtags
