@@ -2,6 +2,7 @@
   background: #2b3044;
   width: 100%;
   height: auto;
+  min-height: 100%;
   float:left;
 }
 
@@ -78,6 +79,12 @@
   fill: #fff;
   height: 40px;
   width: 40px;
+  margin-left:13px;
+}
+
+.relatorio-social-metrics-each{
+  width:65px;
+  height: 65px;
 }
 
 .relatorio-social-metrics{
@@ -95,19 +102,19 @@
 /******* GRAFICO **********/
 
 .relatorio-social-graficos path { 
-    stroke: steelblue;
-    stroke-width: 2;
-    fill: none;
-  }
+  stroke: steelblue;
+  stroke-width: 2;
+  fill: none;
+}
 
-  .relatorio-social-graficos .axis path,
-  .relatorio-social-graficos .axis line {
-    fill: none;
-    stroke-width: 1;
-    shape-rendering: crispEdges;
-  }
-  
-  .relatorio-social-graficos text{
-    font: 12px Arial;
-    fill: white;
-  }
+.relatorio-social-graficos .axis path,
+.relatorio-social-graficos .axis line {
+  fill: none;
+  stroke-width: 1;
+  shape-rendering: crispEdges;
+}
+
+.relatorio-social-graficos text{
+  font: 12px Arial;
+  fill: white;
+}
