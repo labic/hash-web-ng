@@ -54,6 +54,12 @@
                 <img ng-src="{{img.media_url_https}}:small" on-error-src="img/image_not_found.jpg" class="images-picture">
               </a>
             </div>
+            
+            <div ng-if="filter.social == 'Flickr'">
+              <a href='{{img.source}}' class="swipebox" title='<a href="https://twitter.com/{{img.user.screen_name}}/status/{{img.status.id_str}}" target="_blank" style="color:white;">"{{img.title._content}}" @{{img.owner.username}}</a>'>
+                <img ng-src="{{img.source}}:small" on-error-src="img/image_not_found.jpg" class="images-picture">
+              </a>
+            </div>
 
           </div>
         </div>

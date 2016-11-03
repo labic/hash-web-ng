@@ -1,13 +1,13 @@
-hash.controller('mainInstagram', function ($scope, settings, InstagramMedia, AnalyticsFacebook, AnalyticsTwitter) {
+hash.controller('mainInstagram', function ($scope, settings, InstagramMedia, AnalyticsFacebook, AnalyticsTwitter, FlickPhotos) {
   $scope.config = {
     filter: settings.get('instagram.filters'),
   };
 
   // Filter: Filtro para preencher post de requisição API RPS
   $scope.filter = {
-    tag: $scope.config.filter.main[1].tag,
-    title: $scope.config.filter.main[1].title,
-    social: $scope.config.filter.main[1].title,
+    tag: $scope.config.filter.main[2].tag,
+    title: $scope.config.filter.main[2].title,
+    social: $scope.config.filter.main[2].title,
     period: $scope.config.filter.period.values[2].value,
     number: $scope.config.filter.period.values[2].number,
     unit: $scope.config.filter.period.values[2].unit
@@ -46,6 +46,17 @@ hash.controller('mainInstagram', function ($scope, settings, InstagramMedia, Ana
       });
 
     }else if(newFilter.social == "Flickr"){
+      
+      FlickPhotos.get({
+        period: newFilter.period,
+        'filter[with_tags]': newFilter.tag,
+        page: 1,
+        per_page: 100
+      },function success(response) {
+        response != '' ? $scope.sucess(response) : $scope.empty();
+      }, function error(err) {
+        $scope.error();
+      });
 
     }
   },true);

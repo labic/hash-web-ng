@@ -18,6 +18,7 @@ var hash = angular.module('hash', [
   'INSTAGRAM_API_URL': 'http://188.166.40.27:8081',
   'WORD_API_URL': 'http://188.166.40.27:8081',
   'MANDALA_API_URL': 'http://188.166.40.27:7070',
+  'HASH_API_URL_V2': 'https://inep-enem2016-api-v2-dev.herokuapp.com/v2'
 });
 
 /* Inicializando tempo de milisegundos */
