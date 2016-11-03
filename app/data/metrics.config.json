@@ -1,4 +1,16 @@
 {
-  "twitter": ["usuario-geral","usuario-midia"],
-  "period": "7d"
+  "period": {
+    "values": [
+      {
+        "text": "ÚLTIMAS 6 HORAS",
+        "value": "recents"
+      },{
+        "text": "ÚLTIMO DIA",
+        "value": "1d"
+      },{
+        "text": "ÚLTIMOS 7 DIAS",
+        "value": "7d"
+      }
+    ]
+  }
 }

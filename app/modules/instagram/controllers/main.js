@@ -5,12 +5,12 @@ hash.controller('mainInstagram', function ($scope, settings, InstagramMedia, Ana
 
   // Filter: Filtro para preencher post de requisição API RPS
   $scope.filter = {
-    tag: $scope.config.filter.main[2].tag,
-    title: $scope.config.filter.main[2].title,
-    social: $scope.config.filter.main[2].title,
-    period: $scope.config.filter.period.values[2].value,
-    number: $scope.config.filter.period.values[2].number,
-    unit: $scope.config.filter.period.values[2].unit
+    tag: $scope.config.filter.main[0].tag,
+    title: $scope.config.filter.main[0].title,
+    social: $scope.config.filter.main[0].title,
+    period: $scope.config.filter.period.values[0].value,
+    number: $scope.config.filter.period.values[0].number,
+    unit: $scope.config.filter.period.values[0].unit
   };
 
   $scope.$watch('filter', function (newFilter, oldFilter) {

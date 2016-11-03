@@ -1,17 +1,22 @@
 <div id="str_main_monitor" class="str_main" ng-controller="mainMetrics">
   <div class="relatorio">
 
-    <div class="relatorio-title">
-      <div class="relatorio-title-str">
-        <p>Estatísticas<br>dos últimos 7 dias</p>
-        <div class="relatorio-title-menu">
-          <span>
-            <img src="img/relatorio/icones-01.svg" class="svg-icon relatorio-title-menu-img twitter-color">
-            <p>PUBLICAÇÕES</p>
-          </span>
-        </div>
-      </div>
+    <div class="universe-menu-title">
+      <img src="img/relatorio/icones-01.svg" class="svg-icon universe-menu-title-image">
+      <p>RELATÓRIO</p>
+      <p>ESTATÍSTICO</p>
     </div>
+
+    <form id="relatorio-menu">
+      <div class="relatorio-menu-option" ng-repeat="time in times">
+        <input id="period-option-{{$index}}" type="radio" name="period" ng-model="filter.period" ng-click="filter.period = time.value" value="{{time.value}}" />
+        <label for="period-option-{{$index}}">
+          <p>{{time.text}}</p>
+        </label>
+      </div>
+    </form>
+    
+    <div style="height:1px; width: 75%; margin-left:12.5%; background-color:white;"></div>
 
     <div class="relatorio-social" id="relatorio-twitter">
       <p class="relatorio-social-title">Twitter</p>
@@ -20,10 +25,12 @@
           <img src="img/twitter/ICONES-09.svg" class="svg-icon">
           <p>{{twitterTweets}}</p>
         </div>
-        <div class="relatorio-social-metrics-each">
-          <img src="img/twitter/ICONES-10.svg" class="svg-icon">
-          <p>0</p>
-        </div>
+        <!--
+<div class="relatorio-social-metrics-each">
+<img src="img/twitter/ICONES-10.svg" class="svg-icon">
+<p>0</p>
+</div>
+-->
         <div class="relatorio-social-metrics-each">
           <img src="img/twitter/ICONES-11.svg" class="svg-icon">
           <p>{{twitterImage}}</p>
@@ -41,11 +48,11 @@
           <img src="img/Index/ICONES-02.svg" class="svg-icon">
           <p>{{facebookPosts}}</p>
         </div>
-<!--
-        <div class="relatorio-social-metrics-each">
-          <img src="img/twitter/ICONES-10.svg" class="svg-icon">
-          <p>0</p>
-        </div>
+        <!--
+<div class="relatorio-social-metrics-each">
+<img src="img/twitter/ICONES-10.svg" class="svg-icon">
+<p>0</p>
+</div>
 -->
         <div class="relatorio-social-metrics-each">
           <img src="img/twitter/ICONES-11.svg" class="svg-icon">
@@ -62,7 +69,7 @@
 <script type="text/javascript">
 
   callSvgImg();
-  
+
   $("body").css( "overflow-y", "auto" );
   document.getElementById("str_main_monitor").scrollIntoView();
 

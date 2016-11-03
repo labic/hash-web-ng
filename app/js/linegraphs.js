@@ -1,10 +1,10 @@
 //dias 1 ou 7
 function plotGraph(divId,array,title,dias){
-	var margin = {top: 30, right: 50, bottom: 30, left: 50};
+	var margin = {top: 30, right: 85, bottom: 30, left: 50};
     var div = document.getElementById(divId);
     var width = $(div).width() - margin.left - margin.right;
     var height = $(div).height() - margin.top - margin.bottom;
-
+    
     var parseDate = d3.time.format.utc("%d-%m-%YT%H:%M:%S").parse;
 
     var x = d3.time.scale().range([0, width]);
@@ -27,7 +27,11 @@ function plotGraph(divId,array,title,dias){
     .orient("left").ticks(4);
 
     newArray = array.map(function(d){
-    	keys = Object.keys(d.data);
+    	keys = Object.keys(d.data).sort(function(a,b){
+            tempa = new parseDate(a).getTime();
+            tempb = new parseDate(b).getTime();
+            return tempb - tempa;
+        });        
     	newData = [];
     	for(i in keys){
     		key = keys[i]
@@ -54,22 +58,26 @@ function plotGraph(divId,array,title,dias){
 
     lines = svg.selectAll("path").data(newArray).enter().append("g");
 
-    lines.append("path")
-    .attr("d", function(d){ return valueline(d.data) })
+    paths = lines.append("path");
+    
+    paths.attr("d", function(d){ return valueline(d.data) })
     .style("stroke", function(d,i){ return color(i)})
     .attr("class","line");
 
-	lines.append("text")
-    .datum(function(d) {
-    	return {
-    		id: d.name,
-    		value: d.data[d.data.length - 1]
-    	};
-    })
-    .attr("transform", function(d) { return "translate(" + x(parseDate(d.value.time)) + "," + y(d.value.value) + ")"; })
-    //.attr("x", 3)
-    //.attr("dy", "0.35em")
-    .text(function(d){return d.id;});
+    legenda = svg.append("svg").attr("x",width+5).attr("y",height - newArray.length * 15)
+    .attr("class","teste")
+    .attr("height",(newArray.length * 15) + 5).attr("width",margin.right - 5);
+
+    rects = legenda.selectAll("rect").data(paths[0]).enter().append("rect");
+    rects.attr("width",10).attr("height",10);
+    rects.attr("fill",function(d){return d.style.stroke});
+    rects.attr("y",function(d,i){ return i*15});
+    //rects.attr("x",width + 5);
+    
+    texts = legenda.selectAll("text").data(newArray).enter().append("text")
+    .text(function(d){return d.name;})
+    .attr("x",12)
+    .attr("y",function(d,i){ return 10 + i*15});
 
     // Add the X Axis
     svg.append("g")

@@ -2,6 +2,12 @@ hash.controller('mainMetrics', function ($scope, $http, settings, MetricsFaceboo
   $scope.config = {
     filter: settings.get('metrics.filters'),
   };
+  
+  $scope.filter = {
+    period: $scope.config.filter.period.values[0].value
+  };
+  
+  $scope.times = $scope.config.filter.period.values;
 
   Tweet.count({
     'period': $scope.config.filter.period,
@@ -34,19 +40,30 @@ hash.controller('mainMetrics', function ($scope, $http, settings, MetricsFaceboo
   }, function success(res) {
     $scope.facebookImage = res.count;
   });
+  
+  $scope.$watch('filter', function (newFilter, oldFilter) {
+    
+    d3.select("#twitter1").select('svg').remove();
+    d3.select("#twitter2").select('svg').remove();
+    d3.select("#facebook1").select('svg').remove();
+    d3.select("#facebook2").select('svg').remove();
+    
+    $scope.functionStatistics(newFilter.period);
+  },true);
 
-  $scope.functionStatistics = function(){
+  $scope.functionStatistics = function(period){
 
-    var statisticsURL = 'http://188.166.40.27:8090/estatisticas/7d';
+    var statisticsURL = 'http://188.166.40.27:8090/estatisticas/'+period;
+    var paramTime;
+    
+    period == '7d' ? paramTime = 7 : paramTime = 1;
 
     $http.get(statisticsURL).success(function (data) {
-      plotGraph("twitter1",data.data.twitter,"Twitter",1);
-      plotGraph("twitter2",data.data["twitter-categorias"],"Twitter: Categorias",1);
-      plotGraph("facebook1",data.data.facebook,"Facebook",1);
-      plotGraph("facebook2",data.data["facebook-categorias"],"Facebook: Categorias",1);
+      plotGraph("twitter1",data.data.twitter,"Twitter",paramTime);
+      plotGraph("twitter2",data.data["twitter-categorias"],"Twitter: Categorias",paramTime);
+      plotGraph("facebook1",data.data.facebook,"Facebook",paramTime);
+      plotGraph("facebook2",data.data["facebook-categorias"],"Facebook: Categorias",paramTime);
     }).error(function(data, status) {
     });
-  };
-  
-  $scope.functionStatistics();
+  };  
 });

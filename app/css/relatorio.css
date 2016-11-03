@@ -118,3 +118,47 @@
   font: 12px Arial;
   fill: white;
 }
+
+/****************** MENU *******************/
+
+#relatorio-menu{
+  width: 100%;
+  height: 140px;
+  display: flex;
+  justify-content: space-around;
+  padding: 20px;
+}
+
+#relatorio-menu input[type="radio"]{
+  display: none;
+}
+
+.relatorio-menu-option{
+  width: 33vw;
+  height: 100%;
+  cursor: pointer;
+  padding: 15px;
+}
+
+.relatorio-menu-option label{
+  cursor:pointer;
+  display: block;
+  color: rgb(6, 204, 215);
+  text-align: center;
+  border: 1px solid white;
+  font-size: 20px;
+  font-weight: bold;
+  height: 100%;
+  padding: 20px;
+}
+
+#relatorio-menu input[type="radio"]:checked + label{
+  border: 1px solid rgb(6, 204, 215);
+  background-color: rgb(6, 204, 215);
+  color: #2b3044;
+}
+
+.relatorio-menu-option:hover label{
+  background: white;
+  color: #2b3044;
+}
