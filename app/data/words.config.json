@@ -178,17 +178,13 @@
         "unit": "Minutos",
         "value": "30m"
       },{
-        "number": "1",
-        "unit": "Hora",
+        "number": "60",
+        "unit": "Minutos",
         "value": "1h"
       },{
         "number": "90",
         "unit": "Minutos",
         "value": "1h30m"
-      },{
-        "number": "6",
-        "unit": "Horas",
-        "value": "6h"
       }
     ]
   }

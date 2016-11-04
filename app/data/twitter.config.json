@@ -161,17 +161,17 @@
         "time": "Hora",
         "value": "1h"
       },{
-        "number": "1",
-        "time": "Dia",
+        "number": "6",
+        "time": "Horas",
+        "value": "6h"
+      },{
+        "number": "12",
+        "time": "Horas",
+        "value": "12h"
+      },{
+        "number": "24",
+        "time": "Horas",
         "value": "1d"
-      },{
-        "number": "7",
-        "time": "Dias",
-        "value": "7d"
-      },{
-        "number": "15",
-        "time": "Dias",
-        "value": "15d"
       }
     ]
   }
