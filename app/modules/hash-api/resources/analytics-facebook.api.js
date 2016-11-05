@@ -3,7 +3,7 @@
 
   angular
     .module('hash.api')
-    .factory('AnalyticsFacebook', function($resource, HASH_API_BASE_URI) {
+    .factory('AnalyticsFacebook', function($resource, CONFIG) {
 
       var PARAMS = {
         'profile_type': null, // String
@@ -22,49 +22,49 @@
       return $resource('', null, {
         mostActiveProfiles: {
           method: 'GET', 
-          url:  HASH_API_BASE_URI + '/analytics/facebook/most_active_profiles', 
+          url:  CONFIG.HASH_API_URL + '/analytics/facebook/most_active_profiles', 
           params: PARAMS,
           isArray: true,
           cache: true
         },
         mostCommentedPosts: {
           method: 'GET', 
-          url:  HASH_API_BASE_URI + '/analytics/facebook/most_commented_posts', 
+          url:  CONFIG.HASH_API_URL + '/analytics/facebook/most_commented_posts', 
           params: PARAMS,
           isArray: true,
           cache: true
         },
         mostLikedComments: {
           method: 'GET', 
-          url:  HASH_API_BASE_URI + '/analytics/facebook/most_liked_comments', 
+          url:  CONFIG.HASH_API_URL + '/analytics/facebook/most_liked_comments', 
           params: PARAMS,
           isArray: true,
           cache: true
         },
         mostLikedPosts: {
           method: 'GET', 
-          url:  HASH_API_BASE_URI + '/analytics/facebook/most_liked_posts', 
+          url:  CONFIG.HASH_API_URL + '/analytics/facebook/most_liked_posts', 
           params: PARAMS,
           isArray: true,
           cache: true
         },
         mostRecurringImages: {
           method: 'GET', 
-          url:  HASH_API_BASE_URI + '/analytics/facebook/most_recurring_images', 
+          url:  CONFIG.HASH_API_URL_V2 + '/analytics/facebook/most_recurring_images', 
           params: PARAMS,
           isArray: true,
           cache: true
         },
         mostRecurringHashtags: {
           method: 'GET', 
-          url:  HASH_API_BASE_URI + '/analytics/facebook/most_recurring_hashtags', 
+          url:  CONFIG.HASH_API_URL_V2 + '/analytics/facebook/most_recurring_hashtags', 
           params: PARAMS,
           isArray: true,
           cache: true
         },
         mostSharedPosts: {
           method: 'GET', 
-          url:  HASH_API_BASE_URI + '/analytics/facebook/most_shared_posts', 
+          url:  CONFIG.HASH_API_URL + '/analytics/facebook/most_shared_posts', 
           params: PARAMS,
           isArray: true,
           cache: true

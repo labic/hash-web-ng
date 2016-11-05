@@ -174,17 +174,17 @@
     "type": "single-option",
     "values": [
       {
+        "number": "10",
+        "unit": "Minutos",
+        "value": "10m"
+      },{
         "number": "30",
         "unit": "Minutos",
         "value": "30m"
       },{
         "number": "60",
         "unit": "Minutos",
-        "value": "1h"
-      },{
-        "number": "90",
-        "unit": "Minutos",
-        "value": "1h30m"
+        "value": "60m"
       }
     ]
   }

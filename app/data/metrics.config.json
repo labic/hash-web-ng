@@ -3,7 +3,7 @@
     "values": [
       {
         "text": "ÚLTIMAS 6 HORAS",
-        "value": "recents"
+        "value": "6h"
       },{
         "text": "ÚLTIMO DIA",
         "value": "1d"

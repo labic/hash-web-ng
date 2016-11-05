@@ -27,12 +27,12 @@
       <img src="img/icons/spinning-circles.svg">
       <p>estamos carregando os dados</p>
     </div>
-    
+
     <div id="error" class="handlers">
       <img src="img/icons/error_outline.svg">
       <p>ocorreu um erro com esses requisição, tente outro parâmetro</p>
     </div>
-    
+
     <div id="empty" class="handlers">
       <img src="img/icons/error_outline.svg">
       <p>não há dados dessa categoria nesse intervalo de tempo, tente outros parâmetros</p>
@@ -41,10 +41,9 @@
     <div id="images-display">
       <div id="result_conteudo_img" style="height:100%;">
         <div class="geralTweets_result">
-          <div ng-repeat="img in imgs | orderBy:'-count'">
-
+          <div ng-repeat="img in imgs | orderBy:'-likes_count'">
             <div ng-if="filter.social == 'Facebook'">
-              <a href='{{img.full_picture}}' class="swipebox" title=' <a class="facebook-images-title" href="https://facebook.com/{{img.id}}" target="_blank">Curtida(s): {{img.count}} - {{img.message}}</a>'>
+              <a href='{{img.full_picture}}' class="swipebox" title=' <a class="facebook-images-title" href="https://facebook.com/{{img.id}}" target="_blank">Curtida(s): {{img.likes_count}} - {{img.message}}</a>'>
                 <img ng-src="{{img.full_picture}}" on-error-src="img/image_not_found.jpg" class="images-picture">  
               </a>
             </div>
@@ -54,13 +53,12 @@
                 <img ng-src="{{img.media_url_https}}:small" on-error-src="img/image_not_found.jpg" class="images-picture">
               </a>
             </div>
-            
+
             <div ng-if="filter.social == 'Flickr'">
               <a href='{{img.source}}' class="swipebox" title='<a href="{{img.urls.url[0]._content}}" target="_blank" style="color:white;">"{{img.title._content}}" {{img.owner.username}}</a>'>
                 <img ng-src="{{img.source}}:small" on-error-src="img/image_not_found.jpg" class="images-picture">
               </a>
             </div>
-
           </div>
         </div>
       </div>
@@ -77,13 +75,13 @@
   callSvgImg();
 
   $( document ).ready(function(){
-    
+
     $(".swipebox").swipebox({
       hideBarsDelay : 10000000
     });
 
     $("body").css( "overflow-y", "hidden" );
-    
+
     document.getElementById("images-main").scrollIntoView();
 
     $("#images-menu-button-go").click(function(){

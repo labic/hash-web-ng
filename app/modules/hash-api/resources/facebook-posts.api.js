@@ -3,12 +3,12 @@
 
   angular
     .module('hash.api')
-    .factory('FacebookPosts', function($resource, HASH_API_BASE_URI) {
+    .factory('FacebookPosts', function($resource, CONFIG) {
 
       return $resource('', null, {
         count: {
           method: 'GET', 
-          url:  HASH_API_BASE_URI + '/facebook/posts/count', 
+          url:  CONFIG.HASH_API_URL_V2 + '/facebook/posts/count', 
           params: { 
             'profile_type': null, // String
             'period': null, // String
