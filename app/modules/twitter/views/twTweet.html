@@ -21,14 +21,12 @@
 
       <div class="painel-posts-list-each" ng-repeat="twitte in twittes" >
 
-        <img class="painel-posts-list-each-image" src="{{twitte.status.user.profile_image_url_https}}" title="{{twitte.status.user.description}}">
-        <p class="painel-posts-list-each-title">@{{twitte.status.user.screen_name}}</p>
+        <img class="painel-posts-list-each-image" src="{{twitte.status.retweeted_status.user.profile_image_url_https}}" title="{{twitte.status.user.description}}">
+        <p class="painel-posts-list-each-title">@{{twitte.status.retweeted_status.user.screen_name}}</p>
         <p class="painel-posts-list-each-title" ng-if="twitte.count">{{twitte.count}} RT </p>
         <p class="painel-posts-list-each-title" ng-if="!twitte.count"> </p>
         <p class="painel-posts-list-each-text">
-          <a ng-if="twitte.count" title="Clique para visualizar o retweeter, @{{twitte.status.user.screen_name}}, no Twitter." href="https://twitter.com/{{twitte.status.user.screen_name}}/status/{{twitte.status.id}}" target="_blank">RT @{{twitte.status.retweeted_status.user.screen_name}}:{{twitte.status.retweeted_status.text}}</a>
-
-          <a ng-if="!twitte.count" ng-if="" title="Clique para visualizar o retweeter, @{{twitte.status.user.screen_name}}, no Twitter." href="https://twitter.com/{{twitte.status.user.screen_name}}/status/{{twitte.status.id}}" target="_blank">RT @{{twitte.status.user.screen_name}}:{{twitte.status.text}} {{twitte.get('count')}}</a>
+          <a title="Clique para visualizar o retweeter, @{{twitte.status.user.screen_name}}, no Twitter." href="https://twitter.com/{{twitte.status.user.screen_name}}/status/{{twitte.status.id}}" target="_blank"> {{twitte.status.retweeted_status.text}}</a>
         </p>
 
         <p class="painel-posts-list-each-time">ÚLTIMO COMPARTILHAMENTO: {{twitte.status.timestamp_ms | date:'HH:mm'}} HS</p>
