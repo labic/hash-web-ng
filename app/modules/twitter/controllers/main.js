@@ -167,6 +167,20 @@ hash.controller('mainMonitor', function ($scope, $http, settings, MetricsTwitter
         $scope.error('TwitterPosts');
       });
   };
+  
+  
+$scope.functionConteudoTweets = function(){
+    $scope.loading('TwitterPosts','painel-posts-list');
+
+    Tweet.find(
+      $scope.analyticsParams,
+      function success(data) {
+        data != '' ? $scope.sucess('TwitterPosts','painel-posts-list') : $scope.empty('TwitterPosts');  
+        $scope.twittes = data;
+      }, function (error){
+        $scope.error('TwitterPosts');
+      });
+  };
 
   $scope.functionUser = function(){
 
@@ -312,7 +326,7 @@ hash.controller('mainMonitor', function ($scope, $http, settings, MetricsTwitter
       'filter[hashtags]': tag,
       retrive_blocked: undefined,
       page: 1,
-      per_page: 24
+      per_page: 25
     };
 
     //    $scope.analyticsImageParams = {

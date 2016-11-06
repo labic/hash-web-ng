@@ -32,6 +32,12 @@
         'conteudo': { templateUrl: 'modules/twitter/views/twTweet.html' }
       }
     })
+    .state('painel.tweetstweets', {
+      url: '',
+      views: {
+        'conteudo': { templateUrl: 'modules/twitter/views/twTweetsTweets.html' }
+      }
+    })
       .state('painel.url', {
       url: '',
       views: {
