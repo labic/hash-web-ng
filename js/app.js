@@ -3,7 +3,7 @@ var hashTwitter = angular.module('hashTwitter', ['ui.router','ngResource', 'hash
 hashTwitter
   .constant('HASH_API_BASE_URI', 'https://sdh-hash-api-dev.herokuapp.com/v2')
 //  .constant('HASH_API_BASE_URI', 'https://sdh-hash-api.herokuapp.com/v2')
-  .constant('WORD_API_BASE_URI', 'http://107.170.35.149:8081')
+  .constant('WORD_API_BASE_URI', 'http://107.170.24.135:8081')
   .config(function($stateProvider, $urlRouterProvider) {
   $stateProvider
 
