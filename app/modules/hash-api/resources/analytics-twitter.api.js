@@ -71,7 +71,7 @@
         },
         mostRecurringUrls: {
           method: 'GET',
-          url: CONFIG.HASH_API_URL + '/analytics/twitter/most_recurring_urls',
+          url: CONFIG.HASH_API_URL_V2 + '/analytics/twitter/most_recurring_urls',
           params: PARAMS,
           isArray: true,
           cache: true
