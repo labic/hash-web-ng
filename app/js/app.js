@@ -8,16 +8,15 @@ var hash = angular.module('hash', [
   'hash.instagram',
   'hash.facebook',
   'hash.words',
-  'hash.metrics',
-  'infinite-scroll'
+  'hash.metrics'
 ])
 .constant('HASH_API_BASE_URI', 'https://inep-enem-2016-api-dev.herokuapp.com/v2')
 .constant('WORD_API_BASE_URI', 'http://188.166.40.27:8081')
 .constant('CONFIG', {
   'HASH_API_URL': 'https://inep-enem-2016-api-dev.herokuapp.com/v2',
-  'INSTAGRAM_API_URL': 'http://188.166.40.27:8081',
-  'WORD_API_URL': 'http://188.166.40.27:8081',
-  'MANDALA_API_URL': 'http://188.166.40.27:7070',
+  'INSTAGRAM_API_URL': 'http://107.170.24.135:8081',
+  'WORD_API_URL': 'http://107.170.24.135:8081',
+  'MANDALA_API_URL': 'http://107.170.24.135:7070',
   'HASH_API_URL_V2': 'https://inep-enem2016-api-v2-dev.herokuapp.com/v2'
 });
 
