@@ -1,6 +1,6 @@
 hashTwitter.controller('mainPalavras', function ($scope, $http) {
 
-  var serviceMandala = 'http://107.170.24.135:7070';
+  var serviceMandala = 'http://188.166.40.27:7070';
 
   /*******************************/
   /* NOTA: PALAVRAS - CONTROLLER */
