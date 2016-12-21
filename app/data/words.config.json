@@ -181,6 +181,10 @@
         "number": "60",
         "unit": "Minutos",
         "value": "60m"
+      },{
+        "number": "90",
+        "unit": "Minutos",
+        "value": "1h30m"
       }
     ]
   }

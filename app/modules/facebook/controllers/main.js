@@ -103,7 +103,7 @@ hash.controller('mainFacebook', function ($scope, $http, settings, MetricsFacebo
   // Request: TopTags = Themes
   $scope.replyTopTags = function(time,actor){
 
-    var topTagsLink = "http://188.166.40.27:4025/topTags?rede=facebook&categoria="+actor+"&period="+time;
+    var topTagsLink = "http://107.170.24.135:4025/topTags?rede=facebook&categoria="+actor+"&period="+time;
     
     $scope.loading('FacebookTopTags','str_topTags');
 

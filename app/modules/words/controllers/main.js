@@ -6,9 +6,9 @@ hash.controller('mainPalavras', function ($scope, $http, settings, CONFIG, WordT
   $scope.filter = {
     tag: $scope.config.filter.main[1].tag,
     title: $scope.config.filter.main[1].title,
-    period: $scope.config.filter.period.values[0].value,
-    number: $scope.config.filter.period.values[0].number,
-    unit: $scope.config.filter.period.values[0].unit,
+    period: $scope.config.filter.period.values[1].value,
+    number: $scope.config.filter.period.values[1].number,
+    unit: $scope.config.filter.period.values[1].unit,
     word: null
   };
 

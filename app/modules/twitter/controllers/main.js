@@ -133,7 +133,7 @@ hash.controller('mainMonitor', function ($scope, $http, settings, MetricsTwitter
 
   $scope.functionTopTags = function(period,theme){
 
-    var topTagsLink = "http://188.166.40.27:4025/topTags?rede=twitter&categoria="+theme+"&period="+period;
+    var topTagsLink = "http://107.170.24.135:4025/topTags?rede=twitter&categoria="+theme+"&period="+period;
     $scope.loading('TwitterTopTags','str_topTags');
 
     $http.get(topTagsLink).success(function (data){

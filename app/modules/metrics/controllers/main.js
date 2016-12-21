@@ -53,7 +53,7 @@ hash.controller('mainMetrics', function ($scope, $http, settings, MetricsFaceboo
 
   $scope.functionStatistics = function(period){
 
-    var statisticsURL = 'http://188.166.40.27:8090/estatisticas/'+period;
+    var statisticsURL = 'http://107.170.24.135:8090/estatisticas/'+period;
     var paramTime;
 
     period == '7d' ? paramTime = 7 : paramTime = 1;
