@@ -175,15 +175,15 @@
     "values": [
       {
         "number": "30",
-        "unit": "Minutos",
+        "unit": "minutos",
         "value": "30m"
       },{
         "number": "60",
-        "unit": "Minutos",
-        "value": "60m"
+        "unit": "minutos",
+        "value": "1h"
       },{
         "number": "90",
-        "unit": "Minutos",
+        "unit": "minutos",
         "value": "1h30m"
       }
     ]

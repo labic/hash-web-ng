@@ -8,7 +8,7 @@ hash.controller('mainFacebook', function ($scope, $http, settings, MetricsFacebo
 
   // NOTA: Filtro para Ator do Facebook.
   $scope.filter = {
-    time: '7d',
+    time: $scope.config.filter.period.values[2].value,
     profileType: 'page',
     actor: $scope.config.filter.actors[0].tag,
     word: undefined,

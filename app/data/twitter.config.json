@@ -158,20 +158,20 @@
     "values": [
       {
         "number": "1",
-        "time": "Hora",
+        "time": "hora",
         "value": "1h"
       },{
         "number": "6",
-        "time": "Horas",
+        "time": "horas",
         "value": "6h"
       },{
-        "number": "12",
-        "time": "Horas",
-        "value": "12h"
-      },{
-        "number": "24",
-        "time": "Horas",
+        "number": "1",
+        "time": "dia",
         "value": "1d"
+      },{
+        "number": "7",
+        "time": "Dias",
+        "value": "7d"
       }
     ]
   }

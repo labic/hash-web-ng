@@ -37,14 +37,22 @@
   "period": {
     "type": "single-option",
     "values": [
-      {
+      {  
+        "number": "1",
+        "time": "hora",
+        "value": "1h"
+      },{
+        "number": "6",
+        "time": "horas",
+        "value": "6h"
+      },{
+        "number": "1",
+        "time": "dia",
+        "value": "1d"
+      },{
         "number": "7",
         "time": "Dias",
         "value": "7d"
-      },{
-        "number": "15",
-        "time": "Dias",
-        "value": "15d"
       }
     ]
   }

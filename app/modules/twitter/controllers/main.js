@@ -20,8 +20,8 @@ hash.controller('mainMonitor', function ($scope, $http, settings, MetricsTwitter
 
   // Filter: Filtro para preencher post de requisição API RPS
   $scope.filter = {
-    theme: $scope.config.filter.main[0].tag,
-    period: "1d",
+    theme: $scope.config.filter.main[1].tag,
+    period: $scope.config.filter.period.values[1].value,
     category: undefined,
     word: undefined,
     hashTag: undefined,
