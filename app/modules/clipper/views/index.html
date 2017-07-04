@@ -1,3 +1,113 @@
-<div ng-controller="main">
-<h1>Testando</h1>
-</div>
+    <link href="./index.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+    <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+    <!-- Modules -->
+  <!--script src="app.js"></script-->
+
+  <!-- Controllers >
+
+  <script src="modules/clipper/controller/menuController.js"></script>
+
+  <script src="modules/clipper/controller/gridController.js"></script>
+  <!-- Directives >
+  <script src="modules/clipper/directives/searching.js"></script>
+  <script src="modules/clipper/directives/noticias.js"></script>
+	-->
+
+
+  <!--  navbar
+    <nav class="navbar  navbar-inverse  navbar-fixed-top">
+    <img src="img/clipper/title.PNG" style="max-width: 100px;">
+    </nav-->
+
+  <!--  menu lateral  >
+  <div class="navbar-fixed-left" ng-controller="menuController">
+    <!-----p class="news" ng-click="plusOne($index)"> {{news}}</p!> 
+    <div ng-repeat="item in mLat"> 
+      <div ng-init="imgsrc=item.coverDes" ng-mouseover="imgsrc=item.coverAtv"
+      ng-mouseout="imgsrc=item.coverDes">
+        <a href="{{item.link}}">
+        <img ng-src="{{imgsrc}}"></a>
+
+      </div>
+    </div>
+  </div-->
+
+  <div id="conteudo">
+    <searching> </searching>
+
+    <div id="menuTopo" ng-controller = "menuController">
+      
+      <select>
+        <option>Última hora</option>
+        <option ng-repeat="tempo in ultHora">{{tempo.label}}</option>  
+      </select>
+
+      <select>
+      <option>Categoria</option>
+        <option ng-repeat="cat in categ">{{cat.label}}</option>  
+      </select>
+
+      <select>
+        <option>Produto</option>
+        <option ng-repeat="produto in prod">{{produto.label}}</option>  
+      </select>
+
+      <select>
+        <option>Tipo de conteúdo</option>
+        <option ng-repeat="conteudo in tipoCont">{{conteudo.label}}</option>  
+      </select>
+
+      <select>
+        <option>Alcance</option>
+        <option ng-repeat="alc in alcance">{{alc.label}}</option>  
+      </select>
+
+      <select>
+        <option>Região</option>
+        <option ng-repeat="reg in regiao">{{reg.label}}</option>  
+      </select>
+      
+      <!--  buttons da esquerda   
+
+      <span class="glyphicon glyphicon-menu-down" aria-hidden="true"></span>
+      -->
+        <div id="iconeEsq" style="float: right; " ng-repeat="item in mSupE">
+        <button onclick="{{item.onclick}}">
+        <img ng-src="{{item.coverAtv}}"></button>
+      </div>
+
+      <!--  blocos de notícias novas  -->
+      <p></p>
+      <div id="notNovas" ng-controller="gridController">
+        <div ng-repeat="nov in novidades">
+        <div ng-if="$index % 3 == 0" class="clearfix"></div>
+          <noticias info=nov class="col-md-4"></noticias>
+        </div>
+      </div>
+
+      <hr noshade style="width:100%; background-color: #D6D6D6; height: 2px;" >
+      <!--  blocos de outros conteúdos  -->
+      <div id="outCont" ng-controller="gridController">
+       <md-grid-list cols="4" rowHeight="100px">
+  <md-grid-tile
+      *ngFor="let tile of tiles"
+      [colspan]="tile.cols"
+      [rowspan]="tile.rows"
+      [style.background]="tile.color">
+    {{tile.text}}
+  </md-grid-tile>
+</md-grid-list>
+      </div>
+      <!--  footer  -->
+      <div id="footer">
+        
+      </div>
+    </div>
+  </div>
+      
+
+  <script src="build/app.min.js"></script>
