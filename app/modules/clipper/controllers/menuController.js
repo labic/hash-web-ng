@@ -1,4 +1,6 @@
-hash.controller('menuController', [ '$scope',  function ($scope) {
+angular
+    .module('hash.clipper')
+    .controller('menuController', [ '$scope',  function ($scope) {
      $scope.news = 2;
      $scope.mLat = [ 
       { 

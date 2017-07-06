@@ -1,10 +1,4 @@
-    <link href="./index.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
-    <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-
-    <!-- Modules -->
+     <!-- Modules -->
   <!--script src="app.js"></script-->
 
   <!-- Controllers >
@@ -92,15 +86,7 @@
       <hr noshade style="width:100%; background-color: #D6D6D6; height: 2px;" >
       <!--  blocos de outros conteúdos  -->
       <div id="outCont" ng-controller="gridController">
-       <md-grid-list cols="4" rowHeight="100px">
-  <md-grid-tile
-      *ngFor="let tile of tiles"
-      [colspan]="tile.cols"
-      [rowspan]="tile.rows"
-      [style.background]="tile.color">
-    {{tile.text}}
-  </md-grid-tile>
-</md-grid-list>
+
       </div>
       <!--  footer  -->
       <div id="footer">
