@@ -162,19 +162,19 @@ angular
 
     $scope.mSupE = [ 
       { 
-        id: 'iconRead', 
+        id: 'iconNext', 
         onclick: '#', 
-        coverAtv: 'img/clipper/icon7.PNG'
+        coverAtv: 'img/clipper/icon5.PNG'
       },
       { 
         id: 'iconRef', 
         onclick: '#', 
         coverAtv: 'img/clipper/icon6.PNG' 
-      }, 
+      },
       { 
-        id: 'iconNext', 
+        id: 'iconRead', 
         onclick: '#', 
-        coverAtv: 'img/clipper/icon5.PNG'
-      }, 
+        coverAtv: 'img/clipper/icon7.PNG'
+      },
     ];
     }]);

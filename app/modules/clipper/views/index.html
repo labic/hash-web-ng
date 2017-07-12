@@ -30,70 +30,70 @@
     </div>
   </div-->
 
-  <div id="conteudo">
+ <div id="conteudo">
     <searching> </searching>
 
-    <div id="menuTopo" ng-controller = "menuController">
+    <div id="menuTopo" ng-controller = "menuController" >
       
       <select>
-        <option>Última hora</option>
-        <option ng-repeat="tempo in ultHora">{{tempo.label}}</option>  
+        <option style="display:none;">Última hora</option>
+        <option ng-repeat="tempo in ultHora" value="{{tempo.label}}">{{tempo.label}}</option>  
       </select>
 
       <select>
-      <option>Categoria</option>
-        <option ng-repeat="cat in categ">{{cat.label}}</option>  
+      <option style="display:none;">Categoria</option>
+        <option ng-repeat="cat in categ" value="{{cat.label}}">{{cat.label}}</option>  
       </select>
 
       <select>
-        <option>Produto</option>
-        <option ng-repeat="produto in prod">{{produto.label}}</option>  
+        <option style="display:none;">Produto</option>
+        <option ng-repeat="produto in prod" value="{{produto.label}}">{{produto.label}}</option>  
       </select>
 
       <select>
-        <option>Tipo de conteúdo</option>
-        <option ng-repeat="conteudo in tipoCont">{{conteudo.label}}</option>  
+        <option style="display:none;">Tipo de conteúdo</option>
+        <option ng-repeat="conteudo in tipoCont" value="{{conteudo.label}}">{{conteudo.label}}</option>  
       </select>
 
       <select>
-        <option>Alcance</option>
-        <option ng-repeat="alc in alcance">{{alc.label}}</option>  
+        <option style="display:none;">Alcance</option>
+        <option ng-repeat="alc in alcance" value="{{alc.label}}">{{alc.label}}</option>  
       </select>
 
       <select>
-        <option>Região</option>
-        <option ng-repeat="reg in regiao">{{reg.label}}</option>  
+        <option style="display:none;">Região</option>
+        <option ng-repeat="reg in regiao" value="{{reg.label}}">{{reg.label}}</option>  
       </select>
       
       <!--  buttons da esquerda   
 
       <span class="glyphicon glyphicon-menu-down" aria-hidden="true"></span>
       -->
-        <div id="iconeEsq" style="float: right; " ng-repeat="item in mSupE">
-        <button onclick="{{item.onclick}}">
+        <button ng-repeat="item in mSupE" onclick="{{item.onclick}}">
         <img ng-src="{{item.coverAtv}}"></button>
-      </div>
+        
+    </div>
 
       <!--  blocos de notícias novas  -->
       <p></p>
-      <div id="notNovas" ng-controller="gridController">
-        <div ng-repeat="nov in novidades">
+      <div id="notNovas" ng-controller="gridController" ng-init="limNot = 30">
+        <div ng-repeat="nov in novidades | limitTo:limNot">
         <div ng-if="$index % 3 == 0" class="clearfix"></div>
           <noticias info=nov class="col-md-4"></noticias>
         </div>
+        <div class="clearfix"></div>
+        <br><br>
+        <button style="float: center;" ng-click="limNot=limNot+30">Show more</button>
       </div>
 
       <hr noshade style="width:100%; background-color: #D6D6D6; height: 2px;" >
       <!--  blocos de outros conteúdos  -->
       <div id="outCont" ng-controller="gridController">
-
       </div>
       <!--  footer  -->
       <div id="footer">
-        
       </div>
-    </div>
-  </div>
+</div>
       
 
   <script src="build/app.min.js"></script>
