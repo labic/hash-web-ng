@@ -101,13 +101,13 @@ html,body {
   margin-right: 1%;
   color: #868686;
 }
-#menuTopo select option {
+#menuTopo option {
   background: white;
   color: black;
 }
 
-#menuTopo select option :hover{
-  background: white;
+#menuTopo option:checked{
+  background: yellow;
   color: black;
 }
 

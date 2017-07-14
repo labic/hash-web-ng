@@ -77,13 +77,13 @@
       <!--  blocos de notícias novas  -->
       <p></p>
       <div id="notNovas" ng-controller="gridController" ng-init="limNot = 30">
-        <div ng-repeat="nov in novidades | limitTo:limNot">
+        <div ng-repeat="nov in novidades | limitTo:limNot ">
         <div ng-if="$index % 3 == 0" class="clearfix"></div>
           <noticias info=nov class="col-md-4"></noticias>
         </div>
         <div class="clearfix"></div>
         <br><br>
-        <button style="float: center;" ng-click="limNot=limNot+30">Show more</button>
+        <button ng-click="limNot=limNot+30">Show more</button>
       </div>
 
       <hr noshade style="width:100%; background-color: #D6D6D6; height: 2px;" >

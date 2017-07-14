@@ -14,3 +14,18 @@ hash.filter('filterByTags', function () {
         return filtered; // Return the array with items that match any tag
     };
 });
+
+hash.filter('selectedTags', function() {
+    return function(novidades, tags) {
+        return novidades.filter(function(nov) {
+
+            for (var i in nov.tag) {
+                if (tag.indexOf(nov.tag[i]) != -1) {
+                    return true;
+                }
+            }
+            return false;
+
+        });
+    };
+})
