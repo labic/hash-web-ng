@@ -106,7 +106,7 @@ html,body {
   color: black;
 }
 
-#menuTopo option:checked{
+#menuTopo option{
   background: yellow;
   color: black;
 }

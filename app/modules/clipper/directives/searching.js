@@ -6,7 +6,7 @@ hash.directive('searching', function() {
         scope.buttonIMG = "img/clipper/lupa.PNG",
         scope.hide = true,
 
-        scope.pesquisar = function() {
+        scope.novaPesquisa = function() {
           if(scope.hide){
             document.getElementById('taggy').style.display = 'block';
             document.getElementById('taggy').focus();
@@ -16,7 +16,6 @@ hash.directive('searching', function() {
             document.getElementById('taggy').style.display = 'none';
             scope.hide = true;
           }
-
 
         }
       }

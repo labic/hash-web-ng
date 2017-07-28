@@ -76,8 +76,8 @@
 
       <!--  blocos de notícias novas  -->
       <p></p>
-      <div id="notNovas" ng-controller="gridController" ng-init="limNot = 30">
-        <div ng-repeat="nov in novidades | limitTo:limNot ">
+      <div id="notNovas" ng-controller="gridController" >
+        <div ng-repeat="nov in novidades">
         <div ng-if="$index % 3 == 0" class="clearfix"></div>
           <noticias info=nov class="col-md-4"></noticias>
         </div>
