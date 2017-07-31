@@ -1,0 +1,135 @@
+html,body {
+  font-family: "Open Sans";
+  background-color: #F2F2F2;
+  border: none;
+  width: 100%;
+}
+
+#conteudo {
+  padding-right: 24.2%;
+  padding-left: 21%;
+  padding-top: 9.5%;
+  font-family: "Open Sans";
+  font-size: 12px;
+  background-color: #F2F2F2;
+}
+
+.navbar.navbar-inverse.navbar-fixed-top
+{
+  position: fixed;
+  width: 100%;
+  text-align: center;
+  background-color: #545454;
+  color: white;
+  max-height: 5.5%;
+  font-size: 35px;
+}
+
+.navbar-fixed-left {
+  width: 3.1%;
+  padding-top: 9.5%;
+  position: fixed;
+  height: 100%;
+  background-color: #FFFFFF;
+  text-align: center;
+}
+
+.navbar-fixed-left img ,#lupa img{
+  max-width: 25px;
+  max-height: 25px;
+  width: auto;
+  height: auto;
+  margin-bottom: 190%;
+}
+
+#lupa ,button{
+  background-color: #F2F2F2;
+  border: none;
+  outline: none;
+  margin-right: 5px;
+  margin-top: 5px;
+}
+
+#taggy {
+  display:none;
+  float: right;
+  margin-top: 1%;
+  background-color: transparent;
+  border: none;
+  border-bottom:1px solid #14C799;
+  width:150px;
+  outline: none;
+}
+
+.news {
+  background: #F50009 ;
+  color: #fff;
+  cursor: pointer;
+  display: inline-block;
+  font-size: 9px;
+  line-height: 15px;
+  min-width: 13px;
+  height: 13px;
+  border-radius: 50%;
+  margin: 0 -5px 0 25px;
+  text-align: center;
+  font-weight: 100;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+  transition: background 500ms;
+}
+
+#menuTopo {
+
+  padding-top: 15%;
+  text-align: center;
+}
+
+#menuTopo img {
+  max-width: 35px;
+  height: 20px;
+  width: auto;
+}
+
+#menuTopo select{
+  background-color: transparent;
+  border: none;
+  border-bottom:1px solid #13C89A;
+  width:12.5%;
+  outline: none;
+  cursor:pointer;
+  border-radius: 0;
+  margin-right: 1%;
+  color: #868686;
+}
+#menuTopo option {
+  background: white;
+  color: black;
+}
+
+#menuTopo option{
+  background: yellow;
+  color: black;
+}
+
+#notNovas img {
+  width: 100%;
+  height: auto;
+}
+
+.col-md-4 {
+  width: 31%;
+  height: 40%;
+  float: left;
+  margin-bottom: 2%;
+}
+
+.col-md-4 input {
+  background-color: transparent;
+  border-radius: 5px;
+  outline: none;
+  box-shadow: 0;
+  border:1px solid #D6D6D6;
+  color: #929497;
+  margin-right: 4px;
+  padding:3px 3px 3px 3px;
+}

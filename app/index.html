@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="bower_components/swipebox/src/css/swipebox.min.css">
     <link rel="stylesheet" href="bower_components/animate.css/animate.min.css" />
     <link rel="stylesheet" href="bower_components/angular-fx/src/css/angular-fx.css" />
-
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <!-- CSS geral -->
     <link rel="stylesheet" href="css/officialStyle.css">
     <link rel="stylesheet" href="css/universe.menu.css">
@@ -23,6 +23,8 @@
     <link rel="stylesheet" href="css/home.css">
     <link rel="stylesheet" href="css/load.css">
     <link rel="stylesheet" href="css/twentytwenty.css">
+    <link rel="stylesheet" href="css/clipper.css">
+
   </head>
   <body ng-app="hash">
     <div id="menu_fixed_bar">
@@ -44,6 +46,9 @@
         </li>
         <li class="menu_fixed_op">
           <a ui-sref="relatorio"><img src="img/Index/esta-01.svg" class="svg-icon icon-menu-monitor" height="20px" width="20px"></a>
+        </li>
+        <li class="menu_fixed_op">
+          <a ui-sref="clipper"><img src="img/Index/clipper.png" class="svg-icon icon-menu-monitor" height="20px" width="20px"></a>
         </li>
       </ul>
 
@@ -130,6 +135,14 @@
     <script src="modules/metrics/module.js"></script>
     <script src="modules/metrics/routes.js"></script>
     <script src="modules/metrics/controllers/main.js"></script>
+
+    <script src="modules/clipper/module.js"></script>
+    <script src="modules/clipper/routes.js"></script>
+    <script src="modules/clipper/controllers/main.js"></script>
+    <script src="modules/clipper/controllers/menuController.js"></script>
+    <script src="modules/clipper/controllers/gridController.js"></script>
+    <script src="modules/clipper/directives/searching.js"></script>
+    <script src="modules/clipper/directives/noticias.js"></script>
 
     <script src="js/wordCloud.js"></script>
     <script src="js/linegraphs.js"></script>
