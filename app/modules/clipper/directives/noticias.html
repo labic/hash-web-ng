@@ -1,4 +1,4 @@
-<h7>{{info.datePublished| date:"dd/MM/yyyy HH'h'mm"}}</h7><br>
+<h7>{{info.dateCreated| date:"dd/MM/yyyy HH'h'mm"}}</h7><br>
 <a href="{{info.url}}" target="_blank"><div style="width: 100%;height: 40%; overflow: hidden;"><img  ng-src="{{ info.image }}"></div>
 <br> <div style="height: 50px; overflow: hidden; text-overflow: ellipsis;">{{ info.description }}</a> </div>
 <br><div> <input type="button" value="{{ tag }}" ng-repeat = "tag in info.keywords | limitTo:10" disabled></div> 

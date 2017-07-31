@@ -25,138 +25,138 @@ angular
     $scope.ultHora = [
      {
       label:'1 hora',
-      link:''
+      value:"2017-07-30T00:00:00.000000"
      },
      {
       label:'2 horas',
-      link:''
+      value:''
      },
       {
       label:'1 dia',
-      link:''
+      value:''
      },
       {
       label:'1 semana',
-      link:''
+      value:''
      },
       {
       label:'Outro',
-      link:''
+      value:''
      }
     ];
 
     $scope.categ = [
      {
       label:'1 hora',
-      link:''
+      value:''
      },
      {
       label:'2 horas',
-      link:''
+      value:''
      },
       {
       label:'1 dia',
-      link:''
+      value:''
      },
       {
       label:'1 semana',
-      link:''
+      value:''
      },
       {
       label:'Outro',
-      link:''
+      value:''
      }
     ];
 
     $scope.prod = [
      {
       label:'1 hora',
-      link:''
+      value:''
      },
      {
       label:'2 horas',
-      link:''
+      value:''
      },
       {
       label:'1 dia',
-      link:''
+      value:''
      },
       {
       label:'1 semana',
-      link:''
+      value:''
      },
       {
       label:'Outro',
-      link:''
+      value:''
      }
     ];
 
     $scope.tipoCont = [
      {
       label:'1 hora',
-      link:''
+      value:''
      },
      {
       label:'2 horas',
-      link:''
+      value:''
      },
       {
       label:'1 dia',
-      link:''
+      value:''
      },
       {
       label:'1 semana',
-      link:''
+      value:''
      },
       {
       label:'Outro',
-      link:''
+      value:''
      }
     ];
 
     $scope.alcance = [
      {
       label:'1 hora',
-      link:''
+      value:''
      },
      {
       label:'2 horas',
-      link:''
+      value:''
      },
       {
       label:'1 dia',
-      link:''
+      value:''
      },
       {
       label:'1 semana',
-      link:''
+      value:''
      },
       {
       label:'Outro',
-      link:''
+      value:''
      }
     ];
 
     $scope.regiao = [
      {
       label:'1 hora',
-      link:''
+      value:''
      },
      {
       label:'2 horas',
-      link:''
+      value:''
      },
       {
       label:'1 dia',
-      link:''
+      value:''
      },
       {
       label:'1 semana',
-      link:''
+      value:''
      },
       {
       label:'Outro',
-      link:''
+      value:''
      }
     ];
 
@@ -166,15 +166,15 @@ angular
         onclick: '#', 
         coverAtv: 'img/clipper/icon5.PNG'
       },
-      { 
-        id: 'iconRef', 
-        onclick: '#', 
-        coverAtv: 'img/clipper/icon6.PNG' 
-      },
-      { 
-        id: 'iconRead', 
-        onclick: '#', 
-        coverAtv: 'img/clipper/icon7.PNG'
-      },
+      // { 
+      //   id: 'iconRef', 
+      //   onclick: '#', 
+      //   coverAtv: 'img/clipper/icon6.PNG' 
+      // },
+      // { 
+      //   id: 'iconRead', 
+      //   onclick: '#', 
+      //   coverAtv: 'img/clipper/icon7.PNG'
+      // },
     ];
     }]);

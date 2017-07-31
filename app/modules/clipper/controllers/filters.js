@@ -208,7 +208,7 @@ function updateData(filterManager,newData){
 	return applyAllFilters(filterManager);
 }
 
-module.exports = {
+angular.module('hash.clipper').exports = {
 	"createFilterManager":createFilterManager,
 	"getData":getData,
 	"addFilter":addFilter,

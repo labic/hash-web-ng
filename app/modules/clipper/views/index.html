@@ -35,33 +35,33 @@
 
     <div id="menuTopo" ng-controller = "menuController" >
       
-      <select>
-        <option style="display:none;">Última hora</option>
+      <select id="selData">
+        <option style="display:none;" value="undefined">Última hora</option>
         <option ng-repeat="tempo in ultHora" value="{{tempo.label}}">{{tempo.label}}</option>  
       </select>
 
-      <select>
-      <option style="display:none;">Categoria</option>
+      <select id="selCat">
+      <option style="display:none;" value="undefined">Categoria</option>
         <option ng-repeat="cat in categ" value="{{cat.label}}">{{cat.label}}</option>  
       </select>
 
-      <select>
-        <option style="display:none;">Produto</option>
+      <select id="selProd">
+        <option style="display:none;" value="undefined">Produto</option>
         <option ng-repeat="produto in prod" value="{{produto.label}}">{{produto.label}}</option>  
       </select>
 
-      <select>
-        <option style="display:none;">Tipo de conteúdo</option>
+      <select id="selCont">
+        <option style="display:none;" value="undefined">Tipo de conteúdo</option>
         <option ng-repeat="conteudo in tipoCont" value="{{conteudo.label}}">{{conteudo.label}}</option>  
       </select>
 
-      <select>
-        <option style="display:none;">Alcance</option>
+      <select id="selAlc">
+        <option style="display:none;" value="undefined">Alcance</option>
         <option ng-repeat="alc in alcance" value="{{alc.label}}">{{alc.label}}</option>  
       </select>
 
-      <select>
-        <option style="display:none;">Região</option>
+      <select id="selReg">
+        <option style="display:none;" value="undefined">Região</option>
         <option ng-repeat="reg in regiao" value="{{reg.label}}">{{reg.label}}</option>  
       </select>
       
@@ -69,17 +69,17 @@
 
       <span class="glyphicon glyphicon-menu-down" aria-hidden="true"></span>
       -->
-        <button ng-repeat="item in mSupE" onclick="{{item.onclick}}">
+        <button ng-repeat="item in mSupE" ng-click="filtering()" ng-controller="gridController">
         <img ng-src="{{item.coverAtv}}"></button>
         
     </div>
 
       <!--  blocos de notícias novas  -->
       <p></p>
-      <div id="notNovas" ng-controller="gridController" >
-        <div ng-repeat="nov in novidades">
+      <div id="notNovas" ng-controller="gridController" ng-init="limNot = 30" >
+        <div ng-repeat="nov in novidades | limitTo:limNot">
         <div ng-if="$index % 3 == 0" class="clearfix"></div>
-          <noticias info=nov class="col-md-4"></noticias>
+          <noticias info=nov class="col-md-4" style="overflow: hidden;"></noticias>
         </div>
         <div class="clearfix"></div>
         <br><br>
