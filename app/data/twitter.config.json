@@ -1,158 +1,22 @@
 {
   "main": [
     {
-      "title": "Mídia",
-      "tag": "usuario-midia",
-      "children": [{
-        "title": "Notícias mais Populares",
-        "tag": "categoria-noticias"
-      },{
-        "title": "Celebridades",
-        "tag": "categoria-celebridades"
-      }]
-    },{
-      "title": "Público Geral",
-      "tag": "usuario-geral",
-      "children": [{
-        "title": "Conteúdo Pedagógico",
-        "tag": "categoria-conteudo",
-        "children": [{
-          "title": "Matemática",
-          "tag": "tag-matematica"
-        },{
-          "title": "Redação",
-          "tag": "tag-redacao"
-        },{
-          "title": "Ciências Humanas",
-          "tag": "tag-humanas"
-        },{
-          "title": "Ciências da Natureza",
-          "tag": "tag-naturais"
-        },{
-          "title": "Linguagens",
-          "tag": "tag-linguagens"
-        },{
-          "title": "Canais",
-          "tag": "tag-canais"
-        },{
-          "title": "Gabarito",
-          "tag": "tag-gabarito"
-        },{
-          "title": "Resultado",
-          "tag": "tag-resultado"
-        }]
-      },{
-        "title": "Humor",
-        "tag": "categoria-humor"
-      },{
-        "title": "Logística e infraestrutura",
-        "tag": "categoria-logistica",
-        "children": [{
-          "title": "Cartão de Prova",
-          "tag": "tag-cartao"
-        },{
-          "title": "Fiscal",
-          "tag": "tag-fiscal"
-        },{
-          "title": "Atendimento Especial",
-          "tag": "tag-atendimento"
-        },{
-          "title": "Abertura dos Portões",
-          "tag": "tag-abertura"
-        },{
-          "title": "Aplicação do Exame",
-          "tag": "tag-apicacao"
-        },{
-          "title": "Segurança do Exame",
-          "tag": "tag-seguranca"
-        },{
-          "title": "Fechamento dos Portões",
-          "tag": "tag-fechaento"
-        },{
-          "title": "Início das Provas",
-          "tag": "tag-inicio"
-        },{
-          "title": "Local de Prova",
-          "tag": "tag-local"
-        },{
-          "title": "Isentos",
-          "tag": "tag-isentos"
-        },{
-          "title": "Certicação Ensino Médio",
-          "tag": "tag-certificacao"
-        },{
-          "title": "Ingresso Ensino Superior",
-          "tag": "tag-ingresso"
-        }]
-      },{
-        "title": "Orientações",
-        "tag": "categoria-orientacoes",
-        "children": [{
-          "title": "Dica",
-          "tag": "tag-dica"
-        },{
-          "title": "Ingresso Ensino Superior",
-          "tag": "tag-ingresso2"
-        },{
-          "title": "Certicação Ensino Médio",
-          "tag": "tag-certificacao2"
-        }]
-      },{
-        "title": "Rumores",
-        "tag": "categoria-rumores",
-        "children": [{
-          "title": "Vazamento da Prova",
-          "tag": "tag-vazamento"
-        },{
-          "title": "Eliminado",
-          "tag": "tag-eliminado"
-        },{
-          "title": "Adiamento do Exame",
-          "tag": "tag-adiamento"
-        }]
-      },{
-        "title": "Sentimentos",
-        "tag": "categoria-sentimentos",
-        "children": [{
-          "title": "Ansiedade",
-          "tag": "tagtag-ansiedade"
-        },{
-          "title": "Tranquilidade",
-          "tag": "tag-tranquilidade"
-        },{
-          "title": "Nervosismo",
-          "tag": "tag-nervosismo"
-        },{
-          "tag-cansaco": "Cansaço",
-          "tag": "tag-cansaco"
-        },{
-          "title": "Motivação",
-          "tag": "tag-motivacao"
-        },{
-          "title": "Expectativa",
-          "tag": "tag-expectativa"
-        },{
-          "title": "Tristeza",
-          "tag": "tag-tristeza"
-        },{
-          "title": "Felicidade",
-          "tag": "tag-felicidade"
-        },{
-          "title": "Medo",
-          "tag": "tag-medo"
-        }]
-      }]
-    },{
-      "title": "Canais",
-      "tag": "usuario-canal",
-      "children": [{
-        "title": "Canais Educacionais",
-        "tag": "categoria-canais"
-      },{
-        "title": "Instituições Educacionais",
-        "tag": "categoria-instituicoes"
-      }]
-    }],
+      "title": "Educação Básica",
+      "tag": "educacao-basica"
+    },
+    {
+      "title": "Educação Superior",
+      "tag": "educacao-superior"
+    },
+    {
+      "title": "Ações Internacionais",
+      "tag": "acoes-internacionais"
+    },
+    {
+      "title": "Institucional",
+      "tag": "institucional"
+    }
+  ],
   "period": {
     "type": "single-option",
     "values": [
@@ -160,15 +24,18 @@
         "number": "1",
         "time": "hora",
         "value": "1h"
-      },{
+      },
+      {
         "number": "6",
         "time": "horas",
         "value": "6h"
-      },{
+      },
+      {
         "number": "1",
         "time": "dia",
         "value": "1d"
-      },{
+      },
+      {
         "number": "7",
         "time": "Dias",
         "value": "7d"
