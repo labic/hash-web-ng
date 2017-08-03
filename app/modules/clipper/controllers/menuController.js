@@ -1,6 +1,9 @@
 angular
     .module('hash.clipper')
-    .controller('menuController', [ '$scope',  function ($scope) {
+    .controller('menuController', [ '$scope',  function ($scope,$mdSidenav) {
+     $scope.openLeftMenu = function() {
+        $mdSidenav('left').toggle();
+      };
      $scope.news = 2;
      $scope.mLat = [ 
       { 
@@ -70,24 +73,31 @@ angular
 
     $scope.prod = [
      {
-      label:'1 hora',
-      value:''
+      label:'Educação Básica',
+      value:'',
+      submenu:[{label:'SAEB'},{label:'ANEB'},{label:'ANRESC (Prova Brasil)'},{label:'ANA'},{label:'IDEB'},{label:'ENEM'},{label:'Enceeja'}
+      ]
      },
      {
-      label:'2 horas',
-      value:''
+      label:'Educação Superior',
+      value:'',
+      submenu:[{label:'SINAES'},{label:'ENADE'},{label:'ANASEM'},{label:'INDICADORES DE QUALIDADE'},{label:'ANASEM'},{label:'REVALIDA'},{label:'SAEG'}
+      ]
      },
       {
-      label:'1 dia',
-      value:''
+      label:'Institucional',
+      value:'',
+      submenu:[{label:'Centro de Informação e Biblioteca em Educação (Cibec)'},{label:'Biblioteca e Arquivo Histórico da Educação Brasileira'},
+      {label:'Thesaurus Brasileiro da Educação (Brased)'},{label:'Banco de Dados Terminológicos do Mercosul (BDT)'},{label:'Bibliografia Brasileira da Educação (BBE)'},
+      {label:'Serviço de Atendimento ao Pesquisador (SAP)'}
+      ]
      },
       {
-      label:'1 semana',
-      value:''
-     },
-      {
-      label:'Outro',
-      value:''
+      label:'Internacional',
+      value:'',
+      submenu:[{label:'CELPE-BRAS'},{label:'PISA'},{label:'ARCU-SUL'},{label:'EaG'},{label:'Pesquisa TALIS'},
+      {label:'SEM'},{label:'Metas Educativas 2021'},{label:'Agenda 2030'},{label:'RIACES'},{label:'Estudos Regionais Comparativos ERCE/LLECE'}
+      ]
      }
     ];
 

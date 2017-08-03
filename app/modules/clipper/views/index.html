@@ -17,82 +17,40 @@
     <img src="img/clipper/title.PNG" style="max-width: 100px;">
     </nav-->
 
-  <!--  menu lateral  >
+  <!--  menu lateral  -->
   <div class="navbar-fixed-left" ng-controller="menuController">
-    <!-----p class="news" ng-click="plusOne($index)"> {{news}}</p!> 
-    <div ng-repeat="item in mLat"> 
-      <div ng-init="imgsrc=item.coverDes" ng-mouseover="imgsrc=item.coverAtv"
-      ng-mouseout="imgsrc=item.coverDes">
-        <a href="{{item.link}}">
-        <img ng-src="{{imgsrc}}"></a>
-
-      </div>
+    <!-----p class="news" ng-click="plusOne($index)"> {{news}}</p!--> 
+      <section layout="row" layout-align="left" layout-wrap style="margin-left: 15%; display: inline-block;">
+          <searching> </searching>
+      </section>
+      <!--  buttons da esquerda -->
+      <section layout="row" layout-align="center" layout-wrap align="center">
+        <button ng-repeat="item in mSupE" ng-click="filtering(listaExibida)" ng-controller="gridController">
+        <img ng-src="{{item.coverAtv}}">
+        </button>
+      </section>
     </div>
-  </div-->
 
  <div id="conteudo">
-    <searching> </searching>
+    <h4 text-size="18">Diário de veículos jornalísticos</h4>
+    <br><br><br>
+      <!--  blocos de notícias novas  -->
+    <div id="notNovas" ng-controller="gridController" ng-init="limNot = 30" >
+      <div ng-repeat="nov in novidades | limitTo:limNot">
+          <noticias info=nov  class="row"></noticias>
+          <br><br>
+      </div>
 
-    <div id="menuTopo" ng-controller = "menuController" >
-      
-      <select id="selData">
-        <option style="display:none;" value="undefined">Última hora</option>
-        <option ng-repeat="tempo in ultHora" value="{{tempo.label}}">{{tempo.label}}</option>  
-      </select>
-
-      <select id="selCat">
-      <option style="display:none;" value="undefined">Categoria</option>
-        <option ng-repeat="cat in categ" value="{{cat.label}}">{{cat.label}}</option>  
-      </select>
-
-      <select id="selProd">
-        <option style="display:none;" value="undefined">Produto</option>
-        <option ng-repeat="produto in prod" value="{{produto.label}}">{{produto.label}}</option>  
-      </select>
-
-      <select id="selCont">
-        <option style="display:none;" value="undefined">Tipo de conteúdo</option>
-        <option ng-repeat="conteudo in tipoCont" value="{{conteudo.label}}">{{conteudo.label}}</option>  
-      </select>
-
-      <select id="selAlc">
-        <option style="display:none;" value="undefined">Alcance</option>
-        <option ng-repeat="alc in alcance" value="{{alc.label}}">{{alc.label}}</option>  
-      </select>
-
-      <select id="selReg">
-        <option style="display:none;" value="undefined">Região</option>
-        <option ng-repeat="reg in regiao" value="{{reg.label}}">{{reg.label}}</option>  
-      </select>
-      
-      <!--  buttons da esquerda   
-
-      <span class="glyphicon glyphicon-menu-down" aria-hidden="true"></span>
-      -->
-        <button ng-repeat="item in mSupE" ng-click="filtering()" ng-controller="gridController">
-        <img ng-src="{{item.coverAtv}}"></button>
-        
+      <br><br>
+      <section layout="row" layout-align="center" layout-wrap align="center">
+        <button ng-click="limNot=limNot+30"> Show more </button>
+      </section>
     </div>
 
-      <!--  blocos de notícias novas  -->
-      <p></p>
-      <div id="notNovas" ng-controller="gridController" ng-init="limNot = 30" >
-        <div ng-repeat="nov in novidades | limitTo:limNot">
-        <div ng-if="$index % 3 == 0" class="clearfix"></div>
-          <noticias info=nov class="col-md-4" style="overflow: hidden;"></noticias>
-        </div>
-        <div class="clearfix"></div>
-        <br><br>
-        <button ng-click="limNot=limNot+30">Show more</button>
-      </div>
-
-      <hr noshade style="width:100%; background-color: #D6D6D6; height: 2px;" >
-      <!--  blocos de outros conteúdos  -->
-      <div id="outCont" ng-controller="gridController">
-      </div>
+    <hr noshade style="width:100%; background-color: #D6D6D6; height: 2px;" >
       <!--  footer  -->
-      <div id="footer">
-      </div>
+    <div id="footer">
+    </div>
 </div>
       
 

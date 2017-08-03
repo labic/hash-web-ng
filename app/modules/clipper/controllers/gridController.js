@@ -6,8 +6,7 @@ angular
     $scope.novidades= [];
     $http({
         url: url,
-        method:'POST',
-        params:{'limit':10}
+        method:'GET'
     })
     .then(function (response) {
         angular.extend($scope.novidades, response.data.data);
@@ -15,6 +14,24 @@ angular
     function (err) {
         console.log(err);
     });
+    $scope.extractHostname = function (url) {
+        var hostname;
+        //find & remove protocol (http, ftp, etc.) and get hostname
+
+        if (url.indexOf("://") > -1) {
+            hostname = url.split('/')[2];
+        }
+        else {
+            hostname = url.split('/')[0];
+        }
+
+        //find & remove port number
+        hostname = hostname.split(':')[0];
+        //find & remove "?"
+        hostname = hostname.split('?')[0];
+
+        return hostname;
+    };
 
     $scope.filtering = function() {
         //pegando os valores pro filtro composto
@@ -66,6 +83,6 @@ angular
 
         // };
         console.log(getData(filterManager).length);
-        angular.extend($scope.novidades, getData(filterManager));
+        data = getData(filterManager);
     };
 })
