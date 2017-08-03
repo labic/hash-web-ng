@@ -43,13 +43,13 @@ function addFilter(filterManager, newFilter){
 function changeFilter(filterManager, filter, index){
 	console.log("Mudando o filtro " + index);
 	filterManager.filters[index] = filter;	
-	return applyAllFilters(filterManager)
+	return applyAllFilters(filterManager);
 }
 
 function applyAllFilters(filterManager){
 	filterManager.filteredData = filterManager.dataset;
 	for(i in filterManager.filters){
-		filterManager.filteredData = applyFilter(filterManager.filteredData,filterManager.filters[i])
+		filterManager.filteredData = applyFilter(filterManager.filteredData,filterManager.filters[i]);
 	}
 	return filterManager.filteredData;
 }
@@ -122,12 +122,12 @@ function cutByData(d,filter, dataParams){
 function getDataParams(filter){
 	dataParams = {"infLimit":null,"supLimit":null}
 	if(filter.operator == "lower"){	
-		dataParams.supLimit = manageData(filter.values)
+		dataParams.supLimit = manageData(filter.values);
 	}else if(filter.operator == "greater"){
-		dataParams.infLimit = manageData(filter.values)
+		dataParams.infLimit = manageData(filter.values);
 	}else if(filter.operator == "between"){
-		dataParams.infLimit = manageData(filter.values[0])
-		dataParams.supLimit = manageData(filter.values[1])
+		dataParams.infLimit = manageData(filter.values[0]);
+		dataParams.supLimit = manageData(filter.values[1]);
 	}
 
 	return dataParams;
@@ -208,7 +208,7 @@ function updateData(filterManager,newData){
 	return applyAllFilters(filterManager);
 }
 
-module.exports = {
+angular.module('hash.clipper').exports = {
 	"createFilterManager":createFilterManager,
 	"getData":getData,
 	"addFilter":addFilter,

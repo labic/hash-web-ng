@@ -1,6 +1,9 @@
 angular
     .module('hash.clipper')
-    .controller('menuController', [ '$scope',  function ($scope) {
+    .controller('menuController', [ '$scope',  function ($scope,$mdSidenav) {
+     $scope.openLeftMenu = function() {
+        $mdSidenav('left').toggle();
+      };
      $scope.news = 2;
      $scope.mLat = [ 
       { 
@@ -25,138 +28,145 @@ angular
     $scope.ultHora = [
      {
       label:'1 hora',
-      link:''
+      value:"2017-07-30T00:00:00.000000"
      },
      {
       label:'2 horas',
-      link:''
+      value:''
      },
       {
       label:'1 dia',
-      link:''
+      value:''
      },
       {
       label:'1 semana',
-      link:''
+      value:''
      },
       {
       label:'Outro',
-      link:''
+      value:''
      }
     ];
 
     $scope.categ = [
      {
       label:'1 hora',
-      link:''
+      value:''
      },
      {
       label:'2 horas',
-      link:''
+      value:''
      },
       {
       label:'1 dia',
-      link:''
+      value:''
      },
       {
       label:'1 semana',
-      link:''
+      value:''
      },
       {
       label:'Outro',
-      link:''
+      value:''
      }
     ];
 
     $scope.prod = [
      {
-      label:'1 hora',
-      link:''
+      label:'Educação Básica',
+      value:'',
+      submenu:[{label:'SAEB'},{label:'ANEB'},{label:'ANRESC (Prova Brasil)'},{label:'ANA'},{label:'IDEB'},{label:'ENEM'},{label:'Enceeja'}
+      ]
      },
      {
-      label:'2 horas',
-      link:''
+      label:'Educação Superior',
+      value:'',
+      submenu:[{label:'SINAES'},{label:'ENADE'},{label:'ANASEM'},{label:'INDICADORES DE QUALIDADE'},{label:'ANASEM'},{label:'REVALIDA'},{label:'SAEG'}
+      ]
      },
       {
-      label:'1 dia',
-      link:''
+      label:'Institucional',
+      value:'',
+      submenu:[{label:'Centro de Informação e Biblioteca em Educação (Cibec)'},{label:'Biblioteca e Arquivo Histórico da Educação Brasileira'},
+      {label:'Thesaurus Brasileiro da Educação (Brased)'},{label:'Banco de Dados Terminológicos do Mercosul (BDT)'},{label:'Bibliografia Brasileira da Educação (BBE)'},
+      {label:'Serviço de Atendimento ao Pesquisador (SAP)'}
+      ]
      },
       {
-      label:'1 semana',
-      link:''
-     },
-      {
-      label:'Outro',
-      link:''
+      label:'Internacional',
+      value:'',
+      submenu:[{label:'CELPE-BRAS'},{label:'PISA'},{label:'ARCU-SUL'},{label:'EaG'},{label:'Pesquisa TALIS'},
+      {label:'SEM'},{label:'Metas Educativas 2021'},{label:'Agenda 2030'},{label:'RIACES'},{label:'Estudos Regionais Comparativos ERCE/LLECE'}
+      ]
      }
     ];
 
     $scope.tipoCont = [
      {
       label:'1 hora',
-      link:''
+      value:''
      },
      {
       label:'2 horas',
-      link:''
+      value:''
      },
       {
       label:'1 dia',
-      link:''
+      value:''
      },
       {
       label:'1 semana',
-      link:''
+      value:''
      },
       {
       label:'Outro',
-      link:''
+      value:''
      }
     ];
 
     $scope.alcance = [
      {
       label:'1 hora',
-      link:''
+      value:''
      },
      {
       label:'2 horas',
-      link:''
+      value:''
      },
       {
       label:'1 dia',
-      link:''
+      value:''
      },
       {
       label:'1 semana',
-      link:''
+      value:''
      },
       {
       label:'Outro',
-      link:''
+      value:''
      }
     ];
 
     $scope.regiao = [
      {
       label:'1 hora',
-      link:''
+      value:''
      },
      {
       label:'2 horas',
-      link:''
+      value:''
      },
       {
       label:'1 dia',
-      link:''
+      value:''
      },
       {
       label:'1 semana',
-      link:''
+      value:''
      },
       {
       label:'Outro',
-      link:''
+      value:''
      }
     ];
 
@@ -166,15 +176,15 @@ angular
         onclick: '#', 
         coverAtv: 'img/clipper/icon5.PNG'
       },
-      { 
-        id: 'iconRef', 
-        onclick: '#', 
-        coverAtv: 'img/clipper/icon6.PNG' 
-      },
-      { 
-        id: 'iconRead', 
-        onclick: '#', 
-        coverAtv: 'img/clipper/icon7.PNG'
-      },
+      // { 
+      //   id: 'iconRef', 
+      //   onclick: '#', 
+      //   coverAtv: 'img/clipper/icon6.PNG' 
+      // },
+      // { 
+      //   id: 'iconRead', 
+      //   onclick: '#', 
+      //   coverAtv: 'img/clipper/icon7.PNG'
+      // },
     ];
     }]);
