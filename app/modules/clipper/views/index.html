@@ -36,6 +36,23 @@
     <br><br><br>
       <!--  blocos de notícias novas  -->
     <div id="notNovas" ng-controller="gridController" ng-init="limNot = 30" >
+
+    <div class="modal" id="abrirModal">
+    <div class="modal-content">
+    <span class="close" id="fecharModal">&times;</span>
+      <h3><div id="modalTitle"></div></h3><br><br>
+      <div id="modalBody"></div><br>
+      <div id="modalFooter"></div>
+      <script type="text/javascript">
+      // When the user clicks on <span> (x), close the modal
+      document.getElementById('fecharModal').onclick = function() {
+        document.getElementById('abrirModal').style.display = "none";
+      }
+      
+      </script>
+    </div>
+    </div>
+
       <div ng-repeat="nov in novidades | limitTo:limNot">
           <noticias info=nov  class="row"></noticias>
           <br><br>
