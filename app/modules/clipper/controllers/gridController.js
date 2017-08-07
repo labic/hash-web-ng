@@ -14,28 +14,19 @@ angular
     function (err) {
         console.log(err);
     });
-    $scope.extractHostname = function (url) {
-        var hostname;
-        //find & remove protocol (http, ftp, etc.) and get hostname
-
-        if (url.indexOf("://") > -1) {
-            hostname = url.split('/')[2];
-        }
-        else {
-            hostname = url.split('/')[0];
-        }
-
-        //find & remove port number
-        hostname = hostname.split(':')[0];
-        //find & remove "?"
-        hostname = hostname.split('?')[0];
-
-        return hostname;
-    };
+    $scope.showDialog = function(info) {
+        console.log(info.headline);
+        //mostrando conteúdo na modal
+        document.getElementById('modalTitle').innerHTML = info.headline;
+        document.getElementById('modalBody').innerHTML = info.articleBody;
+        document.getElementById('modalFooter').innerHTML = '<a href="'+info.url+'" target="_blank">Ir para a notícia</a>';
+        
+        document.getElementById('abrirModal').style.display="block";
+     };
 
     $scope.filtering = function() {
         //pegando os valores pro filtro composto
-        var pesquisa = document.getElementById("taggy").value
+        var pesquisa = document.getElementById("taggy").value;
         var tempo = document.getElementById("selData").value;
         // var categoria = document.getElementById("selCat").value;
         // var produto = document.getElementById("selProd").value;
