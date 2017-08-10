@@ -1,13 +1,9 @@
 <form>
-    <input value="undefined" type="text" id="taggy" ng-model="query" placeholder="Pesquisar por...">
-    <button  id="lupa" class="btn btn-active" ng-click="filtering()" >
-<img src={{buttonIMG}}>
-</button>
+    <input defaultValue="undefined" type="text" id="taggy" ng-model="query" placeholder="Pesquisar por...">
 </form>
 <br><br>
-
 <select id="selData">
-  <option style="display:none;" value="undefined">Última hora</option>
+  <option style="display:none;" value="undefined">Horários</option>
   <option ng-repeat="tempo in ultHora" value="{{tempo.label}}">{{tempo.label}}</option>  
 </select>
 <br><br>
@@ -25,7 +21,7 @@
  </select>
  <br><br>
 <select id="selCont">
-  <option style="display:none;" value="undefined">Tipo de conteúdo</option>
+  <option style="display:none;" value="undefined">Conteúdo</option>
   <option ng-repeat="conteudo in tipoCont" value="{{conteudo.label}}">{{conteudo.label}}</option>  
 </select>
 <br><br>

@@ -27,47 +27,43 @@ angular
         };
     $scope.ultHora = [
      {
-      label:'1 hora',
-      value:"2017-07-30T00:00:00.000000"
+      label:'Hoje 8h'
      },
      {
-      label:'2 horas',
-      value:''
+      label:'Hoje 12h'
      },
       {
-      label:'1 dia',
-      value:''
+      label:'Hoje 18h'
      },
       {
-      label:'1 semana',
-      value:''
+      label:'Ontem 8h'
      },
       {
-      label:'Outro',
-      value:''
+      label:'Ontem 12h'
+     },
+      {
+      label:'Ontem 18h'
+     },
+      {
+      label:'Outro'
      }
     ];
 
     $scope.categ = [
      {
-      label:'1 hora',
-      value:''
+      label:'Cat1'
      },
      {
-      label:'2 horas',
-      value:''
+      label:'Cat2'
      },
       {
-      label:'1 dia',
-      value:''
+      label:'Cat3'
      },
       {
-      label:'1 semana',
-      value:''
+      label:'Cat4'
      },
       {
-      label:'Outro',
-      value:''
+      label:'Outro'
      }
     ];
 
@@ -103,70 +99,55 @@ angular
 
     $scope.tipoCont = [
      {
-      label:'1 hora',
-      value:''
+      label:'Sites'
      },
      {
-      label:'2 horas',
-      value:''
+      label:'Impresso'
      },
       {
-      label:'1 dia',
-      value:''
+      label:'Vídeo'
      },
       {
-      label:'1 semana',
-      value:''
+      label:'Áudio'
      },
       {
-      label:'Outro',
-      value:''
+      label:'Outro'
      }
     ];
 
     $scope.alcance = [
      {
-      label:'1 hora',
-      value:''
+      label:'Alcance1'
      },
      {
-      label:'2 horas',
-      value:''
+      label:'Alcance2'
      },
       {
-      label:'1 dia',
-      value:''
+      label:'Alcance3'
      },
       {
-      label:'1 semana',
-      value:''
+      label:'Alcance4'
      },
       {
-      label:'Outro',
-      value:''
+      label:'Outro'
      }
     ];
 
     $scope.regiao = [
      {
-      label:'1 hora',
-      value:''
+      label:'Centro-Oeste'
      },
      {
-      label:'2 horas',
-      value:''
+      label:'Nordeste'
      },
       {
-      label:'1 dia',
-      value:''
+      label:'Norte'
      },
       {
-      label:'1 semana',
-      value:''
+      label:'Sul'
      },
       {
-      label:'Outro',
-      value:''
+      label:'Sudeste'
      }
     ];
 

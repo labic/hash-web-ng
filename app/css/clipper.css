@@ -47,7 +47,7 @@ html,body {
   color: black;
 }
 
-#lupa ,button{
+button{
   background-color: transparent;
   border: none;
   outline: none;
@@ -58,7 +58,7 @@ html,body {
   background-color: transparent;
   border: none;
   border-bottom:1px solid #2B3044;
-  width:60%;
+  width:75%;
   outline: none;
   color:#2B3044;
 }
