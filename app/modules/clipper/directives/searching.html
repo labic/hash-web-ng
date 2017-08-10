@@ -7,35 +7,35 @@
 <br><br>
 
 <select id="selData">
-        <option style="display:none;" value="undefined">Última hora</option>
-        <option ng-repeat="tempo in ultHora" value="{{tempo.label}}">{{tempo.label}}</option>  
-      </select>
-      <br><br>
-      <select id="selCat">
-      <option style="display:none;" value="undefined">Categoria</option>
-        <option ng-repeat="cat in categ" value="{{cat.label}}">{{cat.label}}</option>  
-      </select>
-      <br><br>
-      <select id="selProd">
-        <option style="display:none;" value="undefined">Produto</option>
-        <option ng-repeat="produto in prod"><select>
-        <option style="display:none;">{{produto.label}}</option>
-        <option ng-repeat="item in produto.submenu">{{item.labe}l}</option>          
-        </select></option> 
-       </select>
-       <br><br>
-      <select id="selCont">
-        <option style="display:none;" value="undefined">Tipo de conteúdo</option>
-        <option ng-repeat="conteudo in tipoCont" value="{{conteudo.label}}">{{conteudo.label}}</option>  
-      </select>
-      <br><br>
-      <select id="selAlc">
-        <option style="display:none;" value="undefined">Alcance</option>
-        <option ng-repeat="alc in alcance" value="{{alc.label}}">{{alc.label}}</option>  
-      </select>
-      <br><br>
-      <select id="selReg">
-        <option style="display:none;" value="undefined">Região</option>
-        <option ng-repeat="reg in regiao" value="{{reg.label}}">{{reg.label}}</option>  
-      </select>
-      <br><br><br>
+  <option style="display:none;" value="undefined">Última hora</option>
+  <option ng-repeat="tempo in ultHora" value="{{tempo.label}}">{{tempo.label}}</option>  
+</select>
+<br><br>
+<select id="selCat">
+  <option style="display:none;" value="undefined">Categoria</option>
+  <option ng-repeat="cat in categ" value="{{cat.label}}">{{cat.label}}</option>  
+</select>
+<br><br>
+<select id="selProd">
+  <option style="display:none;" value="undefined">Produto</option>
+  <option ng-repeat="produto in prod"><select>
+  <option style="display:none;">{{produto.label}}</option>
+  <option ng-repeat="item in produto.submenu">{{item.labe}l}</option>          
+  </select></option> 
+ </select>
+ <br><br>
+<select id="selCont">
+  <option style="display:none;" value="undefined">Tipo de conteúdo</option>
+  <option ng-repeat="conteudo in tipoCont" value="{{conteudo.label}}">{{conteudo.label}}</option>  
+</select>
+<br><br>
+<select id="selAlc">
+  <option style="display:none;" value="undefined">Alcance</option>
+  <option ng-repeat="alc in alcance" value="{{alc.label}}">{{alc.label}}</option>  
+</select>
+<br><br>
+<select id="selReg">
+  <option style="display:none;" value="undefined">Região</option>
+  <option ng-repeat="reg in regiao" value="{{reg.label}}">{{reg.label}}</option>  
+</select>
+<br><br><br>

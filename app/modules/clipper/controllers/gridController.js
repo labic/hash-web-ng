@@ -6,7 +6,8 @@ angular
     $scope.novidades= [];
     $http({
         url: url,
-        method:'GET'
+        method:'GET',
+        params:{'per_page':20}
     })
     .then(function (response) {
         angular.extend($scope.novidades, response.data.data);
@@ -22,6 +23,7 @@ angular
         document.getElementById('modalFooter').innerHTML = '<a href="'+info.url+'" target="_blank">Ir para a notícia</a>';
         
         document.getElementById('abrirModal').style.display="block";
+        
      };
 
     $scope.filtering = function() {

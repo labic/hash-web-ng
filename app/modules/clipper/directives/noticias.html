@@ -1,9 +1,9 @@
 <div class="col-md-4" ng-controller="gridController">
-	<button type="button" style="background:url({{ info.image }}) center center;background-size: cover; width:300px; height: 200px;" class="thumbnail" ng-click="showDialog(info)">&nbsp;</button>
+	<button type="button" style="background:url({{ info.image }}) center center;background-size: cover; width:100%; height: 25%;" class="thumbnail" ng-click="showDialog(info)">&nbsp;</button>
 </div>
 <div class="col-md-8">
-  	<div class="row">
-  		<a href="{{info.url}}" target="_blank"><h5><b>{{ info.headline }}</b>&nbsp</h5></a>
+  	<div class="row" ng-controller="gridController">
+  		<a ng-click="showDialog(info)"><h5><b>{{ info.headline }}</b>&nbsp</h5></a>
   	</div>
   	<div class="row" ng-init="fonte = info.url.split('/')[2]">
   		<a href="http://{{fonte}}" target="_blank" style="display: inline">{{fonte}}</a> &nbsp &#8211 &nbsp {{info.dateCreated| date:"dd/MM/yyyy HH'h'mm"}}
