@@ -5,7 +5,7 @@ angular
     $scope.url = 'https://inep-hash-data-api-dev.herokuapp.com/articles';
     $scope.novidades = [];
     $scope.dados = [];
-    $scope.quant = 30;
+    $scope.quant = 20;
     
     //pegando todos os dados
     $http({
@@ -14,14 +14,16 @@ angular
         params:{'per_page':$scope.quant}
     })
     .then(function (response) {
-        angular.extend($scope.novidades, response.data.data);
+
+        $scope.dados = response.data.data;
+
+        $scope.treatURL();
     },
     function (err) {
         console.log(err);
     });
 
     $scope.showDialog = function(info) {
-        console.log(info.headline);
         //mostrando conteúdo na modal
         document.getElementById('modalTitle').innerHTML = info.headline;
         document.getElementById('modalBody').innerHTML = info.articleBody;
@@ -91,7 +93,7 @@ angular
                 default:
                 //pegando a data pedida
                     d.setDate(tempo);
-                    d.setHours(8);
+                    d.setHours(5);
                     d.setMinutes(0);
                     horario = d.toISOString();
                     break;
@@ -129,13 +131,19 @@ angular
     };
 
     $scope.treatURL = function() {
-        //pegando os valores pro filtro composto
-        filterManager = createFilterManager($scope.novidades);
-        var query = window.location.search.substring(1);
+        var query = window.location.href.split('?')[1];
+        //verifica se existe pesquisa
+        if(query== null) {
+            angular.extend($scope.novidades, $scope.dados);
+            return 0;
+        };
+
         var vars = query.split('&');
         for (var i = 0; i < vars.length; i++) {
             var pair = vars[i].split('=');
-            
+            //pegando os valores pro filtro composto
+            filterManager = createFilterManager($scope.dados);
+        
             switch(pair[0]){
                 case 'pesquisa':
                     textFilter = {
@@ -145,6 +153,9 @@ angular
                             "operator":"contains"
                         }
                     addFilter(filterManager,textFilter);
+                    $scope.novidades = mergeArrays($scope.novidades,getData(filterManager));
+
+                    removeFilter(filterManager,"description");
                     textFilter2 = {
                             "attr":"articleBody",  
                             "type":"text",
@@ -152,6 +163,9 @@ angular
                             "operator":"contains"
                         }
                     addFilter(filterManager,textFilter2);
+                    $scope.novidades = mergeArrays($scope.novidades,getData(filterManager));
+                    
+                    removeFilter(filterManager,"articleBody");
                     textFilter3 = {
                             "attr":"headline",  
                             "type":"text",
@@ -163,13 +177,17 @@ angular
                     break;
 
                 case 'categoria':
+
+                    console.log("filtro de categoria");
                     break;
 
                 case 'data':
+                console.log(pair[1]);
                 //pegar data atual, colocar offset de 3h e converter pra ISO String
-                    var agora = new Date().setHours(new Date().getHours()-3).toISOString();
+                    var agora = new Date();
+                    agora.setHours(new Date().getHours()-3);
+                    
                     //remover o Z do tempo
-                    agora = agora.substring(0,(agora.length-1));
                     dataFilter = {
                         "attr":"dateCreated",
                         "type":"data",
@@ -180,18 +198,28 @@ angular
                     break;
 
                 case 'produto':
+
+                    console.log("filtro de produto");
                     break;
 
                 case 'conteudo':
+
+                    console.log("filtro de conteudo");
                     break;
 
                 case 'alcance':
+
+                    console.log("filtro de alcance");
                     break;
 
                 case 'regiao':
+
+                    console.log("filtro de regiao");
                     break;
 
                 default:
+
+                    console.log("filtro default");
                     //colocar todas as notícias na variável de dados
                     break;
             }
@@ -200,7 +228,17 @@ angular
 
         }
         
-        console.log(getData(filterManager).length);
-        data = getData(filterManager);
+        // console.log(getData(filterManager).length);
+        $scope.novidades = mergeArrays($scope.novidades,getData(filterManager));
+                 
+    };
+    var mergeArrays = function(array1,array2) {
+
+        for (index = 0; index < array2.length; ++index) {
+            if(array1.indexOf(array2[index])<0){
+                array1.push(array2[index]);
+            }
+        }
+        return array1;
     };
 })
