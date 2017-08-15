@@ -41,7 +41,7 @@ angular
         var categoria = document.getElementById("selCat").value;
         var produto = document.getElementById("selProd").value;
         var conteudo = document.getElementById("selCont").value;
-        var alcance = document.getElementById("selAlc").value;
+        // var alcance = document.getElementById("selAlc").value;
         var regiao = document.getElementById("selReg").value;
         
         // tratando cada valor obtido pra inserir um filtro
@@ -63,9 +63,9 @@ angular
                     d.setMinutes(0);
                     horario = d.toISOString();
                     break;
-                case 'Hoje 18h':
+                case 'Hoje 17h':
                 //tratando a hora e minutos
-                    d.setHours(13);
+                    d.setHours(12);
                     d.setMinutes(0);
                     horario = d.toISOString();
                     break;
@@ -83,10 +83,10 @@ angular
                     d.setMinutes(0);
                     horario = d.toISOString();
                     break;
-                case 'Ontem 18h':
+                case 'Ontem 17h':
                 //reduzir um dia na data de hj
                     d.setDate(new Date().getDate()-1);
-                    d.setHours(13);
+                    d.setHours(12);
                     d.setMinutes(0);
                     horario = d.toISOString();
                     break;
@@ -118,16 +118,19 @@ angular
             query = query.concat('conteudo=',conteudo,'&');
         };
 
-        if(alcance!='undefined'){
-            query = query.concat('alcance=',alcance,'&');
-        };
+        // if(alcance!='undefined'){
+        //     query = query.concat('alcance=',alcance,'&');
+        // };
 
         if(regiao!='undefined'){
             query = query.concat('regiao=',regiao,'&');
         };
         
         query = query.substring(0,(query.length-1));    //remove o último '&'
-        location.href = 'https://inep-enem-2017-web-dev.herokuapp.com/#/clipper'+query;
+        //muda o endereço da pagina à partir do endereço base
+        location.href = window.location.href.split('?')[0]+query;
+        //carrega a página com a pesquisa
+        location.reload();
     };
 
     $scope.treatURL = function() {
@@ -146,6 +149,10 @@ angular
         
             switch(pair[0]){
                 case 'pesquisa':
+
+                    if(pair[1]=='')
+                        break;
+
                     textFilter = {
                             "attr":"description",  
                             "type":"text",
@@ -182,38 +189,39 @@ angular
                     break;
 
                 case 'data':
-                console.log(pair[1]);
                 //pegar data atual, colocar offset de 3h e converter pra ISO String
                     var agora = new Date();
                     agora.setHours(new Date().getHours()-3);
-                    
+                    var limiteTempo = agora.toISOString();
                     //remover o Z do tempo
                     dataFilter = {
                         "attr":"dateCreated",
                         "type":"data",
-                        "values":[pair[1],agora],
+                        "values":[],
                         "operator":"between"
                     };
+                    dataFilter["values"][0] = pair[1];
+                    dataFilter["values"][1] = limiteTempo.substring(0,(limiteTempo.length-1));
                     addFilter(filterManager,dataFilter);
                     break;
 
                 case 'produto':
-
+                    //filtrar nas tags
                     console.log("filtro de produto");
                     break;
 
                 case 'conteudo':
-
+                    //filtrar nas tags
                     console.log("filtro de conteudo");
                     break;
 
-                case 'alcance':
+                // case 'alcance':
 
-                    console.log("filtro de alcance");
-                    break;
+                //     console.log("filtro de alcance");
+                //     break;
 
                 case 'regiao':
-
+                    //filtrar nas tags
                     console.log("filtro de regiao");
                     break;
 
@@ -225,11 +233,9 @@ angular
             }
 
 
-
-        }
-        
         // console.log(getData(filterManager).length);
         $scope.novidades = mergeArrays($scope.novidades,getData(filterManager));
+        }
                  
     };
     var mergeArrays = function(array1,array2) {

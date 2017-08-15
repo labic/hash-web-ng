@@ -33,7 +33,7 @@ angular
       label:'Hoje 12h'
      },
       {
-      label:'Hoje 18h'
+      label:'Hoje 17h'
      },
       {
       label:'Ontem 8h'
@@ -42,7 +42,7 @@ angular
       label:'Ontem 12h'
      },
       {
-      label:'Ontem 18h'
+      label:'Ontem 17h'
      },
       {
       label:'Outro'
@@ -51,49 +51,35 @@ angular
 
     $scope.categ = [
      {
-      label:'Cat1'
+      label:'Educação Básica'
      },
      {
-      label:'Cat2'
+      label:'Educação Superior'
      },
       {
-      label:'Cat3'
+      label:'Internacional'
      },
       {
-      label:'Cat4'
-     },
-      {
-      label:'Outro'
+      label:'Institucional'
      }
     ];
 
     $scope.prod = [
      {
       label:'Educação Básica',
-      value:'',
-      submenu:[{label:'SAEB'},{label:'ANEB'},{label:'ANRESC (Prova Brasil)'},{label:'ANA'},{label:'IDEB'},{label:'ENEM'},{label:'Enceeja'}
-      ]
+      submenu:['SAEB','ANEB','ANRESC (Prova Brasil)','ANA','IDEB','ENEM','Enceeja']
      },
      {
       label:'Educação Superior',
-      value:'',
-      submenu:[{label:'SINAES'},{label:'ENADE'},{label:'ANASEM'},{label:'INDICADORES DE QUALIDADE'},{label:'ANASEM'},{label:'REVALIDA'},{label:'SAEG'}
-      ]
+      submenu:['SINAES','ENADE','ANASEM','Indicadores de Qualidade','REVALIDA','SAEG']
      },
       {
       label:'Institucional',
-      value:'',
-      submenu:[{label:'Centro de Informação e Biblioteca em Educação (Cibec)'},{label:'Biblioteca e Arquivo Histórico da Educação Brasileira'},
-      {label:'Thesaurus Brasileiro da Educação (Brased)'},{label:'Banco de Dados Terminológicos do Mercosul (BDT)'},{label:'Bibliografia Brasileira da Educação (BBE)'},
-      {label:'Serviço de Atendimento ao Pesquisador (SAP)'}
-      ]
+      submenu:['Centro de Informação e Biblioteca em Educação (Cibec)','Biblioteca e Arquivo Histórico da Educação Brasileira','Thesaurus Brasileiro da Educação (Brased)','Banco de Dados Terminológicos do Mercosul (BDT)','Bibliografia Brasileira da Educação (BBE)','Serviço de Atendimento ao Pesquisador (SAP)']
      },
       {
       label:'Internacional',
-      value:'',
-      submenu:[{label:'CELPE-BRAS'},{label:'PISA'},{label:'ARCU-SUL'},{label:'EaG'},{label:'Pesquisa TALIS'},
-      {label:'SEM'},{label:'Metas Educativas 2021'},{label:'Agenda 2030'},{label:'RIACES'},{label:'Estudos Regionais Comparativos ERCE/LLECE'}
-      ]
+      submenu:['CELPE-BRAS','PISA','ARCU-SUL','EaG','Pesquisa TALIS','SEM','Metas Educativas 2021','Agenda 2030','RIACES','Estudos Regionais Comparativos ERCE/LLECE']
      }
     ];
 
@@ -109,9 +95,6 @@ angular
      },
       {
       label:'Áudio'
-     },
-      {
-      label:'Outro'
      }
     ];
 

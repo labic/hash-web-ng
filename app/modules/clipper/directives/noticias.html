@@ -6,7 +6,7 @@
   		<a ng-click="showDialog(info)"><h5><b>{{ info.headline }}</b>&nbsp</h5></a>
   	</div>
   	<div class="row" ng-init="fonte = info.url.split('/')[2]">
-  		<a href="http://{{fonte}}" target="_blank" style="display: inline">{{fonte}}</a> &nbsp &#8211 &nbsp {{info.dateCreated| date:"dd/MM/yyyy HH'h'mm"}}
+  		<a href="http://{{fonte}}" target="_blank" style="display: inline">{{fonte}}</a> &nbsp &#8211 &nbsp {{info.datePublished| date:"dd/MM/yyyy HH'h'mm"}}
   	</div>
   	<div class="row">
   		{{info.description}}
