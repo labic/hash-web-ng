@@ -16,7 +16,7 @@
     <h4 text-size="18">Diário de veículos jornalísticos</h4>
     <br><br><br>
       <!--  blocos de notícias novas  -->
-    <div id="notNovas" ng-controller="gridController" ng-init="limNot = 30" >
+    <div id="notNovas" ng-controller="gridController" ng-init="limNot = 20" >
 
     <div class="modal" id="abrirModal">
     <div class="modal-content">
@@ -41,7 +41,7 @@
 
       <br><br>
       <section layout="row" layout-align="center" layout-wrap align="center">
-        <button ng-click="limNot=limNot+30"> Carregar mais </button>
+        <button ng-click="limNot = limNot + 20; loadMore()" > Carregar mais </button>
       </section>
     </div>
 

@@ -1,11 +1,12 @@
 angular
     .module('hash.clipper')
-    .controller("gridController", function($scope, $http) { 
+    .controller("gridController", function($scope, $http, $location) { 
 
     $scope.url = 'https://inep-hash-data-api-dev.herokuapp.com/articles';
     $scope.novidades = [];
     $scope.dados = [];
-    $scope.quant = 20;
+    $scope.quant = 30;
+    $scope.numPage = 1;
     
     //pegando todos os dados
     $http({
@@ -18,6 +19,10 @@ angular
         $scope.dados = response.data.data;
 
         $scope.treatURL();
+        //loading more (gambiarra para melhorar)
+        for(var i = 0 ; i < 3 ; i++) {
+            $scope.loadMore();
+        }
     },
     function (err) {
         console.log(err);
@@ -33,6 +38,40 @@ angular
         
      };
 
+     $scope.loadMore = function() {
+        $scope.numPage = $scope.numPage + 1;
+        //load the rest of items       
+            $http({
+                url: $scope.url,
+                method:'GET',
+                params:{'per_page':$scope.quant,'page':$scope.numPage}
+            })
+            .then(function (response) {
+
+                $scope.dados = mergeArrays($scope.dados,response.data.data);
+
+                $scope.treatURL();
+            },
+            function (err) {
+                console.log(err);
+            });
+    };
+
+    // $scope.showMore = function(limNot) {
+        
+    //     var quant = $scope.novidades.length - limNot;
+    //     while(quant < 20) {
+    //     //load more items 
+    //         $scope.loadMore(); 
+    //         quant = $scope.novidades.length - limNot;
+    //         console.log($scope.novidades.length+' e '+ limNot);
+    //         if(quant <= 0)
+    //             break;
+    //     };    
+    //     console.log($scope.numPage);
+    //     return 20;
+    // };
+
     $scope.filtering = function() {
         var query='?';     //inicio de uma query
         //pegando os valores pro filtro composto
@@ -43,7 +82,7 @@ angular
         var conteudo = document.getElementById("selCont").value;
         // var alcance = document.getElementById("selAlc").value;
         var regiao = document.getElementById("selReg").value;
-        
+
         // tratando cada valor obtido pra inserir um filtro
         if(tempo != 'undefined'){
             //temos na variável 'tempo' o dia de referência
@@ -107,15 +146,15 @@ angular
         };
 
         if(categoria!='undefined'){
-            query = query.concat('categoria=',categoria,'&');
+            query = query.concat('tag=',categoria,'&');
         };
 
         if(produto!='undefined'){
-            query = query.concat('produto=',produto,'&');
+            query = query.concat('tag=',produto,'&');
         };
 
         if(conteudo!='undefined'){
-            query = query.concat('conteudo=',conteudo,'&');
+            query = query.concat('tag=',conteudo,'&');
         };
 
         // if(alcance!='undefined'){
@@ -123,9 +162,10 @@ angular
         // };
 
         if(regiao!='undefined'){
-            query = query.concat('regiao=',regiao,'&');
+            query = query.concat('tag=',regiao,'&');
         };
-        
+                
+        console.log(query);
         query = query.substring(0,(query.length-1));    //remove o último '&'
         //muda o endereço da pagina à partir do endereço base
         location.href = window.location.href.split('?')[0]+query;
@@ -134,110 +174,88 @@ angular
     };
 
     $scope.treatURL = function() {
-        var query = window.location.href.split('?')[1];
+        var query = $location.search();
         //verifica se existe pesquisa
-        if(query== null) {
+        if(Object.keys(query).length === 0) {
             angular.extend($scope.novidades, $scope.dados);
             return 0;
         };
+        //pegando os valores pro filtro composto
+        filterManager = createFilterManager($scope.dados);
 
-        var vars = query.split('&');
-        for (var i = 0; i < vars.length; i++) {
-            var pair = vars[i].split('=');
-            //pegando os valores pro filtro composto
-            filterManager = createFilterManager($scope.dados);
-        
-            switch(pair[0]){
-                case 'pesquisa':
+        if((query.pesquisa != undefined)&(query.pesquisa != '')) {
+            textFilter = {
+                    "attr":"description",  
+                    "type":"text",
+                    "values":query.pesquisa,
+                    "operator":"contains"
+                }
+            addFilter(filterManager,textFilter);
+            $scope.novidades = mergeArrays($scope.novidades,getData(filterManager));
+            removeFilter(filterManager,"description");
 
-                    if(pair[1]=='')
-                        break;
+            textFilter2 = {
+                    "attr":"articleBody",  
+                    "type":"text",
+                    "values":query.pesquisa,
+                    "operator":"contains"
+                }
+            addFilter(filterManager,textFilter2);
+            $scope.novidades = mergeArrays($scope.novidades,getData(filterManager));
+            removeFilter(filterManager,"articleBody");
 
-                    textFilter = {
-                            "attr":"description",  
-                            "type":"text",
-                            "values":pair[1],
-                            "operator":"contains"
-                        }
-                    addFilter(filterManager,textFilter);
-                    $scope.novidades = mergeArrays($scope.novidades,getData(filterManager));
+            textFilter3 = {
+                    "attr":"headline",  
+                    "type":"text",
+                    "values":query.pesquisa,
+                    "operator":"contains"
+                }
+            addFilter(filterManager,textFilter3);
+            $scope.novidades = mergeArrays($scope.novidades,getData(filterManager));
+            removeFilter(filterManager,"headline");
+            
+            textFilter4 = {
+                    "attr":"keywords",  
+                    "type":"tags",
+                    "values":query.pesquisa
+                }
+            addFilter(filterManager,textFilter4);
+            $scope.novidades = mergeArrays($scope.novidades,getData(filterManager));
+            removeFilter(filterManager,"keywords");
 
-                    removeFilter(filterManager,"description");
-                    textFilter2 = {
-                            "attr":"articleBody",  
-                            "type":"text",
-                            "values":pair[1],
-                            "operator":"contains"
-                        }
-                    addFilter(filterManager,textFilter2);
-                    $scope.novidades = mergeArrays($scope.novidades,getData(filterManager));
-                    
-                    removeFilter(filterManager,"articleBody");
-                    textFilter3 = {
-                            "attr":"headline",  
-                            "type":"text",
-                            "values":pair[1],
-                            "operator":"contains"
-                        }
-                    addFilter(filterManager,textFilter3);
-                    //falta pesquisar no ID
-                    break;
-
-                case 'categoria':
-
-                    console.log("filtro de categoria");
-                    break;
-
-                case 'data':
-                //pegar data atual, colocar offset de 3h e converter pra ISO String
-                    var agora = new Date();
-                    agora.setHours(new Date().getHours()-3);
-                    var limiteTempo = agora.toISOString();
-                    //remover o Z do tempo
-                    dataFilter = {
-                        "attr":"dateCreated",
-                        "type":"data",
-                        "values":[],
-                        "operator":"between"
-                    };
-                    dataFilter["values"][0] = pair[1];
-                    dataFilter["values"][1] = limiteTempo.substring(0,(limiteTempo.length-1));
-                    addFilter(filterManager,dataFilter);
-                    break;
-
-                case 'produto':
-                    //filtrar nas tags
-                    console.log("filtro de produto");
-                    break;
-
-                case 'conteudo':
-                    //filtrar nas tags
-                    console.log("filtro de conteudo");
-                    break;
-
-                // case 'alcance':
-
-                //     console.log("filtro de alcance");
-                //     break;
-
-                case 'regiao':
-                    //filtrar nas tags
-                    console.log("filtro de regiao");
-                    break;
-
-                default:
-
-                    console.log("filtro default");
-                    //colocar todas as notícias na variável de dados
-                    break;
-            }
-
-
-        // console.log(getData(filterManager).length);
-        $scope.novidades = mergeArrays($scope.novidades,getData(filterManager));
+            //falta pesquisar no ID
         }
-                 
+
+         if((query.tag != undefined)&(query.tag != '')) {
+            tagFilter = {
+                "attr":"keywords",
+                "type":"tags",
+                "values":query.tag
+            }
+            addFilter(filterManager,tagFilter);
+            $scope.novidades = mergeArrays($scope.novidades,getData(filterManager));
+            removeFilter(filterManager,"keywords");
+        }
+
+        if((query.data != undefined)&(query.data != '')) {
+            //pegar data atual, colocar offset de 3h e converter pra ISO String
+            var agora = new Date();
+            agora.setHours(new Date().getHours()-3);
+            var limiteTempo = agora.toISOString();
+            //remover o Z do tempo
+            dataFilter = {
+                "attr":"dateCreated",
+                "type":"data",
+                "values":[],
+                "operator":"between"
+            };
+            dataFilter["values"][0] = query.data,
+            dataFilter["values"][1] = limiteTempo.substring(0,(limiteTempo.length-1));
+            addFilter(filterManager,dataFilter);
+            removeFilter(filterManager,"dateCreated");
+        }         
     };
+
     var mergeArrays = function(array1,array2) {
 
         for (index = 0; index < array2.length; ++index) {
