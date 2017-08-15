@@ -252,6 +252,7 @@ angular
             dataFilter["values"][0] = query.data,
             dataFilter["values"][1] = limiteTempo.substring(0,(limiteTempo.length-1));
             addFilter(filterManager,dataFilter);
+            $scope.novidades = mergeArrays($scope.novidades,getData(filterManager));
             removeFilter(filterManager,"dateCreated");
         }         
     };
