@@ -175,7 +175,7 @@ function cutByTags(d, filter){
 
 function findTag(t, tags){
 	for (i in tags){
-		if(tags[i] == t){
+		if(tags[i].toLowerCase() == t.toLowerCase()){
 			return true;
 		}
 	}

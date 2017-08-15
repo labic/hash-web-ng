@@ -13,6 +13,16 @@
             }
           }
       })
+
+        .state('clipper/id', {
+          url: '/clipper/id',
+          views: {
+            '': { 
+              templateUrl: 'modules/clipper/views/indexContent.html',
+              controller: 'main'
+            }
+          }
+      })
      
   });
 
