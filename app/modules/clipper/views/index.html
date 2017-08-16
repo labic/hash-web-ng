@@ -1,26 +1,7 @@
-     <!-- Modules -->
-  <!--script src="app.js"></script-->
-
-  <!-- Controllers >
-
-  <script src="modules/clipper/controller/menuController.js"></script>
-
-  <script src="modules/clipper/controller/gridController.js"></script>
-  <!-- Directives >
-  <script src="modules/clipper/directives/searching.js"></script>
-  <script src="modules/clipper/directives/noticias.js"></script>
-	-->
-
-
-  <!--  navbar
-    <nav class="navbar  navbar-inverse  navbar-fixed-top">
-    <img src="img/clipper/title.PNG" style="max-width: 100px;">
-    </nav-->
-
   <!--  menu lateral  -->
   <div class="navbar-fixed-left" ng-controller="menuController">
-    <!-----p class="news" ng-click="plusOne($index)"> {{news}}</p!--> 
-      <section layout="row" layout-align="left" layout-wrap style="margin-left: 15%; display: inline-block;">
+    <!---p class="news" ng-click="plusOne($index)"> {{news}}</p!--> 
+      <section layout="row" layout-align="left" layout-wrap style=" display: inline-block;">
           <searching> </searching>
       </section>
       <!--  buttons da esquerda -->
@@ -35,7 +16,24 @@
     <h4 text-size="18">Diário de veículos jornalísticos</h4>
     <br><br><br>
       <!--  blocos de notícias novas  -->
-    <div id="notNovas" ng-controller="gridController" ng-init="limNot = 30" >
+    <div id="notNovas" ng-controller="gridController" ng-init="limNot = 20" >
+
+    <div class="modal" id="abrirModal">
+    <div class="modal-content">
+    <span class="close" id="fecharModal">&times;</span>
+      <h3><div id="modalTitle"></div></h3><br><br>
+      <div id="modalBody"></div><br>
+      <div id="modalFooter"></div>
+      <script type="text/javascript">
+      // When the user clicks on <span> (x), close the modal
+      document.getElementById('fecharModal').onclick = function() {
+        document.getElementById('abrirModal').style.display = "none";
+      }
+      
+      </script>
+    </div>
+    </div>
+
       <div ng-repeat="nov in novidades | limitTo:limNot">
           <noticias info=nov  class="row"></noticias>
           <br><br>
@@ -43,7 +41,7 @@
 
       <br><br>
       <section layout="row" layout-align="center" layout-wrap align="center">
-        <button ng-click="limNot=limNot+30"> Show more </button>
+        <button ng-click="limNot = limNot + 20; loadMore()" > Carregar mais </button>
       </section>
     </div>
 

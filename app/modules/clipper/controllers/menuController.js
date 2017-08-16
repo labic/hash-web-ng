@@ -27,146 +27,110 @@ angular
         };
     $scope.ultHora = [
      {
-      label:'1 hora',
-      value:"2017-07-30T00:00:00.000000"
+      label:'Hoje 8h'
      },
      {
-      label:'2 horas',
-      value:''
+      label:'Hoje 12h'
      },
       {
-      label:'1 dia',
-      value:''
+      label:'Hoje 17h'
      },
       {
-      label:'1 semana',
-      value:''
+      label:'Ontem 8h'
      },
       {
-      label:'Outro',
-      value:''
+      label:'Ontem 12h'
+     },
+      {
+      label:'Ontem 17h'
+     },
+      {
+      label:'Outro'
      }
     ];
 
     $scope.categ = [
      {
-      label:'1 hora',
-      value:''
+      label:'Educação Básica'
      },
      {
-      label:'2 horas',
-      value:''
+      label:'Educação Superior'
      },
       {
-      label:'1 dia',
-      value:''
+      label:'Internacional'
      },
       {
-      label:'1 semana',
-      value:''
-     },
-      {
-      label:'Outro',
-      value:''
+      label:'Institucional'
      }
     ];
 
     $scope.prod = [
      {
       label:'Educação Básica',
-      value:'',
-      submenu:[{label:'SAEB'},{label:'ANEB'},{label:'ANRESC (Prova Brasil)'},{label:'ANA'},{label:'IDEB'},{label:'ENEM'},{label:'Enceeja'}
-      ]
+      submenu:['SAEB','ANEB','ANRESC (Prova Brasil)','ANA','IDEB','ENEM','Enceeja']
      },
      {
       label:'Educação Superior',
-      value:'',
-      submenu:[{label:'SINAES'},{label:'ENADE'},{label:'ANASEM'},{label:'INDICADORES DE QUALIDADE'},{label:'ANASEM'},{label:'REVALIDA'},{label:'SAEG'}
-      ]
+      submenu:['SINAES','ENADE','ANASEM','Indicadores de Qualidade','REVALIDA','SAEG']
      },
       {
       label:'Institucional',
-      value:'',
-      submenu:[{label:'Centro de Informação e Biblioteca em Educação (Cibec)'},{label:'Biblioteca e Arquivo Histórico da Educação Brasileira'},
-      {label:'Thesaurus Brasileiro da Educação (Brased)'},{label:'Banco de Dados Terminológicos do Mercosul (BDT)'},{label:'Bibliografia Brasileira da Educação (BBE)'},
-      {label:'Serviço de Atendimento ao Pesquisador (SAP)'}
-      ]
+      submenu:['Centro de Informação e Biblioteca em Educação (Cibec)','Biblioteca e Arquivo Histórico da Educação Brasileira','Thesaurus Brasileiro da Educação (Brased)','Banco de Dados Terminológicos do Mercosul (BDT)','Bibliografia Brasileira da Educação (BBE)','Serviço de Atendimento ao Pesquisador (SAP)']
      },
       {
       label:'Internacional',
-      value:'',
-      submenu:[{label:'CELPE-BRAS'},{label:'PISA'},{label:'ARCU-SUL'},{label:'EaG'},{label:'Pesquisa TALIS'},
-      {label:'SEM'},{label:'Metas Educativas 2021'},{label:'Agenda 2030'},{label:'RIACES'},{label:'Estudos Regionais Comparativos ERCE/LLECE'}
-      ]
+      submenu:['CELPE-BRAS','PISA','ARCU-SUL','EaG','Pesquisa TALIS','SEM','Metas Educativas 2021','Agenda 2030','RIACES','Estudos Regionais Comparativos ERCE/LLECE']
      }
     ];
 
     $scope.tipoCont = [
      {
-      label:'1 hora',
-      value:''
+      label:'Sites'
      },
      {
-      label:'2 horas',
-      value:''
+      label:'Impresso'
      },
       {
-      label:'1 dia',
-      value:''
+      label:'Vídeo'
      },
       {
-      label:'1 semana',
-      value:''
-     },
-      {
-      label:'Outro',
-      value:''
+      label:'Áudio'
      }
     ];
 
     $scope.alcance = [
      {
-      label:'1 hora',
-      value:''
+      label:'Alcance1'
      },
      {
-      label:'2 horas',
-      value:''
+      label:'Alcance2'
      },
       {
-      label:'1 dia',
-      value:''
+      label:'Alcance3'
      },
       {
-      label:'1 semana',
-      value:''
+      label:'Alcance4'
      },
       {
-      label:'Outro',
-      value:''
+      label:'Outro'
      }
     ];
 
     $scope.regiao = [
      {
-      label:'1 hora',
-      value:''
+      label:'Centro-Oeste'
      },
      {
-      label:'2 horas',
-      value:''
+      label:'Nordeste'
      },
       {
-      label:'1 dia',
-      value:''
+      label:'Norte'
      },
       {
-      label:'1 semana',
-      value:''
+      label:'Sul'
      },
       {
-      label:'Outro',
-      value:''
+      label:'Sudeste'
      }
     ];
 
