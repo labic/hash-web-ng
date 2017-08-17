@@ -1,16 +1,16 @@
 html,body {
-  font-family: "Open Sans";
+  font-family: arial, helvetica, sans-serif;;
   background-color: #F2F2F2;
   border: none;
   width: 100%;
+  color:#2B3044;
 }
 
 #conteudo {
   padding-right: 15%;
   padding-left: 18%;
   padding-top: 5%;
-  font-family: "Open Sans";
-  font-size: 13px;
+  font-size: 15px;
   background-color: #F2F2F2;
 }
 
@@ -85,16 +85,18 @@ button{
   height: auto;
 }
 
-.col-md-8 input {
+.col-md-9 input {
   background-color: transparent;
   border-radius: 5px;
   outline: none;
   box-shadow: 0;
   border:1px solid #D6D6D6;
   color:#2B3044;
-  margin-right: 4px;
-  padding:3px 3px 3px 3px;
+  margin: 10px 5px 0px 0px;
+  padding:3px 10px 3px 10px;
 }
+
+
 .modal {
   display: none; /* Hidden by default */
   position: fixed; /* Stay in place */
@@ -136,7 +138,8 @@ button{
 }
 
 .close:hover,
-.close:focus {
+.close:focus,
+.col-md-9 label:hover{
   color: #000;
   text-decoration: none;
   cursor: pointer;

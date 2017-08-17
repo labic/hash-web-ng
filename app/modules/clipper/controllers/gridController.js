@@ -57,21 +57,6 @@ angular
             });
     };
 
-    // $scope.showMore = function(limNot) {
-        
-    //     var quant = $scope.novidades.length - limNot;
-    //     while(quant < 20) {
-    //     //load more items 
-    //         $scope.loadMore(); 
-    //         quant = $scope.novidades.length - limNot;
-    //         console.log($scope.novidades.length+' e '+ limNot);
-    //         if(quant <= 0)
-    //             break;
-    //     };    
-    //     console.log($scope.numPage);
-    //     return 20;
-    // };
-
     $scope.filtering = function() {
         var query='?';     //inicio de uma query
         //pegando os valores pro filtro composto
@@ -224,6 +209,8 @@ angular
             removeFilter(filterManager,"keywords");
 
             //falta pesquisar no ID
+            //trocar o array de dados principal pelo filtrado pra continuar a pesquisa
+            filterManager = createFilterManager($scope.novidades);
         }
 
          if((query.tag != undefined)&(query.tag != '')) {
@@ -233,8 +220,9 @@ angular
                 "values":query.tag
             }
             addFilter(filterManager,tagFilter);
-            $scope.novidades = mergeArrays($scope.novidades,getData(filterManager));
-            removeFilter(filterManager,"keywords");
+            $scope.novidades = getData(filterManager);
+            //trocar o array de dados principal pelo filtrado pra continuar a pesquisa
+            filterManager = createFilterManager($scope.novidades);
         }
 
         if((query.data != undefined)&(query.data != '')) {
@@ -252,8 +240,8 @@ angular
             dataFilter["values"][0] = query.data,
             dataFilter["values"][1] = limiteTempo.substring(0,(limiteTempo.length-1));
             addFilter(filterManager,dataFilter);
-            $scope.novidades = mergeArrays($scope.novidades,getData(filterManager));
-            removeFilter(filterManager,"dateCreated");
+            $scope.novidades = getData(filterManager);
+            
         }         
     };
 

@@ -1,19 +1,21 @@
   <!--  menu lateral  -->
   <div class="navbar-fixed-left" ng-controller="menuController">
     <!---p class="news" ng-click="plusOne($index)"> {{news}}</p!--> 
+    <button value="Lista" ng-click="lista()" id="exibicao"><h5>Mudar exibição</h5></button>
+    <br><br><br>
       <section layout="row" layout-align="left" layout-wrap style=" display: inline-block;">
           <searching> </searching>
       </section>
       <!--  buttons da esquerda -->
       <section layout="row" layout-align="center" layout-wrap align="center">
-        <button ng-repeat="item in mSupE" ng-click="filtering(listaExibida)" ng-controller="gridController">
-        <img ng-src="{{item.coverAtv}}">
+        <button ng-click="filtering(listaExibida)" ng-controller="gridController">
+        <img src="img/clipper/lupa.PNG">
         </button>
       </section>
     </div>
 
  <div id="conteudo">
-    <h4 text-size="18">Diário de veículos jornalísticos</h4>
+    <img src="img/clipper/title.PNG" style="height: 45px; width: auto">
     <br><br><br>
       <!--  blocos de notícias novas  -->
     <div id="notNovas" ng-controller="gridController" ng-init="limNot = 20" >
@@ -36,7 +38,7 @@
 
       <div ng-repeat="nov in novidades | limitTo:limNot">
           <noticias info=nov  class="row"></noticias>
-          <br><br>
+          <hr noshade style="width:100%; background-color: #D6D6D6; height: 2px;" ><br>
       </div>
 
       <br><br>
@@ -44,8 +46,6 @@
         <button ng-click="limNot = limNot + 20; loadMore()" > Carregar mais </button>
       </section>
     </div>
-
-    <hr noshade style="width:100%; background-color: #D6D6D6; height: 2px;" >
       <!--  footer  -->
     <div id="footer">
     </div>
