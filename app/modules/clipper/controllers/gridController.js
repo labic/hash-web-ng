@@ -28,6 +28,16 @@ angular
         console.log(err);
     });
 
+$scope.exibirImagem = function () {
+      var exibicao = document.getElementById('exibicao').value;
+
+      if(exibicao == 'Com imagens') {
+        return true;
+      } else {
+        return false;
+      }
+    };
+
     $scope.showDialog = function(info) {
         //mostrando conteúdo na modal
         document.getElementById('modalTitle').innerHTML = info.headline;

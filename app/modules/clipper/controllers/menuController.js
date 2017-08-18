@@ -2,17 +2,14 @@ angular
     .module('hash.clipper')
     .controller('menuController', [ '$scope',  function ($scope) {
      
-    $scope.lista = function () {
+    $scope.mudarExibicao = function () {
       var exibicao = document.getElementById('exibicao').value;
 
-      if(exibicao === 'Com imagens') {
-        document.getElementsByClassName('.col-md-3').style.display = 'inline-block';
-        document.getElementById('exibicao').value = 'Lista';
+      if(exibicao == 'Com imagens') {
+        document.getElementById('exibicao').value ="Lista";
       } else {
-        document.getElementsByClassName('.col-md-3').style.display = 'none';
-        document.getElementById('exibicao').value = 'Com imagens';
+        document.getElementById('exibicao').value ="Com imagens";
       }
-
     };
 
     $scope.ultHora = [
