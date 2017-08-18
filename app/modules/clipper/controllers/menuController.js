@@ -1,30 +1,17 @@
 angular
     .module('hash.clipper')
-    .controller('menuController', [ '$scope',  function ($scope,$mdSidenav) {
-     $scope.openLeftMenu = function() {
-        $mdSidenav('left').toggle();
-      };
-     $scope.news = 2;
-     $scope.mLat = [ 
-      { 
-        id: 'iconNot', 
-        link: '#', 
-        coverAtv: 'img/clipper/menu1_atv.PNG', 
-        coverDes: 'img/clipper/menu1_des.PNG' 
-      }, 
-      { 
-        id: 'iconGraf', 
-        link: '#', 
-        coverAtv: 'img/clipper/menu2_atv.PNG', 
-        coverDes: 'img/clipper/menu2_des.PNG' 
-      }, 
-    ];
-    $scope.plusOne = function (index) {
-         $scope.news += 1;
-        };
-    $scope.minusOne = function (index) {
-         $scope.news -= 1;
-        };
+    .controller('menuController', [ '$scope',  function ($scope) {
+     
+    $scope.mudarExibicao = function () {
+      var exibicao = document.getElementById('exibicao').value;
+
+      if(exibicao == 'Com imagens') {
+        document.getElementById('exibicao').value ="Lista";
+      } else {
+        document.getElementById('exibicao').value ="Com imagens";
+      }
+    };
+
     $scope.ultHora = [
      {
       label:'Hoje 8h'
@@ -134,21 +121,4 @@ angular
      }
     ];
 
-    $scope.mSupE = [ 
-      { 
-        id: 'iconNext', 
-        onclick: '#', 
-        coverAtv: 'img/clipper/icon5.PNG'
-      },
-      // { 
-      //   id: 'iconRef', 
-      //   onclick: '#', 
-      //   coverAtv: 'img/clipper/icon6.PNG' 
-      // },
-      // { 
-      //   id: 'iconRead', 
-      //   onclick: '#', 
-      //   coverAtv: 'img/clipper/icon7.PNG'
-      // },
-    ];
     }]);
