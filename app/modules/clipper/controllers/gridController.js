@@ -18,8 +18,14 @@ angular
 
         $scope.dados = response.data.data;
 
+        //verificando modo de exibição
+        if(location.href.indexOf("exibicao=") > -1) {
+            document.getElementById('exibicao').value = location.href.substring(location.href.indexOf("exibicao=")+9,location.href.length);
+            location.href = location.href.substring(0, location.href.indexOf("exibicao=")-1);
+        };
+
         $scope.treatURL();
-        //loading more (gambiarra para melhorar)
+        //loading more (melhorar)
         for(var i = 0 ; i < 3 ; i++) {
             $scope.loadMore();
         }
@@ -28,10 +34,10 @@ angular
         console.log(err);
     });
 
-$scope.exibirImagem = function () {
+    $scope.exibirImagem = function () {
       var exibicao = document.getElementById('exibicao').value;
 
-      if(exibicao == 'Com imagens') {
+      if(exibicao == 'ComImagens') {
         return true;
       } else {
         return false;
@@ -136,7 +142,7 @@ $scope.exibirImagem = function () {
             query = query.concat('data=',horario,'&');
         };
 
-        if(pesquisa!="undefined"){
+        if((pesquisa != undefined)&(pesquisa != '')){
             query = query.concat('pesquisa=',pesquisa,'&');
         };
 
@@ -159,9 +165,9 @@ $scope.exibirImagem = function () {
         if(regiao!='undefined'){
             query = query.concat('tag=',regiao,'&');
         };
-                
-        console.log(query);
-        query = query.substring(0,(query.length-1));    //remove o último '&'
+
+        //informando o metodo de vizualização
+        query = query.concat('exibicao=',document.getElementById('exibicao').value);
         //muda o endereço da pagina à partir do endereço base
         location.href = window.location.href.split('?')[0]+query;
         //carrega a página com a pesquisa
@@ -252,7 +258,8 @@ $scope.exibirImagem = function () {
             addFilter(filterManager,dataFilter);
             $scope.novidades = getData(filterManager);
             
-        }         
+        } 
+
     };
 
     var mergeArrays = function(array1,array2) {
@@ -263,5 +270,17 @@ $scope.exibirImagem = function () {
             }
         }
         return array1;
+    };
+
+    $scope.quickSearch = function(tipo,parametro) {
+        if(tipo === 'pesquisa') {
+            parametro = document.getElementById("taggy").value;
+        };
+
+        var complemento = '?'+tipo+'='+parametro;
+        //muda o endereço da pagina à partir do endereço base
+        location.href = window.location.href.split('?')[0]+complemento;
+        //carrega a página com a pesquisa
+        location.reload();
     };
 })

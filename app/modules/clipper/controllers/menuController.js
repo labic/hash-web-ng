@@ -5,10 +5,10 @@ angular
     $scope.mudarExibicao = function () {
       var exibicao = document.getElementById('exibicao').value;
 
-      if(exibicao == 'Com imagens') {
+      if(exibicao == 'ComImagens') {
         document.getElementById('exibicao').value ="Lista";
       } else {
-        document.getElementById('exibicao').value ="Com imagens";
+        document.getElementById('exibicao').value ="ComImagens";
       }
     };
 
@@ -71,12 +71,12 @@ angular
     ];
 
     $scope.tipoCont = [
-     {
-      label:'Sites'
-     },
-     {
-      label:'Impresso'
-     },
+     // {
+     //  label:'Sites'
+     // },
+     // {
+     //  label:'Impresso'
+     // },
       {
       label:'Vídeo'
      },

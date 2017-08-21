@@ -1,15 +1,15 @@
   <!--  menu lateral  -->
   <div class="navbar-fixed-left" ng-controller="menuController">
     <!---p class="news" ng-click="plusOne($index)"> {{news}}</p!--> 
-    <button value="Com imagens" ng-click = "mudarExibicao()" id="exibicao"><h5>Mudar exibição</h5></button>
+    <button value="ComImagens" ng-click = "mudarExibicao()" id="exibicao"><h5>Mudar exibição</h5></button>
     <br><br><br>
       <section layout="row" layout-align="left" layout-wrap style=" display: inline-block;">
           <searching> </searching>
       </section>
       <!--  buttons da esquerda -->
       <section layout="row" layout-align="center" layout-wrap align="center">
-        <button ng-click="filtering(listaExibida)" ng-controller="gridController">
-        <img src="img/clipper/lupa.PNG">
+        <button ng-click="filtering()" ng-controller="gridController">
+        <img src="img/clipper/filtrar.png">
         </button>
       </section>
     </div>
@@ -22,7 +22,7 @@
 
     <div class="modal" id="abrirModal">
     <div class="modal-content">
-    <span class="close" id="fecharModal">&times;</span>
+    <span class="close-heavy" id="fecharModal">&times;</span>
       <h3><div id="modalTitle"></div></h3><br><br>
       <div id="modalBody"></div><br>
       <div id="modalFooter"></div>
