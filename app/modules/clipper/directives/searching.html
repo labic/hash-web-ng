@@ -1,7 +1,9 @@
 <form ng-submit="quickSearch('pesquisa')" ng-controller="gridController">
     <input defaultValue="undefined" type="text" id="taggy" ng-model="query" placeholder="Pesquisar por...">
 </form>
-<br><br>
+<br>
+<md-datepicker ng-model="dater.myDate" md-placeholder="Enter date"></md-datepicker>
+<br>
 <select id="selData">
   <option style="display:none;" value="undefined">Horários</option>
   <option ng-repeat="tempo in ultHora" value="{{tempo.label}}">{{tempo.label}}</option>  

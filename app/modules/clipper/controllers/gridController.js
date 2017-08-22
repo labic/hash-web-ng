@@ -276,8 +276,8 @@ angular
         if(tipo === 'pesquisa') {
             parametro = document.getElementById("taggy").value;
         };
-
-        var complemento = '?'+tipo+'='+parametro;
+        var exibicao = document.getElementById('exibicao').value;
+        var complemento = '?'+tipo+'='+parametro+'&exibicao='+exibicao;
         //muda o endereço da pagina à partir do endereço base
         location.href = window.location.href.split('?')[0]+complemento;
         //carrega a página com a pesquisa

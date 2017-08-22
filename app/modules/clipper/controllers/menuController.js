@@ -14,25 +14,22 @@ angular
 
     $scope.ultHora = [
      {
-      label:'Hoje 8h'
+      label:'1º Relatório dia útil (8h)'
      },
      {
-      label:'Hoje 12h'
+      label:'2º Relatório dia útil (12h)'
      },
       {
-      label:'Hoje 17h'
+      label:'3º Relatório dia útil (17h)'
      },
       {
-      label:'Ontem 8h'
+      label:'1º Relatório FDS (12h)'
      },
       {
-      label:'Ontem 12h'
+      label:'2º Relatório FDS (20h)'
      },
       {
-      label:'Ontem 17h'
-     },
-      {
-      label:'Outro'
+      label:'Customizado'
      }
     ];
 
