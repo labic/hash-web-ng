@@ -2,13 +2,52 @@
     <input defaultValue="undefined" type="text" id="taggy" ng-model="query" placeholder="Pesquisar por...">
 </form>
 <br>
-<md-datepicker ng-model="dater.myDate" md-placeholder="Enter date"></md-datepicker>
+<label>Horários</label>
 <br>
-<select id="selData">
+<div class="row">
+<div class="col-md-6">
+  <h5>Início:</h5>
+
+  <select id="inicioDia">
+    <option style="display:none;" value="undefined">Dia</option>
+    <option ng-repeat="dia in dias" value="{{dia}}">{{dia}}</option>  
+  </select>
+  <br><br>
+  <select id="inicioMes">
+    <option style="display:none;" value="undefined">Mês</option>
+    <option ng-repeat="mes in meses" value="{{mes.value}}">{{mes.label}}</option>
+  </select>
+  <br><br>
+  <select id="inicioHora">
+    <option style="display:none;" value="undefined">Hora</option>
+    <option ng-repeat="hora in horas" value="{{hora}}">{{hora}}</option>  
+  </select>
+</div>
+
+<div class="col-md-6">
+  <h5>Fim:</h5>
+
+  <select id="fimDia">
+    <option style="display:none;" value="undefined">Dia</option>
+    <option ng-repeat="dia in dias" value="{{dia}}">{{dia}}</option>  
+  </select>
+  <br><br>
+  <select id="fimMes">
+    <option style="display:none;" value="undefined">Mês</option>
+    <option ng-repeat="mes in meses" value="{{mes.value}}">{{mes.label}}</option>
+  </select>
+  <br><br>
+  <select id="fimHora">
+    <option style="display:none;" value="undefined">Hora</option>
+    <option ng-repeat="hora in horas" value="{{hora}}">{{hora}}</option>  
+  </select>
+</div>
+</div>
+<br>
+<!-- <select id="selData">
   <option style="display:none;" value="undefined">Horários</option>
   <option ng-repeat="tempo in ultHora" value="{{tempo.label}}">{{tempo.label}}</option>  
-</select>
-<br><br>
+</select> -->
 <select id="selProd">
   <option style="display:none;" value="undefined">Produto</option>
   <optgroup ng-repeat="produto in prod" label="{{produto.label}}">
@@ -31,8 +70,8 @@
   <option ng-repeat="alc in alcance" value="{{alc.label}}">{{alc.label}}</option>  
 </select>
 <br><br> -->
-<select id="selReg">
+<!-- <select id="selReg">
   <option style="display:none;" value="undefined">Região</option>
   <option ng-repeat="reg in regiao" value="{{reg.label}}">{{reg.label}}</option>  
 </select>
-<br><br><br>
+<br><br> --><br>

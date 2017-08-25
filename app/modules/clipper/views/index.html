@@ -15,6 +15,7 @@
     </div>
 
  <div id="conteudo">
+    <datepicker ng-model="selectedDate"></datepicker>
     <img src="img/clipper/title.PNG" style="height: 45px; width: auto">
     <br><br><br>
       <!--  blocos de notícias novas  -->
@@ -35,7 +36,6 @@
       </script>
     </div>
     </div>
-
       <div ng-repeat="nov in novidades | limitTo:limNot">
           <noticias info=nov  class="row"></noticias>
           <hr noshade style="width:100%; background-color: #D6D6D6; height: 2px;" ><br>
@@ -50,6 +50,3 @@
     <div id="footer">
     </div>
 </div>
-      
-
-  <script src="build/app.min.js"></script>

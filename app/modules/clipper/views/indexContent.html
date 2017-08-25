@@ -7,7 +7,7 @@
       <!--  buttons da esquerda -->
       <section layout="row" layout-align="center" layout-wrap align="center">
         <button ng-repeat="item in mSupE" ng-click="filtering(listaExibida)" ng-controller="gridController">
-        <img ng-src="{{item.coverAtv}}">
+        <img ng-src="{{::item.coverAtv}}">
         </button>
       </section>
     </div>
@@ -25,6 +25,3 @@
     <div id="footer">
     </div>
 </div>
-      
-
-  <script src="build/app.min.js"></script>

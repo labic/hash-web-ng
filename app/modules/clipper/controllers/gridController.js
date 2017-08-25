@@ -1,6 +1,6 @@
 angular
     .module('hash.clipper')
-    .controller("gridController", function($scope, $http, $location) { 
+    .controller("gridController", function($scope, $http, $location, Tweet) { 
 
     $scope.url = 'https://inep-hash-data-api-dev.herokuapp.com/articles';
     $scope.novidades = [];
@@ -15,7 +15,6 @@ angular
         params:{'per_page':$scope.quant}
     })
     .then(function (response) {
-
         $scope.dados = response.data.data;
 
         //verificando modo de exibição
@@ -31,7 +30,7 @@ angular
         }
     },
     function (err) {
-        console.log(err);
+        //console.log(err);
     });
 
     $scope.exibirImagem = function () {
@@ -51,98 +50,62 @@ angular
         document.getElementById('modalFooter').innerHTML = '<a href="'+info.url+'" target="_blank">Ir para a notícia</a>';
         
         document.getElementById('abrirModal').style.display="block";
-        
      };
 
      $scope.loadMore = function() {
         $scope.numPage = $scope.numPage + 1;
         //load the rest of items       
-            $http({
-                url: $scope.url,
-                method:'GET',
-                params:{'per_page':$scope.quant,'page':$scope.numPage}
-            })
-            .then(function (response) {
+        $http({
+            url: $scope.url,
+            method:'GET',
+            params:{'per_page':$scope.quant,'page':$scope.numPage}
+        })
+        .then(function (response) {
 
-                $scope.dados = mergeArrays($scope.dados,response.data.data);
+            $scope.dados = mergeArrays($scope.dados,response.data.data);
 
-                $scope.treatURL();
-            },
-            function (err) {
-                console.log(err);
-            });
+            $scope.treatURL();
+        },
+        function (err) {
+            //console.log(err);
+        });
     };
 
     $scope.filtering = function() {
         var query='?';     //inicio de uma query
         //pegando os valores pro filtro composto
         var pesquisa = document.getElementById("taggy").value;
-        var tempo = document.getElementById("selData").value;
+        var tempo = document.getElementById("inicioDia").value;
         var categoria = document.getElementById("selCat").value;
         var produto = document.getElementById("selProd").value;
         var conteudo = document.getElementById("selCont").value;
         // var alcance = document.getElementById("selAlc").value;
-        var regiao = document.getElementById("selReg").value;
+        //var regiao = document.getElementById("selReg").value;
 
         // tratando cada valor obtido pra inserir um filtro
         if(tempo != 'undefined'){
             //temos na variável 'tempo' o dia de referência
             var horario ='';
-            var d = new Date();
-            //calcular o offset em tempo
-            switch(tempo){
-                case 'Hoje 8h':
-                //tratando a hora e minutos
-                    d.setHours(5);
-                    d.setMinutes(0);
-                    horario = d.toISOString();
-                    break;
-                case 'Hoje 12h':
-                //tratando a hora e minutos
-                    d.setHours(9);
-                    d.setMinutes(0);
-                    horario = d.toISOString();
-                    break;
-                case 'Hoje 17h':
-                //tratando a hora e minutos
-                    d.setHours(12);
-                    d.setMinutes(0);
-                    horario = d.toISOString();
-                    break;
-                case 'Ontem 8h':
-                //reduzir um dia na data de hj
-                    d.setDate(new Date().getDate()-1);
-                    d.setHours(5);
-                    d.setMinutes(0);
-                    horario = d.toISOString();
-                    break;
-                case 'Ontem 12h':
-                //reduzir um dia na data de hj
-                    d.setDate(new Date().getDate()-1);
-                    d.setHours(9);
-                    d.setMinutes(0);
-                    horario = d.toISOString();
-                    break;
-                case 'Ontem 17h':
-                //reduzir um dia na data de hj
-                    d.setDate(new Date().getDate()-1);
-                    d.setHours(12);
-                    d.setMinutes(0);
-                    horario = d.toISOString();
-                    break;
-                default:
-                //pegando a data pedida
-                    d.setDate(tempo);
-                    d.setHours(5);
-                    d.setMinutes(0);
-                    horario = d.toISOString();
-                    break;
-            }
-            horario = horario.substring(0,(horario.length-1));  //remove o Z do iso string
+            var dInicio = new Date();
+            var dFim = new Date();
+            
+
+            //tratando a hora e minutos
+            dInicio.setDate(document.getElementById("inicioDia").value);
+            dInicio.setHours(document.getElementById("inicioHora").value -3);
+            dInicio.setMonth(document.getElementById("inicioMes").value);
+            dInicio.setMinutes(0);
+
+            dFim.setDate(document.getElementById("fimDia").value);
+            dFim.setHours(document.getElementById("fimHora").value -3);
+            dFim.setMonth(document.getElementById("fimMes").value);
+            dFim.setMinutes(0);
+
+            horario = dInicio.toISOString()+','+dFim.toISOString();
             query = query.concat('data=',horario,'&');
         };
 
-        if((pesquisa != undefined)&(pesquisa != '')){
+        if((pesquisa != 'undefined')&(pesquisa != '')){
             query = query.concat('pesquisa=',pesquisa,'&');
         };
 
@@ -162,9 +125,9 @@ angular
         //     query = query.concat('alcance=',alcance,'&');
         // };
 
-        if(regiao!='undefined'){
-            query = query.concat('tag=',regiao,'&');
-        };
+        // if(regiao!='undefined'){
+        //     query = query.concat('tag=',regiao,'&');
+        // };
 
         //informando o metodo de vizualização
         query = query.concat('exibicao=',document.getElementById('exibicao').value);
@@ -242,10 +205,8 @@ angular
         }
 
         if((query.data != undefined)&(query.data != '')) {
-            //pegar data atual, colocar offset de 3h e converter pra ISO String
-            var agora = new Date();
-            agora.setHours(new Date().getHours()-3);
-            var limiteTempo = agora.toISOString();
+            var dias = query.data.split(',');
+            
             //remover o Z do tempo
             dataFilter = {
                 "attr":"dateCreated",
@@ -253,8 +214,8 @@ angular
                 "values":[],
                 "operator":"between"
             };
-            dataFilter["values"][0] = query.data,
-            dataFilter["values"][1] = limiteTempo.substring(0,(limiteTempo.length-1));
+            dataFilter["values"][0] = dias[0].substring(0,(dias[0].length-1));
+            dataFilter["values"][1] = dias[1].substring(0,(dias[1].length-1));
             addFilter(filterManager,dataFilter);
             $scope.novidades = getData(filterManager);
             
@@ -262,8 +223,7 @@ angular
 
     };
 
-    var mergeArrays = function(array1,array2) {
-
+    var mergeArrays = function(array1, array2) {
         for (index = 0; index < array2.length; ++index) {
             if(array1.indexOf(array2[index])<0){
                 array1.push(array2[index]);
