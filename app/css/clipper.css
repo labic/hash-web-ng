@@ -25,8 +25,8 @@ html,body {
 }
 
 .navbar-fixed-left img {
-  max-width: 35px;
-  height: 25px;
+  max-width: 80px;
+  height: 30px;
   width: auto;
   display: block;
   margin: auto;
@@ -130,15 +130,23 @@ button{
 }
 
 /* The Close Button */
-.close {
-  color: #bbb;
-  float: right;
-  font-size: 28px;
+.close-heavy {
+  float:right;
+  margin-top:-30px;
+  margin-right:-30px;
+  cursor:pointer;
+  color: #fff;
+  border: 1px solid #AEAEAE;
+  border-radius: 30px;
+  background: #605F61;
+  font-size: 31px;
   font-weight: bold;
+  display: inline-block;
+  line-height: 0px;
+  padding: 11px 3px; 
 }
 
-.close:hover,
-.close:focus,
+
 .col-md-9 label:hover{
   color: #000;
   text-decoration: none;
