@@ -7,12 +7,14 @@ angular
     $scope.dados = [];
     $scope.quant = 30;
     $scope.numPage = 1;
+    $scope.noticiaSelecionada = [];
     
     //pegando todos os dados
     $http({
         url: $scope.url,
         method:'GET',
-        params:{'per_page':$scope.quant}
+        params:{'per_page':$scope.quant},
+        cache: true
     })
     .then(function (response) {
         $scope.dados = response.data.data;
@@ -33,6 +35,7 @@ angular
         //console.log(err);
     });
 
+    //função para manter o ng-show das notícias com imagem ou sem imagem
     $scope.exibirImagem = function () {
       var exibicao = document.getElementById('exibicao').value;
 
@@ -43,6 +46,7 @@ angular
       }
     };
 
+    //função para editar conteúdo da div usando os dados do objeto
     $scope.showDialog = function(info) {
         //mostrando conteúdo na modal
         document.getElementById('modalTitle').innerHTML = info.headline;
@@ -50,8 +54,10 @@ angular
         document.getElementById('modalFooter').innerHTML = '<a href="'+info.url+'" target="_blank">Ir para a notícia</a>';
         
         document.getElementById('abrirModal').style.display="block";
+        document.getElementById('modalTitle').blur();
      };
 
+     //função para carregar mais notícias
      $scope.loadMore = function() {
         $scope.numPage = $scope.numPage + 1;
         //load the rest of items       
@@ -71,6 +77,7 @@ angular
         });
     };
 
+    //função para o menu de filtros chamar a página
     $scope.filtering = function() {
         var query='?';     //inicio de uma query
         //pegando os valores pro filtro composto
@@ -223,6 +230,7 @@ angular
 
     };
 
+    //juntar arrays sem repetir notícias
     var mergeArrays = function(array1, array2) {
         for (index = 0; index < array2.length; ++index) {
             if(array1.indexOf(array2[index])<0){
@@ -232,6 +240,7 @@ angular
         return array1;
     };
 
+    //função para pesquisa do input e das tags
     $scope.quickSearch = function(tipo,parametro) {
         if(tipo === 'pesquisa') {
             parametro = document.getElementById("taggy").value;
@@ -243,4 +252,6 @@ angular
         //carrega a página com a pesquisa
         location.reload();
     };
+
+    //função para criar conjunto de notícias para relatório
 })
