@@ -214,13 +214,13 @@ angular
         if((query.data != undefined)&(query.data != '')) {
             var dias = query.data.split(',');
             
-            //remover o Z do tempo
             dataFilter = {
                 "attr":"dateCreated",
                 "type":"data",
                 "values":[],
                 "operator":"between"
             };
+            //remover o Z do tempo
             dataFilter["values"][0] = dias[0].substring(0,(dias[0].length-1));
             dataFilter["values"][1] = dias[1].substring(0,(dias[1].length-1));
             addFilter(filterManager,dataFilter);
