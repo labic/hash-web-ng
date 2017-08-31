@@ -110,9 +110,9 @@ function cutByData(d,filter, dataParams){
 	if(filter.operator == "lower"){	
 		return tempData < params.supLimit;
 	}else if(filter.operator == "greater"){
-		return params.infLimit > tempData;
+		return params.infLimit < tempData;
 	}else if(filter.operator == "between"){
-		return (tempData < params.supLimit && params.infLimit > tempData);
+		return (tempData < params.supLimit && params.infLimit < tempData);
 	}else{
 		console.log("operador inválido");
 		return false;
