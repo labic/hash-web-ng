@@ -10,30 +10,56 @@ angular
     $scope.noticiaSelecionada = [];
     
     //pegando todos os dados
-    $http({
-        url: $scope.url,
-        method:'GET',
-        params:{'per_page':$scope.quant},
-        cache: true
-    })
-    .then(function (response) {
-        $scope.dados = response.data.data;
+    $scope.loadData = function() {
+        $http({
+            url: $scope.url,
+            method:'GET',
+            params:{'per_page':$scope.quant}
+            //cache: true
+        })
+        .then(function (response) {
+            $scope.dados = response.data.data;
+            //verificando modo de exibição
+            if(location.href.indexOf("exibicao=") > -1) {
+                document.getElementById('exibicao').value = location.href.substring(location.href.indexOf("exibicao=")+9,location.href.length);
+                location.href = location.href.substring(0, location.href.indexOf("exibicao=")-1);
+            };
 
-        //verificando modo de exibição
-        if(location.href.indexOf("exibicao=") > -1) {
-            document.getElementById('exibicao').value = location.href.substring(location.href.indexOf("exibicao=")+9,location.href.length);
-            location.href = location.href.substring(0, location.href.indexOf("exibicao=")-1);
-        };
+            $scope.treatURL();
+            //loading more (melhorar)
+            for(var i = 0 ; i < 3 ; i++) {
+                $scope.loadMore();
+            }
+        },
+        function (err) {
+            //console.log(err);
+        });
+    };
 
-        $scope.treatURL();
-        //loading more (melhorar)
-        for(var i = 0 ; i < 3 ; i++) {
-            $scope.loadMore();
+    $scope.adicionaNoticia = function (data) {
+        //verifica se a notícia já não foi adicionada
+        if($scope.noticiaSelecionada.indexOf(data)<0){
+            $scope.noticiaSelecionada.push(data);
         }
-    },
-    function (err) {
-        //console.log(err);
-    });
+        else {
+            $scope.noticiaSelecionada.splice($scope.noticiaSelecionada.indexOf(data),1);
+        }
+    };
+
+    $scope.geraRelatorio = function () {
+        document.getElementById('modalTitle').innerHTML = 'Relatório customizado';
+        var conteudo='';
+        console.log($scope.noticiaSelecionada.length);
+        //percorre todas as notícias selecionadas
+        for (index = 0; index < $scope.noticiaSelecionada.length; ++index) {
+            conteudo = conteudo.concat('<h4><b>',$scope.noticiaSelecionada[index].headline,'</b></h4><br>');
+            conteudo = conteudo.concat('Publicado em ',$scope.noticiaSelecionada[index].datePublished,'<br>');
+            conteudo = conteudo.concat('Link: ',$scope.noticiaSelecionada[index].url,'<br><br>');
+        }
+        document.getElementById('modalBody').innerHTML = conteudo;
+        document.getElementById('abrirModal').style.display="block";
+    
+    };
 
     //função para manter o ng-show das notícias com imagem ou sem imagem
     $scope.exibirImagem = function () {
@@ -50,15 +76,13 @@ angular
     $scope.showDialog = function(info) {
         //mostrando conteúdo na modal
         document.getElementById('modalTitle').innerHTML = info.headline;
-        document.getElementById('modalBody').innerHTML = info.articleBody;
-        document.getElementById('modalFooter').innerHTML = '<a href="'+info.url+'" target="_blank">Ir para a notícia</a>';
+        document.getElementById('modalBody').innerHTML ='<a href="'+info.url+'" target="_blank">Ir para a notícia</a><br>' + info.articleBody;
         
         document.getElementById('abrirModal').style.display="block";
-        document.getElementById('modalTitle').blur();
-     };
+    };
 
      //função para carregar mais notícias
-     $scope.loadMore = function() {
+    $scope.loadMore = function() {
         $scope.numPage = $scope.numPage + 1;
         //load the rest of items       
         $http({
@@ -77,73 +101,6 @@ angular
         });
     };
 
-    //função para o menu de filtros chamar a página
-    $scope.filtering = function() {
-        var query='?';     //inicio de uma query
-        //pegando os valores pro filtro composto
-        var pesquisa = document.getElementById("taggy").value;
-        var tempo = document.getElementById("inicioDia").value;
-        var categoria = document.getElementById("selCat").value;
-        var produto = document.getElementById("selProd").value;
-        var conteudo = document.getElementById("selCont").value;
-        // var alcance = document.getElementById("selAlc").value;
-        //var regiao = document.getElementById("selReg").value;
-
-        // tratando cada valor obtido pra inserir um filtro
-        if(tempo != 'undefined'){
-            //temos na variável 'tempo' o dia de referência
-            var horario ='';
-            var dInicio = new Date();
-            var dFim = new Date();
-            
-
-            //tratando a hora e minutos
-            dInicio.setDate(document.getElementById("inicioDia").value);
-            dInicio.setHours(document.getElementById("inicioHora").value -3);
-            dInicio.setMonth(document.getElementById("inicioMes").value);
-            dInicio.setMinutes(0);
-
-            dFim.setDate(document.getElementById("fimDia").value);
-            dFim.setHours(document.getElementById("fimHora").value -3);
-            dFim.setMonth(document.getElementById("fimMes").value);
-            dFim.setMinutes(0);
-
-            horario = dInicio.toISOString()+','+dFim.toISOString();
-            query = query.concat('data=',horario,'&');
-        };
-
-        if((pesquisa != 'undefined')&(pesquisa != '')){
-            query = query.concat('pesquisa=',pesquisa,'&');
-        };
-
-        if(categoria!='undefined'){
-            query = query.concat('tag=',categoria,'&');
-        };
-
-        if(produto!='undefined'){
-            query = query.concat('tag=',produto,'&');
-        };
-
-        if(conteudo!='undefined'){
-            query = query.concat('tag=',conteudo,'&');
-        };
-
-        // if(alcance!='undefined'){
-        //     query = query.concat('alcance=',alcance,'&');
-        // };
-
-        // if(regiao!='undefined'){
-        //     query = query.concat('tag=',regiao,'&');
-        // };
-
-        //informando o metodo de vizualização
-        query = query.concat('exibicao=',document.getElementById('exibicao').value);
-        //muda o endereço da pagina à partir do endereço base
-        location.href = window.location.href.split('?')[0]+query;
-        //carrega a página com a pesquisa
-        location.reload();
-    };
-
     $scope.treatURL = function() {
         var query = $location.search();
         //verifica se existe pesquisa
@@ -155,6 +112,9 @@ angular
         filterManager = createFilterManager($scope.dados);
 
         if((query.pesquisa != undefined)&(query.pesquisa != '')) {
+            // mostrar o que está sendo pesquisado
+            document.getElementById("taggy").value = query.pesquisa;
+        
             textFilter = {
                     "attr":"description",  
                     "type":"text",
@@ -199,14 +159,47 @@ angular
             filterManager = createFilterManager($scope.novidades);
         }
 
-         if((query.tag != undefined)&(query.tag != '')) {
-            tagFilter = {
+         if((query.tagP != undefined)&(query.tagP != '')) {
+            //mostrar valor do produto pesquisado
+            document.getElementById("selProd").value = query.tagP;
+        
+            tagFilter1 = {
                 "attr":"keywords",
                 "type":"tags",
-                "values":query.tag
+                "values":query.tagP
             }
-            addFilter(filterManager,tagFilter);
-            $scope.novidades = getData(filterManager);
+            addFilter(filterManager,tagFilter1);
+            $scope.novidades = mergeArrays($scope.novidades,getData(filterManager));
+            //trocar o array de dados principal pelo filtrado pra continuar a pesquisa
+            filterManager = createFilterManager($scope.novidades);
+        }
+
+         if((query.tagC1 != undefined)&(query.tagC1 != '')) {
+            //mostrar valor do categoria pesquisado
+            document.getElementById("selCat").value = query.tagC1;
+        
+            tagFilter2 = {
+                "attr":"keywords",
+                "type":"tags",
+                "values":query.tagC1
+            }
+            addFilter(filterManager,tagFilter2);
+            $scope.novidades = mergeArrays($scope.novidades,getData(filterManager));
+            //trocar o array de dados principal pelo filtrado pra continuar a pesquisa
+            filterManager = createFilterManager($scope.novidades);
+        }
+
+         if((query.tagC2 != undefined)&(query.tagC2 != '')) {
+            //mostrar valor do conteúdo pesquisado
+            document.getElementById("selCont").value = query.tagC2;
+
+            tagFilter3 = {
+                "attr":"keywords",
+                "type":"tags",
+                "values":query.tagC2
+            }
+            addFilter(filterManager,tagFilter3);
+            $scope.novidades = mergeArrays($scope.novidades,getData(filterManager));
             //trocar o array de dados principal pelo filtrado pra continuar a pesquisa
             filterManager = createFilterManager($scope.novidades);
         }
@@ -224,7 +217,7 @@ angular
             dataFilter["values"][0] = dias[0].substring(0,(dias[0].length-1));
             dataFilter["values"][1] = dias[1].substring(0,(dias[1].length-1));
             addFilter(filterManager,dataFilter);
-            $scope.novidades = getData(filterManager);
+            angular.extend($scope.novidades, getData(filterManager));
             
         } 
 

@@ -8,40 +8,43 @@
       </section>
       <!--  buttons da esquerda -->
       <section layout="row" layout-align="center" layout-wrap align="center">
-        <button ng-click="filtering()" ng-controller="gridController">
-        <img src="img/clipper/filtrar.png">
+        <button><a href="https://inep-enem-2017-web-dev.herokuapp.com/#/clipper"><img src="img/clipper/limpar.png"></a>
         </button>
-      </section>
-    </div>
+        <button ng-click="filtering()"><img src="img/clipper/filtrar.png">
+        </button>
+  </div>
 
  <div id="conteudo">
-    <datepicker ng-model="selectedDate"></datepicker>
     <img src="img/clipper/title.PNG" style="height: 45px; width: auto">
     <br><br><br>
       <!--  blocos de notícias novas  -->
-    <div id="notNovas" ng-controller="gridController" ng-init="limNot = 20" >
-
+    <div id="notNovas" ng-controller="gridController" ng-init="limNot = 20; loadData()" >
+  
     <div class="modal" id="abrirModal">
     <div class="modal-content">
     <span class="close-heavy" id="fecharModal">&times;</span>
       <h3><div id="modalTitle"></div></h3><br><br>
       <div id="modalBody"></div><br>
-      <div id="modalFooter"></div>
       <script type="text/javascript">
       // When the user clicks on <span> (x), close the modal
       document.getElementById('fecharModal').onclick = function() {
         document.getElementById('abrirModal').style.display = "none";
       };
-      document.getElementById('abrirModal').onclick = function() {
-        document.getElementById('abrirModal').style.display = "none";
-      }
       
       </script>
     </div>
     </div>
+    <!--  ícone fixo para relatório  -->  
+    <button style="position:fixed; float: left; margin-left: 70%; margin-top: -5%; z-index: 0;"><img src="img/clipper/icon3.PNG" style="height: 50px; width: auto" ng-click="geraRelatorio()"></button>
+
+
       <div ng-repeat="nov in novidades | limitTo:limNot">
-          <noticias info=nov  class="row"></noticias>
-          <hr noshade style="width:100%; background-color: #D6D6D6; height: 2px;" ><br>
+        <section layout="row" layout-align="end" layout-wrap align="end">
+          <input type="checkbox"
+          ng-click="adicionaNoticia(nov)" >
+        </section>
+        <noticias info='nov' class="row"></noticias>
+        <hr noshade style="width:100%; background-color: #D6D6D6; height: 2px;" ><br>
       </div>
 
       <br><br>
