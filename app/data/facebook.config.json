@@ -18,21 +18,21 @@
     }
   ],
   "actors": [{
+      "title": "Institucional",
+      "tag": "institucional",
+      "icon": "FACEBOOK-03.svg"
+    },{
+      "title": "Educação Básica",
+      "tag": "educação básica",
+      "icon": "FACEBOOK-05.svg"
+    },{
+      "title": "Enem",
+      "tag": "enem",
+      "icon": "FACEBOOK-04.svg"
+    },{
       "title": "Mídia",
       "tag": "categoria-midia",
       "icon": "FACEBOOK-01.svg"
-    },{
-      "title": "Institucional",
-      "tag": "categoria-institucional",
-      "icon": "FACEBOOK-03.svg"
-    },{
-      "title": "Educação",
-      "tag": "categoria-educacional",
-      "icon": "FACEBOOK-05.svg"
-    },{
-      "title": "Humor",
-      "tag": "categoria-humor",
-      "icon": "FACEBOOK-04.svg"
     }],
   "period": {
     "type": "single-option",

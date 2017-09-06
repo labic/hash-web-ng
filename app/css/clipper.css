@@ -1,50 +1,53 @@
 html,body {
-  font-family: "Open Sans";
+  font-family: arial, helvetica, sans-serif;;
   background-color: #F2F2F2;
   border: none;
   width: 100%;
+  color:#2B3044;
 }
 
 #conteudo {
-  padding-right: 20%;
-  padding-left: 15%;
+  padding-right: 15%;
+  padding-left: 18%;
   padding-top: 5%;
-  font-family: "Open Sans";
-  font-size: 13px;
+  font-size: 15px;
   background-color: #F2F2F2;
 }
 
 .navbar-fixed-left {
-  width: 10%;
+  width: 15%;
   padding-top: 10%;
   position: fixed;
   height: 100%;
-  background-color: #FFFFFF;
-  box-shadow: 0 0 15px 5px rgba(0, 0, 0, 0.2);
+  background-color: #1DBDD6;
+  box-shadow: 0 0 5px 5px rgba(0, 0, 0, 0.4);
+  text-align: center;
 }
 
 .navbar-fixed-left img {
-  max-width: 35px;
-  height: 25px;
+  max-width: 80px;
+  height: 30px;
   width: auto;
+  display: block;
+  margin: auto;
 }
 
 .navbar-fixed-left select{
   background-color: transparent;
   border: none;
-  border-bottom:1px solid #13C89A;
+  border-bottom:1px solid #2B3044;
   width:80%;
   outline: none;
   cursor:pointer;
   border-radius: 0;
-  color: #868686;
+  color: #2B3044;
 }
 .navbar-fixed-left option {
   background: white;
   color: black;
 }
 
-#lupa ,button{
+button{
   background-color: transparent;
   border: none;
   outline: none;
@@ -54,9 +57,10 @@ html,body {
   margin-top: 3%;
   background-color: transparent;
   border: none;
-  border-bottom:1px solid #14C799;
-  width:65%;
+  border-bottom:1px solid #2B3044;
+  width:75%;
   outline: none;
+  color:#2B3044;
 }
 
 .news {
@@ -81,13 +85,70 @@ html,body {
   height: auto;
 }
 
-.col-md-8 input {
+.col-md-9 input {
   background-color: transparent;
   border-radius: 5px;
   outline: none;
   box-shadow: 0;
   border:1px solid #D6D6D6;
-  color: gray;
-  margin-right: 4px;
-  padding:3px 3px 3px 3px;
+  color:#2B3044;
+  margin: 10px 5px 0px 0px;
+  padding:3px 10px 3px 10px;
+}
+
+
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  padding-top: 5%; /* Location of the box */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Modal Content */
+.modal-content {
+  background-color: #fefefe;
+  margin: auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 70%;
+  height: auto;
+}
+
+.modal-content img, picture {
+  align-self: center;
+  max-width: 50%;
+  height: auto;
+  border: none;
+  overflow-wrap: hidden;
+}
+
+/* The Close Button */
+.close-heavy {
+  float:right;
+  margin-top:-30px;
+  margin-right:-30px;
+  cursor:pointer;
+  color: #fff;
+  border: 1px solid #AEAEAE;
+  border-radius: 30px;
+  background: #605F61;
+  font-size: 31px;
+  font-weight: bold;
+  display: inline-block;
+  line-height: 0px;
+  padding: 11px 3px; 
+}
+
+
+.col-md-9 label:hover{
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
 }

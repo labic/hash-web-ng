@@ -260,7 +260,7 @@
 
       .menu__main-tags {
         width: 90%;
-        margin-left: 5%;
+        margin-left: 2%;
         float:left;
         height: 75px;
         padding-top: 5px;
@@ -303,7 +303,7 @@
             color: white;
             width: 100%;
             height: auto;
-            font-size: 18px;
+            font-size: 16px;
             text-align: center;
           }
 

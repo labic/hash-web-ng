@@ -2,7 +2,8 @@ hash.directive('noticias', function() {
   return { 
     restrict: 'E', 
     scope: { 
-      info: '=' 
+      info: '=',
+      listaSel: '='
     }, 
     templateUrl: 'modules/clipper/directives/noticias.html' 
   }; 

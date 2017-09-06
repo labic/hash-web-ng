@@ -58,22 +58,22 @@ function applyFilter(data,newFilter){
 	var f;
 	switch (newFilter.type){
 		case "data":
-			console.log("filtrando por Data");
+			//console.log("filtrando por Data");
 			params = getDataParams(newFilter);
 			f = cutByData;
 			break;
 		case "text":
-			console.log("filtrando por Texto");
+			//console.log("filtrando por Texto");
 			params = null
 			f = cutByText;
 			break;
 		case "number":
-			console.log("filtrando por Número");			
+			//console.log("filtrando por Número");			
 			params = null;
 			f = cutByNumber;
 			break;
 		case "tags": //text array
-			console.log("filtrando por Tags");
+			//console.log("filtrando por Tags");
 			params = null
 			f = cutByTags;
 	}
@@ -175,7 +175,7 @@ function cutByTags(d, filter){
 
 function findTag(t, tags){
 	for (i in tags){
-		if(tags[i] == t){
+		if(tags[i].toLowerCase() == t.toLowerCase()){
 			return true;
 		}
 	}

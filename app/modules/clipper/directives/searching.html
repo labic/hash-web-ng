@@ -1,41 +1,77 @@
-<form>
-    <input value="undefined" type="text" id="taggy" ng-model="query" placeholder="Pesquisar por...">
-    <button  id="lupa" class="btn btn-active" ng-click="filtering()" >
-<img src={{buttonIMG}}>
-</button>
+<form ng-submit="quickSearch('pesquisa')" ng-controller="gridController">
+    <input defaultValue="undefined" type="text" id="taggy" ng-model="query" placeholder="Pesquisar por...">
 </form>
-<br><br>
+<br>
+<label>Horários</label>
+<br>
+<div class="row">
+<div class="col-md-6">
+  <h5>Início:</h5>
 
-<select id="selData">
-        <option style="display:none;" value="undefined">Última hora</option>
-        <option ng-repeat="tempo in ultHora" value="{{tempo.label}}">{{tempo.label}}</option>  
-      </select>
-      <br><br>
-      <select id="selCat">
-      <option style="display:none;" value="undefined">Categoria</option>
-        <option ng-repeat="cat in categ" value="{{cat.label}}">{{cat.label}}</option>  
-      </select>
-      <br><br>
-      <select id="selProd">
-        <option style="display:none;" value="undefined">Produto</option>
-        <option ng-repeat="produto in prod"><select>
-        <option style="display:none;">{{produto.label}}</option>
-        <option ng-repeat="item in produto.submenu">{{item.labe}l}</option>          
-        </select></option> 
-       </select>
-       <br><br>
-      <select id="selCont">
-        <option style="display:none;" value="undefined">Tipo de conteúdo</option>
-        <option ng-repeat="conteudo in tipoCont" value="{{conteudo.label}}">{{conteudo.label}}</option>  
-      </select>
-      <br><br>
-      <select id="selAlc">
-        <option style="display:none;" value="undefined">Alcance</option>
-        <option ng-repeat="alc in alcance" value="{{alc.label}}">{{alc.label}}</option>  
-      </select>
-      <br><br>
-      <select id="selReg">
-        <option style="display:none;" value="undefined">Região</option>
-        <option ng-repeat="reg in regiao" value="{{reg.label}}">{{reg.label}}</option>  
-      </select>
-      <br><br><br>
+  <select id="inicioDia">
+    <option style="display:none;" value="undefined">Dia</option>
+    <option ng-repeat="dia in dias" value="{{dia}}">{{dia}}</option>  
+  </select>
+  <br><br>
+  <select id="inicioMes">
+    <option style="display:none;" value="undefined">Mês</option>
+    <option ng-repeat="mes in meses" value="{{mes.value}}">{{mes.label}}</option>
+  </select>
+  <br><br>
+  <select id="inicioHora">
+    <option style="display:none;" value="undefined">Hora</option>
+    <option ng-repeat="hora in horas" value="{{hora}}">{{hora}}</option>  
+  </select>
+</div>
+
+<div class="col-md-6">
+  <h5>Fim:</h5>
+
+  <select id="fimDia">
+    <option style="display:none;" value="undefined">Dia</option>
+    <option ng-repeat="dia in dias" value="{{dia}}">{{dia}}</option>  
+  </select>
+  <br><br>
+  <select id="fimMes">
+    <option style="display:none;" value="undefined">Mês</option>
+    <option ng-repeat="mes in meses" value="{{mes.value}}">{{mes.label}}</option>
+  </select>
+  <br><br>
+  <select id="fimHora">
+    <option style="display:none;" value="undefined">Hora</option>
+    <option ng-repeat="hora in horas" value="{{hora}}">{{hora}}</option>  
+  </select>
+</div>
+</div>
+<br>
+<!-- <select id="selData">
+  <option style="display:none;" value="undefined">Horários</option>
+  <option ng-repeat="tempo in ultHora" value="{{tempo.label}}">{{tempo.label}}</option>  
+</select> -->
+<select id="selProd">
+  <option style="display:none;" value="undefined">Produto</option>
+  <optgroup ng-repeat="produto in prod" label="{{produto.label}}">
+  <option ng-repeat="item in produto.submenu" value="{{item}}">{{item}}</option>          
+  </optgroup> 
+ </select>
+ <br><br>
+<select id="selCat">
+  <option style="display:none;" value="undefined">Categoria</option>
+  <option ng-repeat="cat in categ" value="{{cat.label}}">{{cat.label}}</option>  
+</select>
+<br><br>
+<select id="selCont">
+  <option style="display:none;" value="undefined">Conteúdo</option>
+  <option ng-repeat="conteudo in tipoCont" value="{{conteudo.label}}">{{conteudo.label}}</option>  
+</select>
+<br><br>
+<!-- <select id="selAlc">
+  <option style="display:none;" value="undefined">Alcance</option>
+  <option ng-repeat="alc in alcance" value="{{alc.label}}">{{alc.label}}</option>  
+</select>
+<br><br> -->
+<!-- <select id="selReg">
+  <option style="display:none;" value="undefined">Região</option>
+  <option ng-repeat="reg in regiao" value="{{reg.label}}">{{reg.label}}</option>  
+</select>
+<br><br> --><br>
