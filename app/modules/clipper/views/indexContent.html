@@ -1,27 +1,17 @@
-  <!--  menu lateral  -->
-  <div class="navbar-fixed-left" ng-controller="menuController">
-    <!---p class="news" ng-click="plusOne($index)"> {{news}}</p!--> 
-      <section layout="row" layout-align="left" layout-wrap style=" display: inline-block;">
-          <searching> </searching>
-      </section>
-      <!--  buttons da esquerda -->
-      <section layout="row" layout-align="center" layout-wrap align="center">
-        <button ng-repeat="item in mSupE" ng-click="filtering(listaExibida)" ng-controller="gridController">
-        <img ng-src="{{::item.coverAtv}}">
-        </button>
-      </section>
-    </div>
 
  <div id="conteudo">
-    <h4 text-size="18">Diário de veículos jornalísticos</h4>
-    <br><br><br>
+    <a href="https://inep-enem-2017-web-dev.herokuapp.com/#/clipper"><img src="img/clipper/title.PNG" style="height: 45px; width: auto"></a>
+    <br><br>
+    <div ng-controller="estruturaNoticia">
       <!--  conteúdo da notícia  -->
-    <h3><div id="modalTitle"></div></h3><br><br>
-      <div id="modalBody"></div><br>
-      <div id="modalFooter"></div>
-
-    <hr noshade style="width:100%; background-color: #D6D6D6; height: 2px;" >
-      <!--  footer  -->
-    <div id="footer">
+      <h2>{{noticia.name}}</h2>
+      <div class="row">
+        <h5><a href="{{::noticia.url}}" target="_blank" style="display: inline">Ir para a notícia</a></h5>
+      </div>
+      <div class="row" ng-init="site = noticia.url.split('/')[2]">
+        <h5>Publicado por <a href="http://{{::site}}" target="_blank" style="display: inline">{{::site}}</a> coletado em {{::noticia.dateCreated | date:"dd/MM/yyyy 'às' HH'h'mm"}} e Publicado em {{::noticia.datePublished | date:"dd/MM/yyyy 'às' HH'h'mm"}}</h5>
+        <div ng-bind-html="{{:: noticia.articleBody}}"></div>
+      </div><br>
+      Tags: <input type="button" value="{{:: keyword }}" ng-repeat = "keyword in noticia.keywords">
     </div>
 </div>
