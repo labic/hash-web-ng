@@ -1,28 +1,28 @@
-  <!--  menu lateral  -->
-  <div class="navbar-fixed-left" ng-controller="menuController">
-    <!---p class="news" ng-click="plusOne($index)"> {{news}}</p!--> 
-    <button value="ComImagens" ng-click = "mudarExibicao()" id="exibicao"><h5>Mudar exibição</h5></button>
-    <br><br><br>
-      <section layout="row" layout-align="left" layout-wrap style=" display: inline-block;">
-          <searching> </searching>
-      </section>
-      <!--  buttons da esquerda -->
-      <section layout="row" layout-align="center" layout-wrap align="center">
-        <button><a href="https://inep-enem-2017-web-dev.herokuapp.com/#/clipper"><img src="img/clipper/limpar.png"></a>
-        </button>
-        <button ng-click="filtering()"><img src="img/clipper/filtrar.png">
-        </button>
-  </div>
+<!--  menu lateral  -->
+<div class="navbar-fixed-left" ng-controller="menuController">
+  <!---p class="news" ng-click="plusOne($index)"> {{news}}</p!--> 
+  <button value="ComImagens" ng-click = "mudarExibicao()" id="exibicao"><h5>Mudar exibição</h5></button>
+  <br><br><br>
+    <section layout="row" layout-align="left" layout-wrap style=" display: inline-block;">
+        <searching> </searching>
+    </section>
+    <!--  buttons da esquerda -->
+    <section layout="row" layout-align="center" layout-wrap align="center">
+      <button><a href="https://inep-enem-2017-web-dev.herokuapp.com/#/clipper"><img src="img/clipper/limpar.png"></a>
+      </button>
+      <button ng-click="filtering()"><img src="img/clipper/filtrar.png">
+      </button>
+</div>
 
- <div id="conteudo">
-    <img src="img/clipper/title.PNG" style="height: 45px; width: auto">
-    <br><br><br>
-      <!--  blocos de notícias novas  -->
-    <div id="notNovas" ng-controller="gridController" ng-init="limNot = 20; loadData()" >
+<div id="conteudo">
+  <img src="img/clipper/title.PNG" style="height: 45px; width: auto">
+  <br><br><br>
+  <!--  blocos de notícias novas  -->
+  <div id="notNovas" ng-controller="gridController" ng-init="limNot = 20; loadData()" >
   
     <div class="modal" id="abrirModal">
     <div class="modal-content">
-    <span class="close-heavy" id="fecharModal">&times;</span>
+      <span class="close-heavy" id="fecharModal">&times;</span>
       <h3><div id="modalTitle"></div></h3><br><br>
       <div id="modalBody"></div><br>
       <script type="text/javascript">
@@ -40,8 +40,7 @@
 
       <div ng-repeat="nov in novidades | limitTo:limNot">
         <section layout="row" layout-align="end" layout-wrap align="end">
-          <input type="checkbox"
-          ng-click="adicionaNoticia(nov)" >
+          <input type="checkbox" ng-click="adicionaNoticia(nov)" >
         </section>
         <noticias info='nov' class="row"></noticias>
         <hr noshade style="width:100%; background-color: #D6D6D6; height: 2px;" ><br>
@@ -51,8 +50,7 @@
       <section layout="row" layout-align="center" layout-wrap align="center">
         <button ng-click="limNot = limNot + 20; loadMore()" > Carregar mais </button>
       </section>
-    </div>
+  </div>
       <!--  footer  -->
-    <div id="footer">
-    </div>
+    <div id="footer"></div>
 </div>

@@ -1,17 +1,13 @@
-
- <div id="conteudo">
-    <a href="https://inep-enem-2017-web-dev.herokuapp.com/#/clipper"><img src="img/clipper/title.PNG" style="height: 45px; width: auto"></a>
-    <br><br>
-    <div ng-controller="estruturaNoticia">
-      <!--  conteúdo da notícia  -->
-      <h2>{{noticia.name}}</h2>
-      <div class="row">
-        <h5><a href="{{::noticia.url}}" target="_blank" style="display: inline">Ir para a notícia</a></h5>
-      </div>
-      <div class="row" ng-init="site = noticia.url.split('/')[2]">
-        <h5>Publicado por <a href="http://{{::site}}" target="_blank" style="display: inline">{{::site}}</a> coletado em {{::noticia.dateCreated | date:"dd/MM/yyyy 'às' HH'h'mm"}} e Publicado em {{::noticia.datePublished | date:"dd/MM/yyyy 'às' HH'h'mm"}}</h5>
-        <div ng-bind-html="{{:: noticia.articleBody}}"></div>
-      </div><br>
-      Tags: <input type="button" value="{{:: keyword }}" ng-repeat = "keyword in noticia.keywords">
-    </div>
+<div id="conteudo" ng-controller="estruturaNoticia">
+  <a href="#/clipper"><img src="img/clipper/title.PNG" style="height: 45px; width: auto"></a>
+  <br><br>
+  <div class="row" align="justify">
+    <!--  conteúdo da notícia  -->
+    <h2>{{noticia.name}}</h2>
+    <p><a href="{{::noticia.url}}" target="_blank">Ir para a notícia</a></p>
+      <p><b>Publicado por <a href="http://{{::site}}" target="_blank" style="display: inline">{{site}}</a> em {{::noticia.datePublished | date:"dd/MM/yyyy 'às' HH'h'mm"}} e coletado em {{::noticia.dateCreated | date:"dd/MM/yyyy 'às' HH'h'mm"}}</b></p>
+      <p ng-bind-html="html"></p><br>
+      Tags: <input type="button" value="{{:: keyword}}" ng-repeat = "keyword in noticia.keywords" disabled>
+  </div>
 </div>
+<br><br>

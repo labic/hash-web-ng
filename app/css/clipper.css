@@ -68,7 +68,7 @@ button{
   height: auto;
 }
 
-.col-md-9 input {
+input {
   background-color: transparent;
   border-radius: 5px;
   outline: none;

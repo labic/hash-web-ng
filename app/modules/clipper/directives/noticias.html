@@ -6,7 +6,7 @@
       <label ng-click="showDialog(info)"><h4><b>{{:: info.headline }}</b>&nbsp</h4></label>
   	</div>
     <div class="row">
-      <h5>Link: <a href="{{::info.url}}" target="_blank" style="display: inline">{{::info.url}}</a></h5>
+      <h5>Link: <a href="#/clipper/noticia?id={{::info.id}}" target="_blank" style="display: inline">https://inep-enem-2017-web-dev.herokuapp.com/#/clipper/noticia?id={{::info.id}}</a></h5>
     </div>
   	<div class="row" ng-init="fonte = info.url.split('/')[2]">
   		<h5>Publicado por <a href="http://{{fonte}}" target="_blank" style="display: inline">{{::fonte}}</a> coletado em {{::info.dateCreated | date:"dd/MM/yyyy 'às' HH'h'mm"}} e Publicado em {{::info.datePublished | date:"dd/MM/yyyy 'às' HH'h'mm"}}</h5>
