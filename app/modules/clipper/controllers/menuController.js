@@ -13,29 +13,6 @@ angular
       }
     };
 
-    $scope.relatorios = [
-     {
-      label:'1º Relatório dia útil (8h)',
-      value: 8
-     },
-     {
-      label:'2º Relatório dia útil (12h)',
-      value: 12
-     },
-      {
-      label:'3º Relatório dia útil (17h)',
-      value: 17
-     },
-      {
-      label:'1º Relatório FDS (12h)',
-      value: 12
-     },
-      {
-      label:'2º Relatório FDS (20h)',
-      value: 20
-     }
-    ];
-
     $scope.categ = [
      {
       label:'Educação Básica'
@@ -181,5 +158,73 @@ angular
 
     $scope.horas = [0,1,2,3,4,5,6,7,8,9,10,
     11,12,13,14,15,16,17,18,19,20,21,22,23];
+
+
+    //função para o menu de filtros chamar a página
+    $scope.filtering = function() {
+        var query='?';     //inicio de uma query
+        //pegando os valores pro filtro composto
+        var pesquisa = document.getElementById("taggy").value;
+        var tempo = document.getElementById("inicioDia").value;
+        var categoria = document.getElementById("selCat").value;
+        var produto = document.getElementById("selProd").value;
+        var conteudo = document.getElementById("selCont").value;
+        // var alcance = document.getElementById("selAlc").value;
+        //var regiao = document.getElementById("selReg").value;
+
+        // tratando cada valor obtido pra inserir um filtro
+        if(tempo != 'undefined'){
+            //temos na variável 'tempo' o dia de referência
+            var horario ='';
+            var dInicio = new Date();
+            var dFim = new Date();
+            
+
+            //tratando a hora e minutos
+            dInicio.setDate(document.getElementById("inicioDia").value);
+            dInicio.setHours(document.getElementById("inicioHora").value -3);
+            dInicio.setMonth(document.getElementById("inicioMes").value);
+            dInicio.setMinutes(0);
+
+            dFim.setDate(document.getElementById("fimDia").value);
+            dFim.setHours(document.getElementById("fimHora").value -3);
+            dFim.setMonth(document.getElementById("fimMes").value);
+            dFim.setMinutes(0);
+
+            horario = dInicio.toISOString()+','+dFim.toISOString();
+            query = query.concat('data=',horario,'&');
+        };
+
+        if((pesquisa != 'undefined')&(pesquisa != '')){
+            query = query.concat('pesquisa=',pesquisa,'&');
+        };
+
+        if(categoria!='undefined'){
+            query = query.concat('tagC1=',categoria,'&');
+        };
+
+        if(produto!='undefined'){
+            query = query.concat('tagP=',produto,'&');
+        };
+
+        if(conteudo!='undefined'){
+            query = query.concat('tagC2=',conteudo,'&');
+        };
+
+        // if(alcance!='undefined'){
+        //     query = query.concat('alcance=',alcance,'&');
+        // };
+
+        // if(regiao!='undefined'){
+        //     query = query.concat('tag=',regiao,'&');
+        // };
+
+        //informando o metodo de vizualização
+        query = query.concat('exibicao=',document.getElementById('exibicao').value);
+        //muda o endereço da pagina à partir do endereço base
+        location.href = window.location.href.split('?')[0]+query;
+        //carrega a página com a pesquisa
+        location.reload();
+    };
 
     }]);

@@ -63,29 +63,12 @@ button{
   color:#2B3044;
 }
 
-.news {
-  background: #F50009 ;
-  color: #fff;
-  cursor: pointer;
-  display: inline-block;
-  font-size: 9px;
-  line-height: 15px;
-  min-width: 13px;
-  height: 13px;
-  border-radius: 50%;
-  margin: 0 -5px 0 25px;
-  text-align: center;
-  font-weight: 100;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
-  transition: background 500ms;
-}
-
 #notNovas img {
   width: 100%;
   height: auto;
 }
 
-.col-md-9 input {
+input {
   background-color: transparent;
   border-radius: 5px;
   outline: none;
@@ -152,3 +135,17 @@ button{
   text-decoration: none;
   cursor: pointer;
 }
+
+/*@media only screen and (max-width: 500px) {
+    #conteudo {
+      font-size: 40px;
+    }
+
+    .col-md-3 {
+        display: none;
+    }
+
+    #exibicao {
+      display: none;
+    }
+}*/
