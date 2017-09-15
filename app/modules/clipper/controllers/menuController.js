@@ -182,12 +182,12 @@ angular
 
             //tratando a hora e minutos
             dInicio.setDate(document.getElementById("inicioDia").value);
-            dInicio.setHours(document.getElementById("inicioHora").value -3);
+            dInicio.setHours(document.getElementById("inicioHora").value +3);
             dInicio.setMonth(document.getElementById("inicioMes").value);
             dInicio.setMinutes(0);
 
             dFim.setDate(document.getElementById("fimDia").value);
-            dFim.setHours(document.getElementById("fimHora").value -3);
+            dFim.setHours(document.getElementById("fimHora").value +3);
             dFim.setMonth(document.getElementById("fimMes").value);
             dFim.setMinutes(0);
 
