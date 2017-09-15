@@ -211,7 +211,7 @@ angular
             var dias = query.data.split(',');
             
             dataFilter = {
-                "attr":"dateCreated",
+                "attr":"datePublished",
                 "type":"data",
                 "values":[],
                 "operator":"between"
