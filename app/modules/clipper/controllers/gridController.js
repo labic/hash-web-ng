@@ -1,6 +1,6 @@
 angular
     .module('hash.clipper')
-    .controller("gridController", function($scope, $http, $location, Tweet) { 
+    .controller("gridController", function($scope, $http, $location, Tweet, $filter) { 
 
     $scope.url = 'https://inep-hash-data-api-dev.herokuapp.com/articles';
     $scope.novidades = [];
@@ -32,7 +32,8 @@ angular
             }
         },
         function (err) {
-            //console.log(err);
+            console.log("Notícia não encontrada");
+            document.getElementById('notNovas').innerHTML ="<h1><b>Erro ao carregar conteúdo</b></h1><br><br><a href='#/clipper'>Atualizar</a>";
         });
     };
 
@@ -49,12 +50,14 @@ angular
     $scope.geraRelatorio = function () {
         document.getElementById('modalTitle').innerHTML = 'Relatório customizado';
         var conteudo='';
+        var angularDateFilter = $filter('date');
         console.log($scope.noticiaSelecionada.length);
         //percorre todas as notícias selecionadas
         for (index = 0; index < $scope.noticiaSelecionada.length; ++index) {
             conteudo = conteudo.concat('<h4><b>',$scope.noticiaSelecionada[index].headline,'</b></h4><br>');
-            conteudo = conteudo.concat('Publicado em ',$scope.noticiaSelecionada[index].datePublished,'<br>');
-            conteudo = conteudo.concat('Link: ',$scope.noticiaSelecionada[index].url,'<br><br>');
+            conteudo = conteudo.concat('Publicado em ',angularDateFilter($scope.noticiaSelecionada[index].datePublished, "dd/MM 'às' HH'h'mm"),'<br>');
+            conteudo = conteudo.concat('Link interno: https://inep-enem-2017-web-dev.herokuapp.com/#/clipper/noticia?id=',$scope.noticiaSelecionada[index].id,'<br>');
+            conteudo = conteudo.concat('Link externo: ',$scope.noticiaSelecionada[index].url,'<br><br>');
         }
         document.getElementById('modalBody').innerHTML = conteudo;
         document.getElementById('abrirModal').style.display="block";
@@ -208,7 +211,7 @@ angular
             var dias = query.data.split(',');
             
             dataFilter = {
-                "attr":"dateCreated",
+                "attr":"datePublished",
                 "type":"data",
                 "values":[],
                 "operator":"between"

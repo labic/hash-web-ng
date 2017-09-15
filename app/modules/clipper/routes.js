@@ -14,8 +14,8 @@
           }
       })
 
-        .state('clipper/id', {
-          url: '/clipper/id',
+        .state('clipper/noticia', {
+          url: '/clipper/noticia',
           views: {
             '': { 
               templateUrl: 'modules/clipper/views/indexContent.html',

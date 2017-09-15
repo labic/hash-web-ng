@@ -101,11 +101,17 @@ function cutByText(d, filter){
 }
 
 function cutByData(d,filter, dataParams){
-	if (d[filter.attr] == null){		
+	//verifica data de publicação
+	if (d[filter.attr] == null){
+		tempData = manageData(d["dateCreated"]);
+	}else{
+		tempData = manageData(d[filter.attr]);
+	}
+
+	if (tempData == null){		
 		return false;
 	}
 
-	tempData = manageData(d[filter.attr]);
 
 	if(filter.operator == "lower"){	
 		return tempData < params.supLimit;
