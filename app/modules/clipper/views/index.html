@@ -1,18 +1,14 @@
 <!--  menu lateral  -->
-<div class="navbar-fixed-left" ng-controller="menuController">
-  <!---p class="news" ng-click="plusOne($index)"> {{news}}</p!--> 
-  <button value="ComImagens" ng-click = "mudarExibicao()" id="exibicao"><h5>Mudar exibição</h5></button>
-  <br><br><br>
-    <section layout="row" layout-align="left" layout-wrap style=" display: inline-block;">
-        <searching> </searching>
-    </section>
-    <!--  buttons da esquerda -->
+<nav class="navbar navbar-inverse navbar-fixed-top" ng-controller="menuController">
+  <searching> </searching>
+  <!--  buttons da esquerda -->
     <section layout="row" layout-align="center" layout-wrap align="center">
       <button><a href="#/clipper" onclick="window.location.reload(true);"><img src="img/clipper/limpar.png"></a>
       </button>
       <button ng-click="filtering()"><img src="img/clipper/filtrar.png">
       </button>
-</div>
+    </section>
+</nav>
 
 <div id="conteudo">
   <img src="img/clipper/title.PNG" style="height: 45px; width: auto">
