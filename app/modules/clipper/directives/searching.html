@@ -1,19 +1,19 @@
 <div class="row" align="center">
   <form ng-submit="quickSearch('pesquisa')" ng-controller="gridController">
-      <input defaultValue="undefined" type="text" id="taggy" ng-model="query" placeholder="Pesquisar por...">
+    <input defaultValue="undefined" type="text" id="taggy" placeholder="Buscar...">
+    <span class="glyphicons glyphicons-search"></span>
   </form>
 </div>
 <br>
 <div class="row">
-  <div class="col-md-5">
-    <button style="float:left" value="ComImagens" ng-click = "mudarExibicao()" id="exibicao"><h5>Mudar exibição</h5></button>
+  <div class="col-md-5" style="margin-left: 30px;">
+    <button value="ComImagens" ng-click = "mudarExibicao()" id="exibicao"><h5>Modo de exibição</h5></button>
   </div>
   <div class="col-md-6">
-  <label>Mostrar filtros</label>
+    <button ><h5>Mostrar filtros</h5></button>
   </div>
 </div>
 
-<br>
 <div class="row">
 
   <select id="inicioDia">
@@ -42,18 +42,18 @@
     <option ng-repeat="hora in horas" value="{{hora}}">{{hora}}</option>  
   </select>
 
-<select id="selProd">
+<select id="selProd" class="selectpicker" data-style="btn-primary">
   <option style="display:none;" value="undefined">Produto</option>
   <optgroup ng-repeat="produto in prod" label="{{produto.label}}">
   <option ng-repeat="item in produto.submenu" value="{{item}}">{{item}}</option>          
   </optgroup> 
  </select>
-<select id="selCat">
+<select id="selCat" class="selectpicker" data-style="btn-primary">
   <option style="display:none;" value="undefined">Categoria</option>
   <option ng-repeat="cat in categ" value="{{cat.label}}">{{cat.label}}</option>  
 </select>
-<select id="selCont">
+<select id="selCont" class="selectpicker" data-style="btn-primary">
   <option style="display:none;" value="undefined">Conteúdo</option>
   <option ng-repeat="conteudo in tipoCont" value="{{conteudo.label}}">{{conteudo.label}}</option>  
 </select>
-<br>
+<button><a href="#/clipper" onclick="window.location.reload(true);"><img src="img/clipper/limpar.png"></a></button>
