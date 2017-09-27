@@ -1,6 +1,6 @@
 angular
     .module('hash.clipper')
-    .controller("gridController", function($scope, $http, $location, Tweet, $filter) { 
+    .controller("gridController", function($scope, $http, $location, $cacheFactory, Tweet, $filter) { 
 
     $scope.url = 'https://inep-hash-data-api-dev.herokuapp.com/articles';
     $scope.novidades = [];
@@ -8,14 +8,21 @@ angular
     $scope.quant = 30;
     $scope.numPage = 1;
     $scope.noticiaSelecionada = [];
+    var rejeitadas = $cacheFactory.get('rejeitadas');
+
+    //testar o cache
+    if(rejeitadas === undefined){
+        rejeitadas = $cacheFactory('rejeitadas');
+        console.log("oi");
+        };
     
     //pegando todos os dados
     $scope.loadData = function() {
         $http({
             url: $scope.url,
             method:'GET',
-            params:{'per_page':$scope.quant}
-            //cache: true
+            params:{'per_page':$scope.quant},
+            cache: rejeitadas
         })
         .then(function (response) {
             $scope.dados = response.data.data;
@@ -246,8 +253,8 @@ angular
         //muda o endereço da pagina à partir do endereço base
         location.href = window.location.href.split('?')[0]+complemento;
         //carrega a página com a pesquisa
-        location.reload();
+        $("#conteudo").load(self);
     };
-
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            
     //função para criar conjunto de notícias para relatório
 })
