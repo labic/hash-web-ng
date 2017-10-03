@@ -1,6 +1,6 @@
 angular
     .module('hash.clipper')
-    .controller("gridController", function($scope, $http, $location, $cacheFactory, Tweet, $filter) { 
+    .controller("gridController", function($scope, $http, $location, Tweet, $filter) { 
 
     $scope.url = 'https://inep-hash-data-api-dev.herokuapp.com/articles';
     $scope.novidades = [];
@@ -8,21 +8,13 @@ angular
     $scope.quant = 30;
     $scope.numPage = 1;
     $scope.noticiaSelecionada = [];
-    var rejeitadas = $cacheFactory.get('rejeitadas');
-
-    //testar o cache
-    if(rejeitadas === undefined){
-        rejeitadas = $cacheFactory('rejeitadas');
-        console.log("oi");
-        };
     
     //pegando todos os dados
     $scope.loadData = function() {
         $http({
             url: $scope.url,
             method:'GET',
-            params:{'per_page':$scope.quant},
-            cache: rejeitadas
+            params:{'per_page':$scope.quant}
         })
         .then(function (response) {
             $scope.dados = response.data.data;
@@ -255,6 +247,22 @@ angular
         //carrega a página com a pesquisa
         $("#conteudo").load(self);
     };
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            
-    //função para criar conjunto de notícias para relatório
+
+
+    $scope.deletar = function(item) {
+        $http({
+            url: 'https://inep-hash-data-api-dev.herokuapp.com/articles/'+item.id,
+            method:'DELETE'
+        })
+        .then(function (response) {
+            console.log('Item deletado com sucesso!');
+        },
+        function (rejection) {
+            console.log("Erro ao deletar arquivo!");
+        });
+
+        $scope.dados.splice($scope.dados.indexOf(item),1);
+        $scope.novidades.splice($scope.novidades.indexOf(item),1);
+
+    };
 })
