@@ -1,17 +1,10 @@
 <!--  menu lateral  -->
 <nav class="navbar navbar-inverse navbar-fixed-top" ng-controller="menuController">
   <searching> </searching>
-  <!--  buttons da esquerda -->
-    <div layout="row" align="center">
-      <button ng-click="filtering()"><img src="img/clipper/filtrar.png">
-      </button>
-    </div>
 </nav>
 
 <div id="conteudo">
-  <img src="img/clipper/title.PNG" style="height: 45px; width: auto">
-  <br><br><br>
-  <!--  blocos de notícias novas  -->
+    <!--  blocos de notícias novas  -->
   <div id="notNovas" ng-controller="gridController" ng-init="limNot = 20; loadData()" >
   
     <div class="modal" id="abrirModal">
@@ -36,7 +29,7 @@
         <section layout="row" layout-align="end" layout-wrap align="end">
           <input type="checkbox" ng-click="adicionaNoticia(nov)" >
         </section>
-        <noticias info='nov' class="row"></noticias>
+        <noticias info='nov'></noticias>
         <hr noshade style="width:100%; background-color: #D6D6D6; height: 2px;" ><br>
       </div>
 
