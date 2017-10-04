@@ -1,7 +1,9 @@
-<!--  menu lateral  -->
+<div class="container">
+<!--  menu topo  -->
 <nav class="navbar navbar-inverse navbar-fixed-top" ng-controller="menuController">
   <searching> </searching>
 </nav>
+</div>
 
 <div id="conteudo">
     <!--  blocos de notícias novas  -->
@@ -22,20 +24,22 @@
     </div>
     </div>
     <!--  ícone fixo para relatório  -->  
-    <button style="position:fixed; float: left; margin-left: 70%; margin-top: -5%; z-index: 0;" ng-click="geraRelatorio()"><img src="img/clipper/icon3.PNG" style="height: 50px; width: auto"></button>
-
+    <button style="position:fixed; margin-left: 70%" ng-click="geraRelatorio()"><img src="img/clipper/icon3.PNG" style="height: 50px; width: auto"></button>
 
       <div ng-repeat="nov in novidades | limitTo:limNot">
         <section layout="row" layout-align="end" layout-wrap align="end">
-          <input type="checkbox" ng-click="adicionaNoticia(nov)" >
+          <input type="checkbox" ng-click="adicionaNoticia(nov)" > 
+          <button ng-click="deletar(nov);novidades.splice($index,1)">&#10060;</button>
         </section>
-        <noticias info='nov'></noticias>
+        <noticias info='nov' class="row"></noticias>
         <hr noshade style="width:100%; background-color: #D6D6D6; height: 2px;" ><br>
       </div>
 
       <br><br>
       <section layout="row" layout-align="center" layout-wrap align="center">
-        <button ng-click="limNot = limNot + 20; loadMore()" > Carregar mais </button>
+        <button ng-click="novidades = loadMore(-1)" style="margin-right: 10px;"> Página anterior </button>
+        <button ng-click="novidades = loadMore(1)" > Página seguinte </button>
+        <br><br>
       </section>
   </div>
       <!--  footer  -->

@@ -5,7 +5,7 @@ angular
     $scope.url = 'https://inep-hash-data-api-dev.herokuapp.com/articles';
     $scope.novidades = [];
     $scope.dados = [];
-    $scope.quant = 30;
+    $scope.quant = 10;
     $scope.numPage = 1;
     $scope.noticiaSelecionada = [];
     
@@ -26,10 +26,6 @@ angular
             };
 
             $scope.treatURL();
-            //loading more (melhorar)
-            for(var i = 0 ; i < 3 ; i++) {
-                $scope.loadMore();
-            }
         },
         function (err) {
             console.log("Notícia não encontrada");
@@ -85,8 +81,12 @@ angular
     };
 
      //função para carregar mais notícias
-    $scope.loadMore = function() {
-        $scope.numPage = $scope.numPage + 1;
+    $scope.loadMore = function(offset) {
+        $scope.numPage = $scope.numPage + offset;
+
+        if($scope.numPage < 1)
+            $scope.numPage = 1;
+
         //load the rest of items       
         $http({
             url: $scope.url,
@@ -96,12 +96,13 @@ angular
         .then(function (response) {
 
             $scope.dados = mergeArrays($scope.dados,response.data.data);
-
-            $scope.treatURL();
+            $scope.novidades = response.data.data;
         },
         function (err) {
             //console.log(err);
         });
+
+        return $scope.novidades;
     };
 
     $scope.treatURL = function() {
@@ -249,5 +250,4 @@ angular
         location.reload();
     };
 
-    //função para criar conjunto de notícias para relatório
 })
