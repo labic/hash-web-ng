@@ -1,6 +1,6 @@
 html,body {
-  font-family: arial, helvetica, sans-serif;;
-  background-color: #F2F2F2;
+  font-family: helvetica, sans-serif;;
+  background-color: #F7F7F7;
   border: none;
   width: 100%;
   color:#2B3044;
@@ -9,22 +9,21 @@ html,body {
 #conteudo {
   padding-right: 15%;
   padding-left: 18%;
-  padding-top: 5%;
+  padding-top: 20%;
   font-size: 15px;
-  background-color: #F2F2F2;
+  background-color: #F7F7F7;
 }
 
-.navbar-fixed-left {
-  width: 15%;
-  padding-top: 10%;
+.navbar-fixed-top {
+  width: 98%;
   position: fixed;
-  height: 100%;
-  background-color: #1DBDD6;
-  box-shadow: 0 0 5px 5px rgba(0, 0, 0, 0.4);
-  text-align: center;
+  margin-left: 60px;
+  height: 30%;
+  background-color: #F7F7F7;
+/*  box-shadow: 0 0 5px 5px rgba(0, 0, 0, 0.4);*/
 }
 
-.navbar-fixed-left img {
+.navbar-fixed-top img {
   max-width: 80px;
   height: 30px;
   width: auto;
@@ -32,19 +31,23 @@ html,body {
   margin: auto;
 }
 
-.navbar-fixed-left select{
+.navbar-fixed-top input{
   background-color: transparent;
-  border: none;
-  border-bottom:1px solid #2B3044;
-  width:80%;
+  width:40%;
   outline: none;
-  cursor:pointer;
-  border-radius: 0;
+  border-radius: 10px;
   color: #2B3044;
+  margin-top: 1%;
+  border:2px solid #2B3044;
+  padding: 3px 10px;
 }
-.navbar-fixed-left option {
-  background: white;
-  color: black;
+
+.navbar-fixed-top select {
+  background-color: transparent;
+  width:15%;
+  outline: none;
+  border: none;
+  color:#4C3FD8;
 }
 
 button{
@@ -53,22 +56,12 @@ button{
   outline: none;
 }
 
-#taggy {
-  margin-top: 3%;
-  background-color: transparent;
-  border: none;
-  border-bottom:1px solid #2B3044;
-  width:75%;
-  outline: none;
-  color:#2B3044;
-}
-
 #notNovas img {
   width: 100%;
   height: auto;
 }
 
-input {
+#conteudo input {
   background-color: transparent;
   border-radius: 5px;
   outline: none;
