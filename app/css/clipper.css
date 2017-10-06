@@ -4,23 +4,23 @@ html,body {
   border: none;
   width: 100%;
   color:#2B3044;
+  overflow-x: scroll;
 }
 
 #conteudo {
   margin-right: 15%;
-  padding-left: 18%;
+  margin-left: 18%;
   margin-top: 15%;
   font-size: 15px;
   background-color: #F7F7F7;
 }
 
-.navbar-fixed-top {
-  width: 95%;
+.navbar, .navbar-inverse, .navbar-fixed-top {
   position: fixed;
-  margin-left: 60px;
   height: 20%;
+  z-index: 1;
+  margin-right: 0px;
   background-color: #F7F7F7;
-/*  box-shadow: 0 0 5px 5px rgba(0, 0, 0, 0.4);*/
 }
 
 .navbar-fixed-top img {
