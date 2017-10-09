@@ -3,6 +3,7 @@
   angular
     .module('hash.core')
     .config(function ($stateProvider, $urlRouterProvider) {
+<<<<<<< HEAD
     $stateProvider
     // .state('app', {
     //   abstract: true,
@@ -29,4 +30,8 @@
     //    $location.path( "/twitter" );
   });
 
+=======
+        $urlRouterProvider.otherwise('/twitter');
+    });
+>>>>>>> 779b9b87b35d4b54b5d3227de198f7e55afe3136
 })();

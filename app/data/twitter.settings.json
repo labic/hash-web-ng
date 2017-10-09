@@ -1,7 +1,8 @@
 {
-  "main": [
+  "keywords": [
     {
       "title": "Mídia",
+<<<<<<< HEAD:app/data/twitter.config.json
       "tag": "categoria-midia",
       "icon": "ICONES-06.svg"
     },
@@ -19,8 +20,28 @@
       "title": "Educacional",
       "tag": "categoria-educacional",
       "icon": "ICONES-07.svg"
+=======
+      "tag": "mídia"
+    },
+    {
+      "title": "Público Geral",
+      "tag": "enem"
+    },
+    {
+      "title": "Inep",
+      "tag": "inep"
+    },
+    {
+      "title": "Educacional",
+      "tag": "educacional"
+>>>>>>> 779b9b87b35d4b54b5d3227de198f7e55afe3136:app/data/twitter.settings.json
     }
   ],
+  "components": {
+    "keywords": {
+      "mode": "vertical"
+    }
+  },
   "period": {
     "type": "single-option",
     "values": [
