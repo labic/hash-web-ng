@@ -2,11 +2,11 @@
 
   <div id="div1_monitor" class="str_division">
 
-    <themes-filter options="config.filter.main" filter="filter.theme"></themes-filter>
+    <filter-keywords options="settings.keywords" filter="filter.theme"></filter-keywords>
 
-    <aside id="str_menu_map" ui-view="map"></aside>
+    <aside ng-if="settings.components.map.display" id="str_menu_map" ui-view="map"></aside>
 
-    <period-filter options="config.filter.period.values" filter="filter.period"></period-filter>
+    <period-filter options="settings.period.values" filter="filter.period"></period-filter>
 
     <div id="str_display_tweet">
       <div class="display_tweet">

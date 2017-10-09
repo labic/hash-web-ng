@@ -42,14 +42,14 @@
 
     <div id="errorTwitterTopTags" class="handlers">
       <img src="img/icons/error_outline.svg">
-      <p>ocorreu um erro com esses requisição, tente outro parâmetro</p>
+      <p>ocorreu um erro com esses requisição, tente outro parâmetro {{settings.widgets.most_common_themes.display}}</p>
     </div>
 
     <div id="emptyTwitterTopTags" class="handlers">
       <img src="img/icons/error_outline.svg">
       <p>não há dados dessa categoria nesse intervalo de tempo, tente outros parâmetros</p>
     </div>
-
+    
     <div id="str_topTags">
       <p ng-repeat="topTag in topTags" ng-click="filter.category = topTag.slug;">{{topTag.label}}</p>
     </div>

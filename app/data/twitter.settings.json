@@ -1,22 +1,30 @@
 {
-  "main": [
+  "keywords": [
     {
-      "title": "Educação Básica",
-      "tag": "educação básica"
+      "title": "Mídia",
+      "tag": "mídia"
     },
     {
-      "title": "Educação Superior",
-      "tag": "educacao superior"
+      "title": "Público Geral",
+      "tag": "público geral"
     },
     {
-      "title": "Ações Internacionais",
-      "tag": "acoes internacionais"
+      "title": "Inep",
+      "tag": "inep"
     },
     {
-      "title": "Institucional",
-      "tag": "institucional"
+      "title": "Educacional",
+      "tag": "educacional"
     }
   ],
+  "components": {
+    "most_common_themes": {
+      "display": false
+    },
+    "map": {
+      "diplay": false
+    }
+  },
   "period": {
     "type": "single-option",
     "values": [
