@@ -6,7 +6,7 @@
     },
     {
       "title": "Público Geral",
-      "tag": "público geral"
+      "tag": "enem"
     },
     {
       "title": "Inep",
@@ -18,11 +18,8 @@
     }
   ],
   "components": {
-    "most_common_themes": {
-      "display": false
-    },
-    "map": {
-      "diplay": false
+    "keywords": {
+      "mode": "vertical"
     }
   },
   "period": {
