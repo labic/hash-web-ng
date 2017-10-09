@@ -67,9 +67,9 @@
     left:0;
     height: 100%;
     width: 60px;
-    background-color: #4C3FD8;
+    background-color: #2b3044;
     z-index: 7;
-/*    box-shadow: 3px 0px 3px 0px rgba(0, 0, 0, 0.47);*/
+    box-shadow: 3px 0px 3px 0px rgba(0, 0, 0, 0.47);
     position: absolute;
   }
 
