@@ -1,20 +1,24 @@
 {
   "main": [
     {
-      "title": "Educação Básica",
-      "tag": "educação básica"
+      "title": "Mídia",
+      "tag": "categoria-midia",
+      "icon": "ICONES-06.svg"
     },
     {
-      "title": "Educação Superior",
-      "tag": "educacao superior"
+      "title": "Público Geral",
+      "tag": "categoria-publico",
+      "icon": "ICONES-08.svg"
     },
     {
-      "title": "Ações Internacionais",
-      "tag": "acoes internacionais"
+      "title": "INEP",
+      "tag": "institucional",
+      "icon": "ICONES-03.svg"
     },
     {
-      "title": "Institucional",
-      "tag": "institucional"
+      "title": "Educacional",
+      "tag": "categoria-educacional",
+      "icon": "ICONES-07.svg"
     }
   ],
   "period": {

@@ -6,7 +6,7 @@
     .config(function ($stateProvider) {
     $stateProvider
       .state('painel', {
-      url: '/painel',
+      url: '/twitter',
       views: {
         '': { templateUrl: 'modules/twitter/views/main.html' },
         'map@painel': { templateUrl: 'modules/twitter/views/map.html' },

@@ -24,9 +24,9 @@
     //   template: '<div class="text-center alert alert-danger" style="margin: 100px">An error occurred.</div>'
     // });
 //    $urlRouterProvider.when('/#', '/painel');
-          $urlRouterProvider.otherwise('/painel');
-    //    $urlRouterProvider.otherwise(redirectTo: '/painel');
-    //    $location.path( "/painel" );
+          $urlRouterProvider.otherwise('/twitter');
+    //    $urlRouterProvider.otherwise(redirectTo: '/twitter');
+    //    $location.path( "/twitter" );
   });
 
 })();
