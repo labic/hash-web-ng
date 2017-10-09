@@ -2,19 +2,23 @@
   "keywords": [
     {
       "title": "Mídia",
-      "tag": "mídia"
+      "tag": "categoria-midia",
+      "icon": "ICONES-06.svg"
     },
     {
       "title": "Público Geral",
-      "tag": "enem"
+      "tag": "categoria-publico",
+      "icon": "ICONES-08.svg"
     },
     {
-      "title": "Inep",
-      "tag": "inep"
+      "title": "INEP",
+      "tag": "institucional",
+      "icon": "ICONES-03.svg"
     },
     {
       "title": "Educacional",
-      "tag": "educacional"
+      "tag": "categoria-educacional",
+      "icon": "ICONES-07.svg"
     }
   ],
   "components": {
