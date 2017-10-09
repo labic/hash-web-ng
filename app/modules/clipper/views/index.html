@@ -31,10 +31,10 @@
     <!--  ícone fixo para relatório  -->  
     <button style="position:fixed; float: left; margin-left: 70%; margin-top: -5%; z-index: 0;" ng-click="geraRelatorio()"><img src="img/clipper/icon3.PNG" style="height: 50px; width: auto"></button>
 
-
       <div ng-repeat="nov in novidades | limitTo:limNot">
         <section layout="row" layout-align="end" layout-wrap align="end">
-          <input type="checkbox" ng-click="adicionaNoticia(nov)" >
+          <input type="checkbox" ng-click="adicionaNoticia(nov)" > 
+          <button ng-click="deletar(nov);novidades.splice($index,1)">&#10060;</button>
         </section>
         <noticias info='nov' class="row"></noticias>
         <hr noshade style="width:100%; background-color: #D6D6D6; height: 2px;" ><br>

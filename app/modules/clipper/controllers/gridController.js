@@ -15,7 +15,6 @@ angular
             url: $scope.url,
             method:'GET',
             params:{'per_page':$scope.quant}
-            //cache: true
         })
         .then(function (response) {
             $scope.dados = response.data.data;
@@ -246,8 +245,24 @@ angular
         //muda o endereço da pagina à partir do endereço base
         location.href = window.location.href.split('?')[0]+complemento;
         //carrega a página com a pesquisa
-        location.reload();
+        $("#conteudo").load(self);
     };
 
-    //função para criar conjunto de notícias para relatório
+
+    $scope.deletar = function(item) {
+        $http({
+            url: 'https://inep-hash-data-api-dev.herokuapp.com/articles/'+item.id,
+            method:'DELETE'
+        })
+        .then(function (response) {
+            console.log('Item deletado com sucesso!');
+        },
+        function (rejection) {
+            console.log("Erro ao deletar arquivo!");
+        });
+
+        $scope.dados.splice($scope.dados.indexOf(item),1);
+        $scope.novidades.splice($scope.novidades.indexOf(item),1);
+
+    };
 })
