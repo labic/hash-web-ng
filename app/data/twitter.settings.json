@@ -2,22 +2,22 @@
   "keywords": [
     {
       "title": "Mídia",
-      "tag": "categoria-midia",
+      "tag": "mídia",
       "icon": "ICONES-06.svg"
     },
     {
       "title": "Público Geral",
-      "tag": "categoria-publico",
+      "tag": "público geral",
       "icon": "ICONES-08.svg"
     },
     {
       "title": "INEP",
-      "tag": "institucional",
+      "tag": "inep",
       "icon": "ICONES-03.svg"
     },
     {
       "title": "Educacional",
-      "tag": "categoria-educacional",
+      "tag": "educacional",
       "icon": "ICONES-07.svg"
     }
   ],
