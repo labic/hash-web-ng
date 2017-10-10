@@ -19,15 +19,15 @@
   ],
   "actors": [{
       "title": "Mídia",
-      "tag": "categoria-midia",
+      "tag": "mídia",
       "icon": "FACEBOOK-01.svg"
     },{
       "title": "INEP",
-      "tag": "categoria-inep",
+      "tag": "inep",
       "icon": "FACEBOOK-03.svg"
     },{
       "title": "Educacional",
-      "tag": "categoria-educacional",
+      "tag": "educacional",
       "icon": "FACEBOOK-05.svg"
     }],
   "period": {
