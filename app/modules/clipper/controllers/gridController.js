@@ -55,7 +55,7 @@ angular
         for (index = 0; index < $scope.noticiaSelecionada.length; ++index) {
             conteudo = conteudo.concat('<h4><b>',$scope.noticiaSelecionada[index].headline,'</b></h4><br>');
             conteudo = conteudo.concat('Publicado em ',angularDateFilter($scope.noticiaSelecionada[index].datePublished, "dd/MM 'às' HH'h'mm"),'<br>');
-            conteudo = conteudo.concat('Link interno: https://inep-enem-2017-web-dev.herokuapp.com/#/clipper/noticia?id=',$scope.noticiaSelecionada[index].id,'<br>');
+            conteudo = conteudo.concat('Link interno: https://inep-hash-web-ng-dev.herokuapp.com/#/clipper/noticia?id=',$scope.noticiaSelecionada[index].id,'<br>');
             conteudo = conteudo.concat('Link externo: ',$scope.noticiaSelecionada[index].url,'<br><br>');
         }
         document.getElementById('modalBody').innerHTML = conteudo;
@@ -64,7 +64,7 @@ angular
     };
 
     //função para manter o ng-show das notícias com imagem ou sem imagem
-    $scope.exibirImagem = function () {
+    $scope.modoExibicao = function () {
       var exibicao = document.getElementById('exibicao').value;
 
       if(exibicao == 'ComImagens') {
@@ -171,7 +171,7 @@ angular
                 "values":query.tagP
             }
             addFilter(filterManager,tagFilter1);
-            $scope.novidades = mergeArrays($scope.novidades,getData(filterManager));
+            $scope.novidades = getData(filterManager);
             //trocar o array de dados principal pelo filtrado pra continuar a pesquisa
             filterManager = createFilterManager($scope.novidades);
         }
@@ -186,7 +186,7 @@ angular
                 "values":query.tagC1
             }
             addFilter(filterManager,tagFilter2);
-            $scope.novidades = mergeArrays($scope.novidades,getData(filterManager));
+            $scope.novidades = getData(filterManager);
             //trocar o array de dados principal pelo filtrado pra continuar a pesquisa
             filterManager = createFilterManager($scope.novidades);
         }
@@ -201,7 +201,7 @@ angular
                 "values":query.tagC2
             }
             addFilter(filterManager,tagFilter3);
-            $scope.novidades = mergeArrays($scope.novidades,getData(filterManager));
+            $scope.novidades = getData(filterManager);
             //trocar o array de dados principal pelo filtrado pra continuar a pesquisa
             filterManager = createFilterManager($scope.novidades);
         }
@@ -219,7 +219,7 @@ angular
             dataFilter["values"][0] = dias[0].substring(0,(dias[0].length-1));
             dataFilter["values"][1] = dias[1].substring(0,(dias[1].length-1));
             addFilter(filterManager,dataFilter);
-            angular.extend($scope.novidades, getData(filterManager));
+            $scope.novidades = getData(filterManager);
             
         } 
 
