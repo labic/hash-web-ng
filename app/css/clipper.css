@@ -1,9 +1,9 @@
 html,body {
   font-family: helvetica, sans-serif;;
-  background-color: #F7F7F7;
+  background-color: #FFFFFF;
   border: none;
   width: 100%;
-  color:#2B3044;
+  color:#0072D4;
   overflow-x: scroll;
 }
 
@@ -12,15 +12,17 @@ html,body {
   margin-left: 18%;
   margin-top: 15%;
   font-size: 15px;
-  background-color: #F7F7F7;
+  background-color: transparent;
 }
 
 .navbar, .navbar-inverse, .navbar-fixed-top {
   position: fixed;
   height: 20%;
   z-index: 0;
-  margin-right: 0px;
-  background-color: #F7F7F7;
+  border: 1px gray;
+  background-color: #FFFFFF;
+  opacity: 1;
+  box-shadow: 0 0 5px 5px rgba(0, 0, 0, 0.3);
 }
 
 .navbar-fixed-top img {
@@ -62,12 +64,12 @@ button{
 }
 
 #conteudo input {
-  background-color: transparent;
+  background-color: #CECECE;
   border-radius: 5px;
   outline: none;
   box-shadow: 0;
   border:1px solid #D6D6D6;
-  color:#2B3044;
+  color:#0072D4;
   margin: 10px 5px 0px 0px;
   padding:3px 10px 3px 10px;
 }
