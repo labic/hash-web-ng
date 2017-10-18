@@ -64,7 +64,7 @@ angular
     };
 
     //função para manter o ng-show das notícias com imagem ou sem imagem
-    $scope.exibirImagem = function () {
+    $scope.modoExibicao = function () {
       var exibicao = document.getElementById('exibicao').value;
 
       if(exibicao == 'ComImagens') {
