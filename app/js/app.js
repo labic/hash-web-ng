@@ -12,11 +12,11 @@ var hash = angular.module('hash', [
   'hash.clipper'
 ])
 .constant('HASH_API_BASE_URI', 'https://inep-hash-api-js.herokuapp.com/v2')
-.constant('WORD_API_BASE_URI', 'https://https://inep-hash-word-api-dev.herokuapp.com/')
+.constant('WORD_API_BASE_URI', 'https://inep-hash-word-api-dev.herokuapp.com/')
 .constant('CONFIG', {
   'HASH_API_URL': 'https://inep-hash-api-js.herokuapp.com/v2',
   'INSTAGRAM_API_URL': 'http://107.170.24.135:8081',
-  'WORD_API_URL': 'https://https://inep-hash-word-api-dev.herokuapp.com/',
+  'WORD_API_URL': 'https://inep-hash-word-api-dev.herokuapp.com/',
   'MANDALA_API_URL': 'http://107.170.24.135:7070',
   'HASH_API_URL_V2': 'https://inep-hash-api-js.herokuapp.com/v2'
 });
