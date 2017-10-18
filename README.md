@@ -1,5 +1,7 @@
 # #HASH Web
 
+[![Join the chat at https://gitter.im/labic/hash-web-ng](https://badges.gitter.im/labic/hash-web-ng.svg)](https://gitter.im/labic/hash-web-ng?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
 An data-driven front-end application build with Angular.js focused on social networks data
 
 ## Features
