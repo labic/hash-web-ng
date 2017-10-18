@@ -4,24 +4,22 @@ html,body {
   border: none;
   width: 100%;
   color:#0072D4;
-  overflow-x: scroll;
 }
 
 #conteudo {
   margin-right: 15%;
   margin-left: 18%;
-  margin-top: 15%;
   font-size: 15px;
   background-color: transparent;
 }
 
 .navbar, .navbar-inverse, .navbar-fixed-top {
-  position: fixed;
+  position: sticky;
+  width: auto;
   height: 20%;
-  z-index: 0;
+  z-index: 1;
   border: 1px gray;
   background-color: #FFFFFF;
-  opacity: 1;
   box-shadow: 0 0 5px 5px rgba(0, 0, 0, 0.3);
 }
 
