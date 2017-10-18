@@ -171,7 +171,7 @@ angular
                 "values":query.tagP
             }
             addFilter(filterManager,tagFilter1);
-            $scope.novidades = mergeArrays($scope.novidades,getData(filterManager));
+            $scope.novidades = getData(filterManager);
             //trocar o array de dados principal pelo filtrado pra continuar a pesquisa
             filterManager = createFilterManager($scope.novidades);
         }
@@ -186,7 +186,7 @@ angular
                 "values":query.tagC1
             }
             addFilter(filterManager,tagFilter2);
-            $scope.novidades = mergeArrays($scope.novidades,getData(filterManager));
+            $scope.novidades = getData(filterManager);
             //trocar o array de dados principal pelo filtrado pra continuar a pesquisa
             filterManager = createFilterManager($scope.novidades);
         }
@@ -201,7 +201,7 @@ angular
                 "values":query.tagC2
             }
             addFilter(filterManager,tagFilter3);
-            $scope.novidades = mergeArrays($scope.novidades,getData(filterManager));
+            $scope.novidades = getData(filterManager);
             //trocar o array de dados principal pelo filtrado pra continuar a pesquisa
             filterManager = createFilterManager($scope.novidades);
         }
@@ -219,7 +219,7 @@ angular
             dataFilter["values"][0] = dias[0].substring(0,(dias[0].length-1));
             dataFilter["values"][1] = dias[1].substring(0,(dias[1].length-1));
             addFilter(filterManager,dataFilter);
-            angular.extend($scope.novidades, getData(filterManager));
+            $scope.novidades = getData(filterManager);
             
         } 
 
