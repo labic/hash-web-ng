@@ -1,7 +1,8 @@
 'use strict';
 
 /* NOTA: MONITOR - CONTROLLER */
-hash.controller('mainMonitor', function ($scope, $http, settings, MetricsTwitter, AnalyticsTwitter, WordTwitter, Tweet, WORD_API_BASE_URI) {
+hash.controller('mainMonitor', function ($scope, $http, settings, MetricsTwitter, 
+                                         AnalyticsTwitter, WordTwitter, Tweet, WORD_API_BASE_URI) {
 
   $scope.settings = settings.get('twitter');
 
@@ -115,18 +116,18 @@ hash.controller('mainMonitor', function ($scope, $http, settings, MetricsTwitter
   };
 
   $scope.functionWord = function(period, theme, category, location){
-
-    var monitorLinkWord =  WORD_API_BASE_URI+'/twitter/top_words?filter='+$scope.analyticsWordCloud;
     var cloudWidth = $("#div3_monitor").width();
-
     $scope.loading('TwitterTopWords','wordCloud');
 
-    $http.get(monitorLinkWord).success(function (data) {
-      data != '' ? $scope.sucess('TwitterTopWords','wordCloud') : $scope.empty('TwitterTopWords'); 
-      plotWordCloud(cloudWidth,330,"wordCloud",data); //(width,heigth,divId,url)
-    }).error(function(data, status) {
-      $scope.error('TwitterTopWords');
-    });
+    WordTwitter.mostRecurrentWords(
+      $scope.analyticsParams,
+      function(data) {
+        data != '' ? $scope.sucess('TwitterTopWords','wordCloud') : $scope.empty('TwitterTopWords');  
+        plotWordCloud(cloudWidth, 330, 'wordCloud', data); 
+      },
+      function(data, status) {
+        $scope.error('TwitterTopWords');
+      })
   };
 
   $scope.functionTopTags = function(period,theme){
