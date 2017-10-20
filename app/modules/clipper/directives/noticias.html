@@ -9,7 +9,7 @@
       <h5>Link: <a href="#/clipper/noticia?id={{::info.id}}" target="_blank" style="display: inline">https://inep-hash-web-ng-dev.herokuapp.com/#/clipper/noticia?id={{::info.id}}</a></h5>
     </div>
   	<div class="row" ng-init="fonte = info.url.split('/')[2]" ng-show="modoExibicao()">
-  		<h5>Publicado por <a href="http://{{fonte}}" target="_blank" style="display: inline">{{::fonte}}</a> em <b ng-show="info.datePublished === null">[indisponível]</b>{{::info.datePublished | date:"dd/MM/yyyy 'às' HH'h'mm":'UTC-6'}}  e coletado em {{::info.dateCreated | date:"dd/MM/yyyy 'às' HH'h'mm":'UTC-6'}}</h5>
+  		<h5>Publicado por <a href="http://{{fonte}}" target="_blank" style="display: inline">{{::fonte}}</a> em <b ng-show="info.datePublished === null">[indisponível]</b>{{::info.datePublished | date:"dd/MM/yyyy 'às' HH'h'mm":'UTC-4'}}  e coletado em {{::info.dateCreated | date:"dd/MM/yyyy 'às' HH'h'mm":'UTC-4'}}</h5>
   	</div>
   	<div class="row" ng-show="modoExibicao()">
   		{{::info.description}}
