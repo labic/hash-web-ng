@@ -1,5 +1,7 @@
 <!--  menu topo  -->
 <nav class="navbar navbar-inverse navbar-fixed-top" ng-controller="menuController">
+<a href="#/clipper"><img src="/img/clipper/titulo.png" style="margin-left: 2%; margin-top: 1%;"></a>
+<br><br>
   <div class="container navbar-container">
     <searching> </searching>
   </div>
@@ -7,7 +9,7 @@
 
 <div id="conteudo">
     <!--  blocos de notícias novas  -->
-  <div id="notNovas" ng-controller="gridController" ng-init="limNot = 20; loadData()" >
+  <div id="notNovas" ng-controller="gridController" ng-init="limNot = 20; treatURL()" >
   
     <div class="modal" id="abrirModal">
     <div class="modal-content" align="justify">
@@ -26,19 +28,30 @@
     <!--  ícone fixo para relatório  -->  
     <button style="position:fixed; margin-left: 70%" ng-click="geraRelatorio()"><img src="img/clipper/icon3.PNG" style="height: 50px; width: auto"></button>
 
-      <div ng-repeat="nov in novidades | limitTo:limNot">
-        <section layout="row" layout-align="end" layout-wrap align="end">
+      <div ng-repeat="nov in dados | limitTo:limNot">
+      <!-- seção que aparece no modo de exibição normal -->
+        <section layout="row" layout-align="end" layout-wrap align="end" ng-show="exibirImagem()">
           <input type="checkbox" ng-click="adicionaNoticia(nov)" > 
-          <button ng-click="deletar(nov);novidades.splice($index,1)">&#10060;</button>
+          <button ng-click="deletar(nov);dados.splice($index,1)">&#10060;</button>
         </section>
-        <noticias info='nov' class="row"></noticias>
-        <hr noshade style="width:100%; background-color: #D6D6D6; height: 2px;" ><br>
-      </div>
+        <noticias info='nov' class="row" ng-show="exibirImagem()"></noticias>
 
+      <!-- seção que aparece no modo de exibição lista -->
+        <section layout="row" ng-show="!exibirImagem()">
+        <div class="col-md-11">
+          <label ng-click="showDialog(nov)"><h4><b ng-if="nov.headline === null">[Título indisponível]</b> <b>{{ nov.headline }}</b>&nbsp</h4></label>
+        </div>
+        <div class="col-md-1">
+          <input type="checkbox" ng-click="adicionaNoticia(nov)" > 
+          <button ng-click="deletar(nov);dados.splice($index,1)">&#10060;</button>
+        </div>
+        </section>
+      <hr style="width:100%; top: 9px; position: relative; height: 2px;" >
+      </div>
       <br><br>
       <section layout="row" layout-align="center" layout-wrap align="center">
-        <button ng-click="novidades = loadMore(-1)" style="margin-right: 10px;"> Página anterior </button>
-        <button ng-click="novidades = loadMore(1)" > Página seguinte </button>
+        <button ng-click="loadMore(-1)" style="margin-right: 10px;"> Página anterior </button>
+        <button ng-click="loadMore(+1)" > Página seguinte </button>
         <br><br>
       </section>
   </div>

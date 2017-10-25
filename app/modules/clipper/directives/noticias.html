@@ -16,6 +16,6 @@
   		<b>Tags: </b><input type="button" value="{{:: tag }}" ng-repeat = "tag in info.keywords | limitTo:15" ng-click="quickSearch('tag',tag)" >
   	</div>
 </div>
-<div class="col-md-3" ng-controller="gridController" ng-show="exibirImagem()">
+<div class="col-md-3" ng-controller="gridController">
   <button type="button" style="background:url({{:: info.image }}) center center;background-size: cover; width:100%; height: 25%;" class="thumbnail" ng-click="showDialog(info)"><h4 ng-show="info.image === null">Imagem indisponível</h4></button>
 </div>

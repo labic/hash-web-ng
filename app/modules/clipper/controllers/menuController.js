@@ -1,6 +1,6 @@
 angular
     .module('hash.clipper')
-    .controller('menuController', [ '$scope',  function ($scope) {
+    .controller('menuController', [ '$scope',  function ($scope, $location) {
      
     $scope.mudarExibicao = function () {
       //definir se exibição das notícias será com ou sem imagem
@@ -8,9 +8,17 @@ angular
 
       if(exibicao == 'ComImagens') {
         document.getElementById('exibicao').value ="Lista";
+
       } else {
         document.getElementById('exibicao').value ="ComImagens";
       }
+
+      if ($location.search().length === 0){
+          location.href = window.location.href+'?exibicao='+document.getElementById('exibicao').value;
+        } else if (location.search().exibicao === undefined)
+            location.href = window.location.href+'&exibicao='+document.getElementById('exibicao').value;
+              else location.search.exibicao = document.getElementById('exibicao').value;
+          
     };
 
     $scope.categ = [

@@ -21,10 +21,11 @@ html,body {
   border: 1px gray;
   background-color: #FFFFFF;
   box-shadow: 0 0 5px 5px rgba(0, 0, 0, 0.3);
+  overflow: hidden;
 }
 
 .navbar-fixed-top img {
-  max-width: 80px;
+  max-width: 200px;
   height: 30px;
   width: auto;
   display: block;
@@ -54,6 +55,10 @@ button{
   background-color: transparent;
   border: none;
   outline: none;
+}
+
+#conteudo {
+  overflow:auto;
 }
 
 #notNovas img {

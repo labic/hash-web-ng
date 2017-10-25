@@ -3,6 +3,7 @@ angular
     .controller("gridController", function($scope, $http, $location, Tweet, $filter) { 
 
     $scope.url = 'https://inep-hash-data-api-dev.herokuapp.com/articles';
+    $scope.keywords = [];
     $scope.novidades = [];
     $scope.dados = [];
     $scope.quant = 10;
@@ -10,27 +11,36 @@ angular
     $scope.noticiaSelecionada = [];
     
     //pegando todos os dados
-    $scope.loadData = function() {
+    $scope.loadData = function(keywords) {
         $http({
             url: $scope.url,
             method:'GET',
-            params:{'per_page':$scope.quant}
+            params:{'per_page':$scope.quant,'page':$scope.numPage}
             //cache: true
         })
         .then(function (response) {
             $scope.dados = response.data.data;
-            //verificando modo de exibição
-            if(location.href.indexOf("exibicao=") > -1) {
-                document.getElementById('exibicao').value = location.href.substring(location.href.indexOf("exibicao=")+9,location.href.length);
-                location.href = location.href.substring(0, location.href.indexOf("exibicao=")-1);
-            };
-
-            $scope.treatURL();
         },
         function (err) {
             console.log("Notícia não encontrada");
-            document.getElementById('notNovas').innerHTML ="<h1><b>Erro ao carregar conteúdo</b></h1><br><br><a href='#/clipper'>Atualizar</a>";
+            document.getElementById('notNovas').innerHTML ="<h1><b>Erro ao carregar conteúdo</b></h1><br><br><a href='#/clipper'>Página inicial</a>";
         });
+    };
+
+    $scope.deletar = function(item) {
+        $http({
+            url: 'https://inep-hash-data-api-dev.herokuapp.com/articles/'+item.id,
+            method:'DELETE'
+        })
+        .then(function (response) {
+            console.log('Item deletado com sucesso!');
+        },
+        function (rejection) {
+            console.log("Erro ao deletar arquivo!");
+        });
+
+        $scope.dados.splice($scope.dados.indexOf(item),1);
+
     };
 
     $scope.adicionaNoticia = function (data) {
@@ -82,148 +92,135 @@ angular
 
      //função para carregar mais notícias
     $scope.loadMore = function(offset) {
-        $scope.numPage = $scope.numPage + offset;
 
-        if($scope.numPage < 1)
+        //mudando o numero da pagina
+        $scope.numPage += offset;
+
+        //estamos na primeira página?
+        if($scope.numPage < 1){
             $scope.numPage = 1;
+            return;
+        }
 
-        //load the rest of items       
-        $http({
-            url: $scope.url,
-            method:'GET',
-            params:{'per_page':$scope.quant,'page':$scope.numPage}
-        })
-        .then(function (response) {
+        //para carregar mais páginas, devemos verificar se há filtros ativos e qual a página atual
+        var query = $location.search();
 
-            $scope.dados = mergeArrays($scope.dados,response.data.data);
-            $scope.novidades = response.data.data;
-        },
-        function (err) {
-            //console.log(err);
-        });
+        //quando não existe parametros para considerar
+        if(Object.keys(query).length === 0) {
+            //sei que a pagina eh maior que UM, devo recarregar a pagina com novo numero
 
-        return $scope.novidades;
+            //muda o endereço da pagina à partir do endereço base
+            location.href = window.location.href.split('?')[0]+'?page='+$scope.numPage+'&exibicao='+document.getElementById('exibicao').value;
+            //carrega a página com a nova paginacao
+            location.reload();
+            return;
+        };
+
+        //tenho pesquisa/outra pagina/modo de exibicao para considerar
+        var stringURL='?';
+
+        //verificando modo de exibição
+        if((query.exibicao != undefined)&(query.exibicao != '')) {
+            stringURL = stringURL.concat('exibicao=',query.exibicao,'&');
+        };
+
+        //verificando a pagina pedida
+        if((query.page != undefined)&(query.page != '')) {
+            stringURL = stringURL.concat('page=',$scope.numPage,'&');
+        };
+
+        //verifica a pesquisa por produto
+        if((query.tagP != undefined)&(query.tagP != '')) {
+            stringURL = stringURL.concat('tagP=',query.tagP,'&');
+        }
+
+        //verifica a pesquisa por categoria
+        if((query.tagC1 != undefined)&(query.tagC1 != '')) {
+            stringURL = stringURL.concat('tagC1=',query.tagC1,'&');
+        }
+
+        //verifica a pesquisa por conteúdo
+        if((query.tagC2 != undefined)&(query.tagC2 != '')) {
+            stringURL = stringURL.concat('tagC2=',query.tagC2,'&');
+        }
+
+        //remove o ultimo caractere
+        stringURL = stringURL.substring(0,stringURL.length-1);
+
+        //ja podemos solicitar a nova pagina com os itens filtrados
+        location.href = window.location.href.split('?')[0]+stringURL;
+        //carrega a página com a nova paginacao
+        location.reload();
+
     };
 
     $scope.treatURL = function() {
         var query = $location.search();
         //verifica se existe pesquisa
         if(Object.keys(query).length === 0) {
-            angular.extend($scope.novidades, $scope.dados);
-            return 0;
+            //chama o loadData para pagina 1 sem filtros
+            $scope.loadData('');
+            return;
         };
-        //pegando os valores pro filtro composto
-        filterManager = createFilterManager($scope.dados);
 
-        if((query.pesquisa != undefined)&(query.pesquisa != '')) {
-            // mostrar o que está sendo pesquisado
-            document.getElementById("taggy").value = query.pesquisa;
-        
-            textFilter = {
-                    "attr":"description",  
-                    "type":"text",
-                    "values":query.pesquisa,
-                    "operator":"contains"
-                }
-            addFilter(filterManager,textFilter);
-            $scope.novidades = mergeArrays($scope.novidades,getData(filterManager));
-            removeFilter(filterManager,"description");
+        //verificando modo de exibição
+        // if((query.exibicao != undefined)&(query.exibicao != '')) {
+        //     document.getElementById('exibicao').value = query.exibicao;
+        // };
 
-            textFilter2 = {
-                    "attr":"articleBody",  
-                    "type":"text",
-                    "values":query.pesquisa,
-                    "operator":"contains"
-                }
-            addFilter(filterManager,textFilter2);
-            $scope.novidades = mergeArrays($scope.novidades,getData(filterManager));
-            removeFilter(filterManager,"articleBody");
+        //verificando a pagina pedida
+        if((query.page != undefined)&(query.page != '')) {
+            $scope.numPage = parseInt(query.page);
+        };
 
-            textFilter3 = {
-                    "attr":"headline",  
-                    "type":"text",
-                    "values":query.pesquisa,
-                    "operator":"contains"
-                }
-            addFilter(filterManager,textFilter3);
-            $scope.novidades = mergeArrays($scope.novidades,getData(filterManager));
-            removeFilter(filterManager,"headline");
-            
-            textFilter4 = {
-                    "attr":"keywords",  
-                    "type":"tags",
-                    "values":query.pesquisa
-                }
-            addFilter(filterManager,textFilter4);
-            $scope.novidades = mergeArrays($scope.novidades,getData(filterManager));
-            removeFilter(filterManager,"keywords");
 
-            //falta pesquisar no ID
-            //trocar o array de dados principal pelo filtrado pra continuar a pesquisa
-            filterManager = createFilterManager($scope.novidades);
-        }
+        console.log($scope.numPage);
+        //criando a string de filtros
+        var keywords ='';
 
-         if((query.tagP != undefined)&(query.tagP != '')) {
+        //verifica a pesquisa por produto
+        if((query.tagP != undefined)&(query.tagP != '')) {
             //mostrar valor do produto pesquisado
             document.getElementById("selProd").value = query.tagP;
-        
-            tagFilter1 = {
-                "attr":"keywords",
-                "type":"tags",
-                "values":query.tagP
-            }
-            addFilter(filterManager,tagFilter1);
-            $scope.novidades = mergeArrays($scope.novidades,getData(filterManager));
-            //trocar o array de dados principal pelo filtrado pra continuar a pesquisa
-            filterManager = createFilterManager($scope.novidades);
+            keywords = keywords.concat(query.tagP,',');
         }
 
-         if((query.tagC1 != undefined)&(query.tagC1 != '')) {
+        //verifica a pesquisa por categoria
+        if((query.tagC1 != undefined)&(query.tagC1 != '')) {
             //mostrar valor do categoria pesquisado
             document.getElementById("selCat").value = query.tagC1;
-        
-            tagFilter2 = {
-                "attr":"keywords",
-                "type":"tags",
-                "values":query.tagC1
-            }
-            addFilter(filterManager,tagFilter2);
-            $scope.novidades = mergeArrays($scope.novidades,getData(filterManager));
-            //trocar o array de dados principal pelo filtrado pra continuar a pesquisa
-            filterManager = createFilterManager($scope.novidades);
+            keywords = keywords.concat(query.tagC1,',');
         }
 
-         if((query.tagC2 != undefined)&(query.tagC2 != '')) {
+        //verifica a pesquisa por conteúdo
+        if((query.tagC2 != undefined)&(query.tagC2 != '')) {
             //mostrar valor do conteúdo pesquisado
             document.getElementById("selCont").value = query.tagC2;
-
-            tagFilter3 = {
-                "attr":"keywords",
-                "type":"tags",
-                "values":query.tagC2
-            }
-            addFilter(filterManager,tagFilter3);
-            $scope.novidades = mergeArrays($scope.novidades,getData(filterManager));
-            //trocar o array de dados principal pelo filtrado pra continuar a pesquisa
-            filterManager = createFilterManager($scope.novidades);
+            keywords = keywords.concat(query.tagC2,',');
         }
 
-        if((query.data != undefined)&(query.data != '')) {
-            var dias = query.data.split(',');
+        //falta tratar as datas
+        // if((query.data != undefined)&(query.data != '')) {
+        //     var dias = query.data.split(',');
             
-            dataFilter = {
-                "attr":"datePublished",
-                "type":"data",
-                "values":[],
-                "operator":"between"
-            };
-            //remover o Z do tempo
-            dataFilter["values"][0] = dias[0].substring(0,(dias[0].length-1));
-            dataFilter["values"][1] = dias[1].substring(0,(dias[1].length-1));
-            addFilter(filterManager,dataFilter);
-            angular.extend($scope.novidades, getData(filterManager));
+        //     dataFilter = {
+        //         "attr":"datePublished",
+        //         "type":"data",
+        //         "values":[],
+        //         "operator":"between"
+        //     };
+        //     //remover o Z do tempo
+        //     dataFilter["values"][0] = dias[0].substring(0,(dias[0].length-1));
+        //     dataFilter["values"][1] = dias[1].substring(0,(dias[1].length-1));
+        //     addFilter(filterManager,dataFilter);
+        //     angular.extend($scope.novidades, getData(filterManager));
             
-        } 
+        // } 
+        //remove a última vírgula
+        if (keywords.length > 1)
+            keywords = keywords.substring(0,keywords.length-1);
+
+        $scope.loadData(keywords);
 
     };
 
