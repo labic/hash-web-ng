@@ -1,54 +1,50 @@
 html,body {
-  font-family: helvetica, sans-serif;;
-  background-color: #FFFFFF;
+  font-family: arial, helvetica, sans-serif;;
+  background-color: #F2F2F2;
   border: none;
   width: 100%;
-  color:#0072D4;
+  color:#2B3044;
 }
 
 #conteudo {
-  margin-right: 15%;
-  margin-left: 18%;
+  padding-right: 15%;
+  padding-left: 18%;
+  padding-top: 5%;
   font-size: 15px;
-  background-color: transparent;
+  background-color: #F2F2F2;
 }
 
-.navbar, .navbar-inverse, .navbar-fixed-top {
-  position: sticky;
-  width: auto;
-  height: 20%;
-  z-index: 1;
-  border: 1px gray;
-  background-color: #FFFFFF;
-  box-shadow: 0 0 5px 5px rgba(0, 0, 0, 0.3);
-  overflow: hidden;
+.navbar-fixed-left {
+  width: 15%;
+  padding-top: 10%;
+  position: fixed;
+  height: 100%;
+  background-color: #1DBDD6;
+  box-shadow: 0 0 5px 5px rgba(0, 0, 0, 0.4);
+  text-align: center;
 }
 
-.navbar-fixed-top img {
-  max-width: 200px;
+.navbar-fixed-left img {
+  max-width: 80px;
   height: 30px;
   width: auto;
   display: block;
   margin: auto;
 }
 
-.navbar-fixed-top input{
+.navbar-fixed-left select{
   background-color: transparent;
-  width:40%;
-  outline: none;
-  border-radius: 10px;
-  color: #2B3044;
-  margin-top: 1%;
-  border:2px solid #2B3044;
-  padding: 3px 10px;
-}
-
-.navbar-fixed-top select {
-  background-color: transparent;
-  width:15%;
-  outline: none;
   border: none;
-  color:#4C3FD8;
+  border-bottom:1px solid #2B3044;
+  width:80%;
+  outline: none;
+  cursor:pointer;
+  border-radius: 0;
+  color: #2B3044;
+}
+.navbar-fixed-left option {
+  background: white;
+  color: black;
 }
 
 button{
@@ -57,8 +53,14 @@ button{
   outline: none;
 }
 
-#conteudo {
-  overflow:auto;
+#taggy {
+  margin-top: 3%;
+  background-color: transparent;
+  border: none;
+  border-bottom:1px solid #2B3044;
+  width:75%;
+  outline: none;
+  color:#2B3044;
 }
 
 #notNovas img {
@@ -66,13 +68,13 @@ button{
   height: auto;
 }
 
-#conteudo input {
-  background-color: #CECECE;
+input {
+  background-color: transparent;
   border-radius: 5px;
   outline: none;
   box-shadow: 0;
   border:1px solid #D6D6D6;
-  color:#0072D4;
+  color:#2B3044;
   margin: 10px 5px 0px 0px;
   padding:3px 10px 3px 10px;
 }
@@ -82,6 +84,7 @@ button{
   display: none; /* Hidden by default */
   position: fixed; /* Stay in place */
   z-index: 1; /* Sit on top */
+  padding-top: 5%; /* Location of the box */
   left: 0;
   top: 0;
   width: 100%; /* Full width */
@@ -96,7 +99,6 @@ button{
   background-color: #fefefe;
   margin: auto;
   padding: 20px;
-  margin-top: 15%;
   border: 1px solid #888;
   width: 70%;
   height: auto;

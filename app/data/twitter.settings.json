@@ -1,0 +1,54 @@
+{
+  "keywords": [
+    {
+      "title": "Mídia",
+      "tag": "mídia",
+      "icon": "ICONES-06.svg"
+    },
+    {
+      "title": "Público Geral",
+      "tag": "público geral",
+      "icon": "ICONES-08.svg"
+    },
+    {
+      "title": "INEP",
+      "tag": "inep",
+      "icon": "ICONES-03.svg"
+    },
+    {
+      "title": "Educacional",
+      "tag": "educacional",
+      "icon": "ICONES-07.svg"
+    }
+  ],
+  "components": {
+    "keywords": {
+      "mode": "vertical"
+    }
+  },
+  "period": {
+    "type": "single-option",
+    "values": [
+      {
+        "number": "1",
+        "time": "hora",
+        "value": "1h"
+      },
+      {
+        "number": "6",
+        "time": "horas",
+        "value": "6h"
+      },
+      {
+        "number": "1",
+        "time": "dia",
+        "value": "1d"
+      },
+      {
+        "number": "7",
+        "time": "Dias",
+        "value": "7d"
+      }
+    ]
+  }
+}

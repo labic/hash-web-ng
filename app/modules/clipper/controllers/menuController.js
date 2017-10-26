@@ -1,6 +1,6 @@
 angular
     .module('hash.clipper')
-    .controller('menuController', [ '$scope',  function ($scope, $location) {
+    .controller('menuController', [ '$scope',  function ($scope) {
      
     $scope.mudarExibicao = function () {
       //definir se exibição das notícias será com ou sem imagem
@@ -8,17 +8,10 @@ angular
 
       if(exibicao == 'ComImagens') {
         document.getElementById('exibicao').value ="Lista";
-
       } else {
         document.getElementById('exibicao').value ="ComImagens";
       }
-
-      if ($location.search().length === 0){
-          location.href = window.location.href+'?exibicao='+document.getElementById('exibicao').value;
-        } else if (location.search().exibicao === undefined)
-            location.href = window.location.href+'&exibicao='+document.getElementById('exibicao').value;
-              else location.search.exibicao = document.getElementById('exibicao').value;
-          
+      console.log(document.getElementById('dataIn').value);
     };
 
     $scope.categ = [
@@ -172,7 +165,6 @@ angular
     $scope.filtering = function() {
         var query='?';     //inicio de uma query
         //pegando os valores pro filtro composto
-        var pesquisa = document.getElementById("taggy").value;
         var tempo = document.getElementById("inicioDia").value;
         var categoria = document.getElementById("selCat").value;
         var produto = document.getElementById("selProd").value;
@@ -203,10 +195,7 @@ angular
             query = query.concat('data=',horario,'&');
         };
 
-        if((pesquisa != 'undefined')&(pesquisa != '')){
-            query = query.concat('pesquisa=',pesquisa,'&');
-        };
-
+        
         if(categoria!='undefined'){
             query = query.concat('tagC1=',categoria,'&');
         };

@@ -2,11 +2,11 @@
 
   <div id="div1_monitor" class="str_division">
 
-    <themes-filter options="config.filter.main" filter="filter.theme"></themes-filter>
+    <filter-keywords options="settings.keywords" filter="filter.theme"></filter-keywords>
 
-    <aside id="str_menu_map" ui-view="map"></aside>
+    <aside ng-if="settings.components.map" id="str_menu_map" ui-view="map"></aside>
 
-    <period-filter options="config.filter.period.values" filter="filter.period"></period-filter>
+    <period-filter options="settings.period.values" filter="filter.period"></period-filter>
 
     <div id="str_display_tweet">
       <div class="display_tweet">
@@ -26,12 +26,12 @@
   <div id="div3_monitor" class="str_division">
     <div class="title_str">
       <ul class="title_str_dualOP">
-        <a ui-sref="painel.word">
+        <a ui-sref="twitter.word">
           <li class="title_str_dualOP_1 select_title_division3 firstOpImg">
             <img src='img/icons/PALAVRAS.png' class="icon_menu_top" alt="image">
           </li>
         </a>
-        <a ui-sref="painel.tag">
+        <a ui-sref="twitter.tag">
           <li class="title_str_dualOP_2 select_title_division3">
             <img src='img/icons/HASHTAG.png' class="icon_menu_top" alt="image" height="25px" width="25px">
           </li>
@@ -45,29 +45,29 @@
   <div id="div2_monitor" class="str_division">
     <div class="title_str">
       <ul class="title_str_menu_icon">
-        <li ui-sref="painel.tweet" class="select_title_division2 firstOpCont" title="Retweets">
+        <li ui-sref="twitter.tweet" class="select_title_division2 firstOpCont" title="Retweets">
           <img src='img/twitter/ICONES-09.svg'>
         </li>
-        <li ui-sref="painel.tweetstweets" class="select_title_division2" title="Tweets">
+        <li ui-sref="twitter.tweetstweets" class="select_title_division2" title="Tweets">
           <img src='img/icons/Mosaico.png' class="icon_menu_top" alt="image">
         </li>
-        <li ui-sref="painel.user" class="select_title_division2" title="Top Usuários">
+        <li ui-sref="twitter.user" class="select_title_division2" title="Top Usuários">
           <img src='img/twitter/ICONES-10.svg' class="icon_menu_top" alt="image">
         </li>
-        <li ui-sref="painel.mentions" class="select_title_division2" title="Usuários mencionados">
+        <li ui-sref="twitter.mentions" class="select_title_division2" title="Usuários mencionados">
           <img src='img/twitter/ICONES-12.svg' class="icon_menu_top" alt="image">
         </li>
-        <li ui-sref="painel.url" class="select_title_division2" title="Top Links">
+        <li ui-sref="twitter.url" class="select_title_division2" title="Top Links">
           <img src='img/twitter/ICONES-13.svg' class="icon_menu_top" alt="image">
         </li>
-<!--
-        <li ui-sref="painel.img" class="select_title_division2" title="Imagens">
+        <!--
+        <li ui-sref="twitter.img" class="select_title_division2" title="Imagens">
           <img src='img/twitter/ICONES-11.svg' class="icon_menu_top" alt="image">
         </li>
-        <li ui-sref="painel.mosaico" id="select_imgMosaico" class="select_title_division2" ng-click="filter.time = '7d'" title="Mosaico">
+        <li ui-sref="twitter.mosaico" id="select_imgMosaico" class="select_title_division2" ng-click="filter.time = '7d'" title="Mosaico">
           <img src='img/icons/Mosaico.png' class="icon_menu_top" alt="image">
         </li>
--->
+        -->
       </ul>
     </div>
 

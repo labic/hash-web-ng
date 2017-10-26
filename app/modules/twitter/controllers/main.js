@@ -1,11 +1,10 @@
 'use strict';
 
 /* NOTA: MONITOR - CONTROLLER */
-hash.controller('mainMonitor', function ($scope, $http, settings, MetricsTwitter, AnalyticsTwitter, WordTwitter, Tweet, WORD_API_BASE_URI) {
+hash.controller('mainMonitor', function ($scope, $http, settings, MetricsTwitter, 
+                                         AnalyticsTwitter, WordTwitter, Tweet, WORD_API_BASE_URI) {
 
-  $scope.config = {
-    filter: settings.get('twitter.filters')
-  };
+  $scope.settings = settings.get('twitter');
 
   // Variavel para inicializar o watch, quando esta falso executa um if com a inicialização da tela.
   var firstRun = false;
@@ -20,8 +19,8 @@ hash.controller('mainMonitor', function ($scope, $http, settings, MetricsTwitter
 
   // Filter: Filtro para preencher post de requisição API RPS
   $scope.filter = {
-    theme: $scope.config.filter.main[1].tag,
-    period: $scope.config.filter.period.values[1].value,
+    theme: $scope.settings.keywords[1].tag,
+    period: $scope.settings.period.values[1].value,
     category: undefined,
     word: undefined,
     hashTag: undefined,
@@ -117,18 +116,18 @@ hash.controller('mainMonitor', function ($scope, $http, settings, MetricsTwitter
   };
 
   $scope.functionWord = function(period, theme, category, location){
-
-    var monitorLinkWord =  WORD_API_BASE_URI+'/twitter/top_words?filter='+$scope.analyticsWordCloud;
     var cloudWidth = $("#div3_monitor").width();
-
     $scope.loading('TwitterTopWords','wordCloud');
 
-    $http.get(monitorLinkWord).success(function (data) {
-      data != '' ? $scope.sucess('TwitterTopWords','wordCloud') : $scope.empty('TwitterTopWords'); 
-      plotWordCloud(cloudWidth,330,"wordCloud",data); //(width,heigth,divId,url)
-    }).error(function(data, status) {
-      $scope.error('TwitterTopWords');
-    });
+    WordTwitter.mostRecurrentWords(
+      $scope.analyticsParams,
+      function(data) {
+        data != '' ? $scope.sucess('TwitterTopWords','wordCloud') : $scope.empty('TwitterTopWords');  
+        plotWordCloud(cloudWidth, 330, 'wordCloud', data); 
+      },
+      function(data, status) {
+        $scope.error('TwitterTopWords');
+      })
   };
 
   $scope.functionTopTags = function(period,theme){
@@ -168,8 +167,7 @@ hash.controller('mainMonitor', function ($scope, $http, settings, MetricsTwitter
       });
   };
   
-  
-$scope.functionConteudoTweets = function(){
+  $scope.functionConteudoTweets = function(){
     $scope.loading('TwitterPosts','painel-posts-list');
 
     Tweet.find(
@@ -197,7 +195,6 @@ $scope.functionConteudoTweets = function(){
   };  
 
   $scope.functionMention = function(){
-
     $scope.loading('TwitterPosts','str_TwitterMentions');
 
     AnalyticsTwitter.mostMentionedUsers(
@@ -211,7 +208,6 @@ $scope.functionConteudoTweets = function(){
   };
 
   $scope.functionUrl = function(){
-
     $scope.loading('TwitterPosts','str_TwitterUrl');
 
     AnalyticsTwitter.mostRecurringUrls(
@@ -343,57 +339,6 @@ $scope.functionConteudoTweets = function(){
     $scope.analyticsMap = JSON.stringify($scope.filterAnalyticsWord(period, word, tag, theme, category, location));
   }
 
-  // Função usada para carregar mais tweets
-  //  $scope.loadMore = function(x) {
-  //    $scope.countpage = x + $scope.countpage;
-  //
-  //    var nskip = $scope.countpage * 24;
-  //    var nlimit = $scope.countpage * 24 + 24;
-  //
-  //    if(turn == "tweet"){
-  //      $scope.analyticsParams = {
-  //        period: $scope.filter.period,
-  //        'filter[with_tags]': [$scope.filter.theme],
-  //        'filter[hashtags]': [],
-  //        retrive_blocked: undefined,
-  //        page: 1,
-  //        per_page: nlimit
-  //      }
-  //
-  //      functionConteudo($scope.filter.period, $scope.filter.theme, undefined, undefined, undefined, undefined, nlimit, 0);
-  //
-  //    }else if(turn == "word"){
-  //
-  //      functionConteudo($scope.filter.period, $scope.filter.theme, undefined, undefined, $scope.filter.word, undefined, nlimit, 0);
-  //
-  //    }else if(turn == "tag"){
-  //
-  //      $scope.analyticsParams = {
-  //        period: $scope.filter.period,
-  //        'filter[with_tags]': [$scope.filter.theme],
-  //        'filter[hashtags]': [$scope.filter.tag],
-  //        retrive_blocked: undefined,
-  //        page: 1,
-  //        per_page: nlimit
-  //      }
-  //
-  //      functionConteudo($scope.filter.period, $scope.filter.theme, undefined, undefined, undefined, $scope.filter.tag, nlimit, 0);
-  //
-  //    }else if(turn == "category"){
-  //
-  //      $scope.analyticsParams = {
-  //        period: $scope.filter.period,
-  //        'filter[with_tags]': [$scope.filter.theme, $scope.filter.category],
-  //        'filter[hashtags]': [],
-  //        retrive_blocked: undefined,
-  //        page: 1,
-  //        per_page: nlimit
-  //      }
-  //
-  //      functionConteudo($scope.filter.period, $scope.filter.theme, $scope.filter.category, undefined, undefined, undefined, nlimit, 0);
-  //    }
-  //  };
-
   // Função que carrega os contadores de Tweets e Imagens
   $scope.loadContadores = function(period,theme){
     Tweet.count({
@@ -412,7 +357,8 @@ $scope.functionConteudoTweets = function(){
     });
   };
 
-  $scope.setAnalyticsParam($scope.filter.period, $scope.filter.theme, undefined, undefined, undefined, undefined);
+  $scope.setAnalyticsParam($scope.filter.period, $scope.filter.theme, 
+                           undefined, undefined, undefined, undefined);
 
   // Quando o filtro mudar...
   $scope.$watch('filter', function (newFilter, oldFilter) {

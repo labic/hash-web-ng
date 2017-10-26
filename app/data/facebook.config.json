@@ -18,21 +18,17 @@
     }
   ],
   "actors": [{
-      "title": "Institucional",
-      "tag": "institucional",
+      "title": "Mídia",
+      "tag": "mídia",
+      "icon": "FACEBOOK-01.svg"
+    },{
+      "title": "INEP",
+      "tag": "inep",
       "icon": "FACEBOOK-03.svg"
     },{
-      "title": "Educação Básica",
-      "tag": "educação básica",
+      "title": "Educacional",
+      "tag": "educacional",
       "icon": "FACEBOOK-05.svg"
-    },{
-      "title": "Enem",
-      "tag": "enem",
-      "icon": "FACEBOOK-04.svg"
-    },{
-      "title": "Mídia",
-      "tag": "categoria-midia",
-      "icon": "FACEBOOK-01.svg"
     }],
   "period": {
     "type": "single-option",

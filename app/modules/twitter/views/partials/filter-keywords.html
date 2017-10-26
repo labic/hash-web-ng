@@ -1,0 +1,10 @@
+<div>
+<br>
+  <div ng-repeat="option in options"
+    class="facebook-actors-each"
+    ng-class="{selected: filter==option.tag}"
+    ng-click="setFilter(option, $event,true)">
+    <img src="img/twitter/{{option.icon}}" class="svg-icon facebook-actors-each-image">
+    <p>{{option.title}}</p>
+  </div>
+</div>
