@@ -54,20 +54,21 @@ html,body {
 
 .navbar-fixed-top input{
   background-color: transparent;
-  width:40%;
+  width:80%;
   outline: none;
   border-radius: 10px;
   color: #2B3044;
-  margin-top: 1%;
-  border:2px solid #2B3044;
+  border:1px solid #2B3044;
   padding: 3px 10px;
 }
 
 .navbar-fixed-top select {
   background-color: transparent;
-  width:15%;
+  width:90%;
   outline: none;
-  border: none;
+  border: 1px solid #2B3044;
+  border-radius: 10px;
+  padding: 3px 10px;
   color:#4C3FD8;
 }
 

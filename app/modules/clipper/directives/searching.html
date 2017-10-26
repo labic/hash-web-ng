@@ -1,9 +1,44 @@
 <div class="row">
-  <div class="col-md-5" style="margin-left: 30px;">
+<!-- mudar exibicao -->
+  <div class="col-md-2" style="margin-left: 3%;">
     <button value="ComImagens" ng-click = "mudarExibicao()" id="exibicao"><h5>Modo de exibição</h5></button>
   </div>
-  <div class="col-md-6">
-    <button ><h5>Mostrar filtros</h5></button>
+  <!-- data inicial -->
+  <div class="col-md-2">
+    Início: <input type="date" placeholder="dd/mm/aaaa"><br>
+    Fim:&nbsp&nbsp&nbsp&nbsp<input type="date" placeholder="dd/mm/aaaa">
+  </div>
+  <!-- produtos -->
+  <div class="col-md-2" layout="row" layout-align="start center">
+    <select id="selProd" class="selectpicker" data-style="btn-primary">
+      <option style="display:none;" value="undefined">Produto</option>
+      <optgroup ng-repeat="produto in prod" label="{{produto.label}}">
+      <option ng-repeat="item in produto.submenu" value="{{item}}">{{item}}</option>          
+      </optgroup> 
+   </select>
+  </div>
+  <!-- categorias -->
+  <div class="col-md-2" layout="column" layout-align="start center">
+    <select id="selCat" class="selectpicker" data-style="btn-primary">
+      <option style="display:none;" value="undefined">Categoria</option>
+      <option ng-repeat="cat in categ" value="{{cat.label}}">{{cat.label}}</option>  
+    </select>
+  </div>
+  <!-- conteudos -->
+  <div class="col-md-2" layout="column" layout-align="start center">
+    <select id="selCont" class="selectpicker" data-style="btn-primary">
+      <option style="display:none;" value="undefined">Conteúdo</option>
+      <option ng-repeat="conteudo in tipoCont" value="{{conteudo.label}}">{{conteudo.label}}</option>  
+    </select>
+  </div>
+  <!-- limpar filtros -->
+  <div class="col-md-1" layout="column" layout-align="start center">
+    <button onclick="#/clipper" type="submit"><img src="img/clipper/limpar.png">
+      </button>
+  </div>
+  <!-- espaço final -->
+  <div class="col-md-1">
+
   </div>
 </div>
 
@@ -34,23 +69,7 @@
     <option style="display:none;" value="undefined">Hora</option>
     <option ng-repeat="hora in horas" value="{{hora}}">{{hora}}</option>  
   </select>
-
-<select id="selProd" class="selectpicker" data-style="btn-primary">
-  <option style="display:none;" value="undefined">Produto</option>
-  <optgroup ng-repeat="produto in prod" label="{{produto.label}}">
-  <option ng-repeat="item in produto.submenu" value="{{item}}">{{item}}</option>          
-  </optgroup> 
- </select>
-<select id="selCat" class="selectpicker" data-style="btn-primary">
-  <option style="display:none;" value="undefined">Categoria</option>
-  <option ng-repeat="cat in categ" value="{{cat.label}}">{{cat.label}}</option>  
-</select>
-<select id="selCont" class="selectpicker" data-style="btn-primary">
-  <option style="display:none;" value="undefined">Conteúdo</option>
-  <option ng-repeat="conteudo in tipoCont" value="{{conteudo.label}}">{{conteudo.label}}</option>  
-</select>
-<button><a href="#/clipper" onclick="window.location.reload(true);"><img src="img/clipper/limpar.png"></a></button> -->
-<!-- <div layout="row" align="center">
-      <button ng-click="filtering()"><img src="img/clipper/filtrar.png">
-      </button>
+<button><a href="#/clipper" onclick="window.location.reload(true);"><img src="img/clipper/limpar.png"></a></button>
+<div layout="row" align="center">
+      
     </div> -->
