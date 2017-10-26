@@ -1,16 +1,18 @@
 html,body {
   font-family: helvetica, sans-serif;;
-  background-color: #FFFFFF;
+  background-color: #F2F2F2;
   border: none;
   width: 100%;
   color:#0072D4;
 }
 
 #conteudo {
-  margin-right: 15%;
-  margin-left: 18%;
+  margin-right: 5%;
+  margin-left: 5%;
   font-size: 15px;
-  background-color: transparent;
+  background-color: white;
+  padding:2% 10% 0% 10%;
+  box-shadow: 0 0 5px 5px rgba(0, 0, 0, 0.1);
   /*overflow-y: auto;*/
 }
 
@@ -35,13 +37,15 @@ html,body {
 
 .navbar, .navbar-inverse, .navbar-fixed-top {
   position: sticky;
-  width: auto;
+  margin: 1% 0 2% 5%;
+  width: 90%;
   height: 20%;
   z-index: 1;
   border: 1px gray;
   background-color: #FFFFFF;
-  box-shadow: 0 0 5px 5px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 0 5px 5px rgba(0, 0, 0, 0.1);
   overflow: hidden;
+  color:#28A0F9;
 }
 
 .navbar-fixed-top img {
@@ -56,9 +60,9 @@ html,body {
   background-color: transparent;
   width:80%;
   outline: none;
-  border-radius: 10px;
-  color: #2B3044;
-  border:1px solid #2B3044;
+  border: none;
+  color:#004C84;
+  border-bottom: 1px solid #2B3044;
   padding: 3px 10px;
 }
 
@@ -66,10 +70,10 @@ html,body {
   background-color: transparent;
   width:90%;
   outline: none;
-  border: 1px solid #2B3044;
-  border-radius: 10px;
+  border: none;
+  border-bottom: 1px solid #2B3044;
   padding: 3px 10px;
-  color:#4C3FD8;
+  color:#004C84;
 }
 
 button{
@@ -134,7 +138,7 @@ button{
 
 
 .col-md-9 label:hover{
-  color: #000;
+  color: #004C84;
   text-decoration: none;
   cursor: pointer;
 }

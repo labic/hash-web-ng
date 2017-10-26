@@ -17,7 +17,7 @@ angular
                   location.href = window.location.href.replace('Lista','ComImagens');
                 };
     };
-    
+
     $scope.atualiza = function (tipo, valor) {
 
       //primeira pesquisa
@@ -40,7 +40,8 @@ angular
 
       switch(tipo) {
         case 'tagP':
-              query = query.replace($location.search().tagP,valor.toLowerCase());              break;
+              query = query.replace($location.search().tagP,valor.toLowerCase());
+              break;
         case 'tagC1':
               query = query.replace($location.search().tagC1,valor.toLowerCase());
               break;
