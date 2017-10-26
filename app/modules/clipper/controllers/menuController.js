@@ -1,17 +1,21 @@
 angular
     .module('hash.clipper')
-    .controller('menuController', [ '$scope',  function ($scope) {
+    .controller('menuController', [ '$scope','$location', function ($scope, $location) {
      
     $scope.mudarExibicao = function () {
       //definir se exibição das notícias será com ou sem imagem
-      var exibicao = document.getElementById('exibicao').value;
-
-      if(exibicao == 'ComImagens') {
-        document.getElementById('exibicao').value ="Lista";
-      } else {
-        document.getElementById('exibicao').value ="ComImagens";
-      }
-      console.log(document.getElementById('dataIn').value);
+      
+      if(Object.keys($location.search()).length === 0) {
+        //temos que adicionar o parametro de lista na pagina
+        location.href = window.location.href + '?exibicao=Lista';
+      } else if($location.search().exibicao === undefined) {
+                location.href = window.location.href + '&exibicao=Lista';
+          } else if ($location.search().exibicao === 'ComImagens') {
+            //substituir apenas o modo de exibicao
+                location.href = window.location.href.replace('ComImagens','Lista');
+              } else {
+                  location.href = window.location.href.replace('Lista','ComImagens');
+                };
     };
 
     $scope.categ = [
@@ -165,6 +169,7 @@ angular
     $scope.filtering = function() {
         var query='?';     //inicio de uma query
         //pegando os valores pro filtro composto
+        var pesquisa = document.getElementById("taggy").value;
         var tempo = document.getElementById("inicioDia").value;
         var categoria = document.getElementById("selCat").value;
         var produto = document.getElementById("selProd").value;
@@ -195,7 +200,10 @@ angular
             query = query.concat('data=',horario,'&');
         };
 
-        
+        if((pesquisa != 'undefined')&(pesquisa != '')){
+            query = query.concat('pesquisa=',pesquisa,'&');
+        };
+
         if(categoria!='undefined'){
             query = query.concat('tagC1=',categoria,'&');
         };
