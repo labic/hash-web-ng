@@ -17,6 +17,42 @@ angular
                   location.href = window.location.href.replace('Lista','ComImagens');
                 };
     };
+    
+    $scope.atualiza = function (tipo, valor) {
+
+      //primeira pesquisa
+      if(Object.keys($location.search()).length === 0) {
+        //temos que adicionar o parametro de lista na pagina
+        location.href = window.location.href + '?'+tipo+'='+valor.toLowerCase();
+        location.reload();
+      }
+
+      //existe outra pesquisa
+      var query = '?'+ window.location.href.split('?')[1];
+
+      //nao existe aquela pesquisa
+      if(query.indexOf(tipo) < 1) {
+        query = query.concat('&'+tipo+'='+valor.toLowerCase());
+        //temos que adicionar o parametro de lista na pagina
+        location.href = window.location.href.split('?')[0] + query;
+        location.reload();
+      }
+
+      switch(tipo) {
+        case 'tagP':
+              query = query.replace($location.search().tagP,valor.toLowerCase());              break;
+        case 'tagC1':
+              query = query.replace($location.search().tagC1,valor.toLowerCase());
+              break;
+        case 'tagC2':
+              query = query.replace($location.search().tagC2,valor.toLowerCase());
+              break;
+      }
+
+        location.href = window.location.href.split('?')[0] + query;
+        location.reload();
+
+    };
 
     $scope.categ = [
      {

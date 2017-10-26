@@ -10,8 +10,8 @@
   </div>
   <!-- produtos -->
   <div class="col-md-2" layout="row" layout-align="start center">
-    <select id="selProd" class="selectpicker" data-style="btn-primary">
-      <option style="display:none;" value="undefined">Produto</option>
+    <select ng-model="produtoSelecionado" class="selectpicker" ng-change="atualiza('tagP',produtoSelecionado)" selectedOption=''>
+      <option style="display:none;" value=''>Produto</option>
       <optgroup ng-repeat="produto in prod" label="{{produto.label}}">
       <option ng-repeat="item in produto.submenu" value="{{item}}">{{item}}</option>          
       </optgroup> 
@@ -19,22 +19,22 @@
   </div>
   <!-- categorias -->
   <div class="col-md-2" layout="column" layout-align="start center">
-    <select id="selCat" class="selectpicker" data-style="btn-primary">
-      <option style="display:none;" value="undefined">Categoria</option>
+    <select ng-model="categoriaSelecionado" class="selectpicker" ng-change="atualiza('tagC1',categoriaSelecionado)" selectedOption=''>
+      <option style="display:none;" value="">Categoria</option>
       <option ng-repeat="cat in categ" value="{{cat.label}}">{{cat.label}}</option>  
     </select>
   </div>
   <!-- conteudos -->
   <div class="col-md-2" layout="column" layout-align="start center">
-    <select id="selCont" class="selectpicker" data-style="btn-primary">
-      <option style="display:none;" value="undefined">Conteúdo</option>
+    <select ng-model="conteudoSelecionado" class="selectpicker" ng-change="atualiza('tagC2',conteudoSelecionado)" selectedOption=''>
+      <option style="display:none;" value="">Conteúdo</option>
       <option ng-repeat="conteudo in tipoCont" value="{{conteudo.label}}">{{conteudo.label}}</option>  
     </select>
   </div>
   <!-- limpar filtros -->
   <div class="col-md-1" layout="column" layout-align="start center">
-    <button onclick="#/clipper" type="submit"><img src="img/clipper/limpar.png">
-      </button>
+    <a href="#/clipper"><button type="submit"><img src="img/clipper/limpar.png">
+      </button></a>
   </div>
   <!-- espaço final -->
   <div class="col-md-1">
