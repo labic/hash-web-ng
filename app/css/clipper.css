@@ -27,7 +27,7 @@ html,body {
   padding:3px 10px 3px 10px;
 }
 
-#conteudo h3 { color:#0072D4; }
+#conteudo h3, .col-md-11 h4 { color:#0072D4; }
 #conteudo h5 { color:#5D5D5D; }
 
 #paginaNoticia img {

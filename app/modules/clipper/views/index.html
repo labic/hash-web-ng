@@ -38,7 +38,7 @@
         <section layout="row" ng-show="!exibirImagem()">
         <div class="col-md-11">
           <a href="#/clipper/noticia?id={{::nov.id}}" target="_blank" style="display: inline">
-          <h3 ng-show="nov.headline === null">[Título indisponível]</h3><h3>{{:: nov.headline }}</h3></a>
+          <h4 ng-show="nov.headline === null">[Título indisponível]</h4><h4>{{:: nov.headline }}</h4></a>
         </div>
         <div class="col-md-1">
           <input type="checkbox" ng-click="adicionaNoticia(nov)" > 
