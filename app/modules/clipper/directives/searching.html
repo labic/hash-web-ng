@@ -1,13 +1,13 @@
 <div class="row">
 <!-- mudar exibicao -->
-  <div class="col-md-2" style="margin-left: 3%;">
+  <div class="col-md-3" style="margin-left: 3%;">
     <button ng-click = "mudarExibicao()" id="exibicao"><h5>Mudar tipo de exibição</h5></button>
   </div>
   <!-- data inicial -->
-  <div class="col-md-2">
+  <!-- <div class="col-md-2">
     Início: <input type="date" placeholder="dd/mm/aaaa" disabled><br>
     Fim:&nbsp&nbsp&nbsp&nbsp<input type="date" placeholder="dd/mm/aaaa" disabled>
-  </div>
+  </div> -->
   <!-- produtos -->
   <div class="col-md-2" layout="row" layout-align="start center">
     <select ng-model="produtoSelecionado" class="selectpicker" ng-change="atualiza('tagP',produtoSelecionado)" selectedOption=''>
@@ -30,6 +30,9 @@
       <option style="display:none;" value="">Conteúdo</option>
       <option ng-repeat="conteudo in tipoCont" value="{{conteudo.label}}">{{conteudo.label}}</option>  
     </select>
+  </div>
+  <div class="col-md-1">
+
   </div>
   <!-- limpar filtros -->
   <div class="col-md-1" layout="column" layout-align="start center">
