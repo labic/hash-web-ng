@@ -23,8 +23,8 @@
       </script>
     </div>
     </div>
-    <!--  ícone fixo para relatório  -->  
-    <button style="position:fixed; margin-left: 70%" ng-click="geraRelatorio()"><img src="img/clipper/icon3.PNG" style="height: 50px; width: auto"></button>
+    <!--  ícone fixo para relatório  -->
+    <button style="position:fixed; margin-left: 70%;" ng-click="geraRelatorio()"><img src="img/clipper/icon3.PNG" style="height: 50px; width: auto"></button>
 
       <div ng-repeat="nov in dados | limitTo:limNot">
       <!-- seção que aparece no modo de exibição normal -->
@@ -37,7 +37,8 @@
       <!-- seção que aparece no modo de exibição lista -->
         <section layout="row" ng-show="!exibirImagem()">
         <div class="col-md-11">
-          <label ng-click="showDialog(nov)"><h4><b ng-if="nov.headline === null">[Título indisponível]</b> <b>{{ nov.headline }}</b>&nbsp</h4></label>
+          <a href="#/clipper/noticia?id={{::nov.id}}" target="_blank" style="display: inline">
+          <h3 ng-show="nov.headline === null">[Título indisponível]</h3><h3>{{:: nov.headline }}</h3></a>
         </div>
         <div class="col-md-1">
           <input type="checkbox" ng-click="adicionaNoticia(nov)" > 

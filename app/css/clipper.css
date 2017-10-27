@@ -3,7 +3,7 @@ html,body {
   background-color: #F2F2F2;
   border: none;
   width: 100%;
-  color:#0072D4;
+  color: black;
 }
 
 #conteudo {
@@ -26,6 +26,9 @@ html,body {
   margin: 10px 5px 0px 0px;
   padding:3px 10px 3px 10px;
 }
+
+#conteudo h3 { color:#0072D4; }
+#conteudo h5 { color:#5D5D5D; }
 
 #paginaNoticia img {
   max-width: 60%;
@@ -105,7 +108,7 @@ button{
   background-color: #fefefe;
   margin: auto;
   padding: 20px;
-  margin-top: 15%;
+  margin-top: 10%;
   border: 1px solid #888;
   width: 70%;
   height: auto;
@@ -137,7 +140,7 @@ button{
 }
 
 
-.col-md-9 label:hover{
+.col-md-3 label:hover{
   color: #004C84;
   text-decoration: none;
   cursor: pointer;

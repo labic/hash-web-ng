@@ -67,7 +67,7 @@
     left:0;
     height: 100%;
     width: 60px;
-    background-color: #2b3044;
+    background-color: #004D85;
     z-index: 7;
     box-shadow: 3px 0px 3px 0px rgba(0, 0, 0, 0.47);
     position: absolute;
@@ -75,7 +75,7 @@
 
     .menu_logo{
       height: 50px;
-      background: #283c47;
+      background: #004D85;
       padding-top:15px;
     }
 
@@ -157,7 +157,7 @@
         }
 
         .icon-menu-monitor{
-          fill: #1c5e6e;
+          fill: white;
           width: 20px ;
           height: 20px ;
         }
