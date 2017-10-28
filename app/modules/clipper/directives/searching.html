@@ -1,16 +1,28 @@
 <div class="row">
 <!-- mudar exibicao -->
-  <div class="col-md-3" style="margin-left: 3%;">
-    <button ng-click = "mudarExibicao()" id="exibicao"><h5>Mudar tipo de exibição</h5></button>
+  <div class="col-md-1">
   </div>
   <!-- data inicial -->
-<!--   <div class="col-md-2">
-    
-    <input type="datetime-local" placeholder="Início"><br>
-    <input type="datetime-local" placeholder="Fim">
-  </div> -->
+  <div class="col-md-3">
+    <div class="col-sm-6">
+        <div class='input-group date' id='datetimepicker1'>
+            <input type='text' placeholder="Data inicial" class="form-control" />
+            <span class="input-group-addon">
+                <span class="glyphicon glyphicon-calendar"></span>
+            </span>
+        </div>
+    </div>
+    <div class="col-sm-6">
+        <div class='input-group date' id='datetimepicker2'>
+            <input type='text' placeholder="Data final" class="form-control" />
+            <span class="input-group-addon">
+                <span class="glyphicon glyphicon-calendar"></span>
+            </span>
+        </div>
+    </div>
+  </div>
   <!-- produtos -->
-  <div class="col-md-2" layout="row" layout-align="start center">
+  <div class="col-md-2">
     <select ng-model="produtoSelecionado" class="selectpicker" ng-change="atualiza('tagP',produtoSelecionado)" selectedOption=''>
       <option style="display:none;" value=''>Produto</option>
       <optgroup ng-repeat="produto in prod" label="{{produto.label}}">
@@ -19,32 +31,37 @@
    </select>
   </div>
   <!-- categorias -->
-  <div class="col-md-2" layout="column" layout-align="start center">
+  <div class="col-md-2">
     <select ng-model="categoriaSelecionado" class="selectpicker" ng-change="atualiza('tagC1',categoriaSelecionado)" selectedOption=''>
       <option style="display:none;" value="">Categoria</option>
       <option ng-repeat="cat in categ" value="{{cat.label}}">{{cat.label}}</option>  
     </select>
   </div>
   <!-- conteudos -->
-  <div class="col-md-2" layout="column" layout-align="start center">
+  <div class="col-md-2">
     <select ng-model="conteudoSelecionado" class="selectpicker" ng-change="atualiza('tagC2',conteudoSelecionado)" selectedOption=''>
       <option style="display:none;" value="">Tipo de mídia</option>
       <option ng-repeat="conteudo in tipoCont" value="{{conteudo.label}}">{{conteudo.label}}</option>  
     </select>
   </div>
-  <div class="col-md-1">
 
-  </div>
   <!-- limpar filtros -->
-  <div class="col-md-1" layout="column" layout-align="start center">
+  <div class="col-md-2" layout-align="start center">
     <a href="#/clipper" onclick="javascript: window.location.reload(true);"><button><b><font color="D33B33">LIMPAR FILTROS</font></b>
       </button></a>
   </div>
   <!-- espaço final -->
-  <div class="col-md-1">
 
-  </div>
-
+  <script>
+      $(function () {
+          $('#datetimepicker1').datetimepicker({
+            format: 'DD/MM/YY HH:mm'
+          });
+          $('#datetimepicker2').datetimepicker({
+            format: 'DD/MM/YY HH:mm'
+          });
+      });
+  </script>
 </div>
 
 <!-- <div class="row">
