@@ -55,6 +55,10 @@ angular
 
     };
 
+    $scope.select = function (tipo) {
+
+    };
+
     $scope.categ = [
      {
       label:'Educação Básica'

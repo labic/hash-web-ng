@@ -4,9 +4,10 @@
     <button ng-click = "mudarExibicao()" id="exibicao"><h5>Mudar tipo de exibição</h5></button>
   </div>
   <!-- data inicial -->
-  <!-- <div class="col-md-2">
-    Início: <input type="date" placeholder="dd/mm/aaaa" disabled><br>
-    Fim:&nbsp&nbsp&nbsp&nbsp<input type="date" placeholder="dd/mm/aaaa" disabled>
+<!--   <div class="col-md-2">
+    
+    <input type="datetime-local" placeholder="Início"><br>
+    <input type="datetime-local" placeholder="Fim">
   </div> -->
   <!-- produtos -->
   <div class="col-md-2" layout="row" layout-align="start center">
@@ -27,7 +28,7 @@
   <!-- conteudos -->
   <div class="col-md-2" layout="column" layout-align="start center">
     <select ng-model="conteudoSelecionado" class="selectpicker" ng-change="atualiza('tagC2',conteudoSelecionado)" selectedOption=''>
-      <option style="display:none;" value="">Conteúdo</option>
+      <option style="display:none;" value="">Tipo de mídia</option>
       <option ng-repeat="conteudo in tipoCont" value="{{conteudo.label}}">{{conteudo.label}}</option>  
     </select>
   </div>
@@ -43,6 +44,7 @@
   <div class="col-md-1">
 
   </div>
+
 </div>
 
 <!-- <div class="row">

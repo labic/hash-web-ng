@@ -18,7 +18,9 @@
   "dependencies": {
     "angular-moment": "^1.0.1",
     "bower": "^1.8.0",
-    "express": "^4.13.4"
+    "datetimepicker": "^0.1.38",
+    "express": "^4.13.4",
+    "jquery-datetimepicker": "^2.5.11"
   },
   "devDependencies": {
     "browser-sync": "^2.11.1",

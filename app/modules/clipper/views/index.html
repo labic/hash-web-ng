@@ -29,8 +29,8 @@
       <div ng-repeat="nov in dados | limitTo:limNot">
       <!-- seção que aparece no modo de exibição normal -->
         <section layout="row" layout-align="end" layout-wrap align="end" ng-show="exibirImagem()">
-          <input type="checkbox" ng-click="adicionaNoticia(nov)" > 
-          <button ng-click="deletar(nov);dados.splice($index,1)">&#10060;</button>
+          <input type="checkbox" ng-click="adicionaNoticia(nov)" title="Adicionar ao relatório" > 
+          <button ng-click="deletar(nov);dados.splice($index,1)" title="Excluir notícia">&#10060;</button>
         </section>
         <noticias info='nov' class="row" ng-show="exibirImagem()"></noticias>
 
