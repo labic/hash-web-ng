@@ -221,10 +221,14 @@ angular
 
     //função para pesquisa do input e das tags
     $scope.quickSearch = function(parametro) {
-        var exibicao = document.getElementById('exibicao').value;
-        var complemento = '?tagP='+parametro+'&exibicao='+exibicao;
+        var exibicao = "&exibicao=ComImagens";
+        //pegar parametro de exibicao
+        if(($location.search().exibicao != undefined)&($location.search().exibicao != '')) {
+            exibicao = '&exibicao='+$location.serach().exibicao;
+        };
+
         //muda o endereço da pagina à partir do endereço base
-        location.href = window.location.href.split('?')[0]+complemento;
+        location.href = window.location.href.split('?')[0]+'?tagP='+parametro+exibicao;
         //carrega a página com a pesquisa
         location.reload();
     };
