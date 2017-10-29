@@ -36,6 +36,11 @@ angular
     };
 
     $scope.deletar = function(item) {
+        var r = confirm("Tem certeza que quer deletar a notícia?");
+        if (r === false) {
+            return;
+        } 
+
         $http({
             url: 'https://inep-hash-data-api-dev.herokuapp.com/articles/'+item.id,
             method:'DELETE'
