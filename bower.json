@@ -15,7 +15,7 @@
     "tests"
   ],
   "dependencies": {
-    "angular": "angularjs#1.4.0-beta.1",
+    "angular": "~1.5.0",
     "angular-bootstrap": "~0.14.0",
     "angular-fx": "~1.1.0",
     "angular-resource": "~1.4.7",
@@ -38,8 +38,7 @@
     "underscore": "~1.8.3",
     "angular-google-maps": "~2.3.2",
     "lodash": "~4.6.1",
-    "SVG-Loaders": "https://github.com/SamHerbert/SVG-Loaders.git#1.0.2",
-    "eonasdan-bootstrap-datetimepicker": "^4.17.47"
+    "SVG-Loaders": "https://github.com/SamHerbert/SVG-Loaders.git#1.0.2"
   },
   "overrides": {
     "angular": {
