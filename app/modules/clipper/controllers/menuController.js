@@ -20,6 +20,39 @@ angular
 
     $scope.atualiza = function (tipo, valor) {
 
+      //tratar data primeiro
+      if(tipo === 'data') {
+          var inicio = document.getElementById("picker1").value;
+          var fim = document.getElementById("picker2").value;
+
+          //nao ha pesquisa
+          if(Object.keys($location.search()).length === 0) {
+            //temos que adicionar o parametro de lista na pagina
+            location.href = window.location.href + '?'+tipo+'='+inicio+'/'+fim;
+            location.reload();
+          }
+
+          //existe outra pesquisa
+          var query = '?'+ window.location.href.split('?')[1];
+
+          //nao existe aquela pesquisa
+          if(query.indexOf(tipo) < 1) {
+            query = query.concat('&'+tipo+'='+inicio+'/'+fim);
+            //temos que adicionar o parametro de lista na pagina
+            location.href = window.location.href.split('?')[0] + query;
+            location.reload();
+          }
+          //existe aquela pesquisa
+          else {
+            query = query.replace($location.search().data,inicio+'/'+fim);
+          }
+
+        location.href = window.location.href.split('?')[0] + query;
+        location.reload();
+      };
+
+
+
       //primeira pesquisa
       if(Object.keys($location.search()).length === 0) {
         //temos que adicionar o parametro de lista na pagina

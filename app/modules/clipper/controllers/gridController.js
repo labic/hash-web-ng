@@ -176,39 +176,24 @@ angular
         //verifica a pesquisa por produto
         if((query.tagP != undefined)&(query.tagP != '')) {
             //mostrar valor do produto pesquisado
-            //document.getElementById("selProd").value = query.tagP;
             keywords = keywords.concat(query.tagP,',');
         }
 
         //verifica a pesquisa por categoria
         if((query.tagC1 != undefined)&(query.tagC1 != '')) {
             //mostrar valor do categoria pesquisado
-            //document.getElementById("selCat").value = query.tagC1;
             keywords = keywords.concat(query.tagC1,',');
         }
 
         //verifica a pesquisa por conteúdo
         if((query.tagC2 != undefined)&(query.tagC2 != '')) {
             //mostrar valor do conteúdo pesquisado
-            //document.getElementById("selCont").value = query.tagC2;
             keywords = keywords.concat(query.tagC2,',');
         }
 
-        //falta tratar as datas
         // if((query.data != undefined)&(query.data != '')) {
-        //     var dias = query.data.split(',');
-            
-        //     dataFilter = {
-        //         "attr":"datePublished",
-        //         "type":"data",
-        //         "values":[],
-        //         "operator":"between"
-        //     };
-        //     //remover o Z do tempo
-        //     dataFilter["values"][0] = dias[0].substring(0,(dias[0].length-1));
-        //     dataFilter["values"][1] = dias[1].substring(0,(dias[1].length-1));
-        //     addFilter(filterManager,dataFilter);
-        //     angular.extend($scope.novidades, getData(filterManager));
+        //     //mostrar valor da data pesquisada
+        //     keywords = keywords.concat(query.data,',');
             
         // } 
         //remove a última vírgula

@@ -6,7 +6,7 @@
   <div class="col-md-3">
     <div class="col-sm-6">
         <div class='input-group date' id='datetimepicker1'>
-            <input type='text' placeholder="Data inicial" class="form-control" />
+            <input type='text' placeholder="Data inicial" class="form-control" id="picker1" />
             <span class="input-group-addon">
                 <span class="glyphicon glyphicon-calendar"></span>
             </span>
@@ -14,7 +14,7 @@
     </div>
     <div class="col-sm-6">
         <div class='input-group date' id='datetimepicker2'>
-            <input type='text' placeholder="Data final" class="form-control" />
+            <input type='text' placeholder="Data final" class="form-control"  id="picker2" ng-blur="atualiza('data')" />
             <span class="input-group-addon">
                 <span class="glyphicon glyphicon-calendar"></span>
             </span>
@@ -55,10 +55,10 @@
   <script>
       $(function () {
           $('#datetimepicker1').datetimepicker({
-            format: 'DD/MM/YY HH:mm'
+            format: 'YYYY-MM-DDTHH:mm'
           });
           $('#datetimepicker2').datetimepicker({
-            format: 'DD/MM/YY HH:mm'
+            format: 'YYYY-MM-DDTHH:mm'
           });
       });
   </script>
