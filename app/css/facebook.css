@@ -131,13 +131,13 @@
   width: 100%;
   height: auto;
   float:left;
-  padding: 0 10%;
-  margin: 5px 0px 5px 0px;
+  margin: 0 0 12px 0;
+  border: 1px solid lightgray;
 }
 
 .facebook-post-time{
   width: 100%;
-  font-size:11px;
+  font-size:14px;
   color: #969696;
   float:left;
   padding: 5px;
@@ -151,7 +151,7 @@
 }
 
 .facebook-post-ranking p{
-  font-size: 20px;
+  font-size: 26px;
   font-weight: bold;
   width: 100%;
   text-align: center;
@@ -164,7 +164,7 @@
 }
 
 .facebook-post-text p{
-  font-size: 12px;
+  font-size: 18px;
   height: auto;
   padding: 5px;
 }
@@ -178,7 +178,7 @@ left: 10px;
 */
 
 .facebook-post-verMais{
-  font-size: 10px;
+  font-size: 12px;
   text-align: right;
   cursor:pointer;
   padding: 5px
@@ -199,7 +199,7 @@ left: 10px;
 }
 
 .facebook-post-coment p, .facebook-post-like p{
-  font-size:10px;
+  font-size:16px;
   float: right;
 }
 

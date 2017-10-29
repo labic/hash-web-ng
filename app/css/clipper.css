@@ -12,7 +12,7 @@ html,body {
   font-size: 15px;
   background-color: white;
   padding:2% 10% 0% 10%;
-  box-shadow: 0 0 5px 5px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 0 5px 5px rgba(0, 0, 0, 0.05);
   /*overflow-y: auto;*/
 }
 
@@ -46,7 +46,7 @@ html,body {
   z-index: 1;
   border: 1px gray;
   background-color: #FFFFFF;
-  box-shadow: 0 0 5px 5px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 0 5px 5px rgba(0, 0, 0, 0.05);
   color:#28A0F9;
 }
 
