@@ -224,7 +224,7 @@ angular
         var exibicao = "&exibicao=ComImagens";
         //pegar parametro de exibicao
         if(($location.search().exibicao != undefined)&($location.search().exibicao != '')) {
-            exibicao = '&exibicao='+$location.serach().exibicao;
+            exibicao = '&exibicao='+$location.search().exibicao;
         };
 
         //muda o endereço da pagina à partir do endereço base
