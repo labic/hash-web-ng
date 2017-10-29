@@ -457,9 +457,9 @@
 
       #str_display_tweet{
         margin-top:15px;
-        width: 200px;
-        height: 150px;
-        margin-left: 50px;
+        width: 40%;
+        max-height: 150px;
+        margin-left: 10%;
         float: left;
         display: inline;
         /*
@@ -809,6 +809,7 @@
             background-color: #FFFFFF;
             box-shadow: 0 0 5px 5px rgba(0, 0, 0, 0.05);
             color:#004E80;
+            overflow:auto;
 
             /*width: calc( (100% - 450px) * 0.35);
             height: 100%;

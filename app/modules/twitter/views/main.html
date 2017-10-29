@@ -1,13 +1,15 @@
 <div id="str_main_monitor" class="str_main twitter" ng-controller="mainMonitor">
 
-  <div id="div1_monitor" class="str_division">
-
+  <div id="div1_monitor" class="str_division" style="padding-top: 30px; align-content: center; vertical-align: center;">
+    <div class="row">
+    <div class="col-md-1"></div>
     <filter-keywords options="settings.keywords" filter="filter.theme"></filter-keywords>
 
-    <aside ng-if="settings.components.map" id="str_menu_map" ui-view="map"></aside>
+    <!-- <aside ng-if="settings.components.map" id="str_menu_map" ui-view="map"></aside> -->
 
     <period-filter options="settings.period.values" filter="filter.period"></period-filter>
-
+    </div>
+  </div>
 
   <div id="div4_monitor" class="str_division">
     

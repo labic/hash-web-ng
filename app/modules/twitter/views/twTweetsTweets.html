@@ -22,12 +22,13 @@
       <div class="painel-posts-list-each" ng-repeat="twitte in twittes" >
 
         <img class="painel-posts-list-each-image" src="{{twitte.status.user.profile_image_url_https}}" title="{{twitte.status.user.description}}">
-        <p class="painel-posts-list-each-title">@{{::twitte.status.user.screen_name}}</p>
+        <p class="painel-posts-list-each-title">@{{::twitte.status.user.screen_name}}
+        <label class="painel-posts-list-each-time">PUBLICADO: {{twitte.status.timestamp_ms | date:'HH:mm'}} HS</label></p>
         <p class="painel-posts-list-each-title" ng-if="twitte.count">{{::twitte.count}} RT </p>
         <p class="painel-posts-list-each-title" ng-if="!twitte.count"> </p>
         <p class="painel-posts-list-each-text">
           <a title="Clique para visualizar o retweeter, @{{twitte.status.user.screen_name}}, no Twitter." href="https://twitter.com/{{twitte.status.user.screen_name}}/status/{{twitte.status.id_str}}" target="_blank"> {{twitte.status.text}}</a>
-        <p class="painel-posts-list-each-time">PUBLICADO: {{twitte.status.timestamp_ms | date:'HH:mm'}} HS</p>
+          <hr style="width: 100%; size: 3px; color: lightgray; top: 10px;">
       </div>
 
       <button ng-show="buttonNext" class="result_button result_button_next" ng-click='loadMore(1);'></button>
