@@ -1,12 +1,12 @@
 <div id="str_main_monitor" class="str_main facebook" ng-controller="mainFacebook">
 
-  <div id="div1_monitor" class="str_division" style="padding-top: 30px;">
-
+  <div id="div1_monitor" class="str_division" style="padding-top: 30px; align-content: center;">
+    <div class="row">
+    <div class="col-md-1"></div>
     <fb-actors-filter options="config.filter.actors" filter="filter.actor"></fb-actors-filter>
 
-
     <period-filter type="single-option" options="config.filter.period.values" filter="filter.time"></period-filter>
-
+  </div>
   </div>
 
   <div id="div3_monitor" class="str_division">
@@ -23,6 +23,10 @@
     </div>
 
     <aside id="result_word" ui-view="facebook.word&tag"></aside>
+  </div>
+
+  <div id="div4_monitor" class="str_division">
+
   </div>
 
   <div id="div2_monitor" class="str_division">

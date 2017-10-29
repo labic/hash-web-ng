@@ -1,9 +1,16 @@
-<div>
-  <div ng-repeat="option in options"
+<div class="col-md-5">
+  <!-- <div ng-repeat="option in options"
     class="facebook-actors-each"
     ng-class="{selected: filter==option.tag}"
     ng-click="setFilter(option, $event)">
     <img src="img/facebook/{{option.icon}}" class="svg-icon facebook-actors-each-image">
     <p>{{option.title}}</p>
-  </div>
+  </div> -->
+  	<div ng-repeat="option in options"
+    class="col-md-4 facebook-actors-each"
+    ng-class="{selected: filter==option.tag}"
+    ng-click="setFilter(option, $event)">
+    <!-- <img src="img/facebook/{{option.icon}}" class="svg-icon facebook-actors-each-image">  --><b>{{option.title}}</b>
+    </div>
+
 </div>

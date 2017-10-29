@@ -181,14 +181,24 @@
   }
 
     #div1_monitor{
-      overflow:hidden;
-/*      background-color: #0a1227;*/
+      position: fixed;
+      top:2%;
+      left:8%;
+      right:5%;
+      width: auto;
+      height: 10%;
+      border: 1px gray;
+      background-color: #FFFFFF;
+      box-shadow: 0 0 5px 5px rgba(0, 0, 0, 0.1);
+      color:#28A0F9;
+      display: inline-block;
+      /*overflow:hidden;
       background-color: #2B3044;
       width: 450px;
       z-index: 3;
       -webkit-box-shadow: 3px 0px 3px 0px rgba(0,0,0,0.47);
       -moz-box-shadow: 3px 0px 3px 0px rgba(0,0,0,0.47);
-      box-shadow: 3px 0px 3px 0px rgba(0,0,0,0.47);
+      box-shadow: 3px 0px 3px 0px rgba(0,0,0,0.47);*/
     }
 
     .str_division{
@@ -603,9 +613,18 @@
 /*TODO: DIVISION 2 */
 
     #div2_monitor{
-      width: calc( (100% - 450px) * 0.65);
+      position: fixed;
+      top: 15%;
+      left:40%;
+      width: 55%;
+      height: 82%;
+      border: 1px gray;
+      background-color: #FFFFFF;
+      box-shadow: 0 0 5px 5px rgba(0, 0, 0, 0.1);
+      color:#28A0F9;
+      /*width: calc( (100% - 450px) * 0.65);
       background-color: #f8f9fa;
-      z-index: 1;
+      z-index: 1;*/
 /*
       -webkit-box-shadow: 3px 0px 3px 0px rgba(0,0,0,0.47);
       -moz-box-shadow: 3px 0px 3px 0px rgba(0,0,0,0.47);
@@ -782,16 +801,48 @@
               opacity: 1 !important;
             }
 
+/*TODO: DIVISION 4 */ 
+      #div4_monitor{
+            position: fixed;
+            top: 85%;
+            left:8%;
+            width: 30%;
+            height: 12%;
+            border: 1px gray;
+            background-color: #FFFFFF;
+            box-shadow: 0 0 5px 5px rgba(0, 0, 0, 0.1);
+            color:#28A0F9;
+
+            /*width: calc( (100% - 450px) * 0.35);
+            height: 100%;
+            background-color: #1dbfd8;
+            z-index: 2;
+            -webkit-box-shadow: 3px 0px 3px 0px rgba(0,0,0,0.47);
+            -moz-box-shadow: 3px 0px 3px 0px rgba(0,0,0,0.47);
+            box-shadow: 3px 0px 3px 0px rgba(0,0,0,0.47);*/
+          }
+
+
 /*TODO: DIVISION 3 */
 
     #div3_monitor{
-      width: calc( (100% - 450px) * 0.35);
+      position: fixed;
+      top: 15%;
+      left:8%;
+      width: 30%;
+      height: 66%;
+      border: 1px gray;
+      background-color: #FFFFFF;
+      box-shadow: 0 0 5px 5px rgba(0, 0, 0, 0.1);
+      color:#28A0F9;
+
+      /*width: calc( (100% - 450px) * 0.35);
       height: 100%;
       background-color: #1dbfd8;
       z-index: 2;
       -webkit-box-shadow: 3px 0px 3px 0px rgba(0,0,0,0.47);
       -moz-box-shadow: 3px 0px 3px 0px rgba(0,0,0,0.47);
-      box-shadow: 3px 0px 3px 0px rgba(0,0,0,0.47);
+      box-shadow: 3px 0px 3px 0px rgba(0,0,0,0.47);*/
     }
 
       .title_division{
@@ -1590,11 +1641,12 @@
 
 
 .period-filter__single-option {
-  margin-top:15px;
+  /*margin-top:15px;
+  width: 100%;
   width: auto;
   height: auto;
   display: flex;
-  width: 100%;
+  */
   justify-content: center;
 }
 
@@ -1611,18 +1663,22 @@
 
 .period-filter__single-option input[type="radio"] {
   display: none;
+  border: none;
+  outline: none;
 }
 
 .period-filter__single-option label {
   width: 60px;
   height: 60px;
+  /*
   margin: 6px;
-  border-radius: 60px;
   float: left;
+  padding-top: 10px;*/
+  border-radius: 60px;
   border: 1px solid #fff;
   cursor: pointer;
-  color: #1dbfd8;
-  padding-top: 10px;
+  color: #0072D4;
+  opacity: 0.3;
 }
 
 .period-filter__single-option label p{
@@ -1631,7 +1687,8 @@
 }
 
 .period-filter__single-option label p:first-child{
-  font-size:12px;
+  font-size:18px;
+  text-transform: uppercase;
 }
 
 .period-filter__single-option label p:last-child{
@@ -1641,16 +1698,18 @@
 
 
 .period-filter__single-option input[type="radio"]:checked+label{
-  color: #2b3044;
-  background-color: #1dbfd8;
-  border: 1px solid #1dbfd8;
+  color: #0072D4;
+  background-color: transparent;
+  border: none;
+  outline: none;
+  opacity: 1;
 }
 
-.period-filter__single-option input[type="radio"]:not(:checked):hover+label{
+/*.period-filter__single-option input[type="radio"]:not(:checked):hover+label{
   color: #2b3044;
   background-color: #fff;
   border: 1px solid #fff;
-}
+}*/
 
 .words-module .menu__main-tags {
   border-bottom: 0;

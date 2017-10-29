@@ -70,13 +70,14 @@
 }
 
 .facebook-actors-each{
-  display: table;
+  /*
+  display: inline-table;
   width: 370px;
   height: 70px;
-  margin-left: 40px;
   padding-top: 10px;
-  border-bottom: 3px dashed #426083;
   float:left;
+  margin-left: 40px;
+  border-bottom: 3px dashed #426083;*/
   opacity: 0.3;
   cursor: pointer;
 }
@@ -90,22 +91,23 @@
 }
 
 .facebook-actors-each-image{
-  float:left;
-  fill: #fff;
-  height: 40px;
-  width: 40px;
-  margin: 5px 20px 0px 70px;
+  /*float:left;*/
+  fill: #0072D4;
+  height: 20px;
+  width: 20px;
+  vertical-align: middle;
+  margin: 0px 5px 0px 0px;
 }
 
-.facebook-actors-each p{
-  height: 100%;
-  color:white;
-  width:100%;
+.facebook-actors-each b{
+  color:#0072D4;
   text-transform: uppercase;
-  /*  float:left;*/
+  /*  float:left;
   display: table-cell;
+  width:100%;
+  height: 100%;*/
   vertical-align: middle;
-  font-size: 12px;
+  font-size: 16px;
   font-weight: bold;
 }
 
