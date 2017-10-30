@@ -242,7 +242,7 @@ angular
         //muda o endereço da pagina à partir do endereço base
         location.href = window.location.href.split('?')[0]+'?tagP='+parametro+exibicao;
         //carrega a página com a pesquisa
-        $("#conteudo").load(self);
+        location.reload();
     };
 
 })

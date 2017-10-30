@@ -72,7 +72,7 @@ html,body {
   padding: 3px 10px;
 }*/
 
-button{
+.navbar-fixed-top select {
   background-color: transparent;
   width:100%;
   outline: none;
@@ -84,14 +84,10 @@ button{
   appearance: none; /* Remove estilo padrão do FireFox*/
 }
 
-#taggy {
-  margin-top: 3%;
+button{
   background-color: transparent;
   border: none;
-  border-bottom:1px solid #2B3044;
-  width:75%;
   outline: none;
-  color:#2B3044;
 }
 
 #notNovas img {

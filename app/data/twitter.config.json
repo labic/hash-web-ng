@@ -1,0 +1,45 @@
+{
+  "main": [
+    {
+      "title": "Educação Básica",
+      "tag": "educação básica"
+    },
+    {
+      "title": "Educação Superior",
+      "tag": "educacao superior"
+    },
+    {
+      "title": "Ações Internacionais",
+      "tag": "acoes internacionais"
+    },
+    {
+      "title": "Institucional",
+      "tag": "institucional"
+    }
+  ],
+  "period": {
+    "type": "single-option",
+    "values": [
+      {
+        "number": "1",
+        "time": "hora",
+        "value": "1h"
+      },
+      {
+        "number": "6",
+        "time": "horas",
+        "value": "6h"
+      },
+      {
+        "number": "1",
+        "time": "dia",
+        "value": "1d"
+      },
+      {
+        "number": "7",
+        "time": "Dias",
+        "value": "7d"
+      }
+    ]
+  }
+}
