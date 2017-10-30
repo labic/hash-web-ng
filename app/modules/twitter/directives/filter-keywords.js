@@ -3,9 +3,9 @@
 
   angular
     .module('hash.twitter')
-    .directive('themesFilter', function () {
+    .directive('filterKeywords', function () {
       return {
-        templateUrl: 'modules/twitter/views/partials/themes-filter.html',
+        templateUrl: 'modules/twitter/views/partials/filter-keywords.html',
         restrict: 'E',
         replace: true,
         scope: {

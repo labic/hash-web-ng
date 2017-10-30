@@ -28,9 +28,9 @@
           url: CONFIG.WORD_API_URL + '/twitter/top_words',
           params: {
             'tags[]': [],
-            'period': '1h',
-            'page': 1,
-            'per_page': 25
+            period: '1h',
+            page: 1,
+            per_page: 25
           },
           isArray: true,
           cache: true
@@ -39,12 +39,11 @@
           method: 'GET',
           url: CONFIG.WORD_API_URL + '/twitter/word_posts',
           params: {
-            filter: null
-            // period: null,  // string
-            // tags: [],      // array of string
-            // word: null,    // string
-            // page: null,    // number
-            // per_page: null // number
+            period: null,  // string
+            'tags[]': [],      // array of string
+            word: null,    // string
+            page: null,    // number
+            per_page: null // number
           },
           isArray: true,
           cache: true
@@ -53,12 +52,11 @@
           method: 'GET',
           url: CONFIG.WORD_API_URL + '/twitter/word_images',
           params: {
-            filter: null
-            // period: null,  // string
-            // tags: [],      // array of string
-            // word: null,    // string
-            // page: null,    // number
-            // per_page: null // number
+            period: null,  // string
+            'tags[]': [],      // array of string
+            word: null,    // string
+            page: null,    // number
+            per_page: null // number
           },
           isArray: true,
           cache: true
@@ -68,7 +66,7 @@
           url: CONFIG.WORD_API_URL + '/twitter/map_volume',
           params: {
             period: null, // string
-            tags: [],     // array of string
+            'tags[]': [],     // array of string
             word: null   // string
           },
           isArray: true,
@@ -79,14 +77,14 @@
           method: 'GET',
           url: CONFIG.MANDALA_API_URL + '/twitter/mandala',
           params: {
-            'max_words': 10,
-            'rt': false,
-            'period': '30m',
-            'max_depth': 3,
+            max_words: 10,
+            rt: false,
+            period: '30m',
+            max_depth: 3,
             'tags[]': [],
-            'max_height': 5,
-            'duplicity': false,
-            'repeated_text': false
+            max_height: 5,
+            duplicity: false,
+            repeated_text: false
           },
           isArray: false,
           cache: true
