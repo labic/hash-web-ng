@@ -76,6 +76,8 @@ html,body {
   border-bottom: 1px solid #2B3044;
   padding: 3px 10px;
   color:#004C84;
+  -moz-appearance: none; /* Remove estilo padrão do FireFox */
+  appearance: none; /* Remove estilo padrão do FireFox*/
 }
 
 button{

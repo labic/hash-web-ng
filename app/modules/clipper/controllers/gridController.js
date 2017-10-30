@@ -10,13 +10,23 @@ angular
     $scope.noticiaSelecionada = [];
     
     //pegando todos os dados
-    $scope.loadData = function(keywords) {
+    $scope.loadData = function(keywords,data) {
         var params;
 
         if(keywords.length > 1){
-            params = {'per_page':$scope.quant,'page':$scope.numPage, 'filters[keywords]':keywords};
+            if(data != undefined) {
+                data = data.replace('I','/');
+                params = {'per_page':$scope.quant,'page':$scope.numPage, 'filters[keywords]':keywords, 'filters[datePublished]':data};
+            } else {
+                params = {'per_page':$scope.quant,'page':$scope.numPage, 'filters[keywords]':keywords};
+            }
         } else {
+            if(data != undefined) {
+                data = data.replace('I','/');
+                params = {'per_page':$scope.quant,'page':$scope.numPage, 'filters[datePublished]':data};
+            } else {
             params = {'per_page':$scope.quant,'page':$scope.numPage};
+            }
         };
 
 
@@ -31,7 +41,7 @@ angular
         },
         function (err) {
             console.log("Notícia não encontrada");
-            document.getElementById('notNovas').innerHTML ="<h1><b>Erro ao carregar conteúdo</b></h1><br><br><a href='#/clipper'>Página inicial</a>";
+            document.getElementById('notNovas').innerHTML ="<h1><b>Erro ao carregar conteúdo</b></h1><br><br><a href='#/clipper' onclick='javascript:location.reload();'>Página inicial</a>";
         });
     };
 
@@ -136,6 +146,11 @@ angular
             stringURL = stringURL.concat('exibicao=',query.exibicao,'&');
         };
 
+        //verifica a pesquisa por data
+        if((query.data != undefined)&(query.data != '')) {
+            stringURL = stringURL.concat('data=',query.data,'&');
+        }
+
         //verifica a pesquisa por produto
         if((query.tagP != undefined)&(query.tagP != '')) {
             stringURL = stringURL.concat('tagP=',query.tagP,'&');
@@ -177,6 +192,7 @@ angular
 
         //criando a string de filtros
         var keywords ='';
+        var data ='';
 
         //verifica a pesquisa por produto
         if((query.tagP != undefined)&(query.tagP != '')) {
@@ -196,16 +212,11 @@ angular
             keywords = keywords.concat(query.tagC2,',');
         }
 
-        // if((query.data != undefined)&(query.data != '')) {
-        //     //mostrar valor da data pesquisada
-        //     keywords = keywords.concat(query.data,',');
-            
-        // } 
         //remove a última vírgula
         if (keywords.length > 1)
             keywords = keywords.substring(0,keywords.length-1);
 
-        $scope.loadData(keywords);
+        $scope.loadData(keywords,query.data);
 
     };
 
