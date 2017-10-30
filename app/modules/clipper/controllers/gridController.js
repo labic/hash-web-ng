@@ -110,6 +110,7 @@ angular
         document.getElementById('modalBody').innerHTML ='<a href="'+info.url+'" target="_blank">Ir para a notícia</a><br>' + info.articleBody;
         
         document.getElementById('abrirModal').style.display="block";
+        document.getElementsByClassName('navbar')[0].style.zIndex = '0';
     };
 
      //função para carregar mais notícias

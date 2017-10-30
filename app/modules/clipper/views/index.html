@@ -21,6 +21,7 @@
       // When the user clicks on <span> (x), close the modal
       document.getElementById('fecharModal').onclick = function() {
         document.getElementById('abrirModal').style.display = "none";
+        document.getElementsByClassName('navbar')[0].style.zIndex = '1';
       };
       
       </script>

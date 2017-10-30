@@ -12,6 +12,7 @@ html,body {
   left: 8%;
   top:25%;
   height: 72%;
+  z-index: 0;
   font-size: 15px;
   background-color: white;
   padding:2% 10% 0% 10%;
@@ -42,12 +43,11 @@ html,body {
 }
 
 .navbar, .navbar-inverse, .navbar-fixed-top {
-  position: fixed;
   top: 3%;
   right: 5%;
   left:8%;
   height: 19%;
-  z-index: 0;
+  z-index: 1;
   border: 1px gray;
   background-color: #FFFFFF;
   box-shadow: 0 0 5px 5px rgba(0, 0, 0, 0.05);
