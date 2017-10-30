@@ -34,6 +34,7 @@ angular
             url: $scope.url,
             method:'GET',
             params:params
+            //cache: true
         })
         .then(function (response) {
             $scope.dados = response.data.data;
