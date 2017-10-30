@@ -7,13 +7,16 @@ html,body {
 }
 
 #conteudo {
-  margin-right: 5%;
-  margin-left: 5%;
+  position: fixed;
+  right: 5%;
+  left: 8%;
+  top:25%;
+  height: 72%;
   font-size: 15px;
   background-color: white;
   padding:2% 10% 0% 10%;
   box-shadow: 0 0 5px 5px rgba(0, 0, 0, 0.05);
-  /*overflow-y: auto;*/
+  overflow: auto;
 }
 
 #conteudo input {
@@ -39,11 +42,11 @@ html,body {
 }
 
 .navbar, .navbar-inverse, .navbar-fixed-top {
-  position: sticky;
-  margin: 1% 0 2% 5%;
-  width: 90%;
+  position: fixed;
+  top: 3%;
+  right: 5%;
+  left:8%;
   height: 20%;
-  z-index: 1;
   border: 1px gray;
   background-color: #FFFFFF;
   box-shadow: 0 0 5px 5px rgba(0, 0, 0, 0.05);
