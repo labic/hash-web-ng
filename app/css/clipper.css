@@ -46,7 +46,8 @@ html,body {
   top: 3%;
   right: 5%;
   left:8%;
-  height: 20%;
+  height: 19%;
+  z-index: 0;
   border: 1px gray;
   background-color: #FFFFFF;
   box-shadow: 0 0 5px 5px rgba(0, 0, 0, 0.05);
@@ -97,7 +98,7 @@ button{
 .modal {
   display: none; /* Hidden by default */
   position: fixed; /* Stay in place */
-  z-index: 1; /* Sit on top */
+  z-index: 5; /* Sit on top */
   left: 0;
   top: 0;
   width: 100%; /* Full width */
