@@ -1,16 +1,94 @@
 angular
     .module('hash.clipper')
-    .controller('menuController', [ '$scope',  function ($scope) {
+    .controller('menuController', [ '$scope','$location', function ($scope, $location) {
      
     $scope.mudarExibicao = function () {
       //definir se exibição das notícias será com ou sem imagem
-      var exibicao = document.getElementById('exibicao').value;
+      
+      if(Object.keys($location.search()).length === 0) {
+        //temos que adicionar o parametro de lista na pagina
+        location.href = window.location.href + '?exibicao=Lista';
+      } else if($location.search().exibicao === undefined) {
+                location.href = window.location.href + '&exibicao=Lista';
+          } else if ($location.search().exibicao === 'ComImagens') {
+            //substituir apenas o modo de exibicao
+                location.href = window.location.href.replace('ComImagens','Lista');
+              } else {
+                  location.href = window.location.href.replace('Lista','ComImagens');
+                };
+    };
 
-      if(exibicao == 'ComImagens') {
-        document.getElementById('exibicao').value ="Lista";
-      } else {
-        document.getElementById('exibicao').value ="ComImagens";
+    $scope.atualiza = function (tipo, valor) {
+
+      //tratar data primeiro
+      if(tipo === 'data') {
+          var inicio = document.getElementById("picker1").value;
+          var fim = document.getElementById("picker2").value;
+
+          if((inicio === '')||(fim === ''))
+            return;
+
+          //nao ha pesquisa
+          if(Object.keys($location.search()).length === 0) {
+            //temos que adicionar o parametro de lista na pagina
+            location.href = window.location.href + '?'+tipo+'='+inicio+'I'+fim;
+            location.reload();
+          }
+
+          //existe outra pesquisa
+          var query = '?'+ window.location.href.split('?')[1];
+
+          //nao existe aquela pesquisa
+          if(query.indexOf(tipo) < 1) {
+            query = query.concat('&'+tipo+'='+inicio+'I'+fim);
+            //temos que adicionar o parametro de lista na pagina
+            location.href = window.location.href.split('?')[0] + query;
+            location.reload();
+          }
+          //existe aquela pesquisa
+          else {
+            query = query.replace($location.search().data,inicio+'I'+fim);
+          }
+
+        location.href = window.location.href.split('?')[0] + query;
+        location.reload();
+      };
+
+
+
+      //primeira pesquisa
+      if(Object.keys($location.search()).length === 0) {
+        //temos que adicionar o parametro de lista na pagina
+        location.href = window.location.href + '?'+tipo+'='+valor.toLowerCase();
+        location.reload();
       }
+
+      //existe outra pesquisa
+      var query = '?'+ window.location.href.split('?')[1];
+
+      //nao existe aquela pesquisa
+      if(query.indexOf(tipo) < 1) {
+        query = query.concat('&'+tipo+'='+valor.toLowerCase());
+        //temos que adicionar o parametro de lista na pagina
+        location.href = window.location.href.split('?')[0] + query;
+        location.reload();
+      }
+
+      switch(tipo) {
+        case 'tagP':
+              query = query.replace($location.search().tagP,valor.toLowerCase());
+              break;
+        case 'tagC1':
+              query = query.replace($location.search().tagC1,valor.toLowerCase());
+              break;
+        case 'tagC2':
+              query = query.replace($location.search().tagC2,valor.toLowerCase());
+              break;
+      }
+
+        location.href = window.location.href.split('?')[0] + query;
+        location.reload();
+
     };
 
     $scope.categ = [
@@ -51,7 +129,7 @@ angular
      }
     ];
 
-    $scope.tipoCont = [
+    $scope.tipoMidia = [
      // {
      //  label:'Sites'
      // },
@@ -66,165 +144,40 @@ angular
      }
     ];
 
-    // $scope.alcance = [
-    //  {
-    //   label:'Alcance1'
-    //  },
-    //  {
-    //   label:'Alcance2'
-    //  },
-    //   {
-    //   label:'Alcance3'
-    //  },
-    //   {
-    //   label:'Alcance4'
-    //  },
-    //   {
-    //   label:'Outro'
-    //  }
-    // ];
-
-    // $scope.regiao = [
-    //  {
-    //   label:'Centro-Oeste'
-    //  },
-    //  {
-    //   label:'Nordeste'
-    //  },
-    //   {
-    //   label:'Norte'
-    //  },
-    //   {
-    //   label:'Sul'
-    //  },
-    //   {
-    //   label:'Sudeste'
-    //  }
-    // ];
-
-    $scope.dias = [1,2,3,4,5,6,7,8,9,10,
-    11,12,13,14,15,16,17,18,19,20,
-    21,22,23,24,25,26,27,28,29,30,31];
-
-    $scope.meses = [
-    {
-      label:'Janeiro',
-      value:0
-    },
-    {
-      label:'Fevereiro',
-      value:1
-    },
-    {
-      label:'Março',
-      value:2
-    },
-    {
-      label:'Abril',
-      value:3
-    },
-    {
-      label:'Maio',
-      value:4
-    },
-    {
-      label:'Junho',
-      value:5
-    },
-    {
-      label:'Julho',
-      value:6
-    },
-    {
-      label:'Agosto',
-      value:7
-    },
-    {
-      label:'Setembro',
-      value:8
-    },
-    {
-      label:'Outubro',
-      value:9
-    },
-    {
-      label:'Novembro',
-      value:10
-    },
-    {
-      label:'Dezembro',
-      value:11
-    }];
-
-    $scope.horas = [0,1,2,3,4,5,6,7,8,9,10,
-    11,12,13,14,15,16,17,18,19,20,21,22,23];
-
-
     //função para o menu de filtros chamar a página
-    $scope.filtering = function() {
-        var query='?';     //inicio de uma query
-        //pegando os valores pro filtro composto
-        var pesquisa = document.getElementById("taggy").value;
-        var tempo = document.getElementById("inicioDia").value;
-        var categoria = document.getElementById("selCat").value;
-        var produto = document.getElementById("selProd").value;
-        var conteudo = document.getElementById("selCont").value;
-        // var alcance = document.getElementById("selAlc").value;
-        //var regiao = document.getElementById("selReg").value;
-
-        // tratando cada valor obtido pra inserir um filtro
-        if(tempo != 'undefined'){
-            //temos na variável 'tempo' o dia de referência
-            var horario ='';
-            var dInicio = new Date();
-            var dFim = new Date();
-            
-
-            //tratando a hora e minutos
-            dInicio.setDate(document.getElementById("inicioDia").value);
-            dInicio.setHours(document.getElementById("inicioHora").value);
-            dInicio.setMonth(document.getElementById("inicioMes").value);
-            dInicio.setMinutes(0);
-
-            dFim.setDate(document.getElementById("fimDia").value);
-            dFim.setHours(document.getElementById("fimHora").value);
-            dFim.setMonth(document.getElementById("fimMes").value);
-            dFim.setMinutes(0);
-
-            horario = dInicio.toISOString()+','+dFim.toISOString();
-            query = query.concat('data=',horario,'&');
+    $scope.setValues = function() {
+        var query = $location.search();
+        //verifica se existe pesquisa
+        if(Object.keys(query).length === 0) {
+          //não precisa atualizar nenhum valor de filtro
+            return;
         };
 
-        if((pesquisa != 'undefined')&(pesquisa != '')){
-            query = query.concat('pesquisa=',pesquisa,'&');
+        if((query.data != undefined)&(query.data != '')) {
+            //mostrar valor do produto pesquisado
+            document.getElementById("picker1").value = query.data.split('I')[0];
+            document.getElementById("picker2").value = query.data.split('I')[1];
         };
-
-        if(categoria!='undefined'){
-            query = query.concat('tagC1=',categoria,'&');
-        };
-
-        if(produto!='undefined'){
-            query = query.concat('tagP=',produto,'&');
-        };
-
-        if(conteudo!='undefined'){
-            query = query.concat('tagC2=',conteudo,'&');
-        };
-
-        // if(alcance!='undefined'){
-        //     query = query.concat('alcance=',alcance,'&');
+        
+        // //verifica a pesquisa por produto
+        // if((query.tagP != undefined)&(query.tagP != '')) {
+        //     //mostrar valor do produto pesquisado
+        //     console.log('olá');
+        //     document.getElementById("Produto").value = query.tagP;
+        // };
+        
+        // //verifica a pesquisa por categoria
+        // if((query.tagC1 != undefined)&(query.tagC1 != '')) {
+        //     //mostrar valor do categoria pesquisado
+        //     document.getElementById("Categoria").value = query.tagC1;
+        // };
+       
+        // //verifica a pesquisa por conteúdo
+        // if((query.tagC2 != undefined)&(query.tagC2 != '')) {
+        //     //mostrar valor do conteúdo pesquisado
+        //     document.getElementById("TipoMidia").value = query.tagC2;
         // };
 
-        // if(regiao!='undefined'){
-        //     query = query.concat('tag=',regiao,'&');
-        // };
-
-        //informando o metodo de vizualização
-        query = query.concat('exibicao=',document.getElementById('exibicao').value);
-        //muda o endereço da pagina à partir do endereço base
-        location.href = window.location.href.split('?')[0]+query;
-        //carrega a página com a pesquisa
-        location.reload();
     };
 
     }]);

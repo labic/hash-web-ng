@@ -6,7 +6,7 @@
 
     <meta name="author" content="LABIC">
     <meta name="reply-to" content="ufes.labic@gmail.com">
-
+    
     <!-- other CSS -->
     <link rel="stylesheet" href="bower_components/swipebox/src/css/swipebox.min.css">
     <link rel="stylesheet" href="bower_components/animate.css/animate.min.css" />
@@ -33,10 +33,13 @@
       </div>
       <ul class="menu_fixed">
         <li class="menu_fixed_op">
-          <a ui-sref="twitter"><img src="img/Index/ICONES-01.svg" class="svg-icon icon-menu-monitor" height="20px" width="20px"></a>
+          <a ui-sref="clipper"><img src="img/Index/clipper.png" class="svg-icon icon-menu-monitor" height="20px" width="20px"></a>
         </li>
         <li class="menu_fixed_op">
           <a ui-sref="facebook"><img src="img/Index/ICONES-02.svg" class="svg-icon icon-menu-monitor" height="20px" width="20px"></a>
+        </li>
+        <li class="menu_fixed_op">
+          <a ui-sref="twitter"><img src="img/Index/ICONES-01.svg" class="svg-icon icon-menu-monitor" height="20px" width="20px"></a>
         </li>
         <!-- <li class="menu_fixed_op">
           <a ui-sref="instagram"><img src="img/twitter/ICONES-11.svg" class="svg-icon icon-menu-monitor" height="20px" width="20px"></a>
@@ -47,9 +50,6 @@
         <!-- <li class="menu_fixed_op">
           <a ui-sref="relatorio"><img src="img/Index/esta-01.svg" class="svg-icon icon-menu-monitor" height="20px" width="20px"></a>
         </li> -->
-        <li class="menu_fixed_op">
-          <a ui-sref="clipper"><img src="img/Index/clipper.png" class="svg-icon icon-menu-monitor" height="20px" width="20px"></a>
-        </li>
       </ul>
 
       <div id="menu_logo_down">
@@ -142,7 +142,10 @@
     <script src="modules/clipper/controllers/estruturaNoticia.js"></script>
     <script src="modules/clipper/controllers/menuController.js"></script>
     <script src="modules/clipper/controllers/gridController.js"></script>
-    <script src="modules/clipper/controllers/filters.js"></script>   <script src="modules/clipper/directives/searching.js"></script>
+    <script src="modules/clipper/controllers/filters.js"></script>
+    <script src="modules/clipper/controllers/Moment.js"></script>
+    <script src="modules/clipper/controllers/bootstrap-datetimepicker.min.js"></script>
+    <script src="modules/clipper/directives/searching.js"></script>
     <script src="modules/clipper/directives/noticias.js"></script>
 
     <script src="js/wordCloud.js"></script>
@@ -184,8 +187,8 @@
 
       callSvgImg();
       $(".menu_fixed_op").click(function(){
-        $(".icon-menu-monitor").css('fill','#1c5e6e');
-        $(this).find(".icon-menu-monitor").css('fill','#06ccd7');
+        $(".icon-menu-monitor").css('fill','white');
+        $(this).find(".icon-menu-monitor").css('fill','white');
 
         $(".menu_fixed_op").removeClass('changed');
         $(this).addClass('changed');

@@ -1,21 +1,21 @@
-<div class="col-md-3" ng-controller="gridController" ng-show="modoExibicao()">
-	<button type="button" style="background:url({{:: info.image }}) center center;background-size: cover; width:100%; height: 25%;" class="thumbnail" ng-click="showDialog(info)"><h4 ng-show="info.image === null">Imagem indisponível</h4></button>
-</div>
-<div class="col-md-9" ng-controller="gridController">
+<div class="col-md-9" ng-controller="gridController" style="padding-right: 10%;">
   	<div class="row">
-      <label ng-click="showDialog(info)"><h4 ng-show="info.headline === null">[Título indisponível]</h4><h4><b>{{:: info.headline }}</b>&nbsp</h4></label>
+      <a href="#/clipper/noticia?id={{::info.id}}" target="_blank" style="display: inline">
+      <h3 ng-show="info.headline === null">[Título indisponível]</h3><h3>{{:: info.headline }}</h3></a>
   	</div>
-    <div class="row" ng-show="modoExibicao()">
-      <h5>Link: <a href="#/clipper/noticia?id={{::info.id}}" target="_blank" style="display: inline">https://inep-hash-web-ng-dev.herokuapp.com/#/clipper/noticia?id={{::info.id}}</a></h5>
+    <div class="row">
+      <h4>{{::info.description}}</h4>
     </div>
-  	<div class="row" ng-init="fonte = info.url.split('/')[2]" ng-show="modoExibicao()">
+  	<div class="row" ng-init="fonte = info.url.split('/')[2]">
   		<h5>Publicado por <a href="http://{{fonte}}" target="_blank" style="display: inline">{{::fonte}}</a> em <b ng-show="info.datePublished === null">[indisponível]</b>{{::info.datePublished | date:"dd/MM/yyyy 'às' HH'h'mm":'UTC-4'}}  e coletado em {{::info.dateCreated | date:"dd/MM/yyyy 'às' HH'h'mm":'UTC-4'}}</h5>
   	</div>
-  	<div class="row" ng-show="modoExibicao()">
-  		{{::info.description}}
+  	<div class="row">
+  		<input type="button" value="{{:: tag }}" ng-repeat = "tag in info.keywords | limitTo:15" ng-click="quickSearch(tag)" >
   	</div>
-  	<br>
-  	<div class="row" ng-show="modoExibicao()">
-  		<b>Tags: </b><input type="button" value="{{:: tag }}" ng-repeat = "tag in info.keywords | limitTo:15" ng-click="quickSearch('tag',tag)" >
-  	</div>
+</div>
+<div class="col-md-3" ng-controller="gridController">
+  <button type="button" style="background:url({{:: info.image }}) center center;background-size: cover; width:100%; height: 25%;" class="thumbnail" ng-click="showDialog(info)"><h4 ng-show="info.image === null">Imagem indisponível</h4></button>
+      <div layout-align="start" layout-wrap align="end">
+      <label><h5  ng-click="showDialog(info)">Pré-visualizar</h5></label>
+    </div>
 </div>

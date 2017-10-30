@@ -1,24 +1,16 @@
-<!--  menu lateral  -->
-<div class="navbar-fixed-left" ng-controller="menuController">
-  <!---p class="news" ng-click="plusOne($index)"> {{news}}</p!--> 
-  <button value="ComImagens" ng-click = "mudarExibicao()" id="exibicao"><h5>Mudar exibição</h5></button>
-  <br><br><br>
-    <section layout="row" layout-align="left" layout-wrap style=" display: inline-block;">
-        <searching> </searching>
-    </section>
-    <!--  buttons da esquerda -->
-    <section layout="row" layout-align="center" layout-wrap align="center">
-      <button><a href="#/clipper" onclick="window.location.reload(true);"><img src="img/clipper/limpar.png"></a>
-      </button>
-      <button ng-click="filtering()"><img src="img/clipper/filtrar.png">
-      </button>
+<!--  menu topo  -->
+<nav class="navbar navbar-inverse navbar-fixed-top" ng-controller="menuController">
+<a href="#/clipper" onclick="javascript: window.location.reload(true);"><img src="/img/clipper/titulo.png" style="margin-left: 2%; margin-top: 1%;"></a>
+<br>
+<div class="row">
+  <button  style="margin-left: 3%;" ng-click = "mudarExibicao()" id="exibicao"><h5>Mudar tipo de exibição</h5></button>
 </div>
+    <searching> </searching>
+</nav>
 
 <div id="conteudo">
-  <img src="img/clipper/title.PNG" style="height: 45px; width: auto">
-  <br><br><br>
-  <!--  blocos de notícias novas  -->
-  <div id="notNovas" ng-controller="gridController" ng-init="limNot = 20; loadData()" >
+    <!--  blocos de notícias novas  -->
+  <div id="notNovas" ng-controller="gridController" ng-init="limNot = 20; treatURL()" >
   
     <div class="modal" id="abrirModal">
     <div class="modal-content" align="justify">
@@ -29,25 +21,41 @@
       // When the user clicks on <span> (x), close the modal
       document.getElementById('fecharModal').onclick = function() {
         document.getElementById('abrirModal').style.display = "none";
+        document.getElementsByClassName('navbar')[0].style.zIndex = '1';
       };
       
       </script>
     </div>
     </div>
-    <!--  ícone fixo para relatório  -->  
-    <button style="position:fixed; float: left; margin-left: 70%; margin-top: -5%; z-index: 0;" ng-click="geraRelatorio()"><img src="img/clipper/icon3.PNG" style="height: 50px; width: auto"></button>
+    <!--  ícone fixo para relatório  -->
+    <button style="position:fixed; margin-left: 70%;" ng-click="geraRelatorio()"><img src="img/clipper/icon3.PNG" style="height: 50px; width: auto"></button>
 
-      <div ng-repeat="nov in novidades | limitTo:limNot">
-        <section layout-align="end" layout-wrap align="end">
-          <input type="checkbox" ng-click="adicionaNoticia(nov)" > 
-          <button ng-click="deletar(nov);novidades.splice($index,1)">&#10060;</button>
+      <div ng-repeat="nov in dados | limitTo:limNot">
+      <!-- seção que aparece no modo de exibição normal -->
+        <section layout="row" layout-align="end" layout-wrap align="end" ng-show="exibirImagem()">
+          <input type="checkbox" ng-click="adicionaNoticia(nov)" title="Adicionar ao relatório" > 
+          <button ng-click="deletar(nov)" title="Excluir notícia">&#10060;</button>
         </section>
-        <noticias info='nov' class="row"></noticias>
-      </div>
+        <noticias info='nov' class="row" ng-show="exibirImagem()"></noticias>
 
+      <!-- seção que aparece no modo de exibição lista -->
+        <section layout="row" ng-show="!exibirImagem()">
+        <div class="col-md-11">
+          <a href="#/clipper/noticia?id={{::nov.id}}" target="_blank" style="display: inline">
+          <h4 ng-show="nov.headline === null">[Título indisponível]</h4><h4>{{:: nov.headline }}</h4></a>
+        </div>
+        <div class="col-md-1">
+          <input type="checkbox" ng-click="adicionaNoticia(nov)" > 
+          <button ng-click="deletar(nov);dados.splice($index,1)">&#10060;</button>
+        </div>
+        </section>
+      <hr style="width:100%; top: 9px; position: relative; height: 2px;" >
+      </div>
       <br><br>
       <section layout="row" layout-align="center" layout-wrap align="center">
-        <button ng-click="limNot = limNot + 20; loadMore()" > Carregar mais </button>
+        <button ng-click="loadMore(-1)" style="margin-right: 10px;"> Página anterior </button>
+        <button ng-click="loadMore(+1)" > Página seguinte </button>
+        <br><br>
       </section>
       <br>
   </div>

@@ -1,12 +1,70 @@
-<form ng-submit="quickSearch('pesquisa')" ng-controller="gridController">
-    <input defaultValue="undefined" type="text" id="taggy" ng-model="query" placeholder="Pesquisar por...">
-</form>
-<br>
-<label>Horários</label>
-<br>
 <div class="row">
-<div class="col-md-6">
-  <h5>Início:</h5>
+<!-- mudar exibicao -->
+  <div class="col-md-1">
+  </div>
+  <!-- data inicial -->
+  <div class="col-md-3">
+    <div class="col-sm-6">
+        <div class='input-group date' id='datetimepicker1'>
+            <input type='text' placeholder="Data inicial" class="form-control" id="picker1" ng-blur="atualiza('data')" />
+            <span class="input-group-addon">
+                <span class="glyphicon glyphicon-calendar"></span>
+            </span>
+        </div>
+    </div>
+    <div class="col-sm-6">
+        <div class='input-group date' id='datetimepicker2'>
+            <input type='text' placeholder="Data final" class="form-control"  id="picker2" ng-blur="atualiza('data')" />
+            <span class="input-group-addon">
+                <span class="glyphicon glyphicon-calendar"></span>
+            </span>
+        </div>
+    </div>
+  </div>
+  <!-- produtos -->
+  <div class="col-md-2">
+    <select ng-model="produtoSelecionado" id="Produto" ng-change="atualiza('tagP',produtoSelecionado)" selectedOption=''>
+      <option style="display:none;" value=''>Produto</option>
+      <optgroup ng-repeat="produto in prod" label="{{produto.label}}">
+      <option ng-repeat="item in produto.submenu" value="{{item.toLowerCase()}}">{{item}}</option>          
+      </optgroup> 
+   </select>
+  </div>
+  <!-- categorias -->
+  <div class="col-md-2">
+    <select ng-model="categoriaSelecionado" id="Categoria" ng-change="atualiza('tagC1',categoriaSelecionado)" selectedOption=''>
+      <option style="display:none;" value="">Categoria</option>
+      <option ng-repeat="cat in categ" value="{{cat.label.toLowerCase()}}">{{cat.label}}</option>  
+    </select>
+  </div>
+  <!-- conteudos -->
+  <div class="col-md-2">
+    <select ng-model="midiaSelecionada" id="TipoMidia" ng-change="atualiza('tagC2',midiaSelecionada)" selectedOption=''>
+      <option style="display:none;" value="">Tipo de mídia</option>
+      <option ng-repeat="midia in tipoMidia" value="{{midia.label.toLowerCase()}}">{{midia.label}}</option>  
+    </select>
+  </div>
+
+  <!-- limpar filtros -->
+  <div class="col-md-2" layout-align="start center" ng-init="setValues()">
+    <a href="#/clipper" onclick="javascript: window.location.reload(true);"><button><b><font color="D33B33">LIMPAR FILTROS</font></b>
+      </button></a>
+  </div>
+  <!-- espaço final -->
+
+  <script>
+      $(function () {
+          $('#datetimepicker1').datetimepicker({
+            format: 'YYYY-MM-DDTHH:mm'
+          });
+          $('#datetimepicker2').datetimepicker({
+            format: 'YYYY-MM-DDTHH:mm'
+          });
+      });
+  </script>
+</div>
+
+<!-- <div class="row">
 
   <select id="inicioDia">
     <option style="display:none;" value="undefined">Dia</option>
@@ -41,37 +99,7 @@
     <option style="display:none;" value="undefined">Hora</option>
     <option ng-repeat="hora in horas" value="{{hora}}">{{hora}}</option>  
   </select>
-</div>
-</div>
-<br>
-<!-- <select id="selData">
-  <option style="display:none;" value="undefined">Horários</option>
-  <option ng-repeat="tempo in ultHora" value="{{tempo.label}}">{{tempo.label}}</option>  
-</select> -->
-<select id="selProd">
-  <option style="display:none;" value="undefined">Produto</option>
-  <optgroup ng-repeat="produto in prod" label="{{produto.label}}">
-  <option ng-repeat="item in produto.submenu" value="{{item}}">{{item}}</option>          
-  </optgroup> 
- </select>
- <br><br>
-<select id="selCat">
-  <option style="display:none;" value="undefined">Categoria</option>
-  <option ng-repeat="cat in categ" value="{{cat.label}}">{{cat.label}}</option>  
-</select>
-<br><br>
-<select id="selCont">
-  <option style="display:none;" value="undefined">Conteúdo</option>
-  <option ng-repeat="conteudo in tipoCont" value="{{conteudo.label}}">{{conteudo.label}}</option>  
-</select>
-<br><br>
-<!-- <select id="selAlc">
-  <option style="display:none;" value="undefined">Alcance</option>
-  <option ng-repeat="alc in alcance" value="{{alc.label}}">{{alc.label}}</option>  
-</select>
-<br><br> -->
-<!-- <select id="selReg">
-  <option style="display:none;" value="undefined">Região</option>
-  <option ng-repeat="reg in regiao" value="{{reg.label}}">{{reg.label}}</option>  
-</select>
-<br><br> --><br>
+<button><a href="#/clipper" onclick="window.location.reload(true);"><img src="img/clipper/limpar.png"></a></button>
+<div layout="row" align="center">
+      
+    </div> -->
