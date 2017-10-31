@@ -39,7 +39,7 @@ hash.controller('mainFacebook', function ($scope, $http, settings, MetricsFacebo
       'page': 1,
       'per_page': 25
     }, function (data){
-      data != '' ? $scope.sucess('FacebookPosts','facebookPosts') : $scope.empty('FacebookPosts');  
+      data != '' ? $scope.sucess('FacebookPosts','facebookPosts') : $scope.empty('FacebookPosts');
       $scope.posts = data;
     }, function (error){
       $scope.error('FacebookPosts');
@@ -59,7 +59,7 @@ hash.controller('mainFacebook', function ($scope, $http, settings, MetricsFacebo
       'page': 1,
       'per_page': 50
     }, function (data){
-      data != '' ? $scope.sucess('FacebookTopWords','wordCloud') : $scope.empty('FacebookTopWords');  
+      data != '' ? $scope.sucess('FacebookTopWords','wordCloud') : $scope.empty('FacebookTopWords');
       plotWordCloud(cloudWidth,330,"wordCloud",data);
     }, function (error){
       $scope.error('FacebookTopWords');
@@ -83,7 +83,7 @@ hash.controller('mainFacebook', function ($scope, $http, settings, MetricsFacebo
 
   // Request: AnalyticsFacebook.mostRecurringHashtags
   $scope.replyTopHashtags = function(time,type,actor){
-    
+
     $scope.loading('FacebookTopHashTags','str_hashTag');
 
     AnalyticsFacebook.mostRecurringHashtags({
@@ -147,7 +147,7 @@ hash.controller('mainFacebook', function ($scope, $http, settings, MetricsFacebo
       }
     }
   },true);
-  
+
   /*************** Funções de tratamento ***************/
 
   $scope.loading = function(divId,divResult){
@@ -155,20 +155,20 @@ hash.controller('mainFacebook', function ($scope, $http, settings, MetricsFacebo
     $("#error"+divId).hide();
     $("#empty"+divId).hide();
     $("#"+divResult).hide();
-  } 
+  }
 
   $scope.sucess = function(divId,divResult){
     $("#loading"+divId).hide();
     $("#"+divResult).show();
-  } 
+  }
 
   $scope.empty = function(divId){
     $("#loading"+divId).hide();
     $("#empty"+divId).show();
-  }  
+  }
 
   $scope.error = function(divId){
     $("#loading"+divId).hide();
     $("#error"+divId).show();
-  } 
+  }
 });
