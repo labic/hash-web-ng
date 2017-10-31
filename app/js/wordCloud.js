@@ -1,4 +1,4 @@
-var fill = ["#ffffff","#2b3044"];
+var fill = ["#798281","#4C7F9F"];
 var w;
 var id;
 var h;
