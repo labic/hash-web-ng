@@ -3,10 +3,12 @@ var w;
 var id;
 var h;
 
-function plotWordCloud(width, heigth, divID, data){
-  w = width;
-  id = divID;
-  h = heigth;
+function plotWordCloud(options, data){
+  // width, heigth, divID
+  w = options.width;
+  id = options.divID;
+  h = options.heigth;
+  padding = options.padding || 0
 
   wordMap = data;
 
@@ -16,7 +18,7 @@ function plotWordCloud(width, heigth, divID, data){
     .words(wordMap.map(function(d,i) {
     return {text: d.word, size: sizeScale(d.count)};
   }))
-    .padding(0)
+    .padding(padding)
     .rotate(function() { return 0; })//~~(Math.random() * 2) * 90; })
     .font("Impact")
     .fontSize(function(d) { return d.size; })
