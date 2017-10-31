@@ -89,6 +89,7 @@ angular
         }
         document.getElementById('modalBody').innerHTML = conteudo;
         document.getElementById('abrirModal').style.display="block";
+        document.getElementsByClassName('navbar')[0].style.zIndex = '0';
     
     };
 
