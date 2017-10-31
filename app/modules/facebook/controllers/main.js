@@ -157,7 +157,6 @@ hash.controller('mainFacebook', function ($scope, $http, settings, MetricsFacebo
       }
     }
   }, true);
-
   /*************** Funções de tratamento ***************/
 
   $scope.loading = function (divId, divResult) {
