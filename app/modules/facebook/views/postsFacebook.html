@@ -18,24 +18,41 @@
     </div>
 
     <div id="facebookPosts" class="geralTweets_result">
-
       <div  class="facebook-posts-each" ng-repeat="post in posts" >
-        <p class="facebook-post-time" ng-if="post.created_time_ms == undefined">{{post.created_time | date:'HH:mm - dd/MM/yyyy'}}</p>
-        <p class="facebook-post-time" ng-if="post.created_time_ms != undefined">{{post.created_time_ms | date:'HH:mm - dd/MM/yyyy'}}</p>
-        <div class="facebook-post-text">
-          <p>{{post.message}}</p>
+        <div class="fbHeader">
+          <div class="pagePic">
+            <img width="50px" class="img-circle img-responsive" src="https://scontent.fvix2-2.fna.fbcdn.net/v/t1.0-1/p160x160/22688851_1971900676160657_2579906468150495056_n.jpg?oh=bbaad1fbf8002492971c85dfc9633026&oe=5A73AE47" alt="">
+          </div>
+          <div class="pageInfo">
+            <p>{{post.from.name}}</p>
+            <p class="facebook-post-time" ng-if="post.created_time_ms == undefined">{{post.created_time | date:'HH:mm - dd/MM/yyyy'}}</p>
+            <p class="facebook-post-time" ng-if="post.created_time_ms != undefined">{{post.created_time_ms | date:'HH:mm - dd/MM/yyyy'}}</p>
+          </div>
         </div>
-        <div class="facebook-post-coment">
-<!--           <img src="img/facebook/fac-03.svg"> -->
-          <p>{{post.comments_count}} Comentários</p>
+        <div class="post">
+          <div class="facebook-post-text">
+            <p>{{post.message}}</p>
+          </div>
+          <div class="clearfix"></div>
+          <div class="facebook-post-img">
+            <img width="100%" src="{{post.full_picture}}" alt="">
+            <div class="facebook-post-chamada">
+              <p>{{post.name}}</p>
+              <a class="link" href="{{post.caption}}">{{post.caption}}</a>
+            </div>
+          </div>
+          <div class="facebook-post-coment">
+            <p class="comment">{{post.comments_count}}</p>
+          </div>
+          <div class="facebook-post-like">
+            <!-- <img src="img/facebook/fac-02.svg"> -->
+            <p class="like">{{post.likes_count}}</p>
+          </div>
+          <a href="https://facebook.com/{{post.id}}" target="_blank" style="float: right;"><p class="facebook-post-verMais">VER POST ORIGINAL NO FACEBOOK</p></a>
+        <div class="clearfix"></div>
         </div>
-        <div class="facebook-post-like">
-          <!-- <img src="img/facebook/fac-02.svg"> -->
-          <p>{{post.likes_count}} Curtidas</p>
-        </div>
-        <a href="https://facebook.com/{{post.id}}" target="_blank" style="float: right;"><p class="facebook-post-verMais">VER POST ORIGINAL NO FACEBOOK</p></a>
+        <!--<div class="fbFooter">footer</div>-->
       </div>
-
       <!--      <button ng-show="buttonNext" class="result_button result_button_next" ng-click='loadMore(1);'></button>-->
     </div>
   </div>
