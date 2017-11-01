@@ -89,6 +89,11 @@ hash.controller('mainFacebook', function ($scope, $http, settings, MetricsFacebo
   $scope.replyTopHashtags = function (time, type, actor) {
 
     $scope.loading('FacebookTopHashTags', 'str_hashTag');
+    var options = {
+      'width': $("#div3_monitor").width(),
+      'height': 330,
+      'divID': "wordCloud"
+    }
 
     AnalyticsFacebook.mostRecurringHashtags({
       'period': time,
@@ -98,7 +103,8 @@ hash.controller('mainFacebook', function ($scope, $http, settings, MetricsFacebo
       'per_page': 13
     }, function (data) {
       data != '' ? $scope.sucess('FacebookTopHashTags', 'str_hashTag') : $scope.empty('FacebookTopHashTags');
-      $scope.hashtags = data;
+      // $scope.hashtags = data;
+      plotWordCloud(options, data);
     }, function (error) {
       $scope.error('FacebookTopHashTags');
     });
