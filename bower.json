@@ -38,7 +38,8 @@
     "underscore": "~1.8.3",
     "angular-google-maps": "~2.3.2",
     "lodash": "~4.6.1",
-    "SVG-Loaders": "https://github.com/SamHerbert/SVG-Loaders.git#1.0.2"
+    "SVG-Loaders": "https://github.com/SamHerbert/SVG-Loaders.git#1.0.2",
+    "metrics-graphics": "^2.11.0"
   },
   "overrides": {
     "angular": {
@@ -170,6 +171,7 @@
   },
   "resolutions": {
     "animate.css": "^3.5.1",
-    "angular": "^1.5.0"
+    "angular": "^1.5.0",
+    "d3": ">=4"
   }
 }
