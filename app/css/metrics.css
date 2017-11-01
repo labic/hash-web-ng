@@ -2,3 +2,6 @@
     background: #FFF;
 }
 
+.col-md-5 input[type=radio]{
+	opacity:0
+}
