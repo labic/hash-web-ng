@@ -110,6 +110,21 @@ hash.controller('mainFacebook', function ($scope, $http, settings, MetricsFacebo
     });
   }
 
+  // Request: TopTags = Themes
+  $scope.replyTopTags = function (time, actor) {
+
+    var topTagsLink = "http://107.170.24.135:4025/topTags?rede=facebook&categoria=" + actor + "&period=" + time;
+
+    $scope.loading('FacebookTopTags', 'str_topTags');
+
+    $http.get(topTagsLink).success(function (data) {
+      data != '' ? $scope.sucess('FacebookTopTags', 'str_topTags') : $scope.empty('FacebookTopTags');
+      $scope.themes = data.tags.splice(0, 5);
+    }).error(function (data, status) {
+      $scope.error('FacebookTopTags');
+    });
+  }
+
   // Request: When click on Actor or time
   $scope.loadReplys = function (time, type, actor) {
     $scope.replyPost(time, type, actor, undefined, undefined, undefined);
