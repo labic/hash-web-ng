@@ -5,3 +5,8 @@
 .col-md-5 input[type=radio]{
 	opacity:0
 }
+
+#mg-stats-main text{
+	font-size: 1.5rem;
+	font-family: "Arial"
+}
