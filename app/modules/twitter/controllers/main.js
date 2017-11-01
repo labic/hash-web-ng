@@ -224,8 +224,7 @@ hash.controller('mainMonitor', function ($scope, $http, settings, MetricsTwitter
     var min = d3.min(vetor, function(d){return d.count;});
     var max = d3.max(vetor, function(d){return d.count;});
 
-    var colorScale = d3.scale
-    .linear()
+    var colorScale = d3.scaleLinear()
     .domain([min, max])
     .range([corA, corB]);
 

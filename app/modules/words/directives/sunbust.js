@@ -25,7 +25,7 @@
               height = $("#palavras_div2_sunburstZoom").height(),
               radius = Math.min(width, height) / 2;
 
-          var x = d3.scale.linear().range([0, 2 * Math.PI]),
+          var x = d3.scaleLinear().range([0, 2 * Math.PI]),
               y = d3.scale.pow().exponent(1.3).domain([0, 1]).range([0, radius]),
               padding = 5,
               duration = 1000;
