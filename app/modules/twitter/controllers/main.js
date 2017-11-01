@@ -130,19 +130,6 @@ hash.controller('mainMonitor', function ($scope, $http, settings, MetricsTwitter
       })
   };
 
-  $scope.functionTopTags = function(period,theme){
-
-    var topTagsLink = "http://107.170.24.135:4025/topTags?rede=twitter&categoria="+theme+"&period="+period;
-    $scope.loading('TwitterTopTags','str_topTags');
-
-    $http.get(topTagsLink).success(function (data){
-      data != '' ? $scope.sucess('TwitterTopTags','str_topTags') : $scope.empty('TwitterTopTags'); 
-      $scope.topTags = data.tags.splice(0,5);
-    }).error(function(data, status) {
-      $scope.error('TwitterTopTags');
-    });
-  };
-
   // NOTA: Funções que REALIZAM as requisições
   $scope.functionConteudo = function(){
     var contData;
