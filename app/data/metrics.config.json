@@ -2,14 +2,20 @@
   "period": {
     "values": [
       {
-        "text": "6 horas",
-        "value": "6h"
+        "text": "08:00",
+        "value": "r8h"
       },{
-        "text": "1 dia",
-        "value": "1d"
+        "text": "12:00",
+        "value": "r12h"
       },{
-        "text": "7 dias",
-        "value": "7d"
+        "text": "16:00",
+        "value": "r16h"
+      },{
+        "text": "20:00",
+        "value": "r20h"
+      },{
+        "text": "24 horas",
+        "value": "r24h"
       }
     ]
   },
@@ -24,3 +30,5 @@
     }
   ]
 }
+
+
