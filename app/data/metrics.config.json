@@ -2,15 +2,33 @@
   "period": {
     "values": [
       {
-        "text": "ÚLTIMAS 6 HORAS",
-        "value": "6h"
+        "text": "08:00",
+        "value": "r8h"
       },{
-        "text": "ÚLTIMAS 24 HORAS",
-        "value": "1d"
+        "text": "12:00",
+        "value": "r12h"
       },{
-        "text": "ÚLTIMOS 7 DIAS",
-        "value": "7d"
+        "text": "16:00",
+        "value": "r16h"
+      },{
+        "text": "20:00",
+        "value": "r20h"
+      },{
+        "text": "24 horas",
+        "value": "r24h"
       }
     ]
-  }
+  },
+  "networks":[
+    {
+      "text":"Twitter",
+      "value":"twitter"
+    },
+    { 
+      "text":"Facebook",
+      "value":"facebook"
+    }
+  ]
 }
+
+

@@ -1,0 +1,11 @@
+<form class="period-filter__single-option">
+  <span ng-repeat="option in options">
+    <input id="network-option-{{$index}}"
+      type="radio"
+      name="network"
+      ng-model="filter"
+      ng-click="setFilter($event)"
+      value="{{option.value}}" />
+    <label for="network-option-{{$index}}">{{option.text}}</label>
+  </span>
+</form>

@@ -18,7 +18,7 @@ var hash = angular.module('hash', [
   'INSTAGRAM_API_URL': 'http://107.170.24.135:8081',
   'WORD_API_URL': 'https://inep-hash-word-api-dev.herokuapp.com',
   'MANDALA_API_URL': 'http://107.170.24.135:7070',
-  'HASH_API_URL_V2': 'https://inep-hash-api-js.herokuapp.com/v2'
+  'HASH_API_URL_V2': 'https://inep-hash-api-js.herokuapp.com/v2'  
 });
 
 /* Inicializando tempo de milisegundos */

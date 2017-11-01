@@ -4,65 +4,36 @@ hash.controller('mainMetrics', function ($scope, $http, settings, MetricsFaceboo
   };
 
   $scope.filter = {
-    period: $scope.config.filter.period.values[0].value
+    period: $scope.config.filter.period.values[0].value,
+    network: $scope.config.filter.networks[0].value
   };
 
   $scope.times = $scope.config.filter.period.values;
 
   $scope.$watch('filter', function (newFilter, oldFilter) {
 
-    d3.select("#twitter1").select('svg').remove();
-    d3.select("#twitter2").select('svg').remove();
-    d3.select("#facebook1").select('svg').remove();
-    d3.select("#facebook2").select('svg').remove();
+    d3.select("#mg-stats-main").html("");    
 
-    Tweet.count({
-      'period': newFilter.period,
-      'filter[contain_tags]': []
-    }, function success(res) {
-      $scope.twitterTweets = res.count;
-    });
-
-    Tweet.count({
-      'period': newFilter.period,
-      'filter[contain_tags]': [],
-      'filter[has]': ['media']
-    }, function success(res) {
-      $scope.twitterImage = res.count;
-    });
-
-    FacebookPosts.count({
-      'period': newFilter.period,
-      'profile_type': 'page',
-      'filter[contain_tags]': [],
-    }, function success(res) {
-      $scope.facebookPosts = res.count;
-    });
-
-    FacebookPosts.count({
-      'period': newFilter.period,
-      'profile_type': 'page',
-      'filter[contain_tags]': [],
-      'filter[types]':['photo']
-    }, function success(res) {
-      $scope.facebookImage = res.count;
-    });
-
-    $scope.functionStatistics(newFilter.period);
+    $scope.functionStatistics(newFilter.period, newFilter.network);
   },true);
 
-  $scope.functionStatistics = function(period){
+  $scope.functionStatistics = function(period,network){
 
-    var statisticsURL = 'http://107.170.24.135:8090/estatisticas/'+period;
-    var paramTime;
+    var statisticsURL = 'http://192.168.1.101:8090/estatisticas/' + period;        
 
-    period == '7d' ? paramTime = 7 : paramTime = 1;
+    console.log(statisticsURL);
+    console.log(network);
+    
 
     $http.get(statisticsURL).success(function (data) {
-      plotGraph("twitter1",data.data.twitter,"Twitter",paramTime);
-      plotGraph("twitter2",data.data["twitter-categorias"],"Twitter: Categorias",paramTime);
-      plotGraph("facebook1",data.data.facebook,"Facebook",paramTime);
-      plotGraph("facebook2",data.data["facebook-categorias"],"Facebook: Categorias",paramTime);
+      console.log(data);
+      if(data.resposta == false){
+
+      }else{
+        console.log(data.data[network])
+        plotGraphics("mg-stats-main",trataEntrada(data.data[network],network))  
+      }
+            
     }).error(function(data, status) {
     });
   };  
