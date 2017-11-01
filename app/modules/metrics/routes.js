@@ -4,7 +4,7 @@
     .module('hash.metrics')
     .config(function ($stateProvider) {
       $stateProvider
-        .state('relatorio', {
+        .state('mg-body', {
           url: '/estatisticas',
           views: {
             '': { templateUrl: 'modules/metrics/views/main.html' }

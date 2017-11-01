@@ -1,77 +1,16 @@
 <div id="str_main_monitor" class="str_main" ng-controller="mainMetrics">
-  <div class="relatorio">
+  <div class="mg-body">
 
-    <div class="universe-menu-title">
-      <img src="img/relatorio/icones-01.svg" class="svg-icon universe-menu-title-image">
-      <p>RELATÓRIO</p>
-      <p>ESTATÍSTICO</p>
-    </div>
+    <div id="div1_monitor" class="str_division" style="padding-top: 30px; align-content: center;">
+      <div class="row">
+      <div class="col-md-1"></div>
+        <metrics-network-filter type="single-option" options="config.filter.networks" filter="filter.network"></metrics-network-filter>
 
-    <form id="relatorio-menu">
-      <div class="relatorio-menu-option" ng-repeat="time in times">
-        <input id="period-option-{{$index}}" type="radio" name="period" ng-model="filter.period" ng-click="filter.period = time.value" value="{{time.value}}" />
-        <label for="period-option-{{$index}}">
-          <p>{{time.text}}</p>
-        </label>
-      </div>
-    </form>
-    
-    <div style="height:1px; width: 75%; margin-left:12.5%; background-color:white;"></div>
-
-    <div class="relatorio-social" id="relatorio-twitter">
-      <p class="relatorio-social-title">Twitter</p>
-      <div class="relatorio-social-metrics">
-        <div class="relatorio-social-metrics-each">
-          <img src="img/twitter/ICONES-09.svg" class="svg-icon">
-          <p>{{twitterTweets}}</p>
-        </div>
-        <!--
-<div class="relatorio-social-metrics-each">
-<img src="img/twitter/ICONES-10.svg" class="svg-icon">
-<p>0</p>
-</div>
--->
-        <div class="relatorio-social-metrics-each">
-          <img src="img/twitter/ICONES-11.svg" class="svg-icon">
-          <p>{{twitterImage}}</p>
-        </div>
+        <metrics-period-filter type="single-option" options="config.filter.period.values" filter="filter.period"></metrics-period-filter>
       </div>
 
-      <div id="twitter1" class="relatorio-social-graficos" ></div>
-      <div id="twitter2" class="relatorio-social-graficos" ></div>
-    </div>
+      <div id="mg-stats-main">
 
-    <div class="relatorio-social" id="relatorio-facebook">
-      <p class="relatorio-social-title">Facebook</p>
-      <div class="relatorio-social-metrics">
-        <div class="relatorio-social-metrics-each">
-          <img src="img/Index/ICONES-02.svg" class="svg-icon">
-          <p>{{facebookPosts}}</p>
-        </div>
-        <!--
-<div class="relatorio-social-metrics-each">
-<img src="img/twitter/ICONES-10.svg" class="svg-icon">
-<p>0</p>
-</div>
--->
-        <div class="relatorio-social-metrics-each">
-          <img src="img/twitter/ICONES-11.svg" class="svg-icon">
-          <p>{{facebookImage}}</p>
-        </div>
       </div>
-
-      <div id="facebook1" class="relatorio-social-graficos"></div>
-      <div id="facebook2" class="relatorio-social-graficos"></div>
     </div>
-  </div>
 </div>
-
-<script type="text/javascript">
-
-  callSvgImg();
-
-  $("body").css( "overflow-y", "auto" );
-  document.getElementById("str_main_monitor").scrollIntoView();
-
-  $( document ).ready(function(){});
-</script>

@@ -2,15 +2,25 @@
   "period": {
     "values": [
       {
-        "text": "ÚLTIMAS 6 HORAS",
+        "text": "6 horas",
         "value": "6h"
       },{
-        "text": "ÚLTIMAS 24 HORAS",
+        "text": "1 dia",
         "value": "1d"
       },{
-        "text": "ÚLTIMOS 7 DIAS",
+        "text": "7 dias",
         "value": "7d"
       }
     ]
-  }
+  },
+  "networks":[
+    {
+      "text":"Twitter",
+      "value":"twitter"
+    },
+    { 
+      "text":"Facebook",
+      "value":"facebook"
+    }
+  ]
 }
