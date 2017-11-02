@@ -19,7 +19,7 @@ hash.controller('mainMetrics', function ($scope, $http, settings, MetricsFaceboo
 
   $scope.functionStatistics = function(period,network){
 
-    var statisticsURL = 'http://188.166.40.27:8090/estatisticas/' + period;        
+    var statisticsURL = 'https://api-estatistica.herokuapp.com/estatisticas/' + period;        
 
     console.log(statisticsURL);
     console.log(network);
