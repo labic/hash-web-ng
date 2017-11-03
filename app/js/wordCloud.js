@@ -11,6 +11,10 @@ function plotWordCloud(options, wordMap) {
   h = options.height;
   padding = options.padding || 0;
 
+  if(wordMap[0] === undefined){
+    return
+  }
+
   var term = wordMap[0].word ? 'word': 'hashtag';
   var sizeScale = d3.scaleLinear().domain([0, wordMap[0].count]).range([15, 60]);
 
