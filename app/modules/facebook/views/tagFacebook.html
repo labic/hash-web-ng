@@ -1,6 +1,7 @@
 <div id="divHashtags" style="height:50%;" data-ng-init="replyTopHashtags(filter.time,filter.profileType,filter.actor);replyTopTags(filter.time,filter.actor);">
 
-  <div style="height:auto; position: relative;">  
+  <p class="title_str_highWord">Nuvem de palavras</p>
+  <div style="height:auto; position: relative;">
     <div id="loadingFacebookTopHashTags" class="handlers">
       <img src="img/icons/spinning-circles.svg">
       <p>estamos carregando os dados</p>
@@ -15,26 +16,28 @@
       <img src="img/icons/error_outline.svg">
       <p>não há dados dessa categoria nesse intervalo de tempo, tente outros parâmetros</p>
     </div>
-    
-    <div id="str_highWord">
-      <p class="title_str_highWord">#{{tagOne.hashtag}}</p>
-      <p class="text_str_highWord"><span class="number_str_highWord">{{tagOne.count}}</span> vezes</p>
 
-      <div id="str_hashTag" class="strVertical_highWord">
-        <div title="Clique para visualizar os ultimos retweets com #{{tag.hashtag}}" ng-mouseenter="$parent.tagOne = hashtag" class="each_word" ng-repeat="hashtag in hashtags" ng-click="filter.tag = hashtag.hashtag;">
-          <p>#{{hashtag.hashtag}}</p>
-          <p ng-if="hashtag.count == 1">{{hashtag.count}} vez</p>
-          <p ng-if="hashtag.count != 1">{{hashtag.count}} vezes</p>
-        </div>
-      </div>
-    </div>
+
+    <div id="wordCloud" class="strVertical_highWord"></div>
+    <!--<div id="str_highWord">-->
+      <!--<p class="title_str_highWord">#{{tagOne.hashtag}}</p>-->
+      <!--<p class="text_str_highWord"><span class="number_str_highWord">{{tagOne.count}}</span> vezes</p>-->
+
+      <!--<div id="str_hashTag" class="strVertical_highWord">-->
+        <!--<div title="Clique para visualizar os ultimos retweets com #{{tag.hashtag}}" ng-mouseenter="$parent.tagOne = hashtag" class="each_word" ng-repeat="hashtag in hashtags" ng-click="filter.tag = hashtag.hashtag;">-->
+          <!--<p>#{{hashtag.hashtag}}</p>-->
+          <!--<p ng-if="hashtag.count == 1">{{hashtag.count}} vez</p>-->
+          <!--<p ng-if="hashtag.count != 1">{{hashtag.count}} vezes</p>-->
+        <!--</div>-->
+      <!--</div>-->
+    <!--</div>-->
   </div>
 
   <!-- <div class="str_fixed_words">
     <div class="fixed_words_title">
       <p>Temas mais frequentes</p>
     </div>
-    
+
     <div id="loadingFacebookTopTags" class="handlers">
       <img src="img/icons/spinning-circles.svg">
       <p>estamos carregando os dados</p>
@@ -49,7 +52,7 @@
       <img src="img/icons/error_outline.svg">
       <p>não há dados dessa categoria nesse intervalo de tempo, tente outros parâmetros</p>
     </div>
-    
+
     <div id="str_topTags">
       <p ng-repeat="theme in themes" ng-click="filter.theme = theme.slug;">{{theme.label}}</p>
     </div>
