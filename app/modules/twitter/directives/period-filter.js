@@ -5,7 +5,7 @@
     .module('hash.twitter')
     .directive('periodFilter', function () {
       return {
-        templateUrl: 'modules/twitter/views/partials/period-filter.html',
+        templateUrl: 'modules/facebook/views/partials/period-filter.html',
         restrict: 'E',
         replace: true,
         scope: {
