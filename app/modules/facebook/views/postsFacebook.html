@@ -20,9 +20,9 @@
     <div id="facebookPosts" class="geralTweets_result">
       <div  class="facebook-posts-each" ng-repeat="post in posts" >
         <div class="fbHeader">
-          <div class="pagePic">
-            <img width="50px" class="img-circle img-responsive" src="https://scontent.fvix2-2.fna.fbcdn.net/v/t1.0-1/p160x160/22688851_1971900676160657_2579906468150495056_n.jpg?oh=bbaad1fbf8002492971c85dfc9633026&oe=5A73AE47" alt="">
-          </div>
+          <!--<div class="pagePic">-->
+            <!--<img width="50px" class="img-circle img-responsive" src="https://scontent.fvix2-2.fna.fbcdn.net/v/t1.0-1/p160x160/22688851_1971900676160657_2579906468150495056_n.jpg?oh=bbaad1fbf8002492971c85dfc9633026&oe=5A73AE47" alt="">-->
+          <!--</div>-->
           <div class="pageInfo">
             <p>{{post.from.name}}</p>
             <p class="facebook-post-time" ng-if="post.created_time_ms == undefined">{{post.created_time | date:'HH:mm - dd/MM/yyyy'}}</p>

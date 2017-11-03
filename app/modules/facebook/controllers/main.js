@@ -186,7 +186,7 @@ hash.controller('mainFacebook', function ($scope, $http, settings, MetricsFacebo
         $scope.replyPost(newFilter.time, newFilter.profileType, newFilter.actor, undefined, undefined, newFilter.tag);
       }
     }
-  }, true);
+  },true);
 
   /*************** Funções de tratamento ***************/
 
