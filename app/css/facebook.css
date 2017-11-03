@@ -289,3 +289,15 @@ left: 10px;
   padding-left: calc(50% - 79px);
 }
 */
+
+#div1_monitor select {
+  background-color: transparent;
+  width: 100%;
+  outline: none;
+  border: none;
+  border-bottom: 1px solid #2B3044;
+  padding: 3px 10px;
+  color: #004C84;
+  -moz-appearance: none;
+  appearance: none;
+}
