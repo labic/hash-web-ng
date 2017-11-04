@@ -29,6 +29,9 @@ hash.controller('mainFacebook', function ($scope, $http, settings, MetricsFacebo
   $scope.replyPost = function (time, type, actor, word, theme, tag) {
 
     $scope.loading('FacebookPosts', 'facebookPosts');
+
+    $scope.loadContadoresFB (time,actor);
+
     //acertar valores de filtros de tempo
     switch(time) {
       case '1h':
@@ -77,6 +80,24 @@ hash.controller('mainFacebook', function ($scope, $http, settings, MetricsFacebo
     //   $scope.error('FacebookPosts');
     // });
   }
+
+  $scope.loadContadoresFB = function(period,actor){
+
+    FacebookPosts.count({
+      period: 'P'+period.toUpperCase(),
+      'filter[with_tags]': [actor]
+    }, function success(res) {
+      $scope.countPosts = res.count;
+    });
+
+    FacebookPosts.count({
+      period: 'P'+period.toUpperCase(),
+      'filter[with_tags]': [actor],
+      'filter[types]': ['photo']
+    }, function success(res) {
+      $scope.countImage = res.count;
+    });
+  };
 
   // Request: WordFacebook.topWords
   $scope.replyTopWords = function (time, type, actor) {
