@@ -430,7 +430,13 @@ hash.controller('mainMonitor', function ($scope, $http, settings, MetricsTwitter
   $scope.loading('TwitterPosts','str_TwitterUrl');
 
   AnalyticsTwitter.mostRecurringImages(
-    $scope.analyticsParams,
+    {
+      page:1,
+      per_page:60,
+      period: $scope.analyticsParams.period,
+      'filter[with_tags]': $scope.analyticsParams['filter[with_tags]'],
+      'filter[hashtags]': $scope.analyticsParams['filter[hashtags]']
+    },
     function success(data) {      
       plotMosaico("mosaico",$("#mosaico").width(),4,data);
     }, function (error){
