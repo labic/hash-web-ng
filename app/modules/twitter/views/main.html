@@ -2,7 +2,6 @@
 
   <div id="div1_monitor" class="str_division" style="padding-top: 30px; align-content: center; vertical-align: center;">
     <div class="row">
-    <div class="col-md-1"></div>
     <filter-keywords options="settings.keywords" filter="filter.theme"></filter-keywords>
 
     <!-- <aside ng-if="settings.components.map" id="str_menu_map" ui-view="map"></aside> -->
@@ -62,10 +61,10 @@
   <div id="div2_monitor" class="str_division">
     <div class="title_str">
       <ul class="title_str_menu_icon">
-        <li ui-sref="twitter.tweetstweets" class="select_title_division2" title="Tweets">
+        <li ui-sref="twitter.tweetstweets" class="select_title_division2 firstOpCont" title="Tweets">
           <img src='img/twitter/ICONES-09.png' class="icon_menu_top" alt="image">
         </li>
-        <li ui-sref="twitter.tweet" class="select_title_division2 firstOpCont" title="Retweets">
+        <li ui-sref="twitter.tweet" class="select_title_division2" title="Retweets">
           <img src='img/twitter/ICONES-10.png' class="icon_menu_top" alt="image">
         </li>
         <li ui-sref="twitter.user" class="select_title_division2" title="Top Usuários">
@@ -97,5 +96,14 @@
     $(".swipebox").swipebox({
       hideBarsDelay : 10000000
     });
+     /* Custom */
+    $(".firstOpCont").css( "opacity", "1" );
+
+    $(".select_title_division2").click(function(){
+      $(".select_title_division2").css( "opacity", "0.3" );
+
+      $(this).css( "opacity", "1" );
+    });
+
   });
 </script>

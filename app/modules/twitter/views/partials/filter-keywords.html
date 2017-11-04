@@ -1,20 +1,12 @@
-<div class="col-md-5">
-<!-- <div>
-<br>
-  <div ng-repeat="option in options"
-    class="facebook-actors-each"
-    ng-class="{selected: filter==option.tag}"
-    ng-click="setFilter(option, $event,true)">
-    <img src="img/twitter/{{option.icon}}" class="svg-icon facebook-actors-each-image">
-    <p>{{option.title}}</p>
+<div class="col-md-6">
+  <!--Alterar para usar diretamente do model!-->
+  <div class="col-md-3"></div>
+  <div class="col-md-2"><span>Categorias</span></div>
+  <div class="col-md-5">
+    <select ng-model="filter">
+      <option ng-repeat="option in options" value="{{option.tag}}">{{option.title}}</option>
+    </select>
   </div>
-</div> -->
-  	<div ng-repeat="option in options"
-    class="col-md-3 facebook-actors-each"
-    ng-class="{selected: filter==option.tag}"
-    ng-click="setFilter(option, $event,true)" style="text-align: center;">
-    <!-- <img src="img/facebook/{{option.icon}}" class="svg-icon facebook-actors-each-image">  --><b>{{option.title}}</b>
-    </div>
-
+  <div class="col-md-2"></div>
 </div>
 
