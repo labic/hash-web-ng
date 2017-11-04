@@ -24,7 +24,7 @@ function plot(divID, data){
 	  x_accessor: "date",
 	  y_accessor: "value",	  
 	  color: '#004D85',
-	  xax_format: d3.timeFormat('%d %b(%H:00)'), 
+	  xax_format: d3.utcFormat('%d %b(%H:00)'), 
 	  show_secondary_x_label: false	  
 	});
 }
@@ -74,7 +74,7 @@ function plotMultiLineGraph(divID,vet, tipo){
 	  height: 200,
 	  right: 70,
 	  target: "#" + divID,	  	  
-	  xax_format: d3.timeFormat('%d %b (%H:00)'),
+	  xax_format: d3.utcFormat('%d %b (%H:00)'),
 	  color: '#004D85',
 	  legend: legends	  
 	});
