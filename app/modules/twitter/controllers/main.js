@@ -123,7 +123,7 @@ hash.controller('mainMonitor', function ($scope, $http, settings, MetricsTwitter
       $scope.analyticsParams,
       function(data) {
         data != '' ? $scope.sucess('TwitterTopWords','wordCloud') : $scope.empty('TwitterTopWords');  
-        plotWordCloud(cloudWidth, 330, 'wordCloud', data); 
+        plotWordCloud({width:cloudWidth, height:330, divID:'wordCloud'}, data); 
       },
       function(data, status) {
         $scope.error('TwitterTopWords');
@@ -286,7 +286,6 @@ hash.controller('mainMonitor', function ($scope, $http, settings, MetricsTwitter
     $scope.loadFeed();
     $scope.functionHashTag();
     $scope.functionWord(period, theme, category, location);
-    $scope.functionTopTags(period, theme);
   };
 
   // Min chama apenas a 3º parte da tela
@@ -426,4 +425,17 @@ hash.controller('mainMonitor', function ($scope, $http, settings, MetricsTwitter
     $("#loading"+divId).hide();
     $("#error"+divId).show();
   } 
+
+  $scope.functionImages = function(){
+  $scope.loading('TwitterPosts','str_TwitterUrl');
+
+  AnalyticsTwitter.mostRecurringImages(
+    $scope.analyticsParams,
+    function success(data) {      
+      plotMosaico("mosaico",$("#mosaico").width(),4,data);
+    }, function (error){
+      console.log(error)
+      $scope.error('TwitterPosts');
+    });
+  };
 });

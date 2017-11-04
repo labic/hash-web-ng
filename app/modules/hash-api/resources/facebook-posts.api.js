@@ -6,6 +6,16 @@
     .factory('FacebookPosts', function($resource, CONFIG) {
 
       return $resource('', null, {
+        find: {
+          method: 'GET',
+          url: HASH_API_BASE_URI + '/facebook/:profile_type/posts',
+          params: {
+            'profile_type': null, // enum: page or user 
+            'filter[order]': null, // string: created_time <ASC|DESC>, shares_count <ASC|DESC>
+          },
+          isArray: true,
+          cache: true
+        },
         count: {
           method: 'GET', 
           url:  CONFIG.HASH_API_URL_V2 + '/facebook/posts/count', 
