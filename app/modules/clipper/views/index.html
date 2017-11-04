@@ -1,10 +1,10 @@
 <!--  menu topo  -->
 <nav class="navbar navbar-inverse navbar-fixed-top" ng-controller="menuController">
-<a href="#/clipper" onclick="javascript: window.location.reload(true);"><img src="/img/clipper/titulo.png" style="margin-left: 2%; margin-top: 1%;"></a>
 <br>
 <div class="row">
   <button  style="margin-left: 3%;" ng-click = "mudarExibicao()" id="exibicao"><h5>Mudar tipo de exibição</h5></button>
 </div>
+<br>
     <searching> </searching>
 </nav>
 
@@ -39,16 +39,14 @@
         <noticias info='nov' class="row" ng-show="exibirImagem()"></noticias>
 
       <!-- seção que aparece no modo de exibição lista -->
-        <section layout="row" ng-show="!exibirImagem()">
-        <div class="col-md-11">
-          <a href="#/clipper/noticia?id={{::nov.id}}" target="_blank" style="display: inline">
-          <h4 ng-show="nov.headline === null">[Título indisponível]</h4><h4>{{:: nov.headline }}</h4></a>
-        </div>
-        <div class="col-md-1">
+      <div class="row">
+        <modolista info='nov' class="col-md-11" ng-show="!exibirImagem()"></modolista>
+        <div class="col-md-1" ng-show="!exibirImagem()">
           <input type="checkbox" ng-click="adicionaNoticia(nov)" > 
           <button ng-click="deletar(nov);dados.splice($index,1)">&#10060;</button>
         </div>
-        </section>
+      </div>
+
       <hr style="width:100%; top: 9px; position: relative; height: 2px;" >
       </div>
       <br><br>

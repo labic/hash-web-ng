@@ -1,4 +1,4 @@
-hash.controller('mainFacebook', function ($scope, $http, settings, MetricsFacebook, AnalyticsFacebook, WordFacebook) {
+hash.controller('mainFacebook', function ($scope, $http, settings, MetricsFacebook, AnalyticsFacebook,FacebookPosts, WordFacebook) {
 
   // Mudancas: Estão ocorrendo modificações no codigo pois antes não havia Categorias dinamicas e Hashtags
 
@@ -30,12 +30,32 @@ hash.controller('mainFacebook', function ($scope, $http, settings, MetricsFacebo
 
     $scope.loading('FacebookPosts', 'facebookPosts');
 
-    AnalyticsFacebook.mostLikedPosts({
-      'period': time,
-      'profile_type': type,
-      'filter[with_tags]': (theme === undefined ? [actor] : [actor, theme]),
+    $scope.loadContadoresFB (time,actor);
+
+    //acertar valores de filtros de tempo
+    switch(time) {
+      case '1h':
+          time = 3600000;
+          break;
+      case '6h':
+          time = 21600000;
+          break;
+      case '1d':
+          time = 86400000;
+          break;
+      case '7d':
+          time = 604800000;
+          break;
+    };
+
+    FacebookPosts.init({
+      filter : {
+        where: {
+          created_time_ms: {gt: Date.now() - time},
+          keywords:actor},
+          order: ['created_time_ms DESC'],
+        },
       'word': word,
-      'filter[hashtags]': tag,
       'page': 1,
       'per_page': 25
     }, function (data) {
@@ -44,7 +64,40 @@ hash.controller('mainFacebook', function ($scope, $http, settings, MetricsFacebo
     }, function (error) {
       $scope.error('FacebookPosts');
     });
+
+    // AnalyticsFacebook.mostLikedPosts({
+    //   'period': time,
+    //   'profile_type': type,
+    //   'filter[with_tags]': (theme === undefined ? [actor] : [actor, theme]),
+    //   'word': word,
+    //   'filter[hashtags]': tag,
+    //   'page': 1,
+    //   'per_page': 25
+    // }, function (data) {
+    //   data != '' ? $scope.sucess('FacebookPosts', 'facebookPosts') : $scope.empty('FacebookPosts');
+    //   $scope.posts = data;
+    // }, function (error) {
+    //   $scope.error('FacebookPosts');
+    // });
   }
+
+  $scope.loadContadoresFB = function(period,actor){
+
+    FacebookPosts.count({
+      period: 'P'+period.toUpperCase(),
+      'filter[with_tags]': [actor]
+    }, function success(res) {
+      $scope.countPosts = res.count;
+    });
+
+    FacebookPosts.count({
+      period: 'P'+period.toUpperCase(),
+      'filter[with_tags]': [actor],
+      'filter[types]': ['photo']
+    }, function success(res) {
+      $scope.countImage = res.count;
+    });
+  };
 
   // Request: WordFacebook.topWords
   $scope.replyTopWords = function (time, type, actor) {

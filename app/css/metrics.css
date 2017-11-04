@@ -1,5 +1,16 @@
 #mg-stats-main{
-    background: #FFF;
+    position: fixed;
+	top:15%;
+	left:8%;
+	right:5%;
+	width: auto;
+	height: 82%;
+	border: 1px gray;
+	background-color: #FFFFFF;
+	box-shadow: 0 0 5px 5px rgba(0, 0, 0, 0.05);
+	color:#28A0F9;
+	display: inline-block;
+	overflow:auto;
 }
 
 .col-md-5 input[type=radio]{

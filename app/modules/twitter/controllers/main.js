@@ -136,6 +136,19 @@ hash.controller('mainMonitor', function ($scope, $http, settings, MetricsTwitter
 
     $scope.loading('TwitterPosts','painel-posts-list');
 
+    Tweet.find(
+      $scope.analyticsParams,
+      function success(data) {
+        data != '' ? $scope.sucess('TwitterPosts','painel-posts-list') : $scope.empty('TwitterPosts');  
+        $scope.twittes = data;
+      }, function (error){
+        $scope.error('TwitterPosts');
+      });
+  };
+  
+  $scope.functionConteudoTweets = function(){
+    $scope.loading('TwitterPosts','painel-posts-list');
+
     AnalyticsTwitter.mostRetweetedTweets(
       $scope.analyticsParams,
       function success(data) {
@@ -152,19 +165,7 @@ hash.controller('mainMonitor', function ($scope, $http, settings, MetricsTwitter
       }, function (error){
         $scope.error('TwitterPosts');
       });
-  };
-  
-  $scope.functionConteudoTweets = function(){
-    $scope.loading('TwitterPosts','painel-posts-list');
 
-    Tweet.find(
-      $scope.analyticsParams,
-      function success(data) {
-        data != '' ? $scope.sucess('TwitterPosts','painel-posts-list') : $scope.empty('TwitterPosts');  
-        $scope.twittes = data;
-      }, function (error){
-        $scope.error('TwitterPosts');
-      });
   };
 
   $scope.functionUser = function(){
