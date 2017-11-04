@@ -1,3 +1,8 @@
+<section layout="row" layout-align="end" layout-wrap align="end">
+  <input type="checkbox" ng-click="adicionaNoticia(nov)" title="Adicionar ao relatório" > 
+  <button ng-click="deletar(nov)" title="Excluir notícia">&#10060;</button>
+</section>
+
 <div class="col-md-9" ng-controller="gridController" style="padding-right: 10%;">
   	<div class="row">
       <a href="#/clipper/noticia?id={{::info.id}}" target="_blank" style="display: inline">
