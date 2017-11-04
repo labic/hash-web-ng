@@ -6,7 +6,7 @@ function plotGraphics(divID, data){
 	.attr("id",function(d,i){return "mg-graphic" + i})
 	.attr("class","mg-stats-div")
 	.style("margin-left","10px")
-	.style("margin-right","10px")
+	.style("margin-right","10px")	
 
 	for(i in data){
 		plot("mg-graphic" + i,data[i]);	
@@ -24,7 +24,8 @@ function plot(divID, data){
 	  x_accessor: "date",
 	  y_accessor: "value",	  
 	  color: '#004D85',
-	  xax_format: d3.utcFormat('%d %b(%H:00)'), 
+	  xax_format: d3.utcFormat('%d %b(%H:%M)'),
+	  xax_count: 5,
 	  show_secondary_x_label: false	  
 	});
 }

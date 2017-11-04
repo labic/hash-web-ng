@@ -10,3 +10,7 @@
 	font-size: 1.5rem;
 	font-family: "Arial"
 }
+
+#mg-stats-main svg{
+	padding-right:3%;
+}
