@@ -200,7 +200,7 @@ button{
  .bootstrap-datetimepicker-widget .picker-switch{text-align:center}.bootstrap-datetimepicker-widget .picker-switch::after
  {position:absolute;width:1px;height:1px;margin:-1px;padding:0;overflow:hidden;clip:rect(0, 0, 0, 0);border:0;content:"Toggle Date and Time Screens"}
  .bootstrap-datetimepicker-widget .picker-switch td{padding:0;margin:0;height:auto;width:auto;line-height:inherit}
- .bootstrap-datetimepicker-widget .picker-switch td span{line-height:2.5;height:2.5em;width:100%}
+ .bootstrap-datetimepicker-widget .picker-switch td span{line-height:2.5;height:2.5em;width:100%; color: red;}
  .bootstrap-datetimepicker-widget table{width:100%;margin:0}
  .bootstrap-datetimepicker-widget table td,.bootstrap-datetimepicker-widget table th{text-align:center;border-radius:4px}
  .bootstrap-datetimepicker-widget table th{height:20px;line-height:20px;width:20px}
