@@ -7,7 +7,3 @@
 		<h5>Publicado por <a href="http://{{fonte}}" target="_blank" style="display: inline">{{::fonte}}</a> em <b ng-show="info.datePublished === null">[indisponível]</b>{{::info.datePublished | date:"dd/MM/yyyy 'às' HH'h'mm":'UTC-4'}}  e coletado em {{::info.dateCreated | date:"dd/MM/yyyy 'às' HH'h'mm":'UTC-4'}}</h5>
 	</div>
 </div>
-<div class="col-md-1">
-  <input type="checkbox" ng-click="adicionaNoticia(info)" > 
-  <button ng-click="deletar(info);dados.splice($index,1)">&#10060;</button>
-</div>

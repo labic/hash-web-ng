@@ -32,11 +32,18 @@
 
       <div ng-repeat="nov in dados | limitTo:limNot">
       <!-- seção que aparece no modo de exibição normal -->
-        
+        <section layout="row" layout-align="end" layout-wrap align="end" ng-show="exibirImagem()">
+          <input type="checkbox" ng-click="adicionaNoticia(nov)" title="Adicionar ao relatório" > 
+          <button ng-click="deletar(nov)" title="Excluir notícia">&#10060;</button>
+        </section>
         <noticias info='nov' class="row" ng-show="exibirImagem()"></noticias>
 
       <!-- seção que aparece no modo de exibição lista -->
         <modolista info='nov' class="row" ng-show="!exibirImagem()"></modolista>
+        <div class="col-md-1" ng-show="!exibirImagem()">
+          <input type="checkbox" ng-click="adicionaNoticia(nov)" > 
+          <button ng-click="deletar(nov);dados.splice($index,1)">&#10060;</button>
+        </div>
 
       <hr style="width:100%; top: 9px; position: relative; height: 2px;" >
       </div>
