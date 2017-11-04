@@ -1,0 +1,9 @@
+<div class="col-md-11">
+  	<div class="row">
+	  <a href="#/clipper/noticia?id={{::info.id}}" target="_blank" style="display: inline">
+	  <h3 ng-show="info.headline === null">[Título indisponível]</h3><h3>{{:: info.headline }}</h3></a>
+	</div>
+	<div class="row" ng-init="fonte = info.url.split('/')[2]">
+		<h5>Publicado por <a href="http://{{fonte}}" target="_blank" style="display: inline">{{::fonte}}</a> em <b ng-show="info.datePublished === null">[indisponível]</b>{{::info.datePublished | date:"dd/MM/yyyy 'às' HH'h'mm":'UTC-4'}}  e coletado em {{::info.dateCreated | date:"dd/MM/yyyy 'às' HH'h'mm":'UTC-4'}}</h5>
+	</div>
+</div>
