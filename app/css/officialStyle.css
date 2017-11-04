@@ -476,7 +476,7 @@
 
 
           .display_tweet b{
-            font-size: 150%;
+            font-size: 100%;
             color: #004E80;
             width: calc(100% - 35px);
           }
