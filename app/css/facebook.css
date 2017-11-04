@@ -1,25 +1,26 @@
-.facebook-menu-tematica{
-  border:none !important;
+.facebook-menu-tematica {
+  border: none !important;
   margin-bottom: 0px !important;
 }
 
-#facebook-result-post{}
+#facebook-result-post {
+}
 
-#facebook-menu-choice{
+#facebook-menu-choice {
   width: 90%;
   margin-left: 5%;
   padding: 5px;
   height: 60px;
   border-top: 1px dashed #1DBFD8;
   border-bottom: 1px dashed #1DBFD8;
-  float:left;
+  float: left;
 }
 
 .facebook-choice-button {
-  width:50%;
+  width: 50%;
   margin-top: 8px;
   height: 70%;
-  float:left;
+  float: left;
   background: transparent;
   font-weight: bold;
   font-size: 12px;
@@ -27,49 +28,49 @@
   opacity: 0.3;
   outline: 0;
 }
+
 .facebook-choice-button.selected {
   opacity: 1;
 }
 
-
-#facebook-choice-button1{
+#facebook-choice-button1 {
   border-right: 1px solid #22b573;
 }
 
-#facebook-choice-button1 .facebook-choice-button-image{
-  float:left;
+#facebook-choice-button1 .facebook-choice-button-image {
+  float: left;
   margin: 0px 20px 0px 20px;
 }
 
-#facebook-choice-button1 p{
-  float:left;
+#facebook-choice-button1 p {
+  float: left;
 }
 
-#facebook-choice-button2{
+#facebook-choice-button2 {
   border-left: 1px solid #22b573;
 }
 
-#facebook-choice-button2 .facebook-choice-button-image{
-  float:right;
+#facebook-choice-button2 .facebook-choice-button-image {
+  float: right;
   margin: 0px 20px 0px 20px;
 }
 
-#facebook-choice-button2 p{
-  float:right;
+#facebook-choice-button2 p {
+  float: right;
 }
 
-.facebook-choice-button-image{
+.facebook-choice-button-image {
   height: 18px;
   width: 18px;
 }
 
-#facebook-menu-actors{
+#facebook-menu-actors {
   width: 100%;
   height: auto;
-  float:left;
+  float: left;
 }
 
-.facebook-actors-each{
+.facebook-actors-each {
   /*
   display: inline-table;
   width: 370px;
@@ -86,11 +87,11 @@
   opacity: 1;
 }
 
-.facebook-actors-each:last-child{
+.facebook-actors-each:last-child {
   border-bottom: none;
 }
 
-.facebook-actors-each-image{
+.facebook-actors-each-image {
   /*float:left;*/
   fill: #0072D4;
   height: 20px;
@@ -99,8 +100,8 @@
   margin: 0px 5px 0px 0px;
 }
 
-.facebook-actors-each b{
-  color:#0072D4;
+.facebook-actors-each b {
+  color: #0072D4;
   text-transform: uppercase;
   /*  float:left;
   display: table-cell;
@@ -113,13 +114,14 @@
 
 /* Menu 3º bloco */
 
-.facebook-menu-icon{
+.facebook-menu-icon {
   fill: black;
 }
 
-.facebook-images-title{
-  color:white; white-space: nowrap;
-  overflow:hidden ;
+.facebook-images-title {
+  color: white;
+  white-space: nowrap;
+  overflow: hidden;
   text-overflow: ellipsis;
   margin-left: 10%;
   width: 80%;
@@ -127,44 +129,97 @@
 
 /* Posts */
 
-.facebook-posts-each{
+.facebook-posts-each {
+  /*width: 100%;*/
+  /*height: auto;*/
+  /*float:left;*/
+  /*padding: 25px;*/
+  /*margin: 0 0 12px 0;*/
+  /*border: 1px solid lightgray;*/
   width: 100%;
   height: auto;
-  float:left;
+  float: left;
   padding: 25px;
   margin: 0 0 12px 0;
   border: 1px solid lightgray;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  background: white;
 }
 
-.facebook-post-time{
+.pagePic, .pageInfo {
+  float: left;
+}
+
+.facebook-posts-each .pageInfo {
+  padding: 0 10px;
+  font-size: 14pt;
+}
+
+.pageInfo p {
+  margin: 0;
+}
+
+.facebook-post-time {
   width: 100%;
-  font-size:14px;
+  font-size: 14px;
   color: #969696;
-  float:left;
-  padding: 5px;
+  /* float: left; */
+  /* padding: 5px; */
 }
 
-.facebook-post-ranking{
+.facebook-post-ranking {
   width: 50px;
   height: 35px;
   border: 3px solid black;
-  float:left;
+  float: left;
 }
 
-.facebook-post-ranking p{
+.facebook-post-ranking p {
   font-size: 26px;
   font-weight: bold;
   width: 100%;
   text-align: center;
 }
 
-.facebook-post-text{
+.facebook-post-text {
   float: left;
   height: auto;
   width: 100%;
+  -webkit-margin-before: 1em;
+  -webkit-margin-after: 1em;
+  -webkit-margin-start: 0px;
+  -webkit-margin-end: 0px;
+  font-size: 14px;
+  font-weight: normal;
+  line-height: 1.38;
 }
 
-.facebook-post-text p{
+.facebook-post-img {
+  border: 1px solid;
+  border-color: #e9ebee #e9ebee #d1d1d1;
+  -webkit-box-shadow: 0px 5px 5px -1px rgba(181, 174, 181, 0.46);
+  -moz-box-shadow: 0px 5px 5px -1px rgba(181, 174, 181, 0.46);
+  box-shadow: 0px 5px 5px -1px rgba(181, 174, 181, 0.46);
+  margin-bottom: 10px;
+}
+
+.facebook-post-chamada {
+  padding: 0 10px;
+}
+
+.facebook-post-chamada p:first-child {
+  margin: 10px 0;
+}
+
+.facebook-post-chamada .link {
+  color: #6b6b6b;
+  margin-bottom: 10px;
+  text-transform: uppercase;
+  font-size: 10pt;
+}
+
+.facebook-post-text p {
   font-size: 18px;
   height: auto;
   padding: 5px;
@@ -178,39 +233,51 @@ left: 10px;
 }
 */
 
-.facebook-post-verMais{
+.facebook-post-verMais {
   font-size: 12px;
   text-align: right;
-  cursor:pointer;
+  cursor: pointer;
   padding: 5px
 }
 
-.facebook-post-coment{
+.facebook-post-coment, .facebook-post-like {
   margin: 5px;
-  float:left;
-  width:auto;
-  height: auto;
+  float: left;
+  line-height: 20px;
 }
 
-.facebook-post-like{
-  margin: 5px;
-  float:left;
-  width:auto;
-  height: auto;
+.facebook-post-coment p.comment {
+  background-image: url(../img/facebook/buttons.png);
+  background-repeat: no-repeat;
+  background-position: -19px -157px;
+  padding-left: 20px;
+  vertical-align: middle;
+  height: 18px;
+  font-size: 10pt;
 }
 
-.facebook-post-coment p, .facebook-post-like p{
-  font-size:16px;
-  float: right;
+.facebook-post-like p.like {
+  background-image: url(../img/facebook/buttons.png);
+  background-repeat: no-repeat;
+  background-position: -19px -195px;
+  padding-left: 20px;
+  vertical-align: middle;
+  height: 18px;
+  font-size: 10pt;
 }
 
-.facebook-post-coment img, .facebook-post-like img{
-  height: 13px;
-  width: 13px;
-  float: right;
-  margin: 2px 0px 0px 5px;
-  fill: red;
-}
+/*.facebook-post-coment p, .facebook-post-like p {*/
+  /*font-size: 16px;*/
+  /*float: right;*/
+/*}*/
+
+/*.facebook-post-coment img, .facebook-post-like img {*/
+  /*height: 13px;*/
+  /*width: 13px;*/
+  /*float: right;*/
+  /*margin: 2px 0px 0px 5px;*/
+  /*fill: red;*/
+/*}*/
 
 .facebook .menu__main-tags {
   border-bottom: 0px;
@@ -222,3 +289,15 @@ left: 10px;
   padding-left: calc(50% - 79px);
 }
 */
+
+#div1_monitor select {
+  background-color: transparent;
+  width: 100%;
+  outline: none;
+  border: none;
+  border-bottom: 1px solid #2B3044;
+  padding: 3px 10px;
+  color: #004C84;
+  -moz-appearance: none;
+  appearance: none;
+}
