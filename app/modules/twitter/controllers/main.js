@@ -286,7 +286,6 @@ hash.controller('mainMonitor', function ($scope, $http, settings, MetricsTwitter
     $scope.loadFeed();
     $scope.functionHashTag();
     $scope.functionWord(period, theme, category, location);
-    $scope.functionTopTags(period, theme);
   };
 
   // Min chama apenas a 3º parte da tela
