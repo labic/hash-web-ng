@@ -460,6 +460,7 @@
         width: 40%;
         max-height: 150px;
         margin-left: 10%;
+        height: auto;
         float: left;
         display: inline;
         /*
@@ -468,15 +469,14 @@
       }
 
         .display_tweet{
-          width:70px;
-          float:left;
+          width:40%;
           padding:10px 10px 10px 0px;
           height: auto;
         }
 
 
           .display_tweet b{
-            font-size: 20px;
+            font-size: 150%;
             color: #004E80;
             width: calc(100% - 35px);
           }
