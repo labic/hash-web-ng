@@ -123,7 +123,7 @@ hash.controller('mainMonitor', function ($scope, $http, settings, MetricsTwitter
       $scope.analyticsParams,
       function(data) {
         data != '' ? $scope.sucess('TwitterTopWords','wordCloud') : $scope.empty('TwitterTopWords');  
-        plotWordCloud(cloudWidth, 330, 'wordCloud', data); 
+        plotWordCloud({width:cloudWidth, height:330, divID:'wordCloud'}, data); 
       },
       function(data, status) {
         $scope.error('TwitterTopWords');
