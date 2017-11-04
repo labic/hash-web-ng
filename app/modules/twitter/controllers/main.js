@@ -425,4 +425,17 @@ hash.controller('mainMonitor', function ($scope, $http, settings, MetricsTwitter
     $("#loading"+divId).hide();
     $("#error"+divId).show();
   } 
+
+  $scope.functionImages = function(){
+  $scope.loading('TwitterPosts','str_TwitterUrl');
+
+  AnalyticsTwitter.mostRecurringImages(
+    $scope.analyticsParams,
+    function success(data) {      
+      plotMosaico("mosaico",$("#mosaico").width(),4,data);
+    }, function (error){
+      console.log(error)
+      $scope.error('TwitterPosts');
+    });
+  };
 });

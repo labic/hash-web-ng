@@ -59,14 +59,8 @@
       .state('twitter.mosaico', {
         url: '',
         views: {
-          'conteudo': {
-            templateUrl: 'modules/twitter/views/imgMosaicoTweet.html', controller: function($scope) {
-              var tamDiv = $('.geralTweets_result').css( 'width' );
-              tamDiv = parseInt(tamDiv);
-              $scope.alturaImg = tamDiv / 15;
-            }
-          },
-        }
+          'conteudo': { templateUrl: 'modules/twitter/views/imgMosaicoTweet.html'}
+          },        
       });
   });
 
