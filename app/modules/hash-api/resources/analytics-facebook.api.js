@@ -6,7 +6,7 @@
     .factory('AnalyticsFacebook', function($resource, CONFIG) {
 
       var PARAMS = {
-        'profile_type': null, // String
+        'profile_type': null, // Required: String
         'period': null, // String
         'filter[contain_tags]': [], // Array of String
         'filter[hashtags]': [], // Array of String
@@ -65,6 +65,13 @@
         mostSharedPosts: {
           method: 'GET', 
           url:  CONFIG.HASH_API_URL + '/analytics/facebook/most_shared_posts', 
+          params: PARAMS,
+          isArray: true,
+          cache: true
+        },
+        mostRecurringUrls: {
+          method: 'GET', 
+          url:  CONFIG.HASH_API_URL + '/analytics/facebook/most_recurring_urls', 
           params: PARAMS,
           isArray: true,
           cache: true
