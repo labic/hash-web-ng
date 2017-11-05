@@ -2,23 +2,23 @@
   "period": {
     "values": [
       {
-        "text": "08:00",
+        "text": "20:00 ~ 08:00",
         "value": "r8h",
         "alt": "20h ~ 08h"
       },{
-        "text": "12:00",
+        "text": "8:00 ~ 12:00",
         "value": "r12h",
         "alt": "08h ~ 12h"
       },{
-        "text": "16:00",
+        "text": "12:00 ~ 16:00",
         "value": "r16h",
         "alt": "12h ~ 16h"
       },{
-        "text": "20:00",
+        "text": "16:00 ~ 20:00",
         "value": "r20h",
         "alt": "16h ~ 20h"
       },{
-        "text": "1 dia",
+        "text": "1 dia (20:00 ~ 20:00)",
         "value": "r24h",
         "alt": "18h ~ 18h"
       }
