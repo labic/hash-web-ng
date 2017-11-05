@@ -336,7 +336,8 @@ hash.controller('mainMonitor', function ($rootScope, $scope, $http, settings, Me
                 break;
         case 'Url':
                 $scope.functionUrl();
-                break;case 'Images':
+                break;
+      case 'Images':
                 $scope.functionImages();
                 break;
     }
