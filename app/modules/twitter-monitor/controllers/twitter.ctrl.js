@@ -7,6 +7,7 @@
       var DEBUG = false;
       $http.get('/data/twitter-monitor-options.json')
         .then(function(res) {
+          
           $scope.options = res.data;
 
           $scope.filter = {
@@ -58,17 +59,17 @@
                                ? null
                                : [newItem.hashtag];
 
-        AnalyticsTwitter.mostRetweetedTweets({
-            period: newFilter.period,
-            'tags[]': newFilter.tags,
-            'hashtags[]': newFilter.hashtag === null ? null : [newFilter.hashtag],
-            page: newFilter.pagination.analyticsTwitter.mostRetweetedTweets.page,
-            per_page: newFilter.pagination.analyticsTwitter.mostRetweetedTweets.perPage
-          }, 
-          function success(res) {
-            $scope.data.twitter.tweets.collection = res;
-          }, 
-          errorHandler);
+        // AnalyticsTwitter.mostRetweetedTweets({
+        //     period: newFilter.period,
+        //     'tags[]': newFilter.tags,
+        //     'hashtags[]': newFilter.hashtag === null ? null : [newFilter.hashtag],
+        //     page: newFilter.pagination.analyticsTwitter.mostRetweetedTweets.page,
+        //     per_page: newFilter.pagination.analyticsTwitter.mostRetweetedTweets.perPage
+        //   }, 
+        //   function success(res) {
+        //     $scope.data.twitter.tweets.collection = res;
+        //   }, 
+        //   errorHandler);
 
         AnalyticsTwitter.mostRetweetedImages({
             period: newFilter.period,
