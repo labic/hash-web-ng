@@ -1,6 +1,6 @@
 <div id="result_conteudo" style="height:100%;" data-ng-init="functionUser();">
   <div style="height:100%; width:100%;">
-    
+
     <div id="loadingTwitterPosts" class="handlers">
       <img src="img/icons/spinning-circles.svg">
       <p>estamos carregando os dados</p>
@@ -15,7 +15,7 @@
       <img src="img/icons/error_outline.svg">
       <p>não há dados dessa categoria nesse intervalo de tempo, tente outros parâmetros</p>
     </div>
-    
+
     <div id="str_TwitterUser" class="geralTweets_result">
       <button ng-show="buttonBack" class="result_button result_button_back" ng-click='loadMoreTweetsChange(-1);' >VOLTAR</button>
 
@@ -28,7 +28,25 @@
         </a>
       </div>
 
-<!--      <button ng-show="buttonNext" class="result_button result_button_next" ng-click='loadMoreTweetsChange(1);'></button>-->
+      <!--TODO POG criar diretiva-->
+      <div class="clearfix"></div>
+      <div class="twPagination">
+        <div class="col-md-4">
+          <button ng-disabled="buttonLess" class="btn btn-primary" ng-click="loadMore(-1, 'topUser')">
+            <span class="glyphicon glyphicon-triangle-left"></span>
+          </button>
+        </div>
+        <div class="col-md-4 text-center">
+          {{analyticsParams.page}}/{{totalPages}}
+        </div>
+        <div class="col-md-4 text-right">
+          <button ng-disabled="buttonMore" class="btn btn-primary" ng-click="loadMore(1, 'topUser')">
+            <span class="glyphicon glyphicon-triangle-right"></span>
+          </button>
+        </div>
+        <div class="clearfix"></div>
+      </div>
+
     </div>
   </div>
 </div>
