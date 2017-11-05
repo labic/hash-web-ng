@@ -8,7 +8,7 @@
       },{
         "text": "8:00 ~ 12:00",
         "value": "r12h",
-        "alt": "08h ~ 12h" 
+        "alt": "08h ~ 12h"
       },{
         "text": "12:00 ~ 16:00",
         "value": "r16h",
@@ -29,7 +29,7 @@
       "text":"Twitter",
       "value":"twitter"
     },
-    { 
+    {
       "text":"Facebook",
       "value":"facebook"
     }
