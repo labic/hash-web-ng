@@ -1,12 +1,13 @@
-<form class="period-filter__single-option">
-  <span ng-repeat="option in options">
-    <input id="period-option-{{$index}}"
-      type="radio"
-      name="period"
-      ng-model="filter"
-      ng-click="setFilter($event)"
-      value="{{option.value}}" 
-      />
-    <label for="period-option-{{$index}}" alt="{{option.alt}}">{{option.text}} </label>
-  </span>
-</form>
+<div class="col-md-6">
+  <!--Alterar para usar diretamente do model!-->
+  <div class="col-md-2"></div>
+    <div class="col-md-2"><span>Tempo</span></div>
+    <div class="col-md-5">
+      <select ng-model="filter">
+        <option ng-repeat="option in options" value="{{option.value}}" alt="{{option.alt}}">{{option.text}}</option>
+      </select>
+  </div>
+  <div class="col-md-3">
+
+  </div>
+</div>
