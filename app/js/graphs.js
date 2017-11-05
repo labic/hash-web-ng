@@ -19,14 +19,14 @@ function plot(divID, data){
 	  description: "",
 	  data: data.data,	  	  
 	  full_width:true,
-	  height: 200,	  
+	  height: 200,
 	  target: "#" + divID,
 	  x_accessor: "date",
 	  y_accessor: "value",	  
 	  color: '#004D85',
-	  xax_format: d3.utcFormat('%d %b(%H:%M)'),
-	  xax_count: 5,
-	  show_secondary_x_label: false	  
+	  //xax_format: d3.utcFormat('%H:%M'),
+	  xax_count: data.data.length,
+	  //show_secondary_x_label: false	  
 	});
 }
 
