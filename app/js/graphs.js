@@ -24,14 +24,16 @@ function plot(divID, data){
 	  x_accessor: "date",
 	  y_accessor: "value",	  
 	  color: '#004D85',
-	  //xax_format: d3.utcFormat('%H:%M'),
+	  //xax_format: d3.utcFormat('%dT%H:%M'),
 	  xax_count: data.data.length,
 	  //show_secondary_x_label: false	  
 	});
 }
 
-function trataEntrada(res, network){	
-	data = []	
+function trataEntrada(res, network){
+	console.log(res)
+
+	data = []
 
 	for(i in res){		
 		data.push({rede:network, param:res[i].label, data:convert(res[i].data)});
@@ -51,8 +53,8 @@ function convert(json){
 
 function convertData(data){
 	temp = data.split("T");
-	temp2 = temp[0].split("-");
-	return new Date(temp2[2] + "-" + temp2[1] + "-" + temp2[0] + "T" + temp[1] + "Z")
+	temp2 = temp[0].split("-");	
+	return new Date(temp2[2] + "-" + temp2[1] + "-" + temp2[0] + "T" + temp[1])
 }
 
 function plotMultiLineGraph(divID,vet, tipo){	
