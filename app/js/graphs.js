@@ -24,9 +24,7 @@ function plot(divID, data){
 	  x_accessor: "date",
 	  y_accessor: "value",
 	  color: '#004D85',
-
 	  xax_count: data.data.length,
-
 	});
 }
 
