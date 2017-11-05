@@ -327,6 +327,7 @@ $scope.currentCount = data.length;
                 break;
         case 'Retweets':
                 $scope.functionConteudoTweets();
+    $scope.functionConteudoTweets();
                 break;
         case 'User':
                 $scope.functionUser();
