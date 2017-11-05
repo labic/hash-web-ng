@@ -111,10 +111,10 @@ hash.controller('mainMonitor', function ($rootScope, $scope, $http, settings, Me
     });
   }
 
-  $scope.functionHashTag = function(period, theme, category, location){
+  $scope.functionHashTag = function (period, theme, category, location) {
 
     var cloudWidth = $("#div3_monitor").width();
-    $scope.loading('TwitterTopHashTags','str_hashTag');
+    $scope.loading('TwitterTopHashTags', 'str_hashTag');
 
     AnalyticsTwitter.mostRecurringHashtags(
       $scope.analyticsParams,
@@ -151,11 +151,11 @@ hash.controller('mainMonitor', function ($rootScope, $scope, $http, settings, Me
     Tweet.find(
       $scope.analyticsParams,
       function success(data) {
-        data != '' ? $scope.sucess('TwitterPosts','painel-posts-list') : $scope.empty('TwitterPosts');
+        data != '' ? $scope.sucess('TwitterPosts', 'painel-posts-list') : $scope.empty('TwitterPosts');
         $scope.twittes = data;
-        $scope.currentCount = data.length;
-        $scope.loadLessMoreButtons();
-      }, function (error) {
+
+$scope.currentCount = data.length;
+        $scope.loadLessMoreButtons();      }, function (error){
         $scope.error('TwitterPosts');
       });
   };
@@ -320,7 +320,7 @@ hash.controller('mainMonitor', function ($rootScope, $scope, $http, settings, Me
   };
 
   // Min chama apenas a 3º parte da tela
-  $scope.loadFeed = function(){
+  $scope.loadFeed = function () {
     switch($scope.div) {
         case 'Tweets':
                 $scope.functionConteudo();
@@ -462,6 +462,8 @@ hash.controller('mainMonitor', function ($rootScope, $scope, $http, settings, Me
   $scope.sucess = function (divId, divResult) {
     $("#loading" + divId).hide();
     $("#" + divResult).show();
+    $scope.totalPagination();
+    $scope.loadLessMoreButtons();
   }
 
   $scope.empty = function (divId) {
@@ -481,23 +483,21 @@ hash.controller('mainMonitor', function ($rootScope, $scope, $http, settings, Me
 
     resetMosaico("mosaico")
 
-    AnalyticsTwitter.mostRecurringImages(
-      {
-        page: $scope.analyticsParams.page,
-        per_page: 60,
-        period: $scope.analyticsParams.period,
-        'filter[with_tags]': $scope.analyticsParams['filter[with_tags]'],
-        'filter[hashtags]': $scope.analyticsParams['filter[hashtags]']
-      },
-      function success(data) {
-        $scope.currentCount = data.length;
-        $scope.loadLessMoreButtons();
-        plotMosaico("mosaico", $("#mosaico").width(), 4, data);
-        $scope.imgLoaded = 1;
-      }, function (error) {
-        console.log(error)
-        $scope.error('TwitterPosts');
-      });
+  AnalyticsTwitter.mostRecurringImages(
+    {
+      page:$scope.analyticsParams.page,
+      per_page:60,
+      period: $scope.analyticsParams.period,
+      'filter[with_tags]': $scope.analyticsParams['filter[with_tags]'],
+      'filter[hashtags]': $scope.analyticsParams['filter[hashtags]']
+    },
+    function success(data) {
+      $scope.currentCount = data.length;
+        $scope.loadLessMoreButtons();plotMosaico("mosaico",$("#mosaico").width(),4,data);$scope.imgLoaded = 1;
+    }, function (error){
+      console.log(error)
+      $scope.error('TwitterPosts');
+    });
   };
 
 
