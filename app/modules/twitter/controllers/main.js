@@ -130,6 +130,8 @@ hash.controller('mainMonitor', function ($scope, $http, settings, MetricsTwitter
       })
   };
 
+
+
   // NOTA: Funções que REALIZAM as requisições
   $scope.functionConteudo = function(){
     var contData;
@@ -140,19 +142,43 @@ hash.controller('mainMonitor', function ($scope, $http, settings, MetricsTwitter
       $scope.analyticsParams,
       function success(data) {
         data != '' ? $scope.sucess('TwitterPosts','painel-posts-list') : $scope.empty('TwitterPosts');  
+
+           // var set_data =  []        
+        // for (var i = data.length - 1; i >= 0; i--) {
+        //   var retweeted_status = data[i].status.retweeted_status
+        //   var quoted_status = data[i].status.quoted_status
+          
+
+        //   if (retweeted_status){
+            
+        //       set_data.push({"status":retweeted_status})
+            
+        //   } 
+        //   else if (quoted_status){
+            
+        //       set_data.push({"status":quoted_status})
+            
+                     
+        //   }else{
+        //     set_data.push(data[i])
+        //   }
+          
+        // }
+        // console.log(set_data)
         $scope.twittes = data;
+
       }, function (error){
         $scope.error('TwitterPosts');
       });
   };
   
   $scope.functionConteudoTweets = function(){
-    $scope.loading('TwitterPosts','painel-posts-list');
+    $scope.loading('TwitterPosts','painel-posts-list-retweet');
 
     AnalyticsTwitter.mostRetweetedTweets(
       $scope.analyticsParams,
       function success(data) {
-        data != '' ? $scope.sucess('TwitterPosts','painel-posts-list') : $scope.empty('TwitterPosts');  
+        data != '' ? $scope.sucess('TwitterPosts','painel-posts-list-retweet') : $scope.empty('TwitterPosts');  
         //        contData = Object.keys(data).length;
         //
         //        if(contData-2 < 24){
@@ -292,6 +318,7 @@ hash.controller('mainMonitor', function ($scope, $http, settings, MetricsTwitter
   // Min chama apenas a 3º parte da tela
   $scope.loadFeed = function(){
     $scope.functionConteudo();
+    $scope.functionConteudoTweets();
     $scope.functionUrl();
     $scope.functionMention();
     $scope.functionUser();
@@ -306,9 +333,10 @@ hash.controller('mainMonitor', function ($scope, $http, settings, MetricsTwitter
       period: period,
       'filter[with_tags]': filterTags,
       'filter[hashtags]': tag,
+      'filter[retweeted]': false, // Bollean
       retrive_blocked: undefined,
       page: 1,
-      per_page: 25
+      per_page: 50
     };
 
     //    $scope.analyticsImageParams = {
@@ -343,8 +371,7 @@ hash.controller('mainMonitor', function ($scope, $http, settings, MetricsTwitter
     });
   };
 
-  $scope.setAnalyticsParam($scope.filter.period, $scope.filter.theme, 
-                           undefined, undefined, undefined, undefined);
+  $scope.setAnalyticsParam($scope.filter.period, $scope.filter.theme,undefined, undefined, undefined, undefined);
 
   // Quando o filtro mudar...
   $scope.$watch('filter', function (newFilter, oldFilter) {
@@ -356,7 +383,7 @@ hash.controller('mainMonitor', function ($scope, $http, settings, MetricsTwitter
 
       // Contadores ao iniciar a página.
       $scope.loadContadores(newFilter.period,newFilter.theme);
-      $scope.functionMap();
+      //$scope.functionMap();
 
       //      $scope.loadAll(newFilter.period, newFilter.theme, undefined, undefined);
 
@@ -371,7 +398,7 @@ hash.controller('mainMonitor', function ($scope, $http, settings, MetricsTwitter
         $scope.setAnalyticsParam(newFilter.period, newFilter.theme, undefined, undefined, undefined, undefined);
         $scope.loadContadores(newFilter.period,newFilter.theme);
         $scope.loadAll(newFilter.period, newFilter.theme, undefined, undefined);
-        $scope.functionMap();
+        //$scope.functionMap();
       }
 
       if(newFilter.hashTag != oldFilter.hashTag){
@@ -383,7 +410,7 @@ hash.controller('mainMonitor', function ($scope, $http, settings, MetricsTwitter
         $scope.setAnalyticsParam(newFilter.period, newFilter.theme, undefined, undefined, undefined, undefined);
         $scope.loadContadores(newFilter.period,newFilter.theme);  
         $scope.loadAll(newFilter.period, newFilter.theme, undefined, undefined);
-        $scope.functionMap();
+        //$scope.functionMap();
       }
 
       if(newFilter.location != oldFilter.location){
