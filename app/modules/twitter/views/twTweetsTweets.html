@@ -1,6 +1,6 @@
 <div id="painel-posts" data-ng-init="functionConteudo();">
   <div style="height:100%; width:100%;">
-    
+
     <div id="loadingTwitterPosts" class="handlers">
       <img src="img/icons/spinning-circles.svg">
       <p>estamos carregando os dados</p>
@@ -15,7 +15,7 @@
       <img src="img/icons/error_outline.svg">
       <p>não há dados dessa categoria nesse intervalo de tempo, tente outros parâmetros</p>
     </div>
-    
+
     <div id="painel-posts-list">
       <!--			<button ng-show="buttonBack" class="result_button result_button_back" ng-click='loadMoreTweetsChange(-1);' >VOLTAR</button>-->
 
@@ -30,8 +30,25 @@
           <a title="Clique para visualizar o retweeter, @{{twitte.status.user.screen_name}}, no Twitter." href="https://twitter.com/{{twitte.status.user.screen_name}}/status/{{twitte.status.id_str}}" target="_blank"> {{twitte.status.text}}</a>
           <hr style="width: 100%; size: 3px; color: lightgray; top: 10px;">
       </div>
+      <!--TODO POG criar diretiva-->
+      <div class="clearfix"></div>
+      <div class="twPagination">
+        <div class="col-md-4">
+          <button ng-disabled="buttonLess" class="btn btn-primary" ng-click="loadMore(-1, 'tw')">
+            <span class="glyphicon glyphicon-triangle-left"></span>
+          </button>
+        </div>
+        <div class="col-md-4 text-center">
+          {{analyticsParams.page}}/{{totalPages}}
+        </div>
+        <div class="col-md-4 text-right">
+          <button ng-disabled="buttonMore" class="btn btn-primary" ng-click="loadMore(1, 'tw')">
+            <span class="glyphicon glyphicon-triangle-right"></span>
+          </button>
+        </div>
+        <div class="clearfix"></div>
+      </div>
 
-      <button ng-show="buttonNext" class="result_button result_button_next" ng-click='loadMore(1);'></button>
     </div>
   </div>
 </div>
