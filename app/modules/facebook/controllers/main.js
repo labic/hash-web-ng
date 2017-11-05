@@ -1,4 +1,4 @@
-hash.controller('mainFacebook', function ($scope, $http, settings, MetricsFacebook, AnalyticsFacebook,FacebookPosts, WordFacebook) {
+hash.controller('mainFacebook', function ($scope, $http, settings, MetricsFacebook, AnalyticsFacebook, FacebookPosts, WordFacebook) {
 
   // Mudancas: Estão ocorrendo modificações no codigo pois antes não havia Categorias dinamicas e Hashtags
 
