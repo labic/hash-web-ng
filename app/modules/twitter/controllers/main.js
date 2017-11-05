@@ -414,7 +414,7 @@ hash.controller('mainMonitor', function ($rootScope, $scope, $http, settings, Me
   };
 
   $scope.setAnalyticsParam($scope.filter.period, $scope.filter.theme,
-    undefined, undefined, undefined, undefined);
+                           undefined, undefined, undefined, undefined);
 
   // Quando o filtro mudar...
   $scope.$watch('filter', function (newFilter, oldFilter) {
