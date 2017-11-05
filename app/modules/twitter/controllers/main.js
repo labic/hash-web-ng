@@ -146,20 +146,43 @@ hash.controller('mainMonitor', function ($scope, $http, settings, MetricsTwitter
     Tweet.find(
       $scope.analyticsParams,
       function success(data) {
-        data != '' ? $scope.sucess('TwitterPosts', 'painel-posts-list') : $scope.empty('TwitterPosts');
+        data != '' ? $scope.sucess('TwitterPosts','painel-posts-list') : $scope.empty('TwitterPosts');  // var set_data =  []
+        // for (var i = data.length - 1; i >= 0; i--) {
+        //   var retweeted_status = data[i].status.retweeted_status
+        //   var quoted_status = data[i].status.quoted_status
+
+
+        //   if (retweeted_status){
+
+        //       set_data.push({"status":retweeted_status})
+
+        //   }
+        //   else if (quoted_status){
+
+        //       set_data.push({"status":quoted_status})
+
+
+        //   }else{
+        //     set_data.push(data[i])
+        //   }
+
+        // }
+        // console.log(set_data)
         $scope.twittes = data;
+
       }, function (error) {
         $scope.error('TwitterPosts');
       });
   };
 
   $scope.functionConteudoTweets = function () {
-    $scope.loading('TwitterPosts', 'painel-posts-list');
+    $scope.loading('TwitterPosts', 'painel-posts-list-retweet');
+    $scope.div = 'Retweets';
 
     AnalyticsTwitter.mostRetweetedTweets(
       $scope.analyticsParams,
       function success(data) {
-        data != '' ? $scope.sucess('TwitterPosts', 'painel-posts-list') : $scope.empty('TwitterPosts');
+        data != '' ? $scope.sucess('TwitterPosts', 'painel-posts-list-retweet') : $scope.empty('TwitterPosts');
         //        contData = Object.keys(data).length;
         //
         //        if(contData-2 < 24){
@@ -178,6 +201,7 @@ hash.controller('mainMonitor', function ($scope, $http, settings, MetricsTwitter
   $scope.functionUser = function () {
 
     $scope.loading('TwitterPosts', 'str_TwitterUser');
+    $scope.div = 'User';
 
     AnalyticsTwitter.mostActiveUsers(
       $scope.analyticsParams,
@@ -191,6 +215,7 @@ hash.controller('mainMonitor', function ($scope, $http, settings, MetricsTwitter
 
   $scope.functionMention = function () {
     $scope.loading('TwitterPosts', 'str_TwitterMentions');
+    $scope.div = 'Mentions';
 
     AnalyticsTwitter.mostMentionedUsers(
       $scope.analyticsParams,
@@ -204,6 +229,7 @@ hash.controller('mainMonitor', function ($scope, $http, settings, MetricsTwitter
 
   $scope.functionUrl = function () {
     $scope.loading('TwitterPosts', 'str_TwitterUrl');
+    $scope.div = 'Url';
 
     AnalyticsTwitter.mostRecurringUrls(
       $scope.analyticsParams,
@@ -233,10 +259,10 @@ hash.controller('mainMonitor', function ($scope, $http, settings, MetricsTwitter
     return vetor;
   };
 
-  $scope.functionMap = function () {
+  // $scope.functionMap = function () {
 
-    var monitorLinkMap = WORD_API_BASE_URI + '/twitter/map_volume?filter=' + $scope.analyticsMap;
-    $("#svg-map a path").css("fill", "#d1e8c5");
+  //   var monitorLinkMap = WORD_API_BASE_URI + '/twitter/map_volume?filter=' + $scope.analyticsMap;
+  //   $("#svg-map a path").css("fill", "#d1e8c5");
 
   //   $scope.legendMetade = 0;
   //   $scope.legendMax = 0;
@@ -246,13 +272,13 @@ hash.controller('mainMonitor', function ($scope, $http, settings, MetricsTwitter
   //   $http.get(monitorLinkMap).success(function (data) {
   //     var maxCont = 0;
 
-      for (var x = 0; x < 27; x++) {
-        if (data[x].count > maxCont) {
-          maxCont = data[x].count;
-        }
-      }
+  //     for (var x = 0; x < 27; x++) {
+  //       if (data[x].count > maxCont) {
+  //         maxCont = data[x].count;
+  //       }
+  //     }
 
-      getColors(data, "#d1e8c5", "#426083");
+  //     getColors(data, "#d1e8c5", "#426083");
 
   //     $scope.mapAC = data[0].cor;
   //     $scope.mapAL = data[1].cor;
@@ -282,10 +308,10 @@ hash.controller('mainMonitor', function ($scope, $http, settings, MetricsTwitter
   //     $scope.mapSP = data[25].cor;
   //     $scope.mapTO = data[26].cor;
 
-      $("#svg-map a path").removeAttr("style");
+  //     $("#svg-map a path").removeAttr("style");
 
-      $scope.legendMetade = Math.floor(maxCont / 2);
-      $scope.legendMax = maxCont;
+  //     $scope.legendMetade = Math.floor(maxCont / 2);
+  //     $scope.legendMax = maxCont;
 
   //     $scope.dataMapaON = false;
   //     $scope.textLoadDisplayMap = false;
@@ -302,10 +328,26 @@ hash.controller('mainMonitor', function ($scope, $http, settings, MetricsTwitter
 
   // Min chama apenas a 3º parte da tela
   $scope.loadFeed = function () {
-    $scope.functionConteudo();
-    $scope.functionUrl();
-    $scope.functionMention();
-    $scope.functionUser();
+    switch($scope.div) {
+        case 'Tweets':
+                $scope.functionConteudo();
+                break;
+        case 'Retweets':
+                $scope.functionConteudoTweets();
+                break;
+        case 'User':
+                $scope.functionUser();
+                break;
+        case 'Mentions':
+                $scope.functionMention();
+                break;
+        case 'Url':
+                $scope.functionUrl();
+                break;
+        case 'Images':
+                $scope.functionImages();
+                break;
+    }
   };
 
   // NOTA: Colocando parametros
@@ -357,7 +399,7 @@ hash.controller('mainMonitor', function ($scope, $http, settings, MetricsTwitter
   };
 
   $scope.setAnalyticsParam($scope.filter.period, $scope.filter.theme,
-    undefined, undefined, undefined, undefined);
+                           undefined, undefined, undefined, undefined);
 
   // Quando o filtro mudar...
   $scope.$watch('filter', function (newFilter, oldFilter) {
@@ -369,7 +411,7 @@ hash.controller('mainMonitor', function ($scope, $http, settings, MetricsTwitter
 
       // Contadores ao iniciar a página.
       $scope.loadContadores(newFilter.period, newFilter.theme);
-      $scope.functionMap();
+      //$scope.functionMap();
 
       //      $scope.loadAll(newFilter.period, newFilter.theme, undefined, undefined);
 
@@ -444,6 +486,9 @@ hash.controller('mainMonitor', function ($scope, $http, settings, MetricsTwitter
 
   $scope.functionImages = function () {
     $scope.loading('TwitterPosts', 'str_TwitterUrl');
+  $scope.div = "Images"
+
+  resetMosaico("mosaico")
 
     AnalyticsTwitter.mostRecurringImages(
       {
