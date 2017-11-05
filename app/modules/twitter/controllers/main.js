@@ -299,6 +299,7 @@ hash.controller('mainMonitor', function ($scope, $http, settings, MetricsTwitter
   // Min chama apenas a 3º parte da tela
   $scope.loadFeed = function () {
     $scope.functionConteudo();
+    $scope.functionConteudoTweets();
     $scope.functionUrl();
     $scope.functionMention();
     $scope.functionUser();
@@ -351,7 +352,7 @@ hash.controller('mainMonitor', function ($scope, $http, settings, MetricsTwitter
   };
 
   $scope.setAnalyticsParam($scope.filter.period, $scope.filter.theme,
-    undefined, undefined, undefined, undefined);
+                           undefined, undefined, undefined, undefined);
 
   // Quando o filtro mudar...
   $scope.$watch('filter', function (newFilter, oldFilter) {
@@ -363,7 +364,7 @@ hash.controller('mainMonitor', function ($scope, $http, settings, MetricsTwitter
 
       // Contadores ao iniciar a página.
       $scope.loadContadores(newFilter.period, newFilter.theme);
-      $scope.functionMap();
+      //$scope.functionMap();
 
       //      $scope.loadAll(newFilter.period, newFilter.theme, undefined, undefined);
 
@@ -378,7 +379,7 @@ hash.controller('mainMonitor', function ($scope, $http, settings, MetricsTwitter
         $scope.setAnalyticsParam(newFilter.period, newFilter.theme, undefined, undefined, undefined, undefined);
         $scope.loadContadores(newFilter.period, newFilter.theme);
         $scope.loadAll(newFilter.period, newFilter.theme, undefined, undefined);
-        $scope.functionMap();
+        //$scope.functionMap();
       }
 
       if (newFilter.hashTag != oldFilter.hashTag) {
@@ -390,7 +391,7 @@ hash.controller('mainMonitor', function ($scope, $http, settings, MetricsTwitter
         $scope.setAnalyticsParam(newFilter.period, newFilter.theme, undefined, undefined, undefined, undefined);
         $scope.loadContadores(newFilter.period, newFilter.theme);
         $scope.loadAll(newFilter.period, newFilter.theme, undefined, undefined);
-        $scope.functionMap();
+        //$scope.functionMap();
       }
 
       if (newFilter.location != oldFilter.location) {
