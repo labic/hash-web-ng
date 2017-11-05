@@ -70,7 +70,7 @@
   height: 100%;
 }
 
-#painel-posts-list,#painel-post-list-retweet{
+#painel-posts-list,#painel-posts-list-retweet{
   width:100%;
   height: 100%;
   overflow-y: auto;
