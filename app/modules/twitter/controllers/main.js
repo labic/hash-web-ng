@@ -15,7 +15,7 @@ hash.controller('mainMonitor', function ($scope, $http, settings, MetricsTwitter
   // Variavel Turn que falará em qual filtro está a página.
   var turn;
 
-  var defaultLimit = 24;
+  var defaultLimit = 50;
 
   // Conta em que pagina você está serve para a paginação.
   $scope.countpage = 0;
@@ -339,6 +339,7 @@ hash.controller('mainMonitor', function ($scope, $http, settings, MetricsTwitter
       'filter[with_tags]': filterTags,
       'filter[hashtags]': tag,
       'filter[retweeted]': false, // Bollean
+      'filter[is_quote_status]': false,
       retrive_blocked: undefined,
       page: 1,
       per_page: 50
