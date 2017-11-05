@@ -23,16 +23,12 @@ function plot(divID, data){
 	  target: "#" + divID,
 	  x_accessor: "date",
 	  y_accessor: "value",	  
-	  color: '#004D85',
-	  //xax_format: d3.utcFormat('%dT%H:%M'),
-	  xax_count: data.data.length,
-	  //show_secondary_x_label: false	  
+	  color: '#004D85',	
+	  xax_count: data.data.length,	  
 	});
 }
 
 function trataEntrada(res, network){
-	console.log(res)
-
 	data = []
 
 	for(i in res){		
