@@ -1,6 +1,8 @@
 <div id="divHashtags" style="height:100%;" data-ng-init="functionHashTag();functionTopTags(filter.period,filter.theme);">
-  <div style="height:auto; position: relative;">
-
+  <!-- <div style="height:auto; position: relative;"> -->
+  <div id="str_highWord">
+    <p class="title_str_highWord">Nuvem de hashtags</p>
+    
     <div id="loadingTwitterTopHashTags" class="handlers">
       <img src="img/icons/spinning-circles.svg">
       <p>estamos carregando os dados</p>
@@ -16,6 +18,9 @@
       <p>não há dados dessa categoria nesse intervalo de tempo, tente outros parâmetros</p>
     </div>
 
+    <div id="str_hashTag" class="strVertical_highWord"></div>
+  </div>
+<!-- 
     <div id="str_highWord" title="Clique para visualizar os ultimos retweets com #{{tag1.hashtag}}" ng-click="loadHastagsPub(tag1.hashtag);">
       <p class="title_str_highWord">#{{tagOne.hashtag}}</p>
       <p class="text_str_highWord"><span class="number_str_highWord">{{tagOne.count}}</span> vezes</p>
@@ -27,7 +32,7 @@
           <p ng-if="tag.count != 1">{{tag.count}} vezes</p>
         </div>
       </div>
-    </div>
+    </div> -->
   </div>
 
   <!-- <div class="str_fixed_words">

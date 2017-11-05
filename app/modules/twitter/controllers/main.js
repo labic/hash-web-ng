@@ -102,15 +102,16 @@ hash.controller('mainMonitor', function ($scope, $http, settings, MetricsTwitter
     });
   }
 
-  $scope.functionHashTag = function(){
+  $scope.functionHashTag = function(period, theme, category, location){
 
+    var cloudWidth = $("#div3_monitor").width();
     $scope.loading('TwitterTopHashTags','str_hashTag');
 
     AnalyticsTwitter.mostRecurringHashtags(
       $scope.analyticsParams,
       function success(data) {
         data != '' ? $scope.sucess('TwitterTopHashTags','str_hashTag') : $scope.empty('TwitterTopHashTags'); 
-        $scope.tags = data.splice(0,13);
+        plotWordCloud({width:cloudWidth, height:330, divID:'str_hashTag'}, data); 
       }, function (error){
         $scope.error('TwitterTopHashTags');
       });
