@@ -7,6 +7,7 @@
       var DEBUG = false;
       $http.get('/data/twitter-monitor-options.json')
         .then(function(res) {
+          
           $scope.options = res.data;
 
           $scope.filter = {
