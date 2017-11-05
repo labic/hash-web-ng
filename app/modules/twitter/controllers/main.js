@@ -320,26 +320,25 @@ hash.controller('mainMonitor', function ($rootScope, $scope, $http, settings, Me
   };
 
   // Min chama apenas a 3º parte da tela
-  $scope.loadFeed = function () {
-    switch ($scope.div) {
-      case 'Tweets':
-        $scope.functionConteudo();
-        break;
-      case 'Retweets':
-        $scope.functionConteudoTweets();
-        break;
-      case 'User':
-        $scope.functionUser();
-        break;
-      case 'Mentions':
-        $scope.functionMention();
-        break;
-      case 'Url':
-        $scope.functionUrl();
-        break;
-      case 'Images':
-        $scope.functionImages();
-        break;
+  $scope.loadFeed = function(){
+    switch($scope.div) {
+        case 'Tweets':
+                $scope.functionConteudo();
+                break;
+        case 'Retweets':
+                $scope.functionConteudoTweets();
+                break;
+        case 'User':
+                $scope.functionUser();
+                break;
+        case 'Mentions':
+                $scope.functionMention();
+                break;
+        case 'Url':
+                $scope.functionUrl();
+                break;case 'Images':
+                $scope.functionImages();
+                break;
     }
   };
 
