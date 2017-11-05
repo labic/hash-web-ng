@@ -339,6 +339,9 @@ hash.controller('mainMonitor', function ($scope, $http, settings, MetricsTwitter
         case 'Url':
                 $scope.functionUrl();
                 break;
+        case 'Images':
+                $scope.functionImages();
+                break;
     }
   };
 
@@ -475,6 +478,9 @@ hash.controller('mainMonitor', function ($scope, $http, settings, MetricsTwitter
 
   $scope.functionImages = function(){
   $scope.loading('TwitterPosts','str_TwitterUrl');
+  $scope.div = "Images"
+
+  resetMosaico("mosaico")
 
   AnalyticsTwitter.mostRecurringImages(
     {

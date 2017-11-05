@@ -1,6 +1,5 @@
 function plotMosaico(divID, width, imagesPerLine, data){
 	div = d3.select("#" + divID);
-	console.log(data);
 
 	imgs = div.selectAll("img").data(data);
 
