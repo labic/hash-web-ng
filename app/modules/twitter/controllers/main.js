@@ -111,10 +111,10 @@ hash.controller('mainMonitor', function ($rootScope, $scope, $http, settings, Me
     });
   }
 
-  $scope.functionHashTag = function (period, theme, category, location) {
+  $scope.functionHashTag = function(period, theme, category, location){
 
     var cloudWidth = $("#div3_monitor").width();
-    $scope.loading('TwitterTopHashTags', 'str_hashTag');
+    $scope.loading('TwitterTopHashTags','str_hashTag');
 
     AnalyticsTwitter.mostRecurringHashtags(
       $scope.analyticsParams,
