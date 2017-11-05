@@ -357,7 +357,7 @@ hash.controller('mainMonitor', function ($scope, $http, settings, MetricsTwitter
       'filter[with_tags]': filterTags,
       'filter[hashtags]': tag,
       'filter[retweeted]': false, // Bollean
-      'filter[is_quote_status]': false,
+      'filter[quoted_status]': false,
       retrive_blocked: undefined,
       page: 1,
       per_page: 50
