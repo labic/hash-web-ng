@@ -240,7 +240,7 @@ left: 10px;
   padding: 5px
 }
 
-.facebook-post-coment, .facebook-post-like {
+.facebook-post-coment, .facebook-post-like, .facebook-post-share{
   margin: 5px;
   float: left;
   line-height: 20px;
@@ -266,6 +266,15 @@ left: 10px;
   font-size: 10pt;
 }
 
+.facebook-post-share p.share {
+  background-image: url(../img/facebook/buttons.png);
+  background-repeat: no-repeat;
+  background-position: 0px -290px;
+  padding-left: 20px;
+  vertical-align: middle;
+  height: 18px;
+  font-size: 10pt;
+}
 /*.facebook-post-coment p, .facebook-post-like p {*/
   /*font-size: 16px;*/
   /*float: right;*/
