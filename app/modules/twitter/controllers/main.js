@@ -5,6 +5,7 @@ hash.controller('mainMonitor', function ($scope, $http, settings, MetricsTwitter
                                          AnalyticsTwitter, WordTwitter, Tweet, WORD_API_BASE_URI) {
 
   $scope.settings = settings.get('twitter');
+  $scope.div = 'Tweets';
 
   //TODO passar para settings
   $scope.paginationLimit = 1000;
@@ -138,6 +139,7 @@ hash.controller('mainMonitor', function ($scope, $http, settings, MetricsTwitter
   // NOTA: Funções que REALIZAM as requisições
   $scope.functionConteudo = function () {
     var contData;
+    $scope.div = 'Tweets';
 
     $scope.loading('TwitterPosts', 'painel-posts-list');
 
@@ -175,6 +177,7 @@ hash.controller('mainMonitor', function ($scope, $http, settings, MetricsTwitter
 
   $scope.functionConteudoTweets = function () {
     $scope.loading('TwitterPosts', 'painel-posts-list-retweet');
+    $scope.div = 'Retweets';
 
     AnalyticsTwitter.mostRetweetedTweets(
       $scope.analyticsParams,
@@ -198,6 +201,7 @@ hash.controller('mainMonitor', function ($scope, $http, settings, MetricsTwitter
   $scope.functionUser = function () {
 
     $scope.loading('TwitterPosts', 'str_TwitterUser');
+    $scope.div = 'User';
 
     AnalyticsTwitter.mostActiveUsers(
       $scope.analyticsParams,
@@ -211,6 +215,7 @@ hash.controller('mainMonitor', function ($scope, $http, settings, MetricsTwitter
 
   $scope.functionMention = function () {
     $scope.loading('TwitterPosts', 'str_TwitterMentions');
+    $scope.div = 'Mentions';
 
     AnalyticsTwitter.mostMentionedUsers(
       $scope.analyticsParams,
@@ -224,6 +229,7 @@ hash.controller('mainMonitor', function ($scope, $http, settings, MetricsTwitter
 
   $scope.functionUrl = function () {
     $scope.loading('TwitterPosts', 'str_TwitterUrl');
+    $scope.div = 'Url';
 
     AnalyticsTwitter.mostRecurringUrls(
       $scope.analyticsParams,
@@ -253,80 +259,92 @@ hash.controller('mainMonitor', function ($scope, $http, settings, MetricsTwitter
     return vetor;
   };
 
-  $scope.functionMap = function () {
+  // $scope.functionMap = function () {
 
-    var monitorLinkMap = WORD_API_BASE_URI + '/twitter/map_volume?filter=' + $scope.analyticsMap;
-    $("#svg-map a path").css("fill", "#d1e8c5");
+  //   var monitorLinkMap = WORD_API_BASE_URI + '/twitter/map_volume?filter=' + $scope.analyticsMap;
+  //   $("#svg-map a path").css("fill", "#d1e8c5");
 
-    $scope.legendMetade = 0;
-    $scope.legendMax = 0;
-    $scope.dataMapaON = true;
-    $scope.textLoadDisplayMap = true;
+  //   $scope.legendMetade = 0;
+  //   $scope.legendMax = 0;
+  //   $scope.dataMapaON = true;
+  //   $scope.textLoadDisplayMap = true;
 
-    $http.get(monitorLinkMap).success(function (data) {
-      var maxCont = 0;
+  //   $http.get(monitorLinkMap).success(function (data) {
+  //     var maxCont = 0;
 
-      for (var x = 0; x < 27; x++) {
-        if (data[x].count > maxCont) {
-          maxCont = data[x].count;
-        }
-      }
+  //     for (var x = 0; x < 27; x++) {
+  //       if (data[x].count > maxCont) {
+  //         maxCont = data[x].count;
+  //       }
+  //     }
 
-      getColors(data, "#d1e8c5", "#426083");
+  //     getColors(data, "#d1e8c5", "#426083");
 
-      $scope.mapAC = data[0].cor;
-      $scope.mapAL = data[1].cor;
-      $scope.mapAM = data[2].cor;
-      $scope.mapAP = data[3].cor;
-      $scope.mapBA = data[4].cor;
-      $scope.mapCE = data[5].cor;
-      $scope.mapDF = data[6].cor;
-      $scope.mapES = data[7].cor;
-      $scope.mapGO = data[8].cor;
-      $scope.mapMA = data[9].cor;
-      $scope.mapMG = data[10].cor;
-      $scope.mapMS = data[11].cor;
-      $scope.mapMT = data[12].cor;
-      $scope.mapPA = data[13].cor;
-      $scope.mapPB = data[14].cor;
-      $scope.mapPE = data[15].cor;
-      $scope.mapPI = data[16].cor;
-      $scope.mapPR = data[17].cor;
-      $scope.mapRJ = data[18].cor;
-      $scope.mapRN = data[19].cor;
-      $scope.mapRO = data[20].cor;
-      $scope.mapRR = data[21].cor;
-      $scope.mapRS = data[22].cor;
-      $scope.mapSC = data[23].cor;
-      $scope.mapSE = data[24].cor;
-      $scope.mapSP = data[25].cor;
-      $scope.mapTO = data[26].cor;
+  //     $scope.mapAC = data[0].cor;
+  //     $scope.mapAL = data[1].cor;
+  //     $scope.mapAM = data[2].cor;
+  //     $scope.mapAP = data[3].cor;
+  //     $scope.mapBA = data[4].cor;
+  //     $scope.mapCE = data[5].cor;
+  //     $scope.mapDF = data[6].cor;
+  //     $scope.mapES = data[7].cor;
+  //     $scope.mapGO = data[8].cor;
+  //     $scope.mapMA = data[9].cor;
+  //     $scope.mapMG = data[10].cor;
+  //     $scope.mapMS = data[11].cor;
+  //     $scope.mapMT = data[12].cor;
+  //     $scope.mapPA = data[13].cor;
+  //     $scope.mapPB = data[14].cor;
+  //     $scope.mapPE = data[15].cor;
+  //     $scope.mapPI = data[16].cor;
+  //     $scope.mapPR = data[17].cor;
+  //     $scope.mapRJ = data[18].cor;
+  //     $scope.mapRN = data[19].cor;
+  //     $scope.mapRO = data[20].cor;
+  //     $scope.mapRR = data[21].cor;
+  //     $scope.mapRS = data[22].cor;
+  //     $scope.mapSC = data[23].cor;
+  //     $scope.mapSE = data[24].cor;
+  //     $scope.mapSP = data[25].cor;
+  //     $scope.mapTO = data[26].cor;
 
-      $("#svg-map a path").removeAttr("style");
+  //     $("#svg-map a path").removeAttr("style");
 
-      $scope.legendMetade = Math.floor(maxCont / 2);
-      $scope.legendMax = maxCont;
+  //     $scope.legendMetade = Math.floor(maxCont / 2);
+  //     $scope.legendMax = maxCont;
 
-      $scope.dataMapaON = false;
-      $scope.textLoadDisplayMap = false;
-    });
-  };
+  //     $scope.dataMapaON = false;
+  //     $scope.textLoadDisplayMap = false;
+  //   });
+  // };
 
   // NOTA: Funções que CHAMAM as funções que fazem as requisições. Cada um carrega uma parte da tela
   // All chama todas as partes da tela
   $scope.loadAll = function (period, theme, category, location) {
     $scope.loadFeed();
     $scope.functionHashTag();
-    $scope.functionWord(period, theme, category, location);
+    //$scope.functionWord(period, theme, category, location);
   };
 
   // Min chama apenas a 3º parte da tela
   $scope.loadFeed = function () {
-    $scope.functionConteudo();
-    $scope.functionConteudoTweets();
-    $scope.functionUrl();
-    $scope.functionMention();
-    $scope.functionUser();
+    switch($scope.div) {
+        case 'Tweets':
+                $scope.functionConteudo();
+                break;
+        case 'Retweets':
+                $scope.functionConteudoTweets();
+                break;
+        case 'User':
+                $scope.functionUser();
+                break;
+        case 'Mentions':
+                $scope.functionMention();
+                break;
+        case 'Url':
+                $scope.functionUrl();
+                break;
+    }
   };
 
   // NOTA: Colocando parametros
