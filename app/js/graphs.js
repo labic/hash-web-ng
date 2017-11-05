@@ -31,8 +31,6 @@ function plot(divID, data){
 }
 
 function trataEntrada(res, network){
-	console.log(res)
-
 	data = []
 
 	for(i in res){
