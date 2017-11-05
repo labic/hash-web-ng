@@ -3,19 +3,24 @@
     "values": [
       {
         "text": "08:00",
-        "value": "r8h"
+        "value": "r8h",
+        "alt": "20h ~ 08h"
       },{
         "text": "12:00",
-        "value": "r12h"
+        "value": "r12h",
+        "alt": "08h ~ 12h" 
       },{
         "text": "16:00",
-        "value": "r16h"
+        "value": "r16h",
+        "alt": "12h ~ 16h"
       },{
         "text": "20:00",
-        "value": "r20h"
+        "value": "r20h",
+        "alt": "16h ~ 20h"
       },{
-        "text": "24 horas",
-        "value": "r24h"
+        "text": "1 dia",
+        "value": "r24h",
+        "alt": "18h ~ 18h"
       }
     ]
   },
