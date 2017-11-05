@@ -141,7 +141,6 @@ hash.controller('mainMonitor', function ($rootScope, $scope, $http, settings, Me
       })
   };
 
-
   // NOTA: Funções que REALIZAM as requisições
   $scope.functionConteudo = function () {
     var contData;
@@ -152,28 +151,7 @@ hash.controller('mainMonitor', function ($rootScope, $scope, $http, settings, Me
     Tweet.find(
       $scope.analyticsParams,
       function success(data) {
-        data != '' ? $scope.sucess('TwitterPosts', 'painel-posts-list') : $scope.empty('TwitterPosts');  // var set_data =  []
-        // for (var i = data.length - 1; i >= 0; i--) {
-        //   var retweeted_status = data[i].status.retweeted_status
-        //   var quoted_status = data[i].status.quoted_status
-
-
-        //   if (retweeted_status){
-
-        //       set_data.push({"status":retweeted_status})
-
-        //   }
-        //   else if (quoted_status){
-
-        //       set_data.push({"status":quoted_status})
-
-
-        //   }else{
-        //     set_data.push(data[i])
-        //   }
-
-        // }
-        // console.log(set_data)
+        data != '' ? $scope.sucess('TwitterPosts','painel-posts-list') : $scope.empty('TwitterPosts');
         $scope.twittes = data;
         $scope.currentCount = data.length;
         $scope.loadLessMoreButtons();
