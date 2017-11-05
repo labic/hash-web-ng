@@ -153,8 +153,7 @@ hash.controller('mainMonitor', function ($rootScope, $scope, $http, settings, Me
       function success(data) {
         data != '' ? $scope.sucess('TwitterPosts', 'painel-posts-list') : $scope.empty('TwitterPosts');
         $scope.twittes = data;
-
-$scope.currentCount = data.length;
+        $scope.currentCount = data.length;
         $scope.loadLessMoreButtons();      }, function (error){
         $scope.error('TwitterPosts');
       });
