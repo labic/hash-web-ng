@@ -16,9 +16,6 @@ hash.controller('mainMonitor', function ($rootScope, $scope, $http, settings, Me
   $scope.settings = settings.get('twitter');
   $scope.div = 'Tweets';
 
-  //TODO passar para settings
-  $scope.paginationLimit = 1000;
-
   // Variavel para inicializar o watch, quando esta falso executa um if com a inicialização da tela.
   var firstRun = false;
 
