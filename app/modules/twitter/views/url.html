@@ -19,15 +19,12 @@
     <div id="str_TwitterUrl" class="geralTweets_result">
       <div class="row">
         <div class="col-md-6">
-          <button class="result_button result_button_back" ng-click='hasNext();' >VOLTAR</button>
-        </div>
-        <div class="col-md-6">
           <button ng-show="buttonNext" class="result_button result_button_next" ng-click='loadMoreTweetsChange(1);'></button>
         </div>
       </div>
       <div class="each_user_result" ng-repeat="url in urls">
         <a ng-hide="url.status.entities.urls.expanded_url == null" href="{{url.status.entities.urls.expanded_url}}" target="_blank">
-          <p class="user_result_number">{{urls.indexOf(url) + 1}}º</p>
+          <p class="user_result_number">{{(analyticsParams.per_page)*(analyticsParams.page - 1) + urls.indexOf(url) + 1}}º</p>
           <p class="user_result_name">{{url.status.entities.urls.expanded_url}}</p>
           <p class="user_result_count"><img src="img/icons/ICONE-TWEET.png" height="15px" width="15px;">{{url.count}}</p>
         </a>
