@@ -135,7 +135,6 @@ hash.controller('mainMonitor', function ($scope, $http, settings, MetricsTwitter
   };
 
 
-
   // NOTA: Funções que REALIZAM as requisições
   $scope.functionConteudo = function () {
     var contData;
@@ -146,7 +145,7 @@ hash.controller('mainMonitor', function ($scope, $http, settings, MetricsTwitter
     Tweet.find(
       $scope.analyticsParams,
       function success(data) {
-        data != '' ? $scope.sucess('TwitterPosts','painel-posts-list') : $scope.empty('TwitterPosts');  // var set_data =  []
+        data != '' ? $scope.sucess('TwitterPosts', 'painel-posts-list') : $scope.empty('TwitterPosts');  // var set_data =  []
         // for (var i = data.length - 1; i >= 0; i--) {
         //   var retweeted_status = data[i].status.retweeted_status
         //   var quoted_status = data[i].status.quoted_status
@@ -169,7 +168,9 @@ hash.controller('mainMonitor', function ($scope, $http, settings, MetricsTwitter
         // }
         // console.log(set_data)
         $scope.twittes = data;
-
+        $scope.currentCount = data.length;
+        $scope.totalPagination();
+        $scope.loadLessMoreButtons();
       }, function (error) {
         $scope.error('TwitterPosts');
       });
@@ -192,6 +193,9 @@ hash.controller('mainMonitor', function ($scope, $http, settings, MetricsTwitter
         //        }
 
         $scope.twittes = data;
+        $scope.currentCount = data.length;
+        $scope.totalPagination();
+        $scope.loadLessMoreButtons();
       }, function (error) {
         $scope.error('TwitterPosts');
       });
@@ -208,6 +212,9 @@ hash.controller('mainMonitor', function ($scope, $http, settings, MetricsTwitter
       function success(data) {
         data != '' ? $scope.sucess('TwitterPosts', 'str_TwitterUser') : $scope.empty('TwitterPosts');
         $scope.users = data;
+        $scope.currentCount = data.length;
+        $scope.totalPagination();
+        $scope.loadLessMoreButtons();
       }, function (error) {
         $scope.error('TwitterPosts');
       });
@@ -222,6 +229,9 @@ hash.controller('mainMonitor', function ($scope, $http, settings, MetricsTwitter
       function success(data) {
         data != '' ? $scope.sucess('TwitterPosts', 'str_TwitterMentions') : $scope.empty('TwitterPosts');
         $scope.mentions = data;
+        $scope.currentCount = data.length;
+        $scope.totalPagination();
+        $scope.loadLessMoreButtons();
       }, function (error) {
         $scope.error('TwitterPosts');
       });
@@ -236,6 +246,9 @@ hash.controller('mainMonitor', function ($scope, $http, settings, MetricsTwitter
       function success(data) {
         data != '' ? $scope.sucess('TwitterPosts', 'str_TwitterUrl') : $scope.empty('TwitterPosts');
         $scope.urls = data;
+        $scope.currentCount = data.length;
+        $scope.totalPagination();
+        $scope.loadLessMoreButtons();
       }, function (error) {
         $scope.error('TwitterPosts');
       });
@@ -328,25 +341,25 @@ hash.controller('mainMonitor', function ($scope, $http, settings, MetricsTwitter
 
   // Min chama apenas a 3º parte da tela
   $scope.loadFeed = function () {
-    switch($scope.div) {
-        case 'Tweets':
-                $scope.functionConteudo();
-                break;
-        case 'Retweets':
-                $scope.functionConteudoTweets();
-                break;
-        case 'User':
-                $scope.functionUser();
-                break;
-        case 'Mentions':
-                $scope.functionMention();
-                break;
-        case 'Url':
-                $scope.functionUrl();
-                break;
-        case 'Images':
-                $scope.functionImages();
-                break;
+    switch ($scope.div) {
+      case 'Tweets':
+        $scope.functionConteudo();
+        break;
+      case 'Retweets':
+        $scope.functionConteudoTweets();
+        break;
+      case 'User':
+        $scope.functionUser();
+        break;
+      case 'Mentions':
+        $scope.functionMention();
+        break;
+      case 'Url':
+        $scope.functionUrl();
+        break;
+      case 'Images':
+        $scope.functionImages();
+        break;
     }
   };
 
@@ -399,7 +412,7 @@ hash.controller('mainMonitor', function ($scope, $http, settings, MetricsTwitter
   };
 
   $scope.setAnalyticsParam($scope.filter.period, $scope.filter.theme,
-                           undefined, undefined, undefined, undefined);
+    undefined, undefined, undefined, undefined);
 
   // Quando o filtro mudar...
   $scope.$watch('filter', function (newFilter, oldFilter) {
@@ -470,8 +483,6 @@ hash.controller('mainMonitor', function ($scope, $http, settings, MetricsTwitter
   $scope.sucess = function (divId, divResult) {
     $("#loading" + divId).hide();
     $("#" + divResult).show();
-    $scope.totalPagination();
-    $scope.loadLessMoreButtons();
   }
 
   $scope.empty = function (divId) {
@@ -486,9 +497,9 @@ hash.controller('mainMonitor', function ($scope, $http, settings, MetricsTwitter
 
   $scope.functionImages = function () {
     $scope.loading('TwitterPosts', 'str_TwitterUrl');
-  $scope.div = "Images"
+    $scope.div = "Images"
 
-  resetMosaico("mosaico")
+    resetMosaico("mosaico")
 
     AnalyticsTwitter.mostRecurringImages(
       {
@@ -508,31 +519,31 @@ hash.controller('mainMonitor', function ($scope, $http, settings, MetricsTwitter
 
 
   //Implementando paginação
-  $scope.totalPages = 0;
-
   //Função para verificar total de páginas
   $scope.totalPagination = function () {
+    $scope.totalPages = 0;
     $scope.totalPages = $scope.paginationLimit / $scope.analyticsParams.per_page;
   };
 
   $scope.loadLessMoreButtons = function () {
     $scope.buttonLess = $scope.analyticsParams.page === 1;
-    $scope.buttonMore = $scope.analyticsParams.page === $scope.totalPages;
+    $scope.buttonMore = $scope.currentCount < $scope.analyticsParams.per_page ? true : $scope.analyticsParams.page === $scope.totalPages;
 
     console.log($scope.buttonLess, $scope.buttonMore)
+    console.log($scope.analyticsParams.per_page, $scope.currentCount)
 
   };
 
   //Função para carregar mais tweets
   $scope.loadMore = function (lesmor, type) {
     //TODO POG -_-'
-    if(lesmor !== -1){
+    if (lesmor !== -1) {
       $scope.analyticsParams.page = $scope.analyticsParams.page + 1;
-    }else{
+    } else {
       $scope.analyticsParams.page = $scope.analyticsParams.page - 1;
     }
 
-    switch(type){
+    switch (type) {
       case 'tw':
         $scope.functionConteudo();
         break;
