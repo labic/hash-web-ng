@@ -21,7 +21,7 @@
 
       <div class="each_user_result" ng-repeat="user in users">
         <a href="http://twitter.com/{{user.screen_name}}" target="_blank">
-          <p class="user_result_number">{{users.indexOf(user) + 1}}º</p>
+          <p class="user_result_number">{{(analyticsParams.per_page)*(analyticsParams.page - 1) + users.indexOf(user) + 1}}º</p>
           <img class="user_result_img" src="{{user.profile_image_url_https}}">
           <p class="user_result_name">@ {{user.screen_name}}</p>
           <p class="user_result_count"><img src="img/icons/ICONE-TWEET.png" height="15px" width="15px;">{{user.count}}</p>

@@ -1,8 +1,17 @@
 'use strict';
 
 /* NOTA: MONITOR - CONTROLLER */
-hash.controller('mainMonitor', function ($scope, $http, settings, MetricsTwitter,
+hash.controller('mainMonitor', function ($rootScope, $scope, $http, settings, MetricsTwitter,
                                          AnalyticsTwitter, WordTwitter, Tweet, WORD_API_BASE_URI) {
+
+
+  // TODO pog. Toda vez que mudar o state retorna o
+  // paramentro $scope.analyticsParams.page = 1;
+
+  $rootScope.$on('$stateChangeStart',
+    function(){
+      $scope.analyticsParams.page = 1;
+    })
 
   $scope.settings = settings.get('twitter');
   $scope.div = 'Tweets';
@@ -169,7 +178,6 @@ hash.controller('mainMonitor', function ($scope, $http, settings, MetricsTwitter
         // console.log(set_data)
         $scope.twittes = data;
         $scope.currentCount = data.length;
-        $scope.totalPagination();
         $scope.loadLessMoreButtons();
       }, function (error) {
         $scope.error('TwitterPosts');
@@ -194,7 +202,6 @@ hash.controller('mainMonitor', function ($scope, $http, settings, MetricsTwitter
 
         $scope.twittes = data;
         $scope.currentCount = data.length;
-        $scope.totalPagination();
         $scope.loadLessMoreButtons();
       }, function (error) {
         $scope.error('TwitterPosts');
@@ -213,7 +220,6 @@ hash.controller('mainMonitor', function ($scope, $http, settings, MetricsTwitter
         data != '' ? $scope.sucess('TwitterPosts', 'str_TwitterUser') : $scope.empty('TwitterPosts');
         $scope.users = data;
         $scope.currentCount = data.length;
-        $scope.totalPagination();
         $scope.loadLessMoreButtons();
       }, function (error) {
         $scope.error('TwitterPosts');
@@ -230,7 +236,6 @@ hash.controller('mainMonitor', function ($scope, $http, settings, MetricsTwitter
         data != '' ? $scope.sucess('TwitterPosts', 'str_TwitterMentions') : $scope.empty('TwitterPosts');
         $scope.mentions = data;
         $scope.currentCount = data.length;
-        $scope.totalPagination();
         $scope.loadLessMoreButtons();
       }, function (error) {
         $scope.error('TwitterPosts');
@@ -247,7 +252,6 @@ hash.controller('mainMonitor', function ($scope, $http, settings, MetricsTwitter
         data != '' ? $scope.sucess('TwitterPosts', 'str_TwitterUrl') : $scope.empty('TwitterPosts');
         $scope.urls = data;
         $scope.currentCount = data.length;
-        $scope.totalPagination();
         $scope.loadLessMoreButtons();
       }, function (error) {
         $scope.error('TwitterPosts');
@@ -518,20 +522,11 @@ hash.controller('mainMonitor', function ($scope, $http, settings, MetricsTwitter
   };
 
 
-  //Implementando paginação
-  //Função para verificar total de páginas
-  $scope.totalPagination = function () {
-    $scope.totalPages = 0;
-    $scope.totalPages = $scope.paginationLimit / $scope.analyticsParams.per_page;
-  };
+
 
   $scope.loadLessMoreButtons = function () {
     $scope.buttonLess = $scope.analyticsParams.page === 1;
     $scope.buttonMore = $scope.currentCount < $scope.analyticsParams.per_page ? true : $scope.analyticsParams.page === $scope.totalPages;
-
-    console.log($scope.buttonLess, $scope.buttonMore)
-    console.log($scope.analyticsParams.per_page, $scope.currentCount)
-
   };
 
   //Função para carregar mais tweets
@@ -545,9 +540,11 @@ hash.controller('mainMonitor', function ($scope, $http, settings, MetricsTwitter
 
     switch (type) {
       case 'tw':
+        $scope.analyticsParams.page === 1;
         $scope.functionConteudo();
         break;
       case 'rtw':
+        $scope.analyticsParams.page === 1;
         $scope.functionConteudoTweets();
         break;
       case 'topUser':
