@@ -58,6 +58,28 @@
         <!--<div class="fbFooter">footer</div>-->
       </div>
       <!--      <button ng-show="buttonNext" class="result_button result_button_next" ng-click='loadMore(1);'></button>-->
+
+
+      <!--TODO POG criar diretiva-->
+
+      <div class="clearfix"></div>
+      <div class="twPagination">
+        <div class="col-md-4">
+          <button ng-disabled="buttonLess" class="btn btn-primary" ng-click="loadMore(-1, 'fbPosts')">
+            <span class="glyphicon glyphicon-triangle-left"></span>
+          </button>
+        </div>
+        <div class="col-md-4 text-center">
+          {{analyticsParams.page}}
+        </div>
+        <div class="col-md-4 text-right">
+          <button ng-disabled="buttonMore" class="btn btn-primary" ng-click="loadMore(1, 'fbPosts')">
+            <span class="glyphicon glyphicon-triangle-right"></span>
+          </button>
+        </div>
+        <div class="clearfix"></div>
+      </div>
+
     </div>
   </div>
 </div>
