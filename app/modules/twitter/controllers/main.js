@@ -534,9 +534,7 @@ hash.controller('mainMonitor', function ($rootScope, $scope, $http, settings, Me
   //Função para carregar mais tweets
   $scope.loadMore = function (lesmor, type) {
     //TODO POG -_-'
-    if(type !== 'imgs'){
-      $scope.analyticsParams.page = $scope.analyticsParams.page += parseInt(lesmor);
-    }
+    $scope.analyticsParams.page = $scope.analyticsParams.page += parseInt(lesmor);
 
     switch (type) {
       case 'tw':
@@ -555,7 +553,6 @@ hash.controller('mainMonitor', function ($rootScope, $scope, $http, settings, Me
         $scope.functionMention();
         break;
       case 'imgs':
-        $scope.analyticsParams.page += parseInt(lesmor);
         $scope.functionImages();
         break;
     }
