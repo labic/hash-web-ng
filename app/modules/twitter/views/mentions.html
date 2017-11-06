@@ -17,7 +17,6 @@
     </div>
 
     <div id="str_TwitterMentions" class="geralTweets_result">
-      <button ng-show="buttonBack" class="result_button result_button_back" ng-click='loadMoreTweetsChange(-1);'>VOLTAR</button>
 
       <div class="each_user_result" ng-repeat="mention in mentions">
         <a href="http://twitter.com/{{mention.screen_name}}" target="_blank">
@@ -28,7 +27,25 @@
         </a>
       </div>
 
-<!--      <button ng-show="buttonNext" class="result_button result_button_next" ng-click='loadMoreTweetsChange(1);'></button>-->
+      <!--TODO POG criar diretiva-->
+      <div class="clearfix"></div>
+      <div class="twPagination">
+        <div class="col-md-4">
+          <button ng-disabled="buttonLess" class="btn btn-primary" ng-click="loadMore(-1, 'mentions')">
+            <span class="glyphicon glyphicon-triangle-left"></span>
+          </button>
+        </div>
+        <div class="col-md-4 text-center">
+          {{analyticsParams.page}}
+        </div>
+        <div class="col-md-4 text-right">
+          <button ng-disabled="buttonMore" class="btn btn-primary" ng-click="loadMore(1, 'mentions')">
+            <span class="glyphicon glyphicon-triangle-right"></span>
+          </button>
+        </div>
+        <div class="clearfix"></div>
+      </div>
+
     </div>
   </div>
 </div>

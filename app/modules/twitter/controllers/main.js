@@ -503,19 +503,23 @@ hash.controller('mainMonitor', function ($rootScope, $scope, $http, settings, Me
   $scope.functionImages = function () {
     $scope.loading('TwitterPosts', 'str_TwitterUrl');
     $scope.div = "Images"
+    $scope.imgLoaded = 0;
 
     resetMosaico("mosaico")
 
     AnalyticsTwitter.mostRecurringImages(
       {
-        page: 1,
+        page: $scope.analyticsParams.page,
         per_page: 60,
         period: $scope.analyticsParams.period,
         'filter[with_tags]': $scope.analyticsParams['filter[with_tags]'],
         'filter[hashtags]': $scope.analyticsParams['filter[hashtags]']
       },
       function success(data) {
+        $scope.currentCount = data.length;
+        $scope.loadLessMoreButtons();
         plotMosaico("mosaico", $("#mosaico").width(), 4, data);
+        $scope.imgLoaded = 1;
       }, function (error) {
         console.log(error)
         $scope.error('TwitterPosts');
@@ -533,23 +537,29 @@ hash.controller('mainMonitor', function ($rootScope, $scope, $http, settings, Me
   //Função para carregar mais tweets
   $scope.loadMore = function (lesmor, type) {
     //TODO POG -_-'
-    if (lesmor !== -1) {
-      $scope.analyticsParams.page = $scope.analyticsParams.page + 1;
-    } else {
-      $scope.analyticsParams.page = $scope.analyticsParams.page - 1;
+    if(type !== 'imgs'){
+      $scope.analyticsParams.page = $scope.analyticsParams.page += parseInt(lesmor);
     }
 
     switch (type) {
       case 'tw':
-        $scope.analyticsParams.page === 1;
         $scope.functionConteudo();
         break;
       case 'rtw':
-        $scope.analyticsParams.page === 1;
         $scope.functionConteudoTweets();
         break;
       case 'topUser':
         $scope.functionUser();
+        break;
+      case 'url':
+        $scope.functionUrl();
+        break;
+      case 'mentions':
+        $scope.functionMention();
+        break;
+      case 'imgs':
+        $scope.analyticsParams.page += parseInt(lesmor);
+        $scope.functionImages();
         break;
     }
   }
