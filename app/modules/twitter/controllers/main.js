@@ -16,9 +16,6 @@ hash.controller('mainMonitor', function ($rootScope, $scope, $http, settings, Me
   $scope.settings = settings.get('twitter');
   $scope.div = 'Tweets';
 
-  //TODO passar para settings
-  $scope.paginationLimit = 1000;
-
   // Variavel para inicializar o watch, quando esta falso executa um if com a inicialização da tela.
   var firstRun = false;
 
@@ -122,8 +119,8 @@ hash.controller('mainMonitor', function ($rootScope, $scope, $http, settings, Me
     AnalyticsTwitter.mostRecurringHashtags(
       $scope.analyticsParams,
       function success(data) {
-        data != '' ? $scope.sucess('TwitterTopHashTags','str_hashTag') : $scope.empty('TwitterTopHashTags'); 
-        plotWordCloud({width:cloudWidth, height:330, divID:'str_hashTag'}, data); 
+        data != '' ? $scope.sucess('TwitterTopHashTags','str_hashTag') : $scope.empty('TwitterTopHashTags');
+        plotWordCloud({width:cloudWidth, height:330, divID:'str_hashTag'}, data);
       }, function (error){
         $scope.error('TwitterTopHashTags');
       });
@@ -341,7 +338,7 @@ hash.controller('mainMonitor', function ($rootScope, $scope, $http, settings, Me
   $scope.loadAll = function (period, theme, category, location) {
     $scope.loadFeed();
     $scope.functionHashTag();
-    $scope.functionWord(period, theme, category, location);
+    //$scope.functionWord(period, theme, category, location);
   };
 
   // Min chama apenas a 3º parte da tela
@@ -378,7 +375,7 @@ hash.controller('mainMonitor', function ($rootScope, $scope, $http, settings, Me
       'filter[with_tags]': filterTags,
       'filter[hashtags]': tag,
       'filter[retweeted]': false, // Bollean
-      'filter[quoted_status]': false,
+      'filter[is_quote_status]': false,
       retrive_blocked: undefined,
       page: 1,
       per_page: 50
@@ -537,9 +534,7 @@ hash.controller('mainMonitor', function ($rootScope, $scope, $http, settings, Me
   //Função para carregar mais tweets
   $scope.loadMore = function (lesmor, type) {
     //TODO POG -_-'
-    if(type !== 'imgs'){
-      $scope.analyticsParams.page = $scope.analyticsParams.page += parseInt(lesmor);
-    }
+    $scope.analyticsParams.page = $scope.analyticsParams.page += parseInt(lesmor);
 
     switch (type) {
       case 'tw':
@@ -558,7 +553,6 @@ hash.controller('mainMonitor', function ($rootScope, $scope, $http, settings, Me
         $scope.functionMention();
         break;
       case 'imgs':
-        $scope.analyticsParams.page += parseInt(lesmor);
         $scope.functionImages();
         break;
     }
