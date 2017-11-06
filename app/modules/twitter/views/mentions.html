@@ -1,6 +1,6 @@
 <div id="result_conteudo" style="height:100%;" data-ng-init="functionMention();">
   <div style="height:100%; width:100%;">
-    
+
     <div id="loadingTwitterPosts" class="handlers">
       <img src="img/icons/spinning-circles.svg">
       <p>estamos carregando os dados</p>
@@ -15,13 +15,13 @@
       <img src="img/icons/error_outline.svg">
       <p>não há dados dessa categoria nesse intervalo de tempo, tente outros parâmetros</p>
     </div>
-    
+
     <div id="str_TwitterMentions" class="geralTweets_result">
       <button ng-show="buttonBack" class="result_button result_button_back" ng-click='loadMoreTweetsChange(-1);'>VOLTAR</button>
 
       <div class="each_user_result" ng-repeat="mention in mentions">
         <a href="http://twitter.com/{{mention.screen_name}}" target="_blank">
-          <p class="user_result_number">{{mentions.indexOf(mention) + 1}}º</p>
+          <p class="user_result_number">{{(analyticsParams.per_page)*(analyticsParams.page - 1) + mentions.indexOf(mention) + 1}}º</p>
           <img class="user_result_img" ng-src="https://avatars.io/twitter/{{mention.screen_name}}/small">
           <p class="user_result_name">@ {{mention.screen_name}}</p>
           <p class="user_result_count"><img src="img/icons/ICONE-TWEET.png" height="15px" width="15px;">{{mention.count}}</p>
