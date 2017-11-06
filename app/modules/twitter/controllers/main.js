@@ -320,26 +320,25 @@ hash.controller('mainMonitor', function ($rootScope, $scope, $http, settings, Me
 
   // Min chama apenas a 3º parte da tela
   $scope.loadFeed = function () {
-    switch($scope.div) {
-        case 'Tweets':
-                $scope.functionConteudo();
-                break;
-        case 'Retweets':
-                $scope.functionConteudoTweets();
-    $scope.functionConteudoTweets();
-                break;
-        case 'User':
-                $scope.functionUser();
-                break;
-        case 'Mentions':
-                $scope.functionMention();
-                break;
-        case 'Url':
-                $scope.functionUrl();
-                break;
-        case 'Images':
-                $scope.functionImages();
-                break;
+    switch ($scope.div) {
+      case 'Tweets':
+        $scope.functionConteudo();
+        break;
+      case 'Retweets':
+        $scope.functionConteudoTweets();
+        break;
+      case 'User':
+        $scope.functionUser();
+        break;
+      case 'Mentions':
+        $scope.functionMention();
+        break;
+      case 'Url':
+        $scope.functionUrl();
+        break;
+      case 'Images':
+        $scope.functionImages();
+        break;
     }
   };
 
@@ -353,7 +352,7 @@ hash.controller('mainMonitor', function ($rootScope, $scope, $http, settings, Me
       'filter[with_tags]': filterTags,
       'filter[hashtags]': tag,
       'filter[retweeted]': false, // Bollean
-      'filter[is_quote_status]': false,
+      'filter[quoted_status]': false,
       retrive_blocked: undefined,
       page: 1,
       per_page: 50
