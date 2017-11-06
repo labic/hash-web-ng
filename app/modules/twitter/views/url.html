@@ -17,11 +17,7 @@
     </div>
 
     <div id="str_TwitterUrl" class="geralTweets_result">
-      <div class="row">
-        <div class="col-md-6">
-          <button ng-show="buttonNext" class="result_button result_button_next" ng-click='loadMoreTweetsChange(1);'></button>
-        </div>
-      </div>
+
       <div class="each_user_result" ng-repeat="url in urls">
         <a ng-hide="url.status.entities.urls.expanded_url == null" href="{{url.status.entities.urls.expanded_url}}" target="_blank">
           <p class="user_result_number">{{(analyticsParams.per_page)*(analyticsParams.page - 1) + urls.indexOf(url) + 1}}º</p>
@@ -29,6 +25,26 @@
           <p class="user_result_count"><img src="img/icons/ICONE-TWEET.png" height="15px" width="15px;">{{url.count}}</p>
         </a>
       </div>
+
+      <!--TODO POG criar diretiva-->
+      <div class="clearfix"></div>
+      <div class="twPagination">
+        <div class="col-md-4">
+          <button ng-disabled="buttonLess" class="btn btn-primary" ng-click="loadMore(-1, 'url')">
+            <span class="glyphicon glyphicon-triangle-left"></span>
+          </button>
+        </div>
+        <div class="col-md-4 text-center">
+          {{analyticsParams.page}}
+        </div>
+        <div class="col-md-4 text-right">
+          <button ng-disabled="buttonMore" class="btn btn-primary" ng-click="loadMore(1, 'url')">
+            <span class="glyphicon glyphicon-triangle-right"></span>
+          </button>
+        </div>
+        <div class="clearfix"></div>
+      </div>
+
     </div>
   </div>
 </div>

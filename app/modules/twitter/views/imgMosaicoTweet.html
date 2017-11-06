@@ -30,6 +30,24 @@
 
   <!-- <a href="https://twitter.com/{{imgMos.user.screen_name}}/status/{{imgMos.user.id_str}}" target="_blank" style="color:white;"></a> -->
 
+  <!--TODO POG criar diretiva-->
+  <div class="clearfix"></div>
+  <div ng-show="imgLoaded" class="twPagination">
+    <div class="col-md-4">
+      <button ng-disabled="buttonLess" class="btn btn-primary" ng-click="loadMore(-1, 'imgs')">
+        <span class="glyphicon glyphicon-triangle-left"></span>
+      </button>
+    </div>
+    <div class="col-md-4 text-center">
+      {{analyticsParams.page}}
+    </div>
+    <div class="col-md-4 text-right">
+      <button ng-disabled="buttonMore" class="btn btn-primary" ng-click="loadMore(1, 'imgs')">
+        <span class="glyphicon glyphicon-triangle-right"></span>
+      </button>
+    </div>
+    <div class="clearfix"></div>
+  </div>
   <div id="mosaico" class="geralTweets_result">
     <!--<a href='{{imgMos.media_url_https}}' class="swipebox" title=' <a href="https://twitter.com/{{imgMos.user.screen_name}}/status/{{imgMos.status.id_str}}" target="_blank" style="color:white;">Retweetado {{imgMos.count}} - "{{imgMos.text}}" @{{imgMos.user.screen_name}}</a>'>
       <img check-image ng-src="{{imgMos.media_url_https}}:thumb" on-error-src="img/image_not_found.jpg" class="img_TopImg_mosaico" width="{{alturaImg}}px" height="{{alturaImg}}px">
