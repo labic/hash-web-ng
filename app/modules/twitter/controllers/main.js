@@ -514,6 +514,8 @@ hash.controller('mainMonitor', function ($rootScope, $scope, $http, settings, Me
         'filter[hashtags]': $scope.analyticsParams['filter[hashtags]']
       },
       function success(data) {
+        $scope.currentCount = data.length;
+        $scope.loadLessMoreButtons();
         plotMosaico("mosaico", $("#mosaico").width(), 4, data);
       }, function (error) {
         console.log(error)
@@ -532,11 +534,7 @@ hash.controller('mainMonitor', function ($rootScope, $scope, $http, settings, Me
   //Função para carregar mais tweets
   $scope.loadMore = function (lesmor, type) {
     //TODO POG -_-'
-    if (lesmor !== -1) {
-      $scope.analyticsParams.page = $scope.analyticsParams.page + 1;
-    } else {
-      $scope.analyticsParams.page = $scope.analyticsParams.page - 1;
-    }
+    $scope.analyticsParams.page = $scope.analyticsParams.page += parseInt(lesmor);
 
     switch (type) {
       case 'tw':
@@ -549,6 +547,17 @@ hash.controller('mainMonitor', function ($rootScope, $scope, $http, settings, Me
         break;
       case 'topUser':
         $scope.functionUser();
+        break;
+      case 'url':
+        $scope.functionUrl();
+        break;
+      case 'mentions':
+        $scope.functionMention();
+        break;
+      case 'imgs':
+        console.log(lesmor)
+        $scope.mostRecurringImages.page = lesmor;
+        $scope.functionImages();
         break;
     }
   }
