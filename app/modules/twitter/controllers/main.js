@@ -502,12 +502,13 @@ hash.controller('mainMonitor', function ($rootScope, $scope, $http, settings, Me
   $scope.functionImages = function () {
     $scope.loading('TwitterPosts', 'str_TwitterUrl');
     $scope.div = "Images"
+    $scope.imgLoaded = 0;
 
     resetMosaico("mosaico")
 
     AnalyticsTwitter.mostRecurringImages(
       {
-        page: 1,
+        page: $scope.analyticsParams.page,
         per_page: 60,
         period: $scope.analyticsParams.period,
         'filter[with_tags]': $scope.analyticsParams['filter[with_tags]'],
@@ -517,6 +518,7 @@ hash.controller('mainMonitor', function ($rootScope, $scope, $http, settings, Me
         $scope.currentCount = data.length;
         $scope.loadLessMoreButtons();
         plotMosaico("mosaico", $("#mosaico").width(), 4, data);
+        $scope.imgLoaded = 1;
       }, function (error) {
         console.log(error)
         $scope.error('TwitterPosts');
@@ -534,15 +536,15 @@ hash.controller('mainMonitor', function ($rootScope, $scope, $http, settings, Me
   //Função para carregar mais tweets
   $scope.loadMore = function (lesmor, type) {
     //TODO POG -_-'
-    $scope.analyticsParams.page = $scope.analyticsParams.page += parseInt(lesmor);
+    if(type !== 'imgs'){
+      $scope.analyticsParams.page = $scope.analyticsParams.page += parseInt(lesmor);
+    }
 
     switch (type) {
       case 'tw':
-        $scope.analyticsParams.page === 1;
         $scope.functionConteudo();
         break;
       case 'rtw':
-        $scope.analyticsParams.page === 1;
         $scope.functionConteudoTweets();
         break;
       case 'topUser':
@@ -555,8 +557,7 @@ hash.controller('mainMonitor', function ($rootScope, $scope, $http, settings, Me
         $scope.functionMention();
         break;
       case 'imgs':
-        console.log(lesmor)
-        $scope.mostRecurringImages.page = lesmor;
+        $scope.analyticsParams.page += parseInt(lesmor);
         $scope.functionImages();
         break;
     }
