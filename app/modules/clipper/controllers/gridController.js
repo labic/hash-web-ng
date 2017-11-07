@@ -83,8 +83,8 @@ angular
         //percorre todas as notícias selecionadas
         for (index = 0; index < $scope.noticiaSelecionada.length; ++index) {
             conteudo = conteudo.concat('<h4><b>',$scope.noticiaSelecionada[index].headline,'</b></h4><br>');
-            conteudo = conteudo.concat('Publicado em ',angularDateFilter($scope.noticiaSelecionada[index].datePublished, "dd/MM 'às' HH'h'mm"),'<br>');
-            conteudo = conteudo.concat('Link interno: https://inep-hash-web-ng-dev.herokuapp.com/#/clipper/noticia?id=',$scope.noticiaSelecionada[index].id,'<br>');
+            conteudo = conteudo.concat('Publicado em ',angularDateFilter($scope.noticiaSelecionada[index].datePublished, "dd/MM/yyyy 'às' HH'h'mm'",'UTC-4'),'<br>');
+            conteudo = conteudo.concat('Link interno: https://hash-inep.labic.net/#/clipper/noticia?id=',$scope.noticiaSelecionada[index].id,'<br>');
             conteudo = conteudo.concat('Link externo: ',$scope.noticiaSelecionada[index].url,'<br><br>');
         }
         document.getElementById('modalBody').innerHTML = conteudo;
