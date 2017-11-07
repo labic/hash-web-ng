@@ -462,8 +462,6 @@ hash.controller('mainMonitor', function ($rootScope, $scope, $http, settings, Me
   $scope.sucess = function (divId, divResult) {
     $("#loading" + divId).hide();
     $("#" + divResult).show();
-    $scope.totalPagination();
-    $scope.loadLessMoreButtons();
   }
 
   $scope.empty = function (divId) {
