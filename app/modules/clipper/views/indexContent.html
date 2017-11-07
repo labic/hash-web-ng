@@ -1,6 +1,6 @@
 <br>
-<a href="#/clipper"><img src="img/clipper/titulo.png" style="margin-left: 2%; margin-top: 1%; max-width: 200px; height: 30px; width: auto;"></a>
-<div id="conteudo" ng-controller="estruturaNoticia" style="margin-top: 3%;">
+<a href="#/clipper" style="margin-left: 8%;" type="button">Página Inicial</a>
+<div id="paginaNoticia" ng-controller="estruturaNoticia" style="margin-top: 3%;">
     <!--  conteúdo da notícia  -->
   <div class="row"><h2>{{noticia.name}}</h2></div>
 
@@ -12,7 +12,7 @@
     	<p><b>Publicado por <a href="http://{{::site}}" target="_blank" style="display: inline">{{site}}</a> em {{::noticia.datePublished | date:"dd/MM/yyyy 'às' HH'h'mm":'UTC-4'}}  e coletado em {{::noticia.dateCreated | date:"dd/MM/yyyy 'às' HH'h'mm":'UTC-4'}}</b></p>
     </div>
 
-    <div class="row" align="justify" id="paginaNoticia">
+    <div class="row" align="justify">
     	<p ng-bind-html="html"></p><br>
       Tags: <input type="button" value="{{:: keyword}}" ng-repeat = "keyword in noticia.keywords" disabled>
       <br><br>
