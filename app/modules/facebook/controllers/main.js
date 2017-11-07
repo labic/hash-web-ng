@@ -15,7 +15,10 @@ hash.controller('mainFacebook', function ($scope, $http, settings, MetricsFacebo
     theme: undefined,
     tag: undefined,
     page: 1,
-    per_page: 25
+    per_page: 25,
+    skip: 0,
+    limit: 25,
+    order: ["created_time_ms DESC"]
   };
 
   // Pega a palavra selecionada no WordCloud
@@ -26,72 +29,76 @@ hash.controller('mainFacebook', function ($scope, $http, settings, MetricsFacebo
 
   // Functions: Estrutura de funções que chamarão por zonas da página
   // Request: AnalyticsFacebook.mostLikedPosts
+  //TODO POG refatorar pelamor de NEO
   $scope.replyPost = function (time, type, actor, word, theme, tag) {
-
     $scope.loading('FacebookPosts', 'facebookPosts');
+    $scope.loadContadoresFB(time, actor);
 
-    $scope.loadContadoresFB (time,actor);
+    $scope.filter.time = time;
+    $scope.filter.actor = actor;
+    $scope.filter.profileType = type;
+    $scope.filter.word = word;
+    $scope.filter.theme = theme;
+    $scope.filter.tag = tag;
 
+    $scope.getFBPosts();
+
+  };
+
+  $scope.getFBPosts = function () {
+    var _time;
     //acertar valores de filtros de tempo
-    switch(time) {
+    switch ($scope.filter.time) {
       case '1h':
-          time = 3600000;
-          break;
+        _time = 3600000;
+        break;
       case '6h':
-          time = 21600000;
-          break;
+        _time = 21600000;
+        break;
       case '1d':
-          time = 86400000;
-          break;
+        _time = 86400000;
+        break;
       case '7d':
-          time = 604800000;
-          break;
-    };
+        _time = 604800000;
+        break;
+    }
 
     FacebookPosts.init({
-      filter : {
+      filter: {
         where: {
-          created_time_ms: {gt: Date.now() - time},
-          keywords:actor},
-          order: ['created_time_ms DESC'],
+          created_time_ms: {
+            gt: Date.now() - _time
+          },
+          keywords: {inq: [$scope.filter.actor]}
         },
-      'word': word,
-      'page': 1,
-      'per_page': 25
+        order: $scope.filter.order,
+        skip: $scope.filter.skip, // 25, 50, 75
+        limit: $scope.filter.limit
+      },
+      'word': $scope.filter.word
     }, function (data) {
       data != '' ? $scope.sucess('FacebookPosts', 'facebookPosts') : $scope.empty('FacebookPosts');
       $scope.posts = data;
+      $scope.currentCount = data.length;
+      $scope.loadLessMoreButtons();
+
+      console.log(data)
+
     }, function (error) {
       $scope.error('FacebookPosts');
     });
-
-    // AnalyticsFacebook.mostLikedPosts({
-    //   'period': time,
-    //   'profile_type': type,
-    //   'filter[with_tags]': (theme === undefined ? [actor] : [actor, theme]),
-    //   'word': word,
-    //   'filter[hashtags]': tag,
-    //   'page': 1,
-    //   'per_page': 25
-    // }, function (data) {
-    //   data != '' ? $scope.sucess('FacebookPosts', 'facebookPosts') : $scope.empty('FacebookPosts');
-    //   $scope.posts = data;
-    // }, function (error) {
-    //   $scope.error('FacebookPosts');
-    // });
   }
 
-  $scope.loadContadoresFB = function(period,actor){
-
+  $scope.loadContadoresFB = function (period, actor) {
     FacebookPosts.count({
-      period: 'P'+period.toUpperCase(),
+      period: 'P' + period.toUpperCase(),
       'filter[with_tags]': [actor]
     }, function success(res) {
       $scope.countPosts = res.count;
     });
 
     FacebookPosts.count({
-      period: 'P'+period.toUpperCase(),
+      period: 'P' + period.toUpperCase(),
       'filter[with_tags]': [actor],
       'filter[types]': ['photo']
     }, function success(res) {
@@ -239,7 +246,7 @@ hash.controller('mainFacebook', function ($scope, $http, settings, MetricsFacebo
         $scope.replyPost(newFilter.time, newFilter.profileType, newFilter.actor, undefined, undefined, newFilter.tag);
       }
     }
-  },true);
+  }, true);
 
   /*************** Funções de tratamento ***************/
 
@@ -264,4 +271,23 @@ hash.controller('mainFacebook', function ($scope, $http, settings, MetricsFacebo
     $("#loading" + divId).hide();
     $("#error" + divId).show();
   }
+
+  $scope.loadLessMoreButtons = function () {
+    $scope.buttonLess = $scope.filter.skip === 0;
+    $scope.buttonMore = $scope.currentCount < $scope.filter.limit ? true : $scope.filter.skip === $scope.totalPages;
+  };
+
+  //Função para carregar mais posts
+  $scope.loadMore = function (lesmor, type) {
+    //TODO POG -_-'
+    $scope.filter.skip = $scope.filter.skip += parseInt(lesmor);
+    $scope.filter.page = ($scope.filter.skip / 25) + 1;
+
+    switch (type) {
+      case 'fbPosts':
+        $scope.getFBPosts();
+        break;
+    }
+  }
+
 });

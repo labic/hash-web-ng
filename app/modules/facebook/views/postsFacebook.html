@@ -65,15 +65,15 @@
       <div class="clearfix"></div>
       <div class="twPagination">
         <div class="col-md-4">
-          <button ng-disabled="buttonLess" class="btn btn-primary" ng-click="loadMore(-1, 'fbPosts')">
+          <button ng-disabled="buttonLess" class="btn btn-primary" ng-click="loadMore(-25, 'fbPosts')">
             <span class="glyphicon glyphicon-triangle-left"></span>
           </button>
         </div>
         <div class="col-md-4 text-center">
-          {{analyticsParams.page}}
+          {{filter.page}}
         </div>
         <div class="col-md-4 text-right">
-          <button ng-disabled="buttonMore" class="btn btn-primary" ng-click="loadMore(1, 'fbPosts')">
+          <button ng-disabled="buttonMore" class="btn btn-primary" ng-click="loadMore(25, 'fbPosts')">
             <span class="glyphicon glyphicon-triangle-right"></span>
           </button>
         </div>
