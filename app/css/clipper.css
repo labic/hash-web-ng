@@ -20,7 +20,20 @@ html,body {
   overflow: auto;
 }
 
-#conteudo input {
+#paginaNoticia {
+  position: fixed;
+  right: 5%;
+  left: 8%;
+  top:3%;
+  bottom: 3%;
+  font-size: 15px;
+  background-color: white;
+  padding:2% 10% 0% 10%;
+  box-shadow: 0 0 5px 5px rgba(0, 0, 0, 0.05);
+  overflow: auto;
+}
+
+#conteudo input, #paginaNoticia input {
   background-color: #CECECE;
   border-radius: 5px;
   outline: none;
