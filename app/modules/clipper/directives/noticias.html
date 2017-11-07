@@ -10,12 +10,12 @@
   		<h5>Publicado por <a href="http://{{fonte}}" target="_blank" style="display: inline">{{::fonte}}</a> em <b ng-show="info.datePublished === null">[indisponível]</b>{{::info.datePublished | date:"dd/MM/yyyy 'às' HH'h'mm":'UTC-4'}}  e coletado em {{::info.dateCreated | date:"dd/MM/yyyy 'às' HH'h'mm":'UTC-4'}}</h5>
   	</div>
   	<div class="row">
-  		<input type="button" value="{{:: tag }}" ng-repeat = "tag in info.keywords | limitTo:15" ng-click="quickSearch(tag)" >
+  		<input type="button" value="{{:: tag }}" ng-repeat = "tag in info.keywords | limitTo:15" ng-click="quickSearch(tag)" title="Pesquisar por esse tema">
   	</div>
 </div>
 <div class="col-md-3" ng-controller="gridController">
   <button type="button" style="background:url({{:: info.image }}) center center;background-size: cover; width:100%; height: 25%;" class="thumbnail" ng-click="showDialog(info)"><h4 ng-show="info.image === null">Imagem indisponível</h4></button>
       <div layout-align="start" layout-wrap align="end">
-      <label><h5  ng-click="showDialog(info)">Pré-visualizar</h5></label>
+      <label><h5  ng-click="showDialog(info)" >Pré-visualizar</h5></label>
     </div>
 </div>
