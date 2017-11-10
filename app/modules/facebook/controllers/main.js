@@ -18,7 +18,8 @@ hash.controller('mainFacebook', function ($scope, $http, settings, MetricsFacebo
     per_page: 25,
     skip: 0,
     limit: 25,
-    order: ["created_time_ms DESC"]
+    order: undefined,
+    where: undefined
   };
 
   // Pega a palavra selecionada no WordCloud
@@ -40,12 +41,16 @@ hash.controller('mainFacebook', function ($scope, $http, settings, MetricsFacebo
     $scope.filter.word = word;
     $scope.filter.theme = theme;
     $scope.filter.tag = tag;
+    // $scope.filter.where = tag;
+    $scope.filter.order = ["created_time_ms DESC"];
 
     $scope.getFBPosts();
 
   };
 
   $scope.getFBPosts = function () {
+    $scope.loading('FacebookPosts', 'facebookPosts');
+
     var _time;
     //acertar valores de filtros de tempo
     switch ($scope.filter.time) {
@@ -73,7 +78,8 @@ hash.controller('mainFacebook', function ($scope, $http, settings, MetricsFacebo
         },
         order: $scope.filter.order,
         skip: $scope.filter.skip, // 25, 50, 75
-        limit: $scope.filter.limit
+        limit: $scope.filter.limit,
+        cache: false
       },
       'word': $scope.filter.word
     }, function (data) {
@@ -268,6 +274,25 @@ hash.controller('mainFacebook', function ($scope, $http, settings, MetricsFacebo
     $("#loading" + divId).hide();
     $("#error" + divId).show();
   }
+
+  /**
+   * Function to refresh posts
+   * @return getFBPosts()
+   */
+  $scope.fbRefresh = function () {
+    $scope.getFBPosts();
+  };
+
+  /**
+   * Function to set order to display FB Posts
+   * @return getFBPosts()
+   * @param order
+   */
+  $scope.setFilter = function(order){
+    $scope.filter.order = order;
+    $scope.getFBPosts();
+  };
+
 
   $scope.loadLessMoreButtons = function () {
     $scope.buttonLess = $scope.filter.skip === 0;
