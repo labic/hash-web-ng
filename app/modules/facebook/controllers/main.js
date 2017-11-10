@@ -81,9 +81,6 @@ hash.controller('mainFacebook', function ($scope, $http, settings, MetricsFacebo
       $scope.posts = data;
       $scope.currentCount = data.length;
       $scope.loadLessMoreButtons();
-
-      console.log(data)
-
     }, function (error) {
       $scope.error('FacebookPosts');
     });
