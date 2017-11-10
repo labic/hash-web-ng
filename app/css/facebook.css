@@ -310,3 +310,10 @@ left: 10px;
   -moz-appearance: none;
   appearance: none;
 }
+
+
+.select_title_division2:hover, .select_title_division2.active{
+  color: #266ad5;
+  opacity:1;
+}
+
