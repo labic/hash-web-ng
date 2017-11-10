@@ -49,8 +49,6 @@ hash.controller('mainFacebook', function ($scope, $http, settings, MetricsFacebo
   };
 
   $scope.getFBPosts = function () {
-
-    console.log('teste')
     $scope.loading('FacebookPosts', 'facebookPosts');
 
     var _time;
@@ -279,12 +277,22 @@ hash.controller('mainFacebook', function ($scope, $http, settings, MetricsFacebo
 
   /**
    * Function to refresh posts
-   * @param void
    * @return getFBPosts()
    */
   $scope.fbRefresh = function () {
     $scope.getFBPosts();
-  }
+  };
+
+  /**
+   * Function to set order to display FB Posts
+   * @return getFBPosts()
+   * @param order
+   */
+  $scope.setFilter = function(order){
+    $scope.filter.order = order;
+    $scope.getFBPosts();
+  };
+
 
   $scope.loadLessMoreButtons = function () {
     $scope.buttonLess = $scope.filter.skip === 0;
