@@ -23,35 +23,43 @@
   </div>
 
   <div id="div4_monitor" class="str_division">
-
     <div id="str_display_tweet" class="row">
       <div class="col-md-6">
-      <div class="display_tweet">
-        <img src="img/icons/ICONE-FACE.png" height="50%" width="auto">
-      </div></div>
-      
+        <div class="display_tweet">
+          <img src="img/icons/ICONE-FACE.png" height="50%" width="auto">
+        </div>
+      </div>
       <div class="col-md-6">
-      <div class="display_tweet">
-        <b class="display_tweet_p">{{countPosts}}</b><br>
-        <b>Posts</b>
-      </div></div>
+        <div class="display_tweet">
+          <b class="display_tweet_p">{{countPosts}}</b><br>
+          <b>Posts</b>
+        </div>
+      </div>
     </div>
 
     <div id="str_display_tweet" class="row">
       <div class="col-md-6">
-      <div class="display_tweet">
-        <img src="img/icons/ICONE-IMAGEM.png" height="50%" width="auto">
-      </div></div>
-      
+        <div class="display_tweet">
+          <img src="img/icons/ICONE-IMAGEM.png" height="50%" width="auto">
+        </div>
+      </div>
       <div class="col-md-6">
-      <div class="display_tweet">
-        <b class="display_tweet_p">{{countImage}}</b>
-        <b>Posts Imagem</b>
-      </div></div>
+        <div class="display_tweet">
+          <b class="display_tweet_p">{{countImage}}</b>
+          <b>Posts Imagem</b>
+        </div>
+      </div>
     </div>
   </div>
 
   <div id="div2_monitor" class="str_division">
+    <div class="title_str">
+      <ul class="title_str_menu_icon">
+        <li ng-click="fbRefresh()" class="glyphicon glyphicon-refresh" title="Facebook - atualizar página"></li>
+        <li ng-click="setFilter('recently')" class="glyphicon glyphicon-sort-by-order-alt" title="Facebook - mais recentes"></li>
+        <li ng-click="setFilter('mostLikes')" class="glyphicon glyphicon-hand-right" title="Facebook - posts mais curtidos"></li>
+      </ul>
+    </div>
 
     <aside ui-view="facebook.conteudo" style="height:100%; width:100%;"></aside>
 
