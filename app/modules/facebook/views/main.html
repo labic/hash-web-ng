@@ -54,8 +54,8 @@
 
   <div id="div2_monitor" class="str_division">
     <div class="title_str">
+      <span ng-click="fbRefresh()" class="refreshButton glyphicon glyphicon-refresh" title="Facebook - atualizar página"></span>
       <ul class="title_str_menu_icon">
-        <li ng-click="fbRefresh()" class="select_title_division2 glyphicon glyphicon-refresh" title="Facebook - atualizar página"></li>
         <li ng-class="{'active': filter.order[0] === 'created_time_ms DESC'}" ng-click="setFilter(['created_time_ms DESC'])" class="select_title_division2 glyphicon glyphicon-sort-by-order-alt" title="Facebook - mais recentes"></li>
         <li ng-class="{'active': filter.order[0] === 'likes_count DESC'}" ng-click="setFilter(['likes_count DESC'])" class="select_title_division2 glyphicon glyphicon-hand-right" title="Facebook - posts mais curtidos"></li>
       </ul>
