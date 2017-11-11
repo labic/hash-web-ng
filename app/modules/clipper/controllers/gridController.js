@@ -144,29 +144,20 @@ angular
         var stringURL='?page='+$scope.numPage+'&';
 
          //verificando modo de exibição
-        if((query.exibicao != undefined)&(query.exibicao != '')) {
+        if((query.exibicao != undefined)&&(query.exibicao != '')) {
             stringURL = stringURL.concat('exibicao=',query.exibicao,'&');
         };
 
         //verifica a pesquisa por data
-        if((query.data != undefined)&(query.data != '')) {
+        if((query.data != undefined)&&(query.data != '')) {
             stringURL = stringURL.concat('data=',query.data,'&');
         }
 
         //verifica a pesquisa por produto
-        if((query.tagP != undefined)&(query.tagP != '')) {
+        if((query.tagP != undefined)&&(query.tagP != '')) {
             stringURL = stringURL.concat('tagP=',query.tagP,'&');
         }
 
-        //verifica a pesquisa por categoria
-        if((query.tagC1 != undefined)&(query.tagC1 != '')) {
-            stringURL = stringURL.concat('tagC1=',query.tagC1,'&');
-        }
-
-        //verifica a pesquisa por conteúdo
-        if((query.tagC2 != undefined)&(query.tagC2 != '')) {
-            stringURL = stringURL.concat('tagC2=',query.tagC2,'&');
-        }
 
         //remove o ultimo caractere
         stringURL = stringURL.substring(0,stringURL.length-1);
@@ -188,7 +179,7 @@ angular
         };
 
         //verificando a pagina pedida
-        if((query.page != undefined)&(query.page != '')) {
+        if((query.page != undefined)&&(query.page != '')) {
             $scope.numPage = parseInt(query.page);
         };
 
@@ -197,21 +188,15 @@ angular
         var data ='';
 
         //verifica a pesquisa por produto
-        if((query.tagP != undefined)&(query.tagP != '')) {
+        if((query.tagP != undefined)&&(query.tagP != '')) {
             //mostrar valor do produto pesquisado
             keywords = keywords.concat(query.tagP,',');
         }
 
         //verifica a pesquisa por categoria
-        if((query.tagC1 != undefined)&(query.tagC1 != '')) {
+        if((query.tagC != undefined)&&(query.tagC != '')) {
             //mostrar valor do categoria pesquisado
-            keywords = keywords.concat(query.tagC1,',');
-        }
-
-        //verifica a pesquisa por conteúdo
-        if((query.tagC2 != undefined)&(query.tagC2 != '')) {
-            //mostrar valor do conteúdo pesquisado
-            keywords = keywords.concat(query.tagC2,',');
+            keywords = keywords.concat(query.tagC,',');
         }
 
         //remove a última vírgula
