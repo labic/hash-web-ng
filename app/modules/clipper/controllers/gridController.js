@@ -158,6 +158,11 @@ angular
             stringURL = stringURL.concat('tagP=',query.tagP,'&');
         }
 
+        //verifica a pesquisa por produto
+        if((query.tagC != undefined)&&(query.tagC != '')) {
+            stringURL = stringURL.concat('tagC=',query.tagC,'&');
+        }
+
 
         //remove o ultimo caractere
         stringURL = stringURL.substring(0,stringURL.length-1);

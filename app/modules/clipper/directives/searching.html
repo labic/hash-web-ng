@@ -23,7 +23,7 @@
   </div>
   <!-- produtos -->
   <div class="col-md-2">
-    <select ng-model="produtoSelecionado" id="Produto" selectedOption=''>
+    <select ng-model="produto" id="Produto">
       <option style="display:none;" value=''>Produto</option>
       <option ng-repeat="produto in prod" value="{{produto.value}}">{{produto.label}}</option>          
       </optgroup> 
@@ -32,7 +32,7 @@
   
   <!-- conteudos -->
   <div class="col-md-2">
-    <select ng-model="midiaSelecionada" id="TipoMidia" selectedOption=''>
+    <select ng-model="midia" id="TipoMidia">
       <option style="display:none;" value="">Tipo de mídia</option>
       <option ng-repeat="midia in tipoMidia" value="{{midia.value}}">{{midia.label}}</option>  
     </select>
@@ -40,7 +40,7 @@
 
 <!-- categorias -->
   <div class="col-md-2" style="text-align: center">
-  <button ng-click="atualiza(produtoSelecionado,midiaSelecionada)"><b><font color="0072D4">FILTRAR</font></b>
+  <button ng-click="atualiza(produto,midia)"><b><font color="0072D4">FILTRAR</font></b>
       </button>
     <!-- <select ng-model="categoriaSelecionado" id="Categoria" ng-change="atualiza('tagC',categoriaSelecionado)" selectedOption=''>
       <option style="display:none;" value="">Categoria</option>
