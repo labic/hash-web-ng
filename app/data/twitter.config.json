@@ -33,12 +33,12 @@
       {
         "number": "1",
         "time": "dia",
-        "value": "1D"
+        "value": "1d"
       },
       {
         "number": "2",
         "time": "Dias",
-        "value": "2D"
+        "value": "2d"
       }
     ]
   }
