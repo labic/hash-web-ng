@@ -358,7 +358,7 @@ hash.controller('mainMonitor', function ($rootScope, $state, $scope, $http, sett
       'filter[with_tags]': filterTags,
       'filter[hashtags]': tag,
       'filter[retweeted]': false, // Bollean
-      'filter[quote_status]': false,
+      'filter[quoted_status]': false,
       retrive_blocked: undefined,
       page: 1,
       per_page: 50,
