@@ -10,7 +10,7 @@
         views: {
           '': { templateUrl: 'modules/twitter/views/main.html' },
           'map@twitter': { templateUrl: 'modules/twitter/views/map.html' },
-          'word&Tag@twitter': { templateUrl: 'modules/twitter/views/wordTweet.html' },
+          'word&Tag@twitter': { templateUrl: 'modules/twitter/views/tagTweet.html' },
           'conteudo@twitter': { templateUrl: 'modules/twitter/views/twTweetsTweets.html' }
         }
       })
