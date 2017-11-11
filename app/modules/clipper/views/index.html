@@ -2,7 +2,15 @@
 <nav class="navbar navbar-inverse navbar-fixed-top" ng-controller="menuController">
 <br>
 <div class="row">
-  <button  style="margin-left: 3%;" ng-click = "mudarExibicao()" id="exibicao"><h5>Mudar tipo de exibição</h5></button>
+  <div class="col-md-12 exibicao">
+    <p>
+      Mudar tipo de exibição:
+      <span ng-click="mudarExibicao(0)" class="glyphicon glyphicon-th"></span>
+      <span ng-click="mudarExibicao(1)" class="glyphicon glyphicon-th-list"></span>
+    </p>
+
+  </div>
+
 </div>
 <br>
     <searching> </searching>
@@ -11,7 +19,7 @@
 <div id="conteudo">
     <!--  blocos de notícias novas  -->
   <div id="notNovas" ng-controller="gridController" ng-init="limNot = 20; treatURL()" >
-  
+
     <div class="modal" id="abrirModal">
     <div class="modal-content" align="justify">
       <span class="close-heavy" id="fecharModal">&times;</span>
@@ -23,7 +31,7 @@
         document.getElementById('abrirModal').style.display = "none";
         document.getElementsByClassName('navbar')[0].style.zIndex = '1';
       };
-      
+
       </script>
     </div>
     </div>
@@ -33,7 +41,7 @@
       <div ng-repeat="nov in dados | limitTo:limNot">
       <!-- seção que aparece no modo de exibição normal -->
         <section layout="row" layout-align="end" layout-wrap align="end" ng-show="exibirImagem()">
-          <input type="checkbox" ng-click="adicionaNoticia(nov)" title="Adicionar ao relatório" > 
+          <input type="checkbox" ng-click="adicionaNoticia(nov)" title="Adicionar ao relatório" >
           <button ng-click="deletar(nov)" title="Excluir notícia">&#10060;</button>
         </section>
         <noticias info='nov' class="row" ng-show="exibirImagem()"></noticias>
@@ -42,7 +50,7 @@
       <div class="row">
         <modolista info='nov' class="col-md-11" ng-show="!exibirImagem()"></modolista>
         <div class="col-md-1" ng-show="!exibirImagem()">
-          <input type="checkbox" ng-click="adicionaNoticia(nov)" > 
+          <input type="checkbox" ng-click="adicionaNoticia(nov)" >
           <button ng-click="deletar(nov);dados.splice($index,1)">&#10060;</button>
         </div>
       </div>
