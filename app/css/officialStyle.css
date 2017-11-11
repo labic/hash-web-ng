@@ -1737,3 +1737,9 @@ body > div.ng-scope {
   transform-origin: center;
   transform: rotate3d(0, 0, 1, -200deg);
 }
+.exibicao{
+  margin-left: 15px
+}
+.exibicao span{
+  cursor: pointer;
+}

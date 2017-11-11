@@ -1,21 +1,22 @@
 angular
     .module('hash.clipper')
     .controller('menuController', [ '$scope','$location', function ($scope, $location) {
-     
-    $scope.mudarExibicao = function () {
+
+    $scope.mudarExibicao = function (type) {
       //definir se exibição das notícias será com ou sem imagem
-      
-      if(Object.keys($location.search()).length === 0) {
-        //temos que adicionar o parametro de lista na pagina
-        location.href = window.location.href + '?exibicao=Lista';
-      } else if($location.search().exibicao === undefined) {
-                location.href = window.location.href + '&exibicao=Lista';
-          } else if ($location.search().exibicao === 'ComImagens') {
-            //substituir apenas o modo de exibicao
-                location.href = window.location.href.replace('ComImagens','Lista');
-              } else {
-                  location.href = window.location.href.replace('Lista','ComImagens');
-                };
+      $location.search().exibicao = type === 0 ? 'Lista' : 'ComImagens';
+
+      // if(Object.keys($location.search()).length === 0) {
+      //   //temos que adicionar o parametro de lista na pagina
+      //   location.href = window.location.href + '?exibicao=Lista';
+      // } else if($location.search().exibicao === undefined) {
+      //           location.href = window.location.href + '&exibicao=Lista';
+      //     } else if ($location.search().exibicao === 'ComImagens') {
+      //       //substituir apenas o modo de exibicao
+      //           location.href = window.location.href.replace('ComImagens','Lista');
+      //         } else {
+      //             location.href = window.location.href.replace('Lista','ComImagens');
+      //           };
     };
 
     $scope.atualiza = function (produto,midia) {
@@ -43,7 +44,7 @@ angular
 
       //remove o último caractere
       query = query.substring(0,query.length-1);
-      
+
       location.href = window.location.href.split('?')[0] + query;
       location.reload();
 
@@ -116,20 +117,20 @@ angular
             document.getElementById("picker1").value = query.data.split('I')[0];
             document.getElementById("picker2").value = query.data.split('I')[1];
         };
-        
+
         // //verifica a pesquisa por produto
         // if((query.tagP != undefined)&(query.tagP != '')) {
         //     //mostrar valor do produto pesquisado
         //     console.log('olá');
         //     document.getElementById("Produto").value = query.tagP;
         // };
-        
+
         // //verifica a pesquisa por categoria
         // if((query.tagC != undefined)&(query.tagC != '')) {
         //     //mostrar valor do categoria pesquisado
         //     document.getElementById("Categoria").value = query.tagC;
         // };
-       
+
 
     };
 
