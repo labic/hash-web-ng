@@ -1,16 +1,21 @@
 'use strict';
 
 /* NOTA: MONITOR - CONTROLLER */
-hash.controller('mainMonitor', function ($rootScope, $scope, $http, settings, MetricsTwitter,
+hash.controller('mainMonitor', function ($rootScope, $state, $scope, $http, settings, MetricsTwitter,
                                          AnalyticsTwitter, WordTwitter, Tweet, WORD_API_BASE_URI) {
 
 
   // TODO pog. Toda vez que mudar o state retorna o
   // paramentro $scope.analyticsParams.page = 1;
+  $scope.refRefresh = 'twitter.tweetstweets';
 
   $rootScope.$on('$stateChangeStart',
-    function(){
+    function () {
       $scope.analyticsParams.page = 1;
+    });
+  $rootScope.$on('$stateChangeSuccess',
+    function () {
+      $scope.refRefresh = $state.current.name
     })
 
   $scope.settings = settings.get('twitter');
@@ -111,17 +116,17 @@ hash.controller('mainMonitor', function ($rootScope, $scope, $http, settings, Me
     });
   }
 
-  $scope.functionHashTag = function(period, theme, category, location){
+  $scope.functionHashTag = function (period, theme, category, location) {
 
     var cloudWidth = $("#div3_monitor").width();
-    $scope.loading('TwitterTopHashTags','str_hashTag');
+    $scope.loading('TwitterTopHashTags', 'str_hashTag');
 
     AnalyticsTwitter.mostRecurringHashtags(
       $scope.analyticsParams,
       function success(data) {
-        data != '' ? $scope.sucess('TwitterTopHashTags','str_hashTag') : $scope.empty('TwitterTopHashTags');
-        plotWordCloud({width:cloudWidth, height:330, divID:'str_hashTag'}, data);
-      }, function (error){
+        data != '' ? $scope.sucess('TwitterTopHashTags', 'str_hashTag') : $scope.empty('TwitterTopHashTags');
+        plotWordCloud({width: cloudWidth, height: 330, divID: 'str_hashTag'}, data);
+      }, function (error) {
         $scope.error('TwitterTopHashTags');
       });
   };
@@ -154,7 +159,8 @@ hash.controller('mainMonitor', function ($rootScope, $scope, $http, settings, Me
         data != '' ? $scope.sucess('TwitterPosts', 'painel-posts-list') : $scope.empty('TwitterPosts');
         $scope.twittes = data;
         $scope.currentCount = data.length;
-        $scope.loadLessMoreButtons();      }, function (error){
+        $scope.loadLessMoreButtons();
+      }, function (error) {
         $scope.error('TwitterPosts');
       });
   };
@@ -355,7 +361,8 @@ hash.controller('mainMonitor', function ($rootScope, $scope, $http, settings, Me
       'filter[quote_status]': false,
       retrive_blocked: undefined,
       page: 1,
-      per_page: 50
+      per_page: 50,
+      timestamp: Date.now()
     };
 
     //    $scope.analyticsImageParams = {
@@ -391,7 +398,7 @@ hash.controller('mainMonitor', function ($rootScope, $scope, $http, settings, Me
   };
 
   $scope.setAnalyticsParam($scope.filter.period, $scope.filter.theme,
-                           undefined, undefined, undefined, undefined);
+    undefined, undefined, undefined, undefined);
 
   // Quando o filtro mudar...
   $scope.$watch('filter', function (newFilter, oldFilter) {
@@ -481,24 +488,51 @@ hash.controller('mainMonitor', function ($rootScope, $scope, $http, settings, Me
 
     resetMosaico("mosaico")
 
-  AnalyticsTwitter.mostRecurringImages(
-    {
-      page:$scope.analyticsParams.page,
-      per_page:60,
-      period: $scope.analyticsParams.period,
-      'filter[with_tags]': $scope.analyticsParams['filter[with_tags]'],
-      'filter[hashtags]': $scope.analyticsParams['filter[hashtags]']
-    },
-    function success(data) {
-      $scope.currentCount = data.length;
-        $scope.loadLessMoreButtons();plotMosaico("mosaico",$("#mosaico").width(),4,data);$scope.imgLoaded = 1;
-    }, function (error){
-      console.log(error)
-      $scope.error('TwitterPosts');
-    });
+    AnalyticsTwitter.mostRecurringImages(
+      {
+        page: $scope.analyticsParams.page,
+        per_page: 60,
+        period: $scope.analyticsParams.period,
+        'filter[with_tags]': $scope.analyticsParams['filter[with_tags]'],
+        'filter[hashtags]': $scope.analyticsParams['filter[hashtags]']
+      },
+      function success(data) {
+        $scope.currentCount = data.length;
+        $scope.loadLessMoreButtons();
+        plotMosaico("mosaico", $("#mosaico").width(), 4, data);
+        $scope.imgLoaded = 1;
+      }, function (error) {
+        console.log(error)
+        $scope.error('TwitterPosts');
+      });
   };
 
 
+  $scope.refreshTW = function () {
+    $scope.analyticsParams.timestamp = Date.now();//O sistema só busca caso haja campos novos. TODO POG =/
+
+    switch ($scope.refRefresh) {
+      case 'twitter.tweetstweets':
+        $scope.functionConteudo();
+        break;
+      case 'twitter.tweet':
+        $scope.functionConteudoTweets();
+        break;
+      case 'twitter.user':
+        $scope.functionUser();
+        break;
+      case 'twitter.mentions':
+        $scope.functionMention();
+        break;
+      case 'twitter.url':
+        $scope.functionUrl();
+        break;
+      case 'twitter.mosaico':
+        $scope.functionImages();
+        break;
+    }
+
+  };
 
 
   $scope.loadLessMoreButtons = function () {

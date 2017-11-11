@@ -1721,3 +1721,19 @@
 body > div.ng-scope {
   margin-left: 60px;
 }
+
+.twAtt {
+  position: absolute;
+  left: 0;
+  margin-left: 15px;
+  margin-top: 15px;
+  font-size: 13pt;
+  cursor: pointer;
+}
+
+.twAtt:hover {
+  opacity: 1;
+  color: #266ad5;
+  transform-origin: center;
+  transform: rotate3d(0, 0, 1, -200deg);
+}
