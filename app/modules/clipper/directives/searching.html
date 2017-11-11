@@ -6,7 +6,7 @@
   <div class="col-md-3">
     <div class="col-sm-6">
         <div class='input-group date' id='datetimepicker1'>
-            <input type='text' placeholder="Data inicial" class="form-control" id="picker1" ng-blur="atualiza('data')" />
+            <input type='text' placeholder="Data inicial" class="form-control" id="picker1" />
             <span class="input-group-addon">
                 <span class="glyphicon glyphicon-calendar"></span>
             </span>
@@ -14,7 +14,7 @@
     </div>
     <div class="col-sm-6">
         <div class='input-group date' id='datetimepicker2'>
-            <input type='text' placeholder="Data final" class="form-control"  id="picker2" ng-blur="atualiza('data')" />
+            <input type='text' placeholder="Data final" class="form-control"  id="picker2" />
             <span class="input-group-addon">
                 <span class="glyphicon glyphicon-calendar"></span>
             </span>
@@ -23,26 +23,29 @@
   </div>
   <!-- produtos -->
   <div class="col-md-2">
-    <select ng-model="produtoSelecionado" id="Produto" ng-change="atualiza('tagP',produtoSelecionado)" selectedOption=''>
+    <select ng-model="produtoSelecionado" id="Produto" selectedOption=''>
       <option style="display:none;" value=''>Produto</option>
-      <optgroup ng-repeat="produto in prod" label="{{produto.label}}">
-      <option ng-repeat="item in produto.submenu" value="{{item.toLowerCase()}}">{{item}}</option>          
+      <option ng-repeat="produto in prod" value="{{produto.value}}">{{produto.label}}</option>          
       </optgroup> 
    </select>
   </div>
-  <!-- categorias -->
-  <div class="col-md-2">
-    <select ng-model="categoriaSelecionado" id="Categoria" ng-change="atualiza('tagC1',categoriaSelecionado)" selectedOption=''>
-      <option style="display:none;" value="">Categoria</option>
-      <option ng-repeat="cat in categ" value="{{cat.label.toLowerCase()}}">{{cat.label}}</option>  
-    </select>
-  </div>
+  
   <!-- conteudos -->
   <div class="col-md-2">
-    <select ng-model="midiaSelecionada" id="TipoMidia" ng-change="atualiza('tagC2',midiaSelecionada)" selectedOption=''>
+    <select ng-model="midiaSelecionada" id="TipoMidia" selectedOption=''>
       <option style="display:none;" value="">Tipo de mídia</option>
-      <option ng-repeat="midia in tipoMidia" value="{{midia.label.toLowerCase()}}">{{midia.label}}</option>  
+      <option ng-repeat="midia in tipoMidia" value="{{midia.value}}">{{midia.label}}</option>  
     </select>
+  </div>
+
+<!-- categorias -->
+  <div class="col-md-2" style="text-align: center">
+  <button ng-click="atualiza(produtoSelecionado,midiaSelecionada)"><b><font color="0072D4">FILTRAR</font></b>
+      </button>
+    <!-- <select ng-model="categoriaSelecionado" id="Categoria" ng-change="atualiza('tagC',categoriaSelecionado)" selectedOption=''>
+      <option style="display:none;" value="">Categoria</option>
+      <option ng-repeat="cat in categ" value="{{cat.label.toLowerCase()}}">{{cat.label}}</option>  
+    </select> -->
   </div>
 
   <!-- limpar filtros -->

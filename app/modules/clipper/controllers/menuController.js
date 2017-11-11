@@ -18,115 +18,71 @@ angular
                 };
     };
 
-    $scope.atualiza = function (tipo, valor) {
-
+    $scope.atualiza = function (produto,midia) {
+        var query = '?';
       //tratar data primeiro
-      if(tipo === 'data') {
-          var inicio = document.getElementById("picker1").value;
-          var fim = document.getElementById("picker2").value;
+      data1 = document.getElementById("picker1").value;
+      data2 = document.getElementById("picker2").value;
 
-          if((inicio === '')||(fim === ''))
-            return;
-
-          //nao ha pesquisa
-          if(Object.keys($location.search()).length === 0) {
-            //temos que adicionar o parametro de lista na pagina
-            location.href = window.location.href + '?'+tipo+'='+inicio+'I'+fim;
-            location.reload();
-          }
-
-          //existe outra pesquisa
-          var query = '?'+ window.location.href.split('?')[1];
-
-          //nao existe aquela pesquisa
-          if(query.indexOf(tipo) < 1) {
-            query = query.concat('&'+tipo+'='+inicio+'I'+fim);
-            //temos que adicionar o parametro de lista na pagina
-            location.href = window.location.href.split('?')[0] + query;
-            location.reload();
-          }
-          //existe aquela pesquisa
-          else {
-            query = query.replace($location.search().data,inicio+'I'+fim);
-          }
-
-        location.href = window.location.href.split('?')[0] + query;
-        location.reload();
+      if((data1 != '')&&(data2 != '')) {
+          query = query + 'data=' + data1 + 'I' + data2 + '&';
       };
 
-
-
-      //primeira pesquisa
-      if(Object.keys($location.search()).length === 0) {
-        //temos que adicionar o parametro de lista na pagina
-        location.href = window.location.href + '?'+tipo+'='+valor.toLowerCase();
-        location.reload();
+      //verifica a pesquisa por produto
+      if((produto != undefined)&&(produto != '')) {
+          query = query + 'tagP=' + produto + '&';
       }
 
-      //existe outra pesquisa
-      var query = '?'+ window.location.href.split('?')[1];
-
-      //nao existe aquela pesquisa
-      if(query.indexOf(tipo) < 1) {
-        query = query.concat('&'+tipo+'='+valor.toLowerCase());
-        //temos que adicionar o parametro de lista na pagina
-        location.href = window.location.href.split('?')[0] + query;
-        location.reload();
+      //verifica a pesquisa por categoria
+      if((midia != undefined)&&(midia != '')) {
+          query = query + 'tagC=' + produto + '&';
       }
 
-      switch(tipo) {
-        case 'tagP':
-              query = query.replace($location.search().tagP,valor.toLowerCase());
-              break;
-        case 'tagC1':
-              query = query.replace($location.search().tagC1,valor.toLowerCase());
-              break;
-        case 'tagC2':
-              query = query.replace($location.search().tagC2,valor.toLowerCase());
-              break;
-      }
+      if(($location.search().exibicao != undefined)&&($location.search().exibicao != ''))
+        query = query.concat('exibicao=',$location.search().exibicao,'&');
 
-        location.href = window.location.href.split('?')[0] + query;
-        location.reload();
+      //remove o último caractere
+      query = query.substring(0,query.length-1);
+      
+      location.href = window.location.href.split('?')[0] + query;
+      location.reload();
 
     };
 
-    $scope.categ = [
-     {
-      label:'Educação Básica'
-     },
-     {
-      label:'Educação Superior'
-     },
-      {
-      label:'Internacional'
-     },
-      {
-      label:'Institucional'
-     }
-    ];
-
     $scope.prod = [
-     {
-      label:'Educação Básica',
-      submenu:['SAEB','ANEB','ANRESC (Prova Brasil)','ANA','IDEB',
-      'ENEM','Enceeja']
-     },
-     {
-      label:'Educação Superior',
-      submenu:['SINAES','ENADE','ANASEM','Indicadores de Qualidade',
-      'REVALIDA','SAEG']
-     },
-      {
-      label:'Institucional',
-      submenu:['Centro de Informação e Biblioteca em Educação (Cibec)'
-      ,'Biblioteca e Arquivo Histórico da Educação Brasileira','Thesaurus Brasileiro da Educação (Brased)','Banco de Dados Terminológicos do Mercosul (BDT)','Bibliografia Brasileira da Educação (BBE)','Serviço de Atendimento ao Pesquisador (SAP)']
-     },
-      {
-      label:'Internacional',
-      submenu:['CELPE-BRAS','PISA','ARCU-SUL','EaG','Pesquisa TALIS'
-      ,'SEM','Metas Educativas 2021','Agenda 2030','RIACES','Estudos Regionais Comparativos ERCE/LLECE']
-     }
+      {label:'Educação Básica',value:'educação básica'},
+      {label:'ANA',value:'ana'},
+      {label:'ANEB',value:'aneb'},
+      {label:'ANRESC (Prova Brasil)',value:'anresc'},
+      {label:'Enceeja',value:'enceeja'},
+      {label:'ENEM',value:'enem'},
+      {label:'IDEB',value:'ideb'},
+      {label:'SAEB',value:'saeb'},
+      {label:'Educação Superior',value:'educação superior'},
+      {label:'ANASEM',value:'anasem'},
+      {label:'ENADE',value:'enade'},
+      {label:'Indicadores de Qualidade',value:'indicadores de qualidade'},
+      {label:'REVALIDA',value:'revalida'},
+      {label:'SAEG',value:'saeg'},
+      {label:'SINAES',value:'sinaes'},
+      {label:'Institucional',value:'institucional'},
+      {label:'Banco de Dados Terminológicos do Mercosul (BDT)',value:'bdt'},
+      {label:'Bibliografia Brasileira da Educação (BBE)',value:'bbe'},
+      {label:'Biblioteca e Arquivo Histórico da Educação Brasileira',value:'biblioteca e arquivo histórico da educação brasileira'},
+      {label:'Centro de Informação e Biblioteca em Educação (Cibec)',value:'cibec'},
+      {label:'Serviço de Atendimento ao Pesquisador (SAP)',value:'sap'},
+      {label:'Thesaurus Brasileiro da Educação (Brased)',value:'brased'},
+      {label:'Internacional',value:'internacional'},
+      {label:'Agenda 2030',value:'agenda 2030'},
+      {label:'ARCU-SUL',value:'arcu-sul'},
+      {label:'CELPE-BRAS',value:'celpe-bras'},
+      {label:'EaG',value:'eag'},
+      {label:'Estudos Regionais Comparativos ERCE/LLECE',value:'erce/llece'},
+      {label:'Metas Educativas 2021',value:'metas educativas 2021'},
+      {label:'Pesquisa TALIS',value:'pesquisa talis'},
+      {label:'PISA',value:'pisa'},
+      {label:'RIACES',value:'riaces'},
+      {label:'SEM',value:'sem'}
     ];
 
     $scope.tipoMidia = [
@@ -137,10 +93,12 @@ angular
      //  label:'Impresso'
      // },
       {
-      label:'Vídeo'
+      label:'Vídeo',
+      value:'video'
      },
       {
-      label:'Áudio'
+      label:'Áudio',
+      value:'audio'
      }
     ];
 
@@ -167,16 +125,11 @@ angular
         // };
         
         // //verifica a pesquisa por categoria
-        // if((query.tagC1 != undefined)&(query.tagC1 != '')) {
+        // if((query.tagC != undefined)&(query.tagC != '')) {
         //     //mostrar valor do categoria pesquisado
-        //     document.getElementById("Categoria").value = query.tagC1;
+        //     document.getElementById("Categoria").value = query.tagC;
         // };
        
-        // //verifica a pesquisa por conteúdo
-        // if((query.tagC2 != undefined)&(query.tagC2 != '')) {
-        //     //mostrar valor do conteúdo pesquisado
-        //     document.getElementById("TipoMidia").value = query.tagC2;
-        // };
 
     };
 

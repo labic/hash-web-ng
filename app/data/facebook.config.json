@@ -44,11 +44,11 @@
       },{
         "number": "1",
         "time": "dia",
-        "value": "1d"
+        "value": "1D"
       },{
-        "number": "7",
+        "number": "2",
         "time": "Dias",
-        "value": "7d"
+        "value": "2D"
       }
     ]
   }
