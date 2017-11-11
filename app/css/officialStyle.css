@@ -1722,7 +1722,7 @@ body > div.ng-scope {
   margin-left: 60px;
 }
 
-.twAtt {
+.refreshButton {
   position: absolute;
   left: 0;
   margin-left: 15px;
@@ -1731,7 +1731,7 @@ body > div.ng-scope {
   cursor: pointer;
 }
 
-.twAtt:hover {
+.refreshButton:hover {
   opacity: 1;
   color: #266ad5;
   transform-origin: center;
