@@ -2,6 +2,9 @@ angular
     .module('hash.clipper')
     .controller('menuController', [ '$scope','$location', function ($scope, $location) {
 
+    $scope.produto = '';
+    $scope.midia = '';
+     
     $scope.mudarExibicao = function (type) {
       //definir se exibição das notícias será com ou sem imagem
       $location.search().exibicao = type === 0 ? 'Lista' : 'ComImagens';
@@ -36,7 +39,7 @@ angular
 
       //verifica a pesquisa por categoria
       if((midia != undefined)&&(midia != '')) {
-          query = query + 'tagC=' + produto + '&';
+          query = query + 'tagC=' + midia+ '&';
       }
 
       if(($location.search().exibicao != undefined)&&($location.search().exibicao != ''))
@@ -118,19 +121,18 @@ angular
             document.getElementById("picker2").value = query.data.split('I')[1];
         };
 
-        // //verifica a pesquisa por produto
-        // if((query.tagP != undefined)&(query.tagP != '')) {
-        //     //mostrar valor do produto pesquisado
-        //     console.log('olá');
-        //     document.getElementById("Produto").value = query.tagP;
-        // };
-
-        // //verifica a pesquisa por categoria
-        // if((query.tagC != undefined)&(query.tagC != '')) {
-        //     //mostrar valor do categoria pesquisado
-        //     document.getElementById("Categoria").value = query.tagC;
-        // };
-
+       
+        //verifica a pesquisa por produto
+        if((query.tagP != undefined)&(query.tagP != '')) {
+            //mostrar valor do produto pesquisado
+            $scope.produto = query.tagP;
+        };
+        
+        //verifica a pesquisa por categoria
+        if((query.tagC != undefined)&(query.tagC != '')) {
+            //mostrar valor do categoria pesquisado
+            $scope.midia = query.tagC;
+        };
 
     };
 
