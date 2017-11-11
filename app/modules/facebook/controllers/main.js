@@ -63,8 +63,8 @@ hash.controller('mainFacebook', function ($scope, $http, settings, MetricsFacebo
       case '1d':
         _time = 86400000;
         break;
-      case '7d':
-        _time = 604800000;
+      case '2d':
+        _time = 172800000;
         break;
     }
 
