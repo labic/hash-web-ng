@@ -136,4 +136,9 @@ angular
 
     };
 
+    $scope.cleanFilter = function () {
+      location.href = window.location.href.split('?')[0];
+      location.reload();
+    };
+
     }]);
