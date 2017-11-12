@@ -158,12 +158,12 @@ angular
             stringURL = stringURL.concat('tagP=',query.tagP,'&');
         }
 
-        //verifica a pesquisa por produto
+        //verifica a pesquisa por categoria
         if((query.tagC != undefined)&&(query.tagC != '')) {
             stringURL = stringURL.concat('tagC=',query.tagC,'&');
         }
 
-        //verifica a pesquisa por produto
+        //verifica a pesquisa por parametro
         if((query.param != undefined)&&(query.param != '')) {
             stringURL = stringURL.concat('param=',query.param,'&');
         }
