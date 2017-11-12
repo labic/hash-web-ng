@@ -163,6 +163,10 @@ angular
             stringURL = stringURL.concat('tagC=',query.tagC,'&');
         }
 
+        //verifica a pesquisa por produto
+        if((query.param != undefined)&&(query.param != '')) {
+            stringURL = stringURL.concat('param=',query.param,'&');
+        }
 
         //remove o ultimo caractere
         stringURL = stringURL.substring(0,stringURL.length-1);
@@ -204,6 +208,12 @@ angular
             keywords = keywords.concat(query.tagC,',');
         }
 
+        //verifica a pesquisa por produto
+        if((query.param != undefined)&&(query.param != '')) {
+            //mostrar valor do produto pesquisado
+            keywords = keywords.concat(query.param,',');
+        }
+
         //remove a última vírgula
         if (keywords.length > 1)
             keywords = keywords.substring(0,keywords.length-1);
@@ -231,7 +241,7 @@ angular
         };
 
         //muda o endereço da pagina à partir do endereço base
-        location.href = window.location.href.split('?')[0]+'?tagP='+parametro+exibicao;
+        location.href = window.location.href.split('?')[0]+'?param='+parametro+exibicao;
         //carrega a página com a pesquisa
         location.reload();
     };
