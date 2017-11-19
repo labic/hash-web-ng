@@ -94,26 +94,41 @@ hash.controller('mainMonitor', function ($rootScope, $state, $scope, $http, sett
     return filterCategories;
   }
 
-  $scope.functionConteudoWord = function () {
+  $scope.functionConteudoWord = function (hashtag) {
 
-    var wordConteudo = WORD_API_BASE_URI + '/twitter/word_posts?filter=' + $scope.analyticsWordFeed;
+    var params = $scope.analyticsParams;
+    params['filter[hashtags]'] = hashtag;
+    params['filter[retweeted]']=null; // Bollean
+    params['filter[quoted_status]']=null;
+
     $scope.loading('TwitterPosts', 'painel-posts-list');
 
-    $http.get(wordConteudo).success(function (data) {
+    Tweet.find(
+      $scope.analyticsParams,
+      function success(data) {
+        data != '' ? $scope.sucess('TwitterPosts', 'painel-posts-list') : $scope.empty('TwitterPosts');
+        $scope.twittes = data;
+        $scope.currentCount = data.length;
+        $scope.loadLessMoreButtons();
+      }, function (error) {
+        $scope.error('TwitterPosts');
+      });
 
-      data != '' ? $scope.sucess('TwitterPosts', 'painel-posts-list') : $scope.empty('TwitterPosts');
-      $scope.twittes = data;
-      //
-      //        contData = Object.keys(data).length;
-      //
-      //        if(contData < nlimit){
-      //          $scope.buttonNext = false;
-      //        }else{
-      //          $scope.buttonNext = true;
-      //        }
-    }).error(function (data, status) {
-      $scope.error('TwitterPosts');
-    });
+    // $http.get(wordConteudo,$scope.analyticsParams).success(function (data) {
+
+    //   data != '' ? $scope.sucess('TwitterPosts', 'painel-posts-list') : $scope.empty('TwitterPosts');
+    //   $scope.twittes = data;
+    //   //
+    //   //        contData = Object.keys(data).length;
+    //   //
+    //   //        if(contData < nlimit){
+    //   //          $scope.buttonNext = false;
+    //   //        }else{
+    //   //          $scope.buttonNext = true;
+    //   //        }
+    // }).error(function (data, status) {
+    //   $scope.error('TwitterPosts');
+    // });
   }
 
   $scope.functionHashTag = function (period, theme, category, location) {
@@ -452,7 +467,7 @@ hash.controller('mainMonitor', function ($rootScope, $state, $scope, $http, sett
 
       if (newFilter.word != oldFilter.word) {
         $scope.setAnalyticsParam(newFilter.period, newFilter.theme, undefined, undefined, newFilter.word, undefined);
-        $scope.functionConteudoWord();
+        $scope.functionConteudoWord(newFilter.word);
       }
     }
   }, true);
