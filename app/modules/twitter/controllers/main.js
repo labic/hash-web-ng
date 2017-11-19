@@ -50,6 +50,42 @@ hash.controller('mainMonitor', function ($rootScope, $state, $scope, $http, sett
     }
   };
 
+  //função que calcula a diferença de tempo
+  $scope.timeDifference = function(previous) {
+
+    var current = Date.now();
+
+    var msPerMinute = 60 * 1000;
+    var msPerHour = msPerMinute * 60;
+    var msPerDay = msPerHour * 24;
+    var msPerMonth = msPerDay * 2;
+
+    var elapsed = current - previous;
+
+    if (elapsed < msPerMinute) {
+         return Math.round(elapsed/1000) + ' segundos atrás';   
+    }
+
+    else if (elapsed < msPerHour) {
+
+         return Math.round(elapsed/msPerMinute) + (Math.round(elapsed/msPerMinute) == 1 ?  ' minuto atrás': ' minutos atrás');   
+    }
+
+    else if (elapsed < msPerDay ) {
+         return 'aproximadamente ' + Math.round(elapsed/msPerHour ) + (Math.round(elapsed/msPerHour ) == 1 ? ' hora atrás':' horas atrás');   
+    }
+
+    else if (elapsed < msPerMonth) {
+        var tempo = new Date(previous);
+        return 'ontem às ' + tempo.getHours()+':'+tempo.getMinutes();   
+    }
+
+    else {
+      var tempo = new Date(previous);
+        return tempo.toLocaleDateString("pt-BR")+' '+ tempo.getHours()+':'+tempo.getMinutes();
+    }
+}
+
   // Filter: Estrutura de requisição para requisiçõs API DAVID
   $scope.filterAnalyticsWord = function (period, word, tag, theme, category, location, limit) {
 
