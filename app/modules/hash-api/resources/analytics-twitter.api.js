@@ -34,6 +34,13 @@
           isArray: true,
           cache: true
         },
+        mostCommonTerms: {
+          method: 'GET',
+          url: CONFIG.HASH_API_URL + '/analytics/twitter/most_common_terms',
+          params: PARAMS,
+          isArray: true,
+          cache: true
+        },
         mostMentionedUsers: {
           method: 'GET',
           url: CONFIG.HASH_API_URL + '/analytics/twitter/most_mentioned_users',
