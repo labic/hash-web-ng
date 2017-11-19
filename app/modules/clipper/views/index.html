@@ -38,6 +38,8 @@
     <!--  ícone fixo para relatório  -->
     <button style="position:fixed; margin-left: 70%;" ng-click="geraRelatorio()" title="Gerar relatório manual"><img src="img/clipper/icon3.PNG" style="height: 50px; width: auto"></button>
 
+    <h5 ng-init="coleta();" style="position:fixed; align-self: right; right: 6%;bottom: -1%" title="Última coleta">Última coleta em: {{dataColeta| date:"dd/MM/yyyy 'às' HH'h'mm":'UTC-4'}}</h5>
+
       <div ng-repeat="nov in dados | limitTo:limNot">
       <!-- seção que aparece no modo de exibição normal -->
         <section layout="row" layout-align="end" layout-wrap align="end" ng-show="exibirImagem()">

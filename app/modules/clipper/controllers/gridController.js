@@ -9,6 +9,19 @@ angular
     $scope.numPage = 1;
     $scope.noticiaSelecionada = [];
     
+    $scope.coleta = function() {
+        $http({
+            url: $scope.url,
+            method:'GET',
+            params:{'page' : 1,'per_page':1}
+            //cache: true
+        })
+        .then(function (response) {
+            console.log(response)
+            $scope.dataColeta = response.data.data[0].dateCreated;
+        });
+    };
+
     //pegando todos os dados
     $scope.loadData = function(keywords,data) {
         var params;
