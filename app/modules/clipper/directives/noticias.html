@@ -7,7 +7,7 @@
       <h4>{{::info.description}}</h4>
     </div>
   	<div class="row" ng-init="fonte = info.url.split('/')[2]">
-  		<h5>Publicado por <a href="http://{{fonte}}" target="_blank" style="display: inline">{{::fonte}}</a> em <b ng-show="info.datePublished === null">[indisponível]</b>{{::info.datePublished | date:"dd/MM/yyyy 'às' HH'h'mm":'UTC-4'}}  e coletado em {{::info.dateCreated | date:"dd/MM/yyyy 'às' HH'h'mm":'UTC-4'}}</h5>
+  		<h5><a href="http://{{fonte}}" target="_blank" style="display: inline"><img style="width: 20px; height:20px;" src="https://www.google.com/s2/favicons?domain={{::fonte}}"></a> - Publicado em <b ng-show="info.datePublished === null">[indisponível]</b>{{::info.datePublished | date:"dd/MM/yyyy 'às' HH'h'mm":'UTC-4'}}  e coletado em {{::info.dateCreated | date:"dd/MM/yyyy 'às' HH'h'mm":'UTC-4'}}</h5>
   	</div>
   	<div class="row">
   		<input type="button" value="{{:: tag }}" ng-repeat = "tag in info.keywords | limitTo:15" ng-click="quickSearch(tag)" title="Pesquisar por esse tema">
