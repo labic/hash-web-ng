@@ -33,11 +33,7 @@
   "period": {
     "type": "single-option",
     "values": [
-      {  
-        "number": "1",
-        "time": "hora",
-        "value": "1h"
-      },{
+      {
         "number": "6",
         "time": "horas",
         "value": "6h"
@@ -49,6 +45,10 @@
         "number": "2",
         "time": "Dias",
         "value": "2d"
+      },{
+        "number": "7",
+        "time": "Dias",
+        "value": "7d"
       }
     ]
   }
