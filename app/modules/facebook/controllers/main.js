@@ -54,8 +54,8 @@ hash.controller('mainFacebook', function ($scope, $http, settings, MetricsFacebo
     var _time;
     //acertar valores de filtros de tempo
     switch ($scope.filter.time) {
-      case '1h':
-        _time = 3600000;
+      case '7d':
+        _time = 604800000;
         break;
       case '6h':
         _time = 21600000;
